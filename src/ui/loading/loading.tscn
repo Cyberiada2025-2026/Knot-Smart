@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://crhln4qdp4hph"]
+[gd_scene load_steps=3 format=3 uid="uid://crhln4qdp4hph"]
+
+[ext_resource type="Script" uid="uid://7jomll5o72gs" path="res://ui/loading/loading.gd" id="1_is4br"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0y627"]
 bg_color = Color(0, 0, 0, 1)
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_is4br")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1

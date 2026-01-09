@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c62pp8s4uhak7"]
+[gd_scene load_steps=3 format=3 uid="uid://c62pp8s4uhak7"]
+
+[ext_resource type="Script" uid="uid://dh2w1k74fxdh3" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl0q7"]
 bg_color = Color(0, 0, 0, 1)
@@ -10,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uhj5c")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -37,3 +40,5 @@ offset_right = 188.0
 offset_bottom = 242.0
 theme_override_font_sizes/font_size = 48
 text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

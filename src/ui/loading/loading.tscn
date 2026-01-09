@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://crhln4qdp4hph"]
+
+[ext_resource type="Script" uid="uid://7jomll5o72gs" path="res://ui/loading/loading.gd" id="1_is4br"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0y627"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Loading" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_is4br")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0y627")
+
+[node name="Game title" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 73.0
+offset_right = 399.0
+offset_bottom = 158.0
+theme_override_font_sizes/normal_font_size = 56
+text = "loading..."

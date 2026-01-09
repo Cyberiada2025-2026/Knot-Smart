@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfly122qq7odf"]
+
+[ext_resource type="Script" uid="uid://cfokptmt8mcvj" path="res://scenes/test/test.gd" id="1_m7npr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rcr0w"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m7npr"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="Test" type="Node3D"]
+script = ExtResource("1_m7npr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.7076003, 0.706613, 0, -0.706613, 0.7076003, 0, 1.9649767, 2.4227252)
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(3, 0.2, 3)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8175069, -0.39716485, -0.4170642, 0, -0.7241719, 0.68961954, -0.5759188, -0.56376874, -0.5920155, 0, 0, 0)
+
+[node name="Cube" type="RigidBody3D" parent="."]
+transform = Transform3D(0.8488702, -0.5286013, 0, 0.4393313, 0.70551336, -0.5560925, 0.2939512, 0.47205037, 0.8311204, 0, 1.7352875, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube"]
+mesh = SubResource("BoxMesh_rcr0w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube"]
+shape = SubResource("BoxShape3D_m7npr")

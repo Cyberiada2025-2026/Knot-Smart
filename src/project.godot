@@ -14,3 +14,7 @@ config/name="Knot Smart"
 run/main_scene="uid://c62pp8s4uhak7"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SceneManager="*res://autoload/scene_manager.gd"

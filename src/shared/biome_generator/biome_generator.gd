@@ -27,7 +27,7 @@ var trianglesLine1: Array[int]
 var trianglesLine2: Array[int]
 var trianglesLine3: Array[int]
 var biomesLines: Array
-var setTriangles
+var biomesTriangles: Array
 
 func _ready() -> void:
 	s = pointsInX
@@ -88,17 +88,33 @@ func _set_biome() -> void:
 	for b in biomes:
 		var biomeLines: Array[int]
 		var biomeTriangles: Array[int]
-		biomesLines.append(biomeLines)
 		var startT: int = randi_range(0, trianglesLine1.size()-1)
+		biomeTriangles.append(startT)
 		biomeLines.append(trianglesLine1[startT])
 		biomeLines.append(trianglesLine2[startT])
 		biomeLines.append(trianglesLine3[startT])
 		for i in range(biomes[b]-1):
-			#var l: int = biomesLines.pick_random()
-			pass
+			## Find triangle to add
+			var l: int = biomesLines.pick_random()
+			var triangle1: int = trianglesLine1.find(l)
+			var triangle2: int = trianglesLine2.find(l)
+			var triangle3: int = trianglesLine3.find(l)
+			while not (_add_triangle(biomeTriangles, triangle1) or _add_triangle(biomeTriangles, triangle2) or _add_triangle(biomeTriangles, triangle3)):
+				l = biomesLines.pick_random()
+				triangle1 = trianglesLine1.find(l)
+				triangle2 = trianglesLine2.find(l)
+				triangle3 = trianglesLine3.find(l)
+			##
+			
+		biomesLines.append(biomeLines)
+		biomesTriangles.append(biomeTriangles)
 
-
-
+func _add_triangle(biomeTriangles: Array[int], triangle: int) -> bool:
+	if triangle != -1 and biomeTriangles.find(triangle) == -1:
+		for triangles: Array[int] in biomesTriangles:
+			if triangles.find(triangle):
+				return false
+	return true
 
 
 func _show_points() -> void:

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3sd1mdhnvo6r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pypd3"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_258c3"]
+material = SubResource("StandardMaterial3D_pypd3")
+
+[node name="generatorPoint" type="MeshInstance3D"]
+layers = 513
+mesh = SubResource("SphereMesh_258c3")

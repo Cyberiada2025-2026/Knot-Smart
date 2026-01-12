@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://71v4bfmlfpqn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uruy"]
+transparency = 1
+albedo_color = Color(0.21621701, 0.62643015, 0.3903289, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hawlq"]
+material = SubResource("StandardMaterial3D_8uruy")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hawlq"]
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onkk8"]
+transparency = 1
+albedo_color = Color(0.05156841, 0.63433045, 0.42756984, 0.2901961)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xmuq3"]
+material = SubResource("StandardMaterial3D_onkk8")
+radius = 2.0
+height = 4.0
+
+[node name="SomethingInteresting" type="Node3D" groups=["Player"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_hawlq")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_hawlq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("SphereMesh_xmuq3")
+skeleton = NodePath("../../MeshInstance3D")

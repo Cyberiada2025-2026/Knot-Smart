@@ -14,7 +14,7 @@ signal camera_rotated(vector: Vector3, angle: float)
 @export var rotationSpeedQE: float 				= 3.0
 @export var rotationSpeedMouseHiden: float 		= 0.004
 @export var zoomSpeed: float 					= 100.0
-@export var defaultCameraRotation: Vector3		= Vector3(20, 0, 0)
+@export var defaultCameraRotation: Vector3		= Vector3(0, 0, 0)
 @export var cameraUpRotationLimit: float		= 90
 @export var cameraDownRotationLimit: float		= -40
 

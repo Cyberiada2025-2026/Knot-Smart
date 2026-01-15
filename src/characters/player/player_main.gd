@@ -10,6 +10,7 @@ class_name Player
 @export var rotationSpeed: float = 1.0
 @export var gravityRotationSpeedModifier: float = 5.0
 @export var gravityResetTime: float = 1.0
+@export var groundNormalSensitivity: float = 0.0001
 
 var groundNormal: Vector3 = Vector3.UP
 var newGroundNormal: Vector3 = Vector3.UP
@@ -29,7 +30,7 @@ func _process(delta: float) -> void:
 
 
 
-func _on_player_camera_camera_rotated(vector: Vector3, angle: float) -> void:
+func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
 	front = front.rotated(groundNormal, angle)
 
 
@@ -52,11 +53,10 @@ func _check_new_rotation(delta: float) -> void:
 
 ## update values
 func _update_to_new_rotation(delta: float) -> void:
-	if groundNormal != newGroundNormal:
+	if abs(groundNormal - newGroundNormal) > Vector3(groundNormalSensitivity, groundNormalSensitivity, groundNormalSensitivity):
 		isRotating = true
-		var movedGroundNormal := groundNormal.move_toward(newGroundNormal, delta * gravityRotationSpeedModifier * rotationSpeed)
+		var movedGroundNormal := groundNormal.move_toward(newGroundNormal, delta * gravityRotationSpeedModifier * rotationSpeed).normalized()
 		var angle := groundNormal.angle_to(movedGroundNormal)
-		
 		playerCamera.rotate(groundNormal.cross(movedGroundNormal).normalized(), angle)
 		front = front.rotated(groundNormal.cross(movedGroundNormal).normalized(), angle)
 		groundNormal = movedGroundNormal

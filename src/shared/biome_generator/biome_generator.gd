@@ -88,28 +88,49 @@ func _set_biome() -> void:
 	for b in biomes:
 		var biomeLines: Array[int]
 		var biomeTriangles: Array[int]
-		var startT: int = randi_range(0, trianglesLine1.size()-1)
+		var startT: int = 0
+		startT = randi_range(0, trianglesLine1.size()-1)
+		while _if_can_add_triangle(biomeTriangles, startT):
+			startT = randi_range(0, trianglesLine1.size()-1)
 		biomeTriangles.append(startT)
 		biomeLines.append(trianglesLine1[startT])
 		biomeLines.append(trianglesLine2[startT])
 		biomeLines.append(trianglesLine3[startT])
+		#print(biomeLines)
 		for i in range(biomes[b]-1):
 			## Find triangle to add
-			var l: int = biomesLines.pick_random()
-			var triangle1: int = trianglesLine1.find(l)
-			var triangle2: int = trianglesLine2.find(l)
-			var triangle3: int = trianglesLine3.find(l)
-			while not (_add_triangle(biomeTriangles, triangle1) or _add_triangle(biomeTriangles, triangle2) or _add_triangle(biomeTriangles, triangle3)):
+			var l: int = biomeLines.pick_random()
+			var triangles: Vector3 = _find_triangle_with_line(l)
+			var finalT: int = _get_final_triangle(biomeTriangles, triangles)
+			while finalT == -1:
 				l = biomesLines.pick_random()
-				triangle1 = trianglesLine1.find(l)
-				triangle2 = trianglesLine2.find(l)
-				triangle3 = trianglesLine3.find(l)
+				triangles = _find_triangle_with_line(l)
+				finalT = _get_final_triangle(biomeTriangles, triangles)
 			##
-			
+			biomeTriangles.append(finalT)
+			biomeLines.append(trianglesLine1[finalT])
+			biomeLines.append(trianglesLine2[finalT])
+			biomeLines.append(trianglesLine3[finalT])
 		biomesLines.append(biomeLines)
 		biomesTriangles.append(biomeTriangles)
 
-func _add_triangle(biomeTriangles: Array[int], triangle: int) -> bool:
+func _find_triangle_with_line(line: int) -> Vector3:
+	var wynik: Vector3 = Vector3.ZERO
+	wynik.x = trianglesLine1.find(line)
+	wynik.y = trianglesLine2.find(line)
+	wynik.z = trianglesLine3.find(line)
+	return wynik
+
+func _get_final_triangle(biomeTriangles: Array[int], triangles: Vector3) -> int:
+	if _if_can_add_triangle(biomeTriangles, int(triangles.x)):
+		return int(triangles.x)
+	if _if_can_add_triangle(biomeTriangles, int(triangles.y)):
+		return int(triangles.y)
+	if _if_can_add_triangle(biomeTriangles, int(triangles.z)):
+		return int(triangles.z)
+	return -1
+
+func _if_can_add_triangle(biomeTriangles: Array[int], triangle: int) -> bool:
 	if triangle != -1 and biomeTriangles.find(triangle) == -1:
 		for triangles: Array[int] in biomesTriangles:
 			if triangles.find(triangle):

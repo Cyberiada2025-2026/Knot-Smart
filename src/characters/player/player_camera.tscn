@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://2kedsgce1fle"]
+[gd_scene load_steps=4 format=3 uid="uid://2kedsgce1fle"]
 
 [ext_resource type="Script" uid="uid://coo2kgspk670h" path="res://characters/player/player_camera.gd" id="1_ehrhw"]
+[ext_resource type="Script" uid="uid://2pbcecv8ynln" path="res://characters/player/camera_rotation_type/qe_keyboard.gd" id="2_vrua3"]
+[ext_resource type="Script" uid="uid://d0atttex21o4a" path="res://characters/player/camera_rotation_type/hidden_mouse.gd" id="3_cxq6j"]
 
-[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("camera", "arm")]
+[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("camera", "arm", "rotation_strategy")]
 script = ExtResource("1_ehrhw")
 camera = NodePath("SpringArm3D/Camera3D")
 arm = NodePath("SpringArm3D")
+rotation_strategy = {
+0: NodePath("CameraRotationTypes/QEKeyboard"),
+1: NodePath("CameraRotationTypes/HiddenMouse")
+}
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
@@ -13,3 +19,13 @@ spring_length = 7.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.9396931, -0.34202027, 0, 0.34202027, 0.9396931, 0, 0, 0)
+
+[node name="CameraRotationTypes" type="Node3D" parent="."]
+
+[node name="QEKeyboard" type="Node" parent="CameraRotationTypes"]
+script = ExtResource("2_vrua3")
+metadata/_custom_type_script = "uid://cx2wv78p0clji"
+
+[node name="HiddenMouse" type="Node" parent="CameraRotationTypes"]
+script = ExtResource("3_cxq6j")
+metadata/_custom_type_script = "uid://cx2wv78p0clji"

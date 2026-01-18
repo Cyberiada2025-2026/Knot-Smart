@@ -1,0 +1,9 @@
+extends BaseCameraRotationType
+
+@export var rotation_speed: float = 0.004
+
+func rotate_with_mouse(camera: PlayerCamera, event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		camera.rotate_left_right(camera.get_normal(), -event.relative.x * rotation_speed)
+		if not camera.is_3rd_person:
+			camera.rotate_up_down(-event.relative.y * rotation_speed)

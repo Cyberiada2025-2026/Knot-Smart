@@ -3,26 +3,24 @@ extends Node3D
 class_name Player
 
 @export_category("MODULES")
-@export var playerPhysics: PlayerPhysics
-@export var playerCamera: PlayerCamera
-@export var playerFloorSensor: RayCast3D
+@export var player_physics: PlayerPhysics
+@export var player_camera: PlayerCamera
+@export var player_floor_sensor: RayCast3D
 @export_category("VARIABLES")
-@export var rotationSpeed: float = 1.0
-@export var gravityRotationSpeedModifier: float = 5.0
-@export var gravityResetTime: float = 1.0
-@export var groundNormalSensitivity: float = 0.0001
+@export var rotation_speed: float = 1.0
+@export var gravity_rotation_speed_modifier: float = 5.0
+@export var gravity_reset_time: float = 1.0
+@export var ground_normal_sensitivity: float = 0.0001
 
-var groundNormal: Vector3 = Vector3.UP
-var newGroundNormal: Vector3 = Vector3.UP
+var ground_normal: Vector3 = Vector3.UP
+var new_ground_normal: Vector3 = Vector3.UP
 var front: Vector3 = Vector3.FORWARD
-var gravityResetTimer: float = 0.0
-var isRotating: bool = false
+var gravity_reset_timer: float = 0.0
+var is_rotating: bool = false
 
 
 func _process(delta: float) -> void:
-	#_process_camera_input(delta)
-	
-	##new
+	##new rotation
 	_check_new_rotation(delta)
 	_update_to_new_rotation(delta)
 	
@@ -31,77 +29,40 @@ func _process(delta: float) -> void:
 
 
 func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
-	front = front.rotated(groundNormal, angle)
+	front = front.rotated(ground_normal, angle)
 
 
 
 
-##
-## new_rotation : handle changing of player gravity
-##
-
-## set new values
+## set new rotation values
 func _check_new_rotation(delta: float) -> void:
-	if playerPhysics.is_on_floor():
-		gravityResetTimer = 0.0
-		newGroundNormal = playerFloorSensor.get_collision_normal()
+	if player_physics.is_on_floor():
+		gravity_reset_timer = 0.0
+		new_ground_normal = player_floor_sensor.get_collision_normal()
 	else:
-		gravityResetTimer += delta
+		gravity_reset_timer += delta
 	
-	if gravityResetTimer >= gravityResetTime:
-		newGroundNormal = Vector3.UP
+	if gravity_reset_timer >= gravity_reset_time:
+		new_ground_normal = Vector3.UP
 
-## update values
+## update rotation values
 func _update_to_new_rotation(delta: float) -> void:
-	if abs(groundNormal - newGroundNormal) > Vector3(groundNormalSensitivity, groundNormalSensitivity, groundNormalSensitivity):
-		isRotating = true
-		var movedGroundNormal := groundNormal.move_toward(newGroundNormal, delta * gravityRotationSpeedModifier * rotationSpeed).normalized()
-		var angle := groundNormal.angle_to(movedGroundNormal)
-		playerCamera.rotate(groundNormal.cross(movedGroundNormal).normalized(), angle)
-		front = front.rotated(groundNormal.cross(movedGroundNormal).normalized(), angle)
-		groundNormal = movedGroundNormal
-		playerPhysics.up_direction = groundNormal
+	if abs(ground_normal - new_ground_normal) > Vector3(ground_normal_sensitivity, ground_normal_sensitivity, ground_normal_sensitivity):
+		is_rotating = true
+		var moved_ground_normal := ground_normal.move_toward(new_ground_normal, delta * gravity_rotation_speed_modifier * rotation_speed).normalized()
+		var angle := ground_normal.angle_to(moved_ground_normal)
+		player_camera.rotate(ground_normal.cross(moved_ground_normal).normalized(), angle)
+		front = front.rotated(ground_normal.cross(moved_ground_normal).normalized(), angle)
+		ground_normal = moved_ground_normal
+		player_physics.up_direction = ground_normal
 		_rotate_player()
 	else:
-		isRotating = false
+		is_rotating = false
 
 ##
 func _rotate_player() -> void:
-	var tmp_transform := playerPhysics.global_transform
-	tmp_transform.basis.y = groundNormal
-	tmp_transform.basis.x = -tmp_transform.basis.z.cross(groundNormal)
+	var tmp_transform := player_physics.global_transform
+	tmp_transform.basis.y = ground_normal
+	tmp_transform.basis.x = -tmp_transform.basis.z.cross(ground_normal)
 	tmp_transform.basis = tmp_transform.basis.orthonormalized()
-	playerPhysics.global_transform = tmp_transform
-
-##
-## END new_rotation
-##
-
-
-
-
-## DEV-LOG
-##
-#MODUŁY:
-#Player - główny moduł składający całość gracza
-#PlayerPhysics - moduł zajmujący się fizyką gracza
-#PlayerCamera - moduł zajmujący się kamerą
-#
-#
-#STEROWANIE:
-#ui_left - ruch w kierunku - A, arrow_left
-#ui_right -  ruch w kierunku - D, arrow_right
-#ui_up -  ruch w kierunku - W, arrow_up
-#ui_down -  ruch w kierunku - S, arrow_down
-#JUMP_BUTTON - klawisz skoku - spacja
-#ROTATE_CLOCK - obrót kamery - E
-#ROTATE_COUNTER_CLOCK - obrót kamery - Q
-#CHANGE_CAMERA - zmiana typu kamery - R
-#
-#
-#CAMERA
-#enum ROTATION_TYPE - typy używania kamery:
-#QE_KEYBOARD -obrót kamerą za pomocą  ROTATE_CLOCK i ROTATE_COUNTER_CLOCK
-#HIDEN_MOUSE - obrót kamerą przy poruszaniu myszką
-#
-#signal camera_rotated - sygnał wysyłany podczas obrotu lewo/prawo: vector - vektor obroty, angle-kąt obroty 
+	player_physics.global_transform = tmp_transform

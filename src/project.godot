@@ -25,6 +25,12 @@ BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
 enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
+[importer_defaults]
+
+animation_library={
+&"gltf/embedded_image_handling": 2
+}
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

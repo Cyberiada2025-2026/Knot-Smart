@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=6 format=3 uid="uid://3rax0onuo76f"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_hyk8p"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vom5j"]
 size = Vector3(10, 1, 10)
@@ -15,9 +17,6 @@ radius = 0.3
 height = 1.8
 
 [node name="Main" type="Node3D"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9815972, 0.19096321, 0, -0.19096321, 0.9815972, 0, 2.1553738, 4.596)
 
 [node name="10x10_floor" type="StaticBody3D" parent="."]
 
@@ -37,3 +36,6 @@ transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90
 [node name="HumanHeight" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47107148, 1.3952317, 0)
 mesh = SubResource("CapsuleMesh_vom5j")
+
+[node name="Player" parent="." instance=ExtResource("1_hyk8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5882595, 1.0474042, 2.7972581)

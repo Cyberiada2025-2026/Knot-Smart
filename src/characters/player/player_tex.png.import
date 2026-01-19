@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjx37xlrjwshg"
-path.s3tc="res://.godot/imported/player_kosmita_tex.png-f29003115adf557f2e455e2d40e7382b.s3tc.ctex"
+uid="uid://cug2gmud6dwys"
+path.s3tc="res://.godot/imported/player_tex.png-21dac6f9670e77fababc32c2ac39059e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://characters/player/player_kosmita_tex.png"
-dest_files=["res://.godot/imported/player_kosmita_tex.png-f29003115adf557f2e455e2d40e7382b.s3tc.ctex"]
+source_file="res://characters/player/player_tex.png"
+dest_files=["res://.godot/imported/player_tex.png-21dac6f9670e77fababc32c2ac39059e.s3tc.ctex"]
 
 [params]
 

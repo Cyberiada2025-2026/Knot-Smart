@@ -1,8 +1,13 @@
-extends BaseCameraRotationType
+extends Node
 
 @export var rotation_speed: float = 0.004
 
-func rotate_with_mouse(camera: PlayerCamera, event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		camera.rotate_left_right(camera.get_normal(), -event.relative.x * rotation_speed)
-		camera.rotate_up_down(-event.relative.y * rotation_speed)
+func start() -> void:
+	change_to()
+
+func rotate(camera: PlayerCamera, relative: Vector2, _delta: float) -> void:
+	camera.rotate_left_right(camera.get_normal(), -relative.x * rotation_speed)
+	camera.rotate_up_down(-relative.y * rotation_speed)
+
+func change_to() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

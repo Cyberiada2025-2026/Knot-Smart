@@ -1,6 +1,9 @@
-extends ViewTypeBase
+extends Node
 
 
+@export var next_strategy: Node
+@export var should_rotate_left_right: bool = true
+@export var should_rotate_up_down: bool = false
 @export var max_arm_length: float = 12.0
 @export var default_arm_length: float = 7.0
 @export var min_arm_length: float = 2.0
@@ -8,7 +11,7 @@ extends ViewTypeBase
 @export var default_camera_rotation: Vector3 = Vector3(0, 0, 0)
 
 func start(camera: PlayerCamera) -> void:
-	camera.arm_length = default_arm_length
+	change_view_to(camera)
 	camera.arm.spring_length = default_arm_length
 
 func zoom(camera: PlayerCamera, delta: float) -> void:
@@ -21,7 +24,6 @@ func zoom(camera: PlayerCamera, delta: float) -> void:
 		if camera.arm_length >= max_arm_length:
 			camera.arm_length = max_arm_length
 
-func change_view_to(camera: PlayerCamera, _event: InputEvent) -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+func change_view_to(camera: PlayerCamera) -> void:
 	camera.camera.rotation_degrees = default_camera_rotation
 	camera.arm_length = default_arm_length

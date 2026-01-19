@@ -28,23 +28,16 @@ transform = Transform3D(1, 0, 0, 0, 0.9396931, -0.34202027, 0, 0.34202027, 0.939
 
 [node name="QEKeyboard" type="Node" parent="CameraRotationTypes"]
 script = ExtResource("2_vrua3")
-metadata/_custom_type_script = "uid://cx2wv78p0clji"
 
 [node name="HiddenMouse" type="Node" parent="CameraRotationTypes"]
 script = ExtResource("3_cxq6j")
-metadata/_custom_type_script = "uid://cx2wv78p0clji"
 
 [node name="CameraPersonType" type="Node3D" parent="."]
 
 [node name="1st" type="Node" parent="CameraPersonType" node_paths=PackedStringArray("next_strategy")]
 script = ExtResource("4_j6ksn")
-should_rotate_left_right = true
-should_rotate_up_down = true
 next_strategy = NodePath("../3rd")
-metadata/_custom_type_script = "uid://breekhehjpn72"
 
 [node name="3rd" type="Node" parent="CameraPersonType" node_paths=PackedStringArray("next_strategy")]
 script = ExtResource("5_chqwf")
-should_rotate_left_right = true
 next_strategy = NodePath("../1st")
-metadata/_custom_type_script = "uid://breekhehjpn72"

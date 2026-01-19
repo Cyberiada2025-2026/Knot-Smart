@@ -21,10 +21,7 @@ enum RotationType{
 @export var camera_up_rotation_limit: float = 90
 @export var camera_down_rotation_limit: float = -40
 @export_category("subscripts")
-@export var rotation_strategy: Dictionary[RotationType, BaseCameraRotationType] = {
-	RotationType.QE_KEYBOARD: $CameraRotationTypes/QEKeyboard,
-	RotationType.HIDDEN_MOUSE: $CameraRotationTypes/HiddenMouse
-}
+@export var rotation_strategy: Dictionary[RotationType, BaseCameraRotationType]
 
 var is_3rd_person: bool = true
 var arm_length: float = 0.0

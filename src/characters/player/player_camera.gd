@@ -48,11 +48,11 @@ func _process(delta: float) -> void:
 	
 	## CAMERA ZOOM
 	if is_3rd_person:
-		if Input.is_action_just_pressed("ZOOM_IN_CAMERA"):
+		if Input.is_action_just_pressed("zoom_in_camera"):
 			arm_length -= delta * zoom_speed
 			if arm_length <= min_arm_length:
 				arm_length = min_arm_length
-		if Input.is_action_just_pressed("ZOOM_OUT_CAMERA"):
+		if Input.is_action_just_pressed("zoom_out_camera"):
 			arm_length += delta * zoom_speed
 			if arm_length >= max_arm_length:
 				arm_length = max_arm_length
@@ -64,7 +64,7 @@ func _process_change_person(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("CHANGE_CAMERA"):
+	if event.is_action_pressed("change_camera"):
 		is_3rd_person = not is_3rd_person
 		if is_3rd_person:
 			rotation_type = RotationType.HIDDEN_MOUSE

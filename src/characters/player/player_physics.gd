@@ -49,7 +49,7 @@ func _handle_move_input(delta: float):
 		velocity.z = move_toward(velocity.z, 0, slowing_speed*delta)
 
 func _handle_jump():
-	if Input.is_action_just_pressed("JUMP_BUTTON") and is_on_floor():
+	if Input.is_action_just_pressed("jump_button") and is_on_floor():
 		velocity.y = jump_strength
 
 func _handle_gravity(delta: float):

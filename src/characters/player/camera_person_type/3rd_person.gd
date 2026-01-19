@@ -1,23 +1,27 @@
-extends PersonTypeBase
+extends ViewTypeBase
 
+
+@export var max_arm_length: float = 12.0
+@export var default_arm_length: float = 7.0
+@export var min_arm_length: float = 2.0
+@export var zoom_speed: float = 100.0
+@export var default_camera_rotation: Vector3 = Vector3(0, 0, 0)
+
+func start(camera: PlayerCamera) -> void:
+	camera.arm_length = default_arm_length
+	camera.arm.spring_length = default_arm_length
 
 func zoom(camera: PlayerCamera, delta: float) -> void:
 	if Input.is_action_just_pressed("zoom_in_camera"):
-		camera.arm_length -= delta * camera.zoom_speed
-		if camera.arm_length <= camera.min_arm_length:
-			camera.arm_length = camera.min_arm_length
+		camera.arm_length -= delta * zoom_speed
+		if camera.arm_length <= min_arm_length:
+			camera.arm_length = min_arm_length
 	if Input.is_action_just_pressed("zoom_out_camera"):
-		camera.arm_length += delta * camera.zoom_speed
-		if camera.arm_length >= camera.max_arm_length:
-			camera.arm_length = camera.max_arm_length
+		camera.arm_length += delta * zoom_speed
+		if camera.arm_length >= max_arm_length:
+			camera.arm_length = max_arm_length
 
-func change_camera(camera: PlayerCamera, event: InputEvent) -> void:
-	camera.person_type = camera.PersonType.PERSON1
-	camera.person_strategy[camera.person_type].change_camera_to(camera, event)
-
-
-func change_camera_to(camera: PlayerCamera, _event: InputEvent) -> void:
-	camera.rotation_type = camera.RotationType.HIDDEN_MOUSE
+func change_view_to(camera: PlayerCamera, _event: InputEvent) -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	camera.arm_length = camera.person3_arm_length
-	camera.camera.rotation_degrees = camera.default_camera_rotation
+	camera.camera.rotation_degrees = default_camera_rotation
+	camera.arm_length = default_arm_length

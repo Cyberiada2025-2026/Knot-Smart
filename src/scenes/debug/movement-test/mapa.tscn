@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bb8oos6gpkerc"]
+[gd_scene load_steps=12 format=3 uid="uid://bb8oos6gpkerc"]
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_2jh14"]
+[ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="2_ugfsb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2pfsl"]
 size = Vector3(10000, 0.2, 10000)
@@ -162,3 +163,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457032, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.0460255, 0.99894, 0, -0.99894, 0.0460255, 0, 136.331, 0)
+
+[node name="CameraReplacer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_ugfsb")]
+camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")

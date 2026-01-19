@@ -12,11 +12,7 @@ player_floor_sensor = NodePath("PlayerPhysics/PlayerFloorSensor")
 
 [node name="PlayerPhysics" parent="." instance=ExtResource("1_l8h54")]
 
-[node name="PlayerCamera" parent="." node_paths=PackedStringArray("rotation_strategy") instance=ExtResource("3_btcbx")]
-rotation_strategy = {
-0: NodePath("CameraRotationTypes/QEKeyboard"),
-1: NodePath("CameraRotationTypes/HiddenMouse")
-}
+[node name="PlayerCamera" parent="." instance=ExtResource("3_btcbx")]
 
 [connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 

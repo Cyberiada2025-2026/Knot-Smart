@@ -6,24 +6,22 @@
 [ext_resource type="Script" uid="uid://l3y0tn58j1g6" path="res://characters/player/camera_person_type/1st_person.gd" id="4_j6ksn"]
 [ext_resource type="Script" uid="uid://lw32b3mnrin7" path="res://characters/player/camera_person_type/3rd_person.gd" id="5_chqwf"]
 
-[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("camera", "arm", "rotation_strategy", "person_strategy")]
+[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("camera", "arm", "rotation_strategy", "view_strategy", "qe_keyboard", "hidden_mouse", "first_person_camera", "third_person_camera")]
 script = ExtResource("1_ehrhw")
-camera = NodePath("SpringArm3D/Camera3D")
+camera = NodePath("SpringArm3D/FakeCamera3D")
 arm = NodePath("SpringArm3D")
-rotation_strategy = {
-0: NodePath("CameraRotationTypes/QEKeyboard"),
-1: NodePath("CameraRotationTypes/HiddenMouse")
-}
-person_strategy = {
-0: NodePath("CameraPersonType/1st"),
-1: NodePath("CameraPersonType/3rd")
-}
+rotation_strategy = NodePath("CameraRotationTypes/HiddenMouse")
+view_strategy = NodePath("CameraPersonType/3rd")
+qe_keyboard = NodePath("CameraRotationTypes/QEKeyboard")
+hidden_mouse = NodePath("CameraRotationTypes/HiddenMouse")
+first_person_camera = NodePath("CameraPersonType/1st")
+third_person_camera = NodePath("CameraPersonType/3rd")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 spring_length = 7.0
 
-[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+[node name="FakeCamera3D" type="Node3D" parent="SpringArm3D"]
 transform = Transform3D(1, 0, 0, 0, 0.9396931, -0.34202027, 0, 0.34202027, 0.9396931, 0, 0, 0)
 
 [node name="CameraRotationTypes" type="Node3D" parent="."]
@@ -38,10 +36,15 @@ metadata/_custom_type_script = "uid://cx2wv78p0clji"
 
 [node name="CameraPersonType" type="Node3D" parent="."]
 
-[node name="1st" type="Node" parent="CameraPersonType"]
+[node name="1st" type="Node" parent="CameraPersonType" node_paths=PackedStringArray("next_strategy")]
 script = ExtResource("4_j6ksn")
+should_rotate_left_right = true
+should_rotate_up_down = true
+next_strategy = NodePath("../3rd")
 metadata/_custom_type_script = "uid://breekhehjpn72"
 
-[node name="3rd" type="Node" parent="CameraPersonType"]
+[node name="3rd" type="Node" parent="CameraPersonType" node_paths=PackedStringArray("next_strategy")]
 script = ExtResource("5_chqwf")
+should_rotate_left_right = true
+next_strategy = NodePath("../1st")
 metadata/_custom_type_script = "uid://breekhehjpn72"

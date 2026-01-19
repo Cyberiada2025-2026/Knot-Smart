@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=7 format=3 uid="uid://3rax0onuo76f"]
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_hyk8p"]
+[ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="2_iuonh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_vom5j"]
 size = Vector3(10, 1, 10)
@@ -39,3 +40,6 @@ mesh = SubResource("CapsuleMesh_vom5j")
 
 [node name="Player" parent="." instance=ExtResource("1_hyk8p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5882595, 1.0474042, 2.7972581)
+
+[node name="CameraReplacer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_iuonh")]
+camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")

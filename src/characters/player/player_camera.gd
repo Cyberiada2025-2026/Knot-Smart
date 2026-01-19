@@ -9,6 +9,11 @@ enum RotationType{
 	HIDDEN_MOUSE
 }
 
+enum PersonType{
+	PERSON1,
+	PERSON3
+}
+
 @export_category("camera locations")
 @export var camera: Camera3D
 @export var arm: SpringArm3D
@@ -22,11 +27,12 @@ enum RotationType{
 @export var camera_down_rotation_limit: float = -40
 @export_category("subscripts")
 @export var rotation_strategy: Dictionary[RotationType, BaseCameraRotationType]
+@export var person_strategy: Dictionary[PersonType, PersonTypeBase]
 
-var is_3rd_person: bool = true
 var arm_length: float = 0.0
 var person3_arm_length: float = 0.0
 var rotation_type: RotationType = RotationType.QE_KEYBOARD
+var person_type: PersonType = PersonType.PERSON3
 
 
 func  _ready() -> void:
@@ -47,16 +53,7 @@ func _process(delta: float) -> void:
 		rotation_strategy[rotation_type].rotate_with_keyboard(self, delta)
 	
 	## CAMERA ZOOM
-	if is_3rd_person:
-		if Input.is_action_just_pressed("zoom_in_camera"):
-			arm_length -= delta * zoom_speed
-			if arm_length <= min_arm_length:
-				arm_length = min_arm_length
-		if Input.is_action_just_pressed("zoom_out_camera"):
-			arm_length += delta * zoom_speed
-			if arm_length >= max_arm_length:
-				arm_length = max_arm_length
-	
+	person_strategy[person_type].zoom(self, delta)
 
 func _process_change_person(delta: float) -> void:
 	arm.spring_length = lerp(arm.spring_length, arm_length, person_change_speed * delta)
@@ -65,17 +62,7 @@ func _process_change_person(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("change_camera"):
-		is_3rd_person = not is_3rd_person
-		if is_3rd_person:
-			rotation_type = RotationType.HIDDEN_MOUSE
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			arm_length = person3_arm_length
-			camera.rotation_degrees = default_camera_rotation
-		else:
-			rotation_type = RotationType.HIDDEN_MOUSE
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			person3_arm_length = arm_length
-			arm_length = 0.0
+		person_strategy[person_type].change_camera(self, event)
 	
 	## CAMERA ROTATION
 	elif get_parent().is_rotating == false:

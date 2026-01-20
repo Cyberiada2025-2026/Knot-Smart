@@ -1,15 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl11g5ncrg2sp"]
+[gd_scene load_steps=3 format=3 uid="uid://dj405lsp20gkg"]
 
 [ext_resource type="PackedScene" uid="uid://cmft5g4jjplbh" path="res://characters/player/player.glb" id="1_x3487"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_508ok"]
-size = Vector3(0.6, 0.9, 0.5)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_508ok"]
+radius = 0.25
+height = 0.8
 
-[node name="player" type="CharacterBody3D"]
+[node name="PlayerModel" type="CharacterBody3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07871047, 0)
-shape = SubResource("BoxShape3D_508ok")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.021484107, 0.013647467)
+shape = SubResource("CapsuleShape3D_508ok")
 
-[node name="player" parent="." instance=ExtResource("1_x3487")]
-transform = Transform3D(0.075, 0, 0, 0, 0.075, 0, 0, 0, 0.075, 0, 0, 0)
+[node name="Player" parent="." instance=ExtResource("1_x3487")]
+transform = Transform3D(0.077, 0, 0, 0, 0.077, 0, 0, 0, 0.077, 0, 0, 0)

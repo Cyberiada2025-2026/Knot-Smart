@@ -12,17 +12,20 @@ extends Node
 @export_tool_button("Place Models") var place_models_action = place_models
 @export_group("Visualization")
 
+
 func place_models() -> void:
 	models_placer.place_models(_neighbors, _cells, generation_params)
+
 
 func generate_neighbors() -> void:
 	_neighbors = neighbors_generator.generate_neighbors(_cells)
 
+
 func generate_rooms() -> void:
 	initial_cells.clear()
-	initial_cells.push_back(Cell.create(Vector3i(0,0,0), Vector3i(5,2,5)))
-	initial_cells.push_back(Cell.create(Vector3i(5,0,2), Vector3i(7,1,5)))
-	initial_cells.push_back(Cell.create(Vector3i(5,0,0), Vector3i(10,4,2)))
+	initial_cells.push_back(Cell.create(Vector3i(0, 0, 0), Vector3i(5, 2, 5)))
+	initial_cells.push_back(Cell.create(Vector3i(5, 0, 2), Vector3i(7, 1, 5)))
+	initial_cells.push_back(Cell.create(Vector3i(5, 0, 0), Vector3i(10, 4, 2)))
 
 	_cells = cells_generator.generate_rooms(initial_cells, generation_params)
 
@@ -30,8 +33,3 @@ func generate_rooms() -> void:
 var initial_cells: Array[Cell] = []
 var _cells: Array[Cell] = []
 var _neighbors: Array[BorderInfo] = []
-
-
-
-
-

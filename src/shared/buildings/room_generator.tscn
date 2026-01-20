@@ -60,10 +60,10 @@ vis_parent = NodePath("Visualization")
 
 [node name="Visualization" type="Node3D" parent="CellGenerator"]
 
-[node name="NeighborGenerator" type="Node3D" parent="." node_paths=PackedStringArray("neighbor_vis_parent", "entrance_vis_parent")]
+[node name="NeighborGenerator" type="Node3D" parent="." node_paths=PackedStringArray("all_walls_vis_parent", "open_walls_vis_parent")]
 script = ExtResource("7_3emm2")
-neighbor_vis_parent = NodePath("NeighborVisualization")
-entrance_vis_parent = NodePath("EntranceVisualization")
+all_walls_vis_parent = NodePath("NeighborVisualization")
+open_walls_vis_parent = NodePath("EntranceVisualization")
 
 [node name="EntranceVisualization" type="Node3D" parent="NeighborGenerator"]
 

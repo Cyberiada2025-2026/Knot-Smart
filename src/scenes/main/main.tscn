@@ -13,7 +13,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 cell_height = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_vom5j"]
-size = Vector3(10, 1, 10)
+size = Vector3(20, 1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hyk8p"]
 size = Vector3(10, 1, 10)

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://duvgm85vl6mde"]
+
+[ext_resource type="PackedScene" uid="uid://d1qw3fpunn20a" path="res://shared/buildings/assets/Placeholders.glb" id="1_t7hg2"]
+
+[node name="MeshLibrary" type="Node3D"]
+
+[node name="Placeholders" parent="." instance=ExtResource("1_t7hg2")]

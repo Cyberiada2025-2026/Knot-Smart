@@ -1,21 +1,18 @@
 extends CharacterBody3D
 
-@export var speed: float = 30000
-@onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@export var speed := 30000
+@onready var navigation_agent_3d : NavigationAgent3D = $NavigationAgent3D
 @onready var shapecast = $ShapeCast3D
 
-var target : Node3D
+const IDLE_DIS := 20
+
+var can_move := false
 var world : World3D
 
-const IDLE_DIS := 20
-const ATTACK_RANGE := 5
-
-var rng := RandomNumberGenerator.new()
-var can_move := false
 
 func _ready() -> void:
-	var scene_tree := Engine.get_main_loop()
-	world = scene_tree.root.get_world_3d()
+	world =  Engine.get_main_loop().root.get_world_3d()
+
 
 func get_random_point_near() -> Vector3:
 	var random_point := global_position + Vector3(
@@ -26,14 +23,12 @@ func get_random_point_near() -> Vector3:
 
 	return NavigationServer3D.map_get_closest_point(
 		world.get_navigation_map(),
-		random_point
-	)
+		random_point)
 
-func set_target_position(pos: Vector3) -> void:
-	navigation_agent_3d.target_position = pos
 
 func set_random_direction() -> void:
-	set_target_position(get_random_point_near())
+	navigation_agent_3d.set_target_position(get_random_point_near())
+
 
 func set_velocity_to_target() -> void:
 	var cur_loc := global_transform.origin
@@ -41,16 +36,16 @@ func set_velocity_to_target() -> void:
 	var next_vel := (next_loc - cur_loc).normalized() * speed
 	velocity = next_vel
 
+
 func toggle_movement(b: bool) -> void:
 	can_move = b
 
-func is_at_destination() -> bool:
-	if navigation_agent_3d.is_target_reached():
-		return true
-	else:
-		return false
 
-func check_around_for(group_name: StringName) -> bool:
+func is_at_destination() -> bool:
+	return navigation_agent_3d.is_target_reached()
+
+
+func is_group_member_nearby (group_name: StringName) -> bool:
 	shapecast.force_shapecast_update()
 
 	if shapecast.is_colliding():
@@ -59,6 +54,7 @@ func check_around_for(group_name: StringName) -> bool:
 			if hit.get_parent().is_in_group(group_name):
 				return true
 	return false
+
 
 func get_object_around(group_name: StringName) -> Node3D:
 	shapecast.force_shapecast_update()
@@ -70,10 +66,23 @@ func get_object_around(group_name: StringName) -> Node3D:
 				return hit.get_parent()
 	return null
 
+
+func get_target_pos() -> Vector3:
+	return navigation_agent_3d.get_target_position()
+
+
+func destroy_target(target_group: StringName) -> void:
+	var target : Node3D = get_object_around(target_group)
+	if (target != null):
+		target.queue_free()
+
+
 func _physics_process(_delta: float) -> void:
 	if can_move:
 		set_velocity_to_target()
 		move_and_slide()
 
+
 func attack() -> void:
+	#we can use like seperate class attack for diffrent attack types
 	print("attack!")

@@ -1,6 +1,6 @@
 @tool
-extends Node3D
 class_name NeighborGenerator
+extends Node3D
 
 @export var all_walls_vis_parent: Node3D
 @export var open_walls_vis_parent: Node3D

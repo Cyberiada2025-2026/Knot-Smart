@@ -1,6 +1,6 @@
 @tool
-extends Node3D
 class_name CellGenerator
+extends Node3D
 
 @export_tool_button("Toggle room visibility") var toggle_transparency_action = toggle_transparency
 @export_range(0, 1) var transparency: float = 0.2

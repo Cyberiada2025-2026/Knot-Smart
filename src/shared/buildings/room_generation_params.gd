@@ -1,5 +1,5 @@
-extends Resource
 class_name RoomGenerationParams
+extends Resource
 
 @export var min_room_size: Vector3i = Vector3i(1, 1, 1)
 @export var room_split_direction_randomizer: int = 1

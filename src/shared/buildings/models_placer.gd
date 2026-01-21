@@ -1,6 +1,14 @@
 @tool
-extends Node3D
 class_name ModelsPlacer
+extends Node3D
+
+# jest to zjebane
+enum Orientation {
+	R0 = 0,  # 0
+	R90 = 22,  # 90
+	R180 = 10,  # 180
+	R270 = 16,  # 270
+}
 
 @export var mesh_library: MeshLibrary
 @export var floor_grid: GridMap
@@ -122,15 +130,6 @@ func place_entrance_doors(outside_door_locations: Array):
 	place_model_count_in_locations(
 		outside_door_locations, mesh_library.find_item_by_name("Door"), gen_params.entrance_count
 	)
-
-
-# jest to zjebane
-enum Orientation {
-	R0 = 0,  # 0
-	R90 = 22,  # 90
-	R180 = 10,  # 180
-	R270 = 16,  # 270
-}
 
 
 func spawn_walls_between_rooms():

@@ -1,5 +1,5 @@
-extends RefCounted
 class_name DisjointSet
+extends RefCounted
 
 var _arr: Array = []
 
@@ -35,5 +35,4 @@ func is_in_same_set(id_a: int, id_b: int) -> bool:
 func find(id: int) -> int:
 	if _arr[id] == id:
 		return id
-	else:
-		return find(_arr[id])
+	return find(_arr[id])

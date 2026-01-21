@@ -1,15 +1,15 @@
 @tool
-extends Resource
 class_name Cell
-
-@export var start: Vector3i = Vector3i(0, 0, 0)
-@export var end: Vector3i = Vector3i(1, 1, 1)
+extends Resource
 
 enum Direction {
 	Y,
 	X,
 	Z,
 }
+
+@export var start: Vector3i = Vector3i(0, 0, 0)
+@export var end: Vector3i = Vector3i(1, 1, 1)
 
 
 static func create(s: Vector3i, e: Vector3i) -> Cell:
@@ -80,8 +80,7 @@ func get_split_direction(gen_params: RoomGenerationParams) -> Cell.Direction:
 
 	if randomized_diff <= 0:
 		return Direction.Z
-	else:
-		return Direction.X
+	return Direction.X
 
 
 func get_neighbor_info(other: Cell) -> BorderInfo:

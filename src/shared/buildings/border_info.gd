@@ -43,10 +43,9 @@ func size() -> Vector3i:
 func get_plane() -> Cell.Direction:
 	if size_x() == 0:
 		return Cell.Direction.X
-	elif size_y() == 0:
+	if size_y() == 0:
 		return Cell.Direction.Y
-	else:
-		return Cell.Direction.Z
+	return Cell.Direction.Z
 
 
 func model_locations() -> Array:

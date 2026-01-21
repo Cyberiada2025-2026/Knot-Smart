@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://b3pq3lm4pjpdk"]
 
-[ext_resource type="Script" uid="uid://claql84jotoud" path="res://characters/enemies/basic_enemy/scripts/enemy_actor.gd" id="1_2cllp"]
+[ext_resource type="Script" uid="uid://claql84jotoud" path="res://characters/enemies/basic_enemy/enemy_actor.gd" id="1_2cllp"]
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_r2ijf"]
 [ext_resource type="Script" uid="uid://cw22yurt5l74k" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="3_r2ijf"]
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_1x7vy"]

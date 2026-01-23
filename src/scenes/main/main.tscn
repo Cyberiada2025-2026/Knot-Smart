@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=10 format=3 uid="uid://3rax0onuo76f"]
 
 [ext_resource type="PackedScene" uid="uid://dj405lsp20gkg" path="res://characters/player/player_model.tscn" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://dxwxaupmhagbo" path="res://shared/buildings/room_generator.tscn" id="3_k2fmo"]
+[ext_resource type="Script" uid="uid://57s0xhxthhig" path="res://shared/buildings/room_generation_params.gd" id="4_l3cfh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -13,10 +15,17 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 cell_height = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_vom5j"]
-size = Vector3(10, 1, 10)
+size = Vector3(20, 1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hyk8p"]
-size = Vector3(10, 1, 10)
+size = Vector3(20, 1, 20)
+
+[sub_resource type="Resource" id="Resource_6q06x"]
+script = ExtResource("4_l3cfh")
+max_room_size = Vector3i(6, 1, 4)
+entrance_count = 3
+window_percentage = 0.897
+metadata/_custom_type_script = "uid://baeps41mlt1vr"
 
 [node name="Main" type="Node3D"]
 
@@ -46,3 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32957077, 0.8731664, -0.073
 
 [node name="Enemy" parent="." instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
+
+[node name="RoomGenerator" parent="." instance=ExtResource("3_k2fmo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, 7)
+generation_params = SubResource("Resource_6q06x")

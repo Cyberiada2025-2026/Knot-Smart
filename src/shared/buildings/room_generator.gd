@@ -26,6 +26,6 @@ func generate_neighbors() -> void:
 
 
 func generate_rooms() -> void:
-	_cells = cells_generator.generate_rooms(initial_cells, generation_params)
+	_cells = cells_generator.generate_cells(initial_cells, generation_params)
 	_neighbors = neighbors_generator.generate_neighbors(_cells)
 	models_placer.place_models(_neighbors, _cells, generation_params)

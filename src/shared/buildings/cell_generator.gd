@@ -12,7 +12,7 @@ var cells: Array[Cell] = []
 var gen_params: RoomGenerationParams
 
 
-func generate_rooms(new_cells: Array[Cell], generation_params: RoomGenerationParams) -> Array[Cell]:
+func generate_cells(new_cells: Array[Cell], generation_params: RoomGenerationParams) -> Array[Cell]:
 	cells = new_cells.duplicate_deep()
 	gen_params = generation_params
 

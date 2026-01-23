@@ -33,28 +33,7 @@ func is_larger_than(dim: Vector3i) -> bool:
 
 
 func get_neighbor_info(other: Cell) -> BorderInfo:
-	var overlap_xy = self.check_overlap_xy(other)
-	var overlap_xz = self.check_overlap_xz(other)
-	var overlap_yz = self.check_overlap_yz(other)
-	var overlap = BorderInfo.new()
-	if self.start.x == other.end.x or other.start.x == self.end.x:
-		if overlap_yz.is_overlapping:
-			var overlap_x = self.start.x if self.start.x == other.end.x else other.start.x
-			overlap_yz.cell.start.x = overlap_x
-			overlap_yz.cell.end.x = overlap_x
-			overlap = overlap_yz
-	if self.start.y == other.end.y or other.start.y == self.end.y:
-		if overlap_xz.is_overlapping:
-			var overlap_y = self.start.y if self.start.y == other.end.y else other.start.y
-			overlap_xz.cell.start.y = overlap_y
-			overlap_xz.cell.end.y = overlap_y
-			overlap = overlap_xz
-	if self.start.z == other.end.z or other.start.z == self.end.z:
-		if overlap_xy.is_overlapping:
-			var overlap_z = self.start.z if self.start.z == other.end.z else other.start.z
-			overlap_xy.cell.start.z = overlap_z
-			overlap_xy.cell.end.z = overlap_z
-			overlap = overlap_xy
+	var overlap = self.get_overlap(other)
 
 	overlap.neighbor_a = self
 	overlap.neighbor_b = other
@@ -96,45 +75,33 @@ func size() -> Vector3i:
 
 
 func overlaps(s0, e0, s1, e1) -> bool:
-	return e0 - s1 >= 1 and e1 - s0 >= 1
+	return e0 - s1 >= 0 and e1 - s0 >= 0
 
 
-func check_overlap_xy(other: Cell) -> BorderInfo:
+func get_overlap(other: Cell) -> BorderInfo:
 	var info = BorderInfo.new()
-	info.is_overlapping = (
+	if (
 		overlaps(self.start.x, self.end.x, other.start.x, other.end.x)
 		and overlaps(self.start.y, self.end.y, other.start.y, other.end.y)
-	)
-	info.cell = Cell.create(
-		Vector3i(maxi(self.start.x, other.start.x), maxi(self.start.y, other.start.y), 0),
-		Vector3i(min(self.end.x, other.end.x), mini(self.end.y, other.end.y), 0)
-	)
-	return info
-
-
-func check_overlap_xz(other: Cell) -> BorderInfo:
-	var info = BorderInfo.new()
-	info.is_overlapping = (
-		overlaps(self.start.x, self.end.x, other.start.x, other.end.x)
 		and overlaps(self.start.z, self.end.z, other.start.z, other.end.z)
-	)
-	info.cell = Cell.create(
-		Vector3i(maxi(self.start.x, other.start.x), 0, maxi(self.start.z, other.start.z)),
-		Vector3i(mini(self.end.x, other.end.x), 0, mini(self.end.z, other.end.z))
-	)
-	return info
+	):
+		info.cell = Cell.create(
+			Vector3i(
+				maxi(self.start.x, other.start.x),
+				maxi(self.start.y, other.start.y),
+				maxi(self.start.z, other.start.z)
+			),
+			Vector3i(
+				mini(self.end.x, other.end.x),
+				mini(self.end.y, other.end.y),
+				mini(self.end.z, other.end.z)
+			)
+		)
+		if info.cell.size_x() == 0 and info.cell.size_y() == 0 and info.cell.size_z() == 0:
+			info.cell = Cell.new()
+			return info
+		info.is_overlapping = true
 
-
-func check_overlap_yz(other: Cell) -> BorderInfo:
-	var info = BorderInfo.new()
-	info.is_overlapping = (
-		overlaps(self.start.y, self.end.y, other.start.y, other.end.y)
-		and overlaps(self.start.z, self.end.z, other.start.z, other.end.z)
-	)
-	info.cell = Cell.create(
-		Vector3i(0, maxi(self.start.y, other.start.y), maxi(self.start.z, other.start.z)),
-		Vector3i(0, mini(self.end.y, other.end.y), mini(self.end.z, other.end.z))
-	)
 	return info
 
 

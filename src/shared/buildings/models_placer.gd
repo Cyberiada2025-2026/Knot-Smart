@@ -23,11 +23,11 @@ var gen_params: RoomGenerationParams
 func place_entrance(c: BorderInfo):
 	var entrance_location = c.door_position
 
-	if c.size_y() == 0:
+	if c.cell.size_y() == 0:
 		floor_grid.set_cell_item(
 			entrance_location, mesh_library.find_item_by_name("Hole"), Orientation.R0
 		)
-	elif c.size_x() == 0:
+	elif c.cell.size_x() == 0:
 		wall_z_grid.set_cell_item(
 			entrance_location, mesh_library.find_item_by_name("Door"), Orientation.R270
 		)
@@ -64,14 +64,14 @@ func spawn_building_border_walls():
 	var all_borders = cells.map(func(c): return c.get_all_borders()).reduce(concat, [])
 	var all_wall_locations_x = (
 		all_borders
-		. filter(func(b): return b.size_z() == 0)
+		. filter(func(b): return b.cell.size_z() == 0)
 		. map(func(b): return b.model_locations())
 		. reduce(concat, [])
 		. map(func(l): return [l, Orientation.R0])
 	)
 	var all_wall_locations_z = (
 		all_borders
-		. filter(func(b): return b.size_x() == 0)
+		. filter(func(b): return b.cell.size_x() == 0)
 		. map(func(b): return b.model_locations())
 		. reduce(concat, [])
 		. map(func(l): return [l, Orientation.R270])
@@ -80,14 +80,14 @@ func spawn_building_border_walls():
 
 	var neighbor_locations_x = (
 		neighbors
-		. filter(func(n): return n.size_z() == 0)
+		. filter(func(n): return n.cell.size_z() == 0)
 		. map(func(n): return n.model_locations())
 		. reduce(concat, [])
 		. map(func(l): return [l, Orientation.R0])
 	)
 	var neighbor_locations_z = (
 		neighbors
-		. filter(func(n): return n.size_x() == 0)
+		. filter(func(n): return n.cell.size_x() == 0)
 		. map(func(n): return n.model_locations())
 		. reduce(concat, [])
 		. map(func(l): return [l, Orientation.R270])
@@ -141,15 +141,15 @@ func spawn_walls_between_rooms():
 		for n in borders:
 			var locations = n.model_locations()
 			for l in locations:
-				if n.size_y() == 0 and floor_grid.get_cell_item(l) == -1:
+				if n.cell.size_y() == 0 and floor_grid.get_cell_item(l) == -1:
 					floor_grid.set_cell_item(
 						l, mesh_library.find_item_by_name("Floor"), Orientation.R0
 					)
-				elif n.size_x() == 0 and wall_z_grid.get_cell_item(l) == -1:
+				elif n.cell.size_x() == 0 and wall_z_grid.get_cell_item(l) == -1:
 					wall_z_grid.set_cell_item(
 						l, mesh_library.find_item_by_name("Wall"), Orientation.R270
 					)
-				elif n.size_z() == 0 and wall_x_grid.get_cell_item(l) == -1:
+				elif n.cell.size_z() == 0 and wall_x_grid.get_cell_item(l) == -1:
 					wall_x_grid.set_cell_item(
 						l, mesh_library.find_item_by_name("Wall"), Orientation.R0
 					)

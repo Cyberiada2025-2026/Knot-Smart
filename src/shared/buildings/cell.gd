@@ -4,6 +4,7 @@ extends Resource
 
 @export var start: Vector3i = Vector3i(0, 0, 0)
 @export var end: Vector3i = Vector3i(1, 1, 1)
+var id: int = 0
 
 
 static func create(s: Vector3i, e: Vector3i) -> Cell:
@@ -17,30 +18,53 @@ func _to_string() -> String:
 	return "start: " + str(self.start) + ", end: " + str(self.end)
 
 
+func is_hallway() -> bool:
+	return (self.size_x() == 1 or self.size_y() == 1) and self.area() != 1
+
+
+func is_larger_than(dim: Vector3i) -> bool:
+	if self.size_y() > dim.y:
+		return true
+	if self.size_x() > dim.x or self.size_z() > dim.x:
+		return true
+	if self.size_x() > dim.z or self.size_z() > dim.z:
+		return true
+	return false
+
 
 func get_neighbor_info(other: Cell) -> BorderInfo:
 	var overlap_xy = self.check_overlap_xy(other)
 	var overlap_xz = self.check_overlap_xz(other)
 	var overlap_yz = self.check_overlap_yz(other)
+	var overlap = BorderInfo.new()
 	if self.start.x == other.end.x or other.start.x == self.end.x:
 		if overlap_yz.is_overlapping:
 			var overlap_x = self.start.x if self.start.x == other.end.x else other.start.x
-			overlap_yz.overlap_start.x = overlap_x
-			overlap_yz.overlap_end.x = overlap_x
-			return overlap_yz
+			overlap_yz.cell.start.x = overlap_x
+			overlap_yz.cell.end.x = overlap_x
+			overlap = overlap_yz
 	if self.start.y == other.end.y or other.start.y == self.end.y:
 		if overlap_xz.is_overlapping:
 			var overlap_y = self.start.y if self.start.y == other.end.y else other.start.y
-			overlap_xz.overlap_start.y = overlap_y
-			overlap_xz.overlap_end.y = overlap_y
-			return overlap_xz
+			overlap_xz.cell.start.y = overlap_y
+			overlap_xz.cell.end.y = overlap_y
+			overlap = overlap_xz
 	if self.start.z == other.end.z or other.start.z == self.end.z:
 		if overlap_xy.is_overlapping:
 			var overlap_z = self.start.z if self.start.z == other.end.z else other.start.z
-			overlap_xy.overlap_start.z = overlap_z
-			overlap_xy.overlap_end.z = overlap_z
-			return overlap_xy
-	return BorderInfo.new()
+			overlap_xy.cell.start.z = overlap_z
+			overlap_xy.cell.end.z = overlap_z
+			overlap = overlap_xy
+
+	overlap.neighbor_a = self
+	overlap.neighbor_b = other
+
+	if self.center().y != other.center().y:
+		overlap.edge_weight += 2
+	if self.is_hallway() or other.is_hallway():
+		overlap.edge_weight -= 1
+
+	return overlap
 
 
 func size_x() -> int:
@@ -81,10 +105,10 @@ func check_overlap_xy(other: Cell) -> BorderInfo:
 		overlaps(self.start.x, self.end.x, other.start.x, other.end.x)
 		and overlaps(self.start.y, self.end.y, other.start.y, other.end.y)
 	)
-	info.overlap_start = Vector3i(
-		maxi(self.start.x, other.start.x), maxi(self.start.y, other.start.y), 0
+	info.cell = Cell.create(
+		Vector3i(maxi(self.start.x, other.start.x), maxi(self.start.y, other.start.y), 0),
+		Vector3i(min(self.end.x, other.end.x), mini(self.end.y, other.end.y), 0)
 	)
-	info.overlap_end = Vector3i(min(self.end.x, other.end.x), mini(self.end.y, other.end.y), 0)
 	return info
 
 
@@ -94,10 +118,10 @@ func check_overlap_xz(other: Cell) -> BorderInfo:
 		overlaps(self.start.x, self.end.x, other.start.x, other.end.x)
 		and overlaps(self.start.z, self.end.z, other.start.z, other.end.z)
 	)
-	info.overlap_start = Vector3i(
-		maxi(self.start.x, other.start.x), 0, maxi(self.start.z, other.start.z)
+	info.cell = Cell.create(
+		Vector3i(maxi(self.start.x, other.start.x), 0, maxi(self.start.z, other.start.z)),
+		Vector3i(mini(self.end.x, other.end.x), 0, mini(self.end.z, other.end.z))
 	)
-	info.overlap_end = Vector3i(mini(self.end.x, other.end.x), 0, mini(self.end.z, other.end.z))
 	return info
 
 
@@ -107,10 +131,10 @@ func check_overlap_yz(other: Cell) -> BorderInfo:
 		overlaps(self.start.y, self.end.y, other.start.y, other.end.y)
 		and overlaps(self.start.z, self.end.z, other.start.z, other.end.z)
 	)
-	info.overlap_start = Vector3i(
-		0, maxi(self.start.y, other.start.y), maxi(self.start.z, other.start.z)
+	info.cell = Cell.create(
+		Vector3i(0, maxi(self.start.y, other.start.y), maxi(self.start.z, other.start.z)),
+		Vector3i(0, mini(self.end.y, other.end.y), mini(self.end.z, other.end.z))
 	)
-	info.overlap_end = Vector3i(0, mini(self.end.y, other.end.y), mini(self.end.z, other.end.z))
 	return info
 
 

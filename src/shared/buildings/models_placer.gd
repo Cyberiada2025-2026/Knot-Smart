@@ -1,6 +1,6 @@
 @tool
 class_name ModelsPlacer
-extends Node3D
+extends Node
 
 # jest to zjebane
 enum Orientation {

@@ -2,12 +2,6 @@
 class_name Cell
 extends Resource
 
-enum Direction {
-	Y,
-	X,
-	Z,
-}
-
 @export var start: Vector3i = Vector3i(0, 0, 0)
 @export var end: Vector3i = Vector3i(1, 1, 1)
 
@@ -22,65 +16,6 @@ static func create(s: Vector3i, e: Vector3i) -> Cell:
 func _to_string() -> String:
 	return "start: " + str(self.start) + ", end: " + str(self.end)
 
-
-func split(gen_params: RoomGenerationParams) -> Array[Cell]:
-	var direction = self.get_split_direction(gen_params)
-
-	var e1: Vector3i
-	var s2: Vector3i
-
-	match direction:
-		Direction.X:
-			var split_point = randi_range(
-				gen_params.min_room_size.x, self.size_x() - gen_params.min_room_size.x
-			)
-			e1 = Vector3i(self.start.x + split_point, self.end.y, self.end.z)
-			s2 = Vector3i(self.start.x + split_point, self.start.y, self.start.z)
-		Direction.Y:
-			var split_point = randi_range(
-				gen_params.min_room_size.y, self.size_y() - gen_params.min_room_size.y
-			)
-			e1 = Vector3i(self.end.x, self.start.y + split_point, self.end.z)
-			s2 = Vector3i(self.start.x, self.start.y + split_point, self.start.z)
-		Direction.Z:
-			var split_point = randi_range(
-				gen_params.min_room_size.z, self.size_z() - gen_params.min_room_size.z
-			)
-			e1 = Vector3i(self.end.x, self.end.y, self.start.z + split_point)
-			s2 = Vector3i(self.start.x, self.start.y, self.start.z + split_point)
-
-	var c1 = Cell.create(self.start, e1)
-	var c2 = Cell.create(s2, self.end)
-
-	return [c1, c2]
-
-
-func get_split_direction(gen_params: RoomGenerationParams) -> Cell.Direction:
-	var y_split_chance = randi_range(0, 2)
-	if (
-		(size_y() > gen_params.min_room_size.y and y_split_chance != 0)
-		or (
-			self.size_x() <= gen_params.min_room_size.x
-			&& self.size_z() <= gen_params.min_room_size.z
-		)
-	):
-		return Direction.Y
-
-	if self.size_x() <= gen_params.min_room_size.x:
-		return Direction.Z
-	if self.size_z() <= gen_params.min_room_size.z:
-		return Direction.X
-
-	var randomizer = randi_range(
-		-gen_params.room_split_direction_randomizer, gen_params.room_split_direction_randomizer
-	)
-
-	var diff = self.size_x() - self.size_z()
-	var randomized_diff = diff + randomizer
-
-	if randomized_diff <= 0:
-		return Direction.Z
-	return Direction.X
 
 
 func get_neighbor_info(other: Cell) -> BorderInfo:

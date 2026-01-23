@@ -1,18 +1,18 @@
 @tool
-extends Node
+extends Node3D
 
-@export var neighbors_generator: NeighborGenerator
-@export var cells_generator: CellGenerator
-@export var models_placer: ModelsPlacer
+@onready var neighbors_generator: NeighborGenerator = $NeighborGenerator
+@onready var cells_generator: CellGenerator = $CellGenerator
+@onready var models_placer: ModelsPlacer = $ModelsPlacer
 
-@export_group("Generation")
 @export var generation_params: RoomGenerationParams
 @export_tool_button("Generate Rooms") var generate_rooms_action = generate_rooms
-@export_tool_button("Generate Doors") var generate_doors_action = generate_neighbors
-@export_tool_button("Place Models") var place_models_action = place_models
-@export_group("Visualization")
 
-var initial_cells: Array[Cell] = []
+var initial_cells: Array[Cell] = [
+	Cell.create(Vector3i(0, 0, 0), Vector3i(5, 2, 5)),
+	Cell.create(Vector3i(5, 0, 2), Vector3i(7, 1, 5)),
+	Cell.create(Vector3i(5, 0, 0), Vector3i(10, 4, 2)),
+]
 var _cells: Array[Cell] = []
 var _neighbors: Array[BorderInfo] = []
 
@@ -26,9 +26,9 @@ func generate_neighbors() -> void:
 
 
 func generate_rooms() -> void:
-	initial_cells.clear()
-	initial_cells.push_back(Cell.create(Vector3i(0, 0, 0), Vector3i(5, 2, 5)))
-	initial_cells.push_back(Cell.create(Vector3i(5, 0, 2), Vector3i(7, 1, 5)))
-	initial_cells.push_back(Cell.create(Vector3i(5, 0, 0), Vector3i(10, 4, 2)))
-
 	_cells = cells_generator.generate_rooms(initial_cells, generation_params)
+
+	_neighbors = neighbors_generator.generate_neighbors(_cells)
+
+	models_placer.place_models(_neighbors, _cells, generation_params)
+

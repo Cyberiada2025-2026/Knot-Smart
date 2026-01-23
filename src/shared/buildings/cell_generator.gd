@@ -41,21 +41,28 @@ func pop_next_cell() -> Cell:
 
 
 func split(cell: Cell) -> void:
-	var split_data = self.get_split_direction(cell)
-	var direction = split_data[0]
-	var split_point = split_data[1]
+	var direction = self.get_split_direction(cell)
 
 	var e1: Vector3i = cell.end
 	var s2: Vector3i = cell.start
 
 	match direction:
 		Direction.X:
+			var split_point = randi_range(
+				gen_params.min_room_size.x, cell.size_x() - gen_params.min_room_size.x
+			)
 			e1.x = cell.start.x + split_point
 			s2.x = cell.start.x + split_point
 		Direction.Y:
+			var split_point = randi_range(
+				gen_params.min_room_size.y, cell.size_y() - gen_params.min_room_size.y
+			)
 			e1.y = cell.start.y + split_point
 			s2.y = cell.start.y + split_point
 		Direction.Z:
+			var split_point = randi_range(
+				gen_params.min_room_size.z, cell.size_z() - gen_params.min_room_size.z
+			)
 			e1.z = cell.start.z + split_point
 			s2.z = cell.start.z + split_point
 
@@ -66,7 +73,7 @@ func split(cell: Cell) -> void:
 	cells.push_back(c2)
 
 
-func get_split_direction(cell: Cell) -> Array:
+func get_split_direction(cell: Cell) -> Direction:
 	var y_split_chance = randi_range(0, 2)
 	if (
 		(cell.size_y() > gen_params.min_room_size.y and y_split_chance != 0)
@@ -75,21 +82,12 @@ func get_split_direction(cell: Cell) -> Array:
 			&& cell.size_z() <= gen_params.min_room_size.z
 		)
 	):
-		return [
-			Direction.Y,
-			randi_range(gen_params.min_room_size.y, cell.size_y() - gen_params.min_room_size.y)
-		]
+		return Direction.Y
 
 	if cell.size_x() <= gen_params.min_room_size.x:
-		return [
-			Direction.Z,
-			randi_range(gen_params.min_room_size.z, cell.size_z() - gen_params.min_room_size.z)
-		]
+		return Direction.Z
 	if cell.size_z() <= gen_params.min_room_size.z:
-		return [
-			Direction.X,
-			randi_range(gen_params.min_room_size.x, cell.size_x() - gen_params.min_room_size.x)
-		]
+		return Direction.X
 
 	var randomizer = randi_range(
 		-gen_params.room_split_direction_randomizer, gen_params.room_split_direction_randomizer
@@ -99,11 +97,5 @@ func get_split_direction(cell: Cell) -> Array:
 	var randomized_diff = diff + randomizer
 
 	if randomized_diff <= 0:
-		return [
-			Direction.Z,
-			randi_range(gen_params.min_room_size.z, cell.size_z() - gen_params.min_room_size.z)
-		]
-	return [
-		Direction.X,
-		randi_range(gen_params.min_room_size.x, cell.size_x() - gen_params.min_room_size.x)
-	]
+		return Direction.Z
+	return Direction.X

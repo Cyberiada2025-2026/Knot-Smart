@@ -34,7 +34,7 @@ func split_cells():
 func pop_next_cell() -> Cell:
 	for i in cells.size():
 		var cell = cells[i]
-		if cell.is_larger_than(gen_params.max_room_size):
+		if cell.is_larger_than(gen_params.max_size):
 			cells.remove_at(i)
 			return cell
 	return null
@@ -49,19 +49,19 @@ func split(cell: Cell) -> void:
 	match direction:
 		Direction.X:
 			var split_point = randi_range(
-				gen_params.min_room_size.x, cell.size_x() - gen_params.min_room_size.x
+				gen_params.min_size.x, cell.size_x() - gen_params.min_size.x
 			)
 			e1.x = cell.start.x + split_point
 			s2.x = cell.start.x + split_point
 		Direction.Y:
 			var split_point = randi_range(
-				gen_params.min_room_size.y, cell.size_y() - gen_params.min_room_size.y
+				gen_params.min_size.y, cell.size_y() - gen_params.min_size.y
 			)
 			e1.y = cell.start.y + split_point
 			s2.y = cell.start.y + split_point
 		Direction.Z:
 			var split_point = randi_range(
-				gen_params.min_room_size.z, cell.size_z() - gen_params.min_room_size.z
+				gen_params.min_size.z, cell.size_z() - gen_params.min_size.z
 			)
 			e1.z = cell.start.z + split_point
 			s2.z = cell.start.z + split_point
@@ -76,22 +76,17 @@ func split(cell: Cell) -> void:
 func get_split_direction(cell: Cell) -> Direction:
 	var y_split_chance = randi_range(0, 2)
 	if (
-		(cell.size_y() > gen_params.min_room_size.y and y_split_chance != 0)
-		or (
-			cell.size_x() <= gen_params.min_room_size.x
-			&& cell.size_z() <= gen_params.min_room_size.z
-		)
+		(cell.size_y() > gen_params.min_size.y and y_split_chance != 0)
+		or (cell.size_x() <= gen_params.min_size.x && cell.size_z() <= gen_params.min_size.z)
 	):
 		return Direction.Y
 
-	if cell.size_x() <= gen_params.min_room_size.x:
+	if cell.size_x() <= gen_params.min_size.x:
 		return Direction.Z
-	if cell.size_z() <= gen_params.min_room_size.z:
+	if cell.size_z() <= gen_params.min_size.z:
 		return Direction.X
 
-	var randomizer = randi_range(
-		-gen_params.room_split_direction_randomizer, gen_params.room_split_direction_randomizer
-	)
+	var randomizer = randi_range(-gen_params.split_dir_rand, gen_params.split_dir_rand)
 
 	var diff = cell.size_x() - cell.size_z()
 	var randomized_diff = diff + randomizer

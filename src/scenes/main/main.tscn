@@ -1,7 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=19 format=3 uid="uid://3rax0onuo76f"]
 
 [ext_resource type="PackedScene" uid="uid://dj405lsp20gkg" path="res://characters/player/player_model.tscn" id="1_hyk8p"]
+[ext_resource type="Environment" uid="uid://db3d7co0oblxp" path="res://Post Processing/Environment.tres" id="1_ow5a4"]
+[ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://Post Processing/dithering.gdshader" id="2_hujxm"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
+[ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://Post Processing/crt.gdshader" id="3_yyfjg"]
+[ext_resource type="PackedScene" uid="uid://djqe8wkjmmn8n" path="res://VFX/Rope VFX/rope_vfx.tscn" id="7_b1x3f"]
+[ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://VFX/Blood/blood_vfx.tscn" id="7_ouso4"]
+[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://VFX/Rope VFX/rope.gdshader" id="8_a8run"]
+[ext_resource type="Script" uid="uid://cfqche3hcpffv" path="res://VFX/Blood/test/blood_test.gd" id="8_blune"]
+[ext_resource type="Script" uid="uid://dlnrvnvu8x0w4" path="res://VFX/Rope VFX/test/rope_vfx_test.gd" id="9_ouso4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xylyt"]
+shader = ExtResource("2_hujxm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tvswt"]
+shader = ExtResource("3_yyfjg")
+shader_parameter/hardScan = -8.0
+shader_parameter/hardPix = -3.0
+shader_parameter/warp = Vector2(0.03125, 0.041667)
+shader_parameter/maskDark = 0.85
+shader_parameter/maskLight = 1.15
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -18,13 +37,118 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hyk8p"]
 size = Vector3(10, 1, 10)
 
-[node name="Main" type="Node3D"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_blune"]
+resource_local_to_scene = true
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+radial_segments = 8
+rings = 10
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9815972, 0.19096321, 0, -0.19096321, 0.9815972, 0, 2.1553738, 4.596)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_th5th"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("8_a8run")
+shader_parameter/mesh_width_change = 2.0
+shader_parameter/anim_start = 0.0
+shader_parameter/length_start = 10.0
+shader_parameter/length_curr = 10.0
+shader_parameter/segment_density = 10.0
+shader_parameter/width = 0.01
+shader_parameter/softness = 0.5
+shader_parameter/speed = 5.0
+shader_parameter/main_col_def = Color(0.34117648, 0.7176471, 0.41568628, 1)
+shader_parameter/main_col_stretch = Color(0.34509805, 0.60784316, 0.7176471, 1)
+shader_parameter/main_col_squish = Color(0.7490196, 0.3764706, 0.43529412, 1)
+shader_parameter/sec_col_def = Color(1, 1, 1, 1)
+shader_parameter/sec_col_stretch = Color(1, 1, 1, 1)
+shader_parameter/sec_col_squish = Color(1, 1, 1, 1)
+shader_parameter/vibrate_time = 0.3
+
+[node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
+
+[node name="HelperCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+cull_mask = 0
+projection = 1
+current = true
+far = 0.1
+
+[node name="Control" type="Control" parent="HelperCamera"]
+light_mask = 0
+visibility_layer = 524288
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HelperCamera/Control"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 280.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4.5, 4.5)
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HelperCamera/Control/SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="MainCamera" type="Camera3D" parent="HelperCamera/Control/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.98162717, 0, 0.190809, 0, 1, 0, -0.190809, 0, 0.98162717, 0, 2.1553738, 4.596)
+environment = ExtResource("1_ow5a4")
+
+[node name="UI" type="Control" parent="HelperCamera/Control/SubViewportContainer/SubViewport/MainCamera"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="test" type="ColorRect" parent="HelperCamera/Control/SubViewportContainer/SubViewport/MainCamera/UI"]
+layout_mode = 0
+offset_left = 5.23
+offset_top = 12.705
+offset_right = 23.23
+offset_bottom = 30.705008
+rotation = -0.6073746
+color = Color(0.40960324, 0.40960327, 0.40960324, 1)
+
+[node name="Dithering" type="ColorRect" parent="HelperCamera/Control/SubViewportContainer/SubViewport/MainCamera"]
+material = SubResource("ShaderMaterial_xylyt")
+anchors_preset = -1
+anchor_right = 35.925
+anchor_bottom = 26.725
+offset_right = 3.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CRT" type="ColorRect" parent="HelperCamera/Control"]
+material = SubResource("ShaderMaterial_tvswt")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 35.925
+anchor_bottom = 26.725
+offset_right = 3.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="HumanHeight" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47107148, 1.3952317, 0)
@@ -46,3 +170,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32957077, 0.8731664, -0.073
 
 [node name="Enemy" parent="." instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
+
+[node name="CPUParticles3D" parent="Enemy" instance=ExtResource("7_ouso4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Node3D" type="Node3D" parent="Enemy/CPUParticles3D" node_paths=PackedStringArray("particles")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("8_blune")
+particles = NodePath("..")
+
+[node name="RopeVFX" parent="." instance=ExtResource("7_b1x3f")]
+transform = Transform3D(0.9475399, 0.31963745, 0, -0.3046366, 0.9030711, 0.3027525, 0.09677103, -0.28687006, 0.9530692, 1.1018821, 1.412394, 0.09567356)
+mesh = SubResource("CylinderMesh_blune")
+mat = SubResource("ShaderMaterial_th5th")
+
+[node name="Node3D" type="Node3D" parent="RopeVFX" node_paths=PackedStringArray("rope")]
+script = ExtResource("9_ouso4")
+rope = NodePath("..")

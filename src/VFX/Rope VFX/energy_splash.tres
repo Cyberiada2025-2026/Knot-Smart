@@ -1,0 +1,63 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://dq62qf6nf6ehg"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_0ns5q"]
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_per3t"]
+default_input_values = [2, false, 3, 5.0]
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_1al7u"]
+parameter_name = "Power"
+default_value_enabled = true
+default_value = 3.0
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_doln1"]
+operator = 2
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform float Power = 3.0;
+
+
+
+void fragment() {
+// Input:2
+	vec4 n_out2p0 = COLOR;
+	float n_out2p4 = n_out2p0.a;
+
+
+// FloatParameter:4
+	float n_out4p0 = Power;
+
+
+// Fresnel:3
+	float n_out3p0 = pow(1.0 - clamp(dot(NORMAL, VIEW), 0.0, 1.0), n_out4p0);
+
+
+// FloatOp:5
+	float n_out5p0 = n_out2p4 * n_out3p0;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out5p0;
+
+
+}
+"
+modes/blend = 1
+modes/cull = 2
+flags/unshaded = true
+nodes/fragment/0/position = Vector2(560, 180)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_0ns5q")
+nodes/fragment/2/position = Vector2(-240, 180)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFresnel_per3t")
+nodes/fragment/3/position = Vector2(-260, 480)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatParameter_1al7u")
+nodes/fragment/4/position = Vector2(-580, 540)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_doln1")
+nodes/fragment/5/position = Vector2(220, 280)
+nodes/fragment/connections = PackedInt32Array(4, 0, 3, 3, 2, 4, 5, 0, 3, 0, 5, 1, 5, 0, 0, 1, 2, 0, 0, 0)

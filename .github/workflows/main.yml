@@ -13,5 +13,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: Scony/godot-gdscript-toolkit@master
-    - run: gdformat --check $(find ./src/ -name '*.gd' -not -path "./src/addons/*" -not -path "./src/script_templates/*")
+    - run: gdformat --check $(find ./src/ -name '*.gd' -not -path "./src/addons/*")
     - run: gdlint $(find ./src/ -name '*.gd' -not -path "./src/addons/*" -not -path "./src/script_templates/*")

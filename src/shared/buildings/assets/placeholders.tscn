@@ -28,6 +28,9 @@ size = Vector3(0.4555625, 0.05, 1)
 
 [node name="Placeholders" instance=ExtResource("1_joyt4")]
 
+[node name="Door" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_lbwph")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Door" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D" index="0"]
@@ -42,10 +45,16 @@ shape = SubResource("BoxShape3D_gkp7s")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34724963, 0.7, -0.5)
 shape = SubResource("BoxShape3D_o12w4")
 
+[node name="Floor" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_lbwph")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" index="0"]
 shape = SubResource("BoxShape3D_lbwph")
+
+[node name="Hole" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_lbwph")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Hole" index="0"]
 
@@ -65,11 +74,17 @@ shape = SubResource("BoxShape3D_txnnn")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0060324967, 0, 0.3261479)
 shape = SubResource("BoxShape3D_txnnn")
 
+[node name="Wall" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_lbwph")
+
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -0.5)
 shape = SubResource("BoxShape3D_joyt4")
+
+[node name="Window" parent="." index="4"]
+surface_material_override/0 = ExtResource("2_lbwph")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Window" index="0"]
 

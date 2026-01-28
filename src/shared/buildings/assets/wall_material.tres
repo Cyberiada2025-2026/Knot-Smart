@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b167y6k3hsotg"]
+
+[ext_resource type="Shader" uid="uid://kaq856dfkhje" path="res://shared/shaders/building_walls_main.gdshader" id="1_kkcis"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_kkcis")

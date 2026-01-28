@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 	## CAMERA ROTATION
 	if get_parent().is_rotating == false:
 		rotation_strategy.rotate(self, mouse_relative, delta)
-		mouse_relative = Vector2.ZERO
+	mouse_relative = Vector2.ZERO
 	
 	## CAMERA ZOOM
 	view_strategy.zoom(self, delta)
@@ -56,12 +56,8 @@ func _input(event: InputEvent) -> void:
 		view_strategy = view_strategy.next_strategy
 		view_strategy.change_view_to(self)
 	
-	if event.is_action_pressed("enter_building_mode"):
-		rotation_strategy = qe_keyboard
-		rotation_strategy.change_to()
-	
-	if event.is_action_pressed("ui_cancel"):
-		rotation_strategy = hidden_mouse
+	if event.is_action_pressed("change_camera_mode"):
+		rotation_strategy = rotation_strategy.next_strategy
 		rotation_strategy.change_to()
 	
 	## CAMERA ROTATION

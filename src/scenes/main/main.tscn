@@ -9,14 +9,6 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hyk8p"]
 size = Vector3(10, 1, 10)
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_iuonh"]
-radius = 0.25
-height = 0.8
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
-radius = 0.3
-height = 1.8
-
 [node name="Main" type="Node3D"]
 
 [node name="10x10_floor" type="StaticBody3D" parent="."]
@@ -38,8 +30,19 @@ transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47107148, 1.3952317, 0)
 mesh = SubResource("CapsuleMesh_vom5j")
 
-[node name="Player" parent="." instance=ExtResource("1_hyk8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5882595, 1.0474042, 2.7972581)
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_iuonh")
 
-[node name="CameraReplacer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_iuonh")]
-camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")
+[node name="10x10_floor" type="StaticBody3D" parent="NavigationRegion3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/10x10_floor"]
+mesh = SubResource("BoxMesh_vom5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/10x10_floor"]
+shape = SubResource("BoxShape3D_hyk8p")
+
+[node name="AlienHeight" parent="." instance=ExtResource("1_hyk8p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32957077, 0.8731664, -0.07348645)
+
+[node name="Enemy" parent="." instance=ExtResource("2_iuonh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)

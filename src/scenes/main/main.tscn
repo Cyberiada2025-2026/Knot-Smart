@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=9 format=3 uid="uid://3rax0onuo76f"]
 
 [ext_resource type="PackedScene" uid="uid://dj405lsp20gkg" path="res://characters/player/player_model.tscn" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="4_l3cfh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -19,9 +21,6 @@ size = Vector3(10, 1, 10)
 size = Vector3(10, 1, 10)
 
 [node name="Main" type="Node3D"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9815972, 0.19096321, 0, -0.19096321, 0.9815972, 0, 2.1553738, 4.596)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
@@ -46,3 +45,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32957077, 0.8731664, -0.073
 
 [node name="Enemy" parent="." instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_k2fmo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6612322, 1.435396, 3.9698668)
+
+[node name="CameraReplacer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_l3cfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6709199, 0)
+camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")

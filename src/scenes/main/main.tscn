@@ -56,5 +56,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32957077, 0.8731664, -0.073
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
 
 [node name="RoomGenerator" parent="." instance=ExtResource("3_k2fmo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, 7)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10, 0.5, -8)
 generation_params = SubResource("Resource_6q06x")

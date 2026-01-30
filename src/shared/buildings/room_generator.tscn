@@ -9,8 +9,6 @@
 
 [sub_resource type="Resource" id="Resource_cqvhj"]
 script = ExtResource("2_cx44q")
-min_room_size = Vector3i(2, 1, 1)
-max_room_size = Vector3i(6, 2, 4)
 entrance_count = 3
 window_percentage = 0.897
 metadata/_custom_type_script = "uid://baeps41mlt1vr"
@@ -34,6 +32,7 @@ script = ExtResource("7_3emm2")
 
 [node name="FloorGridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("4_vqaaw")
+cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
 cell_scale = 2.0
 data = {
@@ -42,6 +41,7 @@ data = {
 
 [node name="WallXGrid" type="GridMap" parent="."]
 mesh_library = ExtResource("4_vqaaw")
+cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
 cell_scale = 2.0
 data = {
@@ -51,6 +51,7 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="WallZGrid" type="GridMap" parent="."]
 mesh_library = ExtResource("4_vqaaw")
+cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
 cell_scale = 2.0
 data = {

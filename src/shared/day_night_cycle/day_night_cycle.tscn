@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5l6v07y036mo"]
+
+[ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="1_st5v3"]
+
+[node name="DayNightCycle" type="Node3D" node_paths=PackedStringArray("day_timer")]
+transform = Transform3D(1, 0, 0, 0, 0.8910065, 0.45399052, 0, -0.45399052, 0.8910065, 0, 0, 0)
+script = ExtResource("1_st5v3")
+day_timer = NodePath("DayTimer")
+
+[node name="DayTimer" type="Timer" parent="."]

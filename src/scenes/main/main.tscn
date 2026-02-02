@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=12 format=3 uid="uid://3rax0onuo76f"]
 
-[ext_resource type="PackedScene" uid="uid://dj405lsp20gkg" path="res://characters/player/player_model.tscn" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://b5l6v07y036mo" path="res://shared/day_night_cycle/day_night_cycle.tscn" id="4_6q06x"]
 [ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="4_l3cfh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
@@ -20,10 +20,19 @@ size = Vector3(10, 1, 10)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hyk8p"]
 size = Vector3(10, 1, 10)
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l3cfh"]
+
+[sub_resource type="Sky" id="Sky_6q06x"]
+sky_material = SubResource("ProceduralSkyMaterial_l3cfh")
+
+[sub_resource type="Environment" id="Environment_ow5a4"]
+background_mode = 2
+sky = SubResource("Sky_6q06x")
+
 [node name="Main" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 
 [node name="HumanHeight" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47107148, 1.3952317, 0)
@@ -40,8 +49,18 @@ mesh = SubResource("BoxMesh_vom5j")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/10x10_floor"]
 shape = SubResource("BoxShape3D_hyk8p")
 
-[node name="AlienHeight" parent="." instance=ExtResource("1_hyk8p")]
+[node name="AlienHeight" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32957077, 0.8731664, -0.07348645)
+script = null
 
 [node name="Enemy" parent="." instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
@@ -52,3 +71,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6612322, 1.435396, 3.969866
 [node name="CameraReplacer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_l3cfh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6709199, 0)
 camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")
+
+[node name="DayNightCycle" parent="." node_paths=PackedStringArray("world_environment", "sun") instance=ExtResource("4_6q06x")]
+day_length = 1.0
+night_start = 21.0
+initial_hour = 14.0
+world_environment = NodePath("../WorldEnvironment")
+sun = NodePath("../DirectionalLight3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ow5a4")

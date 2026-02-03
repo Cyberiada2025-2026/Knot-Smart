@@ -1,0 +1,14 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://dkvs0r3maybg0"]
+
+[ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="1_kx5yn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l3cfh"]
+
+[sub_resource type="Sky" id="Sky_6q06x"]
+sky_material = SubResource("ProceduralSkyMaterial_l3cfh")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_6q06x")
+adjustment_enabled = true
+adjustment_color_correction = ExtResource("1_kx5yn")

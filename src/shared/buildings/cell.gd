@@ -25,14 +25,9 @@ func is_hallway() -> bool:
 
 
 func is_larger_than(dim: Vector3i) -> bool:
-	if self.size_y() > dim.y:
-		return true
-	if self.size_x() > dim.x or self.size_z() > dim.x:
-		return true
-	if self.size_x() > dim.z or self.size_z() > dim.z:
-		return true
-	return false
-
+	return (self.size_y() > dim.y) \
+		or (self.size_x() > dim.x or self.size_z() > dim.x) \
+		or (self.size_x() > dim.z or self.size_z() > dim.z)
 
 func get_neighbor_info(other: Cell) -> BorderInfo:
 	var overlap = self.get_overlap(other)
@@ -80,33 +75,28 @@ func center() -> Vector3:
 	)
 
 
-func overlaps(s0, e0, s1, e1) -> bool:
-	return e0 - s1 >= 0 and e1 - s0 >= 0
-
+func overlaps(other: Cell, dir: Utils.Axis) -> bool:
+	return end[dir] - other.start[dir] >= 0 and other.end[dir] - start[dir] >= 0
 
 func get_overlap(other: Cell) -> BorderInfo:
 	var info = BorderInfo.new()
-	if (
-		overlaps(self.start.x, self.end.x, other.start.x, other.end.x)
-		and overlaps(self.start.y, self.end.y, other.start.y, other.end.y)
-		and overlaps(self.start.z, self.end.z, other.start.z, other.end.z)
-	):
-		info.cell = Cell.new(
-			Vector3i(
-				maxi(self.start.x, other.start.x),
-				maxi(self.start.y, other.start.y),
-				maxi(self.start.z, other.start.z)
-			),
-			Vector3i(
-				mini(self.end.x, other.end.x),
-				mini(self.end.y, other.end.y),
-				mini(self.end.z, other.end.z)
-			)
-		)
-		if info.cell.size_x() == 0 and info.cell.size_y() == 0 and info.cell.size_z() == 0:
-			info.cell = Cell.new()
+	for axis in Utils.Axis.values():
+		if not overlaps(other, axis):
 			return info
-		info.is_overlapping = true
+		
+	info.cell = Cell.new(
+		Vector3i(
+			maxi(self.start.x, other.start.x),
+			maxi(self.start.y, other.start.y),
+			maxi(self.start.z, other.start.z)
+		),
+		Vector3i(
+			mini(self.end.x, other.end.x),
+			mini(self.end.y, other.end.y),
+			mini(self.end.z, other.end.z)
+		)
+	)
+	info.is_overlapping = true
 
 	return info
 

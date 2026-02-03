@@ -38,12 +38,12 @@ func create_msp() -> void:
 	for i in cells.size():
 		cells[i].id = i
 
-	var uf = DisjointSet.create(cells.size())
+	var cell_disjoint_set = DisjointSet.new(cells.size())
 	for e in all_edges:
-		if uf.is_in_same_set(e.neighbor_a.id, e.neighbor_b.id):
+		if cell_disjoint_set.is_in_same_set(e.neighbor_a.id, e.neighbor_b.id)[0]:
 			continue
 		e.is_open = true
-		uf.union(e.neighbor_a.id, e.neighbor_b.id)
+		cell_disjoint_set.union(e.neighbor_a.id, e.neighbor_b.id)
 
 
 func choose_door_positions():

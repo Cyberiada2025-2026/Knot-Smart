@@ -5,9 +5,9 @@ extends Node3D
 @export_tool_button("Generate Rooms") var generate_rooms_action = generate_rooms
 
 var initial_cells: Array[Cell] = [
-	Cell.create(Vector3i(0, 0, 0), Vector3i(5, 2, 5)),
-	Cell.create(Vector3i(5, 0, 2), Vector3i(7, 1, 5)),
-	Cell.create(Vector3i(5, 0, 0), Vector3i(10, 4, 2)),
+	Cell.new(Vector3i(0, 0, 0), Vector3i(5, 2, 5)),
+	Cell.new(Vector3i(5, 0, 2), Vector3i(7, 1, 5)),
+	Cell.new(Vector3i(5, 0, 0), Vector3i(10, 4, 2)),
 ]
 var _cells: Array[Cell] = []
 var _neighbors: Array[BorderInfo] = []

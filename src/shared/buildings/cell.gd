@@ -6,13 +6,9 @@ extends Resource
 @export var end: Vector3i = Vector3i(1, 1, 1)
 var id: int = 0
 
-
-static func create(s: Vector3i, e: Vector3i) -> Cell:
-	var cell = Cell.new()
-	cell.start = s
-	cell.end = e
-	return cell
-
+func _init(_start: Vector3i = Vector3i(0,0,0), _end: Vector3i = Vector3i(1,1,1)) -> void:
+	start = _start
+	end = _end
 
 func _to_string() -> String:
 	return "start: " + str(self.start) + ", end: " + str(self.end)
@@ -85,7 +81,7 @@ func get_overlap(other: Cell) -> BorderInfo:
 		and overlaps(self.start.y, self.end.y, other.start.y, other.end.y)
 		and overlaps(self.start.z, self.end.z, other.start.z, other.end.z)
 	):
-		info.cell = Cell.create(
+		info.cell = Cell.new(
 			Vector3i(
 				maxi(self.start.x, other.start.x),
 				maxi(self.start.y, other.start.y),
@@ -107,10 +103,10 @@ func get_overlap(other: Cell) -> BorderInfo:
 
 func get_all_borders() -> Array[BorderInfo]:
 	return [
-		BorderInfo.create(start, Vector3i(start.x, end.y, end.z)),
-		BorderInfo.create(start, Vector3i(end.x, start.y, end.z)),
-		BorderInfo.create(start, Vector3i(end.x, end.y, start.z)),
-		BorderInfo.create(Vector3i(end.x, start.y, start.z), end),
-		BorderInfo.create(Vector3i(start.x, end.y, start.z), end),
-		BorderInfo.create(Vector3i(start.x, start.y, end.z), end),
+		BorderInfo.new(start, Vector3i(start.x, end.y, end.z)),
+		BorderInfo.new(start, Vector3i(end.x, start.y, end.z)),
+		BorderInfo.new(start, Vector3i(end.x, end.y, start.z)),
+		BorderInfo.new(Vector3i(end.x, start.y, start.z), end),
+		BorderInfo.new(Vector3i(start.x, end.y, start.z), end),
+		BorderInfo.new(Vector3i(start.x, start.y, end.z), end),
 	]

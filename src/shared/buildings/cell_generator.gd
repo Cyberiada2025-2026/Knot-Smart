@@ -66,8 +66,8 @@ func split(cell: Cell) -> void:
 			e1.z = cell.start.z + split_point
 			s2.z = cell.start.z + split_point
 
-	var c1 = Cell.create(cell.start, e1)
-	var c2 = Cell.create(s2, cell.end)
+	var c1 = Cell.new(cell.start, e1)
+	var c2 = Cell.new(s2, cell.end)
 
 	cells.push_back(c1)
 	cells.push_back(c2)

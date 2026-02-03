@@ -31,7 +31,6 @@ func set_door_position() -> void:
 	door_position = model_locations().filter(func(n): return n.y == cell.start.y).pick_random()
 
 
-static func create(start: Vector3i, end: Vector3i) -> BorderInfo:
-	var bi = BorderInfo.new()
-	bi.cell = Cell.create(start, end)
-	return bi
+func _init(start: Vector3i = Vector3i(0,0,0), end: Vector3i = Vector3i(0,0,0)):
+	cell = Cell.new(start, end)
+

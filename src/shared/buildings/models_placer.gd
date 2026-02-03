@@ -2,7 +2,7 @@
 class_name ModelsPlacer
 extends Node
 
-# jest to zjebane
+# this is retarded 
 enum Orientation {
 	R0 = 0,  # 0
 	R90 = 22,  # 90
@@ -15,9 +15,7 @@ enum Orientation {
 @export var wall_x_grid: GridMap
 @export var wall_z_grid: GridMap
 
-var neighbors: Array[BorderInfo]
-var cells: Array[Cell]
-var gen_params: RoomGenerationParams
+var room_generator: RoomGenerator
 
 
 func place_entrance(c: BorderInfo):
@@ -44,11 +42,9 @@ func clear_models():
 
 
 func place_models(
-	new_neighbors: Array[BorderInfo], new_cells: Array[Cell], new_gen_params: RoomGenerationParams
+	_room_generator: RoomGenerator
 ):
-	neighbors = new_neighbors
-	cells = new_cells
-	gen_params = new_gen_params
+	room_generator = _room_generator
 
 	clear_models()
 	spawn_walls_between_rooms()
@@ -61,7 +57,7 @@ func concat(a: Array, e: Array) -> Array:
 
 
 func spawn_building_border_walls():
-	var all_borders = cells.map(func(c): return c.get_all_borders()).reduce(concat, [])
+	var all_borders = room_generator.cells.map(func(c): return c.get_all_borders()).reduce(concat, [])
 	var all_wall_locations_x = (
 		all_borders
 		. filter(func(b): return b.cell.size_z() == 0)
@@ -79,14 +75,14 @@ func spawn_building_border_walls():
 	var all_wall_locations = all_wall_locations_x + all_wall_locations_z
 
 	var neighbor_locations_x = (
-		neighbors
+		room_generator.neighbors
 		. filter(func(n): return n.cell.size_z() == 0)
 		. map(func(n): return n.model_locations())
 		. reduce(concat, [])
 		. map(func(l): return [l, Orientation.R0])
 	)
 	var neighbor_locations_z = (
-		neighbors
+		room_generator.neighbors
 		. filter(func(n): return n.cell.size_x() == 0)
 		. map(func(n): return n.model_locations())
 		. reduce(concat, [])
@@ -120,7 +116,7 @@ func place_model_count_in_locations(locations: Array, model_id: int, count: int)
 
 
 func place_windows(outside_wall_locations: Array):
-	var window_count = floor(outside_wall_locations.size() * gen_params.window_percentage)
+	var window_count = floor(outside_wall_locations.size() * room_generator.generation_params.window_percentage)
 	place_model_count_in_locations(
 		outside_wall_locations, mesh_library.find_item_by_name("Window"), window_count
 	)
@@ -128,15 +124,15 @@ func place_windows(outside_wall_locations: Array):
 
 func place_entrance_doors(outside_door_locations: Array):
 	place_model_count_in_locations(
-		outside_door_locations, mesh_library.find_item_by_name("Door"), gen_params.entrance_count
+		outside_door_locations, mesh_library.find_item_by_name("Door"), room_generator.generation_params.entrance_count
 	)
 
 
 func spawn_walls_between_rooms():
-	for n in neighbors.filter(func(n): return n.is_open):
+	for n in room_generator.neighbors.filter(func(n): return n.is_open):
 		place_entrance(n)
 
-	for c in cells:
+	for c in room_generator.cells:
 		var borders = c.get_all_borders()
 		for n in borders:
 			var locations = n.model_locations()

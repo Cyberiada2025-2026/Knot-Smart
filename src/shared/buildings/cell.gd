@@ -24,13 +24,13 @@ func range(dir: Utils.Axis) -> Array:
 
 
 func is_hallway() -> bool:
-	return (self.size_x() == 1 or self.size_y() == 1) and self.area() != 1
+	return (self.size().x == 1 or self.size().y == 1) and self.area() != 1
 
 
 func is_larger_than(dim: Vector3i) -> bool:
-	return (self.size_y() > dim.y) \
-		or (self.size_x() > dim.x or self.size_z() > dim.x) \
-		or (self.size_x() > dim.z or self.size_z() > dim.z)
+	return (self.size().y > dim.y) \
+		or (self.size().x > dim.x or self.size().z > dim.x) \
+		or (self.size().x > dim.z or self.size().z > dim.z)
 
 func get_neighbor_info(other: Cell) -> BorderInfo:
 	var overlap = self.get_overlap(other)
@@ -46,35 +46,23 @@ func get_neighbor_info(other: Cell) -> BorderInfo:
 	return overlap
 
 
-func size_x() -> int:
-	return end.x - start.x
-
-
-func size_y() -> int:
-	return end.y - start.y
-
-
-func size_z() -> int:
-	return end.z - start.z
-
-
 func size() -> Vector3i:
 	return end - start
 
 
 func max_side_length() -> int:
-	return max(size_x(), size_z())
+	return max(size().x, size().z)
 
 
 func area() -> int:
-	return size_x() * size_z()
+	return size().x * size().z
 
 
 func center() -> Vector3:
 	return Vector3(
-		self.start.x + float(self.size_x()) / 2,
-		self.start.y + float(self.size_y()) / 2,
-		self.start.z + float(self.size_z()) / 2
+		self.start.x + float(self.size().x) / 2,
+		self.start.y + float(self.size().y) / 2,
+		self.start.z + float(self.size().z) / 2
 	)
 
 

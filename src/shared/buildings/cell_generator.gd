@@ -38,21 +38,21 @@ func split(cell: Cell) -> void:
 		Utils.Axis.X:
 			var split_point = randi_range(
 				room_generator.generation_params.min_room_size.x,
-				cell.size_x() - room_generator.generation_params.min_room_size.x
+				cell.size().x - room_generator.generation_params.min_room_size.x
 			)
 			e1.x = cell.start.x + split_point
 			s2.x = cell.start.x + split_point
 		Utils.Axis.Y:
 			var split_point = randi_range(
 				room_generator.generation_params.min_room_size.y,
-				cell.size_y() - room_generator.generation_params.min_room_size.y
+				cell.size().y - room_generator.generation_params.min_room_size.y
 			)
 			e1.y = cell.start.y + split_point
 			s2.y = cell.start.y + split_point
 		Utils.Axis.Z:
 			var split_point = randi_range(
 				room_generator.generation_params.min_room_size.z,
-				cell.size_z() - room_generator.generation_params.min_room_size.z
+				cell.size().z - room_generator.generation_params.min_room_size.z
 			)
 			e1.z = cell.start.z + split_point
 			s2.z = cell.start.z + split_point
@@ -67,17 +67,17 @@ func split(cell: Cell) -> void:
 func get_split_direction(cell: Cell) -> Utils.Axis:
 	var y_split_chance = randi_range(0, 2)
 	if (
-		(cell.size_y() > room_generator.generation_params.min_room_size.y and y_split_chance != 0)
+		(cell.size().y > room_generator.generation_params.min_room_size.y and y_split_chance != 0)
 		or (
-			cell.size_x() <= room_generator.generation_params.min_room_size.x
-			&& cell.size_z() <= room_generator.generation_params.min_room_size.z
+			cell.size().x <= room_generator.generation_params.min_room_size.x
+			&& cell.size().z <= room_generator.generation_params.min_room_size.z
 		)
 	):
 		return Utils.Axis.Y
 
-	if cell.size_x() <= room_generator.generation_params.min_room_size.x:
+	if cell.size().x <= room_generator.generation_params.min_room_size.x:
 		return Utils.Axis.Z
-	if cell.size_z() <= room_generator.generation_params.min_room_size.z:
+	if cell.size().z <= room_generator.generation_params.min_room_size.z:
 		return Utils.Axis.X
 
 	var split_dir_rand = (
@@ -85,7 +85,7 @@ func get_split_direction(cell: Cell) -> Utils.Axis:
 	)
 	var randomizer = randi_range(-split_dir_rand, split_dir_rand)
 
-	var diff = cell.size_x() - cell.size_z()
+	var diff = cell.size().x - cell.size().z
 	var randomized_diff = diff + randomizer
 
 	if randomized_diff <= 0:

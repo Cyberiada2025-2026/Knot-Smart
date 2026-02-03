@@ -34,34 +34,15 @@ func split(cell: Cell) -> void:
 	var e1: Vector3i = cell.end
 	var s2: Vector3i = cell.start
 
-	match direction:
-		Utils.Axis.X:
-			var split_point = randi_range(
-				room_generator.generation_params.min_room_size.x,
-				cell.size().x - room_generator.generation_params.min_room_size.x
-			)
-			e1.x = cell.start.x + split_point
-			s2.x = cell.start.x + split_point
-		Utils.Axis.Y:
-			var split_point = randi_range(
-				room_generator.generation_params.min_room_size.y,
-				cell.size().y - room_generator.generation_params.min_room_size.y
-			)
-			e1.y = cell.start.y + split_point
-			s2.y = cell.start.y + split_point
-		Utils.Axis.Z:
-			var split_point = randi_range(
-				room_generator.generation_params.min_room_size.z,
-				cell.size().z - room_generator.generation_params.min_room_size.z
-			)
-			e1.z = cell.start.z + split_point
-			s2.z = cell.start.z + split_point
+	var split_point = randi_range(
+		room_generator.generation_params.min_room_size[direction],
+		cell.size()[direction] - room_generator.generation_params.min_room_size[direction]
+	)
+	e1[direction] = cell.start[direction] + split_point
+	s2[direction] = cell.start[direction] + split_point
 
-	var c1 = Cell.new(cell.start, e1)
-	var c2 = Cell.new(s2, cell.end)
-
-	room_generator.cells.push_back(c1)
-	room_generator.cells.push_back(c2)
+	room_generator.cells.push_back(Cell.new(cell.start, e1))
+	room_generator.cells.push_back(Cell.new(s2, cell.end))
 
 
 func get_split_direction(cell: Cell) -> Utils.Axis:

@@ -17,9 +17,9 @@ func _to_string() -> String:
 func model_locations() -> Array:
 	var arr = []
 
-	for x in cell.range(Vector3i.Axis.AXIS_X):
-		for y in cell.range(Vector3i.Axis.AXIS_Y):
-			for z in cell.range(Vector3i.Axis.AXIS_Z):
+	for x in cell.range(Utils.Axis.X):
+		for y in cell.range(Utils.Axis.Y):
+			for z in cell.range(Utils.Axis.Z):
 				arr.push_back(Vector3i(x, y, z))
 	return arr
 

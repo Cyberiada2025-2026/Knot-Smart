@@ -2,12 +2,6 @@
 class_name CellGenerator
 extends Node
 
-enum Direction {
-	Y,
-	X,
-	Z,
-}
-
 var room_generator: RoomGenerator
 
 
@@ -45,21 +39,21 @@ func split(cell: Cell) -> void:
 	var s2: Vector3i = cell.start
 
 	match direction:
-		Direction.X:
+		Utils.Axis.X:
 			var split_point = randi_range(
 				room_generator.generation_params.min_room_size.x,
 				cell.size_x() - room_generator.generation_params.min_room_size.x
 			)
 			e1.x = cell.start.x + split_point
 			s2.x = cell.start.x + split_point
-		Direction.Y:
+		Utils.Axis.Y:
 			var split_point = randi_range(
 				room_generator.generation_params.min_room_size.y,
 				cell.size_y() - room_generator.generation_params.min_room_size.y
 			)
 			e1.y = cell.start.y + split_point
 			s2.y = cell.start.y + split_point
-		Direction.Z:
+		Utils.Axis.Z:
 			var split_point = randi_range(
 				room_generator.generation_params.min_room_size.z,
 				cell.size_z() - room_generator.generation_params.min_room_size.z
@@ -74,7 +68,7 @@ func split(cell: Cell) -> void:
 	room_generator.cells.push_back(c2)
 
 
-func get_split_direction(cell: Cell) -> Direction:
+func get_split_direction(cell: Cell) -> Utils.Axis:
 	var y_split_chance = randi_range(0, 2)
 	if (
 		(cell.size_y() > room_generator.generation_params.min_room_size.y and y_split_chance != 0)
@@ -83,12 +77,12 @@ func get_split_direction(cell: Cell) -> Direction:
 			&& cell.size_z() <= room_generator.generation_params.min_room_size.z
 		)
 	):
-		return Direction.Y
+		return Utils.Axis.Y
 
 	if cell.size_x() <= room_generator.generation_params.min_room_size.x:
-		return Direction.Z
+		return Utils.Axis.Z
 	if cell.size_z() <= room_generator.generation_params.min_room_size.z:
-		return Direction.X
+		return Utils.Axis.X
 
 	var split_dir_rand = (
 		room_generator.generation_params.long_room_tendency * cell.max_side_length()
@@ -99,5 +93,5 @@ func get_split_direction(cell: Cell) -> Direction:
 	var randomized_diff = diff + randomizer
 
 	if randomized_diff <= 0:
-		return Direction.Z
-	return Direction.X
+		return Utils.Axis.Z
+	return Utils.Axis.X

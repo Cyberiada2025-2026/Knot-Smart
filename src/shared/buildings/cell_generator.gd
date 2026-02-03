@@ -24,7 +24,9 @@ func split_cells():
 
 
 func pop_next_cell() -> Cell:
-	var cell_idx = room_generator.cells.find_custom(func(c): return c.is_larger_than(room_generator.generation_params.max_room_size))
+	var cell_idx = room_generator.cells.find_custom(
+		func(c): return c.is_larger_than(room_generator.generation_params.max_room_size)
+	)
 	return room_generator.cells.pop_at(cell_idx) if cell_idx != -1 else null
 
 
@@ -46,19 +48,19 @@ func split(cell: Cell) -> void:
 
 
 func get_split_direction(cell: Cell) -> Utils.Axis:
+	var is_smaller_than_min_x = cell.size().x <= room_generator.generation_params.min_room_size.x
+	var is_smaller_than_min_z = cell.size().z <= room_generator.generation_params.min_room_size.z
+
 	var y_split_chance = randi_range(0, 2)
 	if (
 		(cell.size().y > room_generator.generation_params.min_room_size.y and y_split_chance != 0)
-		or (
-			cell.size().x <= room_generator.generation_params.min_room_size.x
-			&& cell.size().z <= room_generator.generation_params.min_room_size.z
-		)
+		or (is_smaller_than_min_x && is_smaller_than_min_z)
 	):
 		return Utils.Axis.Y
 
-	if cell.size().x <= room_generator.generation_params.min_room_size.x:
+	if is_smaller_than_min_x:
 		return Utils.Axis.Z
-	if cell.size().z <= room_generator.generation_params.min_room_size.z:
+	if is_smaller_than_min_z:
 		return Utils.Axis.X
 
 	var split_dir_rand = (

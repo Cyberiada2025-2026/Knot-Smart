@@ -2,8 +2,8 @@
 class_name Cell
 extends Resource
 
-@export var start: Vector3i = Vector3i(0, 0, 0) ## 1 unit = 1 cell in a grid. Cell size can be modified in GridMap properties
-@export var end: Vector3i = Vector3i(1, 1, 1) ## 1 unit = 1 cell in a grid. Cell size can be modified in GridMap properties
+@export var start: Vector3i = Vector3i(0, 0, 0)  ## 1 unit = 1 cell in a grid. Cell size can be modified in GridMap properties
+@export var end: Vector3i = Vector3i(1, 1, 1)  ## 1 unit = 1 cell in a grid. Cell size can be modified in GridMap properties
 var id: int = 0
 
 const DIFFERENT_FLOOR_EDGE_WEIGHT_MODIFIER: int = 2
@@ -28,9 +28,12 @@ func is_hallway() -> bool:
 
 
 func is_larger_than(dim: Vector3i) -> bool:
-	return (self.size().y > dim.y) \
-		or (self.size().x > dim.x or self.size().z > dim.x) \
+	return (
+		(self.size().y > dim.y)
+		or (self.size().x > dim.x or self.size().z > dim.x)
 		or (self.size().x > dim.z or self.size().z > dim.z)
+	)
+
 
 func get_neighbor_info(other: Cell) -> BorderInfo:
 	var overlap = self.get_overlap(other)
@@ -75,7 +78,7 @@ func get_overlap(other: Cell) -> BorderInfo:
 	for axis in Utils.Axis.values():
 		if not overlaps(other, axis):
 			return info
-		
+
 	info.cell = Cell.new(
 		Vector3i(
 			maxi(self.start.x, other.start.x),

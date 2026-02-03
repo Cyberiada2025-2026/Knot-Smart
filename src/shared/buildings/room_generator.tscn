@@ -17,12 +17,10 @@ metadata/_custom_type_script = "uid://baeps41mlt1vr"
 script = ExtResource("1_es016")
 generation_params = SubResource("Resource_cqvhj")
 
-[node name="ModelsPlacer" type="Node" parent="." node_paths=PackedStringArray("floor_grid", "wall_x_grid", "wall_z_grid")]
+[node name="ModelsPlacer" type="Node" parent="." node_paths=PackedStringArray("gridmaps")]
 script = ExtResource("2_38cd7")
 mesh_library = ExtResource("4_vqaaw")
-floor_grid = NodePath("../FloorGridMap")
-wall_x_grid = NodePath("../WallXGrid")
-wall_z_grid = NodePath("../WallZGrid")
+gridmaps = [NodePath("../WallXGrid"), NodePath("../FloorGridMap"), NodePath("../WallZGrid")]
 
 [node name="CellGenerator" type="Node" parent="."]
 script = ExtResource("7_53oh1")

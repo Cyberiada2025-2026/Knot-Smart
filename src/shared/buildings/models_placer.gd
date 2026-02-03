@@ -11,9 +11,7 @@ enum Orientation {
 }
 
 @export var mesh_library: MeshLibrary
-@export var floor_grid: GridMap
-@export var wall_x_grid: GridMap
-@export var wall_z_grid: GridMap
+@export var gridmaps: Array[GridMap]
 
 var room_generator: RoomGenerator
 
@@ -22,23 +20,22 @@ func place_entrance(c: BorderInfo):
 	var entrance_location = c.door_position
 
 	if c.cell.size().y == 0:
-		floor_grid.set_cell_item(
+		gridmaps[1].set_cell_item(
 			entrance_location, mesh_library.find_item_by_name("Hole"), Orientation.R0
 		)
 	elif c.cell.size().x == 0:
-		wall_z_grid.set_cell_item(
+		gridmaps[0].set_cell_item(
 			entrance_location, mesh_library.find_item_by_name("Door"), Orientation.R270
 		)
 	else:
-		wall_x_grid.set_cell_item(
+		gridmaps[2].set_cell_item(
 			entrance_location, mesh_library.find_item_by_name("Door"), Orientation.R0
 		)
 
 
 func clear_models():
-	floor_grid.clear()
-	wall_x_grid.clear()
-	wall_z_grid.clear()
+	for grid in gridmaps:
+		grid.clear()
 
 
 func place_models(_room_generator: RoomGenerator):
@@ -54,42 +51,26 @@ func concat(a: Array, e: Array) -> Array:
 	return a
 
 
+func get_wall_locations(borders: Array, dir: Utils.Axis, orientation: ModelsPlacer.Orientation) -> Array:
+	return (borders
+		. filter(func(b): return b.cell.size()[dir] == 0)
+		. map(func(b): return b.model_locations())
+		. reduce(concat, [])
+		. map(func(l): return [l, orientation])
+	)
+
 func spawn_building_border_walls():
 	var all_borders = (
 		room_generator.cells.map(func(c): return c.get_all_borders()).reduce(concat, [])
 	)
-	var all_wall_locations_x = (
-		all_borders
-		. filter(func(b): return b.cell.size().z == 0)
-		. map(func(b): return b.model_locations())
-		. reduce(concat, [])
-		. map(func(l): return [l, Orientation.R0])
-	)
-	var all_wall_locations_z = (
-		all_borders
-		. filter(func(b): return b.cell.size().x == 0)
-		. map(func(b): return b.model_locations())
-		. reduce(concat, [])
-		. map(func(l): return [l, Orientation.R270])
-	)
+	var all_wall_locations_x = get_wall_locations(all_borders, Utils.Axis.Z, orientations[Utils.Axis.Z])
+	var all_wall_locations_z = get_wall_locations(all_borders, Utils.Axis.X, orientations[Utils.Axis.X])
+
 	var all_wall_locations = all_wall_locations_x + all_wall_locations_z
 
-	var neighbor_locations_x = (
-		room_generator
-		. neighbors
-		. filter(func(n): return n.cell.size().z == 0)
-		. map(func(n): return n.model_locations())
-		. reduce(concat, [])
-		. map(func(l): return [l, Orientation.R0])
-	)
-	var neighbor_locations_z = (
-		room_generator
-		. neighbors
-		. filter(func(n): return n.cell.size().x == 0)
-		. map(func(n): return n.model_locations())
-		. reduce(concat, [])
-		. map(func(l): return [l, Orientation.R270])
-	)
+	var neighbor_locations_x = get_wall_locations(room_generator.neighbors, Utils.Axis.Z, orientations[Utils.Axis.Z])
+	var neighbor_locations_z = get_wall_locations(room_generator.neighbors, Utils.Axis.X, orientations[Utils.Axis.X])
+
 	var neighbor_locations = neighbor_locations_x + neighbor_locations_z
 
 	var outside_wall_locations: Array = all_wall_locations.filter(
@@ -104,17 +85,14 @@ func spawn_building_border_walls():
 func place_model_count_in_locations(locations: Array, model_id: int, count: int):
 	for i in count:
 		var l = locations.pick_random()
+		
+		var axis = Utils.Axis.Z if l[1] == Orientation.R0 else Utils.Axis.X
 
-		if l[1] == Orientation.R0:
-			if wall_x_grid.get_cell_item(l[0]) == model_id:
-				i -= 1
-				continue
-			wall_x_grid.set_cell_item(l[0], model_id, Orientation.R0)
+		if gridmaps[axis].get_cell_item(l[0]) == model_id:
+			i -= 1
 		else:
-			if wall_z_grid.get_cell_item(l[0]) == model_id:
-				i -= 1
-				continue
-			wall_z_grid.set_cell_item(l[0], model_id, Orientation.R270)
+			gridmaps[axis].set_cell_item(l[0], model_id, orientations[axis])
+
 
 
 func place_windows(outside_wall_locations: Array):
@@ -133,25 +111,40 @@ func place_entrance_doors(outside_door_locations: Array):
 		room_generator.generation_params.outside_door_count
 	)
 
+func _ready() -> void:
+	mesh_dict = { 
+		str(Utils.Axis.X) + "_open": mesh_library.find_item_by_name("Door"),
+		str(Utils.Axis.X) + "_closed": mesh_library.find_item_by_name("Wall"),
+		str(Utils.Axis.Y) + "_open": mesh_library.find_item_by_name("Hole"),
+		str(Utils.Axis.Y) + "_closed": mesh_library.find_item_by_name("Floor"),
+		str(Utils.Axis.Z) + "_open": mesh_library.find_item_by_name("Door"),
+		str(Utils.Axis.Z) + "_closed": mesh_library.find_item_by_name("Wall")
+	}
+
+var mesh_dict: Dictionary[String, int]
+
+var orientations: Dictionary[Utils.Axis, ModelsPlacer.Orientation] = {
+	Utils.Axis.X: Orientation.R270,
+	Utils.Axis.Y: Orientation.R0,
+	Utils.Axis.Z: Orientation.R0,
+}
 
 func spawn_walls_between_rooms():
 	for n in room_generator.neighbors.filter(func(n): return n.is_open):
 		place_entrance(n)
 
 	for c in room_generator.cells:
-		var borders = c.get_all_borders()
-		for n in borders:
-			var locations = n.model_locations()
-			for l in locations:
-				if n.cell.size().y == 0 and floor_grid.get_cell_item(l) == -1:
-					floor_grid.set_cell_item(
+		for n in c.get_all_borders():
+			for l in n.model_locations():
+				if n.cell.size().y == 0 and gridmaps[1].get_cell_item(l) == -1:
+					gridmaps[1].set_cell_item(
 						l, mesh_library.find_item_by_name("Floor"), Orientation.R0
 					)
-				elif n.cell.size().x == 0 and wall_z_grid.get_cell_item(l) == -1:
-					wall_z_grid.set_cell_item(
+				elif n.cell.size().x == 0 and gridmaps[0].get_cell_item(l) == -1:
+					gridmaps[0].set_cell_item(
 						l, mesh_library.find_item_by_name("Wall"), Orientation.R270
 					)
-				elif n.cell.size().z == 0 and wall_x_grid.get_cell_item(l) == -1:
-					wall_x_grid.set_cell_item(
+				elif n.cell.size().z == 0 and gridmaps[2].get_cell_item(l) == -1:
+					gridmaps[2].set_cell_item(
 						l, mesh_library.find_item_by_name("Wall"), Orientation.R0
 					)

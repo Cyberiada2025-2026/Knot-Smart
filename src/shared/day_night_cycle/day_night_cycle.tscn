@@ -8,3 +8,5 @@ script = ExtResource("1_st5v3")
 day_timer = NodePath("DayTimer")
 
 [node name="DayTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

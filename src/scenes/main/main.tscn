@@ -1,9 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=15 format=3 uid="uid://3rax0onuo76f"]
 
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://b5l6v07y036mo" path="res://shared/day_night_cycle/day_night_cycle.tscn" id="4_6q06x"]
 [ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="4_l3cfh"]
+[ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="5_6q06x"]
+[ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="5_hujxm"]
+[ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="7_yyfjg"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -28,6 +31,8 @@ sky_material = SubResource("ProceduralSkyMaterial_l3cfh")
 [sub_resource type="Environment" id="Environment_ow5a4"]
 background_mode = 2
 sky = SubResource("Sky_6q06x")
+adjustment_enabled = true
+adjustment_color_correction = ExtResource("5_hujxm")
 
 [node name="Main" type="Node3D"]
 
@@ -49,19 +54,6 @@ mesh = SubResource("BoxMesh_vom5j")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/10x10_floor"]
 shape = SubResource("BoxShape3D_hyk8p")
 
-[node name="AlienHeight" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32957077, 0.8731664, -0.07348645)
-script = null
-
 [node name="Enemy" parent="." instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
 
@@ -76,6 +68,9 @@ camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")
 day_length = 1.0
 night_start = 21.0
 initial_hour = 14.0
+LUT_day = ExtResource("5_hujxm")
+LUT_sunset = ExtResource("5_6q06x")
+LUT_night = ExtResource("7_yyfjg")
 world_environment = NodePath("../WorldEnvironment")
 sun = NodePath("../DirectionalLight3D")
 

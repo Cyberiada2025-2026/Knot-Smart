@@ -3,7 +3,8 @@ extends RefCounted
 
 var _arr: Array = []
 
-func _init(size: int =  0) -> void:
+
+func _init(size: int = 0) -> void:
 	for i in size:
 		_arr.push_back(i)
 

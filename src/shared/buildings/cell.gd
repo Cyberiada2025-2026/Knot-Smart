@@ -6,12 +6,18 @@ extends Resource
 @export var end: Vector3i = Vector3i(1, 1, 1)
 var id: int = 0
 
-func _init(_start: Vector3i = Vector3i(0,0,0), _end: Vector3i = Vector3i(1,1,1)) -> void:
+
+func _init(_start: Vector3i = Vector3i(0, 0, 0), _end: Vector3i = Vector3i(1, 1, 1)) -> void:
 	start = _start
 	end = _end
 
+
 func _to_string() -> String:
 	return "start: " + str(self.start) + ", end: " + str(self.end)
+
+
+func range(dir: Vector3i.Axis) -> Array:
+	return range(start[dir], end[dir]) if size()[dir] > 0 else [start[dir]]
 
 
 func is_hallway() -> bool:
@@ -54,6 +60,14 @@ func size_z() -> int:
 	return end.z - start.z
 
 
+func size() -> Vector3i:
+	return end - start
+
+
+func max_side_length() -> int:
+	return max(size_x(), size_z())
+
+
 func area() -> int:
 	return size_x() * size_z()
 
@@ -64,10 +78,6 @@ func center() -> Vector3:
 		self.start.y + float(self.size_y()) / 2,
 		self.start.z + float(self.size_z()) / 2
 	)
-
-
-func size() -> Vector3i:
-	return Vector3i(self.size_x(), self.size_y(), self.size_z())
 
 
 func overlaps(s0, e0, s1, e1) -> bool:

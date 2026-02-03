@@ -2,7 +2,7 @@
 class_name ModelsPlacer
 extends Node
 
-# this is retarded 
+# this is retarded
 enum Orientation {
 	R0 = 0,  # 0
 	R90 = 22,  # 90
@@ -41,9 +41,7 @@ func clear_models():
 	wall_z_grid.clear()
 
 
-func place_models(
-	_room_generator: RoomGenerator
-):
+func place_models(_room_generator: RoomGenerator):
 	room_generator = _room_generator
 
 	clear_models()
@@ -57,7 +55,9 @@ func concat(a: Array, e: Array) -> Array:
 
 
 func spawn_building_border_walls():
-	var all_borders = room_generator.cells.map(func(c): return c.get_all_borders()).reduce(concat, [])
+	var all_borders = (
+		room_generator.cells.map(func(c): return c.get_all_borders()).reduce(concat, [])
+	)
 	var all_wall_locations_x = (
 		all_borders
 		. filter(func(b): return b.cell.size_z() == 0)
@@ -75,14 +75,16 @@ func spawn_building_border_walls():
 	var all_wall_locations = all_wall_locations_x + all_wall_locations_z
 
 	var neighbor_locations_x = (
-		room_generator.neighbors
+		room_generator
+		. neighbors
 		. filter(func(n): return n.cell.size_z() == 0)
 		. map(func(n): return n.model_locations())
 		. reduce(concat, [])
 		. map(func(l): return [l, Orientation.R0])
 	)
 	var neighbor_locations_z = (
-		room_generator.neighbors
+		room_generator
+		. neighbors
 		. filter(func(n): return n.cell.size_x() == 0)
 		. map(func(n): return n.model_locations())
 		. reduce(concat, [])
@@ -116,7 +118,9 @@ func place_model_count_in_locations(locations: Array, model_id: int, count: int)
 
 
 func place_windows(outside_wall_locations: Array):
-	var window_count = floor(outside_wall_locations.size() * room_generator.generation_params.window_percentage)
+	var window_count = floor(
+		outside_wall_locations.size() * room_generator.generation_params.window_percentage
+	)
 	place_model_count_in_locations(
 		outside_wall_locations, mesh_library.find_item_by_name("Window"), window_count
 	)
@@ -124,7 +128,9 @@ func place_windows(outside_wall_locations: Array):
 
 func place_entrance_doors(outside_door_locations: Array):
 	place_model_count_in_locations(
-		outside_door_locations, mesh_library.find_item_by_name("Door"), room_generator.generation_params.entrance_count
+		outside_door_locations,
+		mesh_library.find_item_by_name("Door"),
+		room_generator.generation_params.outside_door_count
 	)
 
 

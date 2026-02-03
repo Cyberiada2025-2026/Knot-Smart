@@ -9,7 +9,7 @@
 
 [sub_resource type="Resource" id="Resource_cqvhj"]
 script = ExtResource("2_cx44q")
-entrance_count = 3
+long_room_tendency = 1.0
 window_percentage = 0.897
 metadata/_custom_type_script = "uid://baeps41mlt1vr"
 

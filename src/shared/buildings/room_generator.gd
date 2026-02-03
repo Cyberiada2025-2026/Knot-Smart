@@ -4,6 +4,7 @@ extends Node3D
 
 @export var generation_params: RoomGenerationParams
 @export_tool_button("Generate Rooms") var generate_rooms_action = generate_rooms
+@export_tool_button("Clear Rooms") var clear_rooms_action = clear_rooms
 
 var initial_cells: Array[Cell] = [
 	Cell.new(Vector3i(0, 0, 0), Vector3i(5, 2, 5)),
@@ -17,7 +18,14 @@ var neighbors: Array[BorderInfo] = []
 @onready var cells_generator: CellGenerator = $CellGenerator
 @onready var models_placer: ModelsPlacer = $ModelsPlacer
 
+
 func generate_rooms() -> void:
 	cells_generator.generate_cells(self)
 	neighbors_generator.generate_neighbors(self)
 	models_placer.place_models(self)
+
+
+func clear_rooms() -> void:
+	cells = []
+	neighbors = []
+	models_placer.clear_models()

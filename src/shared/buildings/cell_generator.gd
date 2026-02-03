@@ -24,12 +24,8 @@ func split_cells():
 
 
 func pop_next_cell() -> Cell:
-	for i in room_generator.cells.size():
-		var cell = room_generator.cells[i]
-		if cell.is_larger_than(room_generator.generation_params.max_room_size):
-			room_generator.cells.remove_at(i)
-			return cell
-	return null
+	var cell_idx = room_generator.cells.find_custom(func(c): return c.is_larger_than(room_generator.generation_params.max_room_size))
+	return room_generator.cells.pop_at(cell_idx) if cell_idx != -1 else null
 
 
 func split(cell: Cell) -> void:

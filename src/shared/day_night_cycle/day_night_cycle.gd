@@ -77,7 +77,6 @@ func _process(_delta: float) -> void:
 	var curr_hour = time_to_hour(day_timer.time_left)
 
 	check_time_of_day_change(curr_hour)
-	prints(curr_hour, time_of_day)
 		
 	sun.rotation.x = hour_to_sun_rotation(curr_hour)
 

@@ -2,12 +2,9 @@
 class_name Cell
 extends Resource
 
-@export var start: Vector3i = Vector3i(0, 0, 0) ## 1 unit = 1 cell in a grid
-@export var end: Vector3i = Vector3i(1, 1, 1) ## 1 unit = 1 cell in a grid
+@export var start: Vector3i = Vector3i(0, 0, 0)
+@export var end: Vector3i = Vector3i(1, 1, 1)
 var id: int = 0
-
-const ROOM_IS_A_HALLWAY_EDGE_MODIFIER = 2
-const DIFFERENT_FLOOR_EDGE_MODIFIER = -1
 
 
 func _init(_start: Vector3i = Vector3i(0, 0, 0), _end: Vector3i = Vector3i(1, 1, 1)) -> void:
@@ -28,9 +25,13 @@ func is_hallway() -> bool:
 
 
 func is_larger_than(dim: Vector3i) -> bool:
-	return (self.size_y() > dim.y) \
-		or (self.size_x() > dim.x or self.size_z() > dim.x) \
-		or (self.size_x() > dim.z or self.size_z() > dim.z)
+	if self.size_y() > dim.y:
+		return true
+	if self.size_x() > dim.x or self.size_z() > dim.x:
+		return true
+	if self.size_x() > dim.z or self.size_z() > dim.z:
+		return true
+	return false
 
 
 func get_neighbor_info(other: Cell) -> BorderInfo:
@@ -40,9 +41,9 @@ func get_neighbor_info(other: Cell) -> BorderInfo:
 	overlap.neighbor_b = other
 
 	if self.center().y != other.center().y:
-		overlap.edge_weight += DIFFERENT_FLOOR_EDGE_MODIFIER
+		overlap.edge_weight += 2
 	if self.is_hallway() or other.is_hallway():
-		overlap.edge_weight += ROOM_IS_A_HALLWAY_EDGE_MODIFIER
+		overlap.edge_weight -= 1
 
 	return overlap
 
@@ -78,16 +79,18 @@ func center() -> Vector3:
 		self.start.z + float(self.size_z()) / 2
 	)
 
-func overlaps(other: Cell, dir: Vector3i.Axis) -> bool:
-	return end[dir] - other.start[dir] >= 0 and other.end[dir] - start[dir] >= 0
+
+func overlaps(s0, e0, s1, e1) -> bool:
+	return e0 - s1 >= 0 and e1 - s0 >= 0
 
 
 func get_overlap(other: Cell) -> BorderInfo:
 	var info = BorderInfo.new()
-	for axis in Utils.Axis.values():
-		if not overlaps(other, axis) or info.cell.size() == Vector3i.ZERO:
-			break
-
+	if (
+		overlaps(self.start.x, self.end.x, other.start.x, other.end.x)
+		and overlaps(self.start.y, self.end.y, other.start.y, other.end.y)
+		and overlaps(self.start.z, self.end.z, other.start.z, other.end.z)
+	):
 		info.cell = Cell.new(
 			Vector3i(
 				maxi(self.start.x, other.start.x),
@@ -100,6 +103,9 @@ func get_overlap(other: Cell) -> BorderInfo:
 				mini(self.end.z, other.end.z)
 			)
 		)
+		if info.cell.size_x() == 0 and info.cell.size_y() == 0 and info.cell.size_z() == 0:
+			info.cell = Cell.new()
+			return info
 		info.is_overlapping = true
 
 	return info

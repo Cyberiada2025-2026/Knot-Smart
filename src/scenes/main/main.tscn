@@ -37,7 +37,6 @@ metadata/_custom_type_script = "uid://bor1w446rb71t"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
-sky_mode = 1
 
 [node name="HumanHeight" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47107148, 1.3952317, 0)

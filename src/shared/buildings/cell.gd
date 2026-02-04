@@ -88,7 +88,12 @@ func get_overlap(other: Cell) -> BorderInfo:
 			mini(self.end.z, other.end.z)
 		)
 	)
-	if 1 >= Utils.Axis.values().reduce(func(acc, axis): return acc + (1 if info.cell.size()[axis] == 0 else 0), 0):
+	if (
+		1
+		>= Utils.Axis.values().reduce(
+			func(acc, axis): return acc + (1 if info.cell.size()[axis] == 0 else 0), 0
+		)
+	):
 		info.is_overlapping = true
 
 	return info

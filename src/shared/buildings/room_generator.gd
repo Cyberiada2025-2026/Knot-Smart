@@ -2,15 +2,17 @@
 class_name RoomGenerator
 extends Node3D
 
+@export_group("Initial Cells Data")
+@export var initial_cells_start: Array[Vector3i] = []
+@export var initial_cells_end: Array[Vector3i] = []
+
+@export_group("Generation")
 @export var generation_params: RoomGenerationParams
 @export_tool_button("Generate Rooms") var generate_rooms_action = generate_rooms
 @export_tool_button("Clear Rooms") var clear_rooms_action = clear_rooms
 
-var initial_cells: Array[Cell] = [
-	Cell.new(Vector3i(0, 0, 0), Vector3i(5, 2, 5)),
-	Cell.new(Vector3i(5, 0, 2), Vector3i(7, 1, 5)),
-	Cell.new(Vector3i(5, 0, 0), Vector3i(10, 4, 2)),
-]
+
+var initial_cells: Array[Cell] = []
 var cells: Array[Cell] = []
 var neighbors: Array[BorderInfo] = []
 
@@ -20,6 +22,11 @@ var neighbors: Array[BorderInfo] = []
 
 
 func generate_rooms() -> void:
+	initial_cells.clear()
+	for i in initial_cells_start.size():
+		initial_cells.push_back(Cell.new(initial_cells_start[i], initial_cells_end[i]))
+
+
 	cells_generator.generate_cells(self)
 	neighbors_generator.generate_neighbors(self)
 	models_placer.place_models(self)

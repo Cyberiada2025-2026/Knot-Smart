@@ -98,11 +98,15 @@ func get_overlap(other: Cell) -> BorderInfo:
 
 
 func get_all_borders() -> Array[BorderInfo]:
-	return [
-		BorderInfo.new(start, Vector3i(start.x, end.y, end.z)),
-		BorderInfo.new(start, Vector3i(end.x, start.y, end.z)),
-		BorderInfo.new(start, Vector3i(end.x, end.y, start.z)),
-		BorderInfo.new(Vector3i(end.x, start.y, start.z), end),
-		BorderInfo.new(Vector3i(start.x, end.y, start.z), end),
-		BorderInfo.new(Vector3i(start.x, start.y, end.z), end),
-	]
+	var borders: Array[BorderInfo] = []
+
+	for axis in Utils.Axis.values():
+		var end_vec = end
+		end_vec[axis] = start[axis]
+		borders.append(BorderInfo.new(start, end_vec))
+
+		var start_vec = start
+		start_vec[axis] = end[axis]
+		borders.append(BorderInfo.new(start_vec, end))
+
+	return borders

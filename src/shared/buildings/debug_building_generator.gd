@@ -12,8 +12,6 @@ extends Resource
 func get_building_cells() -> Array[Cell]:
 	var initial_cells: Array[Cell] = []
 	for i in initial_cells_start.size():
-		initial_cells.push_back(
-			Cell.new(initial_cells_start[i], initial_cells_end[i])
-		)
+		initial_cells.push_back(Cell.new(initial_cells_start[i], initial_cells_end[i]))
 
 	return initial_cells

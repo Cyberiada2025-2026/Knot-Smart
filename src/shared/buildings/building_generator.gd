@@ -2,7 +2,9 @@
 class_name BuildingGenerator
 extends Node3D
 
-@export var building_cell_generator: Resource ## Requires a [code]get_building_cells()[/code] method that returns an [code]Array[Cell][/code] of initial cells.
+## Requires a [code]get_building_cells()[/code] method
+## that returns an [code]Array[Cell][/code] of initial cells.
+@export var building_cell_generator: Resource
 @export var room_generation_params: RoomGenerationParams
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
@@ -17,9 +19,12 @@ var neighbors: Array[BorderInfo] = []
 
 
 func generate_building() -> void:
+	if building_cell_generator == null:
+		push_warning("No building_cell_generator provided.")
+		return
 	initial_cells = building_cell_generator.get_building_cells()
 	if initial_cells.size() == 0:
-		push_warning("No initial_cells specified. No building generated. Make sure a building_cell_generator is set up.")
+		push_warning("No initial_cells provided.")
 		return
 	cells_generator.generate_cells(self)
 	neighbors_generator.generate_neighbors(self)

@@ -19,7 +19,9 @@ func create_neighbor_graph() -> void:
 
 	for i in building_generator.cells.size():
 		for j in range(i, building_generator.cells.size()):
-			var neighbor_info = building_generator.cells[i].get_neighbor_info(building_generator.cells[j])
+			var neighbor_info = building_generator.cells[i].get_neighbor_info(
+				building_generator.cells[j]
+			)
 			if neighbor_info.is_overlapping:
 				building_generator.neighbors.push_back(neighbor_info)
 

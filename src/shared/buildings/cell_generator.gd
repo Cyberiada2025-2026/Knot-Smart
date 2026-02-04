@@ -48,12 +48,19 @@ func split(cell: Cell) -> void:
 
 
 func get_split_direction(cell: Cell) -> Utils.Axis:
-	var is_smaller_than_min_x = cell.size().x <= building_generator.room_generation_params.min_room_size.x
-	var is_smaller_than_min_z = cell.size().z <= building_generator.room_generation_params.min_room_size.z
+	var is_smaller_than_min_x = (
+		cell.size().x <= building_generator.room_generation_params.min_room_size.x
+	)
+	var is_smaller_than_min_z = (
+		cell.size().z <= building_generator.room_generation_params.min_room_size.z
+	)
 
 	var y_split_chance = randi_range(0, 2)
 	if (
-		(cell.size().y > building_generator.room_generation_params.min_room_size.y and y_split_chance != 0)
+		(
+			cell.size().y > building_generator.room_generation_params.min_room_size.y
+			and y_split_chance != 0
+		)
 		or (is_smaller_than_min_x && is_smaller_than_min_z)
 	):
 		return Utils.Axis.Y

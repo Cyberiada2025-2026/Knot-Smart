@@ -63,7 +63,7 @@ func area() -> int:
 
 
 func center() -> Vector3:
-	return self.start + self.size()/2
+	return self.start + self.size() / 2
 
 
 func overlaps(other: Cell, dir: Utils.Axis) -> bool:

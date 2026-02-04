@@ -1,6 +1,5 @@
-extends Node3D
-
 class_name PlayerCamera
+extends Node3D
 
 signal camera_rotated(vector: Vector3, angle: float)
 

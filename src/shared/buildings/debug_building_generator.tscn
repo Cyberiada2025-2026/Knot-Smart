@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dllqmhwcn66ve"]
+
+[ext_resource type="Script" uid="uid://bor1w446rb71t" path="res://shared/buildings/debug_building_generator.gd" id="1_16j2c"]
+[ext_resource type="PackedScene" uid="uid://dxwxaupmhagbo" path="res://shared/buildings/room_generator.tscn" id="1_dkj0v"]
+
+[node name="DebugBuildingGenerator" type="Node3D" node_paths=PackedStringArray("room_generator")]
+script = ExtResource("1_16j2c")
+room_generator = NodePath("RoomGenerator")
+
+[node name="RoomGenerator" parent="." instance=ExtResource("1_dkj0v")]

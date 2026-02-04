@@ -2,12 +2,13 @@
 class_name Cell
 extends Resource
 
-@export var start: Vector3i = Vector3i(0, 0, 0)  ## 1 unit = 1 cell in a grid. Cell size can be modified in GridMap properties
-@export var end: Vector3i = Vector3i(1, 1, 1)  ## 1 unit = 1 cell in a grid. Cell size can be modified in GridMap properties
-var id: int = 0
-
 const DIFFERENT_FLOOR_EDGE_WEIGHT_MODIFIER: int = 2
 const HALLWAY_EDGE_WEIGHT_MODIFIER: int = -1
+
+## 1 unit = 1 cell in a grid. Cell size can be modified in GridMap properties
+@export var start: Vector3i = Vector3i(0, 0, 0)
+@export var end: Vector3i = Vector3i(1, 1, 1)
+var id: int = 0
 
 
 func _init(_start: Vector3i = Vector3i(0, 0, 0), _end: Vector3i = Vector3i(1, 1, 1)) -> void:

@@ -28,9 +28,6 @@ size = Vector3(0.4555625, 0.05, 1)
 
 [node name="Placeholders" instance=ExtResource("1_joyt4")]
 
-[node name="Door" parent="." index="0"]
-visible = false
-
 [node name="StaticBody3D" type="StaticBody3D" parent="Door" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Door/StaticBody3D" index="0"]
@@ -67,9 +64,6 @@ shape = SubResource("BoxShape3D_txnnn")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Hole/StaticBody3D" index="3"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0060324967, 0, 0.3261479)
 shape = SubResource("BoxShape3D_txnnn")
-
-[node name="Wall" parent="." index="3"]
-visible = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall" index="0"]
 

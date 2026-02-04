@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=13 format=3 uid="uid://3rax0onuo76f"]
 
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://0aimvu1453xo" path="res://shared/buildings/building_generator.tscn" id="4_6q06x"]
 [ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="4_l3cfh"]
 [ext_resource type="Script" uid="uid://bor1w446rb71t" path="res://shared/buildings/basic_building_shape_description.gd" id="5_6q06x"]
+
+[sub_resource type="Environment" id="Environment_6q06x"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -34,6 +36,9 @@ initial_boxes_end = Array[Vector3i]([Vector3i(3, 1, 4), Vector3i(6, 4, 2)])
 metadata/_custom_type_script = "uid://bor1w446rb71t"
 
 [node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6q06x")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)

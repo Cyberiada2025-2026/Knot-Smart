@@ -7,4 +7,3 @@ enum Axis {
 	Y = Vector3i.Axis.AXIS_Y,
 	Z = Vector3i.Axis.AXIS_Z,
 }
-

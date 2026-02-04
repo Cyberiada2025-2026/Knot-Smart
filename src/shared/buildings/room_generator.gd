@@ -7,7 +7,6 @@ extends Node3D
 @export_tool_button("Generate Rooms") var generate_rooms_action = generate_rooms
 @export_tool_button("Clear Rooms") var clear_rooms_action = clear_rooms
 
-
 var initial_cells: Array[Cell] = []
 var cells: Array[Cell] = []
 var neighbors: Array[BorderInfo] = []

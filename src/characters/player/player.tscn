@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4sgtcvhksqls"]
+
+[ext_resource type="Script" uid="uid://by54s7xnmwcc1" path="res://characters/player/player_main.gd" id="1_4ntmi"]
+[ext_resource type="PackedScene" uid="uid://bd54neo0vnuug" path="res://characters/player/player_physics.tscn" id="1_l8h54"]
+[ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
+
+[node name="Player" type="Node3D" node_paths=PackedStringArray("player_physics", "player_camera", "player_floor_sensor")]
+script = ExtResource("1_4ntmi")
+player_physics = NodePath("PlayerPhysics")
+player_camera = NodePath("PlayerCamera")
+player_floor_sensor = NodePath("PlayerPhysics/PlayerFloorSensor")
+
+[node name="PlayerPhysics" parent="." instance=ExtResource("1_l8h54")]
+
+[node name="PlayerCamera" parent="." instance=ExtResource("3_btcbx")]
+
+[connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
+
+[editable path="PlayerPhysics"]

@@ -28,9 +28,6 @@ func generate_building() -> void:
 		return
 	cells_generator.generate_cells(self)
 	neighbors_generator.generate_neighbors(self)
-	print(neighbors)
-	for n in neighbors:
-		prints(n.cell, n.door_position)
 	models_placer.place_models(self)
 
 

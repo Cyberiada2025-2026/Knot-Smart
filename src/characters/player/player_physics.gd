@@ -1,6 +1,5 @@
-extends CharacterBody3D
-
 class_name PlayerPhysics
+extends CharacterBody3D
 
 @export var speed = 500.0
 @export var slowing_speed = 500.0

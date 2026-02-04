@@ -1,20 +1,19 @@
 @tool
-extends Node3D
-
-@export var room_generator: RoomGenerator
+class_name DebugBuildingGenerator
+extends Resource
+## Generates initial_cells for the room generator based on provided start and end vectors.
+## Fully deterministic.
 
 @export_group("Initial Cells Data")
 @export var initial_cells_start: Array[Vector3i] = []
 @export var initial_cells_end: Array[Vector3i] = []
 
-@export_tool_button("Generate Rooms") var generate_rooms_action = generate_rooms
 
-
-func generate_rooms() -> void:
-	room_generator.initial_cells.clear()
+func get_building_cells() -> Array[Cell]:
+	var initial_cells: Array[Cell] = []
 	for i in initial_cells_start.size():
-		room_generator.initial_cells.push_back(
+		initial_cells.push_back(
 			Cell.new(initial_cells_start[i], initial_cells_end[i])
 		)
 
-	room_generator.generate_rooms()
+	return initial_cells

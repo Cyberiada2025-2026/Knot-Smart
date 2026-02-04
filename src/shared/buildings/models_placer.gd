@@ -22,7 +22,7 @@ var orientations: Dictionary[Utils.Axis, ModelsPlacer.Orientation] = {
 	Utils.Axis.Z: Orientation.R0,
 }
 
-var room_generator: RoomGenerator
+var building_generator: BuildingGenerator
 
 
 func place_entrance(c: BorderInfo):
@@ -40,8 +40,8 @@ func clear_models():
 		grid.clear()
 
 
-func place_models(_room_generator: RoomGenerator):
-	room_generator = _room_generator
+func place_models(_building_generator: BuildingGenerator):
+	building_generator = _building_generator
 
 	clear_models()
 	spawn_walls_between_rooms()
@@ -67,7 +67,7 @@ func get_wall_locations(
 
 func spawn_building_border_walls():
 	var all_borders = (
-		room_generator.cells.map(func(c): return c.get_all_borders()).reduce(concat, [])
+		building_generator.cells.map(func(c): return c.get_all_borders()).reduce(concat, [])
 	)
 	var all_wall_locations_x = get_wall_locations(
 		all_borders, Utils.Axis.Z, orientations[Utils.Axis.Z]
@@ -79,10 +79,10 @@ func spawn_building_border_walls():
 	var all_wall_locations = all_wall_locations_x + all_wall_locations_z
 
 	var neighbor_locations_x = get_wall_locations(
-		room_generator.neighbors, Utils.Axis.Z, orientations[Utils.Axis.Z]
+		building_generator.neighbors, Utils.Axis.Z, orientations[Utils.Axis.Z]
 	)
 	var neighbor_locations_z = get_wall_locations(
-		room_generator.neighbors, Utils.Axis.X, orientations[Utils.Axis.X]
+		building_generator.neighbors, Utils.Axis.X, orientations[Utils.Axis.X]
 	)
 
 	var neighbor_locations = neighbor_locations_x + neighbor_locations_z
@@ -110,7 +110,7 @@ func place_model_count_in_locations(locations: Array, model_id: int, count: int)
 
 func place_windows(outside_wall_locations: Array):
 	var window_count = floor(
-		outside_wall_locations.size() * room_generator.generation_params.window_percentage
+		outside_wall_locations.size() * building_generator.room_generation_params.window_percentage
 	)
 	place_model_count_in_locations(
 		outside_wall_locations, mesh_library.find_item_by_name("Window"), window_count
@@ -121,7 +121,7 @@ func place_entrance_doors(outside_door_locations: Array):
 	place_model_count_in_locations(
 		outside_door_locations,
 		mesh_library.find_item_by_name("Door"),
-		room_generator.generation_params.outside_door_count
+		building_generator.room_generation_params.outside_door_count
 	)
 
 
@@ -140,10 +140,10 @@ func _ready() -> void:
 
 
 func spawn_walls_between_rooms():
-	for n in room_generator.neighbors.filter(func(n): return n.is_open):
+	for n in building_generator.neighbors.filter(func(n): return n.is_open):
 		place_entrance(n)
 
-	for c in room_generator.cells:
+	for c in building_generator.cells:
 		for n in c.get_all_borders():
 			for l in n.model_locations():
 				for axis in Utils.Axis.values():

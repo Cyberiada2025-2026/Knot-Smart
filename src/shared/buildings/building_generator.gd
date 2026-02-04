@@ -2,7 +2,7 @@
 class_name BuildingGenerator
 extends Node3D
 
-@export var building_cell_generator: Resource ## Requires a `get_building_cells` method that returns an `Array[Cell]` of initial cells.
+@export var building_cell_generator: Resource ## Requires a [code]get_building_cells()[/code] method that returns an [code]Array[Cell][/code] of initial cells.
 @export var room_generation_params: RoomGenerationParams
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear

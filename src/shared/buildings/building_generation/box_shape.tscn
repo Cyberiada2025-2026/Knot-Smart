@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqu5vxhud8ux3"]
+
+[ext_resource type="Script" uid="uid://c5mxb4ilbx3mg" path="res://shared/buildings/building_generation/box_shape.gd" id="1_7rgm0"]
+
+[node name="BoxShape" type="Node"]
+script = ExtResource("1_7rgm0")
+end = Vector3i(1, 1, 1)

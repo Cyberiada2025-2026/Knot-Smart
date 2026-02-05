@@ -90,7 +90,7 @@ func get_overlap(other: Cell) -> BorderInfo:
 	)
 
 	var zero_dim_count = Utils.Axis.values().reduce(
-		func(acc, axis): return acc + (1 if info.cell.size()[axis] == 0 else 0), 0
+		func(acc, axis): return acc + (info.cell.size()[axis] == 0 as int), 0
 	)
 	if zero_dim_count <= 1:
 		info.is_overlapping = true

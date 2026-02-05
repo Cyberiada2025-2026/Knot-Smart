@@ -2,9 +2,7 @@
 class_name BuildingGenerator
 extends Node3D
 
-## Requires a [code]get_building_shape()[/code] method
-## that returns an [code]Array[Cell][/code] of initial cells.
-@export var building_shape_description: Resource
+@export var building_shape_description: BuildingShapeDescription
 @export var room_generation_params: RoomGenerationParams
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
@@ -22,7 +20,7 @@ func generate_building() -> void:
 	if building_shape_description == null:
 		push_warning("No building_shape_description provided.")
 		return
-	initial_cells = building_shape_description.get_building_shape()
+	initial_cells = building_shape_description.get_cells()
 	if initial_cells.size() == 0:
 		push_warning("No initial shape provided.")
 		return

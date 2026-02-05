@@ -21,6 +21,10 @@ SceneManager="*res://autoload/scene_manager.gd"
 BeehaveGlobalMetrics="*res://addons/beehave/metrics/beehave_global_metrics.gd"
 BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
+[debug_draw_3d]
+
+settings/addon_root_folder="res://addons/debug_draw_3d"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/beehave/plugin.cfg")

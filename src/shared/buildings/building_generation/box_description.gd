@@ -1,17 +1,19 @@
 @tool
-class_name BoxShape
+class_name BoxDescription
 extends Node
 
 @export_group("Data")
 @export var start: Vector3i
-@export var end: Vector3i
+@export var size: Vector3i:
+	set(value):
+		size = value.clamp(Vector3.ZERO, abs(value))
 
 @export_group("Other")
 @export var debug_color: Color
 
 
 func to_cell() -> Cell:
-	return Cell.new(start, end)
+	return Cell.new(start, start + size)
 
 
 func draw_visualization(
@@ -22,4 +24,4 @@ func draw_visualization(
 		global_position
 		+ (start as Vector3 * grid_scale).rotated(rotation_axis, rotation.get_angle())
 	)
-	DebugDraw3D.draw_box(position, rotation, (end - start) as Vector3 * grid_scale, debug_color)
+	DebugDraw3D.draw_box(position, rotation, size as Vector3 * grid_scale, debug_color)

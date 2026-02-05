@@ -3,20 +3,24 @@ class_name BuildingShapeDescription
 extends Node
 
 @export var is_visible: bool = false
-@export var gridmap: GridMap
-
+@onready var parent: BuildingGenerator = get_parent()
 
 func get_cells() -> Array[Cell]:
 	var cells: Array[Cell]
-	cells.assign(find_children("", "BoxShape", false, true).map(func(box): return box.to_cell()))
+	cells.assign(find_children("", "BoxDescription", false, true).map(func(box): return box.to_cell()))
 	return cells
+
+
+func _enter_tree() -> void:
+	parent = get_parent()
+	parent.building_shape_description = self
 
 
 func _process(_delta: float) -> void:
 	if is_visible:
-		for box in find_children("", "BoxShape", false, true):
+		for box in find_children("", "BoxDescription", false, true):
 			box.draw_visualization(
-				gridmap.global_position,
-				Quaternion.from_euler(gridmap.global_rotation),
-				gridmap.cell_size
+				parent.global_position,
+				Quaternion.from_euler(parent.global_rotation),
+				parent.models_placer.gridmaps[0].cell_size
 			)

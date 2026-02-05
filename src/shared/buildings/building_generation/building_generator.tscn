@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://0aimvu1453xo"]
+[gd_scene load_steps=8 format=3 uid="uid://0aimvu1453xo"]
 
 [ext_resource type="Script" uid="uid://c8acika7wo4ks" path="res://shared/buildings/building_generation/building_generator.gd" id="1_4i3p1"]
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params.gd" id="2_8jnmm"]
@@ -6,7 +6,6 @@
 [ext_resource type="MeshLibrary" uid="uid://ckd7c5gdp3gum" path="res://shared/buildings/assets/placeholder_room_tiles.tres" id="4_pesao"]
 [ext_resource type="Script" uid="uid://c28te8ulweb57" path="res://shared/buildings/room_generation/cell_generator.gd" id="5_w7gwg"]
 [ext_resource type="Script" uid="uid://cst72aujrwdww" path="res://shared/buildings/room_generation/neighbor_generator.gd" id="6_rrnor"]
-[ext_resource type="PackedScene" uid="uid://vmmo4ljahv5g" path="res://shared/buildings/building_generation/building_shape_description.tscn" id="7_5cgio"]
 
 [sub_resource type="Resource" id="Resource_4i3p1"]
 script = ExtResource("2_8jnmm")
@@ -46,6 +45,3 @@ cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
 cell_scale = 2.0
 metadata/_editor_floor_ = Vector3(0, 0, 0)
-
-[node name="BuildingShapeDescription" parent="." node_paths=PackedStringArray("gridmap") instance=ExtResource("7_5cgio")]
-gridmap = NodePath("../FloorGridMap")

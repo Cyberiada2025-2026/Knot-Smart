@@ -2,21 +2,23 @@
 class_name BuildingGenerator
 extends Node3D
 
-@export var building_shape_description: BuildingShapeDescription
 @export var room_generation_params: RoomGenerationParams
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
+
 
 var initial_cells: Array[Cell] = []
 var cells: Array[Cell] = []
 var neighbors: Array[BorderInfo] = []
 
+var building_shape_description: BuildingShapeDescription
 @onready var neighbors_generator: NeighborGenerator = $NeighborGenerator
 @onready var cells_generator: CellGenerator = $CellGenerator
 @onready var models_placer: ModelsPlacer = $ModelsPlacer
 
 
 func generate_building() -> void:
+	get_parent().set_editable_instance(self, true)
 	if building_shape_description == null:
 		push_warning("No building_shape_description provided.")
 		return

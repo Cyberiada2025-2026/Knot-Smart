@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://b167y6k3hsotg"]
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://dxpidm2mpqkcn"]
 
 [ext_resource type="Shader" uid="uid://kaq856dfkhje" path="res://shared/shaders/building_walls_main.gdshader" id="1_kkcis"]
 [ext_resource type="Texture2D" uid="uid://co7hk3cq6dxrv" path="res://shared/buildings/assets/kamyki.png" id="2_xcaom"]

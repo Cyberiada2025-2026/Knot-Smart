@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=8 format=3 uid="uid://3rax0onuo76f"]
 
-[ext_resource type="PackedScene" uid="uid://dj405lsp20gkg" path="res://characters/player/player_model.tscn" id="1_hyk8p"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="4_l3cfh"]
@@ -39,9 +38,6 @@ mesh = SubResource("BoxMesh_vom5j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/10x10_floor"]
 shape = SubResource("BoxShape3D_hyk8p")
-
-[node name="AlienHeight" parent="." instance=ExtResource("1_hyk8p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32957077, 0.8731664, -0.07348645)
 
 [node name="Enemy" parent="." instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)

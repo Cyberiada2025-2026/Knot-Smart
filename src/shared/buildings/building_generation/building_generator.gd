@@ -34,3 +34,11 @@ func clear() -> void:
 	cells = []
 	neighbors = []
 	models_placer.clear_models()
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	if neighbors_generator and cells_generator and models_placer:
+		return []
+	return [
+		"Child nodes are missing. Instantiate BuildingGenerator through scene or add them manually."
+	]

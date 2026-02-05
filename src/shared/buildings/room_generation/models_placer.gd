@@ -126,9 +126,6 @@ func place_entrance_doors(outside_door_locations: Array):
 
 
 func _ready() -> void:
-	building_generator = get_parent()
-	building_generator.models_placer = self
-
 	open_mesh_dict = {
 		Utils.Axis.X: mesh_library.find_item_by_name("Door"),
 		Utils.Axis.Y: mesh_library.find_item_by_name("Hole"),

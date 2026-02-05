@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqu5vxhud8ux3"]
-
-[ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="1_xh2to"]
-
-[node name="BoxDescription" type="Node"]
-script = ExtResource("1_xh2to")

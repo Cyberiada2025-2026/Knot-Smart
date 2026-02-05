@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://vmmo4ljahv5g"]
-
-[ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="1_k8q8g"]
-
-[node name="BuildingShapeDescription" type="Node"]
-script = ExtResource("1_k8q8g")

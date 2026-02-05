@@ -126,6 +126,9 @@ func place_entrance_doors(outside_door_locations: Array):
 
 
 func _ready() -> void:
+	building_generator = get_parent()
+	building_generator.models_placer = self
+
 	open_mesh_dict = {
 		Utils.Axis.X: mesh_library.find_item_by_name("Door"),
 		Utils.Axis.Y: mesh_library.find_item_by_name("Hole"),
@@ -149,3 +152,8 @@ func spawn_walls_between_rooms():
 				for axis in Utils.Axis.values():
 					if n.cell.size()[axis] == 0 and gridmaps[axis].get_cell_item(l) == -1:
 						gridmaps[axis].set_cell_item(l, closed_mesh_dict[axis], orientations[axis])
+
+
+func _enter_tree() -> void:
+	building_generator = get_parent()
+	building_generator.models_placer = self

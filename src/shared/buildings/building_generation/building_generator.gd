@@ -11,9 +11,9 @@ var cells: Array[Cell] = []
 var neighbors: Array[BorderInfo] = []
 
 var building_shape_description: BuildingShapeDescription
-@onready var neighbors_generator: NeighborGenerator = $NeighborGenerator
-@onready var cells_generator: CellGenerator = $CellGenerator
-@onready var models_placer: ModelsPlacer = $ModelsPlacer
+var neighbors_generator: NeighborGenerator
+var cells_generator: CellGenerator
+var models_placer: ModelsPlacer
 
 
 func generate_building() -> void:

@@ -79,3 +79,8 @@ func get_split_direction(cell: Cell) -> Utils.Axis:
 	var randomized_diff = diff + randomizer
 
 	return Utils.Axis.Z if randomized_diff <= 0 else Utils.Axis.X
+
+
+func _enter_tree() -> void:
+	building_generator = get_parent()
+	building_generator.cells_generator = self

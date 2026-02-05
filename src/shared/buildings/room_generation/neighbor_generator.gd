@@ -45,3 +45,8 @@ func choose_door_positions():
 	for n in building_generator.neighbors:
 		if n.is_open:
 			n.set_door_position()
+
+
+func _enter_tree() -> void:
+	building_generator = get_parent()
+	building_generator.neighbors_generator = self

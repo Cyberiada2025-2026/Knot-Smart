@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://0aimvu1453xo"]
+[gd_scene load_steps=8 format=3 uid="uid://50058jf30t1n"]
 
 [ext_resource type="Script" uid="uid://c8acika7wo4ks" path="res://shared/buildings/building_generation/building_generator.gd" id="1_4i3p1"]
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params.gd" id="2_8jnmm"]

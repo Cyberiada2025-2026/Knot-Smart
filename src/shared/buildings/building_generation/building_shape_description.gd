@@ -5,9 +5,12 @@ extends Node
 @export var is_visible: bool = false
 @onready var parent: BuildingGenerator = get_parent()
 
+
 func get_cells() -> Array[Cell]:
 	var cells: Array[Cell]
-	cells.assign(find_children("", "BoxDescription", false, true).map(func(box): return box.to_cell()))
+	cells.assign(
+		find_children("", "BoxDescription", false, true).map(func(box): return box.to_cell())
+	)
 	return cells
 
 

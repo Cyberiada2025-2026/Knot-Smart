@@ -4,31 +4,21 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 
 const vec2 res = vec2(320, 240);
 
-/** 
- Hardness of scanline.
-  -8.0 = soft
- -16.0 = medium
-*/
-uniform float hardScan=-8.0;
+/**  Hardness of scanline */
+uniform float hardScan: hint_range(-16.0, -8.0) = -8.0;
 
-/**
- Hardness of pixels in scanline.
- -2.0 = soft
- -4.0 = hard
-*/
-uniform float hardPix=-2.5;
+/** Hardness of pixels in scanline */
+uniform float hardPix: hint_range(-4.0, -2.0)=-2.5;
 
-/**
- Display warp.
- 0.0 = none
- 1.0/8.0 = extreme
-*/
-uniform vec2 warp = vec2(0.03125, 0.041667); 
+/** Warping screen along x */
+uniform float warpX: hint_range(0.0, 0.125) = 0.03125;
+/** Warping screen along y */
+uniform float warpY: hint_range(0.0, 0.125) = 0.041667;
 
-/** Amount of shadow mask.*/
-uniform float maskDark=0.75;
-/** Amount of light mask.*/
-uniform float maskLight=1.75;
+/** Strength of darker grid */
+uniform float maskDark: hint_range(0.25, 3.0) = 0.75;
+/** Strength of lighter points */
+uniform float maskLight: hint_range(0.25, 3.0) = 1.75;
 
 vec3 Fetch(vec2 pos, vec2 off, vec2 size)
 {
@@ -91,8 +81,8 @@ vec3 Tri(vec2 pos , vec2 size){
   return a*wa+b*wb+c*wc;}
 
 vec2 Warp(vec2 pos){
-  pos=pos*2.0-1.0;    
-  pos*=vec2(1.0+(pos.y*pos.y)*warp.x,1.0+(pos.x*pos.x)*warp.y);
+  pos=pos*2.0-1.0;
+  pos*=vec2(1.0+(pos.y*pos.y)*warpX,1.0+(pos.x*pos.x)*warpY);
   return pos*0.5+0.5;}
 
 vec3 Mask(vec2 pos, vec2 size)
@@ -104,7 +94,7 @@ vec3 Mask(vec2 pos, vec2 size)
   else if(pos.x<0.666)mask.g=maskLight;
   else mask.b=maskLight;
   return mask;
-}    
+}
 
 // The code we want to execute in each invocation
 void fragment()  {

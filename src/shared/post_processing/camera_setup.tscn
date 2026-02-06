@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://rnx3yu0ofiwg"]
 
-[ext_resource type="Environment" uid="uid://db3d7co0oblxp" path="res://Post Processing/Environment.tres" id="1_rfpeg"]
-[ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://Post Processing/dithering.gdshader" id="2_i5s75"]
-[ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://Post Processing/crt.gdshader" id="3_lwxwa"]
+[ext_resource type="Environment" uid="uid://db3d7co0oblxp" path="res://shared/post_processing/environment.tres" id="1_rfpeg"]
+[ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://shared/post_processing/shaders/dithering.gdshader" id="2_i5s75"]
+[ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://shared/post_processing/shaders/crt.gdshader" id="3_lwxwa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xylyt"]
 shader = ExtResource("2_i5s75")
@@ -10,10 +10,11 @@ shader = ExtResource("2_i5s75")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tvswt"]
 shader = ExtResource("3_lwxwa")
 shader_parameter/hardScan = -8.0
-shader_parameter/hardPix = -3.0
-shader_parameter/warp = Vector2(0.03125, 0.041667)
-shader_parameter/maskDark = 0.85
-shader_parameter/maskLight = 1.15
+shader_parameter/hardPix = -2.5
+shader_parameter/warpX = 0.03125
+shader_parameter/warpY = 0.041667
+shader_parameter/maskDark = 0.75
+shader_parameter/maskLight = 1.75
 
 [node name="HelperCamera" type="Camera3D"]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

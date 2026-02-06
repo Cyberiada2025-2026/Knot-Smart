@@ -1,7 +1,7 @@
 shader_type spatial;
 render_mode skip_vertex_transform, unshaded, cull_disabled;
 
-const vec2 resolution = vec2(320,240);
+#include "res://shared/shaders/include/resolution.gdshaderinc"
 const int dither_mat[16] = {
 	    		-4, 0, -3, 1,
 	    		2, -2, 3, -1,
@@ -9,6 +9,7 @@ const int dither_mat[16] = {
 	    		3, -1, 2, -2
 		};
 const vec2 res = vec2(320, 240);
+const bool billboard = false;
 
 uniform float mesh_width_change = 1.0;
 uniform float anim_start = 1.0;
@@ -29,12 +30,9 @@ uniform float vibrate_time = 0.3;
 varying vec4 clip_pos;
 
 void vertex() {
-	// Called for every vertex the material is visible on.
-	mat4 model_matrix = MODEL_MATRIX;
-	
 	vec3 vert_temp = VERTEX;
 	vert_temp.y *= length_curr;
-	vec4 world_space = model_matrix * vec4(vert_temp, 1);
+	vec4 world_space = MODEL_MATRIX * vec4(vert_temp, 1);
 	vec4 clip_space = PROJECTION_MATRIX * VIEW_MATRIX * world_space;
 	vec4 vertex = clip_space;
 	
@@ -60,10 +58,8 @@ void fragment() {
 	vec2 uv = UV;
 	uv.y = 1.0-uv.y;
 	
-	vec2 screen = SCREEN_UV;
-	screen = floor(screen.xy*res.xy);
-
-	float dit = float( dither_mat[ (int(screen.x) % 4) + (int(screen.y) % 4)*4 ] );
+	#include "res://shared/shaders/include/get_dither.gdshaderinc"
+	
 	if (step(4.0, dit + uv.y + anim_start*8.0*2.0) == 0.0)
 		discard;
 	

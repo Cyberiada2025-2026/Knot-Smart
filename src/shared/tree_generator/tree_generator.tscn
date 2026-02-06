@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://cg0xq5ci3aupl"]
+
+[ext_resource type="Script" uid="uid://d3priws45vp1i" path="res://shared/tree_generator/tree_generator.gd" id="1_f05cq"]
+[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/tree_generator/tree_parameters.gd" id="2_0ait5"]
+[ext_resource type="Script" uid="uid://duea7u0sgueau" path="res://shared/tree_generator/tree_mesh.gd" id="2_2xdni"]
+[ext_resource type="Script" uid="uid://i8b0a8xqrom7" path="res://shared/tree_generator/tree_skeleton.gd" id="3_0ait5"]
+
+[sub_resource type="Resource" id="Resource_nwkkc"]
+script = ExtResource("2_0ait5")
+metadata/_custom_type_script = "uid://s0k1bcrvckmc"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f05cq"]
+sky_curve = 1.5834097
+
+[sub_resource type="Sky" id="Sky_4tp0t"]
+sky_material = SubResource("ProceduralSkyMaterial_f05cq")
+
+[sub_resource type="Environment" id="Environment_f05cq"]
+background_mode = 2
+background_energy_multiplier = 1.86
+sky = SubResource("Sky_4tp0t")
+
+[node name="Tree" type="Node3D"]
+script = ExtResource("1_f05cq")
+tree_parameters = SubResource("Resource_nwkkc")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 1.8867671, 3.3242311)
+environment = SubResource("Environment_f05cq")
+
+[node name="TreeSkeleton" type="Node" parent="."]
+script = ExtResource("3_0ait5")
+
+[node name="TreeMesh" type="Node" parent="."]
+script = ExtResource("2_2xdni")

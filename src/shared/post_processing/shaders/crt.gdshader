@@ -34,7 +34,7 @@ vec2 Dist(vec2 pos)
 	return -(pos-floor(pos))-vec2(0.5);
 }
 
-float Gaus(float pos, float scale) { return exp2(scale*pos*pos); }
+float Gauss(float pos, float scale) { return exp2(scale*pos*pos); }
 
 vec3 Horz3(vec2 pos,float off, vec2 size){
   vec3 b=Fetch(pos,vec2(-1.0,off), size);
@@ -43,9 +43,9 @@ vec3 Horz3(vec2 pos,float off, vec2 size){
   float dst=Dist(pos).x;
   // Convert distance to weight.
   float scale=hardPix;
-  float wb=Gaus(dst-1.0,scale);
-  float wc=Gaus(dst+0.0,scale);
-  float wd=Gaus(dst+1.0,scale);
+  float wb=Gauss(dst-1.0,scale);
+  float wc=Gauss(dst+0.0,scale);
+  float wd=Gauss(dst+1.0,scale);
   // Return filtered sample.
   return (b*wb+c*wc+d*wd)/(wb+wc+wd);
 }
@@ -59,17 +59,17 @@ vec3 Horz5(vec2 pos,float off , vec2 size){
   float dst=Dist(pos).x;
   // Convert distance to weight.
   float scale=hardPix;
-  float wa=Gaus(dst-2.0,scale);
-  float wb=Gaus(dst-1.0,scale);
-  float wc=Gaus(dst+0.0,scale);
-  float wd=Gaus(dst+1.0,scale);
-  float we=Gaus(dst+2.0,scale);
+  float wa=Gauss(dst-2.0,scale);
+  float wb=Gauss(dst-1.0,scale);
+  float wc=Gauss(dst+0.0,scale);
+  float wd=Gauss(dst+1.0,scale);
+  float we=Gauss(dst+2.0,scale);
   // Return filtered sample.
   return (a*wa+b*wb+c*wc+d*wd+e*we)/(wa+wb+wc+wd+we);}
 
 float Scan(vec2 pos,float off ){
   float dst=Dist(pos).y;
-  return Gaus(dst+off,hardScan);}
+  return Gauss(dst+off,hardScan);}
 
 vec3 Tri(vec2 pos , vec2 size){
   vec3 a=Horz3(pos,-1.0, size);
@@ -87,6 +87,8 @@ vec2 Warp(vec2 pos){
 
 vec3 Mask(vec2 pos, vec2 size)
 {
+  // Creates mask shape
+  // Quite fragile and should not be changed
   pos.x+=pos.y*3.0;
   pos.x=fract(pos.x/6.0);
   vec3 mask=vec3(maskDark,maskDark,maskDark);

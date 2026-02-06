@@ -1,8 +1,6 @@
 shader_type spatial;
 render_mode skip_vertex_transform;
 
-#include "res://shared/shaders/include/resolution.gdshaderinc"
-
 uniform bool billboard = false;
 
 uniform sampler2D main_texture : source_color, filter_nearest, repeat_disable;

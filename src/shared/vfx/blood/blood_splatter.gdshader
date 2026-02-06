@@ -1,7 +1,6 @@
 shader_type spatial;
 render_mode cull_disabled;
 
-#include "res://shared/shaders/include/resolution.gdshaderinc"
 const int dither_mat[16] = {
 	    		-4, 0, -3, 1,
 	    		2, -2, 3, -1,

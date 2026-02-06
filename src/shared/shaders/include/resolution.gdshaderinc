@@ -1,1 +1,0 @@
-const vec2 resolution = vec2(320,240);

@@ -20,7 +20,7 @@
 	vec4 vertex = clip_space;
 	
 	// Vertex snapping
-	vertex.xy = round(clip_space.xy / clip_space.w * resolution.xy) / resolution.xy * clip_space.w;
+	vertex.xy = round(clip_space.xy / clip_space.w * VIEWPORT_SIZE) / VIEWPORT_SIZE.xy * clip_space.w;
 	
 	POSITION = vertex;
 	

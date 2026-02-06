@@ -1,8 +1,6 @@
 shader_type spatial;
 render_mode unshaded;
 
-#include "res://shared/shaders/include/resolution.gdshaderinc"
-
 uniform bool billboard = false;
 uniform bool use_vertex_color = false;
 

@@ -1,8 +1,6 @@
 shader_type spatial;
 render_mode cull_disabled, blend_add, unshaded;
 
-#include "res://shared/shaders/include/resolution.gdshaderinc"
-
 uniform bool billboard = false;
 uniform float power = 3.0f;
 uniform vec4 tint = vec4(1.0,1.0,1.0,1.0);

@@ -1,13 +1,7 @@
 shader_type spatial;
 render_mode skip_vertex_transform, unshaded, cull_disabled;
 
-#include "res://shared/shaders/include/resolution.gdshaderinc"
-const int dither_mat[16] = {
-	    		-4, 0, -3, 1,
-	    		2, -2, 3, -1,
-	    		-3, 1, -4, 0,
-	    		3, -1, 2, -2
-		};
+#include "res://shared/shaders/include/dither_setup.gdshaderinc"
 const vec2 res = vec2(320, 240);
 const bool billboard = false;
 
@@ -41,7 +35,7 @@ void vertex() {
 		round(sin(93560.0*VERTEX.x*VERTEX.y*VERTEX.z * floor(TIME/vibrate_time))));
 		
 	// Vertex snapping
-	vertex.xy = (round(clip_space.xy / clip_space.w * resolution.xy + offset))/ resolution.xy * clip_space.w;
+	vertex.xy = (round(clip_space.xy / clip_space.w * VIEWPORT_SIZE.xy + offset))/ VIEWPORT_SIZE.xy * clip_space.w;
 	
 	float mid = sqrt(1.0-abs(VERTEX.y/length_curr*2.0));
 	vertex.xz += mid*VERTEX.xz*(length_start/length_curr-1.0)*mesh_width_change;

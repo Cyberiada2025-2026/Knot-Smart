@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://2kedsgce1fle"]
+
+[ext_resource type="Script" uid="uid://coo2kgspk670h" path="res://characters/player/player_camera.gd" id="1_ehrhw"]
+[ext_resource type="Script" uid="uid://2pbcecv8ynln" path="res://characters/player/camera_rotation_type/qe_keyboard.gd" id="2_vrua3"]
+[ext_resource type="Script" uid="uid://d0atttex21o4a" path="res://characters/player/camera_rotation_type/hidden_mouse.gd" id="3_cxq6j"]
+[ext_resource type="Script" uid="uid://l3y0tn58j1g6" path="res://characters/player/camera_person_type/1st_person.gd" id="4_j6ksn"]
+[ext_resource type="Script" uid="uid://lw32b3mnrin7" path="res://characters/player/camera_person_type/3rd_person.gd" id="5_chqwf"]
+
+[node name="PlayerCamera" type="Node3D" node_paths=PackedStringArray("camera", "arm", "rotation_strategy", "view_strategy", "qe_keyboard", "hidden_mouse", "first_person_camera", "third_person_camera")]
+script = ExtResource("1_ehrhw")
+camera = NodePath("SpringArm3D/FakeCamera3D")
+arm = NodePath("SpringArm3D")
+rotation_strategy = NodePath("CameraRotationTypes/HiddenMouse")
+view_strategy = NodePath("CameraPersonType/3rd")
+qe_keyboard = NodePath("CameraRotationTypes/QEKeyboard")
+hidden_mouse = NodePath("CameraRotationTypes/HiddenMouse")
+first_person_camera = NodePath("CameraPersonType/1st")
+third_person_camera = NodePath("CameraPersonType/3rd")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+spring_length = 7.0
+
+[node name="FakeCamera3D" type="Node3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 0.9396931, -0.34202027, 0, 0.34202027, 0.9396931, 0, 0, 0)
+
+[node name="CameraRotationTypes" type="Node3D" parent="."]
+
+[node name="QEKeyboard" type="Node" parent="CameraRotationTypes" node_paths=PackedStringArray("next_strategy")]
+script = ExtResource("2_vrua3")
+next_strategy = NodePath("../HiddenMouse")
+
+[node name="HiddenMouse" type="Node" parent="CameraRotationTypes" node_paths=PackedStringArray("next_strategy")]
+script = ExtResource("3_cxq6j")
+next_strategy = NodePath("../QEKeyboard")
+
+[node name="CameraPersonType" type="Node3D" parent="."]
+
+[node name="1st" type="Node" parent="CameraPersonType" node_paths=PackedStringArray("next_strategy")]
+script = ExtResource("4_j6ksn")
+next_strategy = NodePath("../3rd")
+
+[node name="3rd" type="Node" parent="CameraPersonType" node_paths=PackedStringArray("next_strategy")]
+script = ExtResource("5_chqwf")
+next_strategy = NodePath("../1st")

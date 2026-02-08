@@ -43,10 +43,10 @@ func _ready() -> void:
 func generate() -> void:
 	_set_points()
 	_randomize_points()
-	_show_points()
+	#_show_points()
 	
 	_set_lines_and_triangles()
-	_show_lines()
+	#_show_lines()
 	
 	_set_biome()
 	_show_biomes()
@@ -131,9 +131,9 @@ func _set_biome() -> void:
 	for biome_name in biomes_sizes:
 		var biome: Biome = Biome.new()
 		_init_biome(biome, biome_name)
-		_add_triangle_to_biome(biome, _get_biome_starting_triangle())
+		_get_biome_starting_triangle(biome)
 		while biome.area < biomes_sizes[biome_name]:
-			_add_triangle_to_biome(biome, _get_biome_new_triangle(biome))
+			_get_biome_new_triangle(biome)
 
 func _init_biome(biome: Biome, biome_name: String) -> void:
 	biome.name = biome_name
@@ -141,38 +141,56 @@ func _init_biome(biome: Biome, biome_name: String) -> void:
 	$Biomes.add_child(biome)
 	biomes.append(biome)
 
-func _add_triangle_to_biome(biome: Biome, triangle: BiomeTriangle) -> void:
-	free_triangles.erase(triangle)
-	biome.triangles.append(triangle)
-	biome.lines.append(triangle.line_a)
-	biome.lines.append(triangle.line_b)
-	biome.lines.append(triangle.line_c)
-	biome.area += triangle.get_area()
-	#print(biome.area)
-
-func _get_biome_starting_triangle() -> BiomeTriangle:
+func _get_biome_starting_triangle(biome: Biome) -> void:
 	var triangle: BiomeTriangle = free_triangles.pick_random()
-	return triangle
+	_add_triangle_to_biome(biome, triangle)
 
-func _get_biome_new_triangle(biome: Biome) -> BiomeTriangle:
+func _get_biome_new_triangle(biome: Biome) -> void:
 	var triangle: BiomeTriangle
 	var start_line_id: int = randi()%biome.lines.size()
 	var line_id: int = start_line_id
 	while line_id+1 != start_line_id:
-		var r: int = randi()%biome.lines[line_id].adjacent_triangles.size()
-		var traingle1 = biome.lines[line_id].adjacent_triangles[r]
-		var traingle2 = biome.lines[line_id].adjacent_triangles[(r+1)%biome.lines[line_id].adjacent_triangles.size()]
+		var line: BiomeLine = biome.lines[line_id]
+		var r: int = randi()%line.adjacent_triangles.size()
+		var traingle1 = line.adjacent_triangles[r]
+		var traingle2 = line.adjacent_triangles[(r+1)%line.adjacent_triangles.size()]
 		if free_triangles.find(traingle1) >= 0:
 			triangle = traingle1
-			biome.lines.erase(biome.lines[line_id])
-			return triangle
+			biome.lines.erase(line)
+			_add_triangle_to_biome(biome, triangle)
+			biome.lines.erase(line)
+			return
 		elif free_triangles.find(traingle2) >= 0:
 			triangle = traingle2
-			biome.lines.erase(biome.lines[line_id])
-			return triangle
+			biome.lines.erase(line)
+			_add_triangle_to_biome(biome, triangle)
+			return
 		line_id = (line_id+1)%biome.lines.size()
 	print("no triangle")
-	return _get_biome_starting_triangle()
+	_get_biome_starting_triangle(biome)
+
+func _add_triangle_to_biome(biome: Biome, triangle: BiomeTriangle) -> void:
+	free_triangles.erase(triangle)
+	biome.triangles.append(triangle)
+	_add_line_to_biome(biome, triangle.line_a)
+	_add_line_to_biome(biome, triangle.line_b)
+	_add_line_to_biome(biome, triangle.line_c)
+	biome.area += triangle.get_area()
+
+func _add_line_to_biome(biome: Biome, line: BiomeLine) -> void:
+	if line.adjacent_triangles.size() == 1:
+		biome.lines.append(line)
+		return
+	if biome.triangles.find(line.adjacent_triangles[0]) == -1:
+		biome.lines.append(line)
+		return
+	else:
+		biome.lines.erase(line)
+	if biome.triangles.find(line.adjacent_triangles[1]) == -1:
+		biome.lines.append(line)
+		return
+	else:
+		biome.lines.erase(line)
 
 func _show_points() -> void:
 	for point: Vector2 in points:
@@ -210,4 +228,13 @@ func _show_biomes() -> void:
 			mesh.material.resource_local_to_scene = true
 			mesh.position.x = -start_x
 			mesh.position.z = -start_z
+			self.add_child(mesh)
+			
+		for line: BiomeLine in biome.lines:
+			var mesh: MeshInstance3D = load(line_scene).instantiate()
+			mesh.mesh.resource_local_to_scene = true
+			mesh.mesh.size.x = line.get_length()
+			mesh.rotation.y = line.get_rotation()
+			mesh.position.x = line.start_point.x - start_x + ((line.end_point.x - line.start_point.x))/2
+			mesh.position.z = line.start_point.y - start_z + ((line.end_point.y - line.start_point.y))/2
 			self.add_child(mesh)

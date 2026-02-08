@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://crgmysckc65sm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uruy"]
+transparency = 1
+albedo_color = Color(0.89932597, 0.31741896, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_hawlq"]
+material = SubResource("StandardMaterial3D_8uruy")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hawlq"]
+radius = 4.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onkk8"]
+transparency = 1
+albedo_color = Color(0.8666667, 0.35686275, 0, 0.2901961)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xmuq3"]
+material = SubResource("StandardMaterial3D_onkk8")
+radius = 4.0
+height = 8.0
+
+[node name="SomethingInteresting" type="Node3D" groups=["Interest"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_hawlq")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_hawlq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("SphereMesh_xmuq3")
+skeleton = NodePath("../../MeshInstance3D")

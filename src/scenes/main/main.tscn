@@ -1,35 +1,28 @@
-[gd_scene load_steps=5 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=11 format=3 uid="uid://3rax0onuo76f"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_vom5j"]
-size = Vector3(10, 1, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hyk8p"]
-size = Vector3(10, 1, 10)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_iuonh"]
-radius = 0.25
-height = 0.8
+[ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://50058jf30t1n" path="res://shared/buildings/building_generation/building_generator.tscn" id="4_6q06x"]
+[ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="4_l3cfh"]
+[ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
+[ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
 height = 1.8
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_iuonh"]
+vertices = PackedVector3Array(-4.5, 0.70000005, -4.5, -4.5, 0.70000005, 4.5, 4.5, 0.70000005, 4.5, 4.5, 0.70000005, -4.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+cell_height = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_vom5j"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hyk8p"]
+size = Vector3(20, 1, 20)
+
 [node name="Main" type="Node3D"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9815972, 0.19096321, 0, -0.19096321, 0.9815972, 0, 2.1553738, 4.596)
-
-[node name="10x10_floor" type="StaticBody3D" parent="."]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="10x10_floor"]
-mesh = SubResource("BoxMesh_vom5j")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="10x10_floor"]
-shape = SubResource("BoxShape3D_hyk8p")
-
-[node name="AlienHeight" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.426, 0.9, 0)
-mesh = SubResource("CapsuleMesh_iuonh")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
@@ -37,3 +30,95 @@ transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90
 [node name="HumanHeight" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47107148, 1.3952317, 0)
 mesh = SubResource("CapsuleMesh_vom5j")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_iuonh")
+
+[node name="10x10_floor" type="StaticBody3D" parent="NavigationRegion3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/10x10_floor"]
+mesh = SubResource("BoxMesh_vom5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/10x10_floor"]
+shape = SubResource("BoxShape3D_hyk8p")
+
+[node name="Enemy" parent="." instance=ExtResource("2_iuonh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
+
+[node name="Player" parent="." instance=ExtResource("3_k2fmo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6612322, 1.435396, 3.9698668)
+
+[node name="CameraReplacer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_l3cfh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6709199, 0)
+camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")
+
+[node name="BuildingGenerator" parent="." instance=ExtResource("4_6q06x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, 9)
+
+[node name="FloorGridMap" parent="BuildingGenerator" index="3"]
+data = {
+"cells": PackedInt32Array(65536, 0, 2, 196616, 0, 2, 131078, 1, 2, 5, 2, 1, 5, 3, 1, 5, 4, 1, 6, 2, 1, 6, 3, 1, 6, 4, 1, 65541, 2, 1, 65541, 3, 1, 65541, 4, 1, 65542, 2, 1, 65542, 3, 1, 65542, 4, 1, 5, 0, 1, 5, 1, 1, 65541, 0, 1, 65541, 1, 1, 65534, 4, 1, 131070, 4, 1, 196606, 4, 1, 6, 0, 1, 6, 1, 1, 7, 0, 1, 7, 1, 1, 65542, 0, 1, 65542, 1, 1, 65543, 0, 1, 65543, 1, 1, 8, 0, 1, 8, 1, 1, 9, 0, 1, 9, 1, 1, 65544, 0, 1, 65544, 1, 1, 65545, 0, 1, 65545, 1, 1, 131077, 0, 1, 131077, 1, 1, 131078, 0, 1, 131079, 0, 1, 131079, 1, 1, 131080, 0, 1, 131080, 1, 1, 131081, 0, 1, 131081, 1, 1, 65534, 0, 1, 65534, 1, 1, 65534, 2, 1, 131070, 0, 1, 131070, 1, 1, 131070, 2, 1, 65534, 3, 1, 131070, 3, 1, 65535, 0, 1, 65535, 1, 1, 65535, 2, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 1, 0, 1, 1, 1, 1, 1, 2, 1, 131071, 0, 1, 131071, 1, 1, 131071, 2, 1, 65536, 1, 1, 65536, 2, 1, 65537, 0, 1, 65537, 1, 1, 65537, 2, 1, 2, 0, 1, 2, 1, 1, 2, 2, 1, 3, 0, 1, 3, 1, 1, 3, 2, 1, 4, 0, 1, 4, 1, 1, 4, 2, 1, 65538, 0, 1, 65538, 1, 1, 65538, 2, 1, 65539, 0, 1, 65539, 1, 1, 65539, 2, 1, 65540, 0, 1, 65540, 1, 1, 65540, 2, 1, 65535, 3, 1, 65535, 4, 1, 131071, 3, 1, 131071, 4, 1, 196606, 0, 1, 196606, 1, 1, 196606, 2, 1, 196606, 3, 1, 196607, 0, 1, 196607, 1, 1, 196607, 2, 1, 196607, 3, 1, 196607, 4, 1, 196613, 0, 1, 196613, 1, 1, 196614, 0, 1, 196614, 1, 1, 262149, 0, 1, 262149, 1, 1, 262150, 0, 1, 262150, 1, 1, 196615, 0, 1, 196615, 1, 1, 196616, 1, 1, 196617, 0, 1, 196617, 1, 1, 262151, 0, 1, 262151, 1, 1, 262152, 0, 1, 262152, 1, 1, 262153, 0, 1, 262153, 1, 1, 0, 3, 1, 0, 4, 1, 1, 3, 1, 1, 4, 1, 65536, 3, 1, 65536, 4, 1, 65537, 3, 1, 65537, 4, 1, 2, 3, 1, 2, 4, 1, 3, 3, 1, 3, 4, 1, 4, 3, 1, 4, 4, 1, 65538, 3, 1, 65538, 4, 1, 65539, 3, 1, 65539, 4, 1, 65540, 3, 1, 65540, 4, 1, 131072, 0, 1, 131072, 1, 1, 131072, 2, 1, 131076, 3, 1, 131076, 4, 1, 131073, 0, 1, 131073, 1, 1, 131073, 2, 1, 131074, 0, 1, 131074, 1, 1, 131074, 2, 1, 131075, 0, 1, 131075, 1, 1, 131075, 2, 1, 131076, 0, 1, 131076, 1, 1, 131076, 2, 1, 131072, 3, 1, 131072, 4, 1, 131073, 3, 1, 131073, 4, 1, 131074, 3, 1, 131074, 4, 1, 131075, 3, 1, 131075, 4, 1)
+}
+
+[node name="WallXGrid" parent="BuildingGenerator" index="4"]
+data = {
+"cells": PackedInt32Array(131079, 0, 1048576, 65536, 4, 1048576, 65536, 1, 1048576, 131071, 3, 1048576, 131071, 0, 1048576, 0, 4, 1048576, 65538, 3, 1048576, 65540, 3, 1048576, 2, 3, 1048576, 196615, 1, 1048576, 65541, 1, 1048576, 65543, 0, 1048576, 8, 1, 1048576, 131071, 4, 1048576, 65535, 4, 1048576, 5, 1, 1048576, 6, 1, 1048576, 5, 3, 1048576, 65535, 3, 1048576, 65535, 2, 1048576, 5, 2, 1048579, 5, 4, 1048579, 7, 2, 1048579, 7, 3, 1048580, 7, 4, 1048579, 5, 0, 1048579, 6, 0, 1048579, 65534, 4, 1048579, 131070, 4, 1048580, 8, 0, 1048579, 10, 0, 1048580, 10, 1, 1048579, 65541, 0, 1048579, 65543, 1, 1048579, 65546, 0, 1048579, 65546, 1, 1048579, 65534, 0, 1048580, 65534, 1, 1048580, 65534, 2, 1048579, 65535, 0, 1048579, 65535, 1, 1048579, 65534, 3, 1048579, 2, 0, 1048579, 2, 1, 1048579, 2, 2, 1048579, 0, 3, 1048579, 131070, 0, 1048580, 131070, 1, 1048579, 131071, 1, 1048579, 131070, 2, 1048580, 131070, 3, 1048579, 131071, 2, 1048579, 65536, 0, 1048579, 65536, 2, 1048579, 65536, 3, 1048579, 131077, 0, 1048579, 131077, 1, 1048580, 131079, 1, 1048579, 196613, 0, 1048580, 196613, 1, 1048579, 196615, 0, 1048579, 131082, 0, 1048579, 131082, 1, 1048579, 196618, 0, 1048579, 196618, 1, 1048580, 2, 4, 1048579, 65537, 0, 1048579, 65537, 1, 1048579, 65537, 2, 1048579, 65540, 4, 1048579, 65541, 3, 1048579, 65541, 4, 1048579, 65538, 0, 1048579, 65538, 1, 1048579, 65538, 2, 1048579, 65541, 2, 1048579, 65538, 4, 1048579)
+}
+
+[node name="WallZGrid" parent="BuildingGenerator" index="5"]
+data = {
+"cells": PackedInt32Array(131071, 3, 0, 2, 3, 0, 1, 3, 0, 65538, 3, 0, 65537, 3, 0, 5, 2, 3, 6, 2, 3, 5, 5, 4, 6, 5, 3, 5, 0, 4, 65534, 4, 3, 65534, 5, 3, 131070, 4, 3, 131070, 5, 3, 6, 0, 3, 7, 0, 3, 7, 2, 3, 8, 0, 3, 9, 0, 3, 8, 2, 3, 9, 2, 4, 65541, 0, 4, 65542, 0, 3, 65541, 2, 3, 65542, 2, 4, 65543, 0, 4, 65544, 0, 4, 65545, 0, 3, 65543, 2, 3, 65544, 2, 3, 65545, 2, 4, 65534, 0, 3, 65534, 3, 3, 65535, 0, 4, 0, 0, 4, 1, 0, 3, 65535, 3, 3, 0, 3, 3, 2, 0, 3, 3, 0, 0, 4, 0, 3, 3, 3, 3, 4, 3, 3, 65535, 5, 4, 131070, 0, 3, 131070, 2, 3, 131071, 0, 3, 131071, 5, 3, 131077, 0, 3, 131078, 0, 3, 131077, 2, 3, 131078, 2, 3, 196613, 0, 3, 196614, 0, 3, 196613, 2, 3, 196614, 2, 4, 131079, 0, 3, 131080, 0, 4, 131081, 0, 3, 131079, 2, 4, 131080, 2, 3, 131081, 2, 3, 196615, 0, 3, 196616, 0, 3, 196617, 0, 3, 196615, 2, 4, 196616, 2, 3, 196617, 2, 3, 0, 5, 3, 1, 5, 3, 2, 5, 3, 3, 5, 3, 4, 5, 3, 65536, 0, 3, 65536, 3, 3, 65540, 3, 3, 65540, 5, 3, 65537, 0, 4, 65538, 0, 3, 65539, 0, 3, 65540, 0, 3, 65539, 3, 3, 65536, 5, 3, 65537, 5, 3, 65538, 5, 4, 65539, 5, 4)
+}
+
+[node name="BuildingShapeDescription" type="Node" parent="BuildingGenerator"]
+script = ExtResource("6_hujxm")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="BuildingGenerator/BuildingShapeDescription"]
+script = ExtResource("6_ow5a4")
+start = Vector3i(-2, 0, 0)
+size = Vector3i(7, 2, 5)
+
+[node name="BoxDescription2" type="Node" parent="BuildingGenerator/BuildingShapeDescription"]
+script = ExtResource("6_ow5a4")
+start = Vector3i(5, 0, 0)
+size = Vector3i(5, 4, 2)
+
+[node name="BoxDescription3" type="Node" parent="BuildingGenerator/BuildingShapeDescription"]
+script = ExtResource("6_ow5a4")
+start = Vector3i(5, 0, 2)
+size = Vector3i(2, 1, 3)
+
+[node name="BuildingGenerator2" parent="." instance=ExtResource("4_6q06x")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0.5, 2.5)
+
+[node name="FloorGridMap" parent="BuildingGenerator2" index="3"]
+data = {
+"cells": PackedInt32Array(131077, 1, 2, 196613, 0, 2, 65540, 1, 2, 196611, 0, 1, 196611, 1, 1, 196612, 0, 1, 196612, 1, 1, 196613, 1, 1, 262147, 0, 1, 262147, 1, 1, 262148, 0, 1, 262148, 1, 1, 262149, 0, 1, 262149, 1, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 1, 0, 1, 1, 1, 1, 1, 2, 1, 2, 0, 1, 2, 1, 1, 2, 2, 1, 65536, 0, 1, 65536, 1, 1, 65536, 2, 1, 65537, 0, 1, 65537, 1, 1, 65537, 2, 1, 65538, 0, 1, 65538, 1, 1, 65538, 2, 1, 0, 3, 1, 1, 3, 1, 2, 3, 1, 65536, 3, 1, 65537, 3, 1, 65538, 3, 1, 131072, 0, 1, 131073, 0, 1, 131074, 0, 1, 131072, 1, 1, 131072, 2, 1, 131072, 3, 1, 131073, 1, 1, 131073, 2, 1, 131073, 3, 1, 131074, 1, 1, 131074, 2, 1, 131074, 3, 1, 3, 0, 1, 3, 1, 1, 65539, 0, 1, 65539, 1, 1, 131075, 0, 1, 131075, 1, 1, 4, 0, 1, 5, 0, 1, 65540, 0, 1, 65541, 0, 1, 131076, 1, 1, 4, 1, 1, 5, 1, 1, 65541, 1, 1, 131076, 0, 1, 131077, 0, 1)
+}
+
+[node name="WallXGrid" parent="BuildingGenerator2" index="4"]
+data = {
+"cells": PackedInt32Array(4, 0, 1048576, 4, 1, 1048576, 65540, 1, 1048576, 65540, 0, 1048576, 131076, 1, 1048576, 131076, 0, 1048576, 3, 1, 1048576, 65539, 0, 1048576, 196611, 0, 1048580, 196611, 1, 1048579, 196614, 0, 1048579, 196614, 1, 1048580, 0, 0, 1048580, 0, 1, 1048576, 0, 2, 1048580, 3, 0, 1048579, 3, 2, 1048579, 0, 3, 1048579, 3, 3, 1048579, 65536, 0, 1048579, 65536, 1, 1048580, 65536, 2, 1048579, 65536, 3, 1048580, 65539, 1, 1048579, 65539, 2, 1048579, 65539, 3, 1048580, 131075, 0, 1048579, 131075, 1, 1048579, 6, 0, 1048580, 131078, 1, 1048580, 6, 1, 1048579, 65542, 1, 1048579, 65541, 0, 1048579, 131077, 0, 1048579, 65542, 0, 1048579, 131078, 0, 1048580)
+}
+
+[node name="WallZGrid" parent="BuildingGenerator2" index="5"]
+data = {
+"cells": PackedInt32Array(131077, 1, 0, 65541, 1, 0, 0, 3, 0, 65537, 1, 0, 196611, 0, 3, 196612, 0, 3, 196613, 0, 4, 196611, 2, 3, 196612, 2, 3, 196613, 2, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 1, 3, 3, 2, 3, 3, 0, 4, 4, 1, 4, 3, 2, 4, 3, 65536, 0, 3, 65537, 0, 3, 65538, 0, 3, 65536, 1, 3, 65538, 1, 3, 65536, 4, 3, 65537, 4, 3, 65538, 4, 3, 3, 0, 3, 3, 2, 3, 65539, 0, 3, 65539, 2, 3, 131075, 0, 4, 131075, 2, 3, 4, 0, 3, 5, 0, 3, 4, 1, 3, 5, 1, 3, 131076, 1, 3, 131076, 2, 3, 131077, 2, 4, 4, 2, 4, 5, 2, 3, 65540, 1, 3, 65540, 2, 3, 65541, 2, 3, 65540, 0, 4, 131076, 0, 3, 65541, 0, 3, 131077, 0, 4)
+}
+
+[node name="BuildingShapeDescription" type="Node" parent="BuildingGenerator2"]
+script = ExtResource("6_hujxm")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="BuildingGenerator2/BuildingShapeDescription"]
+script = ExtResource("6_ow5a4")
+size = Vector3i(3, 2, 4)
+
+[node name="BoxDescription2" type="Node" parent="BuildingGenerator2/BuildingShapeDescription"]
+script = ExtResource("6_ow5a4")
+start = Vector3i(3, 0, 0)
+size = Vector3i(3, 4, 2)
+
+[editable path="BuildingGenerator"]
+[editable path="BuildingGenerator2"]

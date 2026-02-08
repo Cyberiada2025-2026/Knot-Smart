@@ -134,6 +134,10 @@ func _set_biome() -> void:
 		_get_biome_starting_triangle(biome)
 		while biome.area < biomes_sizes[biome_name]:
 			_get_biome_new_triangle(biome)
+		for line in biome.lines:
+			line.biomes.append(biome)
+		for triangle in biome.triangles:
+			triangle.biomes.append(biome)
 
 func _init_biome(biome: Biome, biome_name: String) -> void:
 	biome.name = biome_name

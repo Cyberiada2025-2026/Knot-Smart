@@ -18,24 +18,25 @@ func generate_skeleton(parameters: TreeParameters) -> Array:
 	var points_arrays: Array = []
 	box = box
 	params = parameters
-	points_arrays.push_back(skeleton_trunk())
+	var trunk = skeleton_branch(Vector3.ZERO)
+	points_arrays.push_back(trunk)
+	for i in range(3):
+		print(trunk[trunk.size()-1])
+		points_arrays.push_back(skeleton_branch(trunk[trunk.size()-1]*0.95))
 	return points_arrays
 
-func skeleton_trunk() -> Array:
-	var trunk = []
-	var last = Vector3.ZERO
-	trunk.push_back(last)
+func skeleton_branch(offset: Vector3) -> Array:
+	var branch = []
+	var last = offset
+	branch.push_back(last)
 	for i in range(params.levels):		
 		var new = last + Vector3(
 			add_rand(params.diff),
 			add_rand(params.diff)+params.h,
 			add_rand(params.diff))
 		last = new
-		trunk.push_back(new)
-	return trunk
-	
-func skeleton_branch():
-	pass
+		branch.push_back(new)
+	return branch
 
 func add_rand(param) -> float:
 	return randf()*param-param/2

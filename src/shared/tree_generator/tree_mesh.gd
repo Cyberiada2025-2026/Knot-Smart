@@ -4,6 +4,7 @@ extends Node
 var tree_generator: TreeGenerator
 var vertices = PackedVector3Array()
 var indices = PackedInt32Array()
+var normals = PackedVector3Array()
 
 
 func _enter_tree() -> void:
@@ -11,9 +12,11 @@ func _enter_tree() -> void:
 	tree_generator.tree_mesh = self
 	
 
-func generate_mesh(skeleton: Array, param: TreeParameters) -> ArrayMesh:
+func generate_mesh(skeleton: Array, param: TreeParameters, is_branch: bool) -> ArrayMesh:
 	var r = param.r
-	var trunk = skeleton[0]
+	if is_branch:
+		r = param.r_branch
+	var trunk = skeleton
 	
 	for node in trunk:
 		add_stripe(node, r)
@@ -28,6 +31,7 @@ func generate_mesh(skeleton: Array, param: TreeParameters) -> ArrayMesh:
 	arrays.resize(Mesh.ARRAY_MAX)
 	arrays[Mesh.ARRAY_VERTEX] = vertices
 	arrays[Mesh.ARRAY_INDEX] = indices
+	#arrays[Mesh.ARRAY_NORMAL] = normals
 
 	# Create the Mesh.
 	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLE_STRIP, arrays)
@@ -42,7 +46,9 @@ func add_stripe(center: Vector3, r: float):
 	var sides = stripe_sides()
 	var angle: float = 2*PI / sides
 	for i in range(sides, 0, -1):
-		vertices.push_back(Vector3(cos(i*angle)*r+center.x, center.y, sin(i*angle)*r+center.z))		
+		var vertex = Vector3(cos(i*angle)*r+center.x, center.y, sin(i*angle)*r+center.z)
+		vertices.push_back(vertex)
+		normals.push_back(vertex.normalized())
 
 func add_indices(levels: int, length: int):
 	for i in range(levels):
@@ -53,3 +59,8 @@ func add_indices(levels: int, length: int):
 		indices.push_back(i*length)
 		indices.push_back((i+1)*length)
 		
+		
+func reset():
+	vertices = PackedVector3Array()
+	indices = PackedInt32Array()
+	normals = PackedVector3Array()

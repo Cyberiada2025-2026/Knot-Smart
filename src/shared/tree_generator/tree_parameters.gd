@@ -12,3 +12,6 @@ extends Resource
 @export var r_low = 0.85
 
 # branches
+@export var levels_branch = 4
+@export var r_branch = 0.2
+@export var r_low_branch = 0.85

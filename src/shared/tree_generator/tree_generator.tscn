@@ -25,7 +25,7 @@ script = ExtResource("1_f05cq")
 tree_parameters = SubResource("Resource_nwkkc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 1.8867671, 3.3242311)
+transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 2.8867671, 6.324231)
 environment = SubResource("Environment_f05cq")
 
 [node name="TreeSkeleton" type="Node" parent="."]

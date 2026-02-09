@@ -2,9 +2,6 @@ class_name TreeMesh
 extends Node
 
 var tree_generator: TreeGenerator
-var vertices = PackedVector3Array()
-var indices = PackedInt32Array()
-var normals = PackedVector3Array()
 
 
 func _enter_tree() -> void:
@@ -12,18 +9,23 @@ func _enter_tree() -> void:
 	tree_generator.tree_mesh = self
 	
 
-func generate_mesh(skeleton: Array, param: TreeParameters, is_branch: bool) -> ArrayMesh:
+func generate_skin(skeleton: Array, param: TreeParameters, is_branch: bool) -> ArrayMesh:
+	var vertices = PackedVector3Array()
+	var indices = PackedInt32Array()
+
 	var r = param.r
+	var r_low = param.r_low
+	var sides = param.sides
 	if is_branch:
 		r = param.r_branch
-	var trunk = skeleton
+		r_low = param.r_low_branch
+		sides = param.sides_branch
 	
-	for node in trunk:
-		add_stripe(node, r)
+	for node in skeleton:
+		add_stripe(vertices, node, r, sides)
 		r = r * param.r_low
-		print(r)
 		
-	add_indices(len(trunk)-1, stripe_sides())
+	add_indices(indices, len(skeleton)-1, sides)
 
 	# Initialize the ArrayMesh.
 	var arr_mesh = ArrayMesh.new()
@@ -31,26 +33,20 @@ func generate_mesh(skeleton: Array, param: TreeParameters, is_branch: bool) -> A
 	arrays.resize(Mesh.ARRAY_MAX)
 	arrays[Mesh.ARRAY_VERTEX] = vertices
 	arrays[Mesh.ARRAY_INDEX] = indices
-	#arrays[Mesh.ARRAY_NORMAL] = normals
 
 	# Create the Mesh.
 	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLE_STRIP, arrays)
 	
 	return arr_mesh
 
-func stripe_sides() -> int:
-	return 6
 
-func add_stripe(center: Vector3, r: float):
-	var h = center.z
-	var sides = stripe_sides()
+func add_stripe(vertices: PackedVector3Array, center: Vector3, r: float, sides: int):
 	var angle: float = 2*PI / sides
 	for i in range(sides, 0, -1):
 		var vertex = Vector3(cos(i*angle)*r+center.x, center.y, sin(i*angle)*r+center.z)
 		vertices.push_back(vertex)
-		normals.push_back(vertex.normalized())
 
-func add_indices(levels: int, length: int):
+func add_indices(indices: PackedInt32Array, levels: int, length: int):
 	for i in range(levels):
 		for j in range(length):
 			indices.push_back(i*length+j)
@@ -58,9 +54,3 @@ func add_indices(levels: int, length: int):
 			
 		indices.push_back(i*length)
 		indices.push_back((i+1)*length)
-		
-		
-func reset():
-	vertices = PackedVector3Array()
-	indices = PackedInt32Array()
-	normals = PackedVector3Array()

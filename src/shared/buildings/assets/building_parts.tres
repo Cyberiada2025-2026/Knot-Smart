@@ -1,6 +1,6 @@
 [gd_resource type="MeshLibrary" load_steps=33 format=4 uid="uid://muhve4nygglf"]
 
-[ext_resource type="Material" uid="uid://dxpidm2mpqkcn" path="res://shared/buildings/assets/wall_material.tres" id="1_w2xmn"]
+[ext_resource type="Material" uid="uid://dxpidm2mpqkcn" path="res://shared/buildings/assets/building_base_material.tres" id="1_w2xmn"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_oo4gq"]
 _surfaces = [{

@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c4753qnlxx4on"]
 
 [ext_resource type="PackedScene" uid="uid://bl12nmqdnj8e5" path="res://shared/buildings/assets/building_parts.glb" id="1_jr2ol"]
-[ext_resource type="Material" uid="uid://dxpidm2mpqkcn" path="res://shared/buildings/assets/wall_material.tres" id="2_63c1x"]
+[ext_resource type="Material" uid="uid://dxpidm2mpqkcn" path="res://shared/buildings/assets/building_base_material.tres" id="2_63c1x"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_63c1x"]
 size = Vector3(2.1, 0.1, 2.1)

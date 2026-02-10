@@ -6,3 +6,4 @@ extends Resource
 @export_range(0, 1) var long_room_tendency: float = 0.2
 @export var outside_door_count: int = 1
 @export_range(0, 1) var window_percentage: float = 0.3
+@export var random_seed: int

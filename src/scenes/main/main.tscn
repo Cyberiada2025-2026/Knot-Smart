@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=14 format=3 uid="uid://3rax0onuo76f"]
 
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://50058jf30t1n" path="res://shared/buildings/building_generation/building_generator.tscn" id="4_6q06x"]
 [ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="4_l3cfh"]
+[ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params.gd" id="5_hujxm"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
 
@@ -21,6 +22,16 @@ size = Vector3(20, 1, 20)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hyk8p"]
 size = Vector3(20, 1, 20)
+
+[sub_resource type="Resource" id="Resource_yyfjg"]
+script = ExtResource("5_hujxm")
+random_seed = 1
+metadata/_custom_type_script = "uid://uq2ee3iq6x08"
+
+[sub_resource type="Resource" id="Resource_b1x3f"]
+script = ExtResource("5_hujxm")
+random_seed = 3
+metadata/_custom_type_script = "uid://uq2ee3iq6x08"
 
 [node name="Main" type="Node3D"]
 
@@ -54,7 +65,7 @@ camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")
 
 [node name="BuildingGenerator" parent="." instance=ExtResource("4_6q06x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, 9)
-random_seed = 1
+room_generation_params = SubResource("Resource_yyfjg")
 
 [node name="FloorGridMap" parent="BuildingGenerator" index="3"]
 data = {
@@ -92,7 +103,7 @@ size = Vector3i(2, 1, 3)
 
 [node name="BuildingGenerator2" parent="." instance=ExtResource("4_6q06x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0.5, 2.5)
-random_seed = 3
+room_generation_params = SubResource("Resource_b1x3f")
 
 [node name="FloorGridMap" parent="BuildingGenerator2" index="3"]
 data = {

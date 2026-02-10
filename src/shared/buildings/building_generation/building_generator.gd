@@ -3,6 +3,7 @@ class_name BuildingGenerator
 extends Node3D
 
 @export var room_generation_params: RoomGenerationParams
+@export var random_seed: int
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
 
@@ -17,6 +18,7 @@ var models_placer: ModelsPlacer
 
 
 func generate_building() -> void:
+	seed(random_seed)
 	get_parent().set_editable_instance(self, true)
 	if building_shape_description == null:
 		push_warning("No building_shape_description provided.")

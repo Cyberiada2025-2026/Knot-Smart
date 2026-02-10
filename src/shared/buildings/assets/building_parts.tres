@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=22 format=4 uid="uid://bs65acvjybasw"]
+[gd_resource type="MeshLibrary" load_steps=25 format=4 uid="uid://bs65acvjybasw"]
 
 [ext_resource type="Material" uid="uid://dxpidm2mpqkcn" path="res://shared/buildings/assets/wall_material.tres" id="1_w2xmn"]
 
@@ -15,7 +15,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_mbvi7"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_w2xmn"]
 resource_name = "building_parts_Plane"
 _surfaces = [{
 "aabb": AABB(-1.05, -0.05, -1.05, 2.1, 0.1, 2.1),
@@ -41,7 +41,7 @@ data = {
 "width": 64
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_4eque"]
+[sub_resource type="ImageTexture" id="ImageTexture_6pj4p"]
 image = SubResource("Image_w2xmn")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_s4mfm"]
@@ -58,7 +58,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_ti8uq"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_4eque"]
 resource_name = "building_parts_Plane_001"
 _surfaces = [{
 "aabb": AABB(-1.05, -0.05, -1.05, 2.1, 0.1, 2.1),
@@ -85,7 +85,7 @@ data = {
 "width": 64
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_m4n3l"]
+[sub_resource type="ImageTexture" id="ImageTexture_h0uim"]
 image = SubResource("Image_mbvi7")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1e8ot"]
@@ -102,7 +102,23 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_28424"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_r2ybj"]
+resource_name = "building_parts_Plane_002"
+_surfaces = [{
+"aabb": AABB(-1.0500002, 8.762021e-08, -1.05, 2.1000001, 2.8, 0.100000024),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAAAEAAEAAgADAAUAAgAFAAAAAAAGAAQAAAAFAAYABAAHAAEAAQAHAAMABAAGAAcABQADAAcABQAHAAYA"),
+"name": "BuildingMat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD/////AAD//wAA//8AAAAAAAD//wAAAAAAAAAAAAD+//////8AAAAA//8AAAAA/v///wAAAAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_1e8ot")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_m4n3l"]
 resource_name = "building_parts_Plane_002"
 _surfaces = [{
 "aabb": AABB(-1.0500002, 8.762021e-08, -1.05, 2.1000001, 2.8, 0.100000024),
@@ -118,7 +134,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAD/////AID//wAA//8AgAAAAAD//wCA/v//////AIAAAP//AAD/////AAAAAP///v///wAA//8AAAAAAAD//wAA/////1TV/v///wAAVNX+//////9U1QAA//8AAFTVAAAAAP///78AAP//AAD/vwAA//////+/AAAAAAAA/7///wAA//9U1QAAAAAAAFTVAAAAAP//VNX//wAAAABU1f7///////////8AAAAA/////wAA//////7///8AAP///3////9/////f////3////9/////f////3////9///+qqqqqqqqqqqqqqqqqqqqq/3////9/////f////3///6oqVNWqKlTVqipU1aoqVNX/v/9//7//f/+//3//v/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_1e8ot")
+shadow_mesh = SubResource("ArrayMesh_r2ybj")
 
 [sub_resource type="Image" id="Image_6pj4p"]
 data = {
@@ -129,7 +145,7 @@ data = {
 "width": 64
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_wk4df"]
+[sub_resource type="ImageTexture" id="ImageTexture_td6mx"]
 image = SubResource("Image_6pj4p")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_r3yxr"]
@@ -146,7 +162,23 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_onu5t"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ixvbp"]
+resource_name = "building_parts_Plane_003"
+_surfaces = [{
+"aabb": AABB(-1.0500002, 8.762021e-08, -1.05, 2.1000001, 2.8, 0.100000024),
+"format": 34896613377,
+"index_count": 192,
+"index_data": PackedByteArray("AgABABAAAQARABAAAgASAAEAAQAMABEAEgAMAAEABQARAAwAEgATAAwABQAMABMAFAATABIAEAARABUABgARAAUABgAVABEABAAFABMAAgAFAAQAAAASAAIAAAAUABIAAwAFAAIAAwAGAAUAAwACABAAAgAEAAAAFAAWABMABAATABYADwAWABQADwAOABYAFwAPABQAFwAOAA8AFwAUAAAAGAAWAA4AFwAYAA4AGAAEABYAGQAXAAAAGQAYABcAAAAEAAsAGgAEABgAGQAaABgAGgALAAQAGQAAAAoAAAALAAoACQAaABkACQAZAAoADQALABoACQANABoAGwANAAkACQAKABsADQAcAAsAGwAcAA0ACgALAAYAHAAGAAsAGwAKAAMACgAGAAMAHQAcABsAGwADAB0AHAAeAAYAHQAeABwAHgAVAAYACAAeAB0AHgAHABUACAAHAB4AHwAVAAcAHwAHAAgAHQAfAAgAHQADAB8AEAAVAB8AAwAQAB8A"),
+"lods": [0.00034578546, PackedByteArray("AAABAAIAAwACAAEAAgAEAAAAAwAFAAIAAgAFAAQAAwAGAAUABgAHAAUAAwABAAgAAQAHAAgACQADAAgACAAHAAkACgAGAAMACQAKAAMACQAAAAoACgALAAYAAAALAAoABwAGAAsAAAAEAAsABQAHAAwABAAFAAwAAQAMAAcADQAHAAsADQALAAQACQAHAA0ABAAMAA4AAQAOAAwADQAEAA4ADwABAAAACQAPAAAADwAOAAEACQANAA8ADwANAA4A")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("/79I0v//AAD//wAA//8AAP+/SFL//wAA/z9IUv//AAD/v0jSAAAAAP+/SFIAAAAA/z9IUgAAAAAAAAAAAAAAAAAAAAD//wAAAAD/////AAD/P0jS//8AAP8/SNIAAAAA//8AAAAAAAAAAP//AAAAAP7///8AAAAA/v//////AAD/vwAA//8AAP+/AAAAAAAA/v9IUv//AAD+/0hSAAAAAP7/SNL//wAA/z8AAAAAAAD+/0jSAAAAAP+//////wAA/7///wAAAAD/P/////8AAP8///8AAAAAAABI0v//AAAAAEjSAAAAAAAASFL//wAAAABIUgAAAAD/PwAA//8AAA==")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_r3yxr")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wk4df"]
 resource_name = "building_parts_Plane_003"
 _surfaces = [{
 "aabb": AABB(-1.0500002, 8.762021e-08, -1.05, 2.1000001, 2.8, 0.100000024),
@@ -162,7 +194,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/79I0v//AID//wAA//8AgP+/SFL//wCA/z9IUv//AID+//////8AgAAAAAD//wCAAAD/////AID/P0jS//8AgP+/SFIAAP//AAAAAAAA/////wAAAAD///8/SFIAAP///79I0gAA////P0jSAAD///7///8AAP//AAD//wAA//8AAAAA/////wAAAAAAAP//AAD///////8AAP//AAD/////AAD//1TV//8AAAAAVNUAAAAAAABU1QAAAAD//1TV/v///////7/+////AAD/v///AAD///+///8AAAAA/78AAP////9U1QAA//8AAFTV/v//////VNX+////AABU1f8/SNL///+//z9IUgAA/7//P0hS////v/8/SNIAAP+//z9IUv//VNX/v0hSAABU1f+/SFL//1TV/z9IUgAAVNX/v0jS//9U1f8/SNIAAFTV/z9I0v//VNX/v0jSAABU1f+/SFL//////79I0gAA////v0jS//////+/SFIAAP///78AAP//AID+/0hS//8AgP8/AAD//wCA/v9I0v//AIAAAEhS//8AgAAASNL//wCA/z//////AID/v/////8AgP7/SFIAAP///78AAAAA///+/0jSAAD///8/AAAAAP///7///wAA////P///AAD//wAASNIAAP//AABIUgAA////P///AABU1f8//////1TV/7///wAAVNX/v/////9U1QAASFIAAP//AABIUv////8AAEjSAAD//wAASNL//////78AAAAAVNX/vwAA//9U1f8/AAAAAFTV/z8AAP//VNX+/0jSAAD/v/7/SNL///+//v9IUgAA/7/+/0hS////v/9/////f////3////9/////f////3////9/////f////3////9//v//f////3/+//9//v//f/7//3/+//9//v//P/9//z//f/8//3//P/9/VFVUVVRVVFVUVVRVVFVUVf9/AAD/fwAA/38AAP9/AABU1aoqVNWqKlTVqipU1aoq/38AAP9/AAD/fwAA/38AAFTVqipU1aoqVNWqKlTVqipUVVRVVFVUVVRVVFVUVVRV/z//f/8//3//P/9//z//f/9/////f////3////9/////f////3////9/////f////3/+//9/////f/7//3/+//9//v//f/7//3/+//9///9U1aoqVNWqKlTVqipU1aoq/z//f/8//3//P/9//z//f1RVVFVUVVRVVFVUVVRVVFX/fwAA/38AAP9/AAD/fwAA")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_r3yxr")
+shadow_mesh = SubResource("ArrayMesh_ixvbp")
 
 [sub_resource type="Image" id="Image_4eque"]
 data = {
@@ -173,7 +205,7 @@ data = {
 "width": 64
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_45kgq"]
+[sub_resource type="ImageTexture" id="ImageTexture_qa17y"]
 image = SubResource("Image_4eque")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_c3ajt"]
@@ -190,7 +222,23 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_dmqyb"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_pngse"]
+resource_name = "building_parts_Plane_004"
+_surfaces = [{
+"aabb": AABB(-1.0500002, 8.762021e-08, -1.05, 2.1000001, 2.8, 0.100000024),
+"format": 34896613377,
+"index_count": 132,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAgADAAQAAgAEAAAAAQAFAAMABAADAAUAEAAFAAEAAAAQAAEAEAARAAUABAAFABEABgARABAABgAHABEAEgAGABAAEgAHAAYAEgAQAAAAEwARAAcAEgATAAcAEwAEABEAFAASAAAAFAATABIAAAAEAAkAFQAEABMAFAAVABMAFQAJAAQAFAAAAAoAAAAJAAoACwAVABQACwAUAAoACAAJABUACwAIABUAFgAIAAsACwAKABYACAAXAAkAFgAXAAgACgAJAA0AFwANAAkAFgAKAA8ACgANAA8ADgAXABYAFgAPAA4AFwAMAA0ADwANAAwADgAMABcADwAMAA4A"),
+"lods": [0.0003603395, PackedByteArray("AAABAAIAAQADAAIAAgADAAQAAgAEAAAAAQAFAAMABAADAAUABgAFAAEABgABAAAABwAEAAUABgAHAAUACAAEAAcABgAIAAcAAAAEAAkACAAJAAQABgAAAAoAAAAJAAoACwAIAAYACwAGAAoACAAMAAkACwAMAAgADAANAAkACgAJAA0ADgAMAAsACwAKAA8ACwAPAA4ACgANAA8ADwAMAA4ADwANAAwA")],
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/7/atv//AAD//wAA//8AAP+/AAD//wAA/78AAAAAAAD/v9q2AAAAAP//AAAAAAAA/v//////AAD+////AAAAAAAA//8AAAAA/z/atgAAAAD/P9q2//8AAAAA/////wAAAAAAAAAAAAD/PwAAAAAAAAAAAAD//wAA/z8AAP//AAD+/9q2//8AAP7/2rYAAAAA/7//////AAD/v///AAAAAP8//////wAA/z///wAAAAAAANq2//8AAAAA2rYAAAAA")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_c3ajt")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_45kgq"]
 resource_name = "building_parts_Plane_004"
 _surfaces = [{
 "aabb": AABB(-1.0500002, 8.762021e-08, -1.05, 2.1000001, 2.8, 0.100000024),
@@ -206,7 +254,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/7/atv//AID//wAA//8AgP+/AAD//wCA/v//////AID/P9q2//8AgAAA/////wCA/z8AAP//AIAAAAAA//8AgP+/2rYAAP///78AAAAA/////wAAAAD///7///8AAP//AAD//wAA////P9q2AAD//wAAAAAAAP///z8AAAAA//8AAP////9U1QAA//8AAFTV/v//////VNX+////AABU1QAAAAD///+/AAAAAAAA/78AAP//////vwAA//8AAP+///8AAP//VNX/vwAAAABU1f+/AAD//1TV//8AAAAAVNX+////////////AAAAAP////8AAP/////+////AAD///8/AAD//1TVAAAAAAAAVNUAAAAA//9U1f8/AAAAAFTV/z/atv///7//PwAAAAD/v/8/AAD///+//z/atgAA/7//v9q2//9U1f8/2rYAAFTV/z/atv//VNX/v9q2AABU1f+/AAD//////7/atgAA////v9q2//////+/AAAAAP///v/atv//AID/v/////8AgP8//////wCAAADatv//AID+/9q2AAD///+///8AAP///z///wAA//8AANq2AAD///8///8AAFTV/z//////VNX/v///AABU1f+//////1TVAADatgAA/78AANq2////v/7/2rYAAP///v/atv//////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f/7//3/+//9/////f///qqqqqqqqqqqqqqqqqqqqqv9/////f////3////9///+qKlTVqipU1aoqVNWqKlTV/7//f/+//3//v/9//7//f6oqVNWqKlTVqipU1aoqVNX/fwAA/38AAP9/AAD/fwAAVFVVVVRVVVVUVVRVVFVVVf8//3//P/9//z//f/8//3//f////3////9/////f////3////9/////f////3/+/6qqqqqqqqqqqqqqqqqqqqr/f////3////+//3//v/9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_c3ajt")
+shadow_mesh = SubResource("ArrayMesh_pngse")
 
 [sub_resource type="Image" id="Image_ti8uq"]
 data = {
@@ -217,47 +265,47 @@ data = {
 "width": 64
 }
 
-[sub_resource type="ImageTexture" id="ImageTexture_jo203"]
+[sub_resource type="ImageTexture" id="ImageTexture_voesm"]
 image = SubResource("Image_ti8uq")
 
 [resource]
 item/0/name = "Floor"
-item/0/mesh = SubResource("ArrayMesh_mbvi7")
+item/0/mesh = SubResource("ArrayMesh_w2xmn")
 item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/mesh_cast_shadow = 1
 item/0/shapes = []
 item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/0/navigation_layers = 1
-item/0/preview = SubResource("ImageTexture_4eque")
+item/0/preview = SubResource("ImageTexture_6pj4p")
 item/1/name = "Hole"
-item/1/mesh = SubResource("ArrayMesh_ti8uq")
+item/1/mesh = SubResource("ArrayMesh_4eque")
 item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/mesh_cast_shadow = 1
 item/1/shapes = []
 item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/1/navigation_layers = 1
-item/1/preview = SubResource("ImageTexture_m4n3l")
+item/1/preview = SubResource("ImageTexture_h0uim")
 item/2/name = "Wall"
-item/2/mesh = SubResource("ArrayMesh_28424")
+item/2/mesh = SubResource("ArrayMesh_m4n3l")
 item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/mesh_cast_shadow = 1
 item/2/shapes = []
 item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/2/navigation_layers = 1
-item/2/preview = SubResource("ImageTexture_wk4df")
+item/2/preview = SubResource("ImageTexture_td6mx")
 item/3/name = "Window"
-item/3/mesh = SubResource("ArrayMesh_onu5t")
+item/3/mesh = SubResource("ArrayMesh_wk4df")
 item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/mesh_cast_shadow = 1
 item/3/shapes = []
 item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/navigation_layers = 1
-item/3/preview = SubResource("ImageTexture_45kgq")
+item/3/preview = SubResource("ImageTexture_qa17y")
 item/4/name = "Door"
-item/4/mesh = SubResource("ArrayMesh_dmqyb")
+item/4/mesh = SubResource("ArrayMesh_45kgq")
 item/4/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/mesh_cast_shadow = 1
 item/4/shapes = []
 item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/navigation_layers = 1
-item/4/preview = SubResource("ImageTexture_jo203")
+item/4/preview = SubResource("ImageTexture_voesm")

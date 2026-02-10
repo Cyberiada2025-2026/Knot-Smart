@@ -10,4 +10,5 @@ const MAX_RANDOM_SEED = 10000
 @export var outside_door_count: int = 1
 @export_range(0, 1) var window_percentage: float = 0.3
 @export var random_seed: int = randi_range(0, MAX_RANDOM_SEED)
-@export_tool_button("Randomize Seed") var randomize_seed_action = func(): self.random_seed = randi_range(0, MAX_RANDOM_SEED)
+@export_tool_button("Randomize Seed")
+var randomize_seed_action = func(): self.random_seed = randi_range(0, MAX_RANDOM_SEED)

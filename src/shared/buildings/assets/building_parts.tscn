@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://conyipba83qea"]
+
+[ext_resource type="PackedScene" uid="uid://bl12nmqdnj8e5" path="res://shared/buildings/assets/building_parts.glb" id="1_jr2ol"]
+[ext_resource type="Material" uid="uid://dxpidm2mpqkcn" path="res://shared/buildings/assets/wall_material.tres" id="2_63c1x"]
+
+[node name="building_parts" instance=ExtResource("1_jr2ol")]
+
+[node name="Floor" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_63c1x")
+
+[node name="Hole" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_63c1x")
+
+[node name="Wall" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_63c1x")
+
+[node name="Window" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_63c1x")
+
+[node name="Door" parent="." index="4"]
+surface_material_override/0 = ExtResource("2_63c1x")

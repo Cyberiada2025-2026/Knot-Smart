@@ -17,6 +17,7 @@ var models_placer: ModelsPlacer
 
 
 func generate_building() -> void:
+	seed(room_generation_params.random_seed)
 	get_parent().set_editable_instance(self, true)
 	if building_shape_description == null:
 		push_warning("No building_shape_description provided.")

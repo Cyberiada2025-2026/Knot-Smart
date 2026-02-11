@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://b3pq3lm4pjpdk"]
+[gd_scene load_steps=23 format=3 uid="uid://b3pq3lm4pjpdk"]
 
 [ext_resource type="Script" uid="uid://claql84jotoud" path="res://characters/enemies/basic_enemy/enemy_actor.gd" id="1_2cllp"]
+[ext_resource type="Shader" uid="uid://ipk8chgx66wl" path="res://shared/shaders/PS1_object/shaded_PS1.gdshader" id="2_3ad5t"]
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_r2ijf"]
 [ext_resource type="Script" uid="uid://cw22yurt5l74k" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="3_r2ijf"]
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_1x7vy"]
@@ -15,6 +16,12 @@
 [ext_resource type="Script" uid="uid://nbj8xk6nqyb6" path="res://shared/beehave/action/toggle_movement.gd" id="9_2cllp"]
 [ext_resource type="Script" uid="uid://cu3wfv8wcbr7x" path="res://shared/beehave/action/attack.gd" id="9_ejf3g"]
 [ext_resource type="Script" uid="uid://bd3201sehmgdt" path="res://shared/beehave/action/destroy_target.gd" id="14_3ad5t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nr11u"]
+render_priority = 0
+shader = ExtResource("2_3ad5t")
+shader_parameter/billboard = false
+shader_parameter/tint = Color(0.7, 0.7, 0.7, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ntsgn"]
 radius = 0.4
@@ -41,6 +48,7 @@ speed = 5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+material_override = SubResource("ShaderMaterial_nr11u")
 mesh = SubResource("CapsuleMesh_ntsgn")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -49,7 +57,7 @@ shape = SubResource("BoxShape3D_uwcne")
 
 [node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_r2ijf")
-blackboard = NodePath("@Node@43212")
+blackboard = NodePath("@Node@61780")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 

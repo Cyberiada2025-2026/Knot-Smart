@@ -4,12 +4,13 @@ var current_scene = null
 var loading_scene = null
 var loading_screen = preload("uid://crhln4qdp4hph")
 
+
 func _ready():
 	current_scene = get_tree().current_scene
 
 
 func goto_scene(path):
-	_deferred_goto_scene.call_deferred(path) 
+	_deferred_goto_scene.call_deferred(path)
 
 
 func _deferred_goto_scene(path):
@@ -30,4 +31,3 @@ func _deferred_goto_scene(path):
 
 	loading_scene.queue_free()
 	get_tree().current_scene = current_scene
-	

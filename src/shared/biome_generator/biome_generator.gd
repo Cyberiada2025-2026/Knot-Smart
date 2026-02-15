@@ -2,10 +2,11 @@ extends Node3D
 
 
 @export_category("GeneratorNodes")
+@export var wall_scene: String = "res://shared/biome_generator/wall.tscn"
+@export_group("debug")
 @export var point_scene: String = "res://shared/biome_generator/debug/generator_point_mesh.tscn"
 @export var line_scene: String = "res://shared/biome_generator/debug/generator_line_mesh.tscn"
 @export var triangle_scene: String = "res://shared/biome_generator/debug/generator_triangle_mesh.tscn"
-@export var wall_scene: String = "res://shared/biome_generator/wall.tscn"
 @export_category("Biomes")
 @export var biomes_sizes: Dictionary[String, int] = {
 	"start": 5000,
@@ -251,4 +252,9 @@ func _show_biomes() -> void:
 
 
 func create_walls() -> void:
-	pass
+	for line in lines:
+		if not line.biomes.is_empty():
+			var wall: BiomeWall = BiomeWall.new()
+			wall.create_wall(line.start_point, line.end_point)
+			for biome in line.biomes:
+				wall.add_biome(biome)

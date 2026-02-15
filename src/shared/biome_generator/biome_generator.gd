@@ -38,25 +38,23 @@ var biomes: Array[Biome]
 
 func _ready() -> void:
 	generate()
+	show_debug()
+	create_walls()
+
+
 
 
 func generate() -> void:
 	_set_points()
 	_randomize_points()
-	#_show_points()
-	
 	_set_lines_and_triangles()
-	#_show_lines()
-	
 	_set_biome()
 	_show_biomes()
-
 
 func _set_points() -> void:
 	for z: int in range(points_in_x):
 		for x: int in range(points_in_z):
 			points.append(Vector2((x)*(size_x/(points_in_x-1)), (z)*(size_z/(points_in_z-1))))
-
 
 func _randomize_points() -> void:
 	for z: int in range(1, points_in_x-1):
@@ -65,7 +63,6 @@ func _randomize_points() -> void:
 			#print(i%s, "  ", i/s, "  ", points[i])
 			points[i].x += (2*randf()-1) * points_randomize_in_x
 			points[i].y += (2*randf()-1) * points_randomize_in_z
-
 
 func _set_lines_and_triangles() -> void:
 	# Horizontal lines
@@ -124,7 +121,6 @@ func _create_triangle(line_a: BiomeLine, line_b: BiomeLine, line_c: BiomeLine) -
 	line_b.adjacent_triangles.append(triangle)
 	line_c.adjacent_triangles.append(triangle)
 	return triangle
-
 
 func _set_biome() -> void:
 	free_triangles = triangles.duplicate(false)
@@ -196,6 +192,14 @@ func _add_line_to_biome(biome: Biome, line: BiomeLine) -> void:
 	else:
 		biome.lines.erase(line)
 
+
+
+
+func show_debug() -> void:
+	_show_points()
+	_show_lines()
+	_set_biome()
+
 func _show_points() -> void:
 	for point: Vector2 in points:
 		var mesh: MeshInstance3D = load(point_scene).instantiate()
@@ -242,3 +246,9 @@ func _show_biomes() -> void:
 			mesh.position.x = line.start_point.x - start_x + ((line.end_point.x - line.start_point.x))/2
 			mesh.position.z = line.start_point.y - start_z + ((line.end_point.y - line.start_point.y))/2
 			self.add_child(mesh)
+
+
+
+
+func create_walls() -> void:
+	pass

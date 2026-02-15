@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cycl0o137elmj"]
-
-[ext_resource type="Script" uid="uid://bks3clvov8dgh" path="res://shared/biome_generator/biome_wall.gd" id="1_11jvr"]
-
-[node name="Wall" type="Node3D"]
-script = ExtResource("1_11jvr")

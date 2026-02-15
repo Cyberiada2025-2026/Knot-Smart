@@ -2,7 +2,7 @@ extends Node3D
 
 
 @export_category("GeneratorNodes")
-@export var wall_scene: String = "res://shared/biome_generator/wall.tscn"
+@export var wall_scene: String = "res://shared/biome_generator/wall/biome_wall.tscn"
 @export_group("debug")
 @export var point_scene: String = "res://shared/biome_generator/debug/generator_point_mesh.tscn"
 @export var line_scene: String = "res://shared/biome_generator/debug/generator_line_mesh.tscn"
@@ -39,7 +39,7 @@ var biomes: Array[Biome]
 
 func _ready() -> void:
 	generate()
-	show_debug()
+	#show_debug()
 	create_walls()
 
 
@@ -197,8 +197,8 @@ func _add_line_to_biome(biome: Biome, line: BiomeLine) -> void:
 
 
 func show_debug() -> void:
-	_show_points()
-	_show_lines()
+	#_show_points()
+	#_show_lines()
 	_set_biome()
 
 func _show_points() -> void:
@@ -254,7 +254,7 @@ func _show_biomes() -> void:
 func create_walls() -> void:
 	for line in lines:
 		if not line.biomes.is_empty():
-			var wall: BiomeWall = BiomeWall.new()
+			var wall: BiomeWall = load(wall_scene).instantiate()
 			wall.create_wall(line.start_point, line.end_point)
 			for biome in line.biomes:
 				wall.add_biome(biome)

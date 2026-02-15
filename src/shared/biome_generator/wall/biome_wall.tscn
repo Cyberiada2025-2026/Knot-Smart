@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cycl0o137elmj"]
+
+[ext_resource type="Script" uid="uid://bks3clvov8dgh" path="res://shared/biome_generator/wall/biome_wall.gd" id="1_11jvr"]
+
+[node name="Wall" type="Node3D" node_paths=PackedStringArray("path", "path_follow")]
+script = ExtResource("1_11jvr")
+path = NodePath("Path3D")
+path_follow = NodePath("Path3D/PathFollow3D")
+
+[node name="Path3D" type="Path3D" parent="."]
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.9999888, 0, -8.7421796e-08, 0, 1, 0, 8.7421796e-08, 0, -0.9999888, 0, 0, 0)
+loop = false

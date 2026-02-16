@@ -1,8 +1,7 @@
 @tool extends ConditionLeaf
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	if actor.is_at_destination():
-		
+	if actor.target != null:
 		return SUCCESS
 	else:
-		return RUNNING
+		return FAILURE

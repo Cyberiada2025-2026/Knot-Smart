@@ -8,6 +8,7 @@ const IDLE_DIS := 20
 
 var can_move := false
 var world : World3D
+var target : Node3D
 
 
 func _ready() -> void:
@@ -69,12 +70,6 @@ func get_object_around(group_name: StringName) -> Node3D:
 
 func get_target_pos() -> Vector3:
 	return navigation_agent_3d.get_target_position()
-
-
-func destroy_target(target_group: StringName) -> void:
-	var target : Node3D = get_object_around(target_group)
-	if (target != null):
-		target.queue_free()
 
 
 func _physics_process(_delta: float) -> void:

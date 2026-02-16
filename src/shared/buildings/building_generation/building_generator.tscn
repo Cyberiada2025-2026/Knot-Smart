@@ -38,4 +38,4 @@ mesh_library = ExtResource("4_pesao")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
 cell_scale = 2.0
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+metadata/_editor_floor_ = Vector3(0, -4, 0)

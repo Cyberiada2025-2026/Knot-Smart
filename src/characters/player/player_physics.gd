@@ -7,6 +7,7 @@ class_name PlayerPhysics
 @export var jump_strength = 9.5
 @export var gravity_strength = 19.0
 
+
 var player: Player
 
 func _ready() -> void:

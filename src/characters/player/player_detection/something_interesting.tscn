@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://crgmysckc65sm"]
+[gd_scene load_steps=7 format=3 uid="uid://crgmysckc65sm"]
+
+[ext_resource type="Script" uid="uid://1kkn8dm1yimx" path="res://shared/entities/time_clean.gd" id="1_10myn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uruy"]
 transparency = 1
@@ -20,6 +22,7 @@ radius = 4.0
 height = 8.0
 
 [node name="SomethingInteresting" type="Node3D" groups=["Interest"]]
+script = ExtResource("1_10myn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_hawlq")
@@ -32,3 +35,10 @@ shape = SubResource("SphereShape3D_hawlq")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
 mesh = SubResource("SphereMesh_xmuq3")
 skeleton = NodePath("../../MeshInstance3D")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -10,7 +10,7 @@ radius = 0.25
 height = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hawlq"]
-radius = 2.0
+radius = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onkk8"]
 transparency = 1
@@ -18,12 +18,13 @@ albedo_color = Color(0.05156841, 0.63433045, 0.42756984, 0.2901961)
 
 [sub_resource type="SphereMesh" id="SphereMesh_xmuq3"]
 material = SubResource("StandardMaterial3D_onkk8")
-radius = 2.0
-height = 4.0
+radius = 1.0
+height = 2.0
 
-[node name="SomethingInteresting" type="Node3D" groups=["Player"]]
+[node name="PlayerDecoy" type="Node3D" groups=["Player"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_hawlq")
 
 [node name="Area3D" type="Area3D" parent="."]

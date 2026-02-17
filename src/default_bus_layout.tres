@@ -1,0 +1,46 @@
+[gd_resource type="AudioBusLayout" format=3 uid="uid://l8m8wr3c2y2t"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
+threshold = -15.0
+ratio = 2.5
+attack_us = 2000.0
+
+[sub_resource type="AudioEffectEQ10" id="AudioEffectEQ10_j3pel"]
+resource_name = "EQ10"
+band_db/31_hz = -4.0
+band_db/62_hz = -4.0
+band_db/125_hz = -2.0
+band_db/250_hz = -2.0
+band_db/1000_hz = 3.0
+band_db/2000_hz = 4.0
+band_db/4000_hz = 4.0
+band_db/8000_hz = 1.0
+band_db/16000_hz = 1.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+predelay_msec = 20.0
+room_size = 0.4
+damping = 0.8
+wet = 0.05
+
+[sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_j3pel"]
+resource_name = "Limiter"
+ceiling_db = -0.3
+
+[resource]
+bus/1/name = &"Speech"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 2.4492435
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectEQ10_j3pel")
+bus/1/effect/1/enabled = true
+bus/1/effect/2/effect = SubResource("AudioEffectReverb_j3pel")
+bus/1/effect/2/enabled = true
+bus/1/effect/3/effect = SubResource("AudioEffectLimiter_j3pel")
+bus/1/effect/3/enabled = true

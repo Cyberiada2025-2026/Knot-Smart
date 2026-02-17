@@ -23,8 +23,8 @@ func _process(delta: float) -> void:
 	##new rotation
 	_check_new_rotation(delta)
 	_update_to_new_rotation(delta)
-	
-	
+
+
 
 
 
@@ -41,7 +41,7 @@ func _check_new_rotation(delta: float) -> void:
 		new_ground_normal = player_floor_sensor.get_collision_normal()
 	else:
 		gravity_reset_timer += delta
-	
+
 	if gravity_reset_timer >= gravity_reset_time:
 		new_ground_normal = Vector3.UP
 

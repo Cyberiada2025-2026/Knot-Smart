@@ -4,14 +4,9 @@ extends RefCounted
 #single spot for building placement and roads, uses parts of cell.gd code from room generator
 class_name Spot
 
-@export var start: Vector2i = Vector2i.ZERO
-@export var end: Vector2i = Vector2i.ZERO
-	
-var neighbors_up: Array[Spot] = []
-var neighbors_down: Array[Spot] = []
-var neighbors_left: Array[Spot] = []
-var neighbors_right: Array[Spot] = []
-
+# start coordinates should be always smaller than end coordinates
+var start: Vector2i = Vector2i.ZERO
+var end: Vector2i = Vector2i.ZERO
 
 func size_x() -> int:
 	return end.x - start.x
@@ -79,8 +74,20 @@ func visualize(visualization_container: Node3D, object_name: String):
 	visualization_container.add_child(box)
 	box.owner = visualization_container.owner
 	
-	
+## create spot 
 static func create(spot_start: Vector2i, spot_end: Vector2i):
+	
+	# ensure that start coordinates are smaller than end
+	if spot_start.x > spot_end.x:
+		var temp: int = spot_end.x
+		spot_end.x = spot_start.x
+		spot_start.x = temp
+	
+	if spot_start.y > spot_end.y:
+		var temp: int = spot_end.y
+		spot_end.y = spot_start.y
+		spot_start.y = temp
+	
 	var sp = Spot.new()
 	sp.start = spot_start
 	sp.end = spot_end

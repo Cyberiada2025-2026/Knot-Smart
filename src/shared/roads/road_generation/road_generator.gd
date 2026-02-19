@@ -130,7 +130,6 @@ func _init_export_array():
 			row.clear()
 		_export_array.clear()
 	
-	# using last ID as array size
 	var size: int = RoadBitmask.get_road_id_count()
 	_export_array.resize(size)
 	for i in range(size):
@@ -150,10 +149,12 @@ func _export_data_array():
 #####################################################
 
 
+## converts 
 func _get_generation_areas() -> Array[Spot]:
 	var areas: Array[Spot] = []
 	
 	generation_params.generation_areas.sort_custom(LimitterArea.sort_by_radius)
+	
 	# create default area if that was not added as last element of limits array
 	if not generation_params.generation_areas.back().area_radius == 1.0:
 		printerr("default spot size parameter not found, setting to 3x10")
@@ -167,7 +168,7 @@ func _get_generation_areas() -> Array[Spot]:
 			generation_params.generation_areas[i].max_spot_size.x 
 			< generation_params.generation_areas[i].min_spot_size.x * 2
 		):
-			printerr("infinite loop detected, max x size for one of areas was changed")
+			printerr("infinite loop detected, max x size for one area was changed")
 			generation_params.generation_areas[i].max_spot_size.x = (
 				generation_params.generation_areas[i].min_spot_size.x * 2
 			)
@@ -176,7 +177,7 @@ func _get_generation_areas() -> Array[Spot]:
 			generation_params.generation_areas[i].max_spot_size.y 
 			< generation_params.generation_areas[i].min_spot_size.y * 2
 		):
-			printerr("infinite loop detected, max y size for one of areas was changed")
+			printerr("infinite loop detected, max y size for one area was changed")
 			generation_params.generation_areas[i].max_spot_size.y = ( 
 				generation_params.generation_areas[i].min_spot_size.y * 2
 			)
@@ -199,19 +200,22 @@ func _get_generation_areas() -> Array[Spot]:
 func _generate_spots():
 	var spots: Array[Spot] = []
 	var areas: Array[Spot] = _get_generation_areas()
+	
+	# create initial rectangle spot that will be divided into smaller ones
 	spots.push_back(Spot.create(Vector2i(0, 0), Vector2i(_map_size.x - 1, _map_size.y - 1)))
 	
 	# splitting rectangles until they reach proper size
 	var steps: int = 0
 	while !spots.is_empty():
 		var area: int = 0
-		#print(len(spots))
 		var current: int = randi() % len(spots)
+		
 		while not spots[current].overlaps(areas[area]):
 			area += 1
 			
 		# action decides whether we are splitting x or y direction
 		var action = randi() % 2
+		
 		if (
 			spots[current].size_x() > generation_params.generation_areas[area].max_spot_size.x 
 			and spots[current].size_x() >= generation_params.generation_areas[area].min_spot_size.x * 2
@@ -235,7 +239,7 @@ func _generate_spots():
 		):
 			_final_spots.push_back(spots.pop_at(current))
 			
-		# main streets, all spots are moved 1 tile forward to create double roads on casting
+		# main streets, all spots are moved 1 tile forward to create double roads when casting to map
 		if steps == generation_params.highway_generation_time:
 			for i in range(len(_final_spots)):
 				# avoid rectangles close to map border
@@ -253,7 +257,7 @@ func _generate_spots():
 			steps += 1
 	
 	for i in range(len(_final_spots)):
-		# avoid rectangles close to map border
+		# avoid rectangles close to map border for better city shape
 		if (
 			_final_spots[i].start.x != 0 
 			and _final_spots[i].start.y != 0 
@@ -275,9 +279,13 @@ func _generate_spots():
 ## as input provide 2D boolean array where true is terrain which blocks road tile creation [br]
 ## returns 2D array with positions of road tiles sorted by their ID's (ID's as array indexes)
 func generate(terrain_map: Array):
+	
+	# clear previous generation results
 	if not _final_spots.is_empty():
 		_final_spots.clear()
+	
 	_map_size = Vector2i(len(terrain_map), len(terrain_map[0]))
+	
 	_init_maps()
 	_generate_spots()
 	

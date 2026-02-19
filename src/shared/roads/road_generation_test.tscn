@@ -31,5 +31,6 @@ metadata/_custom_type_script = "uid://bkhcx31mo2w7e"
 script = ExtResource("1_m3caq")
 generation_params = SubResource("Resource_dxu3u")
 visualization_container = NodePath("roadMapVisualizationContainer")
+create_visualization = true
 
 [node name="roadMapVisualizationContainer" type="Node3D" parent="."]

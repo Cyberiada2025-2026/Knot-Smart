@@ -278,7 +278,7 @@ func _generate_spots():
 ## generate roads [br]
 ## as input provide 2D boolean array where true is terrain which blocks road tile creation [br]
 ## returns 2D array with positions of road tiles sorted by their ID's (ID's as array indexes)
-func generate(terrain_map: Array):
+func generate_roads(terrain_map: Array):
 	
 	# clear previous generation results
 	if not _final_spots.is_empty():
@@ -316,7 +316,7 @@ func test() -> void:
 	if more_log_messages:
 		print("start road generation!")
 	
-	generate(test_terrain_map)
+	generate_roads(test_terrain_map)
 	
 	if log_generated_map_to_console:
 		_print_map_to_console()

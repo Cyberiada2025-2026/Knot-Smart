@@ -76,21 +76,10 @@ func visualize(visualization_container: Node3D, object_name: String):
 	
 ## create spot 
 static func create(spot_start: Vector2i, spot_end: Vector2i):
-	
-	# ensure that start coordinates are smaller than end
-	if spot_start.x > spot_end.x:
-		var temp: int = spot_end.x
-		spot_end.x = spot_start.x
-		spot_start.x = temp
-	
-	if spot_start.y > spot_end.y:
-		var temp: int = spot_end.y
-		spot_end.y = spot_start.y
-		spot_start.y = temp
-	
 	var sp = Spot.new()
-	sp.start = spot_start
-	sp.end = spot_end
+	# ensure that start coordinates are smaller than end
+	sp.start = Vector2i(mini(spot_start.x, spot_end.x), mini(spot_start.y, spot_end.y))
+	sp.end = Vector2i(maxi(spot_start.x, spot_end.x), maxi(spot_start.y, spot_end.y))
 	return sp
 	
 	

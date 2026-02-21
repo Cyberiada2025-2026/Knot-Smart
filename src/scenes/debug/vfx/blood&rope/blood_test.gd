@@ -5,6 +5,7 @@ extends Node
 
 var timer: float = interval
 
+
 func _process(delta: float) -> void:
 	timer += delta
 	if timer >= interval:

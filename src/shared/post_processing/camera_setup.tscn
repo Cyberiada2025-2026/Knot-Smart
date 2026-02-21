@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://rnx3yu0ofiwg"]
+[gd_scene load_steps=7 format=3 uid="uid://rnx3yu0ofiwg"]
 
+[ext_resource type="Script" uid="uid://b2qmm8ipalct6" path="res://shared/camera/camera_replacer.gd" id="1_3nir4"]
 [ext_resource type="Environment" uid="uid://db3d7co0oblxp" path="res://shared/post_processing/environment.tres" id="1_rfpeg"]
 [ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://shared/post_processing/shaders/dithering.gdshader" id="2_i5s75"]
 [ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://shared/post_processing/shaders/crt.gdshader" id="3_lwxwa"]
@@ -9,19 +10,21 @@ shader = ExtResource("2_i5s75")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tvswt"]
 shader = ExtResource("3_lwxwa")
-shader_parameter/hardScan = -8.0
-shader_parameter/hardPix = -1.9999998575000002
-shader_parameter/warpX = 0.03125
-shader_parameter/warpY = 0.041667
-shader_parameter/maskDark = 0.75
-shader_parameter/maskLight = 1.75
+shader_parameter/hard_scan = -8.0
+shader_parameter/hard_pix = -2.5
+shader_parameter/warp_x = 0.03125
+shader_parameter/warp_y = 0.041667
+shader_parameter/mask_dark = 0.75
+shader_parameter/mask_light = 1.75
 
-[node name="HelperCamera" type="Camera3D"]
+[node name="HelperCamera" type="Camera3D" node_paths=PackedStringArray("camera")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-cull_mask = 0
+cull_mask = 524288
 projection = 1
 current = true
 far = 0.1
+script = ExtResource("1_3nir4")
+camera = NodePath("Control/SubViewportContainer/SubViewport/MainCamera")
 
 [node name="Control" type="Control" parent="."]
 light_mask = 0
@@ -56,24 +59,12 @@ render_target_update_mode = 4
 
 [node name="MainCamera" type="Camera3D" parent="Control/SubViewportContainer/SubViewport"]
 transform = Transform3D(0.9914175, -2.231977e-08, -0.1307338, 0.053353444, 0.91293395, 0.40460476, 0.11935132, -0.40810734, 0.90509874, -3.765843, 8.939763, 12.39052)
+cull_mask = 524287
 environment = ExtResource("1_rfpeg")
 
-[node name="UI" type="Control" parent="Control/SubViewportContainer/SubViewport/MainCamera"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="test" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera/UI"]
-layout_mode = 0
-offset_left = 5.23
-offset_top = 12.705
-offset_right = 23.23
-offset_bottom = 30.705008
-rotation = -0.6073746
-color = Color(0.40960324, 0.40960327, 0.40960324, 1)
-
 [node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera"]
+z_index = 4096
+z_as_relative = false
 material = SubResource("ShaderMaterial_xylyt")
 anchors_preset = -1
 anchor_right = 35.925
@@ -82,9 +73,13 @@ offset_right = 3.0
 offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="CRT" type="ColorRect" parent="Control"]
+visibility_layer = 524288
+z_index = 4096
+z_as_relative = false
 material = SubResource("ShaderMaterial_tvswt")
 layout_mode = 1
 anchors_preset = -1
@@ -94,4 +89,5 @@ offset_right = 3.0
 offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 metadata/_edit_use_anchors_ = true

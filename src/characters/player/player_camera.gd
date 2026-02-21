@@ -29,6 +29,7 @@ var arm_length: float
 var mouse_relative: Vector2 = Vector2.ZERO
 
 func  _ready() -> void:
+	CameraSetup.reference = camera
 	rotation_strategy.start()
 	view_strategy.start(self)
 

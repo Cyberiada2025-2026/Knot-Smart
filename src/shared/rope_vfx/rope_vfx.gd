@@ -2,7 +2,7 @@ extends Node3D
 class_name RopeVFX
 
 # Set this prefab at one end of the rope, rotate it
-# so that it's y-axis points at the other end
+# so that its y-axis points at the other end
 # and call start() with starting lengths
 
 const start_length_param: String = "length_start"

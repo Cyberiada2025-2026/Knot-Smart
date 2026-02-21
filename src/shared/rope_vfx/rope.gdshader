@@ -5,6 +5,11 @@ render_mode skip_vertex_transform, unshaded, cull_disabled;
 const vec2 res = vec2(320, 240);
 const bool billboard = false;
 
+// Large numbers that are not simple multiplications of each others
+// for a simple pseudo randomness
+const float MULT_X = 78340.0;
+const float MULT_Y = 93560.0;
+
 uniform float mesh_width_change = 1.0;
 uniform float anim_start = 1.0;
 uniform float length_start = 1.0;
@@ -31,8 +36,8 @@ void vertex() {
 	vec4 vertex = clip_space;
 	
 	vec2 offset = vec2(
-		round(sin(78340.0*VERTEX.x*VERTEX.y*VERTEX.z * floor(TIME/vibrate_time))),
-		round(sin(93560.0*VERTEX.x*VERTEX.y*VERTEX.z * floor(TIME/vibrate_time))));
+		round(sin(MULT_X * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME/vibrate_time))),
+		round(sin(MULT_Y * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME/vibrate_time))));
 		
 	// Vertex snapping
 	vertex.xy = (round(clip_space.xy / clip_space.w * VIEWPORT_SIZE.xy + offset))/ VIEWPORT_SIZE.xy * clip_space.w;
@@ -65,21 +70,9 @@ void fragment() {
 	vec3 main_col = main_col_def;
 	vec3 sec_col = sec_col_def;
 	
-	if (length_curr > length_start)
-	{
-		main_col = mix(main_col_stretch, main_col_def, pow(length_start/length_curr, 2.0));
-		sec_col = mix(sec_col_stretch, sec_col_def, pow(length_start/length_curr, 2.0));
-	}
-	else
-	{
-		main_col = mix(main_col_squish, main_col_def, pow(length_curr/length_start, 2.0));
-		sec_col = mix(sec_col_squish, sec_col_def, pow(length_curr/length_start, 2.0));
-	}
+	vec3 scaling = (length_curr > length_start)? main_col_stretch : main_col_squish;
+	main_col = mix(scaling, main_col_def, pow(length_start/length_curr, 2.0));
+	sec_col = mix(scaling, sec_col_def, pow(length_start/length_curr, 2.0));
 	
 	ALBEDO.rgb = mix(sec_col, main_col, segments).rgb;
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the material.
-//	// Uncomment to replace the default light processing function with this one.
-//}

@@ -38,8 +38,3 @@ void fragment() {
 
 	ALBEDO = mix(main_col, sec_col, texture_color.b) * vec3(1.0-texture_color.g);
 }
-
-//void light() {
-//	// Called for every pixel for every light affecting the material.
-//	// Uncomment to replace the default light processing function with this one.
-//}

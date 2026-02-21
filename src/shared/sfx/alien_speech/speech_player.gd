@@ -22,13 +22,23 @@ var sounds = {
 func play_speech(input: Array) -> void:
 	for sentence in input:
 		for word in sentence:
-			for speech in word:
-				play_sound(sounds[speech])
+			for i in range(len(word)):
+				if i != len(word)-1:
+					play_sound(sounds[word[i]])
+				else:
+					play_sound(sounds[word[i]], false)
 				await audio_stream_player.finished
 		await get_tree().create_timer(0.75).timeout
 
 
-func play_sound(sound: AudioStream) -> void:
+func play_sound(sound: AudioStream, cut_ending: bool = true) -> void:
 	audio_stream_player.stream = sound
-	audio_stream_player.pitch_scale = 1 + randf_range(-0.05, 0.05)
+	audio_stream_player.pitch_scale = 1.1 + randf_range(-0.05, 0.05)
 	audio_stream_player.play()
+	
+	if cut_ending:
+		var play_duration = sound.get_length() * 0.9
+		
+		await get_tree().create_timer(play_duration).timeout
+		audio_stream_player.stop()
+		audio_stream_player.emit_signal("finished")

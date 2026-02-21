@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://3rax0onuo76f"]
+[gd_scene load_steps=15 format=3 uid="uid://3rax0onuo76f"]
 
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
+[ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="2_yyfjg"]
+[ext_resource type="Script" uid="uid://cfqche3hcpffv" path="res://scenes/debug/vfx/blood&rope/blood_test.gd" id="3_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://50058jf30t1n" path="res://shared/buildings/building_generation/building_generator.tscn" id="4_6q06x"]
-[ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="4_l3cfh"]
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params.gd" id="5_hujxm"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
@@ -56,12 +57,14 @@ shape = SubResource("BoxShape3D_hyk8p")
 [node name="Enemy" parent="." instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
 
+[node name="CPUParticles3D" parent="Enemy" instance=ExtResource("2_yyfjg")]
+
+[node name="Node3D" type="Node3D" parent="Enemy/CPUParticles3D" node_paths=PackedStringArray("particles")]
+script = ExtResource("3_b1x3f")
+particles = NodePath("..")
+
 [node name="Player" parent="." instance=ExtResource("3_k2fmo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6612322, 1.435396, 3.9698668)
-
-[node name="CameraReplacer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("4_l3cfh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6709199, 0)
-camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")
 
 [node name="BuildingGenerator" parent="." instance=ExtResource("4_6q06x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, 9)

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://djqe8wkjmmn8n"]
 
-[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/rope_vfx/rope.gdshader" id="1_jo2uc"]
-[ext_resource type="Script" uid="uid://l0fhfdnlggk" path="res://shared/rope_vfx/rope_vfx.gd" id="1_mc67o"]
+[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/vfx/rope/rope.gdshader" id="1_jo2uc"]
+[ext_resource type="Script" uid="uid://l0fhfdnlggk" path="res://shared/vfx/rope/rope_vfx.gd" id="1_mc67o"]
 [ext_resource type="Shader" uid="uid://1pvk0smpoe86" path="res://shared/shaders/fresnel_additive.gdshader" id="2_jo2uc"]
 [ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="4_lbvd8"]
 

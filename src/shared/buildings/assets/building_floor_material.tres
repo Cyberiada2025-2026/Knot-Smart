@@ -1,8 +1,10 @@
-[gd_resource type="ShaderMaterial" format=3 uid="uid://bjkeopeq3ehmb"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://p23eoepvxe0s"]
 
-[ext_resource type="Shader" path="res://shared/shaders/triplanar_mapping_with_alt.gdshader" id="1_k45uo"]
-[ext_resource type="Texture2D" uid="uid://1xktxeygkcdl" path="res://shared/buildings/assets/brick2.png" id="2_d5aoj"]
-[ext_resource type="Texture2D" uid="uid://bnsi8fjurk7cv" path="res://shared/buildings/assets/beton.png" id="3_70rdv"]
+[ext_resource type="Shader" path="res://shared/shaders/triplanar_mapping_with_alt.gdshader" id="1_83ji8"]
+[ext_resource type="Texture2D" uid="uid://co7hk3cq6dxrv" path="res://shared/buildings/assets/kamyki.png" id="2_83ji8"]
+[ext_resource type="Texture2D" uid="uid://1xktxeygkcdl" path="res://shared/buildings/assets/brick2.png" id="2_yume6"]
+[ext_resource type="Texture2D" uid="uid://bnsi8fjurk7cv" path="res://shared/buildings/assets/beton.png" id="3_k5mqm"]
+[ext_resource type="Texture2D" uid="uid://c1pjugqeg5v7a" path="res://shared/buildings/assets/dirt.png" id="3_yume6"]
 
 [sub_resource type="Gradient" id="Gradient_k45uo"]
 interpolation_mode = 1
@@ -28,17 +30,17 @@ width = 32
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_k45uo")
+shader = ExtResource("1_83ji8")
 shader_parameter/alt_mask_scale = 0.25
 shader_parameter/texture_scale = 0.5
 shader_parameter/alt_mask_rotation = Vector3(-0.005, 0.8, 0.485)
 shader_parameter/blend_strength = 1.0
-shader_parameter/xy_main = ExtResource("3_70rdv")
-shader_parameter/xy_alt = ExtResource("2_d5aoj")
-shader_parameter/yz_main = ExtResource("3_70rdv")
-shader_parameter/yz_alt = ExtResource("2_d5aoj")
-shader_parameter/xz_main = ExtResource("3_70rdv")
-shader_parameter/xz_alt = ExtResource("2_d5aoj")
+shader_parameter/xy_main = ExtResource("3_k5mqm")
+shader_parameter/xy_alt = ExtResource("2_yume6")
+shader_parameter/yz_main = ExtResource("3_k5mqm")
+shader_parameter/yz_alt = ExtResource("2_yume6")
+shader_parameter/xz_main = ExtResource("3_yume6")
+shader_parameter/xz_alt = ExtResource("2_83ji8")
 shader_parameter/alt_mask = SubResource("NoiseTexture3D_70rdv")
 shader_parameter/gradient = SubResource("GradientTexture1D_g8bcd")
 shader_parameter/gradient_max_height = 10.0

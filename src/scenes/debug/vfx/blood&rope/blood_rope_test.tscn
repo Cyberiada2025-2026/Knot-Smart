@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dvtuotksnd2hb"]
+[gd_scene format=3 uid="uid://dvtuotksnd2hb"]
 
 [ext_resource type="PackedScene" uid="uid://rnx3yu0ofiwg" path="res://shared/post_processing/camera_setup.tscn" id="1_r2vhj"]
 [ext_resource type="PackedScene" uid="uid://djqe8wkjmmn8n" path="res://shared/rope_vfx/rope_vfx.tscn" id="2_cl5ih"]
@@ -12,7 +12,7 @@ albedo_color = Color(0.16924527, 0.1692453, 0.16924527, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jka67"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_ndoc8"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_r2vhj"]
 resource_local_to_scene = true
 top_radius = 0.05
 bottom_radius = 0.05
@@ -20,7 +20,7 @@ height = 1.0
 radial_segments = 8
 rings = 10
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wwlf7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cl5ih"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_agnij")
@@ -116,39 +116,39 @@ shader_parameter/tint = Color(0.7199617, 0.64347124, 0.57664645, 1)
 material = SubResource("ShaderMaterial_i5arm")
 size = Vector3(5, 15, 5)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" unique_id=1760769297]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1900288295]
 transform = Transform3D(0.23269954, -0.8061066, 0.5440983, 0.49356812, 0.5799406, 0.64811987, -0.83799845, 0.117732406, 0.53282046, 0, 10.764424, 0)
 
-[node name="HelperCamera" parent="." instance=ExtResource("1_r2vhj")]
+[node name="HelperCamera" parent="." unique_id=891929691 instance=ExtResource("1_r2vhj")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1172598634]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 9.462083, -1.512742, 5.0268726)
 material_override = SubResource("StandardMaterial3D_r3fl7")
 mesh = SubResource("PlaneMesh_jka67")
 
-[node name="RopeVFX" parent="." instance=ExtResource("2_cl5ih")]
+[node name="RopeVFX" parent="." unique_id=917934477 instance=ExtResource("2_cl5ih")]
 transform = Transform3D(0.92935824, -0.036583424, 0.36736202, 0, 0.9950781, 0.09909397, -0.3691791, -0.0920938, 0.924784, 0, 4.832723, 8.939024)
-mesh = SubResource("CylinderMesh_ndoc8")
-mat = SubResource("ShaderMaterial_wwlf7")
+mesh = SubResource("CylinderMesh_r2vhj")
+mat = SubResource("ShaderMaterial_cl5ih")
 
-[node name="Blood VFX" parent="." instance=ExtResource("4_epstj")]
+[node name="Blood VFX" parent="." unique_id=11854146 instance=ExtResource("4_epstj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30764604, 6.96047, 6.618123)
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Blood VFX"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Blood VFX" unique_id=321471060]
 material_override = SubResource("StandardMaterial3D_5e0b0")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=179354436]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.293174, -2.336999)
 visible = false
 mesh = SubResource("BoxMesh_r3fl7")
 
-[node name="Node3D2" type="Node3D" parent="." node_paths=PackedStringArray("particles")]
+[node name="Node3D2" type="Node3D" parent="." unique_id=775015549 node_paths=PackedStringArray("particles")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.293174, -2.336999)
 script = ExtResource("5_em06k")
 particles = NodePath("../Blood VFX")
 
-[node name="Node3D" type="Node3D" parent="Node3D2" node_paths=PackedStringArray("rope")]
+[node name="Node3D" type="Node3D" parent="Node3D2" unique_id=2013389513 node_paths=PackedStringArray("rope")]
 script = ExtResource("6_4k4jr")
 rope = NodePath("../../RopeVFX")

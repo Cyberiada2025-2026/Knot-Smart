@@ -246,7 +246,10 @@ func _show_biomes() -> void:
 			mesh.mesh.size.x = line.get_length()
 			mesh.rotation.y = line.get_rotation()
 			mesh.position.x = line.start_point.x - start_x + ((line.end_point.x - line.start_point.x))/2
+			mesh.position.y += 1
 			mesh.position.z = line.start_point.y - start_z + ((line.end_point.y - line.start_point.y))/2
+			mesh.mesh.resource_local_to_scene
+			mesh.mesh.material.albedo_color = Color.AQUA
 			self.add_child(mesh)
 
 

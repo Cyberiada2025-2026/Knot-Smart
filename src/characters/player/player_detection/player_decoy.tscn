@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://71v4bfmlfpqn"]
+[gd_scene format=3 uid="uid://71v4bfmlfpqn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uruy"]
 transparency = 1
@@ -21,16 +21,16 @@ material = SubResource("StandardMaterial3D_onkk8")
 radius = 2.0
 height = 4.0
 
-[node name="SomethingInteresting" type="Node3D" groups=["Player"]]
+[node name="SomethingInteresting" type="Node3D" unique_id=1662506680 groups=["Player"]]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1601349489]
 mesh = SubResource("SphereMesh_hawlq")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1463831256]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1643199003]
 shape = SubResource("SphereShape3D_hawlq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1040964435]
 mesh = SubResource("SphereMesh_xmuq3")
 skeleton = NodePath("../../MeshInstance3D")

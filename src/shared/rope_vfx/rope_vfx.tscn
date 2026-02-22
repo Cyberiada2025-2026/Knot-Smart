@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://djqe8wkjmmn8n"]
+[gd_scene format=3 uid="uid://djqe8wkjmmn8n"]
 
 [ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/rope_vfx/rope.gdshader" id="1_jo2uc"]
 [ext_resource type="Script" uid="uid://l0fhfdnlggk" path="res://shared/rope_vfx/rope_vfx.gd" id="1_mc67o"]
@@ -290,7 +290,7 @@ _data = {
 &"rope_on": SubResource("Animation_jo2uc")
 }
 
-[node name="RopeVFX" type="Node3D" node_paths=PackedStringArray("player", "mesh_node", "splash", "break1", "break2", "first_ball", "second_ball")]
+[node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "mesh_node", "splash", "break1", "break2", "first_ball", "second_ball")]
 script = ExtResource("1_mc67o")
 player = NodePath("AnimationPlayer")
 mesh = SubResource("CylinderMesh_i5arm")
@@ -302,11 +302,11 @@ break2 = NodePath("Mesh/Break2")
 first_ball = NodePath("CSGSphere3D")
 second_ball = NodePath("CSGSphere3D/CSGSphere3D")
 
-[node name="Mesh" type="CSGMesh3D" parent="."]
+[node name="Mesh" type="CSGMesh3D" parent="." unique_id=1415216167]
 material_override = SubResource("ShaderMaterial_mc67o")
 mesh = SubResource("CylinderMesh_i5arm")
 
-[node name="Splash" type="CPUParticles3D" parent="Mesh"]
+[node name="Splash" type="CPUParticles3D" parent="Mesh" unique_id=1084427136]
 material_override = SubResource("ShaderMaterial_wc5p8")
 emitting = false
 amount = 4
@@ -331,7 +331,7 @@ scale_curve_z = SubResource("Curve_6iypd")
 color_ramp = SubResource("Gradient_tereu")
 color_initial_ramp = SubResource("Gradient_lbvd8")
 
-[node name="Break1" type="CPUParticles3D" parent="Mesh"]
+[node name="Break1" type="CPUParticles3D" parent="Mesh" unique_id=1437794247]
 material_override = SubResource("ShaderMaterial_lbvd8")
 emitting = false
 amount = 64
@@ -355,7 +355,7 @@ scale_amount_min = 0.1
 scale_amount_curve = SubResource("Curve_xs02k")
 color_initial_ramp = SubResource("Gradient_gg86f")
 
-[node name="Break2" type="CPUParticles3D" parent="Mesh"]
+[node name="Break2" type="CPUParticles3D" parent="Mesh" unique_id=1791564360]
 material_override = SubResource("ShaderMaterial_ngo2x")
 emitting = false
 amount = 16
@@ -377,17 +377,15 @@ angle_max = 90.0
 scale_amount_min = 0.8
 scale_amount_curve = SubResource("Curve_xs02k")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=311434849]
 visible = false
 material_override = SubResource("ShaderMaterial_gg86f")
 radius = 0.12
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGSphere3D"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGSphere3D" unique_id=1768756739]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 material_override = SubResource("ShaderMaterial_gg86f")
 radius = 0.12
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_lbvd8")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1417330855]
+libraries/ = SubResource("AnimationLibrary_lbvd8")

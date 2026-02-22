@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxr2xiej7ep2p"]
+[gd_scene format=3 uid="uid://cxr2xiej7ep2p"]
 
 [sub_resource type="Environment" id="Environment_a0tk4"]
 background_color = Color(0.37284583, 0.65785354, 0.57790345, 1)
@@ -31,6 +31,6 @@ metadata/_custom_type_script = "uid://gu6ekv78750p"
 [sub_resource type="Compositor" id="Compositor_r3fl7"]
 compositor_effects = Array[CompositorEffect]([SubResource("CompositorEffect_cdqbm"), SubResource("CompositorEffect_wc5p8")])
 
-[node name="WorldEnvironment" type="WorldEnvironment"]
+[node name="WorldEnvironment" type="WorldEnvironment" unique_id=11299357]
 environment = SubResource("Environment_a0tk4")
 compositor = SubResource("Compositor_r3fl7")

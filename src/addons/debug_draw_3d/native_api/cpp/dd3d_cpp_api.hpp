@@ -40,14 +40,16 @@ __pragma(warning(default : 4244 26451 26495));
 #define ZoneScoped
 #endif
 
-#ifdef DD3D_ENABLE_MISMATCH_CHECKS
 
+#ifdef DD3D_ENABLE_MISMATCH_CHECKS
 #include <sstream>
 #include <string>
 #include <typeinfo>
+#endif
 
 namespace DD3DShared {
 
+#ifdef DD3D_ENABLE_MISMATCH_CHECKS
 template <typename T>
 struct FunctionSignature;
 
@@ -75,9 +77,40 @@ private:
 		return oss.str();
 	}
 };
+#endif
+
+struct CQuaternion {
+	real_t x = 0.0;
+	real_t y = 0.0;
+	real_t z = 0.0;
+	real_t w = 1.0;
+
+	_FORCE_INLINE_ operator godot::Quaternion() const {
+		return godot::Quaternion(x, y, z, w);
+	}
+
+	CQuaternion(const godot::Quaternion &q) :
+			x(q.x), y(q.y), z(q.z), w(q.w) {
+	}
+};
+
+struct CProjection {
+	godot::Vector4 columns[4];
+
+	_FORCE_INLINE_ operator godot::Projection() const {
+		return godot::Projection(columns[0], columns[1], columns[2], columns[3]);
+	}
+
+	CProjection(const godot::Projection &p) {
+		columns[0] = p[0];
+		columns[1] = p[1];
+		columns[2] = p[2];
+		columns[3] = p[3];
+	}
+};
+
 } // namespace DD3DShared
 
-#endif
 
 struct _DD3D_Loader_ {
 	static constexpr const char *log_prefix = "[DD3D C++] ";
@@ -295,6 +328,56 @@ class DebugDraw3DScopeConfig;
 class DebugDraw3DStats;
 
 // Start of the generated API
+static_assert(std::is_standard_layout_v<godot::Vector2>);
+static_assert(std::is_trivially_copyable_v<godot::Vector2>);
+
+static_assert(std::is_standard_layout_v<godot::Vector2i>);
+static_assert(std::is_trivially_copyable_v<godot::Vector2i>);
+
+static_assert(std::is_standard_layout_v<godot::Rect2>);
+static_assert(std::is_trivially_copyable_v<godot::Rect2>);
+
+static_assert(std::is_standard_layout_v<godot::Rect2i>);
+static_assert(std::is_trivially_copyable_v<godot::Rect2i>);
+
+static_assert(std::is_standard_layout_v<godot::Vector3>);
+static_assert(std::is_trivially_copyable_v<godot::Vector3>);
+
+static_assert(std::is_standard_layout_v<godot::Vector3i>);
+static_assert(std::is_trivially_copyable_v<godot::Vector3i>);
+
+static_assert(std::is_standard_layout_v<godot::Transform2D>);
+static_assert(std::is_trivially_copyable_v<godot::Transform2D>);
+
+static_assert(std::is_standard_layout_v<godot::Vector4>);
+static_assert(std::is_trivially_copyable_v<godot::Vector4>);
+
+static_assert(std::is_standard_layout_v<godot::Vector4i>);
+static_assert(std::is_trivially_copyable_v<godot::Vector4i>);
+
+static_assert(std::is_standard_layout_v<godot::Plane>);
+static_assert(std::is_trivially_copyable_v<godot::Plane>);
+
+// Original type - godot::Quaternion
+static_assert(std::is_standard_layout_v<DD3DShared::CQuaternion>);
+static_assert(std::is_trivially_copyable_v<DD3DShared::CQuaternion>);
+
+static_assert(std::is_standard_layout_v<godot::AABB>);
+static_assert(std::is_trivially_copyable_v<godot::AABB>);
+
+static_assert(std::is_standard_layout_v<godot::Basis>);
+static_assert(std::is_trivially_copyable_v<godot::Basis>);
+
+static_assert(std::is_standard_layout_v<godot::Transform3D>);
+static_assert(std::is_trivially_copyable_v<godot::Transform3D>);
+
+// Original type - godot::Projection
+static_assert(std::is_standard_layout_v<DD3DShared::CProjection>);
+static_assert(std::is_trivially_copyable_v<DD3DShared::CProjection>);
+
+static_assert(std::is_standard_layout_v<godot::Color>);
+static_assert(std::is_trivially_copyable_v<godot::Color>);
+
 
 /**
  * @brief
@@ -1313,6 +1396,13 @@ static std::shared_ptr<DebugDraw3DScopeConfig> new_scoped_config() {
  * Returns the default scope settings that will be applied at the start of each new frame.
  *
  * Default values can be overridden in the project settings `debug_draw_3d/settings/3d/volumetric_defaults`.
+ *
+ * @note
+ * When used in a managed language, this is not mandatory, but it is recommended to finish the `scoped_config()` configuration with a dispose.
+ * This will reduce the number of objects awaiting removal by the garbage collector.
+ * ```cs
+ * DebugDraw3D.ScopedConfig().SetThickness(debug_thickness).Dispose();
+ * ```
  */
 static std::shared_ptr<DebugDraw3DScopeConfig> scoped_config() {
 	static void * (*DebugDraw3D_scoped_config)() = nullptr;
@@ -1448,7 +1538,7 @@ static void draw_sphere_xf(const godot::Transform3D &transform, const godot::Col
  */
 static void draw_capsule(const godot::Vector3 &position, const godot::Quaternion &rotation, const real_t &radius, const real_t &height, const godot::Color &color = godot::Color(0, 0, 0, 0), const real_t &duration = 0) {
 #ifdef _DD3D_RUNTIME_CHECK_ENABLED
-	static void (*DebugDraw3D_draw_capsule)(const godot::Vector3 /*position*/, const godot::Quaternion /*rotation*/, const real_t /*radius*/, const real_t /*height*/, const godot::Color /*color*/, const real_t /*duration*/) = nullptr;
+	static void (*DebugDraw3D_draw_capsule)(const godot::Vector3 /*position*/, const DD3DShared::CQuaternion /*rotation*/, const real_t /*radius*/, const real_t /*height*/, const godot::Color /*color*/, const real_t /*duration*/) = nullptr;
 	LOAD_AND_CALL_FUNC_POINTER(DebugDraw3D_draw_capsule, position, rotation, radius, height, color, duration);
 #endif
 }
@@ -1527,7 +1617,7 @@ static void draw_cylinder_ab(const godot::Vector3 &a, const godot::Vector3 &b, c
  */
 static void draw_box(const godot::Vector3 &position, const godot::Quaternion &rotation, const godot::Vector3 &size, const godot::Color &color = godot::Color(0, 0, 0, 0), const bool &is_box_centered = false, const real_t &duration = 0) {
 #ifdef _DD3D_RUNTIME_CHECK_ENABLED
-	static void (*DebugDraw3D_draw_box)(const godot::Vector3 /*position*/, const godot::Quaternion /*rotation*/, const godot::Vector3 /*size*/, const godot::Color /*color*/, const bool /*is_box_centered*/, const real_t /*duration*/) = nullptr;
+	static void (*DebugDraw3D_draw_box)(const godot::Vector3 /*position*/, const DD3DShared::CQuaternion /*rotation*/, const godot::Vector3 /*size*/, const godot::Color /*color*/, const bool /*is_box_centered*/, const real_t /*duration*/) = nullptr;
 	LOAD_AND_CALL_FUNC_POINTER(DebugDraw3D_draw_box, position, rotation, size, color, is_box_centered, duration);
 #endif
 }

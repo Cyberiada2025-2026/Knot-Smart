@@ -36,6 +36,10 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
+[global_group]
+
+camera_debug_group=""
+
 [importer_defaults]
 
 animation_library={

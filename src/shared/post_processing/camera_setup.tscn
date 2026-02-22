@@ -17,7 +17,7 @@ shader_parameter/warp_y = 0.041667
 shader_parameter/mask_dark = 0.75
 shader_parameter/mask_light = 1.75
 
-[node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera")]
+[node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera") groups=["camera_debug_group"]]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 524288
 projection = 1

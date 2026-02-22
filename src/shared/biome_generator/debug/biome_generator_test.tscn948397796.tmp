@@ -4,8 +4,8 @@
 
 [node name="BiomeGeneratorTest" type="Node3D" unique_id=486918440]
 script = ExtResource("1_qp4h5")
-points_in_x = 50
-points_in_z = 50
+points_in_x = 16
+points_in_z = 16
 
 [node name="camera" type="Camera3D" parent="." unique_id=1523006046]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 132.53882, 0)

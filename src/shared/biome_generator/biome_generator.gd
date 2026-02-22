@@ -27,6 +27,7 @@ extends Node3D
 @export var start_z: float = 100
 @export var points_in_x: int = 21
 @export var points_in_z: int = 21
+@export var chance_to_shuffle: float = 0.01
 
 var points: Array[Vector2]
 var lines: Array[BiomeLine]
@@ -38,9 +39,10 @@ var free_triangles: Array[BiomeTriangle]
 var biomes: Array[Biome]
 
 func _ready() -> void:
+	get_tree().get_nodes_in_group("camera_debug_group").pop_front().queue_free()
 	generate()
-	#show_debug()
-	create_walls()
+	show_debug()
+	#create_walls()
 
 
 
@@ -148,10 +150,13 @@ func _get_biome_starting_triangle(biome: Biome) -> void:
 
 func _get_biome_new_triangle(biome: Biome) -> void:
 	var triangle: BiomeTriangle
-	var start_line_id: int = randi()%biome.lines.size()
-	var line_id: int = start_line_id
-	while line_id+1 != start_line_id:
-		var line: BiomeLine = biome.lines[line_id]
+	if randf() <= chance_to_shuffle:
+		biome.lines.shuffle()
+	while true:
+		var line: BiomeLine = biome.lines.pop_front()
+		if line == null:
+			_get_biome_starting_triangle(biome)
+			return
 		var r: int = randi()%line.adjacent_triangles.size()
 		var traingle1 = line.adjacent_triangles[r]
 		var traingle2 = line.adjacent_triangles[(r+1)%line.adjacent_triangles.size()]
@@ -159,16 +164,12 @@ func _get_biome_new_triangle(biome: Biome) -> void:
 			triangle = traingle1
 			biome.lines.erase(line)
 			_add_triangle_to_biome(biome, triangle)
-			biome.lines.erase(line)
 			return
 		elif free_triangles.find(traingle2) >= 0:
 			triangle = traingle2
 			biome.lines.erase(line)
 			_add_triangle_to_biome(biome, triangle)
 			return
-		line_id = (line_id+1)%biome.lines.size()
-	print("no triangle")
-	_get_biome_starting_triangle(biome)
 
 func _add_triangle_to_biome(biome: Biome, triangle: BiomeTriangle) -> void:
 	free_triangles.erase(triangle)
@@ -198,7 +199,7 @@ func _add_line_to_biome(biome: Biome, line: BiomeLine) -> void:
 
 func show_debug() -> void:
 	#_show_points()
-	#_show_lines()
+	_show_lines()
 	_set_biome()
 
 func _show_points() -> void:

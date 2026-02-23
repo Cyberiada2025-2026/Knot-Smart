@@ -8,7 +8,7 @@ class_name RoadGenerationParams
 
 ## determines amount of tile splits after which highways will generate [br]
 ## for bigger maps higher value recommended
-@export var highway_generation_time = 20
+@export var highway_generation_split_count = 20
 
 # 
 enum {

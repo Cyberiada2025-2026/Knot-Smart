@@ -17,7 +17,6 @@ extends Node
 var _map: Array = []
 var _export_map: Array = []
 var _map_size: Vector2i
-var _maps_created: bool = false
 var _final_spots: Array[Spot] = []
 var _export_array: Array = []
 
@@ -29,53 +28,27 @@ var _export_array: Array = []
 ## initializes _map and _export_map arrays using map dimensions set in _map_size [br]
 ## initialized arrays are filled with EMPTY_TILE
 func _init_maps():
-	if _maps_created:
-		_delete_maps()
+	# clear previous maps
+	_map.clear()
+	_export_map.clear()
+	
 	# create empty column
 	var col := PackedInt32Array()
 	col.resize(_map_size.y)
-	for y in range(_map_size.y):
-		col[y] = generation_params.EMPTY_TILE
+	col.fill(RoadGenerationParams.EMPTY_TILE)
 		
 	# fill maps with empty columns
 	for r in range(_map_size.x):
 		_map.append(col.duplicate())
 		_export_map.append(col.duplicate())
-	_maps_created = true
-	
-
-## clears _map and _export_map arrays
-func _delete_maps():
-	_clear_2D(_map)
-	_clear_2D(_export_map)
-	_maps_created = false
-	
-	
-## clear 2D array
-func _clear_2D(array: Array):
-	for row in array:
-		row.clear()
-	array.clear()
-	
-	
-## checks if position is located within map array range
-func _is_in_map_bounds(position: Vector2i) -> bool:
-	if position.x < 0 or position.y < 0 or position.x >= _map_size.x or position.y >= _map_size.y:
-		return false
-	return true
 	
 	
 ## get tile type located at given position
 func _get_map_tile(position: Vector2i) -> int:
-	if not _is_in_map_bounds(position):
-		return generation_params.EMPTY_TILE
+	# if located not in map bounds - assign empty tile
+	if position.x < 0 or position.y < 0 or position.x >= _map_size.x or position.y >= _map_size.y:
+		return RoadGenerationParams.EMPTY_TILE
 	return _map[position.x][position.y]
-
-
-func _is_road(position: Vector2i) -> bool:
-	if _get_map_tile(position) == generation_params.ROAD:
-		return true
-	return false
 	
 	
 #####################################################
@@ -95,13 +68,13 @@ func _merge_with_terrain(terrain_map: Array):
 			if terrain_map[x][y]:
 				# simply deletes roads where they can't be placed
 				# maybe should be made more advanced way later 
-				_export_map[x][y] = generation_params.EMPTY_TILE
+				_export_map[x][y] = RoadGenerationParams.EMPTY_TILE
 
 	
 ## used on road tile to convert it to export ID
 ## export ID will be written to _export_map
 func _cast_road_to_map(position: Vector2i):
-	if _map[position.x][position.y] != generation_params.ROAD:
+	if _map[position.x][position.y] != RoadGenerationParams.ROAD:
 		return
 	var bitmask_key = _get_tile_connections_bitmask(position)
 	_export_map[position.x][position.y] = RoadBitmask.get_road_id_from_bitmask(bitmask_key)
@@ -112,7 +85,7 @@ func _get_tile_connections_bitmask(position: Vector2i):
 	var i: int = 0
 	for y in range(position.y - 1, position.y + 2):
 		for x in range(position.x - 1, position.x + 2):
-			if _is_road(Vector2i(x, y)):
+			if _get_map_tile(position) == RoadGenerationParams.ROAD:
 				bitmask += 1 << i
 			i += 1
 	return bitmask
@@ -149,7 +122,8 @@ func _export_data_array():
 #####################################################
 
 
-## converts 
+## TODO REFACTOR & use spots
+## converts limitter areas to spots
 func _get_generation_areas() -> Array[Spot]:
 	var areas: Array[Spot] = []
 	
@@ -256,15 +230,15 @@ func _generate_spots():
 					spots[i].start.y += 1
 			steps += 1
 	
-	for i in range(len(_final_spots)):
+	for spot in _final_spots:
 		# avoid rectangles close to map border for better city shape
 		if (
-			_final_spots[i].start.x != 0 
-			and _final_spots[i].start.y != 0 
-			and _final_spots[i].end.x != _map_size.x - 1 
-			and _final_spots[i].end.y != _map_size.y - 1
+			spot.start.x != 0 
+			and spot.start.y != 0 
+			and spot.end.x != _map_size.x - 1 
+			and spot.end.y != _map_size.y - 1
 		):
-			_final_spots[i].cast_on_map(_map, generation_params)
+			spot.cast_on_map(_map)
 	
 	if more_log_messages:
 		print("Roads generated, road generation steps: ", steps)
@@ -280,17 +254,16 @@ func _generate_spots():
 ## returns 2D array with positions of road tiles sorted by their ID's (ID's as array indexes)
 func generate_roads(terrain_map: Array):
 	
-	# clear previous generation results
-	if not _final_spots.is_empty():
-		_final_spots.clear()
+	## clear previous generation results
+	_final_spots.clear()
 	
 	_map_size = Vector2i(len(terrain_map), len(terrain_map[0]))
 	
 	_init_maps()
 	_generate_spots()
 	
-	# avoiding extreme amount of error messages if bitmask creation fails
-	# and also avoiding modifying export map to return empty export data on error
+	## avoiding extreme amount of error messages if bitmask creation fails
+	## and also avoiding modifying export map to return empty export data on error
 	if RoadBitmask.create_bitmask():
 		_export_roads_from_map()
 		_merge_with_terrain(terrain_map)
@@ -310,8 +283,7 @@ func test() -> void:
 	for x in range(test_map_size.x):
 		var col := PackedByteArray()
 		col.resize(test_map_size.y)
-		for y in range(test_map_size.y):
-			col[y] = false
+		col.fill(false)
 		test_terrain_map.append(col)
 	if more_log_messages:
 		print("start road generation!")
@@ -378,7 +350,7 @@ func _visualize() -> void:
 	
 	for x in range(_map_size.x):
 		for y in range(_map_size.y):
-			if _map[x][y] != generation_params.EMPTY_TILE:
+			if _map[x][y] != RoadGenerationParams.EMPTY_TILE:
 				var road = MeshInstance3D.new()
 				road.mesh = BoxMesh.new()
 				road.mesh.size = Vector3(1, 1, 1)
@@ -399,4 +371,3 @@ func clear_test_visualization() -> void:
 		print("clearing last visualization")
 	for n in visualization_container.get_children():
 		visualization_container.remove_child(n)
-		n.queue_free()

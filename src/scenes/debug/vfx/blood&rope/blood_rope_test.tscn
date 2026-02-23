@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://dvtuotksnd2hb"]
+
+[ext_resource type="PackedScene" uid="uid://rnx3yu0ofiwg" path="res://shared/post_processing/camera_setup.tscn" id="1_r2vhj"]
+[ext_resource type="PackedScene" uid="uid://djqe8wkjmmn8n" path="res://shared/rope_vfx/rope_vfx.tscn" id="2_cl5ih"]
+[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/rope_vfx/rope.gdshader" id="3_agnij"]
+[ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="4_epstj"]
+[ext_resource type="Script" uid="uid://cfqche3hcpffv" path="res://scenes/debug/vfx/blood&rope/blood_test.gd" id="5_em06k"]
+[ext_resource type="Script" uid="uid://d30f8fqqw8m22" path="res://scenes/debug/vfx/blood&rope/rope_vfx_test.gd" id="6_4k4jr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+albedo_color = Color(0.16924527, 0.1692453, 0.16924527, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jka67"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r2vhj"]
+resource_local_to_scene = true
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+radial_segments = 8
+rings = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cl5ih"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_agnij")
+shader_parameter/mesh_width_change = 2.0
+shader_parameter/anim_start = 0.0
+shader_parameter/length_start = 10.0
+shader_parameter/length_curr = 10.0
+shader_parameter/segment_density = 10.0
+shader_parameter/width = 0.01
+shader_parameter/softness = 0.5
+shader_parameter/speed = 5.0
+shader_parameter/main_col_def = Color(0.34117648, 0.7176471, 0.41568628, 1)
+shader_parameter/main_col_stretch = Color(0.34509805, 0.60784316, 0.7176471, 1)
+shader_parameter/main_col_squish = Color(0.7490196, 0.3764706, 0.43529412, 1)
+shader_parameter/sec_col_def = Color(1, 1, 1, 1)
+shader_parameter/sec_col_stretch = Color(1, 1, 1, 1)
+shader_parameter/sec_col_squish = Color(1, 1, 1, 1)
+shader_parameter/vibrate_time = 0.3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5e0b0"]
+albedo_color = Color(0.10880001, 0.64, 0.12650666, 1)
+
+[sub_resource type="Shader" id="Shader_a0tk4"]
+code = "shader_type spatial;
+render_mode skip_vertex_transform;
+
+const vec2 resolution = vec2(320,240);
+
+uniform bool billboard = false;
+
+uniform sampler2D main_texture : source_color, filter_nearest, repeat_disable;
+
+uniform vec3 tint : source_color = vec3(1);
+
+varying vec4 clip_pos;
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+	mat4 model_matrix = MODEL_MATRIX;
+	
+	if (billboard) {
+		mat4 mat_world = mat4(
+				normalize(INV_VIEW_MATRIX[0]),
+				vec4(0, 1, 0, 0),
+				normalize(INV_VIEW_MATRIX[2]),
+				MODEL_MATRIX[3]);
+				
+		model_matrix = mat_world;
+		
+		MODELVIEW_MATRIX = VIEW_MATRIX * mat_world;
+
+		MODELVIEW_NORMAL_MATRIX = mat3(MODELVIEW_MATRIX);
+	}
+	
+	vec4 world_space = model_matrix * vec4(VERTEX, 1);
+	vec4 clip_space = PROJECTION_MATRIX * VIEW_MATRIX * world_space;
+	vec4 vertex = clip_space;
+	
+	// Vertex snapping
+	vertex.xy = round(clip_space.xy / clip_space.w * resolution.xy) / resolution.xy * clip_space.w;
+	
+	POSITION = vertex;
+	
+	clip_pos = vertex;
+	
+	UV = UV * clip_pos.w;
+	COLOR *= clip_pos.w;
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	vec2 uv = UV;
+	
+	uv /= clip_pos.w;
+	vec3 texture_color = texture(main_texture, uv).rgb;
+	
+	ALBEDO = texture_color * tint;
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5arm"]
+render_priority = 0
+shader = SubResource("Shader_a0tk4")
+shader_parameter/billboard = false
+shader_parameter/tint = Color(0.7199617, 0.64347124, 0.57664645, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r3fl7"]
+material = SubResource("ShaderMaterial_i5arm")
+size = Vector3(5, 15, 5)
+
+[node name="Node3D" type="Node3D" unique_id=1760769297]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1900288295]
+transform = Transform3D(0.23269954, -0.8061066, 0.5440983, 0.49356812, 0.5799406, 0.64811987, -0.83799845, 0.117732406, 0.53282046, 0, 10.764424, 0)
+
+[node name="HelperCamera" parent="." unique_id=891929691 instance=ExtResource("1_r2vhj")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1172598634]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 9.462083, -1.512742, 5.0268726)
+material_override = SubResource("StandardMaterial3D_r3fl7")
+mesh = SubResource("PlaneMesh_jka67")
+
+[node name="RopeVFX" parent="." unique_id=917934477 instance=ExtResource("2_cl5ih")]
+transform = Transform3D(0.92935824, -0.036583424, 0.36736202, 0, 0.9950781, 0.09909397, -0.3691791, -0.0920938, 0.924784, 0, 4.832723, 8.939024)
+mesh = SubResource("CylinderMesh_r2vhj")
+mat = SubResource("ShaderMaterial_cl5ih")
+
+[node name="Blood VFX" parent="." unique_id=11854146 instance=ExtResource("4_epstj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30764604, 6.96047, 6.618123)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Blood VFX" unique_id=321471060]
+material_override = SubResource("StandardMaterial3D_5e0b0")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=179354436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.293174, -2.336999)
+visible = false
+mesh = SubResource("BoxMesh_r3fl7")
+
+[node name="Node3D2" type="Node3D" parent="." unique_id=775015549 node_paths=PackedStringArray("particles")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.293174, -2.336999)
+script = ExtResource("5_em06k")
+particles = NodePath("../Blood VFX")
+
+[node name="Node3D" type="Node3D" parent="Node3D2" unique_id=2013389513 node_paths=PackedStringArray("rope")]
+script = ExtResource("6_4k4jr")
+rope = NodePath("../../RopeVFX")

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bavrvx8jc0oc2"
-path="res://.godot/imported/Placeholders.glb-0908fe84b0e67eea81c824d7f5c7b954.scn"
+uid="uid://bl12nmqdnj8e5"
+path="res://.godot/imported/building_parts.glb-1a168a1fd31d325dc6aaf6f16fdb3b90.scn"
 
 [deps]
 
-source_file="res://shared/buildings/assets/Placeholders.glb"
-dest_files=["res://.godot/imported/Placeholders.glb-0908fe84b0e67eea81c824d7f5c7b954.scn"]
+source_file="res://shared/buildings/assets/building_parts.glb"
+dest_files=["res://.godot/imported/building_parts.glb-1a168a1fd31d325dc6aaf6f16fdb3b90.scn"]
 
 [params]
 

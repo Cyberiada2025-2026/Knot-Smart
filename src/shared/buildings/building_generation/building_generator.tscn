@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c8acika7wo4ks" path="res://shared/buildings/building_generation/building_generator.gd" id="1_4i3p1"]
 [ext_resource type="Script" uid="uid://c1g0luxm2m8e3" path="res://shared/buildings/room_generation/models_placer.gd" id="3_ttn5c"]
-[ext_resource type="MeshLibrary" uid="uid://cmx88w2av3hjc" path="res://shared/buildings/assets/placeholder_room_tiles.tres" id="4_pesao"]
+[ext_resource type="MeshLibrary" uid="uid://c8mw207v2o2i2" path="res://shared/buildings/assets/building_parts.tres" id="4_ncxfg"]
 [ext_resource type="Script" uid="uid://c28te8ulweb57" path="res://shared/buildings/room_generation/cell_generator.gd" id="5_w7gwg"]
 [ext_resource type="Script" uid="uid://cst72aujrwdww" path="res://shared/buildings/room_generation/neighbor_generator.gd" id="6_rrnor"]
 
@@ -11,7 +11,7 @@ script = ExtResource("1_4i3p1")
 
 [node name="ModelsPlacer" type="Node" parent="." unique_id=443638704 node_paths=PackedStringArray("gridmaps")]
 script = ExtResource("3_ttn5c")
-mesh_library = ExtResource("4_pesao")
+mesh_library = ExtResource("4_ncxfg")
 gridmaps = [NodePath("../WallXGrid"), NodePath("../FloorGridMap"), NodePath("../WallZGrid")]
 
 [node name="CellGenerator" type="Node" parent="." unique_id=940760169]
@@ -20,22 +20,19 @@ script = ExtResource("5_w7gwg")
 [node name="NeighborGenerator" type="Node" parent="." unique_id=53622853]
 script = ExtResource("6_rrnor")
 
-[node name="FloorGridMap" type="GridMap" parent="." unique_id=854236658]
-mesh_library = ExtResource("4_pesao")
+[node name="FloorGridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("4_ncxfg")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
-cell_scale = 2.0
 
-[node name="WallXGrid" type="GridMap" parent="." unique_id=48157526]
-mesh_library = ExtResource("4_pesao")
+[node name="WallXGrid" type="GridMap" parent="."]
+mesh_library = ExtResource("4_ncxfg")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
-cell_scale = 2.0
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="WallZGrid" type="GridMap" parent="." unique_id=1103476159]
-mesh_library = ExtResource("4_pesao")
+[node name="WallZGrid" type="GridMap" parent="."]
+mesh_library = ExtResource("4_ncxfg")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
-cell_scale = 2.0
 metadata/_editor_floor_ = Vector3(0, 0, 0)

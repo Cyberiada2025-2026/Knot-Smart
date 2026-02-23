@@ -84,7 +84,7 @@ func _get_tile_connections_bitmask(position: Vector2i):
 	var i: int = 0
 	for y in range(position.y - 1, position.y + 2):
 		for x in range(position.x - 1, position.x + 2):
-			if _get_map_tile(position) == RoadGenerationParams.ROAD:
+			if _get_map_tile(Vector2i(x, y)) == RoadGenerationParams.ROAD:
 				bitmask += 1 << i
 			i += 1
 	return bitmask
@@ -116,55 +116,6 @@ func _export_data_array():
 #                 GENERATOR FUNCTIONS               #
 #####################################################
 
-
-### TODO REFACTOR & use spots
-### converts limitter areas to spots
-#func _get_generation_areas() -> Array[Spot]:
-	#var areas: Array[Spot] = []
-	#
-	##generation_params.generation_areas.sort_custom(LimitterArea.sort_by_radius)
-	#
-	## create default area if that was not added as last element of limits array
-	#if not generation_params.generation_areas.back().area_radius == 1.0:
-		#printerr("default spot size parameter not found, setting to 3x10")
-		#var area: LimitterArea = LimitterArea.new()
-		#area.min_spot_size = Vector2i(3, 3)
-		#area.max_spot_size = Vector2i(10, 10)
-		#generation_params.generation_areas.push_back(area)
-		#
-	#for i in range(len(generation_params.generation_areas)):
-		#if (
-			#generation_params.generation_areas[i].max_spot_size.x 
-			#< generation_params.generation_areas[i].min_spot_size.x * 2
-		#):
-			#printerr("infinite loop detected, max x size for one area was changed")
-			#generation_params.generation_areas[i].max_spot_size.x = (
-				#generation_params.generation_areas[i].min_spot_size.x * 2
-			#)
-#
-		#if (
-			#generation_params.generation_areas[i].max_spot_size.y 
-			#< generation_params.generation_areas[i].min_spot_size.y * 2
-		#):
-			#printerr("infinite loop detected, max y size for one area was changed")
-			#generation_params.generation_areas[i].max_spot_size.y = ( 
-				#generation_params.generation_areas[i].min_spot_size.y * 2
-			#)
-			#
-		#if generation_params.generation_areas[i].area_radius == 1.0:
-			#areas.push_back(Spot.create(Vector2i(0, 0), Vector2i(_map_size.x - 1, _map_size.y - 1)))
-		#else:
-			#var center: Vector2i = Vector2i(
-				#int((_map_size.x - 1) / 2.0), int((_map_size.y - 1) / 2.0)
-			#)
-			#var offset: Vector2i = Vector2i(
-				#int(center.x * generation_params.generation_areas[i].area_radius),
-				#int(center.y * generation_params.generation_areas[i].area_radius)
-			#)
-			#areas.push_back(Spot.create_from_center(center, offset))
-	#
-	#return areas
-	
 		
 func _generate_spots():
 	var spots: Array[Spot] = []

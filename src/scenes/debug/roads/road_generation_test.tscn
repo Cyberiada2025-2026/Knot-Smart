@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://o5exsbtpsbth"
 
 [sub_resource type="Resource" id="Resource_8tvk8"]
 script = ExtResource("3_oohkc")
-end = Vector2i(51, 51)
+end = Vector2i(201, 201)
 
 [sub_resource type="Resource" id="Resource_q6jq2"]
 script = ExtResource("2_oohkc")

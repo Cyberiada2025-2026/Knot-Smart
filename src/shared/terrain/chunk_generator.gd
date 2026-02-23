@@ -103,7 +103,7 @@ func generate_chunk_mesh(c_coord: Vector2i, blueprint: Dictionary) -> Mesh:
 				add_quad_with_uv(st, v1, v2, v3, v4)
 
 	# Finalize mesh
-	st.index()
+	#st.index()
 	st.generate_normals()
 	st.generate_tangents()
 	return st.commit()

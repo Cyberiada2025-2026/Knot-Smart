@@ -2,8 +2,8 @@
 class_name ChunkGenerator
 extends Node3D
 
-@export var world_generation_params: WorldGenerationParams
-@export var world_display_params: WorldDisplayParams
+var world_generation_params: WorldGenerationParams
+var world_display_params: WorldDisplayParams
 
 var active_chunks: Dictionary = {}
 
@@ -42,8 +42,8 @@ func clear_chunks(render_position = null) -> void:
 func generate_chunks(blueprint, render_position) -> void:
 	clear_chunks()
 	
-	for x in range(world_generation_params.map_size):
-		for z in range(world_generation_params.map_size):
+	for x in world_generation_params.map_size:
+		for z in world_generation_params.map_size:
 			var coord = Vector2i(x, z)
 			_create_chunk_node(coord, blueprint)
 			
@@ -103,8 +103,7 @@ func generate_chunk_mesh(c_coord: Vector2i, blueprint: Dictionary) -> Mesh:
 				add_quad_with_uv(st, v1, v2, v3, v4)
 
 	# Finalize mesh
-	#st.index()
-	st.generate_normals()
+	st.generate_normals() #write own version
 	st.generate_tangents()
 	return st.commit()
 
@@ -128,36 +127,4 @@ func get_height_from_blueprint(gx: int, gz: int, blueprint: Dictionary) -> float
 	if blueprint.has(coord):
 		return blueprint[coord].height
 	return 0.0
-
-#func update_mesh() -> Array:
-	#if not is_inside_tree(): return valid_flat_spots
-	#
-	#var st = SurfaceTool.new()
-	#st.begin(Mesh.PRIMITIVE_TRIANGLES)
-#
-	#for x in range(0, terrain_generation_params.map_size, 2):
-		#for z in range(0, terrain_generation_params.map_size, 2):
-			#
-			#var h_current = get_height(x, z)
-			#var h_next_x  = get_height(x + 2, z)
-			#var h_next_z  = get_height(x, z + 2)
-			#var h_diag    = get_height(x + 2, z + 2)
-			#var heights = [h_current, h_next_x, h_next_z, h_diag]
-			#
-			#var px = [x * terrain_generation_params.tile_size, (x + 1) * terrain_generation_params.tile_size, (x + 2) * terrain_generation_params.tile_size]
-			#var pz = [z * terrain_generation_params.tile_size, (z + 1) * terrain_generation_params.tile_size, (z + 2) * terrain_generation_params.tile_size]
-			#
-			#for q in quads:
-				#add_quad_with_uv(st,
-					#Vector3(px[q[0][0]], heights[q[0][2]], pz[q[0][1]]),
-					#Vector3(px[q[1][0]], heights[q[1][2]], pz[q[1][1]]),
-					#Vector3(px[q[2][0]], heights[q[2][2]], pz[q[2][1]]),
-					#Vector3(px[q[3][0]], heights[q[3][2]], pz[q[3][1]])
-				#)
-			#valid_flat_spots.append(Vector3((x + 0.5) * terrain_generation_params.tile_size, h_current, (z + 0.5) * terrain_generation_params.tile_size))
-	#st.index() # usuniecie tego daje wyglad bardziej low poly
-	#st.generate_normals()
-	#st.generate_tangents()
-	#
-	#mesh = st.commit()
 	

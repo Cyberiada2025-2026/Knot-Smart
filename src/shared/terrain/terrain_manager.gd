@@ -36,6 +36,7 @@ func create_default_blueprint() -> void:
 			blueprint[coord] = {
 				"height": 0.0,      # Flat ground at sea level
 				"type": "empty",
+				"can_place": "any",
 			}
 			
 	print("TerrainManager: Default flat blueprint created")

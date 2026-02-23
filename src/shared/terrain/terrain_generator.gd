@@ -2,7 +2,7 @@
 class_name TerrainGenerator
 extends Node
 
-@export var world_generation_params: WorldGenerationParams
+var world_generation_params: WorldGenerationParams
 
 func generate_terrain(blueprint: Dictionary) -> bool:
 	if not world_generation_params:

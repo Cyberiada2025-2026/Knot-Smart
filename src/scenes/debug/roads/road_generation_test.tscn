@@ -3,28 +3,54 @@
 [ext_resource type="Script" uid="uid://c52c7x4sbxs7o" path="res://shared/roads/road_generation/road_generator.gd" id="1_ntgsn"]
 [ext_resource type="Script" uid="uid://o5exsbtpsbth" path="res://shared/roads/road_generation/limitter_area.gd" id="2_oohkc"]
 [ext_resource type="Script" uid="uid://dq2orvfvtw68e" path="res://shared/roads/road_generation/road_generation_params.gd" id="3_ev4h5"]
+[ext_resource type="Script" uid="uid://1sivp1454oma" path="res://shared/roads/road_generation/spot.gd" id="3_oohkc"]
+
+[sub_resource type="Resource" id="Resource_ev4h5"]
+script = ExtResource("3_oohkc")
+start = Vector2i(20, 20)
+end = Vector2i(30, 30)
+metadata/_custom_type_script = "uid://1sivp1454oma"
 
 [sub_resource type="Resource" id="Resource_6lgnl"]
 script = ExtResource("2_oohkc")
-min_spot_size = Vector2i(4, 4)
 max_spot_size = Vector2i(8, 8)
-area_radius = 0.25
-metadata/_custom_type_script = "uid://ph3qve1sgdyf"
+spot_limit_area = SubResource("Resource_ev4h5")
+
+[sub_resource type="Resource" id="Resource_q6ryc"]
+script = ExtResource("3_oohkc")
+start = Vector2i(15, 15)
+end = Vector2i(35, 35)
 
 [sub_resource type="Resource" id="Resource_bfipm"]
 script = ExtResource("2_oohkc")
-min_spot_size = Vector2i(5, 5)
-area_radius = 0.5
-metadata/_custom_type_script = "uid://ph3qve1sgdyf"
+min_spot_size = Vector2i(4, 4)
+max_spot_size = Vector2i(8, 8)
+spot_limit_area = SubResource("Resource_q6ryc")
 
-[sub_resource type="Resource" id="Resource_5liib"]
+[sub_resource type="Resource" id="Resource_gvmpv"]
+script = ExtResource("3_oohkc")
+start = Vector2i(10, 10)
+end = Vector2i(40, 40)
+
+[sub_resource type="Resource" id="Resource_oohkc"]
 script = ExtResource("2_oohkc")
-min_spot_size = Vector2i(8, 8)
+min_spot_size = Vector2i(5, 5)
+spot_limit_area = SubResource("Resource_gvmpv")
+metadata/_custom_type_script = "uid://o5exsbtpsbth"
+
+[sub_resource type="Resource" id="Resource_8tvk8"]
+script = ExtResource("3_oohkc")
+end = Vector2i(51, 51)
+
+[sub_resource type="Resource" id="Resource_q6jq2"]
+script = ExtResource("2_oohkc")
+min_spot_size = Vector2i(8, 5)
 max_spot_size = Vector2i(16, 16)
+spot_limit_area = SubResource("Resource_8tvk8")
 
 [sub_resource type="Resource" id="Resource_dxu3u"]
 script = ExtResource("3_ev4h5")
-generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_6lgnl"), SubResource("Resource_bfipm"), SubResource("Resource_5liib")])
+generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_6lgnl"), SubResource("Resource_bfipm"), SubResource("Resource_oohkc"), SubResource("Resource_q6jq2")])
 
 [node name="Node3D" type="Node3D" unique_id=49889973 node_paths=PackedStringArray("visualization_container")]
 script = ExtResource("1_ntgsn")

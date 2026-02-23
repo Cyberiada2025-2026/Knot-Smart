@@ -1,16 +1,19 @@
 @tool
-extends RefCounted
+extends Resource
 
 #single spot for building placement and roads, uses parts of cell.gd code from room generator
 class_name Spot
 
 # start coordinates should be always smaller than end coordinates
-var start: Vector2i = Vector2i.ZERO
-var end: Vector2i = Vector2i.ZERO
+@export var start: Vector2i = Vector2i.ZERO
+@export var end: Vector2i = Vector2i.ONE
 
 func size() -> Vector2i:
-	return Vector2i(end.x - start.x, end.y - start.y)
+	return end - start
 	
+	
+func area() -> int:
+	return size().x * size().y
 
 func center() -> Vector3:
 	return Vector3(

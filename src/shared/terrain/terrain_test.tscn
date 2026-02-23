@@ -3624,12 +3624,9 @@ chunk_generator = NodePath("ChunkGenerator")
 
 [node name="TerrainGenerator" type="Node" parent="Terrain" unique_id=1904322367]
 script = ExtResource("1_aojt6")
-world_generation_params = SubResource("Resource_tnrqe")
 
 [node name="ChunkGenerator" type="Node3D" parent="Terrain" unique_id=1988845525]
 script = ExtResource("5_s86en")
-world_generation_params = SubResource("Resource_tnrqe")
-world_display_params = SubResource("Resource_s86en")
 
 [node name="Chunk_0_0" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=1491040705]
 material_override = SubResource("StandardMaterial3D_nolvv")

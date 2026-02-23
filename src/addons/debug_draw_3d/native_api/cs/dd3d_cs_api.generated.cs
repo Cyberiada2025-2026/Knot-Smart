@@ -2047,6 +2047,14 @@ internal static class DebugDraw3D
     /// Returns the default scope settings that will be applied at the start of each new frame.
     ///
     /// Default values can be overridden in the project settings `debug_draw_3d/settings/3d/volumetric_defaults`.
+    ///
+    /// <para>
+    /// When used in a managed language, this is not mandatory, but it is recommended to finish the `scoped_config()` configuration with a dispose.
+    /// This will reduce the number of objects awaiting removal by the garbage collector.
+    /// <code>
+    /// DebugDraw3D.ScopedConfig().SetThickness(debug_thickness).Dispose();
+    /// </code>
+    /// </para>
     /// </summary>
     public static DebugDraw3DScopeConfig ScopedConfig()
     {

@@ -6,7 +6,6 @@ extends Node
 
 @export_group("testing")
 @export var visualization_container: Node3D
-@export var test_map_size: Vector2i = Vector2i(51, 51)
 @export var create_visualization: bool
 @export var log_generated_map_to_console: bool
 @export var log_export_map_to_console: bool
@@ -16,7 +15,7 @@ extends Node
 
 var _map: Array = []
 var _export_map: Array = []
-var _map_size: Vector2i
+var _map_size: int
 var _final_spots: Array[Spot] = []
 var _export_array: Array = []
 
@@ -34,11 +33,11 @@ func _init_maps():
 	
 	# create empty column
 	var col := PackedInt32Array()
-	col.resize(_map_size.y)
+	col.resize(_map_size)
 	col.fill(RoadGenerationParams.EMPTY_TILE)
 		
 	# fill maps with empty columns
-	for r in range(_map_size.x):
+	for r in range(_map_size):
 		_map.append(col.duplicate())
 		_export_map.append(col.duplicate())
 	
@@ -46,7 +45,7 @@ func _init_maps():
 ## get tile type located at given position
 func _get_map_tile(position: Vector2i) -> int:
 	# if located not in map bounds - assign empty tile
-	if position.x < 0 or position.y < 0 or position.x >= _map_size.x or position.y >= _map_size.y:
+	if position.x < 0 or position.y < 0 or position.x >= _map_size or position.y >= _map_size:
 		return RoadGenerationParams.EMPTY_TILE
 	return _map[position.x][position.y]
 	
@@ -57,14 +56,14 @@ func _get_map_tile(position: Vector2i) -> int:
 
 
 func _export_roads_from_map():
-	for x in range(_map_size.x):
-		for y in range(_map_size.y):
+	for x in range(_map_size):
+		for y in range(_map_size):
 			_cast_road_to_map(Vector2i(x, y))
 
 
 func _merge_with_terrain(terrain_map: Array):
-	for y in range(_map_size.y):
-		for x in range(_map_size.x):
+	for y in range(_map_size):
+		for x in range(_map_size):
 			if terrain_map[x][y]:
 				# simply deletes roads where they can't be placed
 				# maybe should be made more advanced way later 
@@ -98,22 +97,18 @@ func _get_tile_connections_bitmask(position: Vector2i):
 
 ## initialize 2D array for exported data
 func _init_export_array():
-	if not _export_array.is_empty():
-		for row in _export_array:
-			row.clear()
-		_export_array.clear()
+	_export_array.clear()
 	
 	var size: int = RoadBitmask.get_road_id_count()
 	_export_array.resize(size)
-	for i in range(size):
-		_export_array[i] = Array()
+	_export_array.fill([])
 	
 
 ## convert export map to sorted Vector3 array, grouped by road ID's
 func _export_data_array():
 	_init_export_array()
-	for x in range(_map_size.x):
-		for y in range(_map_size.y):
+	for x in range(_map_size):
+		for y in range(_map_size):
 			_export_array[_export_map[x][y]].push_back(Vector3(x, 0, y))
 			
 			
@@ -122,61 +117,60 @@ func _export_data_array():
 #####################################################
 
 
-## TODO REFACTOR & use spots
-## converts limitter areas to spots
-func _get_generation_areas() -> Array[Spot]:
-	var areas: Array[Spot] = []
-	
-	generation_params.generation_areas.sort_custom(LimitterArea.sort_by_radius)
-	
-	# create default area if that was not added as last element of limits array
-	if not generation_params.generation_areas.back().area_radius == 1.0:
-		printerr("default spot size parameter not found, setting to 3x10")
-		var area: LimitterArea = LimitterArea.new()
-		area.min_spot_size = Vector2i(3, 3)
-		area.max_spot_size = Vector2i(10, 10)
-		generation_params.generation_areas.push_back(area)
-		
-	for i in range(len(generation_params.generation_areas)):
-		if (
-			generation_params.generation_areas[i].max_spot_size.x 
-			< generation_params.generation_areas[i].min_spot_size.x * 2
-		):
-			printerr("infinite loop detected, max x size for one area was changed")
-			generation_params.generation_areas[i].max_spot_size.x = (
-				generation_params.generation_areas[i].min_spot_size.x * 2
-			)
-
-		if (
-			generation_params.generation_areas[i].max_spot_size.y 
-			< generation_params.generation_areas[i].min_spot_size.y * 2
-		):
-			printerr("infinite loop detected, max y size for one area was changed")
-			generation_params.generation_areas[i].max_spot_size.y = ( 
-				generation_params.generation_areas[i].min_spot_size.y * 2
-			)
-			
-		if generation_params.generation_areas[i].area_radius == 1.0:
-			areas.push_back(Spot.create(Vector2i(0, 0), Vector2i(_map_size.x - 1, _map_size.y - 1)))
-		else:
-			var center: Vector2i = Vector2i(
-				int((_map_size.x - 1) / 2.0), int((_map_size.y - 1) / 2.0)
-			)
-			var offset: Vector2i = Vector2i(
-				int(center.x * generation_params.generation_areas[i].area_radius),
-				int(center.y * generation_params.generation_areas[i].area_radius)
-			)
-			areas.push_back(Spot.create_from_center(center, offset))
-	
-	return areas
+### TODO REFACTOR & use spots
+### converts limitter areas to spots
+#func _get_generation_areas() -> Array[Spot]:
+	#var areas: Array[Spot] = []
+	#
+	##generation_params.generation_areas.sort_custom(LimitterArea.sort_by_radius)
+	#
+	## create default area if that was not added as last element of limits array
+	#if not generation_params.generation_areas.back().area_radius == 1.0:
+		#printerr("default spot size parameter not found, setting to 3x10")
+		#var area: LimitterArea = LimitterArea.new()
+		#area.min_spot_size = Vector2i(3, 3)
+		#area.max_spot_size = Vector2i(10, 10)
+		#generation_params.generation_areas.push_back(area)
+		#
+	#for i in range(len(generation_params.generation_areas)):
+		#if (
+			#generation_params.generation_areas[i].max_spot_size.x 
+			#< generation_params.generation_areas[i].min_spot_size.x * 2
+		#):
+			#printerr("infinite loop detected, max x size for one area was changed")
+			#generation_params.generation_areas[i].max_spot_size.x = (
+				#generation_params.generation_areas[i].min_spot_size.x * 2
+			#)
+#
+		#if (
+			#generation_params.generation_areas[i].max_spot_size.y 
+			#< generation_params.generation_areas[i].min_spot_size.y * 2
+		#):
+			#printerr("infinite loop detected, max y size for one area was changed")
+			#generation_params.generation_areas[i].max_spot_size.y = ( 
+				#generation_params.generation_areas[i].min_spot_size.y * 2
+			#)
+			#
+		#if generation_params.generation_areas[i].area_radius == 1.0:
+			#areas.push_back(Spot.create(Vector2i(0, 0), Vector2i(_map_size.x - 1, _map_size.y - 1)))
+		#else:
+			#var center: Vector2i = Vector2i(
+				#int((_map_size.x - 1) / 2.0), int((_map_size.y - 1) / 2.0)
+			#)
+			#var offset: Vector2i = Vector2i(
+				#int(center.x * generation_params.generation_areas[i].area_radius),
+				#int(center.y * generation_params.generation_areas[i].area_radius)
+			#)
+			#areas.push_back(Spot.create_from_center(center, offset))
+	#
+	#return areas
 	
 		
 func _generate_spots():
 	var spots: Array[Spot] = []
-	var areas: Array[Spot] = _get_generation_areas()
 	
 	# create initial rectangle spot that will be divided into smaller ones
-	spots.push_back(Spot.create(Vector2i(0, 0), Vector2i(_map_size.x - 1, _map_size.y - 1)))
+	spots.push_back(Spot.create(Vector2i(0, 0), Vector2i(_map_size - 1, _map_size - 1)))
 	
 	# splitting rectangles until they reach proper size
 	var steps: int = 0
@@ -184,23 +178,21 @@ func _generate_spots():
 		var area: int = 0
 		var current: int = randi() % len(spots)
 		
-		while not spots[current].overlaps(areas[area]):
+		while not spots[current].overlaps(generation_params.generation_areas[area].spot_limit_area):
 			area += 1
 			
 		# action decides whether we are splitting x or y direction
 		var action = randi() % 2
 		
 		if (
-			spots[current].size_x() > generation_params.generation_areas[area].max_spot_size.x 
-			and spots[current].size_x() >= generation_params.generation_areas[area].min_spot_size.x * 2
+			spots[current].size().x > generation_params.generation_areas[area].max_spot_size.x 
 			and action == 0
 		):
 			spots.push_back(spots[current].split_x(generation_params.generation_areas[area].min_spot_size))
 			steps += 1
 		
 		if (
-			spots[current].size_y() > generation_params.generation_areas[area].max_spot_size.y
-			and spots[current].size_y() >= generation_params.generation_areas[area].min_spot_size.y * 2
+			spots[current].size().y > generation_params.generation_areas[area].max_spot_size.y
 			and action == 1
 		):
 			spots.push_back(spots[current].split_y(generation_params.generation_areas[area].min_spot_size))
@@ -208,13 +200,13 @@ func _generate_spots():
 			
 		# stop splitting spot if it's proper sized and move it to output
 		if (
-			spots[current].size_x() <= generation_params.generation_areas[area].max_spot_size.x 
-			and spots[current].size_y() <= generation_params.generation_areas[area].max_spot_size.y
+			spots[current].size().x <= generation_params.generation_areas[area].max_spot_size.x 
+			and spots[current].size().y <= generation_params.generation_areas[area].max_spot_size.y
 		):
 			_final_spots.push_back(spots.pop_at(current))
 			
 		# main streets, all spots are moved 1 tile forward to create double roads when casting to map
-		if steps == generation_params.highway_generation_time:
+		if steps == generation_params.highway_generation_split_count:
 			for i in range(len(_final_spots)):
 				# avoid rectangles close to map border
 				if _final_spots[i].start.x != 0:
@@ -235,8 +227,8 @@ func _generate_spots():
 		if (
 			spot.start.x != 0 
 			and spot.start.y != 0 
-			and spot.end.x != _map_size.x - 1 
-			and spot.end.y != _map_size.y - 1
+			and spot.end.x != _map_size - 1 
+			and spot.end.y != _map_size - 1
 		):
 			spot.cast_on_map(_map)
 	
@@ -257,9 +249,11 @@ func generate_roads(terrain_map: Array):
 	## clear previous generation results
 	_final_spots.clear()
 	
-	_map_size = Vector2i(len(terrain_map), len(terrain_map[0]))
+	_map_size = generation_params.map_size
 	
 	_init_maps()
+	
+	generation_params.check_generation_areas()
 	_generate_spots()
 	
 	## avoiding extreme amount of error messages if bitmask creation fails
@@ -280,9 +274,9 @@ func generate_roads(terrain_map: Array):
 
 func test() -> void:
 	var test_terrain_map: Array = []
-	for x in range(test_map_size.x):
+	for x in range(generation_params.map_size):
 		var col := PackedByteArray()
-		col.resize(test_map_size.y)
+		col.resize(generation_params.map_size)
 		col.fill(false)
 		test_terrain_map.append(col)
 	if more_log_messages:
@@ -304,9 +298,9 @@ func test() -> void:
 func _print_export_map_to_console() -> void:
 	print("export map:")
 		
-	for y in range(_map_size.y):
+	for y in range(_map_size):
 		var output: String = ""
-		for x in range(_map_size.x):
+		for x in range(_map_size):
 			if _export_map[x][y] == 0:
 				output += "  "
 			elif _export_map[x][y] > 0 and _export_map[x][y] < 10:
@@ -320,9 +314,9 @@ func _print_export_map_to_console() -> void:
 func _print_map_to_console() -> void:
 	print("generated map:")
 	
-	for y in range(_map_size.y):
+	for y in range(_map_size):
 		var output: String = ""
-		for x in range(_map_size.x):
+		for x in range(_map_size):
 			if _map[x][y] == 0:
 				output += "  "
 			elif _map[x][y] > 0 and _map[x][y] < 10:
@@ -343,13 +337,13 @@ func _visualize() -> void:
 		if (
 			_final_spots[i].start.x != 0 
 			and _final_spots[i].start.y != 0 
-			and _final_spots[i].end.x != _map_size.x - 1 
-			and _final_spots[i].end.y != _map_size.y - 1
+			and _final_spots[i].end.x != _map_size - 1 
+			and _final_spots[i].end.y != _map_size - 1
 		):
 			_final_spots[i].visualize(visualization_container, str(i))
 	
-	for x in range(_map_size.x):
-		for y in range(_map_size.y):
+	for x in range(_map_size):
+		for y in range(_map_size):
 			if _map[x][y] != RoadGenerationParams.EMPTY_TILE:
 				var road = MeshInstance3D.new()
 				road.mesh = BoxMesh.new()

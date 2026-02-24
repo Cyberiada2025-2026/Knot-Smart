@@ -8,6 +8,12 @@ class_name Spot
 @export var start: Vector2i = Vector2i.ZERO
 @export var end: Vector2i = Vector2i.ONE
 
+func _init(_start: Vector2i = Vector2i.ZERO, _end: Vector2i = Vector2i.ONE) -> void:
+	# ensure that start coordinates are smaller than end
+	start = Vector2i(mini(_start.x, _end.x), mini(_start.y, _end.y))
+	end = Vector2i(maxi(_start.x, _end.x), maxi(_start.y, _end.y))
+	
+	
 func size() -> Vector2i:
 	return end - start
 	
@@ -32,7 +38,7 @@ func overlaps(other: Spot) -> bool:
 	
 func split_x(min_spot_size: Vector2i) -> Spot:
 	var split_position = randi_range(start.x + min_spot_size.x, end.x - min_spot_size.x)
-	var new_spot: Spot = create(Vector2(split_position, start.y), end)
+	var new_spot: Spot = Spot.new(Vector2(split_position, start.y), end)
 	self.end.x = split_position 
 	
 	return new_spot
@@ -40,7 +46,7 @@ func split_x(min_spot_size: Vector2i) -> Spot:
 
 func split_y(min_spot_size: Vector2i) -> Spot:
 	var split_position = randi_range(start.y + min_spot_size.y, end.y - min_spot_size.y)
-	var new_spot: Spot = create(Vector2(start.x, split_position), end)
+	var new_spot: Spot = Spot.new(Vector2(start.x, split_position), end)
 	self.end.y = split_position
 	
 	return new_spot
@@ -75,18 +81,3 @@ func visualize(visualization_container: Node3D, object_name: String):
 	
 	visualization_container.add_child(box)
 	box.owner = visualization_container.owner
-	
-## create spot 
-static func create(spot_start: Vector2i, spot_end: Vector2i):
-	var sp = Spot.new()
-	# ensure that start coordinates are smaller than end
-	sp.start = Vector2i(mini(spot_start.x, spot_end.x), mini(spot_start.y, spot_end.y))
-	sp.end = Vector2i(maxi(spot_start.x, spot_end.x), maxi(spot_start.y, spot_end.y))
-	return sp
-	
-	
-static func create_from_center(center_position: Vector2i, spot_half_size: Vector2i):
-	var sp = Spot.new()
-	sp.start = Vector2i(center_position.x - spot_half_size.x, center_position.y - spot_half_size.y)
-	sp.end = Vector2i(center_position.x + spot_half_size.x, center_position.y + spot_half_size.y)
-	return sp

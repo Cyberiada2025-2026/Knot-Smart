@@ -57,20 +57,26 @@ func _generate_spots():
 			steps += 1
 			
 		# stop splitting spot if it's proper sized and move it to output
+		# also remove spots close to map border
 		if (
 			spots[current].size().x <= generation_params.generation_areas[area].max_spot_size.x 
 			and spots[current].size().y <= generation_params.generation_areas[area].max_spot_size.y
 		):
-			_final_spots.push_back(spots.pop_at(current))
+			if (
+				spots[current].start.x != 0 
+				and spots[current].start.y != 0 
+				and spots[current].end.x != _map_size - 1 
+				and spots[current].end.y != _map_size - 1
+			):
+				_final_spots.push_back(spots.pop_at(current))
+			else:
+				spots.pop_at(current)
 			
 		# main streets, all spots are moved 1 tile forward to create double roads when casting to map
 		if steps == generation_params.highway_generation_split_count:
 			for i in range(len(_final_spots)):
-				# avoid rectangles close to map border
-				if _final_spots[i].start.x != 0:
-					_final_spots[i].start.x += 1
-				if _final_spots[i].start.y != 0:
-					_final_spots[i].start.y += 1
+				_final_spots[i].start.x += 1
+				_final_spots[i].start.y += 1
 					
 			for i in range(len(spots)):
 				# avoid rectangles close to map border
@@ -81,14 +87,7 @@ func _generate_spots():
 			steps += 1
 	
 	for spot in _final_spots:
-		# avoid rectangles close to map border for better city shape
-		if (
-			spot.start.x != 0 
-			and spot.start.y != 0 
-			and spot.end.x != _map_size - 1 
-			and spot.end.y != _map_size - 1
-		):
-			spot.cast_on_blueprint(_blueprint)
+		spot.cast_on_blueprint(_blueprint)
 	
 	if more_log_messages:
 		print("Roads generated, road generation steps: ", steps)
@@ -186,13 +185,7 @@ func _visualize(blueprint: Dictionary) -> void:
 		print("creating visualization")
 		
 	for i in range(len(_final_spots)):
-		if (
-			_final_spots[i].start.x != 0 
-			and _final_spots[i].start.y != 0 
-			and _final_spots[i].end.x != _map_size - 1 
-			and _final_spots[i].end.y != _map_size - 1
-		):
-			_final_spots[i].visualize(visualization_container, str(i))
+		_final_spots[i].visualize(visualization_container, str(i))
 	
 	for x in range(_map_size):
 		for y in range(_map_size):

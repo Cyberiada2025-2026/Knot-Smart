@@ -13,104 +13,33 @@ extends Node
 @export_tool_button("Test Generation") var generate_action = test
 @export_tool_button("Clear Visualization") var clear_action = clear_test_visualization
 
-var _map: Array = []
-var _export_map: Array = []
+var _blueprint: Dictionary
 var _map_size: int
 var _final_spots: Array[Spot] = []
 var _export_array: Array = []
-
-#####################################################
-#                  MAP OPERATIONS                   #
-#####################################################
-
-
-## initializes _map and _export_map arrays using map dimensions set in _map_size [br]
-## initialized arrays are filled with EMPTY_TILE
-func _init_maps():
-	# clear previous maps
-	_map.clear()
-	_export_map.clear()
-	
-	# create empty column
-	var col := PackedInt32Array()
-	col.resize(_map_size)
-	col.fill(RoadGenerationParams.EMPTY_TILE)
-		
-	# fill maps with empty columns
-	for r in range(_map_size):
-		_map.append(col.duplicate())
-		_export_map.append(col.duplicate())
-	
-	
-## get tile type located at given position
-func _get_map_tile(position: Vector2i) -> int:
-	# if located not in map bounds - assign empty tile
-	if position.x < 0 or position.y < 0 or position.x >= _map_size or position.y >= _map_size:
-		return RoadGenerationParams.EMPTY_TILE
-	return _map[position.x][position.y]
-	
-	
-#####################################################
-#                     MAP EXPORT                    #
-#####################################################
-
-
-func _export_roads_from_map():
-	for x in range(_map_size):
-		for y in range(_map_size):
-			_cast_road_to_map(Vector2i(x, y))
-
-
-func _merge_with_terrain(terrain_map: Array):
-	for y in range(_map_size):
-		for x in range(_map_size):
-			if terrain_map[x][y]:
-				# simply deletes roads where they can't be placed
-				# maybe should be made more advanced way later 
-				_export_map[x][y] = RoadGenerationParams.EMPTY_TILE
-
-	
-## used on road tile to convert it to export ID
-## export ID will be written to _export_map
-func _cast_road_to_map(position: Vector2i):
-	if _map[position.x][position.y] != RoadGenerationParams.ROAD:
-		return
-	var bitmask_key = _get_tile_connections_bitmask(position)
-	_export_map[position.x][position.y] = RoadBitmask.get_road_id_from_bitmask(bitmask_key)
-	
-
-func _get_tile_connections_bitmask(position: Vector2i):
-	var bitmask: int = 0
-	var i: int = 0
-	for y in range(position.y - 1, position.y + 2):
-		for x in range(position.x - 1, position.x + 2):
-			if _get_map_tile(Vector2i(x, y)) == RoadGenerationParams.ROAD:
-				bitmask += 1 << i
-			i += 1
-	return bitmask
 		
 		
 #####################################################
 #      EXPORT MAP CONVERSION TO EXPORT DATA         #
 #####################################################
-
-
-## initialize 2D array for exported data
-func _init_export_array():
-	_export_array.clear()
-	
-	var size: int = RoadBitmask.get_road_id_count()
-	_export_array.resize(size)
-	_export_array.fill([])
-	
-
-## convert export map to sorted Vector3 array, grouped by road ID's
-func _export_data_array():
-	_init_export_array()
-	for x in range(_map_size):
-		for y in range(_map_size):
-			_export_array[_export_map[x][y]].push_back(Vector3(x, 0, y))
-			
+#
+#
+### initialize 2D array for exported data
+#func _init_export_array():
+	#_export_array.clear()
+	#
+	#var size: int = RoadBitmask.get_road_id_count()
+	#_export_array.resize(size)
+	#_export_array.fill([])
+	#
+#
+### convert export map to sorted Vector3 array, grouped by road ID's
+#func _export_data_array():
+	#_init_export_array()
+	#for x in range(_map_size):
+		#for y in range(_map_size):
+			#_export_array[_export_map[x][y]].push_back(Vector3(x, 0, y))
+			#
 			
 #####################################################
 #                 GENERATOR FUNCTIONS               #
@@ -181,7 +110,7 @@ func _generate_spots():
 			and spot.end.x != _map_size - 1 
 			and spot.end.y != _map_size - 1
 		):
-			spot.cast_on_map(_map)
+			spot.cast_on_blueprint(_blueprint)
 	
 	if more_log_messages:
 		print("Roads generated, road generation steps: ", steps)
@@ -195,27 +124,32 @@ func _generate_spots():
 ## generate roads [br]
 ## as input provide 2D boolean array where true is terrain which blocks road tile creation [br]
 ## returns 2D array with positions of road tiles sorted by their ID's (ID's as array indexes)
-func generate_roads(terrain_map: Array):
+func generate_roads(blueprint: Dictionary):
 	
 	## clear previous generation results
 	_final_spots.clear()
 	
+	_blueprint = blueprint
 	_map_size = generation_params.map_size
-	
-	_init_maps()
 	
 	generation_params.check_generation_areas()
 	_generate_spots()
 	
 	## avoiding extreme amount of error messages if bitmask creation fails
 	## and also avoiding modifying export map to return empty export data on error
-	if RoadBitmask.create_bitmask():
-		_export_roads_from_map()
-		_merge_with_terrain(terrain_map)
+	var autotiler: RoadAutotile = RoadAutotile.new()
 	
-	_export_data_array()
+	if autotiler.create_bitmask():
+		autotiler.autotile_roads(_blueprint, _map_size)
+		#_export_roads_from_map()
+		#
+		##_merge_with_terrain(blueprint)
+	else:
+		return false
+	#
+	#_export_data_array()
 				
-	return _export_array
+	return true
 	
 
 #####################################################
@@ -224,61 +158,63 @@ func generate_roads(terrain_map: Array):
 
 
 func test() -> void:
-	var test_terrain_map: Array = []
+	var test_terrain_blueprint: Dictionary
 	for x in range(generation_params.map_size):
-		var col := PackedByteArray()
-		col.resize(generation_params.map_size)
-		col.fill(false)
-		test_terrain_map.append(col)
+		for y in range(generation_params.map_size):
+			var coord: Vector2i = Vector2i(x, y)
+			test_terrain_blueprint[coord]= {
+				"height": 0.0,
+				"type": "empty",
+				"can_place": "any",
+			}
 	if more_log_messages:
 		print("start road generation!")
 	
-	generate_roads(test_terrain_map)
+	generate_roads(test_terrain_blueprint)
 	
 	if log_generated_map_to_console:
-		_print_map_to_console()
+		_print_map_to_console(test_terrain_blueprint)
 	if log_export_map_to_console:
-		_print_export_map_to_console()
+		_print_export_map_to_console(test_terrain_blueprint)
 	if create_visualization:
-		_visualize()
+		_visualize(test_terrain_blueprint)
 	if more_log_messages:
 		print("finished full generation!\n")
 	
 
 ## printing export map for debug
-func _print_export_map_to_console() -> void:
+func _print_export_map_to_console(blueprint: Dictionary) -> void:
 	print("export map:")
 		
 	for y in range(_map_size):
 		var output: String = ""
 		for x in range(_map_size):
-			if _export_map[x][y] == 0:
+			if blueprint[Vector2i(x, y)]["type"] == "road":
+				if blueprint[Vector2i(x, y)]["id"] >= 0 and blueprint[Vector2i(x, y)]["id"] < 10:
+					output += " " + str(blueprint[Vector2i(x, y)]["id"])
+				else: 
+					output += str(blueprint[Vector2i(x, y)]["id"])
+			else:
 				output += "  "
-			elif _export_map[x][y] > 0 and _export_map[x][y] < 10:
-				output += " " + str(_export_map[x][y])
-			else: 
-				output += str(_export_map[x][y])
 		print(output)
 		
 		
 ## printing generated map for debug
-func _print_map_to_console() -> void:
+func _print_map_to_console(blueprint: Dictionary) -> void:
 	print("generated map:")
 	
 	for y in range(_map_size):
 		var output: String = ""
 		for x in range(_map_size):
-			if _map[x][y] == 0:
+			if blueprint[Vector2i(x, y)]["type"] == "road":
+				output += " R"
+			else:
 				output += "  "
-			elif _map[x][y] > 0 and _map[x][y] < 10:
-				output += " " + str(_map[x][y])
-			else: 
-				output += str(_map[x][y])
 		print(output)
 		
 
 ## simple test visualization 
-func _visualize() -> void:
+func _visualize(blueprint: Dictionary) -> void:
 	clear_test_visualization()
 	
 	if more_log_messages:
@@ -295,7 +231,7 @@ func _visualize() -> void:
 	
 	for x in range(_map_size):
 		for y in range(_map_size):
-			if _map[x][y] != RoadGenerationParams.EMPTY_TILE:
+			if str(blueprint[Vector2i(x, y)]["type"]) == "road":
 				var road = MeshInstance3D.new()
 				road.mesh = BoxMesh.new()
 				road.mesh.size = Vector3(1, 1, 1)

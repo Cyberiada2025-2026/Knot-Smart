@@ -46,15 +46,21 @@ func split_y(min_spot_size: Vector2i) -> Spot:
 	return new_spot
 	
 
-func cast_on_map(map):
+func cast_on_blueprint(blueprint: Dictionary):
 	for i in range(start.x, end.x + 1):
-		map[i][start.y] = RoadGenerationParams.ROAD
-		map[i][end.y] = RoadGenerationParams.ROAD
+		blueprint[Vector2i(i, start.y)]["type"] = "road"
+		blueprint[Vector2i(i, end.y)]["type"] = "road"
 		
 	for i in range(start.y, end.y + 1):
-		map[start.x][i] = RoadGenerationParams.ROAD
-		map[end.x][i] = RoadGenerationParams.ROAD
+		blueprint[Vector2i(start.x, i)]["type"] = "road"
+		blueprint[Vector2i(end.x, i)]["type"] = "road"
 	
+	# zjebane
+	#for axis in 2:
+		#for i in range(start[axis], end[axis] + 1):
+			#blueprint[Vector2i(i, start[(axis + 1) % 2])]["type"] = "road"
+			#blueprint[Vector2i(i, end[(axis + 1) % 2])]["type"] = "road"
+
 
 func visualize(visualization_container: Node3D, object_name: String):
 	var box = MeshInstance3D.new()

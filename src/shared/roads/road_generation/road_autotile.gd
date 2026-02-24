@@ -1,10 +1,9 @@
 @tool
 extends Node
-class_name RoadBitmask
+class_name RoadAutotile
 
 enum road_id {
-	tiling_error = -1,
-	empty = 0,  # same value as EMPTY_TILE constant in road generation params
+	tiling_error = 0,
 	horizontal_straight,
 	vertical_straight,
 	T_down, 
@@ -162,7 +161,7 @@ static var _road_connections_by_id: Dictionary = {
 
 # all neighbour arrays are 3x3 but are represented as singe dimension array
 const NEIGHBOUR_ARRAY_SIZE: int = 9
-static var _road_id_bitmask: Dictionary = {}
+var _road_id_bitmask: Dictionary = {}
 
 ## simple clockwise neighbour array rotation function, returns copy of provided array
 static func _rotate(angle: int, array: Array):
@@ -184,7 +183,7 @@ static func _rotate(angle: int, array: Array):
 	
 ## converts array into integer and creates bitmask dictionary key connected to it's tile ID[br]
 ## recurrent conversion allows creating proper values whe ANY connection type appears
-static func _convert_array_to_bitmask(
+func _convert_array_to_bitmask(
 	array: Array, id: int, bitmask_result: int = 0, current_position: int = 0
 	):
 	if current_position < NEIGHBOUR_ARRAY_SIZE :
@@ -207,7 +206,7 @@ static func _convert_array_to_bitmask(
 		
 		
 ## generate bitmask keys for every road ID to use for autotiling
-static func create_bitmask() -> bool:
+func create_bitmask() -> bool:
 	if not _road_id_bitmask.is_empty():
 		_road_id_bitmask.clear()
 		
@@ -228,7 +227,7 @@ static func get_road_id_count():
 	
 	
 ## converts road connection bitmask into proper autotiled road ID
-static func get_road_id_from_bitmask(bitmask_key: int):
+func _get_road_id_from_bitmask(bitmask_key: int):
 	if _road_id_bitmask.is_empty():
 		printerr("trying to access road bitmask without creating it...")
 		if not create_bitmask():
@@ -238,3 +237,22 @@ static func get_road_id_from_bitmask(bitmask_key: int):
 	else:
 		printerr("bitmask key not found:", bitmask_key)
 		return -1
+		
+	
+func _get_tile_connections_bitmask(position: Vector2i, blueprint: Dictionary):
+	var bitmask: int = 0
+	var i: int = 0
+	for y in range(position.y - 1, position.y + 2):
+		for x in range(position.x - 1, position.x + 2):
+			if blueprint.has(Vector2i(x, y)) and blueprint[Vector2i(x, y)]["type"] == "road":
+				bitmask += 1 << i
+			i += 1
+	return bitmask
+		
+		
+func autotile_roads(blueprint: Dictionary, map_size: int):
+	for x in range(map_size):
+		for y in range(map_size):
+			if blueprint[Vector2i(x, y)]["type"] == "road":
+				var bitmask_key = _get_tile_connections_bitmask(Vector2i(x, y), blueprint)
+				blueprint[Vector2i(x, y)]["id"]  = _get_road_id_from_bitmask(bitmask_key)

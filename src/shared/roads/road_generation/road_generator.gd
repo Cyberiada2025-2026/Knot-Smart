@@ -8,7 +8,8 @@ extends Node
 @export var visualization_container: Node3D
 @export var create_visualization: bool
 @export var log_generated_map_to_console: bool
-@export var log_export_map_to_console: bool
+@export var log_id_to_console: bool
+@export var log_rotations_to_console: bool
 @export var more_log_messages: bool
 @export_tool_button("Test Generation") var generate_action = test
 @export_tool_button("Clear Visualization") var clear_action = clear_test_visualization
@@ -16,30 +17,7 @@ extends Node
 var _blueprint: Dictionary
 var _map_size: int
 var _final_spots: Array[Spot] = []
-var _export_array: Array = []
 		
-		
-#####################################################
-#      EXPORT MAP CONVERSION TO EXPORT DATA         #
-#####################################################
-#
-#
-### initialize 2D array for exported data
-#func _init_export_array():
-	#_export_array.clear()
-	#
-	#var size: int = RoadBitmask.get_road_id_count()
-	#_export_array.resize(size)
-	#_export_array.fill([])
-	#
-#
-### convert export map to sorted Vector3 array, grouped by road ID's
-#func _export_data_array():
-	#_init_export_array()
-	#for x in range(_map_size):
-		#for y in range(_map_size):
-			#_export_array[_export_map[x][y]].push_back(Vector3(x, 0, y))
-			#
 			
 #####################################################
 #                 GENERATOR FUNCTIONS               #
@@ -50,7 +28,7 @@ func _generate_spots():
 	var spots: Array[Spot] = []
 	
 	# create initial rectangle spot that will be divided into smaller ones
-	spots.push_back(Spot.create(Vector2i(0, 0), Vector2i(_map_size - 1, _map_size - 1)))
+	spots.push_back(Spot.new(Vector2i(0, 0), Vector2i(_map_size - 1, _map_size - 1)))
 	
 	# splitting rectangles until they reach proper size
 	var steps: int = 0
@@ -121,9 +99,8 @@ func _generate_spots():
 #####################################################
 
 
-## generate roads [br]
-## as input provide 2D boolean array where true is terrain which blocks road tile creation [br]
-## returns 2D array with positions of road tiles sorted by their ID's (ID's as array indexes)
+## generate basic road map [br]
+## changes tile "type" to "road" from "empty" when places road 
 func generate_roads(blueprint: Dictionary):
 	
 	## clear previous generation results
@@ -139,12 +116,7 @@ func generate_roads(blueprint: Dictionary):
 	## and also avoiding modifying export map to return empty export data on error
 	var autotiler: RoadAutotile = RoadAutotile.new()
 	
-	if autotiler.create_bitmask():
-		autotiler.autotile_roads(_blueprint, _map_size)
-		#_export_roads_from_map()
-		#
-		##_merge_with_terrain(blueprint)
-	else:
+	if not autotiler.autotile_roads(_blueprint, _map_size):
 		return false
 	#
 	#_export_data_array()
@@ -173,41 +145,34 @@ func test() -> void:
 	generate_roads(test_terrain_blueprint)
 	
 	if log_generated_map_to_console:
-		_print_map_to_console(test_terrain_blueprint)
-	if log_export_map_to_console:
-		_print_export_map_to_console(test_terrain_blueprint)
+		_print_to_console(test_terrain_blueprint, "type")
+	if log_id_to_console:
+		_print_to_console(test_terrain_blueprint, "id")
+	if log_rotations_to_console:
+		_print_to_console(test_terrain_blueprint, "rotation")
 	if create_visualization:
 		_visualize(test_terrain_blueprint)
 	if more_log_messages:
 		print("finished full generation!\n")
 	
 
-## printing export map for debug
-func _print_export_map_to_console(blueprint: Dictionary) -> void:
-	print("export map:")
+## printing blueprint map data from given dictionary key for debug
+func _print_to_console(blueprint: Dictionary, key: String) -> void:
+	print("printing '", key, "':")
 		
 	for y in range(_map_size):
 		var output: String = ""
 		for x in range(_map_size):
 			if blueprint[Vector2i(x, y)]["type"] == "road":
-				if blueprint[Vector2i(x, y)]["id"] >= 0 and blueprint[Vector2i(x, y)]["id"] < 10:
-					output += " " + str(blueprint[Vector2i(x, y)]["id"])
-				else: 
-					output += str(blueprint[Vector2i(x, y)]["id"])
-			else:
-				output += "  "
-		print(output)
-		
-		
-## printing generated map for debug
-func _print_map_to_console(blueprint: Dictionary) -> void:
-	print("generated map:")
-	
-	for y in range(_map_size):
-		var output: String = ""
-		for x in range(_map_size):
-			if blueprint[Vector2i(x, y)]["type"] == "road":
-				output += " R"
+				if key == "type" :
+					output += " R"
+				if key == "rotation" :
+					output += " " + str(blueprint[Vector2i(x, y)][key] / 90)
+				if key == "id":
+					if blueprint[Vector2i(x, y)][key] >= 0 and blueprint[Vector2i(x, y)][key] < 10:
+						output += " " + str(blueprint[Vector2i(x, y)][key])
+					else: 
+						output += str(blueprint[Vector2i(x, y)][key])
 			else:
 				output += "  "
 		print(output)

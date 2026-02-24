@@ -38,26 +38,23 @@ min_spot_size = Vector2i(5, 5)
 spot_limit_area = SubResource("Resource_gvmpv")
 metadata/_custom_type_script = "uid://o5exsbtpsbth"
 
-[sub_resource type="Resource" id="Resource_8tvk8"]
+[sub_resource type="Resource" id="Resource_5akc6"]
 script = ExtResource("3_oohkc")
-end = Vector2i(201, 201)
+end = Vector2i(64, 64)
 
-[sub_resource type="Resource" id="Resource_q6jq2"]
+[sub_resource type="Resource" id="Resource_r27d0"]
 script = ExtResource("2_oohkc")
-min_spot_size = Vector2i(8, 5)
+min_spot_size = Vector2i(8, 8)
 max_spot_size = Vector2i(16, 16)
-spot_limit_area = SubResource("Resource_8tvk8")
+spot_limit_area = SubResource("Resource_5akc6")
 
 [sub_resource type="Resource" id="Resource_dxu3u"]
 script = ExtResource("3_ev4h5")
-generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_6lgnl"), SubResource("Resource_bfipm"), SubResource("Resource_oohkc"), SubResource("Resource_q6jq2")])
+generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_6lgnl"), SubResource("Resource_bfipm"), SubResource("Resource_oohkc"), SubResource("Resource_r27d0")])
 
 [node name="Node3D" type="Node3D" unique_id=49889973 node_paths=PackedStringArray("visualization_container")]
 script = ExtResource("1_ntgsn")
 generation_params = SubResource("Resource_dxu3u")
 visualization_container = NodePath("roadMapVisualizationContainer")
-create_visualization = true
-log_generated_map_to_console = true
-log_export_map_to_console = true
 
 [node name="roadMapVisualizationContainer" type="Node3D" parent="." unique_id=561994593]

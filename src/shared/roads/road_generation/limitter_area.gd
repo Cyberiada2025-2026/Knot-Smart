@@ -13,6 +13,7 @@ class_name LimitterArea
 				max_spot_size[axis] = min_spot_size[axis] * 2
 				print("corrected max size")
 
+# somehow sometimes corrects last array's min_spot_size.y for no reason, still trying to figure out why
 @export var max_spot_size: Vector2i = Vector2i(10, 10):
 	set(value):
 		max_spot_size = value

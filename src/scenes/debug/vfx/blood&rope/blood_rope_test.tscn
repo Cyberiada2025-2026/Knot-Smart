@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dvtuotksnd2hb"]
 
 [ext_resource type="PackedScene" uid="uid://rnx3yu0ofiwg" path="res://shared/post_processing/camera_setup.tscn" id="1_r2vhj"]
-[ext_resource type="PackedScene" uid="uid://djqe8wkjmmn8n" path="res://shared/rope_vfx/rope_vfx.tscn" id="2_cl5ih"]
-[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/rope_vfx/rope.gdshader" id="3_agnij"]
+[ext_resource type="PackedScene" uid="uid://djqe8wkjmmn8n" path="res://shared/rope/vfx/rope_vfx.tscn" id="2_cl5ih"]
+[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/rope/vfx/rope.gdshader" id="3_agnij"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="4_epstj"]
 [ext_resource type="Script" uid="uid://cfqche3hcpffv" path="res://scenes/debug/vfx/blood&rope/blood_test.gd" id="5_em06k"]
 [ext_resource type="Script" uid="uid://d30f8fqqw8m22" path="res://scenes/debug/vfx/blood&rope/rope_vfx_test.gd" id="6_4k4jr"]

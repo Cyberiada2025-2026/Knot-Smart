@@ -57,5 +57,7 @@ script = ExtResource("1_ntgsn")
 generation_params = SubResource("Resource_dxu3u")
 visualization_container = NodePath("roadMapVisualizationContainer")
 create_visualization = true
+log_generated_map_to_console = true
+log_export_map_to_console = true
 
 [node name="roadMapVisualizationContainer" type="Node3D" parent="." unique_id=561994593]

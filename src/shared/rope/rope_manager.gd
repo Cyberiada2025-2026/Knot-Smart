@@ -27,3 +27,29 @@ func _physics_process(_delta: float) -> void:
 	var space_state = get_world_3d().direct_space_state
 	var query = PhysicsRayQueryParameters3D.create(from, to)
 	var result = space_state.intersect_ray(query)
+	
+	if result.is_empty():
+		sphere.hide()
+	else:
+		sphere.show()
+		sphere.position = result["position"]
+	
+		if Input.is_action_just_pressed("add_rope"):
+			rope_mode_toggle = not rope_mode_toggle
+			var marker = sphere.duplicate()
+			result.collider.add_child(marker)
+			marker.name = "PositionMarker"
+			marker.owner = result.collider
+			marker.global_transform = sphere.transform
+
+			rope_points.append(result)
+
+			if not rope_mode_toggle:
+				var p1 = rope_points.pop_back()
+				var p2 = rope_points.pop_back()
+				var mark1 = p1.collider.find_child("PositionMarker")
+				var mark2 = p2.collider.find_child("PositionMarker")
+				var rope = Rope.new(mark1.global_position, p1.collider, mark2.global_position, p2.collider)
+				mark1.queue_free()
+				mark2.queue_free()
+				add_child(rope)

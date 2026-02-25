@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://bjkeopeq3ehmb"]
 
-[ext_resource type="Shader" path="res://shared/shaders/triplanar_mapping_with_alt.gdshader" id="1_k45uo"]
+[ext_resource type="Shader" uid="uid://kaq856dfkhje" path="res://shared/shaders/triplanar_mapping_with_alt.gdshader" id="1_k45uo"]
 [ext_resource type="Texture2D" uid="uid://1xktxeygkcdl" path="res://shared/buildings/assets/brick2.png" id="2_d5aoj"]
 [ext_resource type="Texture2D" uid="uid://bnsi8fjurk7cv" path="res://shared/buildings/assets/beton.png" id="3_70rdv"]
 

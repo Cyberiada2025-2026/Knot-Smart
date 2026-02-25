@@ -1,14 +1,31 @@
 [gd_scene format=3 uid="uid://bw6iebbvwg8lw"]
 
 [ext_resource type="PackedScene" uid="uid://bl12nmqdnj8e5" path="res://shared/buildings/assets/building_parts.glb" id="1_jr2ol"]
-[ext_resource type="Material" uid="uid://bjkeopeq3ehmb" path="res://shared/buildings/assets/building_base_material.tres" id="2_63c1x"]
-[ext_resource type="Material" uid="uid://p23eoepvxe0s" path="res://shared/buildings/assets/building_floor_material.tres" id="2_v68a3"]
+[ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="2_il14n"]
+[ext_resource type="Texture2D" uid="uid://c40jqoky02oo0" path="res://shared/buildings/assets/FloorTextureMain.png" id="3_il14n"]
+[ext_resource type="Texture2D" uid="uid://bnsi8fjurk7cv" path="res://shared/buildings/assets/beton.png" id="4_il14n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nb16i"]
+render_priority = 0
+shader = ExtResource("2_il14n")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/main_texture = ExtResource("3_il14n")
+shader_parameter/tint = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_63c1x"]
 size = Vector3(2.1, 0.1, 2.1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v68a3"]
 size = Vector3(0.4, 0.1, 2.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0afp5"]
+render_priority = 0
+shader = ExtResource("2_il14n")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/main_texture = ExtResource("4_il14n")
+shader_parameter/tint = Color(1, 1, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_il14n"]
 size = Vector3(2.1, 2.8, 0.1)
@@ -28,18 +45,18 @@ size = Vector3(2.1, 0.8, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_44p1n"]
 size = Vector3(0.5, 2.8, 0.1)
 
-[node name="building_parts" unique_id=1574462209 instance=ExtResource("1_jr2ol")]
+[node name="building_parts" unique_id=1555792555 instance=ExtResource("1_jr2ol")]
 
-[node name="Floor" parent="." index="0" unique_id=2020643806]
-surface_material_override/0 = ExtResource("2_v68a3")
+[node name="Floor" parent="." index="0" unique_id=272690076]
+surface_material_override/0 = SubResource("ShaderMaterial_nb16i")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor" index="0" unique_id=1941271927]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" index="0" unique_id=1131346699]
 shape = SubResource("BoxShape3D_63c1x")
 
-[node name="Hole" parent="." index="1" unique_id=1719637336]
-surface_material_override/0 = ExtResource("2_v68a3")
+[node name="Hole" parent="." index="1" unique_id=761058223]
+surface_material_override/0 = SubResource("ShaderMaterial_nb16i")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Hole" index="0" unique_id=1572258210]
 
@@ -59,8 +76,8 @@ shape = SubResource("BoxShape3D_v68a3")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.675932e-08, 0, -0.85)
 shape = SubResource("BoxShape3D_v68a3")
 
-[node name="Wall" parent="." index="2" unique_id=802205975]
-surface_material_override/0 = ExtResource("2_63c1x")
+[node name="Wall" parent="." index="2" unique_id=1819056385]
+surface_material_override/0 = SubResource("ShaderMaterial_0afp5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall" index="0" unique_id=1504131767]
 
@@ -68,8 +85,8 @@ surface_material_override/0 = ExtResource("2_63c1x")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -1)
 shape = SubResource("BoxShape3D_il14n")
 
-[node name="Window" parent="." index="3" unique_id=1987303922]
-surface_material_override/0 = ExtResource("2_63c1x")
+[node name="Window" parent="." index="3" unique_id=1015365059]
+surface_material_override/0 = SubResource("ShaderMaterial_0afp5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Window" index="0" unique_id=1387311743]
 
@@ -89,8 +106,8 @@ shape = SubResource("BoxShape3D_bs4n8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8000002, 1.4, -1)
 shape = SubResource("BoxShape3D_bs4n8")
 
-[node name="Door" parent="." index="4" unique_id=1341320555]
-surface_material_override/0 = ExtResource("2_63c1x")
+[node name="Door" parent="." index="4" unique_id=640605388]
+surface_material_override/0 = SubResource("ShaderMaterial_0afp5")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Door" index="0" unique_id=1550767207]
 

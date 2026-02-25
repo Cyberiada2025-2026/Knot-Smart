@@ -30,8 +30,8 @@ func setup_components() -> void:
 
 func create_default_blueprint() -> void:
 	blueprint.clear()
-	for x in range(world_generation_params.map_size):
-		for z in range(world_generation_params.map_size):
+	for x in world_generation_params.map_size:
+		for z in world_generation_params.map_size:
 			var coord = Vector2i(x, z)
 			blueprint[coord] = {
 				"height": 0.0,      # Flat ground at sea level

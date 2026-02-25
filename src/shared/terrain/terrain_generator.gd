@@ -11,8 +11,8 @@ func generate_terrain(blueprint: Dictionary) -> bool:
 	
 	var world_size = world_generation_params.map_size * world_generation_params.chunk_size
 	
-	for x in range(world_size):
-		for z in range(world_size):
+	for x in world_size:
+		for z in world_size:
 			var coord = Vector2i(x, z)
 			
 			var raw_val = world_generation_params.noise.get_noise_2d(x, z)

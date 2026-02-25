@@ -1,3 +1,4 @@
+class_name RopeManager
 extends Node3D
 
 var rope_mode_toggle = false

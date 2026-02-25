@@ -73,9 +73,14 @@ func generate_world() -> void:
 	
 	# temp solution
 	if chunk_generator and chunk_generator.has_method("generate_chunks"):
-		chunk_generator.generate_chunks(blueprint)
+		chunk_generator.generate_chunks(blueprint,player.position)
 	else:
 		push_warning("TerrainManager: Missing valid Chunk Generator!")
 	
 	
 	can_generate_chunks = true
+	
+func _process(delta: float) -> void:
+	if can_generate_chunks == true:
+		chunk_generator.generate_chunks(blueprint, player.position)
+	

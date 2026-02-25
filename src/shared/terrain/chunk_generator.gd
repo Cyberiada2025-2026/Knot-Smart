@@ -2,6 +2,8 @@
 class_name ChunkGenerator
 extends Node3D
 
+@export_tool_button("Clean") var clean_action = clear_chunks
+
 var world_generation_params: WorldGenerationParams
 var world_display_params: WorldDisplayParams
 
@@ -42,20 +44,29 @@ func clear_chunks(render_position = null) -> void:
 	
 	for coord in active_chunks.keys():
 		var diff = (coord - center_coord).abs()
+		print("k",diff)
 		if diff.x > world_display_params.render_distance or diff.y > world_display_params.render_distance:
 			if is_instance_valid(active_chunks[coord]):
 				active_chunks[coord].queue_free()
 				remove_child(active_chunks[coord])
+				print("rem")
 			active_chunks.erase(coord)
+	
 		
 
 func generate_chunks(blueprint, render_position = null) -> void:
 	clear_chunks(render_position)
-	
-	if render_position:
-		
+	print(render_position,"playerps")
+	if render_position != null:
 		var chunk_offset = world_generation_params.chunk_size * world_generation_params.tile_size
-		
+		var clampedx = range(max(floor(render_position.x / chunk_offset)-world_display_params.render_distance,0),min(floor(render_position.x / chunk_offset)+world_display_params.render_distance,world_generation_params.map_size))
+		var clampedz = range(max(floor(render_position.z / chunk_offset)-world_display_params.render_distance,0),min(floor(render_position.z / chunk_offset)+world_display_params.render_distance,world_generation_params.map_size))
+		for x in clampedx:
+			for z in clampedz:
+				var coord = Vector2i(x, z)
+				print("crd",coord)
+				if not active_chunks.has(coord):
+					create_chunk_node(coord, blueprint)
 	else:
 		for x in world_generation_params.map_size:
 			for z in world_generation_params.map_size:

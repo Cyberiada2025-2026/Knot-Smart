@@ -27,40 +27,44 @@ const quads = [
 
 func clear_chunks(render_position = null) -> void:
 	
-	#var chunk_offset = world_generation_params.chunk_size * world_generation_params.tile_size
+	var chunk_offset = world_generation_params.chunk_size * world_generation_params.tile_size
 	
 	if render_position == null:
-		for child in get_children():
-			if child is MeshInstance3D:
-				child.free()
+		for child in find_children("", "MeshInstance3D"):
+			child.free()
 		active_chunks.clear()
 		return
 
-	#var center_coord = Vector2i(
-		#floor(render_position.x / chunk_offset),
-		#floor(render_position.y / chunk_offset)
-	#)
-	#
-	#for coord in active_chunks.keys():
-		#var diff = (coord - center_coord).abs()
-		#if diff.x > world_display_params.render_distance or diff.y > world_display_params.render_distance:
-			#if is_instance_valid(active_chunks[coord]):
-				#active_chunks[coord].queue_free()
-				#remove_child(active_chunks[coord])
-			#active_chunks.erase(coord)
+	var center_coord = Vector2i(
+		floor(render_position.x / chunk_offset),
+		floor(render_position.y / chunk_offset)
+	)
+	
+	for coord in active_chunks.keys():
+		var diff = (coord - center_coord).abs()
+		if diff.x > world_display_params.render_distance or diff.y > world_display_params.render_distance:
+			if is_instance_valid(active_chunks[coord]):
+				active_chunks[coord].queue_free()
+				remove_child(active_chunks[coord])
+			active_chunks.erase(coord)
 		
 
-func generate_chunks(blueprint, render_position) -> void:
-	clear_chunks()
+func generate_chunks(blueprint, render_position = null) -> void:
+	clear_chunks(render_position)
 	
-	for x in world_generation_params.map_size:
-		for z in world_generation_params.map_size:
-			var coord = Vector2i(x, z)
-			_create_chunk_node(coord, blueprint)
+	if render_position:
+		
+		var chunk_offset = world_generation_params.chunk_size * world_generation_params.tile_size
+		
+	else:
+		for x in world_generation_params.map_size:
+			for z in world_generation_params.map_size:
+				var coord = Vector2i(x, z)
+				create_chunk_node(coord, blueprint)
 			
 	print("ChunkGenerator: Active chunks: ", active_chunks.size())
 
-func _create_chunk_node(chunk_coord: Vector2i, blueprint: Dictionary) -> void:
+func create_chunk_node(chunk_coord: Vector2i, blueprint: Dictionary) -> void:
 	var chunk = MeshInstance3D.new()
 	
 	chunk.name = "ChunkX%dZ%d" % [chunk_coord.x, chunk_coord.y]

@@ -29,6 +29,7 @@ func _init(p1: Vector3, obj1: Node3D, p2: Vector3, obj2: Node3D) -> void:
 	add_child(inner2)
 
 func finish():
+	apply_forces()
 	queue_free()
 
 func _ready() -> void:
@@ -39,6 +40,23 @@ func _ready() -> void:
 	inner2.bind(node2)
 	if node2 is not RigidBody3D:
 		inner2.is_static = true
+
+func apply_forces() -> void:
+	if node1 is RigidBody3D and node2 is CharacterBody3D:
+		var accel = inner1.get_hooke_accel()
+		node1.apply_impulse(-accel)
+
+	if node2 is RigidBody3D and node1 is CharacterBody3D:
+		var accel = inner2.get_hooke_accel()
+		node2.apply_impulse(-accel)
+
+	if node1 is StaticBody3D and node2 is CharacterBody3D:
+		var direction = node1.position - node2.position
+		node2.velocity += 2 * direction
+		
+	if node2 is StaticBody3D and node1 is CharacterBody3D:
+		var direction = node2.position - node1.position
+		node1.velocity += 2 * direction
 
 func _physics_process(_delta: float) -> void:
 	inner1.set_spring_params(spring_constant, damping)
@@ -102,6 +120,14 @@ class InnerNode extends RigidBody3D:
 		var spring_accel = (-k*dx - b*v) / mass
 
 		return spring_accel
+	
+	func get_hooke_accel() -> Vector3:
+		if is_static:
+			return Vector3.ZERO
+		
+		var dx = position - equilibrium
+		return -k*dx / mass
+
 
 	func _physics_process(_delta: float) -> void:
 		apply_force(mass * get_accel())

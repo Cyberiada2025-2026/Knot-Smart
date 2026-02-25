@@ -36,36 +36,21 @@ func overlaps(other: Spot) -> bool:
 	)
 	
 	
-func split_x(min_spot_size: Vector2i) -> Spot:
-	var split_position = randi_range(start.x + min_spot_size.x, end.x - min_spot_size.x)
-	var new_spot: Spot = Spot.new(Vector2(split_position, start.y), end)
-	self.end.x = split_position 
-	
-	return new_spot
+func _get_spot_border_coordinates() -> Array[Vector2i]:
+	var coordinates: Array[Vector2i]
+	for x in range(start.x, end.x + 1):
+		coordinates.push_back(Vector2i(x, start.y))
+		coordinates.push_back(Vector2i(x, end.y))
+		
+	for y in range(start.y, end.y + 1):
+		coordinates.push_back(Vector2i(start.x, y))
+		coordinates.push_back(Vector2i(end.x, y))
+	return coordinates
 
-
-func split_y(min_spot_size: Vector2i) -> Spot:
-	var split_position = randi_range(start.y + min_spot_size.y, end.y - min_spot_size.y)
-	var new_spot: Spot = Spot.new(Vector2(start.x, split_position), end)
-	self.end.y = split_position
-	
-	return new_spot
-	
 
 func cast_on_blueprint(blueprint: Dictionary):
-	for i in range(start.x, end.x + 1):
-		blueprint[Vector2i(i, start.y)]["type"] = "road"
-		blueprint[Vector2i(i, end.y)]["type"] = "road"
-		
-	for i in range(start.y, end.y + 1):
-		blueprint[Vector2i(start.x, i)]["type"] = "road"
-		blueprint[Vector2i(end.x, i)]["type"] = "road"
-	
-	# zjebane
-	#for axis in 2:
-		#for i in range(start[axis], end[axis] + 1):
-			#blueprint[Vector2i(i, start[(axis + 1) % 2])]["type"] = "road"
-			#blueprint[Vector2i(i, end[(axis + 1) % 2])]["type"] = "road"
+	for pos in _get_spot_border_coordinates():
+		blueprint[pos]["type"] = "road"
 
 
 func visualize(visualization_container: Node3D, object_name: String):

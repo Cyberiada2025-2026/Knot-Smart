@@ -31,8 +31,10 @@ func _generate_spots():
 	spots.push_back(Spot.new(Vector2i(0, 0), Vector2i(_map_size - 1, _map_size - 1)))
 	
 	# splitting rectangles until they reach proper size
-	var steps: int = 0
-	while !spots.is_empty():
+	var steps_success: int = 0
+	var steps_all: int = 0
+	while not spots.is_empty() and steps_all < _map_size * _map_size:
+		steps_all += 1
 		var area: int = 0
 		var current: int = randi() % len(spots)
 		
@@ -46,15 +48,47 @@ func _generate_spots():
 			spots[current].size().x > generation_params.generation_areas[area].max_spot_size.x 
 			and action == 0
 		):
-			spots.push_back(spots[current].split_x(generation_params.generation_areas[area].min_spot_size))
-			steps += 1
+			var min_spot_size = generation_params.generation_areas[area].min_spot_size
+			var split_position = randi_range(
+				spots[current].start.x + min_spot_size.x,
+				spots[current].end.x - min_spot_size.x
+			)
+			
+			for y in range(spots[current].start.y, spots[current].end.y):
+				if (
+					_blueprint[Vector2i(split_position, y)]["can_place"] == "slope_x"
+					or _blueprint[Vector2i(split_position, y)]["can_place"] == "none"
+				):
+					continue
+			
+			var new_spot: Spot = Spot.new(Vector2(split_position, spots[current].start.y), spots[current].end)
+			spots[current].end.x = split_position
+			spots.push_back(new_spot)
+			
+			steps_success += 1
 		
 		if (
 			spots[current].size().y > generation_params.generation_areas[area].max_spot_size.y
 			and action == 1
 		):
-			spots.push_back(spots[current].split_y(generation_params.generation_areas[area].min_spot_size))
-			steps += 1
+			var min_spot_size = generation_params.generation_areas[area].min_spot_size
+			var split_position = randi_range(
+				spots[current].start.y + min_spot_size.y,
+				spots[current].end.y - min_spot_size.y
+			)
+			
+			for x in range(spots[current].start.x, spots[current].end.x):
+				if (
+					_blueprint[Vector2i(x, split_position)]["can_place"] == "slope_z"
+					or _blueprint[Vector2i(x, split_position)]["can_place"] == "none"
+				):
+					continue
+					
+			var new_spot: Spot = Spot.new(Vector2(spots[current].start.x, split_position), spots[current].end)
+			spots[current].end.y = split_position
+			spots.push_back(new_spot)
+			
+			steps_success += 1
 			
 		# stop splitting spot if it's proper sized and move it to output
 		# also remove spots close to map border
@@ -73,7 +107,7 @@ func _generate_spots():
 				spots.pop_at(current)
 			
 		# main streets, all spots are moved 1 tile forward to create double roads when casting to map
-		if steps == generation_params.highway_generation_split_count:
+		if steps_success == generation_params.highway_generation_split_count:
 			for i in range(len(_final_spots)):
 				_final_spots[i].start.x += 1
 				_final_spots[i].start.y += 1
@@ -84,13 +118,13 @@ func _generate_spots():
 					spots[i].start.x += 1
 				if spots[i].start.y != 0:
 					spots[i].start.y += 1
-			steps += 1
+			steps_success += 1
 	
 	for spot in _final_spots:
 		spot.cast_on_blueprint(_blueprint)
 	
 	if more_log_messages:
-		print("Roads generated, road generation steps: ", steps)
+		print("Roads generated, road generation success steps: ", steps_success, " all: ", steps_all)
 
 
 #####################################################

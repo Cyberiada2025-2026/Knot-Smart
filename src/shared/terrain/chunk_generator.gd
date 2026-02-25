@@ -103,7 +103,7 @@ func generate_chunk_mesh(c_coord: Vector2i, blueprint: Dictionary) -> Mesh:
 				add_quad_with_uv(st, v1, v2, v3, v4)
 
 	# Finalize mesh
-	st.generate_normals() #write own version
+	#st.generate_normals() #write own version
 	st.generate_tangents()
 	return st.commit()
 
@@ -113,14 +113,40 @@ func add_quad_with_uv(st: SurfaceTool, v1: Vector3, v2: Vector3, v3: Vector3, v4
 	var uv2 = Vector2(v2.x, v2.z) / float(world_generation_params.tile_size)
 	var uv3 = Vector2(v3.x, v3.z) / float(world_generation_params.tile_size)
 	var uv4 = Vector2(v4.x, v4.z) / float(world_generation_params.tile_size)
-
-	st.set_uv(uv1); st.add_vertex(v1)
-	st.set_uv(uv2); st.add_vertex(v2)
-	st.set_uv(uv3); st.add_vertex(v3)
 	
-	st.set_uv(uv1); st.add_vertex(v1)
-	st.set_uv(uv3); st.add_vertex(v3)
-	st.set_uv(uv4); st.add_vertex(v4)
+	# normals
+	var nr1 = ((v3 - v1).cross(v2-v1)).normalized()
+	var nr2 = ((v4 - v1).cross(v3-v1)).normalized()
+
+	st.set_normal(nr1)
+	st.set_uv(uv1)
+	
+	st.add_vertex(v1)
+	
+	st.set_normal(nr1)
+	st.set_uv(uv2)
+	
+	st.add_vertex(v2)
+	
+	st.set_normal(nr1)
+	st.set_uv(uv3)
+	
+	st.add_vertex(v3)
+	#second triangle
+	st.set_normal(nr2)
+	st.set_uv(uv1)
+	
+	st.add_vertex(v1)
+	
+	st.set_normal(nr2)
+	st.set_uv(uv3)
+	
+	st.add_vertex(v3)
+	
+	st.set_normal(nr2)
+	st.set_uv(uv4)
+	
+	st.add_vertex(v4)
 
 func get_height_from_blueprint(gx: int, gz: int, blueprint: Dictionary) -> float:
 	var coord = Vector2i(gx, gz)

@@ -5,6 +5,7 @@ extends Resource
 
 ## The radius of chunks to be rendered around the player. 
 ## Higher values increase visual range but impact GPU/CPU performance.
+## Unit: [b]int[/b] (Chunks).
 @export var render_distance: int = 4
 
 ## The material applied to the generated mesh surface.

@@ -121,24 +121,24 @@ mesh = SubResource("ArrayMesh_abr2e")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX7Z1/ChunkX7Z1_col" unique_id=1165669496]
 shape = SubResource("ConcavePolygonShape3D_ir42u")
 
-[node name="ChunkX6Z2" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=37783147]
+[node name="ChunkX6Z2" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=919074577]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 768, 0, 256)
 material_override = SubResource("StandardMaterial3D_nolvv")
 mesh = SubResource("ArrayMesh_33pxs")
 
-[node name="ChunkX6Z2_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX6Z2" unique_id=313526977]
+[node name="ChunkX6Z2_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX6Z2" unique_id=2061967242]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX6Z2/ChunkX6Z2_col" unique_id=385411831]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX6Z2/ChunkX6Z2_col" unique_id=1698728451]
 shape = SubResource("ConcavePolygonShape3D_muk75")
 
-[node name="ChunkX7Z2" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=1614483701]
+[node name="ChunkX7Z2" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=1905871355]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 896, 0, 256)
 material_override = SubResource("StandardMaterial3D_nolvv")
 mesh = SubResource("ArrayMesh_ose0w")
 
-[node name="ChunkX7Z2_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX7Z2" unique_id=1388208322]
+[node name="ChunkX7Z2_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX7Z2" unique_id=1774726326]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX7Z2/ChunkX7Z2_col" unique_id=1790908369]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX7Z2/ChunkX7Z2_col" unique_id=711720168]
 shape = SubResource("ConcavePolygonShape3D_abr2e")
 
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("7_nolvv")]

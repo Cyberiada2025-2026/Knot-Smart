@@ -10,8 +10,12 @@ const MAX_LENGTH = 32.0
 @export var spring_constant = 15.0
 @export var damping = 0.5
 
+var rope_vfx = preload("res://shared/rope/vfx/rope_vfx.tscn")
+
 var inner1: InnerNode
 var inner2: InnerNode
+var vfx: RopeVFX
+var rope: Area3D
 
 var pt1: Vector3
 var pt2: Vector3
@@ -28,9 +32,21 @@ func _init(p1: Vector3, obj1: Node3D, p2: Vector3, obj2: Node3D) -> void:
 	inner2 = InnerNode.new(pt2)
 	add_child(inner2)
 
+func init_rope_mesh():
+	vfx = rope_vfx.instantiate()
+	vfx.start(LENGTH)
+	vfx.rotate_x(-PI/2)
+	rope.add_child(vfx)
+
 func finish():
+	vfx.end()
 	apply_forces()
 	queue_free()
+
+func update_rope():
+	var direction = inner2.position - inner1.position
+	var length = direction.length()
+	vfx.set_length(length)
 
 func _ready() -> void:
 	inner1.bind(node1)
@@ -40,6 +56,9 @@ func _ready() -> void:
 	inner2.bind(node2)
 	if node2 is not RigidBody3D:
 		inner2.is_static = true
+	
+	rope = Area3D.new()
+	init_rope_mesh()
 
 func apply_forces() -> void:
 	if node1 is RigidBody3D and node2 is CharacterBody3D:

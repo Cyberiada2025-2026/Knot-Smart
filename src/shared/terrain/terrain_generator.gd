@@ -10,7 +10,6 @@ func generate_terrain(blueprint: Dictionary) -> bool:
 		return false
 	
 	var world_size = world_generation_params.map_size * world_generation_params.chunk_size
-	print(world_size,"size")
 	
 	for x in range(world_size):
 		for z in range(world_size):
@@ -25,7 +24,7 @@ func generate_terrain(blueprint: Dictionary) -> bool:
 			blueprint[coord] = {
 				"height": final_height,
 				"type": "empty",
-				"occupied": false
+				"can_place": "any"
 			}
 			
 	return true

@@ -7,11 +7,22 @@ var world_display_params: WorldDisplayParams
 
 var active_chunks: Dictionary = {}
 
+enum HeightMap {
+	CURRENT,
+	NEXT_X,
+	NEXT_Z,
+	NEXT_DIAG,
+}
+
 const quads = [
-	[[0,0,0], [1,0,0], [1,1,0], [0,1,0]], # Flat top-left
-	[[1,0,0], [2,0,1], [2,1,1], [1,1,0]], # Slope X
-	[[0,1,0], [1,1,0], [1,2,2], [0,2,2]], # Slope Z
-	[[1,1,0], [2,1,1], [2,2,3], [1,2,2]]  # Corner Diag
+	# Main Tile
+	[[0,HeightMap.CURRENT,0], [1,HeightMap.CURRENT,0], [1,HeightMap.CURRENT,1], [0,HeightMap.CURRENT,1]], 
+	# Next Tile on X
+	[[1,HeightMap.CURRENT,0], [2,HeightMap.NEXT_X,0], [2,HeightMap.NEXT_X,1], [1,HeightMap.CURRENT,1]],  
+	# Next Tile on Z
+	[[0,HeightMap.CURRENT,1], [1,HeightMap.CURRENT,1], [1,HeightMap.NEXT_Z,2], [0,HeightMap.NEXT_Z,2]],   
+	# Next Tile Diagonally
+	[[1,HeightMap.CURRENT,1], [2,HeightMap.NEXT_X,1], [2,HeightMap.NEXT_DIAG,2], [1,HeightMap.NEXT_Z,2]] 
 ]
 
 func clear_chunks(render_position = null) -> void:
@@ -49,17 +60,17 @@ func generate_chunks(blueprint, render_position) -> void:
 			
 	print("ChunkGenerator: Active chunks: ", active_chunks.size())
 
-func _create_chunk_node(c_coord: Vector2i, blueprint: Dictionary) -> void:
+func _create_chunk_node(chunk_coord: Vector2i, blueprint: Dictionary) -> void:
 	var chunk = MeshInstance3D.new()
 	
-	chunk.name = "Chunk_%d_%d" % [c_coord.x, c_coord.y]
+	chunk.name = "ChunkX%dZ%d" % [chunk_coord.x, chunk_coord.y]
 	add_child(chunk)
 	chunk.owner = get_tree().edited_scene_root
 	
 	var chunk_offset = world_generation_params.chunk_size * world_generation_params.tile_size
-	chunk.global_position = Vector3(c_coord.x * chunk_offset, 0, c_coord.y * chunk_offset)
+	chunk.global_position = Vector3(chunk_coord.x * chunk_offset, 0, chunk_coord.y * chunk_offset)
 	
-	var mesh = generate_chunk_mesh(c_coord, blueprint)
+	var mesh = generate_chunk_mesh(chunk_coord, blueprint)
 	chunk.mesh = mesh
 	
 	chunk.create_trimesh_collision()
@@ -67,21 +78,21 @@ func _create_chunk_node(c_coord: Vector2i, blueprint: Dictionary) -> void:
 	if world_display_params.terrain_material:
 		chunk.material_override = world_display_params.terrain_material
 		
-	active_chunks[c_coord] = chunk
+	active_chunks[chunk_coord] = chunk
 
-func generate_chunk_mesh(c_coord: Vector2i, blueprint: Dictionary) -> Mesh:
+func generate_chunk_mesh(chunk_coord: Vector2i, blueprint: Dictionary) -> Mesh:
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	
-	var c_size = world_generation_params.chunk_size
-	var t_size = world_generation_params.tile_size
+	var chunk_size = world_generation_params.chunk_size
+	var tile_size = world_generation_params.tile_size
 
-	for x in range(0, c_size, 2):
-		for z in range(0, c_size, 2):
+	for x in range(0, chunk_size-1, 2):
+		for z in range(0, chunk_size-1, 2):
 			
 			# Global coords for the 4 height samples
-			var gx = (c_coord.x * c_size) + x
-			var gz = (c_coord.y * c_size) + z
+			var gx = (chunk_coord.x * chunk_size) + x
+			var gz = (chunk_coord.y * chunk_size) + z
 			
 			# 4 heights from the blueprint
 			var h0 = get_height_from_blueprint(gx, gz, blueprint)          # current
@@ -90,15 +101,15 @@ func generate_chunk_mesh(c_coord: Vector2i, blueprint: Dictionary) -> Mesh:
 			var h3 = get_height_from_blueprint(gx + 2, gz + 2, blueprint)  # diag
 			var heights = [h0, h1, h2, h3]
 			
-			# px[0]=start, px[1]=middle, px[2]=end
-			var px = [x * t_size, (x + 1) * t_size, (x + 2) * t_size]
-			var pz = [z * t_size, (z + 1) * t_size, (z + 2) * t_size]
+			# Tile position transformation
+			var px = [x * tile_size, (x + 1) * tile_size, (x + 2) * tile_size]
+			var pz = [z * tile_size, (z + 1) * tile_size, (z + 2) * tile_size]
 			
 			for q in quads:
-				var v1 = Vector3(px[q[0][0]], heights[q[0][2]], pz[q[0][1]])
-				var v2 = Vector3(px[q[1][0]], heights[q[1][2]], pz[q[1][1]])
-				var v3 = Vector3(px[q[2][0]], heights[q[2][2]], pz[q[2][1]])
-				var v4 = Vector3(px[q[3][0]], heights[q[3][2]], pz[q[3][1]])
+				var v1 = Vector3(px[q[0][0]], heights[q[0][1]], pz[q[0][2]])
+				var v2 = Vector3(px[q[1][0]], heights[q[1][1]], pz[q[1][2]])
+				var v3 = Vector3(px[q[2][0]], heights[q[2][1]], pz[q[2][2]])
+				var v4 = Vector3(px[q[3][0]], heights[q[3][1]], pz[q[3][2]])
 				
 				add_quad(st, v1, v2, v3, v4)
 
@@ -127,5 +138,11 @@ func get_height_from_blueprint(gx: int, gz: int, blueprint: Dictionary) -> float
 	var coord = Vector2i(gx, gz)
 	if blueprint.has(coord):
 		return blueprint[coord].height
+	elif blueprint.has(coord - Vector2i(0,1)):
+		return blueprint[coord - Vector2i(0,1)].height
+	elif blueprint.has(coord - Vector2i(1,0)):
+		return blueprint[coord - Vector2i(1,0)].height
+	elif blueprint.has(coord - Vector2i(1,1)):
+		return blueprint[coord - Vector2i(1,1)].height
 	return 0.0
 	

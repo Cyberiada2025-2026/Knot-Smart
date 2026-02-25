@@ -8,8 +8,7 @@ extends Resource
 ## Unit: [b]float[/b] (Godot units / meters).
 @export_range(4, 2048, 4.0) var map_height := 64.0
 
-## The size of an individual data chunk. Smaller chunks allow for 
-## more granular optimization but increase draw calls.
+## The size of an individual data chunk.
 ## Unit: [b]int[/b] (Tiles).
 @export_range(4, 32, 4) var chunk_size := 4
 

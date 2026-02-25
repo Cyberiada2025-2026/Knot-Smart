@@ -21,15 +21,15 @@ extends Node3D
 @export_category("GeneratorVariables")
 @export var size_x: float = 200
 @export var size_z: float = 200
-@export var points_randomize_in_x: float = 4.5
-@export var points_randomize_in_z: float = 4.5
+@export var points_randomize_in_x: float = 0.99
+@export var points_randomize_in_z: float = 0.99
 @export var start_x: float = 100
 @export var start_z: float = 100
-@export var points_in_x: int = 21
-@export var points_in_z: int = 21
+@export var points_in_x: int = 50
+@export var points_in_z: int = 50
 @export var chance_to_shuffle: float = 0.01
 
-var points: Array[Vector2]
+var points: Dictionary[Vector2, Vector2]
 var lines: Array[BiomeLine]
 var vertical_lines: Array[BiomeLine]
 var horizontal_lines: Array[BiomeLine]
@@ -39,7 +39,6 @@ var free_triangles: Array[BiomeTriangle]
 var biomes: Array[Biome]
 
 func _ready() -> void:
-	get_tree().get_nodes_in_group("camera_debug_group").pop_front().queue_free()
 	generate()
 	show_debug()
 	#create_walls()
@@ -55,37 +54,32 @@ func generate() -> void:
 	_show_biomes()
 
 func _set_points() -> void:
-	for z: int in range(points_in_x):
-		for x: int in range(points_in_z):
-			points.append(Vector2((x)*(size_x/(points_in_x-1)), (z)*(size_z/(points_in_z-1))))
+	for z: int in range(points_in_z):
+		for x: int in range(points_in_x):
+			points[Vector2(x, z)] = Vector2((x)*(size_x/(points_in_x-1)), (z)*(size_z/(points_in_z-1)))
 
 func _randomize_points() -> void:
-	for z: int in range(1, points_in_x-1):
-		for x: int in range(1, points_in_z-1):
-			var i:int = z*points_in_x+x
-			#print(i%s, "  ", i/s, "  ", points[i])
-			points[i].x += (2*randf()-1) * points_randomize_in_x
-			points[i].y += (2*randf()-1) * points_randomize_in_z
+	for z: int in range(0, points_in_z-0):
+		for x: int in range(0, points_in_x-0):
+			points[Vector2(x, z)].x += (size_x / (points_in_x-1)) * randf() * points_randomize_in_x
+			points[Vector2(x, z)].y += (size_z / (points_in_z-1)) * randf() * points_randomize_in_z
 
 func _set_lines_and_triangles() -> void:
 	# Horizontal lines
-	for z: int in range(points_in_x):
-		for x: int in range(points_in_z-1):
-			var i:int = z*(points_in_x)+x
-			horizontal_lines.append(_create_line(points[i], points[i+1]))
+	for z: int in range(points_in_z):
+		for x: int in range(points_in_x-1):
+			horizontal_lines.append(_create_line(points[Vector2(x, z)], points[Vector2(x+1, z)]))
 	
 	# Vertical lines
-	for z: int in range(points_in_x-1):
-		for x: int in range(points_in_z):
-			var i:int = z*(points_in_x)+x
-			vertical_lines.append(_create_line(points[i], points[i+points_in_x]))
+	for z: int in range(points_in_z-1):
+		for x: int in range(points_in_x):
+			vertical_lines.append(_create_line(points[Vector2(x, z)], points[Vector2(x, z+1)]))
 	
 	# Middle lines and triangles
-	for z: int in range(points_in_x-1):
-		for x: int in range(points_in_z-1):
-			var i:int = z*points_in_x+x
+	for z: int in range(points_in_z-1):
+		for x: int in range(points_in_x-1):
 			if randi()%2 == 1:
-				middle_lines.append(_create_line(points[i], points[i+points_in_x+1]))
+				middle_lines.append(_create_line(points[Vector2(x, z)], points[Vector2(x+1, z+1)]))
 				triangles.append(_create_triangle(
 					horizontal_lines[z*(points_in_x-1)+x], 
 					vertical_lines[z*points_in_x+x+1], 
@@ -95,7 +89,7 @@ func _set_lines_and_triangles() -> void:
 					vertical_lines[z*points_in_x+x], 
 					middle_lines[-1]))
 			else:
-				middle_lines.append(_create_line(points[i+1], points[i+points_in_x]))
+				middle_lines.append(_create_line(points[Vector2(x+1, z)], points[Vector2(x, z+1)]))
 				triangles.append(_create_triangle(
 					horizontal_lines[z*(points_in_x-1)+x], 
 					vertical_lines[z*points_in_x+x], 
@@ -152,9 +146,13 @@ func _get_biome_new_triangle(biome: Biome) -> void:
 	var triangle: BiomeTriangle
 	if randf() <= chance_to_shuffle:
 		biome.lines.shuffle()
+	var line_count: int = biome.lines.size()
+	var i: int = 0
 	while true:
+		i += 1
 		var line: BiomeLine = biome.lines.pop_front()
-		if line == null:
+		biome.lines.push_back(line)
+		if i == line_count:
 			_get_biome_starting_triangle(biome)
 			return
 		var r: int = randi()%line.adjacent_triangles.size()
@@ -164,11 +162,13 @@ func _get_biome_new_triangle(biome: Biome) -> void:
 			triangle = traingle1
 			biome.lines.erase(line)
 			_add_triangle_to_biome(biome, triangle)
+			biome.lines.erase(line)
 			return
 		elif free_triangles.find(traingle2) >= 0:
 			triangle = traingle2
 			biome.lines.erase(line)
 			_add_triangle_to_biome(biome, triangle)
+			biome.lines.erase(line)
 			return
 
 func _add_triangle_to_biome(biome: Biome, triangle: BiomeTriangle) -> void:
@@ -198,8 +198,9 @@ func _add_line_to_biome(biome: Biome, line: BiomeLine) -> void:
 
 
 func show_debug() -> void:
+	get_tree().get_nodes_in_group("camera_debug_group").pop_front().queue_free()
 	#_show_points()
-	_show_lines()
+	#_show_lines()
 	_set_biome()
 
 func _show_points() -> void:
@@ -246,10 +247,8 @@ func _show_biomes() -> void:
 			mesh.mesh.size.x = line.get_length()
 			mesh.rotation.y = line.get_rotation()
 			mesh.position.x = line.start_point.x - start_x + ((line.end_point.x - line.start_point.x))/2
-			mesh.position.y += 1
+			mesh.position.y += 0
 			mesh.position.z = line.start_point.y - start_z + ((line.end_point.y - line.start_point.y))/2
-			mesh.mesh.resource_local_to_scene
-			mesh.mesh.material.albedo_color = Color.AQUA
 			self.add_child(mesh)
 
 

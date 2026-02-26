@@ -61,6 +61,7 @@ func _split_spot(spot: Spot, min_spot_size: Vector2i, axis: int, spots: Array) -
 			return false
 	
 	var new_spot: Spot = Spot.new(s2, spot.end)
+	spot.end = e1
 	spots.push_back(new_spot)
 	return true
 	

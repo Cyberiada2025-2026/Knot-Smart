@@ -30,7 +30,7 @@ spot_limit_area = SubResource("Resource_q6ryc")
 [sub_resource type="Resource" id="Resource_gvmpv"]
 script = ExtResource("3_oohkc")
 start = Vector2i(10, 10)
-end = Vector2i(40, 40)
+end = Vector2i(50, 50)
 
 [sub_resource type="Resource" id="Resource_oohkc"]
 script = ExtResource("2_oohkc")
@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://o5exsbtpsbth"
 
 [sub_resource type="Resource" id="Resource_5akc6"]
 script = ExtResource("3_oohkc")
-end = Vector2i(64, 64)
+end = Vector2i(999, 999)
 
 [sub_resource type="Resource" id="Resource_r27d0"]
 script = ExtResource("2_oohkc")
@@ -51,12 +51,12 @@ spot_limit_area = SubResource("Resource_5akc6")
 [sub_resource type="Resource" id="Resource_dxu3u"]
 script = ExtResource("3_ev4h5")
 generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_6lgnl"), SubResource("Resource_bfipm"), SubResource("Resource_oohkc"), SubResource("Resource_r27d0")])
+highway_generation_split_count = 8
 
 [node name="Node3D" type="Node3D" unique_id=49889973 node_paths=PackedStringArray("visualization_container")]
 script = ExtResource("1_ntgsn")
 generation_params = SubResource("Resource_dxu3u")
 visualization_container = NodePath("roadMapVisualizationContainer")
 create_visualization = true
-more_log_messages = true
 
 [node name="roadMapVisualizationContainer" type="Node3D" parent="." unique_id=561994593]

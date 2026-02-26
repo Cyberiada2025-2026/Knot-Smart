@@ -53,10 +53,10 @@ script = ExtResource("3_ev4h5")
 generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_6lgnl"), SubResource("Resource_bfipm"), SubResource("Resource_oohkc"), SubResource("Resource_r27d0")])
 highway_generation_split_count = 8
 
-[node name="Node3D" type="Node3D" unique_id=49889973 node_paths=PackedStringArray("visualization_container")]
+[node name="Node3D" type="Node3D" unique_id=49889973]
 script = ExtResource("1_ntgsn")
 generation_params = SubResource("Resource_dxu3u")
-visualization_container = NodePath("roadMapVisualizationContainer")
 create_visualization = true
+metadata/_edit_group_ = true
 
 [node name="roadMapVisualizationContainer" type="Node3D" parent="." unique_id=561994593]

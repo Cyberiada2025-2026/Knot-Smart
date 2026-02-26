@@ -5,14 +5,13 @@ extends Node
 @export var generation_params: RoadGenerationParams
 
 @export_group("testing")
-@export var visualization_container: Node3D
 @export var create_visualization: bool
+@export var visualization_duration: int = 10
 @export var log_generated_map_to_console: bool
 @export var log_id_to_console: bool
 @export var log_rotations_to_console: bool
 @export var more_log_messages: bool
 @export_tool_button("Test Generation") var generate_action = test
-@export_tool_button("Clear Visualization") var clear_action = clear_test_visualization
 
 var _blueprint: Dictionary
 var _map_size: int
@@ -83,8 +82,8 @@ func _is_spot_touching_map_bounds(spot: Spot) -> bool:
 	return false
 	
 	
-## move spots' start 1 tile forward to create highways that are 2 tiles wide
-func _create_highways(spots: Array[Spot]):
+## move spots' start 1 tile forward
+func _move_spot_start(spots: Array[Spot]):
 	for axis in Utils.Axis2.values():
 		for spot in spots:
 			if spot.start[axis] != 0:
@@ -125,10 +124,10 @@ func _generate_spots():
 			else:
 				_final_spots.push_back(spots.pop_at(curr_pos))
 			
-		# highways
+		# highways are created by moving all spots's start by 1
 		if steps_success == generation_params.highway_generation_split_count:
-			_create_highways(spots)
-			_create_highways(_final_spots)
+			_move_spot_start(spots)
+			_move_spot_start(_final_spots)
 			steps_success += 1
 	
 	if more_log_messages:
@@ -156,8 +155,11 @@ func generate_roads(blueprint: Dictionary):
 	for spot in _final_spots:
 		spot.cast_on_blueprint(_blueprint)
 	
-	## avoiding extreme amount of error messages if bitmask creation fails
-	## and also avoiding modifying export map to return empty export data on error
+	# adjust spot sizes to avoid intersection with roads
+	_move_spot_start(_final_spots)
+	
+	# avoiding extreme amount of error messages if bitmask creation fails
+	# and also avoiding modifying export map to return empty export data on error
 	var autotiler: RoadAutotile = RoadAutotile.new()
 	
 	if not autotiler.autotile_roads(_blueprint, _map_size):
@@ -224,34 +226,23 @@ func _print_to_console(blueprint: Dictionary, key: String) -> void:
 
 ## simple test visualization 
 func _visualize(blueprint: Dictionary) -> void:
-	clear_test_visualization()
-	
+	DebugDraw3D.clear_all()
+	await get_tree().process_frame
+		
 	if more_log_messages:
 		print("creating visualization")
 		
 	for i in range(len(_final_spots)):
-		_final_spots[i].visualize(visualization_container, str(i))
+		_final_spots[i].visualize(visualization_duration)
 	
 	for x in range(_map_size):
-		for y in range(_map_size):
-			if str(blueprint[Vector2i(x, y)]["type"]) == "road":
-				var road = MeshInstance3D.new()
-				road.mesh = BoxMesh.new()
-				road.mesh.size = Vector3(1, 1, 1)
-				road.position = Vector3(x + 0.5, 2, y + 0.5)
-				road.name = "road %s %s" % [x, y]
-
-				var material = StandardMaterial3D.new()
-				material.albedo_color = Color(1.0, 1.0, 1.0, 1.0)
-				road.mesh.material = material
-				
-				visualization_container.add_child(road)
-				road.owner = visualization_container.owner
-				
-
-## delete all children from visualization container
-func clear_test_visualization() -> void:
-	if more_log_messages:
-		print("clearing last visualization")
-	for n in visualization_container.get_children():
-		visualization_container.remove_child(n)
+		for z in range(_map_size):
+			if blueprint[Vector2i(x, z)]["type"] == "road":
+				DebugDraw3D.draw_box(
+					Vector3(x, 0, z),
+					Quaternion.IDENTITY, 
+					Vector3(1, 0.01, 1),
+					Color(1.0, 1.0, 1.0, 1.0),
+					false,
+					visualization_duration
+				)

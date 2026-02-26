@@ -53,16 +53,12 @@ func cast_on_blueprint(blueprint: Dictionary):
 		blueprint[pos]["type"] = "road"
 
 
-func visualize(visualization_container: Node3D, object_name: String):
-	var box = MeshInstance3D.new()
-	box.mesh = BoxMesh.new()
-	box.mesh.size = Vector3(self.size().x, 1, self.size().y)
-	box.position = center()
-	box.name = object_name
-
-	var material = StandardMaterial3D.new()
-	material.albedo_color = Color(randf(), randf(), randf(), 1.0)
-	box.mesh.material = material
-	
-	visualization_container.add_child(box)
-	box.owner = visualization_container.owner
+func visualize(visualization_duration: int):
+	DebugDraw3D.draw_box(
+		Vector3(start.x, 0, start.y),
+		Quaternion.IDENTITY, 
+		Vector3(size().x, 1, size().y), 
+		Color(randf(), randf(), randf(), 1.0), 
+		false,
+		visualization_duration
+	)

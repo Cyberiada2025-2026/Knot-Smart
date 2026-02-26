@@ -4,6 +4,7 @@ extends Node
 
 @export var generation_params: RoadGenerationParams
 
+# testing flags are splitted into different categories to ensure easy debugging
 @export_group("testing")
 @export var create_visualization: bool
 @export var visualization_duration: int = 10
@@ -33,10 +34,13 @@ func _get_area_positions_array(start: Vector2i, end: Vector2i) -> Array:
 	
 	
 ## splits spot into 2 smaller ones
-func _split_spot(spot: Spot, min_spot_size: Vector2i, axis: int, spots: Array) -> bool:
+func _split_spot(spot: Spot, area: LimitterArea, axis: int, spots: Array) -> bool:
+	if spot.size()[axis] <= area.max_spot_size[axis]:
+		return false
+		
 	var split_point = randi_range(
-		min_spot_size[axis],
-		spot.size()[axis] - min_spot_size[axis]
+		area.min_spot_size[axis],
+		spot.size()[axis] - area.min_spot_size[axis]
 	)
 	
 	var e1: Vector2i = spot.end
@@ -96,11 +100,12 @@ func _generate_spots():
 	# create initial rectangle spot that will be divided into smaller ones
 	spots.push_back(Spot.new(Vector2i(0, 0), Vector2i(_map_size - 1, _map_size - 1)))
 	
-	# splitting rectangles until they reach proper size
 	var steps_success: int = 0
 	var steps_all: int = 0
 	
+	# splitting rectangles until they reach proper size
 	# TODO add steps_all limits to params
+	# will be added after real tests
 	while not spots.is_empty() and steps_all < _map_size * _map_size:
 		steps_all += 1
 		var area_idx: int = 0
@@ -114,9 +119,8 @@ func _generate_spots():
 		# action decides whether we are splitting x or y direction
 		var axis = Utils.Axis2.values().pick_random()
 		
-		if curr_spot.size()[axis] > area.max_spot_size[axis]:
-			if _split_spot(curr_spot, area.min_spot_size, axis, spots):
-				steps_success += 1
+		if _split_spot(curr_spot, area, axis, spots):
+			steps_success += 1
 			
 		if _is_spot_correctly_sized(curr_spot, area.max_spot_size):
 			if _is_spot_touching_map_bounds(curr_spot):
@@ -129,6 +133,15 @@ func _generate_spots():
 			_move_spot_start(spots)
 			_move_spot_start(_final_spots)
 			steps_success += 1
+	
+	if not spots.is_empty():
+		if more_log_messages:
+			print("full splits failed for ", spots.size(), " spots, moving them to final array")
+		while not spots.is_empty():
+			if _is_spot_touching_map_bounds(spots.back()):
+				spots.pop_back()
+			else:
+				_final_spots.push_back(spots.pop_back())
 	
 	if more_log_messages:
 		print("Roads generated, road generation success steps: ", steps_success, " all: ", steps_all)
@@ -155,17 +168,14 @@ func generate_roads(blueprint: Dictionary):
 	for spot in _final_spots:
 		spot.cast_on_blueprint(_blueprint)
 	
-	# adjust spot sizes to avoid intersection with roads
+	# adjust spot sizes to avoid intersection with roads when they will be exported
 	_move_spot_start(_final_spots)
 	
-	# avoiding extreme amount of error messages if bitmask creation fails
-	# and also avoiding modifying export map to return empty export data on error
+	# later will be splitted and used outside of road generator
 	var autotiler: RoadAutotile = RoadAutotile.new()
 	
 	if not autotiler.autotile_roads(_blueprint, _map_size):
 		return false
-	#
-	#_export_data_array()
 				
 	return true
 	

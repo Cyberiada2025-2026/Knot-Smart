@@ -17,7 +17,6 @@ class_name RoadGenerationParams
 ## TODO later use value from world generation params 
 @export_range(4, 2048, 4) var map_size: int = 64
 
-
 enum {
 	EMPTY_TILE = 0,
 	TERRAIN,

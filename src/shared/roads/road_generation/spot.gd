@@ -20,18 +20,13 @@ func size() -> Vector2i:
 	
 func area() -> int:
 	return size().x * size().y
-
-func center() -> Vector3:
-	return Vector3(
-		self.start.x + float(self.size().x) / 2, 1, self.start.y + float(self.size().y) / 2
-	)
 	
 
 func overlaps(other: Spot) -> bool:
 	return (
 		self.start.x < other.end.x 
 		and other.start.x < self.end.x
-		and self.start.y < other.end.y 
+		and self.start.y < other.end.y
 		and other.start.y < self.end.y
 	)
 	

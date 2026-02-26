@@ -8,7 +8,7 @@ class_name LimitterArea
 @export var min_spot_size: Vector2i = Vector2i(3, 3):
 	set(value):
 		min_spot_size = value
-		for axis in 2:
+		for axis in Utils.Axis2.values():
 			if min_spot_size[axis] * 2 > max_spot_size[axis]:
 				max_spot_size[axis] = min_spot_size[axis] * 2
 				print("corrected max size")
@@ -17,7 +17,7 @@ class_name LimitterArea
 @export var max_spot_size: Vector2i = Vector2i(10, 10):
 	set(value):
 		max_spot_size = value
-		for axis in 2:
+		for axis in Utils.Axis2.values():
 			if min_spot_size[axis] * 2 > max_spot_size[axis]:
 				min_spot_size[axis] = int(max_spot_size[axis] / 2.0)
 				print("corrected min size")

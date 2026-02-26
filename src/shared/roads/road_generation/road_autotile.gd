@@ -169,6 +169,7 @@ func autotile_roads(blueprint: Dictionary, map_size: int) -> bool:
 	if not _create_bitmask():
 		printerr("failed creating bitmask, autotile was skipped")
 		return false
+		
 	for x in range(map_size):
 		for y in range(map_size):
 			if blueprint[Vector2i(x, y)]["type"] == "road":

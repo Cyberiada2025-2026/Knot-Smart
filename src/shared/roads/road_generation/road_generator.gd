@@ -18,8 +18,8 @@ var _blueprint: Dictionary
 var _map_size: int
 var _final_spots: Array[Spot] = []
 
-## variable that indicates creation of any road generator [br]
-## used by some parameters to properly enable custom setters
+## Indicates creation of any road generator [br][br]
+## Used by some parameters to properly enable custom setters
 static var loaded: bool = false
 
 func _ready():
@@ -31,7 +31,7 @@ func _ready():
 #####################################################
 
 
-## get coordinates of all points located between start and end positions
+## Get coordinates of all points located between start and end positions
 func _get_area_positions_array(start: Vector2i, end: Vector2i) -> Array:
 	var coordinates: Array[Vector2i]
 	for x in range(start.x, end.x + 1):
@@ -40,7 +40,7 @@ func _get_area_positions_array(start: Vector2i, end: Vector2i) -> Array:
 	return coordinates
 	
 	
-## splits spot into 2 smaller ones
+## Splits spot into 2 smaller ones if possible
 func _split_spot(spot: Spot, area: LimitterArea, axis: int, spots: Array) -> bool:
 	if spot.size()[axis] <= area.max_spot_size[axis]:
 		return false
@@ -99,7 +99,7 @@ func _find_overlap_with_area(area: LimitterArea, spot: Spot):
 	return false
 	
 	
-## move spots' start 1 tile forward
+## Move spots' start 1 tile forward
 func _move_spot_start(spots: Array[Spot]):
 	for axis in Utils.Axis2.values():
 		for spot in spots:
@@ -117,9 +117,7 @@ func _generate_spots():
 	var steps_all: int = 0
 	
 	# splitting rectangles until they reach proper size
-	# TODO add steps_all limits to params after tests
-	# will be added after real tests
-	while not spots.is_empty() and steps_all < _map_size * _map_size:
+	while not spots.is_empty() and steps_all < generation_params.generation_steps_limit:
 		steps_all += 1
 		var curr_pos: int = randi() % len(spots)
 		var curr_spot: Spot = spots[curr_pos]
@@ -162,17 +160,17 @@ func _generate_spots():
 #####################################################
 
 
-## generate basic road map [br]
-## changes tile "type" to "road" from "empty" when places road [br]
-## returns false on error
+## Generate basic road map [br][br]
+## Changes tile "type" to "road" from "empty" when places road [br][br]
+## Returns false on error
 func generate_roads(blueprint: Dictionary) -> bool:
-	## clear previous generation results
+	# clear previous generation results
 	_final_spots.clear()
 	
 	_blueprint = blueprint
 	_map_size = generation_params.map_size
 	
-	generation_params.check_generation_areas()
+	generation_params.prepare_generation_areas()
 	_generate_spots()
 	
 	for spot in _final_spots:
@@ -220,9 +218,9 @@ func test() -> void:
 		_visualize(test_terrain_blueprint)
 	if more_log_messages:
 		print("finished full generation!\n")
-	
 
-## printing blueprint map data from given dictionary key for debug
+
+## Printing blueprint map data from given dictionary key for debug
 func _print_to_console(blueprint: Dictionary, key: String) -> void:
 	print("printing '", key, "':")
 		
@@ -230,21 +228,21 @@ func _print_to_console(blueprint: Dictionary, key: String) -> void:
 		var output: String = ""
 		for x in range(_map_size):
 			if blueprint[Vector2i(x, y)]["type"] == "road":
-				if key == "type" :
+				if key == "type":
 					output += " R"
-				if key == "rotation" :
+				if key == "rotation":
 					output += " " + str(blueprint[Vector2i(x, y)][key] / 90)
 				if key == "id":
 					if blueprint[Vector2i(x, y)][key] >= 0 and blueprint[Vector2i(x, y)][key] < 10:
 						output += " " + str(blueprint[Vector2i(x, y)][key])
-					else: 
+					else:
 						output += str(blueprint[Vector2i(x, y)][key])
 			else:
 				output += "  "
 		print(output)
 		
 
-## simple test visualization 
+## Simple test visualization
 func _visualize(blueprint: Dictionary) -> void:
 	DebugDraw3D.clear_all()
 	await get_tree().process_frame

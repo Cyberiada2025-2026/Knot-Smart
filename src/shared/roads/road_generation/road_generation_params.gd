@@ -28,7 +28,6 @@ enum {
 
 
 func check_generation_areas():
-	# sorted automatically but not updating view for more comfortable params setting
 	# spots are sorted by their area, ascendant
 	generation_areas.sort_custom(func(a,b): return a.spot_limit_area.area()< b.spot_limit_area.area())
 		
@@ -37,5 +36,7 @@ func check_generation_areas():
 		var area: LimitterArea = LimitterArea.new()
 		area.spot_limit_area.end = Vector2i(map_size, map_size)
 		generation_areas.push_back(area)
-		notify_property_list_changed()
 		print("Added default area to generation params")
+		
+	# show sorted values in editor
+	notify_property_list_changed()

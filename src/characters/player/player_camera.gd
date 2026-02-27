@@ -28,7 +28,7 @@ var mouse_relative: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	CameraSetup.reference = camera
+	CameraHolder.instance.reference = camera
 	rotation_strategy.start()
 	view_strategy.start(self)
 

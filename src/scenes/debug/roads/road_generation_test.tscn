@@ -5,17 +5,6 @@
 [ext_resource type="Script" uid="uid://dq2orvfvtw68e" path="res://shared/roads/road_generation/road_generation_params.gd" id="3_ev4h5"]
 [ext_resource type="Script" uid="uid://1sivp1454oma" path="res://shared/roads/road_generation/spot.gd" id="3_oohkc"]
 
-[sub_resource type="Resource" id="Resource_ev4h5"]
-script = ExtResource("3_oohkc")
-start = Vector2i(20, 20)
-end = Vector2i(30, 30)
-metadata/_custom_type_script = "uid://1sivp1454oma"
-
-[sub_resource type="Resource" id="Resource_6lgnl"]
-script = ExtResource("2_oohkc")
-max_spot_size = Vector2i(8, 8)
-spot_limit_area = SubResource("Resource_ev4h5")
-
 [sub_resource type="Resource" id="Resource_q6ryc"]
 script = ExtResource("3_oohkc")
 start = Vector2i(15, 15)
@@ -23,8 +12,7 @@ end = Vector2i(35, 35)
 
 [sub_resource type="Resource" id="Resource_bfipm"]
 script = ExtResource("2_oohkc")
-min_spot_size = Vector2i(4, 4)
-max_spot_size = Vector2i(8, 8)
+max_spot_size = Vector2i(7, 7)
 spot_limit_area = SubResource("Resource_q6ryc")
 
 [sub_resource type="Resource" id="Resource_gvmpv"]
@@ -38,6 +26,17 @@ min_spot_size = Vector2i(5, 5)
 spot_limit_area = SubResource("Resource_gvmpv")
 metadata/_custom_type_script = "uid://o5exsbtpsbth"
 
+[sub_resource type="Resource" id="Resource_ev4h5"]
+script = ExtResource("3_oohkc")
+start = Vector2i(30, 30)
+end = Vector2i(90, 90)
+metadata/_custom_type_script = "uid://1sivp1454oma"
+
+[sub_resource type="Resource" id="Resource_6lgnl"]
+script = ExtResource("2_oohkc")
+min_spot_size = Vector2i(4, 4)
+spot_limit_area = SubResource("Resource_ev4h5")
+
 [sub_resource type="Resource" id="Resource_5akc6"]
 script = ExtResource("3_oohkc")
 end = Vector2i(999, 999)
@@ -50,36 +49,12 @@ spot_limit_area = SubResource("Resource_5akc6")
 
 [sub_resource type="Resource" id="Resource_dxu3u"]
 script = ExtResource("3_ev4h5")
-generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_6lgnl"), SubResource("Resource_bfipm"), SubResource("Resource_oohkc"), SubResource("Resource_r27d0")])
+generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_bfipm"), SubResource("Resource_oohkc"), SubResource("Resource_6lgnl"), SubResource("Resource_r27d0")])
 highway_generation_split_count = 8
-
-[sub_resource type="Resource" id="Resource_5w7np"]
-script = ExtResource("3_oohkc")
-
-[sub_resource type="Resource" id="Resource_l8nmr"]
-script = ExtResource("2_oohkc")
-spot_limit_area = SubResource("Resource_5w7np")
-
-[sub_resource type="Resource" id="Resource_8tvk8"]
-script = ExtResource("3_oohkc")
-end = Vector2i(64, 64)
-
-[sub_resource type="Resource" id="Resource_q6jq2"]
-script = ExtResource("2_oohkc")
-spot_limit_area = SubResource("Resource_8tvk8")
-
-[sub_resource type="Resource" id="Resource_0phub"]
-script = ExtResource("3_ev4h5")
-generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_l8nmr"), SubResource("Resource_q6jq2")])
-metadata/_custom_type_script = "uid://dq2orvfvtw68e"
+map_size = 128
 
 [node name="Node3D" type="Node3D" unique_id=49889973]
 script = ExtResource("1_ntgsn")
 generation_params = SubResource("Resource_dxu3u")
 create_visualization = true
 metadata/_edit_group_ = true
-
-[node name="Node3D" type="Node3D" parent="." unique_id=511174782]
-script = ExtResource("1_ntgsn")
-generation_params = SubResource("Resource_0phub")
-create_visualization = true

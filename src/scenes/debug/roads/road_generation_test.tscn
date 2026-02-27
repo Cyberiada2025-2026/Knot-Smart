@@ -52,7 +52,6 @@ spot_limit_area = SubResource("Resource_5akc6")
 script = ExtResource("3_ev4h5")
 generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_6lgnl"), SubResource("Resource_bfipm"), SubResource("Resource_oohkc"), SubResource("Resource_r27d0")])
 highway_generation_split_count = 8
-map_size = 200
 
 [node name="Node3D" type="Node3D" unique_id=49889973]
 script = ExtResource("1_ntgsn")

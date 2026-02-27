@@ -4,10 +4,12 @@ class_name RoadGenerationParams
 
 ## min and max spot size dimensions are decreased by 1 when creating road map [br]
 ## default spot dimension limits: 3x3 to 10x10
-@export var generation_areas: Array[LimitterArea]:
+@export var generation_areas: Array[LimitterArea] = [LimitterArea.new()]:
 	set(value):
 		generation_areas = value
-		check_generation_areas()
+		if generation_areas.is_empty() or generation_areas.back() == null:
+			generation_areas.pop_back()
+			generation_areas.push_back(LimitterArea.new())
 		
 
 ## determines amount of tile splits after which highways will generate [br]

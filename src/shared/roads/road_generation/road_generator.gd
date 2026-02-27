@@ -17,7 +17,14 @@ extends Node
 var _blueprint: Dictionary
 var _map_size: int
 var _final_spots: Array[Spot] = []
-		
+
+## variable that indicates creation of any road generator [br]
+## used by some parameters to properly enable custom setters
+static var loaded: bool = false
+
+func _ready():
+	loaded = true
+			
 			
 #####################################################
 #                 GENERATOR FUNCTIONS               #
@@ -110,7 +117,7 @@ func _generate_spots():
 	var steps_all: int = 0
 	
 	# splitting rectangles until they reach proper size
-	# TODO add steps_all limits to params
+	# TODO add steps_all limits to params after tests
 	# will be added after real tests
 	while not spots.is_empty() and steps_all < _map_size * _map_size:
 		steps_all += 1

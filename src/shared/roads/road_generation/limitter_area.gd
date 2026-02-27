@@ -8,6 +8,7 @@ class_name LimitterArea
 @export var min_spot_size: Vector2i = Vector2i(3, 3):
 	set(value):
 		min_spot_size = value
+		if not RoadGenerator.loaded: return
 		for axis in Utils.Axis2.values():
 			if min_spot_size[axis] * 2 > max_spot_size[axis]:
 				max_spot_size[axis] = min_spot_size[axis] * 2
@@ -17,6 +18,7 @@ class_name LimitterArea
 @export var max_spot_size: Vector2i = Vector2i(10, 10):
 	set(value):
 		max_spot_size = value
+		if not RoadGenerator.loaded: return
 		for axis in Utils.Axis2.values():
 			if min_spot_size[axis] * 2 > max_spot_size[axis]:
 				min_spot_size[axis] = int(max_spot_size[axis] / 2.0)
@@ -24,4 +26,3 @@ class_name LimitterArea
 
 ## area where spot limits will be applied 
 @export var spot_limit_area: Spot = Spot.new()
-	

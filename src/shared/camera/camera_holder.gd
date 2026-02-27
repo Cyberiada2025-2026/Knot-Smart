@@ -4,6 +4,7 @@ extends Node
 var instance: Node3D
 var main_camera: Camera3D
 
+
 func _ready() -> void:
 	instance = camera_setup.instantiate()
 	add_child(instance)

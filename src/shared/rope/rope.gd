@@ -6,6 +6,8 @@ extends Node3D
 
 const LENGTH = 1.0
 const MAX_LENGTH = 32.0
+const COLLISION_RADIUS = 0.01
+const COLLISION_BUFFER = 1.0
 
 @export var spring_constant = 15.0
 @export var damping = 0.5
@@ -16,6 +18,7 @@ var inner1: InnerNode
 var inner2: InnerNode
 var vfx: RopeVFX
 var rope: Area3D
+var collision_shape: CapsuleShape3D
 
 var pt1: Vector3
 var pt2: Vector3
@@ -38,15 +41,35 @@ func init_rope_mesh():
 	vfx.rotate_x(-PI/2)
 	rope.add_child(vfx)
 
-func finish():
+func init_rope_collider():
+	var direction = pt2 - pt1
+	
+	collision_shape = CapsuleShape3D.new()
+	collision_shape.radius = COLLISION_RADIUS
+
+	if COLLISION_BUFFER*COLLISION_BUFFER < direction.length_squared():
+		collision_shape.height = direction.length() - COLLISION_BUFFER
+	var collider = CollisionShape3D.new()
+	collider.shape = collision_shape
+	collider.rotate_x(-PI/2)
+	rope.add_child(collider)
+
+func _on_area_entered(_node):
+	# TODO - refactor this
+	finish(true)
+
+func finish(collided = false):
 	vfx.end()
-	apply_forces()
+	apply_forces(collided)
 	queue_free()
 
 func update_rope():
 	var direction = inner2.position - inner1.position
 	var length = direction.length()
 	vfx.set_length(length)
+	if COLLISION_BUFFER < length:
+		collision_shape.height = length - COLLISION_BUFFER
+	rope.look_at_from_position(inner1.position + direction/2, inner1.position)
 
 func _ready() -> void:
 	inner1.bind(node1)
@@ -59,13 +82,18 @@ func _ready() -> void:
 	
 	rope = Area3D.new()
 	init_rope_mesh()
+	init_rope_collider()
+	var direction = pt2 - pt1
+	rope.look_at_from_position(pt1 + direction/2, pt1)
+	rope.body_entered.connect(_on_area_entered)
+	add_child(rope)
 
-func apply_forces() -> void:
-	if node1 is RigidBody3D and node2 is CharacterBody3D:
+func apply_forces(collided: bool) -> void:
+	if node1 is RigidBody3D and (node2 is CharacterBody3D or collided):
 		var accel = inner1.get_hooke_accel()
 		node1.apply_impulse(-accel)
 
-	if node2 is RigidBody3D and node1 is CharacterBody3D:
+	if node2 is RigidBody3D and (node1 is CharacterBody3D or collided):
 		var accel = inner2.get_hooke_accel()
 		node2.apply_impulse(-accel)
 
@@ -107,6 +135,8 @@ func _physics_process(_delta: float) -> void:
 		inner1.equilibrium = inner2.position
 	else:
 		queue_free()
+	
+	update_rope()
 
 class InnerNode extends RigidBody3D:
 	var prev_pos: Vector3

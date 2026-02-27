@@ -53,8 +53,33 @@ script = ExtResource("3_ev4h5")
 generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_6lgnl"), SubResource("Resource_bfipm"), SubResource("Resource_oohkc"), SubResource("Resource_r27d0")])
 highway_generation_split_count = 8
 
+[sub_resource type="Resource" id="Resource_5w7np"]
+script = ExtResource("3_oohkc")
+
+[sub_resource type="Resource" id="Resource_l8nmr"]
+script = ExtResource("2_oohkc")
+spot_limit_area = SubResource("Resource_5w7np")
+
+[sub_resource type="Resource" id="Resource_8tvk8"]
+script = ExtResource("3_oohkc")
+end = Vector2i(64, 64)
+
+[sub_resource type="Resource" id="Resource_q6jq2"]
+script = ExtResource("2_oohkc")
+spot_limit_area = SubResource("Resource_8tvk8")
+
+[sub_resource type="Resource" id="Resource_0phub"]
+script = ExtResource("3_ev4h5")
+generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_l8nmr"), SubResource("Resource_q6jq2")])
+metadata/_custom_type_script = "uid://dq2orvfvtw68e"
+
 [node name="Node3D" type="Node3D" unique_id=49889973]
 script = ExtResource("1_ntgsn")
 generation_params = SubResource("Resource_dxu3u")
 create_visualization = true
 metadata/_edit_group_ = true
+
+[node name="Node3D" type="Node3D" parent="." unique_id=511174782]
+script = ExtResource("1_ntgsn")
+generation_params = SubResource("Resource_0phub")
+create_visualization = true

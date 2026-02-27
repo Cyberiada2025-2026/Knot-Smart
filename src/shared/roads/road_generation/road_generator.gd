@@ -2,7 +2,7 @@
 class_name RoadGenerator
 extends Node
 
-@export var generation_params: RoadGenerationParams
+@export var generation_params: RoadGenerationParams = RoadGenerationParams.new()
 
 # testing flags are splitted into different categories to ensure easy debugging
 @export_group("testing")
@@ -163,9 +163,9 @@ func _generate_spots():
 
 
 ## generate basic road map [br]
-## changes tile "type" to "road" from "empty" when places road 
-func generate_roads(blueprint: Dictionary):
-	
+## changes tile "type" to "road" from "empty" when places road [br]
+## returns false on error
+func generate_roads(blueprint: Dictionary) -> bool:
 	## clear previous generation results
 	_final_spots.clear()
 	

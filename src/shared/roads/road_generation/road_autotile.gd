@@ -2,6 +2,7 @@
 extends Node
 class_name RoadAutotile
 
+## All road types possible to be created during generation
 enum road_id {
 	tiling_error = 0,
 	horizontal_straight,
@@ -18,16 +19,16 @@ enum road_id {
 	highway_diagonal_down_left_to_up_right,
 }
 
-## connections for autotiling
+## Connections for autotiling
 enum {
 	EMPTY,
 	ROAD,
 	ANY
 }
 
-## dictionary of base tiles which are used to create all other road tiles [br]
-## values represent 3x3 grid with targeted tile at center
 # array values should be visually positioned as 3x3 grid to approve readability
+## Dictionary of base tiles which are used to create all other road tiles [br][br]
+## Values represent 3x3 grid with targeted tile at center
 const BASE_TILES: Dictionary = {
 	road_id.horizontal_straight: [ANY, EMPTY, ANY,
 								ROAD, ROAD, ROAD,
@@ -71,7 +72,7 @@ const BASE_TILES: Dictionary = {
 const NEIGHBOUR_ARRAY_SIZE: int = 9
 var _road_id_bitmask: Dictionary = {}
 
-## simple clockwise neighbour array rotation function, returns copy of provided array
+## Simple clockwise neighbour array rotation function, returns copy of provided array
 # I have no idea how to make this with array.map, pls help
 static func _rotate_array(angle: int, array: Array):
 	# avoid editing original array
@@ -87,8 +88,8 @@ static func _rotate_array(angle: int, array: Array):
 	return array
 
 
-## converts array into integer and creates bitmask dictionary key connected to it's tile data [br]
-## recurrent conversion allows creating proper values whe ANY connection type appears
+## Converts array into integer and creates bitmask dictionary key connected to it's tile data [br]
+## Recurrent conversion allows creating proper values whe ANY connection type appears
 func _convert_array_to_bitmask(
 	array: Array, data: Dictionary, bitmask_result: int = 0, current_position: int = 0
 	):
@@ -111,7 +112,7 @@ func _convert_array_to_bitmask(
 		_road_id_bitmask.set(bitmask_result, data)
 
 
-## create bitmasks for all possible positions for single road tile id [br]
+## Create bitmasks for all possible positions for single road tile id [br]
 ## and write them to bitmask dictionary
 func _add_to_bitmask(id: int):
 	var neighbour_tiles: Array = BASE_TILES[id]
@@ -126,7 +127,7 @@ func _add_to_bitmask(id: int):
 		_convert_array_to_bitmask(_rotate_array(angle, neighbour_tiles), data)
 		
 		
-## generate bitmask keys for every road ID to use for autotiling
+## Generate bitmask keys for every road ID to use for autotiling
 func _create_bitmask() -> bool:
 	_road_id_bitmask.clear()
 	
@@ -141,7 +142,8 @@ func _create_bitmask() -> bool:
 		return false
 	return true
 	
-	
+
+## Create bitmask key for tile located in the blueprint
 func _get_tile_connections_bitmask(position: Vector2i, blueprint: Dictionary):
 	var bitmask: int = 0
 	var i: int = 0
@@ -153,7 +155,7 @@ func _get_tile_connections_bitmask(position: Vector2i, blueprint: Dictionary):
 	return bitmask
 	
 	
-## converts road connection bitmask into proper autotiled road ID
+## Converts road connection bitmask into proper autotiled road ID
 func _get_road_data_from_bitmask(bitmask_key: int) -> Dictionary:
 	if _road_id_bitmask.has(bitmask_key):
 		return _road_id_bitmask[bitmask_key]
@@ -165,7 +167,7 @@ func _get_road_data_from_bitmask(bitmask_key: int) -> Dictionary:
 		}
 		
 		
-## generate road tile ID's and rotations and write them to blueprint
+## Generate road tile ID's and rotations and write them to blueprint
 func autotile_roads(blueprint: Dictionary, map_size: int) -> bool:
 	if not _create_bitmask():
 		printerr("failed creating bitmask, autotile was skipped")

@@ -2,8 +2,8 @@
 extends Resource
 class_name RoadGenerationParams
 
-## min and max spot size dimensions are decreased by 1 when creating road map [br]
-## default spot dimension limits: 3x3 to 10x10
+## Min and max spot size dimensions are decreased by 1 when creating road map. [br][br]
+## Default spot dimension limits: 3x3 to 10x10
 @export var generation_areas: Array[LimitterArea] = [LimitterArea.new()]:
 	set(value):
 		generation_areas = value
@@ -12,12 +12,18 @@ class_name RoadGenerationParams
 			generation_areas.push_back(LimitterArea.new())
 		
 
-## determines amount of tile splits after which highways will generate [br]
-## for bigger maps higher value recommended
+## Determines amount of tile splits after which highways will generate. [br]
+## For bigger maps higher value recommended
 @export var highway_generation_split_count = 20
 
 ## TODO later use value from world generation params 
 @export_range(4, 2048, 4) var map_size: int = 64
+
+## Number of all generation steps(including unsuccessful) [br]
+## after which generator will stop splitting spots. [br][br]
+## Ensures proper exit when terrain don't allow proper spot splitting. [br][br]
+## For bigger map larger numbers recommended
+@export var generation_steps_limit: int = 10000
 
 enum {
 	EMPTY_TILE = 0,
@@ -26,8 +32,8 @@ enum {
 	HIGHWAY
 }
 
-
-func check_generation_areas():
+## Format areas to make them usable for generator
+func prepare_generation_areas():
 	# spots are sorted by their area, ascendant
 	generation_areas.sort_custom(func(a,b): return a.spot_limit_area.area()< b.spot_limit_area.area())
 		

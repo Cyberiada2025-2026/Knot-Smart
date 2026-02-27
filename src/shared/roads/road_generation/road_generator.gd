@@ -86,6 +86,12 @@ func _is_spot_touching_map_bounds(spot: Spot) -> bool:
 	return false
 	
 	
+func _find_overlap_with_area(area: LimitterArea, spot: Spot):
+	if area.spot_limit_area.overlaps(spot):
+		return true
+	return false
+	
+	
 ## move spots' start 1 tile forward
 func _move_spot_start(spots: Array[Spot]):
 	for axis in Utils.Axis2.values():
@@ -108,12 +114,9 @@ func _generate_spots():
 	# will be added after real tests
 	while not spots.is_empty() and steps_all < _map_size * _map_size:
 		steps_all += 1
-		var area_idx: int = 0
 		var curr_pos: int = randi() % len(spots)
 		var curr_spot: Spot = spots[curr_pos]
-		
-		while not curr_spot.overlaps(generation_params.generation_areas[area_idx].spot_limit_area):
-			area_idx += 1
+		var area_idx = generation_params.generation_areas.find_custom(_find_overlap_with_area.bind(curr_spot))
 		var area = generation_params.generation_areas[area_idx]
 			
 		# action decides whether we are splitting x or y direction

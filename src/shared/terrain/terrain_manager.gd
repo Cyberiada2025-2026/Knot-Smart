@@ -51,6 +51,7 @@ func generate_world() -> void:
 	
 	if terrain_generator and terrain_generator.has_method("generate_terrain"):
 		var terrain_check = true
+		chunk_generator.clear_chunks()
 		terrain_check = terrain_generator.generate_terrain(blueprint)
 		
 		if terrain_check == false or blueprint.is_empty():
@@ -73,7 +74,10 @@ func generate_world() -> void:
 	
 	# temp solution
 	if chunk_generator and chunk_generator.has_method("generate_chunks"):
-		chunk_generator.generate_chunks(blueprint,player.position)
+		if player:
+			chunk_generator.generate_chunks(blueprint,player.position)
+		else:
+			chunk_generator.generate_chunks(blueprint)
 	else:
 		push_warning("TerrainManager: Missing valid Chunk Generator!")
 	
@@ -81,6 +85,6 @@ func generate_world() -> void:
 	can_generate_chunks = true
 	
 func _process(delta: float) -> void:
-	if can_generate_chunks == true:
+	if can_generate_chunks == true and not Engine.is_editor_hint():
 		chunk_generator.generate_chunks(blueprint, player.position)
 	

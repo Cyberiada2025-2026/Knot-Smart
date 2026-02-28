@@ -46,14 +46,3 @@ func _get_spot_border_coordinates() -> Array[Vector2i]:
 func cast_on_blueprint(blueprint: Dictionary):
 	for pos in _get_spot_border_coordinates():
 		blueprint[pos]["type"] = "road"
-
-
-func visualize(visualization_duration: int):
-	DebugDraw3D.draw_box(
-		Vector3(start.x, 0, start.y),
-		Quaternion.IDENTITY, 
-		Vector3(size().x, 1, size().y), 
-		Color(randf(), randf(), randf(), 1.0), 
-		false,
-		visualization_duration
-	)

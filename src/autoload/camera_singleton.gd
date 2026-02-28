@@ -10,8 +10,10 @@ func _ready() -> void:
 	add_child(instance)
 	main_camera = instance.camera
 
+
 func get_instance() -> Node3D:
 	return instance
+
 
 func get_main_camera() -> Camera3D:
 	return main_camera

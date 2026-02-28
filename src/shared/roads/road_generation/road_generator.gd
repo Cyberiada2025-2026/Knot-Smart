@@ -7,7 +7,7 @@ extends Node
 # testing flags are splitted into different categories to ensure easy debugging
 @export_group("testing")
 @export var create_visualization: bool
-@export var visualization_duration: int = 10
+@export_range(5, 120, 1) var visualization_duration: int = 10
 @export var log_generated_map_to_console: bool
 @export var log_id_to_console: bool
 @export var log_rotations_to_console: bool
@@ -195,8 +195,8 @@ func generate_roads(blueprint: Dictionary) -> bool:
 
 func test() -> void:
 	var test_terrain_blueprint: Dictionary
-	for x in range(generation_params.map_size):
-		for y in range(generation_params.map_size):
+	for x in generation_params.map_size:
+		for y in generation_params.map_size:
 			var coord: Vector2i = Vector2i(x, y)
 			test_terrain_blueprint[coord]= {
 				"height": 0.0,
@@ -224,9 +224,9 @@ func test() -> void:
 func _print_to_console(blueprint: Dictionary, key: String) -> void:
 	print("printing '", key, "':")
 		
-	for y in range(_map_size):
+	for y in _map_size:
 		var output: String = ""
-		for x in range(_map_size):
+		for x in _map_size:
 			if blueprint[Vector2i(x, y)]["type"] == "road":
 				if key == "type":
 					output += " R"
@@ -250,11 +250,20 @@ func _visualize(blueprint: Dictionary) -> void:
 	if more_log_messages:
 		print("creating visualization")
 		
-	for i in range(len(_final_spots)):
-		_final_spots[i].visualize(visualization_duration)
+	# visualize spots
+	for spot in _final_spots:
+		DebugDraw3D.draw_box(
+			Vector3(spot.start.x, 0, spot.start.y),
+			Quaternion.IDENTITY, 
+			Vector3(spot.size().x, 1, spot.size().y), 
+			Color(randf(), randf(), randf(), 1.0), 
+			false,
+			visualization_duration
+		)
 	
-	for x in range(_map_size):
-		for z in range(_map_size):
+	# visualize roads
+	for x in _map_size:
+		for z in _map_size:
 			if blueprint[Vector2i(x, z)]["type"] == "road":
 				DebugDraw3D.draw_box(
 					Vector3(x, 0, z),

@@ -7,7 +7,6 @@ var rope_points = []
 const RAY_LENGTH = 1000.0
 const RADIUS = 0.1
 
-@export var camera: Camera3D
 var sphere: MeshInstance3D
 
 func _ready() -> void:
@@ -21,6 +20,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
+	var camera = CameraSingleton.get_main_camera()
 	var from = camera.project_ray_origin(mouse_pos)
 	var normal = camera.project_ray_normal(mouse_pos)
 	var to = from + normal * RAY_LENGTH

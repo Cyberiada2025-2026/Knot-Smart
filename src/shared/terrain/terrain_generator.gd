@@ -15,15 +15,16 @@ func generate_terrain(blueprint: Dictionary) -> bool:
 		for z in world_size:
 			var coord = Vector2i(x, z)
 			
-			var raw_val = world_generation_params.noise.get_noise_2d(x, z)
+			var type = "empty"
 			
-			var normalized = (raw_val + 1.0) / 2.0
-			var step_index = floor(normalized * world_generation_params.map_height)
+			var raw_val = world_generation_params.noise.get_noise_2d(x, z)
+			var normalized = (raw_val + 1) / 2.0
+			var step_index = floor((normalized + world_generation_params.height_displacement) * world_generation_params.map_height)
 			var final_height = step_index * world_generation_params.tile_height
 			
 			blueprint[coord] = {
 				"height": final_height,
-				"type": "empty",
+				"type": type,
 				"can_place": "any"
 			}
 			

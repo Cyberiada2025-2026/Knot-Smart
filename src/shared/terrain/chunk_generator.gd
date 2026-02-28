@@ -100,7 +100,6 @@ func generate_chunk_mesh(chunk_coord: Vector2i, blueprint: Dictionary) -> Mesh:
 
 	for x in range(0, chunk_size-1, 2):
 		for z in range(0, chunk_size-1, 2):
-			
 			# Global coords for the 4 height samples
 			var gx = (chunk_coord.x * chunk_size) + x
 			var gz = (chunk_coord.y * chunk_size) + z

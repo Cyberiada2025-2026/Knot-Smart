@@ -43,6 +43,14 @@ func _ready() -> void:
 	generate()
 	show_debug()
 	create_walls()
+	pass
+
+func show_debug() -> void:
+	get_tree().get_nodes_in_group("camera_debug_group").pop_front().queue_free()
+	#_show_points()
+	#_show_lines()
+	#_show_biomes()
+
 
 
 
@@ -52,7 +60,7 @@ func generate() -> void:
 	_randomize_points()
 	_set_lines_and_triangles()
 	_set_biome()
-	_show_biomes()
+	_set_adjacent_biomes()
 
 func _set_points() -> void:
 	for z: int in range(points_in_z):
@@ -132,6 +140,8 @@ func _set_biome() -> void:
 			line.biomes.append(biome)
 		for triangle in biome.triangles:
 			triangle.biomes.append(biome)
+	#while free_triangles.size() > 0:
+		#pass
 
 func _init_biome(biome: Biome, biome_name: String) -> void:
 	biome.name = biome_name
@@ -196,13 +206,17 @@ func _add_line_to_biome(biome: Biome, line: BiomeLine) -> void:
 		biome.lines.erase(line)
 
 
+func _set_adjacent_biomes() -> void:
+	for biome in biomes:
+		for line in biome.lines:
+			if line.biomes.size() > 1:
+				var adjacent_biome: Biome = line.biomes[0]
+				if adjacent_biome == biome:
+					adjacent_biome = line.biomes[1]
+				if biome.adjacent_biomes.find(adjacent_biome) == -1:
+					biome.adjacent_biomes.append(adjacent_biome)
 
 
-func show_debug() -> void:
-	get_tree().get_nodes_in_group("camera_debug_group").pop_front().queue_free()
-	#_show_points()
-	#_show_lines()
-	#_set_biome()
 
 func _show_points() -> void:
 	for point: Vector2 in points:
@@ -264,6 +278,6 @@ func create_walls() -> void:
 			walls_combiner.add_child(wall)
 			wall.create_wall(line.start_point, line.end_point)
 			## Debug to see entrance creation
-			walls_combiner.add_entrance(Vector3(line.start_point.x, 10, line.start_point.y))
+			#walls_combiner.add_entrance(Vector3(line.start_point.x, 10, line.start_point.y))
 			for biome in line.biomes:
 				wall.add_biome(biome)

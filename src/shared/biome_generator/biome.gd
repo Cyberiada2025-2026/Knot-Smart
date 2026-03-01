@@ -6,6 +6,7 @@ var color: Color = Color.BLUE
 var triangles: Array[BiomeTriangle] = []
 var lines: Array[BiomeLine] = []
 var walls: Array[BiomeWall] = []
+var adjacent_biomes: Array[Biome] = []
 
 func open_biome() -> void:
 	for wall: BiomeWall in walls:

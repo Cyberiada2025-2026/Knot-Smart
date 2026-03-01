@@ -15,8 +15,8 @@ script = ExtResource("1_11jvr")
 path = NodePath("Path3D")
 path_follow = NodePath("Path3D/PathFollow3D")
 collumn_scene = ExtResource("2_tpaye")
-random_in_out_x_vector = 1.0
-random_in_out_z_vector = 1.0
+random_in_out_x_vector = 0.0
+random_in_out_z_vector = 0.0
 
 [node name="Path3D" type="Path3D" parent="." unique_id=575152697]
 curve = SubResource("Curve3D_xeerm")

@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode skip_vertex_transform;
+render_mode diffuse_lambert;
 
 uniform bool billboard = false;
 

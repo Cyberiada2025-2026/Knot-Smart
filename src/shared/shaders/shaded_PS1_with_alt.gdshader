@@ -3,8 +3,8 @@ render_mode diffuse_lambert;
 
 uniform bool billboard = false;
 
-uniform sampler2D main_texture : source_color, filter_nearest, repeat_enable;
-uniform sampler2D alt_texture : source_color, filter_nearest, repeat_enable;
+uniform sampler2D main_texture : source_color, filter_nearest, repeat_disable;
+uniform sampler2D alt_texture : source_color, filter_nearest, repeat_disable;
 uniform sampler3D alt_mask: source_color, filter_nearest, repeat_enable;
 uniform mat4 alt_transform;
 
@@ -14,10 +14,13 @@ varying vec4 clip_pos;
 varying vec3 world_pos;
 
 void vertex() {
-	#include "res://shared/shaders/include/vertex_wobble.gdshaderinc"
+	//#include "res://shared/shaders/include/vertex_wobble.gdshaderinc"
 	
 	vec4 v_pos = MODEL_MATRIX * vec4(VERTEX, 1.0);
 	world_pos = (alt_transform * v_pos).xyz;
+	
+	clip_pos = PROJECTION_MATRIX * VIEW_MATRIX * v_pos;
+	UV = UV * clip_pos.w;
 }
 
 void fragment() {

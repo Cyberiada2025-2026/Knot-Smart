@@ -83,6 +83,8 @@ func find_seed_from_preset_words():
 	
 	syllable_count = len(available_syllables)
 	
+	# This format should be changed
+	# Will be done later when this script will be optimised
 	var words = "Kurwa mać\nDo widzenia"
 	const expected_result = [
 		[["waeb", "ba"], ["zip"]],
@@ -92,7 +94,7 @@ func find_seed_from_preset_words():
 	words = preprocess_string(words)
 	
 	var temp_seed_val = 0
-	while temp_seed_val < 100000: # Currently this cap is reached in about 4 seconds - IMO too much
+	while temp_seed_val < 100000: # Currently this cap is reached in about 2 seconds - less than before, still quite much
 		# but I think the algorithm should be optimised rather than cap reduced
 		var output = translate_array(words, temp_seed_val, true)
 		var fail = false
@@ -107,11 +109,11 @@ func find_seed_from_preset_words():
 				if fail == true:
 					break
 				
-				for z in range(len(expected_result[sentence][word])):
-					if expected_result[sentence][word][z] not in mapping and output[sentence][word][z] not in mapping_inverse:
-						mapping[expected_result[sentence][word][z]] = output[sentence][word][z]
-						mapping_inverse[output[sentence][word][z]] = expected_result[sentence][word][z]
-					elif expected_result[sentence][word][z] not in mapping or mapping[expected_result[sentence][word][z]] != output[sentence][word][z]:
+				for syllable in range(len(expected_result[sentence][word])):
+					if expected_result[sentence][word][syllable] not in mapping and output[sentence][word][syllable] not in mapping_inverse:
+						mapping[expected_result[sentence][word][syllable]] = output[sentence][word][syllable]
+						mapping_inverse[output[sentence][word][syllable]] = expected_result[sentence][word][syllable]
+					elif expected_result[sentence][word][syllable] not in mapping or mapping[expected_result[sentence][word][syllable]] != output[sentence][word][syllable]:
 						fail = true
 						break
 		

@@ -19,10 +19,10 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var mouse_pos = get_viewport().get_mouse_position()
+	var center_pos = get_viewport().size / 2
 	var camera = CameraSingleton.get_main_camera()
-	var from = camera.project_ray_origin(mouse_pos)
-	var normal = camera.project_ray_normal(mouse_pos)
+	var from = camera.project_ray_origin(center_pos)
+	var normal = camera.project_ray_normal(center_pos)
 	var to = from + normal * RAY_LENGTH
 	
 	var space_state = get_world_3d().direct_space_state
@@ -35,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 		sphere.show()
 		sphere.position = result["position"]
 	
-		if Input.is_action_just_pressed("add_rope"):
+		if Input.is_action_just_pressed("left_mouse"):
 			rope_mode_toggle = not rope_mode_toggle
 			var marker = sphere.duplicate()
 			result.collider.add_child(marker)

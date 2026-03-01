@@ -29,7 +29,10 @@ jobs:
       - uses: Scony/godot-gdscript-toolkit@master
       - env:
           NEEDS_FORMAT: ${{ needs.gdformat-check.outputs.needs-format }}
-        run: gdformat $(find ./src/ -name '*.gd' -not -path "./src/addons/*")
+        run: |
+          if $NEEDS_FORMAT=="1"; then
+            gdformat $(find ./src/ -name '*.gd' -not -path "./src/addons/*")
+          fi
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Automated formatting"

@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dom1b3k6o3fv2"]
+
+[node name="wall_entrance" type="CSGSphere3D" unique_id=1904701978]
+operation = 2
+radius = 3.0

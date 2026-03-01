@@ -1,14 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://cycl0o137elmj"]
+[gd_scene format=3 uid="uid://cycl0o137elmj"]
 
 [ext_resource type="Script" uid="uid://bks3clvov8dgh" path="res://shared/biome_generator/wall/biome_wall.gd" id="1_11jvr"]
+[ext_resource type="PackedScene" uid="uid://jix48lt4ey48" path="res://shared/biome_generator/wall/wall_column.tscn" id="2_tpaye"]
 
-[node name="Wall" type="Node3D" node_paths=PackedStringArray("path", "path_follow")]
+[sub_resource type="Curve3D" id="Curve3D_xeerm"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0.055, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 144.37897, 0, -523.9171),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Wall" type="CSGCombiner3D" unique_id=911845818 node_paths=PackedStringArray("path", "path_follow")]
 script = ExtResource("1_11jvr")
 path = NodePath("Path3D")
 path_follow = NodePath("Path3D/PathFollow3D")
+collumn_scene = ExtResource("2_tpaye")
+random_in_out_x_vector = 1.0
+random_in_out_z_vector = 1.0
 
-[node name="Path3D" type="Path3D" parent="."]
+[node name="Path3D" type="Path3D" parent="." unique_id=575152697]
+curve = SubResource("Curve3D_xeerm")
 
-[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.9999888, 0, -8.7421796e-08, 0, 1, 0, 8.7421796e-08, 0, -0.9999888, 0, 0, 0)
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" unique_id=377009100]
+transform = Transform3D(-4.37107e-08, 0, -0.9999842, 0, 1, 0, 0.9999842, 0, -4.37107e-08, 0, 0, 0)
 loop = false

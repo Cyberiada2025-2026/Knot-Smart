@@ -5,10 +5,11 @@ class_name BiomeWall
 @export var path: Path3D
 @export var path_follow: PathFollow3D
 
-@export var collumn_scene: String = "res://shared/biome_generator/wall/wall_column.tscn"
+@export var collumn_scene: PackedScene
 @export_category("curve")
 @export var bake_interval: float = 1
-@export var max_points_in_middle: int = 1
+@export var distance_between_columns: float = 1.0
+@export var max_points_in_middle: int = 0
 @export var random_in_out_x_vector: float = 10.0
 @export var random_in_out_z_vector: float = 10.0
 
@@ -33,7 +34,11 @@ func _set_curve() -> void:
 	path.curve.add_point(end_point, Vector3(randf()*random_in_out_x_vector, 0, randf()*random_in_out_z_vector), Vector3.ZERO)
 
 func _make_collumns() -> void:
-	pass
+	while path_follow.progress_ratio < 1:
+		var collumn: Node3D = collumn_scene.instantiate()
+		self.add_child(collumn)
+		collumn.global_position = path_follow.global_position
+		path_follow.progress += distance_between_columns
 
 func add_biome(biome: Biome) -> void:
 	if adjacent_biomes.find(biome) == -1:

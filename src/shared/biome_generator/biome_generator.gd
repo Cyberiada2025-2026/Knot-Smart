@@ -9,25 +9,26 @@ extends Node3D
 @export var triangle_scene: String = "res://shared/biome_generator/debug/generator_triangle_mesh.tscn"
 @export_category("Biomes")
 @export var biomes_sizes: Dictionary[String, int] = {
-	"start": 5000,
-	"sklepowy": 5000,
-	"inny": 5000
+	"biom1": 13000,
+	"biom2": 13000,
+	"biom3": 13000
 }
 @export var biomes_colors: Dictionary[String, Color] = {
-	"start": Color.BLUE, 
-	"sklepowy": Color.RED,
-	"inny": Color.PURPLE
+	"biom1": Color.BLUE, 
+	"biom2": Color.RED,
+	"biom3": Color.PURPLE
 }
 @export_category("GeneratorVariables")
 @export var size_x: float = 200
 @export var size_z: float = 200
 @export var points_randomize_in_x: float = 0.99
 @export var points_randomize_in_z: float = 0.99
-@export var start_x: float = 100
-@export var start_z: float = 100
+@export var start_x: float = -100
+@export var start_z: float = -100
 @export var points_in_x: int = 50
 @export var points_in_z: int = 50
 @export var chance_to_shuffle: float = 0.01
+@export var points_distance_from_border_not_randomized: int = 0
 
 var points: Dictionary[Vector2, Vector2]
 var lines: Array[BiomeLine]
@@ -41,7 +42,7 @@ var biomes: Array[Biome]
 func _ready() -> void:
 	generate()
 	show_debug()
-	#create_walls()
+	create_walls()
 
 
 
@@ -56,13 +57,13 @@ func generate() -> void:
 func _set_points() -> void:
 	for z: int in range(points_in_z):
 		for x: int in range(points_in_x):
-			points[Vector2(x, z)] = Vector2((x)*(size_x/(points_in_x-1)), (z)*(size_z/(points_in_z-1)))
+			points[Vector2(x, z)] = Vector2((x)*(size_x/(points_in_x-1)) + start_x, (z)*(size_z/(points_in_z-1))+start_z)
 
 func _randomize_points() -> void:
-	for z: int in range(0, points_in_z-0):
-		for x: int in range(0, points_in_x-0):
-			points[Vector2(x, z)].x += (size_x / (points_in_x-1)) * randf() * points_randomize_in_x
-			points[Vector2(x, z)].y += (size_z / (points_in_z-1)) * randf() * points_randomize_in_z
+	for z: int in range(points_distance_from_border_not_randomized, points_in_z-points_distance_from_border_not_randomized):
+		for x: int in range(points_distance_from_border_not_randomized, points_in_x-points_distance_from_border_not_randomized):
+			points[Vector2(x, z)].x += (size_x / (points_in_x-1)) * (randf() - 0.5) * points_randomize_in_x
+			points[Vector2(x, z)].y += (size_z / (points_in_z-1)) * (randf() - 0.5) * points_randomize_in_z
 
 func _set_lines_and_triangles() -> void:
 	# Horizontal lines
@@ -201,13 +202,13 @@ func show_debug() -> void:
 	get_tree().get_nodes_in_group("camera_debug_group").pop_front().queue_free()
 	#_show_points()
 	#_show_lines()
-	_set_biome()
+	#_set_biome()
 
 func _show_points() -> void:
 	for point: Vector2 in points:
 		var mesh: MeshInstance3D = load(point_scene).instantiate()
-		mesh.position.x = point.x - start_x
-		mesh.position.z = point.y - start_x
+		mesh.position.x = point.x
+		mesh.position.z = point.y
 		mesh.position.y = 0
 		self.add_child(mesh)
 		#print(point)
@@ -218,8 +219,8 @@ func _show_lines() -> void:
 		mesh.mesh.resource_local_to_scene = true
 		mesh.mesh.size.x = line.get_length()
 		mesh.rotation.y = line.get_rotation()
-		mesh.position.x = line.start_point.x - start_x + ((line.end_point.x - line.start_point.x))/2
-		mesh.position.z = line.start_point.y - start_z + ((line.end_point.y - line.start_point.y))/2
+		mesh.position.x = line.start_point.x + ((line.end_point.x - line.start_point.x))/2
+		mesh.position.z = line.start_point.y + ((line.end_point.y - line.start_point.y))/2
 		self.add_child(mesh)
 
 func _show_biomes() -> void:
@@ -237,8 +238,8 @@ func _show_biomes() -> void:
 			mesh.polygon = PackedVector2Array([point1, point2, point3])
 			mesh.material.albedo_color = biome.color
 			mesh.material.resource_local_to_scene = true
-			mesh.position.x = -start_x
-			mesh.position.z = -start_z
+			mesh.position.x = 0
+			mesh.position.z = 0
 			self.add_child(mesh)
 			
 		for line: BiomeLine in biome.lines:
@@ -246,18 +247,23 @@ func _show_biomes() -> void:
 			mesh.mesh.resource_local_to_scene = true
 			mesh.mesh.size.x = line.get_length()
 			mesh.rotation.y = line.get_rotation()
-			mesh.position.x = line.start_point.x - start_x + ((line.end_point.x - line.start_point.x))/2
+			mesh.position.x = line.start_point.x + ((line.end_point.x - line.start_point.x))/2
 			mesh.position.y += 0
-			mesh.position.z = line.start_point.y - start_z + ((line.end_point.y - line.start_point.y))/2
+			mesh.position.z = line.start_point.y + ((line.end_point.y - line.start_point.y))/2
 			self.add_child(mesh)
 
 
 
 
 func create_walls() -> void:
+	var walls_combiner: WallsCombiner = WallsCombiner.new()
+	self.add_child(walls_combiner)
 	for line in lines:
 		if not line.biomes.is_empty():
 			var wall: BiomeWall = load(wall_scene).instantiate()
+			walls_combiner.add_child(wall)
 			wall.create_wall(line.start_point, line.end_point)
+			## Debug to see entrance creation
+			walls_combiner.add_entrance(Vector3(line.start_point.x, 10, line.start_point.y))
 			for biome in line.biomes:
 				wall.add_biome(biome)

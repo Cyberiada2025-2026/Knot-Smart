@@ -1,0 +1,32 @@
+name: Gdformat
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  gdformat-check:
+    name: 'Gdformat check'
+    runs-on: ubuntu-latest
+    outputs:
+      needs-format: ${{ steps.check-format.outputs.needs-format }}
+    steps:
+    - uses: actions/checkout@v4
+    - uses: Scony/godot-gdscript-toolkit@master
+    - id: check-format
+      run: |
+        gdformat --check $(find ./src/ -name '*.gd' -not -path "./src/addons/*")
+        echo "needs-format=$?" >> "$GITHUB_OUTPUT"
+  gdformat-format:
+    name: 'Gdformat format'
+    runs-on: ubuntu-latest
+    needs: gdformat-check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Scony/godot-gdscript-toolkit@master
+      - env:
+          NEEDS_FORMAT: ${{ needs.gdformat-check.outputs.needs-format }}
+        run: gdformat $(find ./src/ -name '*.gd' -not -path "./src/addons/*")
+      - uses: stefanzweifel/git-auto-commit-action@v7

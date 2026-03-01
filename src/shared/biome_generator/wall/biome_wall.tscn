@@ -11,6 +11,7 @@ _data = {
 point_count = 2
 
 [node name="Wall" type="CSGCombiner3D" unique_id=911845818 node_paths=PackedStringArray("path", "path_follow")]
+use_collision = true
 script = ExtResource("1_11jvr")
 path = NodePath("Path3D")
 path_follow = NodePath("Path3D/PathFollow3D")

@@ -1,12 +1,12 @@
 extends Node
 class_name Biome
 
+var biome_name: String = ""
 var area: float = 0
 var color: Color = Color.BLUE
 var triangles: Array[BiomeTriangle] = []
 var lines: Array[BiomeLine] = []
 var walls: Array[BiomeWall] = []
-var adjacent_biomes: Array[Biome] = []
 
 func open_biome() -> void:
 	for wall: BiomeWall in walls:

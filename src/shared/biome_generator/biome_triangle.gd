@@ -4,7 +4,7 @@ class_name BiomeTriangle
 var line_a: BiomeLine
 var line_b: BiomeLine
 var line_c: BiomeLine
-var biomes: Array[Biome]
+var biome: Biome
 
 func get_area() -> float:
 	#print("getArea")

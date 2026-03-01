@@ -29,6 +29,7 @@ extends Node3D
 @export var points_in_z: int = 50
 @export var chance_to_shuffle: float = 0.01
 @export var points_distance_from_border_not_randomized: int = 0
+@export var additional_entrances: int = 5
 
 var points: Dictionary[Vector2, Vector2]
 var lines: Array[BiomeLine]
@@ -38,11 +39,11 @@ var middle_lines: Array[BiomeLine]
 var triangles: Array[BiomeTriangle]
 var free_triangles: Array[BiomeTriangle]
 var biomes: Array[Biome]
+var walls_combiner: WallsCombiner
 
 func _ready() -> void:
 	generate()
-	show_debug()
-	create_walls()
+	#show_debug()
 	pass
 
 func show_debug() -> void:
@@ -60,7 +61,10 @@ func generate() -> void:
 	_randomize_points()
 	_set_lines_and_triangles()
 	_set_biome()
-	_set_adjacent_biomes()
+	create_walls()
+	_set_entrances()
+	walls_combiner.use_collision = false
+	walls_combiner.use_collision = true
 
 func _set_points() -> void:
 	for z: int in range(points_in_z):
@@ -130,24 +134,36 @@ func _create_triangle(line_a: BiomeLine, line_b: BiomeLine, line_c: BiomeLine) -
 
 func _set_biome() -> void:
 	free_triangles = triangles.duplicate(false)
+	var size_proportion: Dictionary[Biome, float]
 	for biome_name in biomes_sizes:
 		var biome: Biome = Biome.new()
 		_init_biome(biome, biome_name)
 		_get_biome_starting_triangle(biome)
-		while biome.area < biomes_sizes[biome_name]:
-			_get_biome_new_triangle(biome)
+		size_proportion[biome] = biome.area / biomes_sizes[biome_name]
+	while free_triangles.size() > 0:
+		var minimal: float = size_proportion.values().min()
+		if minimal == INF:
+			print("INF!!!!!!!!!!!!!!!!!!\n")
+			break
+		var biome: Biome = size_proportion.find_key(minimal)
+		_get_biome_new_triangle(biome)
+		size_proportion[biome] = biome.area / biomes_sizes[biome.biome_name]
+	for biome in biomes:
 		for line in biome.lines:
 			line.biomes.append(biome)
 		for triangle in biome.triangles:
-			triangle.biomes.append(biome)
-	#while free_triangles.size() > 0:
-		#pass
+			triangle.biome = biome
+		if biome.area == INF:
+			biome.area = 0
+			for triangle in biome.triangles:
+				biome.area += triangle.get_area()
 
 func _init_biome(biome: Biome, biome_name: String) -> void:
-	biome.name = biome_name
-	biome.color = biomes_colors[biome_name]
 	$Biomes.add_child(biome)
 	biomes.append(biome)
+	biome.name = biome_name
+	biome.biome_name = biome_name
+	biome.color = biomes_colors[biome_name]
 
 func _get_biome_starting_triangle(biome: Biome) -> void:
 	var triangle: BiomeTriangle = free_triangles.pick_random()
@@ -160,11 +176,13 @@ func _get_biome_new_triangle(biome: Biome) -> void:
 	var line_count: int = biome.lines.size()
 	var i: int = 0
 	while true:
-		i += 1
 		var line: BiomeLine = biome.lines.pop_front()
 		biome.lines.push_back(line)
 		if i == line_count:
-			_get_biome_starting_triangle(biome)
+			if biome.area >= biomes_sizes[biome.biome_name]:
+				biome.area = INF
+			else:
+				_get_biome_starting_triangle(biome)
 			return
 		var r: int = randi()%line.adjacent_triangles.size()
 		var traingle1 = line.adjacent_triangles[r]
@@ -181,6 +199,7 @@ func _get_biome_new_triangle(biome: Biome) -> void:
 			_add_triangle_to_biome(biome, triangle)
 			biome.lines.erase(line)
 			return
+		i += 1
 
 func _add_triangle_to_biome(biome: Biome, triangle: BiomeTriangle) -> void:
 	free_triangles.erase(triangle)
@@ -205,16 +224,81 @@ func _add_line_to_biome(biome: Biome, line: BiomeLine) -> void:
 	else:
 		biome.lines.erase(line)
 
+func _set_entrances() -> void:
+	var unchecked_triangles: Array[BiomeTriangle] = triangles.duplicate(false)
+	var checked_triangles: Array[BiomeTriangle] = []
+	var possible_passages: Array[BiomeLine] = []
+	var blocked_passages: Array[BiomeLine] = []
+	
+	var starting_triangle: BiomeTriangle = unchecked_triangles.pop_front()
+	checked_triangles.push_back(starting_triangle)
+	possible_passages.push_back(starting_triangle.line_a)
+	possible_passages.push_back(starting_triangle.line_b)
+	possible_passages.push_back(starting_triangle.line_c)
+	
+	while not unchecked_triangles.is_empty():
+		var passage: BiomeLine = possible_passages.pop_front()
+		if passage == null:
+			passage = blocked_passages.pick_random()
+			_add_entrance_on_line(passage)
+			blocked_passages.erase(passage)
+			if unchecked_triangles.find(passage.adjacent_triangles[0]) >= 0:
+				_check_triangle(passage.adjacent_triangles[0], unchecked_triangles, checked_triangles, possible_passages)
+			elif unchecked_triangles.find(passage.adjacent_triangles[1]) >= 0:
+				_check_triangle(passage.adjacent_triangles[1], unchecked_triangles, checked_triangles, possible_passages)
+			continue
+		elif passage.adjacent_triangles.size() >= 2:
+			if unchecked_triangles.find(passage.adjacent_triangles[0]) >= 0:
+				_check_passage(passage, passage.adjacent_triangles[1], passage.adjacent_triangles[0], unchecked_triangles, checked_triangles, possible_passages, blocked_passages)
+			elif unchecked_triangles.find(passage.adjacent_triangles[1]) >= 0:
+				_check_passage(passage, passage.adjacent_triangles[0], passage.adjacent_triangles[1], unchecked_triangles, checked_triangles, possible_passages, blocked_passages)
+	for i in range(additional_entrances):
+		if blocked_passages.is_empty():
+			break
+		var passage: BiomeLine = blocked_passages.pick_random()
+		_add_entrance_on_line(passage)
+		blocked_passages.erase(passage)
 
-func _set_adjacent_biomes() -> void:
-	for biome in biomes:
-		for line in biome.lines:
-			if line.biomes.size() > 1:
-				var adjacent_biome: Biome = line.biomes[0]
-				if adjacent_biome == biome:
-					adjacent_biome = line.biomes[1]
-				if biome.adjacent_biomes.find(adjacent_biome) == -1:
-					biome.adjacent_biomes.append(adjacent_biome)
+func _check_passage(passage: BiomeLine, 
+		checked_triangle: BiomeTriangle, 
+		unchecked_triangle: BiomeTriangle, 
+		unchecked_triangles: Array[BiomeTriangle], 
+		checked_triangles: Array[BiomeTriangle], 
+		possible_passages: Array[BiomeLine], 
+		blocked_passages: Array[BiomeLine]) -> void:
+	pass
+	if checked_triangle.biome == unchecked_triangle.biome:
+		_check_triangle(unchecked_triangle, unchecked_triangles, checked_triangles, possible_passages)
+	else:
+		blocked_passages.append(passage)
+
+func _check_triangle(triangle: BiomeTriangle, 
+		unchecked_triangles: Array[BiomeTriangle], 
+		checked_triangles: Array[BiomeTriangle], 
+		possible_passages: Array[BiomeLine]) -> void:
+	pass
+	unchecked_triangles.erase(triangle)
+	checked_triangles.push_back(triangle)
+	possible_passages.push_front(triangle.line_a)
+	possible_passages.push_front(triangle.line_b)
+	possible_passages.push_front(triangle.line_c)
+
+func _add_entrance_on_line(line: BiomeLine) -> void:
+	var middle_point = (line.start_point + line.end_point)/2
+	walls_combiner.add_entrance(Vector3(middle_point.x, 1, middle_point.y))
+
+
+func create_walls() -> void:
+	walls_combiner = WallsCombiner.new()
+	self.add_child(walls_combiner)
+	for line in lines:
+		if not line.biomes.is_empty():
+			var wall: BiomeWall = load(wall_scene).instantiate()
+			walls_combiner.add_child(wall)
+			wall.create_wall(line.start_point, line.end_point)
+			for biome in line.biomes:
+				wall.add_biome(biome)
+
 
 
 
@@ -265,19 +349,3 @@ func _show_biomes() -> void:
 			mesh.position.y += 0
 			mesh.position.z = line.start_point.y + ((line.end_point.y - line.start_point.y))/2
 			self.add_child(mesh)
-
-
-
-
-func create_walls() -> void:
-	var walls_combiner: WallsCombiner = WallsCombiner.new()
-	self.add_child(walls_combiner)
-	for line in lines:
-		if not line.biomes.is_empty():
-			var wall: BiomeWall = load(wall_scene).instantiate()
-			walls_combiner.add_child(wall)
-			wall.create_wall(line.start_point, line.end_point)
-			## Debug to see entrance creation
-			#walls_combiner.add_entrance(Vector3(line.start_point.x, 10, line.start_point.y))
-			for biome in line.biomes:
-				wall.add_biome(biome)

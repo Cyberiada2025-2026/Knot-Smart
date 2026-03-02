@@ -11,14 +11,14 @@ jobs:
     name: 'Gdformat check'
     runs-on: ubuntu-latest
     outputs:
-      needs-format: ${{ steps.check-format.outputs.needs-format }}
+      NEEDS_FORMAT: ${{ steps.check-format.outputs.NEEDS_FORMAT }}
     steps:
     - uses: actions/checkout@v4
     - uses: Scony/godot-gdscript-toolkit@master
     - id: check-format
       run: |
         gdformat --check $(find ./src/ -name '*.gd' -not -path "./src/addons/*")
-        echo "needs-format=$?" >> "$GITHUB_OUTPUT"
+        echo "NEEDS_FORMAT=$?" >> "$GITHUB_OUTPUT"
   gdformat-format:
     name: 'Gdformat format'
     runs-on: ubuntu-latest
@@ -28,10 +28,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: Scony/godot-gdscript-toolkit@master
       - env:
-          NEEDS_FORMAT: ${{ needs.gdformat-check.outputs.needs-format }}
+          NEEDS_FORMAT: ${{ needs.gdformat-check.outputs.NEEDS_FORMAT }}
         run: |
-          if [ "$NEEDS_FORMAT" -eq "0" ]; then
+          if [ "$NEEDS_FORMAT" -eq "1" ]; then
             gdformat $(find ./src/ -name '*.gd' -not -path "./src/addons/*")
+          else
+            echo "format not needed, code $NEEDS_FORMAT"
           fi
       - uses: stefanzweifel/git-auto-commit-action@v7
         with:

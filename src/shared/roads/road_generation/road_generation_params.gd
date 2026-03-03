@@ -34,9 +34,11 @@ enum {
 
 ## Format areas to make them usable for generator
 func prepare_generation_areas():
+	generation_areas = generation_areas.filter(func(area): return area != null)
+		
 	# spots are sorted by their area, ascending
 	generation_areas.sort_custom(func(a,b): return a.spot_limit_area.area()< b.spot_limit_area.area())
-		
+	
 	# add default case for every other situation
 	if generation_areas.back().spot_limit_area.area() < map_size * map_size:
 		var area: LimitterArea = LimitterArea.new()

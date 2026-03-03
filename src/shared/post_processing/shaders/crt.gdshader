@@ -13,7 +13,7 @@ const int MAX_BLUR = 5;
 const int BLUR_SIZE[3] = {3, 5, 3};
 
 /**  Hardness of scanline */
-uniform float hard_scan: hint_range(-16.0, -4.0) = -8.0;
+uniform float hard_scan: hint_range(-16.0, -8.0) = -8.0;
 
 /** Hardness of pixels in scanline */
 uniform float hard_pix: hint_range(-5.0, -0.5)=-2.5;

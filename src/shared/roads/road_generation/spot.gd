@@ -1,11 +1,14 @@
 @tool
 extends Resource
 
-#single spot for building placement and roads, uses parts of cell.gd code from room generator
+## single spot for building placement and roads, uses parts of cell.gd code from room generator [br][br]
+## used to describe square areas on the map with start and end coordinates, inclusive
 class_name Spot
 
-# start coordinates should be always smaller than end coordinates
+## starting point of the spot, inclusive [br][br]
+## start coordinates should be always smaller than end coordinates
 @export var start: Vector2i = Vector2i.ZERO
+## end point of the spot, inclusive
 @export var end: Vector2i = Vector2i.ONE
 
 func _init(_start: Vector2i = Vector2i.ZERO, _end: Vector2i = Vector2i.ONE) -> void:

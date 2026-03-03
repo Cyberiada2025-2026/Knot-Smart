@@ -10,7 +10,6 @@ extends Node
 	set(value):
 		debug_visualization = value
 		DebugDraw3D.clear_all()
-		await get_tree().process_frame
 		
 
 @export var log_generation_steps: bool
@@ -180,10 +179,12 @@ func generate_roads(blueprint: Dictionary) -> bool:
 	_final_spots.clear()
 	
 	_map_size = generation_params.map_size
+	
 	if blueprint.is_empty():
 		# will be replaced by default creation from blueprint class
-		_create_default_blueprint(blueprint)
-	_blueprint = blueprint	
+		_create_default_blueprint()
+	else:
+		_blueprint = blueprint	
 	
 	generation_params.prepare_generation_areas()
 	_generate_spots()
@@ -213,11 +214,11 @@ func generate_roads(blueprint: Dictionary) -> bool:
 #####################################################
 
 
-func _create_default_blueprint(blueprint: Dictionary) -> void:
+func _create_default_blueprint() -> void:
 	for x in _map_size:
 		for y in _map_size:
 			var coord: Vector2i = Vector2i(x, y)
-			blueprint[coord]= {
+			_blueprint[coord]= {
 				"height": 0.0,
 				"type": "empty",
 				"can_place": "any",

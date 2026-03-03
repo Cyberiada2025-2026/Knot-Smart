@@ -1,22 +1,43 @@
 @tool
 extends Node
+## Class used for assigning road id's and proper rotations to road tiles [br][br]
+## Rotations are in degrees (want in radians? can be done!) [br]
+## Possible rotations: 0, 90, 180, 270, clockwise [br][br]
+## Id's are assigned from 0 to 12 [br]
+## 0 is used to describe error, always returned if autotile cannot resolve a case [br][br]
+## Id's to placeholder model conversion list: [br]
+## - 0 - empty [br]
+## - 1 - road_straight [br]
+## - 2 - road_T [br]
+## - 3 - road_crossroad [br]
+## - 4 - road_turn [br]
+## - 5 - highway_straight [br]
+## - 6 - highway_straight_connected [br]
+## - 7 - highway_crossroad [br]
+## - 8 - highway_corner [br]
+## - 9 - highway_corner_connected(left) [br]
+## - 10 - highway_corner_connected_mirrored(up) [br]
+## - 11 - highway_corner_connected_both_sides [br]
+## - 12 - highway_diagonal [br]
+## Parts of highway turns use highway_straight model so it should be taken into account when creating these models [br][br]
+## For reference in code see road_id enum, values are with numbers to improve readability
 class_name RoadAutotile
 
 ## All road types possible to be created during generation
 enum road_id {
 	tiling_error = 0,
-	horizontal_straight,
-	T_down,
-	crossroad,
-	turn_right_to_down,
-	highway_horizontal_up,
-	highway_horizontal_up_connected,
-	highway_crossroad_up_left,
-	highway_corner_up_left,
-	highway_corner_up_left_connected_left,
-	highway_corner_up_left_connected_up,
-	highway_corner_up_left_connected_up_and_left,
-	highway_diagonal_down_left_to_up_right,
+	horizontal_straight = 1,
+	T_down = 2,
+	crossroad = 3,
+	turn_right_to_down = 4,
+	highway_horizontal_up = 5,
+	highway_horizontal_up_connected = 6,
+	highway_crossroad_up_left = 7,
+	highway_corner_up_left = 8,
+	highway_corner_up_left_connected_left = 9,
+	highway_corner_up_left_connected_up = 10,
+	highway_corner_up_left_connected_up_and_left = 11,
+	highway_diagonal_down_left_to_up_right = 12,
 }
 
 ## Connections for autotiling
@@ -83,7 +104,7 @@ static func _rotate_array(angle: int, array: Array):
 	
 	while angle > 0:
 		for i in range(array.size()):
-			result[(i % 3 + 1) * 3 - 1 - int(i / 3.0)] = array[i] 
+			result[(i % 3 + 1) * 3 - 1 - (i / 3)] = array[i] 
 		array = result.duplicate()
 		angle -= 90
 	return array
@@ -168,7 +189,9 @@ func _get_road_data_from_bitmask(bitmask_key: int) -> Dictionary:
 		}
 		
 		
-## Generate road tile ID's and rotations and write them to blueprint
+## Generates road tile ID's and rotations and writes them to blueprint [br][br]
+## Returns false on error [br]
+## For tile description see class description
 func autotile_roads(blueprint: Dictionary, map_size: int) -> bool:
 	if not _create_bitmask():
 		printerr("failed creating bitmask, autotile was skipped")

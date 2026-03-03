@@ -30,7 +30,7 @@ settings/addon_root_folder="res://addons/debug_draw_3d"
 
 window/size/viewport_width=1440
 window/size/viewport_height=1080
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
@@ -126,6 +126,11 @@ left_mouse={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/vsync/vsync_mode=1
+locale/stretch/scale_mode="fractional"
 
 [physics]
 

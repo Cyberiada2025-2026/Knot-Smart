@@ -5,7 +5,7 @@ class_name BiomeWall
 @export_category("scenes")
 @export var collumn_scene: PackedScene
 @export var simple_wall_scene: PackedScene
-@export_category("curve")
+@export_category("curve for collums")
 @export var bake_interval: float = 1
 @export var distance_between_columns: float = 1.0
 @export var max_points_in_middle: int = 0

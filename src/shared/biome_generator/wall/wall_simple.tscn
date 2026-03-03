@@ -4,5 +4,5 @@
 albedo_color = Color(0, 0.64705884, 0, 1)
 
 [node name="WallSimple" type="CSGBox3D" unique_id=514626851]
-size = Vector3(1, 30, 0.1)
+size = Vector3(1, 30, 0.5)
 material = SubResource("StandardMaterial3D_15o0u")

@@ -2,7 +2,7 @@ extends Node3D
 
 
 @export_category("GeneratorNodes")
-@export var wall_scene: PackedScene
+@export var wall_scene: PackedScene = preload("res://shared/biome_generator/wall/biome_wall.tscn")
 @export_group("debug")
 @export var point_scene: String = "res://shared/biome_generator/debug/generator_point_mesh.tscn"
 @export var line_scene: String = "res://shared/biome_generator/debug/generator_line_mesh.tscn"
@@ -165,7 +165,7 @@ func _set_biome() -> void:
 				biome.area += triangle.get_area()
 
 func _init_biome(biome: Biome, biome_name: String) -> void:
-	$Biomes.add_child(biome)
+	self.add_child(biome)
 	biomes.append(biome)
 	biome.name = biome_name
 	biome.biome_name = biome_name

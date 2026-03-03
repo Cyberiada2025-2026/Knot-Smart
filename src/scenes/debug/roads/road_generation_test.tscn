@@ -56,5 +56,5 @@ map_size = 128
 [node name="Node3D" type="Node3D" unique_id=49889973]
 script = ExtResource("1_ntgsn")
 generation_params = SubResource("Resource_dxu3u")
-create_visualization = true
+debug_visualization = true
 metadata/_edit_group_ = true

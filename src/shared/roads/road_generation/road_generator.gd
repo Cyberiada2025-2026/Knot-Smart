@@ -11,6 +11,7 @@ extends Node
 		debug_visualization = value
 		DebugDraw3D.clear_all()
 		await get_tree().process_frame
+		
 
 @export var log_generation_steps: bool
 @export_tool_button("Log Generated Map") var log_generated_map_to_console = _print_to_console.bind("type")
@@ -18,7 +19,7 @@ extends Node
 @export_tool_button("Log Rotations") var log_rotations_to_console = _print_to_console.bind("rotation")
 
 @export_group("")
-@export_tool_button("Generate roads") var generate_action = test
+@export_tool_button("Generate roads") var generate_action = generate_roads.bind(Dictionary())
 
 var _blueprint: Dictionary
 var _map_size: int
@@ -178,8 +179,11 @@ func generate_roads(blueprint: Dictionary) -> bool:
 	# clear previous generation results
 	_final_spots.clear()
 	
-	_blueprint = blueprint
 	_map_size = generation_params.map_size
+	if blueprint.is_empty():
+		# will be replaced by default creation from blueprint class
+		_create_default_blueprint(blueprint)
+	_blueprint = blueprint	
 	
 	generation_params.prepare_generation_areas()
 	_generate_spots()
@@ -195,7 +199,7 @@ func generate_roads(blueprint: Dictionary) -> bool:
 	
 	if not autotiler.autotile_roads(_blueprint, _map_size):
 		return false
-	
+		
 	if debug_visualization:
 		_visualize()
 	if log_generation_steps:
@@ -209,18 +213,15 @@ func generate_roads(blueprint: Dictionary) -> bool:
 #####################################################
 
 
-func test() -> void:
-	var test_terrain_blueprint: Dictionary
-	for x in generation_params.map_size:
-		for y in generation_params.map_size:
+func _create_default_blueprint(blueprint: Dictionary) -> void:
+	for x in _map_size:
+		for y in _map_size:
 			var coord: Vector2i = Vector2i(x, y)
-			test_terrain_blueprint[coord]= {
+			blueprint[coord]= {
 				"height": 0.0,
 				"type": "empty",
 				"can_place": "any",
 			}
-	
-	generate_roads(test_terrain_blueprint)
 
 
 ## Printing blueprint map data from given dictionary key for debug

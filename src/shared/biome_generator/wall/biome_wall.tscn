@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bks3clvov8dgh" path="res://shared/biome_generator/wall/biome_wall.gd" id="1_11jvr"]
 [ext_resource type="PackedScene" uid="uid://jix48lt4ey48" path="res://shared/biome_generator/wall/wall_column.tscn" id="2_tpaye"]
+[ext_resource type="PackedScene" uid="uid://diqs35d18iqxr" path="res://shared/biome_generator/wall/wall_simple.tscn" id="3_t8m2e"]
 
 [sub_resource type="Curve3D" id="Curve3D_xeerm"]
 _data = {
@@ -16,6 +17,7 @@ script = ExtResource("1_11jvr")
 path = NodePath("Path3D")
 path_follow = NodePath("Path3D/PathFollow3D")
 collumn_scene = ExtResource("2_tpaye")
+simple_wall_scene = ExtResource("3_t8m2e")
 random_in_out_x_vector = 0.0
 random_in_out_z_vector = 0.0
 

@@ -2,11 +2,12 @@ extends Node3D
 
 
 @export_category("GeneratorNodes")
-@export var wall_scene: String = "res://shared/biome_generator/wall/biome_wall.tscn"
+@export var wall_scene: PackedScene
 @export_group("debug")
 @export var point_scene: String = "res://shared/biome_generator/debug/generator_point_mesh.tscn"
 @export var line_scene: String = "res://shared/biome_generator/debug/generator_line_mesh.tscn"
 @export var triangle_scene: String = "res://shared/biome_generator/debug/generator_triangle_mesh.tscn"
+
 @export_category("Biomes")
 @export var biomes_sizes: Dictionary[String, int] = {
 	"biom1": 13000,
@@ -18,17 +19,29 @@ extends Node3D
 	"biom2": Color.RED,
 	"biom3": Color.PURPLE
 }
+
 @export_category("GeneratorVariables")
+@export_group("location")
 @export var size_x: float = 200
 @export var size_z: float = 200
-@export var points_randomize_in_x: float = 0.99
-@export var points_randomize_in_z: float = 0.99
 @export var start_x: float = -100
 @export var start_z: float = -100
+@export_group("points")
+## number of points in x
 @export var points_in_x: int = 50
+## number of points in z
 @export var points_in_z: int = 50
-@export var chance_to_shuffle: float = 0.01
+## number of points from border that will not be affected by randomization
 @export var points_distance_from_border_not_randomized: int = 0
+## percentage of half averange distance in x
+@export var points_randomize_in_x: float = 0.99
+## percentage of half averange distance in z
+@export var points_randomize_in_z: float = 0.99
+@export_group("triangles selection")
+## chance to shuffle possible triangles, durring every selection of next biome triangle
+@export var chance_to_shuffle: float = 0.01
+@export_group("Entrances")
+## number of entrances that will generate besides minimal ones
 @export var additional_entrances: int = 5
 
 var points: Dictionary[Vector2, Vector2]
@@ -41,16 +54,11 @@ var free_triangles: Array[BiomeTriangle]
 var biomes: Array[Biome]
 var walls_combiner: WallsCombiner
 
-func _ready() -> void:
-	generate()
-	#show_debug()
-	pass
-
 func show_debug() -> void:
 	get_tree().get_nodes_in_group("camera_debug_group").pop_front().queue_free()
 	#_show_points()
 	#_show_lines()
-	#_show_biomes()
+	_show_biomes()
 
 
 
@@ -63,6 +71,7 @@ func generate() -> void:
 	_set_biome()
 	create_walls()
 	_set_entrances()
+	walls_combiner.force_update_transform()
 	walls_combiner.use_collision = false
 	walls_combiner.use_collision = true
 
@@ -142,9 +151,6 @@ func _set_biome() -> void:
 		size_proportion[biome] = biome.area / biomes_sizes[biome_name]
 	while free_triangles.size() > 0:
 		var minimal: float = size_proportion.values().min()
-		if minimal == INF:
-			print("INF!!!!!!!!!!!!!!!!!!\n")
-			break
 		var biome: Biome = size_proportion.find_key(minimal)
 		_get_biome_new_triangle(biome)
 		size_proportion[biome] = biome.area / biomes_sizes[biome.biome_name]
@@ -293,7 +299,7 @@ func create_walls() -> void:
 	self.add_child(walls_combiner)
 	for line in lines:
 		if not line.biomes.is_empty():
-			var wall: BiomeWall = load(wall_scene).instantiate()
+			var wall: BiomeWall = wall_scene.instantiate()
 			walls_combiner.add_child(wall)
 			wall.create_wall(line.start_point, line.end_point)
 			for biome in line.biomes:
@@ -309,7 +315,6 @@ func _show_points() -> void:
 		mesh.position.z = point.y
 		mesh.position.y = 0
 		self.add_child(mesh)
-		#print(point)
 
 func _show_lines() -> void:
 	for line: BiomeLine in lines:
@@ -324,7 +329,6 @@ func _show_lines() -> void:
 func _show_biomes() -> void:
 	for biome in biomes:
 		for triangle in biome.triangles:
-			#print("dsfadfa")
 			var point1: Vector2 = triangle.line_a.start_point
 			var point2: Vector2 = triangle.line_a.end_point
 			var point3: Vector2

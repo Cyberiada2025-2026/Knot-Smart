@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bb8oos6gpkerc"]
+[gd_scene format=3 uid="uid://bb8oos6gpkerc"]
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_2jh14"]
-[ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="2_ugfsb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2pfsl"]
 size = Vector3(10000, 0.2, 10000)
@@ -35,11 +34,11 @@ height = 8.0
 height = 8.0
 radius = 4.0
 
-[node name="mapa" type="Node3D"]
+[node name="mapa" type="Node3D" unique_id=1637073653]
 
-[node name="teren" type="Node3D" parent="."]
+[node name="teren" type="Node3D" parent="." unique_id=105891481]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="teren"]
+[node name="StaticBody3D" type="StaticBody3D" parent="teren" unique_id=524872660]
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
@@ -47,122 +46,121 @@ axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D" unique_id=1219102160]
 shape = SubResource("BoxShape3D_2pfsl")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D" unique_id=1709505085]
 mesh = SubResource("BoxMesh_70f7c")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren" unique_id=1256340048]
 transform = Transform3D(0.999641, -0.0267876, 0, 0.0267876, 0.999641, 0, 0, 0, 1, -13.352, -8.58379, -15.6121)
 mesh = SubResource("BoxMesh_2jh14")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="teren"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="teren" unique_id=608533857]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.51217, -8.58379, -5.55216)
 mesh = SubResource("BoxMesh_2jh14")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="teren"]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="teren" unique_id=642832832]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.593, -8.58379, 3.49611)
 mesh = SubResource("BoxMesh_2jh14")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="teren"]
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="teren" unique_id=456182090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47103, -8.58379, -10.78)
 mesh = SubResource("BoxMesh_2jh14")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="teren"]
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="teren" unique_id=1975732380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9651, -8.58379, -12.3737)
 mesh = SubResource("BoxMesh_2jh14")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="teren"]
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="teren" unique_id=1382139530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.83944, -8.58379, -4.8095)
 mesh = SubResource("BoxMesh_2jh14")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="teren"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="teren" unique_id=835023251]
 transform = Transform3D(0.836324, 0.548235, 0, -0.548235, 0.836324, 0, 0, 0, 1, -7.97383, 1.50737, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D2" unique_id=1675863854]
 mesh = SubResource("BoxMesh_q8ihy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D2" unique_id=1513181878]
 shape = SubResource("BoxShape3D_lrjei")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D2"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D2" unique_id=287510812]
 transform = Transform3D(0.836324, 0.548235, 0, -0.548235, 0.836324, 0, 0, 0, 1, -7.29335, 1.95345, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D2/StaticBody3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D2/StaticBody3D2" unique_id=409161516]
 mesh = SubResource("BoxMesh_q8ihy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D2/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D2/StaticBody3D2" unique_id=1821549568]
 shape = SubResource("BoxShape3D_lrjei")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D2/StaticBody3D2"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D2/StaticBody3D2" unique_id=1245073064]
 transform = Transform3D(0.836324, 0.548235, 0, -0.548235, 0.836324, 0, 0, 0, 1, -7.72139, 2.08772, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2" unique_id=100564430]
 mesh = SubResource("BoxMesh_q8ihy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2" unique_id=1213543159]
 shape = SubResource("BoxShape3D_lrjei")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2" unique_id=89112611]
 transform = Transform3D(0.883961, 0.46756, 0, -0.46756, 0.883961, 0, 0, 0, 1, -7.50189, 1.9382, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2" unique_id=185086747]
 mesh = SubResource("BoxMesh_q8ihy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2" unique_id=1004155994]
 shape = SubResource("BoxShape3D_lrjei")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2" unique_id=638867883]
 transform = Transform3D(0.886228, 0.46325, 0, -0.46325, 0.886228, 0, 0, 0, 1, -7.52403, 1.98491, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2" unique_id=887269880]
 mesh = SubResource("BoxMesh_q8ihy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2/StaticBody3D2" unique_id=982056246]
 shape = SubResource("BoxShape3D_lrjei")
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="teren"]
+[node name="StaticBody3D3" type="StaticBody3D" parent="teren" unique_id=246982288]
 transform = Transform3D(0.886228, 0.46325, 0, -0.46325, 0.886228, 0, 0, 0, 1, -7.52403, 1.65564, -8.81012)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D3"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D3" unique_id=1126712070]
 mesh = SubResource("BoxMesh_q8ihy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D3"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D3" unique_id=900981573]
 shape = SubResource("BoxShape3D_lrjei")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D3"]
+[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D3" unique_id=207025194]
 transform = Transform3D(0.901523, -0.432731, 0, 0.432731, 0.901523, 0, 0, 0, 1, -9.38629, -2.19047, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D3/StaticBody3D2"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D3/StaticBody3D2" unique_id=1128487330]
 mesh = SubResource("BoxMesh_q8ihy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D3/StaticBody3D2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D3/StaticBody3D2" unique_id=395277650]
 shape = SubResource("BoxShape3D_lrjei")
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="teren"]
+[node name="StaticBody3D4" type="StaticBody3D" parent="teren" unique_id=719461196]
 transform = Transform3D(8.725, 0, 0, 0, -0.00700442, 8.725, 0, -8.725, -0.00700442, -38.8223, -24.7178, -10.9745)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D4"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D4" unique_id=1740775810]
 mesh = SubResource("CylinderMesh_2jh14")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D4"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D4" unique_id=390314383]
 shape = SubResource("CylinderShape3D_70f7c")
 
-[node name="StaticBody3D5" type="StaticBody3D" parent="teren"]
+[node name="StaticBody3D5" type="StaticBody3D" parent="teren" unique_id=1035013189]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 2.22819, -0.238501, -16.9271)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D5"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D5" unique_id=966391491]
 mesh = SubResource("BoxMesh_q8ihy")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D5"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D5" unique_id=1313773814]
 shape = SubResource("BoxShape3D_lrjei")
 
-[node name="Player" parent="." instance=ExtResource("1_2jh14")]
+[node name="Player" parent="." unique_id=383554686 instance=ExtResource("1_2jh14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457032, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player" unique_id=1887677303]
 transform = Transform3D(1, 0, 0, 0, 0.0460255, 0.99894, 0, -0.99894, 0.0460255, 0, 136.331, 0)
 
-[node name="CameraReplacer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_ugfsb")]
-camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")
+[node name="CameraReplacer" parent="." unique_id=998944845]

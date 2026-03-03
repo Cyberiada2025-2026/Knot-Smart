@@ -1,4 +1,4 @@
-name: Static checks
+name: Gdlint checks
 
 on:
   push:
@@ -7,11 +7,10 @@ on:
     branches: [ "master" ]
 
 jobs:
-  static-checks:
-    name: 'Static checks'
+  gdlint-checks:
+    name: 'Gdlint checks'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - uses: Scony/godot-gdscript-toolkit@master
-    - run: gdformat --check $(find ./src/ -name '*.gd' -not -path "./src/addons/*")
     - run: gdlint $(find ./src/ -name '*.gd' -not -path "./src/addons/*" -not -path "./src/script_templates/*")

@@ -78,12 +78,13 @@ static func _rotate_array(angle: int, array: Array):
 	# avoid editing original array
 	array = array.duplicate()
 	
+	var result: Array
+	result.resize(NEIGHBOUR_ARRAY_SIZE)
+	
 	while angle > 0:
-		var result: Array
-		result.resize(NEIGHBOUR_ARRAY_SIZE)
 		for i in range(array.size()):
 			result[(i % 3 + 1) * 3 - 1 - int(i / 3.0)] = array[i] 
-		array = result
+		array = result.duplicate()
 		angle -= 90
 	return array
 
@@ -94,22 +95,22 @@ func _convert_array_to_bitmask(
 	array: Array, data: Dictionary, bitmask_result: int = 0, current_position: int = 0
 	):
 	if current_position < NEIGHBOUR_ARRAY_SIZE :
-		if array[current_position] == ROAD:
-			bitmask_result += 1 << current_position
-			_convert_array_to_bitmask(array, data, bitmask_result, current_position + 1)
-		elif array[current_position] == EMPTY:
-			_convert_array_to_bitmask(array, data, bitmask_result, current_position + 1)
-		elif array[current_position] == ANY:
-			# ANY as EMPTY
-			_convert_array_to_bitmask(array, data, bitmask_result, current_position + 1)
-			# ANY as ROAD
-			bitmask_result += 1 << current_position
-			_convert_array_to_bitmask(array, data, bitmask_result, current_position + 1)
-		else:
-			printerr("wrong data type '", array[current_position], '\' in "BASE_TILES" dictionary')
-			return	
-	elif not _road_id_bitmask.has(bitmask_result):
-		_road_id_bitmask.set(bitmask_result, data)
+		match array[current_position]:
+			ROAD:
+				bitmask_result += 1 << current_position
+				_convert_array_to_bitmask(array, data, bitmask_result, current_position + 1)
+			EMPTY:
+				_convert_array_to_bitmask(array, data, bitmask_result, current_position + 1)
+			ANY:
+				# ANY as EMPTY
+				_convert_array_to_bitmask(array, data, bitmask_result, current_position + 1)
+				# ANY as ROAD
+				bitmask_result += 1 << current_position
+				_convert_array_to_bitmask(array, data, bitmask_result, current_position + 1)
+			_:
+				printerr("wrong data type '", array[current_position], '\' in "BASE_TILES" dictionary')
+				return	
+	_road_id_bitmask.get_or_add(bitmask_result, data)
 
 
 ## Create bitmasks for all possible positions for single road tile id [br]

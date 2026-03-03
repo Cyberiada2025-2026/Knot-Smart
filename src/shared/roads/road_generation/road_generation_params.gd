@@ -34,7 +34,7 @@ enum {
 
 ## Format areas to make them usable for generator
 func prepare_generation_areas():
-	# spots are sorted by their area, ascendant
+	# spots are sorted by their area, ascending
 	generation_areas.sort_custom(func(a,b): return a.spot_limit_area.area()< b.spot_limit_area.area())
 		
 	# add default case for every other situation

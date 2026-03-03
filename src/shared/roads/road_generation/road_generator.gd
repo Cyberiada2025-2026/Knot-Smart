@@ -6,13 +6,19 @@ extends Node
 
 # testing flags are splitted into different categories to ensure easy debugging
 @export_group("testing")
-@export var create_visualization: bool
-@export_range(5, 120, 1) var visualization_duration: int = 10
-@export var log_generated_map_to_console: bool
-@export var log_id_to_console: bool
-@export var log_rotations_to_console: bool
-@export var more_log_messages: bool
-@export_tool_button("Test Generation") var generate_action = test
+@export var debug_visualization: bool:
+	set(value):
+		debug_visualization = value
+		DebugDraw3D.clear_all()
+		await get_tree().process_frame
+
+@export var log_generation_steps: bool
+@export_tool_button("Log Generated Map") var log_generated_map_to_console = _print_to_console.bind("type")
+@export_tool_button("Log ID's") var log_id_to_console = _print_to_console.bind("id")
+@export_tool_button("Log Rotations") var log_rotations_to_console = _print_to_console.bind("rotation")
+
+@export_group("")
+@export_tool_button("Generate roads") var generate_action = test
 
 var _blueprint: Dictionary
 var _map_size: int
@@ -39,6 +45,20 @@ func _get_area_positions_array(start: Vector2i, end: Vector2i) -> Array:
 			coordinates.push_back(Vector2i(x, y))
 	return coordinates
 	
+
+func _is_valid_tile(position: Vector2i, axis: int):
+	return (
+			(
+				axis == Utils.Axis2.X
+				and _blueprint[position]["can_place"] == "slope_x"
+			)
+			or (
+				axis == Utils.Axis2.Y
+				and _blueprint[position]["can_place"] == "slope_z"
+			)
+			or _blueprint[position]["can_place"] == "any"
+		)
+	
 	
 ## Splits spot into 2 smaller ones if possible
 func _split_spot(spot: Spot, area: LimitterArea, axis: int, spots: Array) -> bool:
@@ -57,17 +77,7 @@ func _split_spot(spot: Spot, area: LimitterArea, axis: int, spots: Array) -> boo
 	
 	# avoid placing streets on incorrect slopes and terrain corners
 	for position in _get_area_positions_array(s2, e1):
-		if (
-			(
-				axis == Utils.Axis2.X
-				and _blueprint[position]["can_place"] == "slope_z"
-			)
-			or (
-				axis == Utils.Axis2.Y
-				and _blueprint[position]["can_place"] == "slope_x"
-			)
-			or _blueprint[position]["can_place"] == "none"
-		):
+		if not _is_valid_tile(position, axis):
 			return false
 	
 	var new_spot: Spot = Spot.new(s2, spot.end)
@@ -94,9 +104,7 @@ func _is_spot_touching_map_bounds(spot: Spot) -> bool:
 	
 	
 func _find_overlap_with_area(area: LimitterArea, spot: Spot):
-	if area.spot_limit_area.overlaps(spot):
-		return true
-	return false
+	return area.spot_limit_area.overlaps(spot)
 	
 	
 ## Move spots' start 1 tile forward
@@ -143,7 +151,7 @@ func _generate_spots():
 			steps_success += 1
 	
 	if not spots.is_empty():
-		if more_log_messages:
+		if log_generation_steps:
 			print("full splits failed for ", spots.size(), " spots, moving them to final array")
 		while not spots.is_empty():
 			if _is_spot_touching_map_bounds(spots.back()):
@@ -151,7 +159,7 @@ func _generate_spots():
 			else:
 				_final_spots.push_back(spots.pop_back())
 	
-	if more_log_messages:
+	if log_generation_steps:
 		print("Roads generated, road generation success steps: ", steps_success, " all: ", steps_all)
 
 
@@ -164,6 +172,9 @@ func _generate_spots():
 ## Changes tile "type" to "road" from "empty" when places road [br][br]
 ## Returns false on error
 func generate_roads(blueprint: Dictionary) -> bool:
+	if log_generation_steps:
+		print("start road generation!")
+		
 	# clear previous generation results
 	_final_spots.clear()
 	
@@ -184,7 +195,12 @@ func generate_roads(blueprint: Dictionary) -> bool:
 	
 	if not autotiler.autotile_roads(_blueprint, _map_size):
 		return false
-				
+	
+	if debug_visualization:
+		_visualize()
+	if log_generation_steps:
+		print("finished full generation!\n")
+		
 	return true
 	
 
@@ -203,52 +219,38 @@ func test() -> void:
 				"type": "empty",
 				"can_place": "any",
 			}
-	if more_log_messages:
-		print("start road generation!")
 	
 	generate_roads(test_terrain_blueprint)
-	
-	if log_generated_map_to_console:
-		_print_to_console(test_terrain_blueprint, "type")
-	if log_id_to_console:
-		_print_to_console(test_terrain_blueprint, "id")
-	if log_rotations_to_console:
-		_print_to_console(test_terrain_blueprint, "rotation")
-	if create_visualization:
-		_visualize(test_terrain_blueprint)
-	if more_log_messages:
-		print("finished full generation!\n")
 
 
 ## Printing blueprint map data from given dictionary key for debug
-func _print_to_console(blueprint: Dictionary, key: String) -> void:
+func _print_to_console(key: String) -> void:
+	if _blueprint.is_empty():
+		return
 	print("printing '", key, "':")
 		
 	for y in _map_size:
 		var output: String = ""
 		for x in _map_size:
-			if blueprint[Vector2i(x, y)]["type"] == "road":
+			if _blueprint[Vector2i(x, y)]["type"] == "road":
 				if key == "type":
 					output += " R"
 				if key == "rotation":
-					output += " " + str(blueprint[Vector2i(x, y)][key] / 90)
+					output += " " + str(_blueprint[Vector2i(x, y)][key] / 90)
 				if key == "id":
-					if blueprint[Vector2i(x, y)][key] >= 0 and blueprint[Vector2i(x, y)][key] < 10:
-						output += " " + str(blueprint[Vector2i(x, y)][key])
+					if _blueprint[Vector2i(x, y)][key] >= 0 and _blueprint[Vector2i(x, y)][key] < 10:
+						output += " " + str(_blueprint[Vector2i(x, y)][key])
 					else:
-						output += str(blueprint[Vector2i(x, y)][key])
+						output += str(_blueprint[Vector2i(x, y)][key])
 			else:
 				output += "  "
 		print(output)
 		
 
 ## Simple test visualization
-func _visualize(blueprint: Dictionary) -> void:
+func _visualize() -> void:
 	DebugDraw3D.clear_all()
 	await get_tree().process_frame
-		
-	if more_log_messages:
-		print("creating visualization")
 		
 	# visualize spots
 	for spot in _final_spots:
@@ -258,18 +260,18 @@ func _visualize(blueprint: Dictionary) -> void:
 			Vector3(spot.size().x, 1, spot.size().y), 
 			Color(randf(), randf(), randf(), 1.0), 
 			false,
-			visualization_duration
+			INF
 		)
 	
 	# visualize roads
 	for x in _map_size:
 		for z in _map_size:
-			if blueprint[Vector2i(x, z)]["type"] == "road":
+			if _blueprint[Vector2i(x, z)]["type"] == "road":
 				DebugDraw3D.draw_box(
 					Vector3(x, 0, z),
 					Quaternion.IDENTITY, 
 					Vector3(1, 0.01, 1),
 					Color(1.0, 1.0, 1.0, 1.0),
 					false,
-					visualization_duration
+					INF
 				)

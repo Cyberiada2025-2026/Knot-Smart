@@ -1,6 +1,5 @@
-extends Node3D
-
 class_name Player
+extends Node3D
 
 @export_category("MODULES")
 @export var player_physics: PlayerPhysics
@@ -25,13 +24,8 @@ func _process(delta: float) -> void:
 	_update_to_new_rotation(delta)
 
 
-
-
-
 func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
 	front = front.rotated(ground_normal, angle)
-
-
 
 
 ## set new rotation values
@@ -45,11 +39,21 @@ func _check_new_rotation(delta: float) -> void:
 	if gravity_reset_timer >= gravity_reset_time:
 		new_ground_normal = Vector3.UP
 
+
 ## update rotation values
 func _update_to_new_rotation(delta: float) -> void:
-	if abs(ground_normal - new_ground_normal) > Vector3(ground_normal_sensitivity, ground_normal_sensitivity, ground_normal_sensitivity):
+	if (
+		abs(ground_normal - new_ground_normal)
+		> Vector3(ground_normal_sensitivity, ground_normal_sensitivity, ground_normal_sensitivity)
+	):
 		is_rotating = true
-		var moved_ground_normal := ground_normal.move_toward(new_ground_normal, delta * gravity_rotation_speed_modifier * rotation_speed).normalized()
+		var moved_ground_normal := (
+			ground_normal
+			. move_toward(
+				new_ground_normal, delta * gravity_rotation_speed_modifier * rotation_speed
+			)
+			. normalized()
+		)
 		var angle := ground_normal.angle_to(moved_ground_normal)
 		player_camera.rotate(ground_normal.cross(moved_ground_normal).normalized(), angle)
 		front = front.rotated(ground_normal.cross(moved_ground_normal).normalized(), angle)
@@ -58,6 +62,7 @@ func _update_to_new_rotation(delta: float) -> void:
 		_rotate_player()
 	else:
 		is_rotating = false
+
 
 ##
 func _rotate_player() -> void:

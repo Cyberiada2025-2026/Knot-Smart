@@ -5,6 +5,7 @@ extends Camera3D
 
 var selected = null
 
+
 func _input(event):
 	if event.is_action_pressed("debug_set_player"):
 		selected = player
@@ -18,7 +19,7 @@ func _input(event):
 			return
 		spawn_point(selected, pos)
 
-		
+
 func shoot_ray():
 	var mouse_pos = get_viewport().get_mouse_position()
 	var ray_lenght = 1000
@@ -31,11 +32,10 @@ func shoot_ray():
 	var raycast_result = space.intersect_ray(ray_query)
 	if raycast_result.is_empty():
 		return null
-	else:
-		return raycast_result["position"]
+	return raycast_result["position"]
 
 
-func spawn_point(point: PackedScene, pos:Vector3):
-	var instance : Node3D = point.instantiate()
+func spawn_point(point: PackedScene, pos: Vector3):
+	var instance: Node3D = point.instantiate()
 	get_parent().add_child(instance)
 	instance.global_position = pos

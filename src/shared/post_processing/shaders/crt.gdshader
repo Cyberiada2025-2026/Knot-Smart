@@ -4,7 +4,7 @@ uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_n
 
 const vec2 RES = vec2(320, 240);
 
-const vec2 MASK_SHAPE = vec2(3.0, 6.0);
+const float MASK_SHAPE = 3.0;
 
 // Should be uneven
 const int MAX_BLUR = 5;
@@ -13,7 +13,7 @@ const int MAX_BLUR = 5;
 const int BLUR_SIZE[3] = {3, 5, 3};
 
 /**  Hardness of scanline */
-uniform float hard_scan: hint_range(-16.0, -8.0) = -8.0;
+uniform float hard_scan: hint_range(-16.0, -4.0) = -8.0;
 
 /** Hardness of pixels in scanline */
 uniform float hard_pix: hint_range(-5.0, -0.5)=-2.5;
@@ -38,7 +38,7 @@ vec3 Fetch(vec2 pos, vec2 off, vec2 size){
 // Distance in emulated pixels to nearest texel.
 vec2 Dist(vec2 pos){
 	pos *= RES;
-	return -(pos - floor(pos)) - vec2(0.5);
+	return -((pos - floor(pos)) - vec2(0.5));
 }
 
 float Gauss(float pos, float scale) { return exp2(scale * pos * pos); }
@@ -63,7 +63,7 @@ vec3 HorizontalBlur(vec2 pos, float off, vec2 size, int n){
 
 float Scan(vec2 pos,float off ){
   float dst = Dist(pos).y;
-  return Gauss(dst+off,hard_scan);
+  return Gauss(dst+off, hard_scan);
 }
 
 vec3 Blur(vec2 pos, vec2 size){
@@ -84,8 +84,7 @@ vec2 Warp(vec2 pos){
 }
 
 vec3 Mask(vec2 pos, vec2 size){
-  pos.x += pos.y * MASK_SHAPE.x;
-  pos.x = fract(pos.x/MASK_SHAPE.y);
+  pos.x = fract(pos.x/MASK_SHAPE);
   vec3 mask = vec3(mask_dark, mask_dark, mask_dark);
   mask[int(pos.x * 3.0)] = mask_light;
   return mask;
@@ -101,7 +100,6 @@ void fragment()  {
 	}
 
 	vec4 color = texture(screen_texture, SCREEN_UV);
-
 	vec2 pos = Warp(SCREEN_UV);
 	color.rgb = Blur(pos, size);
 	color.rgb *= Mask(uv, size);

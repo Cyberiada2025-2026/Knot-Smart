@@ -1,6 +1,6 @@
 @tool
+class_name LimiterArea
 extends Resource
-class_name LimitterArea
 
 ## Spot size limits, generated spots in this area will have size between limits. [br][br]
 ## Max size should be at least 2x bigger than min size [br]

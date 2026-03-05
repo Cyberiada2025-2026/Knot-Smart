@@ -4,21 +4,16 @@ extends Node
 
 @export var generation_params: RoadGenerationParams = RoadGenerationParams.new()
 
+@export_tool_button("Generate roads") var generate_action = generate_roads.bind(Dictionary())
 # testing flags are splitted into different categories to ensure easy debugging
 @export_group("testing")
-@export var debug_visualization: bool:
-	set(value):
-		debug_visualization = value
-		DebugDraw3D.clear_all()
-		
+@export var debug_visualization: bool
 
 @export var log_generation_steps: bool
 @export_tool_button("Log Generated Map") var log_generated_map_to_console = _print_to_console.bind("type")
 @export_tool_button("Log ID's") var log_id_to_console = _print_to_console.bind("id")
 @export_tool_button("Log Rotations") var log_rotations_to_console = _print_to_console.bind("rotation")
 
-@export_group("")
-@export_tool_button("Generate roads") var generate_action = generate_roads.bind(Dictionary())
 
 var _blueprint: Dictionary
 var _map_size: int
@@ -28,7 +23,11 @@ var _final_spots: Array[Spot] = []
 #                 GENERATOR FUNCTIONS               #
 #####################################################
 
-
+func _process(_delta: float) -> void:
+	if debug_visualization:
+		_visualize()
+		
+		
 ## Get coordinates of all points located between start and end positions
 func _get_area_positions_array(start: Vector2i, end: Vector2i) -> Array:
 	var coordinates: Array[Vector2i]
@@ -53,7 +52,7 @@ func _is_valid_tile(position: Vector2i, axis: int):
 	
 	
 ## Splits spot into 2 smaller ones if possible
-func _split_spot(spot: Spot, area: LimitterArea, axis: int, spots: Array) -> bool:
+func _split_spot(spot: Spot, area: LimiterArea, axis: int, spots: Array) -> bool:
 	if spot.size()[axis] <= area.max_spot_size[axis]:
 		return false
 		
@@ -95,7 +94,7 @@ func _is_spot_touching_map_bounds(spot: Spot) -> bool:
 	return false
 	
 	
-func _find_overlap_with_area(area: LimitterArea, spot: Spot):
+func _find_overlap_with_area(area: LimiterArea, spot: Spot):
 	return area.spot_limit_area.overlaps(spot)
 	
 	
@@ -122,7 +121,7 @@ func _generate_spots():
 		var curr_pos: int = randi() % len(spots)
 		var curr_spot: Spot = spots[curr_pos]
 		var area_idx = generation_params.generation_areas.find_custom(_find_overlap_with_area.bind(curr_spot))
-		var area = generation_params.generation_areas[area_idx]
+		var area = generation_params.DEFAULT_LIMIT_AREA if area_idx == -1 else generation_params.generation_areas[area_idx]
 			
 		# action decides whether we are splitting x or y direction
 		var axis = Utils.Axis2.values().pick_random()
@@ -193,8 +192,6 @@ func generate_roads(blueprint: Dictionary) -> bool:
 	if not autotiler.autotile_roads(_blueprint, _map_size):
 		return false
 		
-	if debug_visualization:
-		_visualize()
 	if log_generation_steps:
 		print("finished full generation!\n")
 		
@@ -243,19 +240,9 @@ func _print_to_console(key: String) -> void:
 
 ## Simple test visualization
 func _visualize() -> void:
-	DebugDraw3D.clear_all()
-	await get_tree().process_frame
-		
 	# visualize spots
 	for spot in _final_spots:
-		DebugDraw3D.draw_box(
-			Vector3(spot.start.x, 0, spot.start.y),
-			Quaternion.IDENTITY, 
-			Vector3(spot.size().x, 1, spot.size().y), 
-			Color(randf(), randf(), randf(), 1.0), 
-			false,
-			INF
-		)
+		spot.visualize()
 	
 	# visualize roads
 	for coord in _blueprint.keys():
@@ -265,6 +252,5 @@ func _visualize() -> void:
 					Quaternion.IDENTITY, 
 					Vector3(1, 0.01, 1),
 					Color(1.0, 1.0, 1.0, 1.0),
-					false,
-					INF
+					false
 				)

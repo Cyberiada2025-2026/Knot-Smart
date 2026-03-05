@@ -1,14 +1,17 @@
 @tool
-extends Resource
 class_name RoadGenerationParams
+extends Resource
+
+# TODO make const
+var DEFAULT_LIMIT_AREA = LimiterArea.new()
 
 ## Min and max spot size dimensions are decreased by 1 when creating road map. [br][br]
-@export var generation_areas: Array[LimitterArea] = [LimitterArea.new()]:
+@export var generation_areas: Array[LimiterArea] = [LimiterArea.new()]:
 	set(value):
 		generation_areas = value
 		if generation_areas.is_empty() or generation_areas.back() == null:
 			generation_areas.pop_back()
-			generation_areas.push_back(LimitterArea.new())
+			generation_areas.push_back(LimiterArea.new())
 		
 
 ## Determines amount of tile splits after which highways will generate. [br]
@@ -34,16 +37,9 @@ enum {
 ## Format areas to make them usable for generator
 func prepare_generation_areas():
 	generation_areas = generation_areas.filter(func(area): return area != null)
-		
+
 	# spots are sorted by their area, ascending
 	generation_areas.sort_custom(func(a,b): return a.spot_limit_area.area()< b.spot_limit_area.area())
-	
-	# add default case for every other situation
-	if generation_areas.back().spot_limit_area.area() < map_size * map_size:
-		var area: LimitterArea = LimitterArea.new()
-		area.spot_limit_area.end = Vector2i(map_size, map_size)
-		generation_areas.push_back(area)
-		print("Added default area to generation params")
 		
 	# show sorted values in editor
 	notify_property_list_changed()

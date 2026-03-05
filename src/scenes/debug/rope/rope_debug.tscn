@@ -71,10 +71,6 @@ skeleton = NodePath("../../Wall3")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3" unique_id=1534496225]
 shape = SubResource("BoxShape3D_qjgdw")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2024018015]
-transform = Transform3D(1, 0, 0, 0, 0.8886813, 0.4585255, 0, -0.4585255, 0.8886813, 0.06628907, 5.4229293, 8.808072)
-fov = 52.3
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=385250000]
 transform = Transform3D(0.9350857, 0.2908988, 0.20246622, -0.35442162, 0.76749074, 0.5341753, 0, -0.57125807, 0.8207705, 0.7263887, 0, 0)
 

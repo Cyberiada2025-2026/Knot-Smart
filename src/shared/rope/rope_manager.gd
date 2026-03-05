@@ -48,9 +48,15 @@ func _physics_process(_delta: float) -> void:
 			if not rope_mode_toggle:
 				var p1 = rope_points.pop_back()
 				var p2 = rope_points.pop_back()
-				var mark1 = p1.collider.find_child("PositionMarker")
-				var mark2 = p2.collider.find_child("PositionMarker")
-				var rope = Rope.new(mark1.global_position, p1.collider, mark2.global_position, p2.collider)
+				var mark1 = p1.collider.find_child("PositionMarker*")
+				var pos1 = mark1.global_position
+				p1.collider.remove_child(mark1)
 				mark1.queue_free()
+
+				var mark2 = p2.collider.find_child("PositionMarker*")
+				var pos2 = mark2.global_position
+				p2.collider.remove_child(mark2)
 				mark2.queue_free()
+
+				var rope = Rope.new(pos1, p1.collider, pos2, p2.collider)
 				add_child(rope)

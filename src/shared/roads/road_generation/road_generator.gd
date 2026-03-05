@@ -266,11 +266,10 @@ func _visualize() -> void:
 		)
 	
 	# visualize roads
-	for x in _map_size:
-		for z in _map_size:
-			if _blueprint[Vector2i(x, z)]["type"] == "road":
-				DebugDraw3D.draw_box(
-					Vector3(x, 0, z),
+	for coord in _blueprint.keys():
+		if _blueprint[coord]["type"] == "road":
+			DebugDraw3D.draw_box(
+				Vector3(coord.x, 0, coord.y),
 					Quaternion.IDENTITY, 
 					Vector3(1, 0.01, 1),
 					Color(1.0, 1.0, 1.0, 1.0),

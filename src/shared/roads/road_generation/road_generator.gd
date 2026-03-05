@@ -23,14 +23,6 @@ extends Node
 var _blueprint: Dictionary
 var _map_size: int
 var _final_spots: Array[Spot] = []
-
-## Indicates creation of any road generator [br][br]
-## Used by some parameters to properly enable custom setters
-static var loaded: bool = false
-
-func _ready():
-	loaded = true
-			
 			
 #####################################################
 #                 GENERATOR FUNCTIONS               #

@@ -3,7 +3,6 @@ extends Resource
 class_name RoadGenerationParams
 
 ## Min and max spot size dimensions are decreased by 1 when creating road map. [br][br]
-## Default spot dimension limits: 3x3 to 10x10
 @export var generation_areas: Array[LimitterArea] = [LimitterArea.new()]:
 	set(value):
 		generation_areas = value

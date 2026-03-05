@@ -11,6 +11,7 @@ func start(camera: PlayerCamera) -> void:
 
 
 func change_view_to(camera: PlayerCamera) -> void:
+	camera.get_parent().hide()
 	camera.arm_length = 0.0
 
 

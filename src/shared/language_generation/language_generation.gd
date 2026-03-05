@@ -1,5 +1,7 @@
 extends Node
 
+class_name LanguageGeneration
+
 var syllables = []
 var syllable_count = 0
 var final_seed = 0

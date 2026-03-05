@@ -1,6 +1,6 @@
 extends Node
 
-@export var language_generation : language_generator
+@export var language_generation : LanguageGeneration
 var input : String = "Litwo! Ojczyzno moja! ty jesteś jak zdrowie.
 Ile cię trzeba cenić, ten tylko się dowie,
 Kto cię stracił. Dziś piękność twą w całej ozdobie
@@ -29,5 +29,5 @@ Zieloną, na niej z rzadka ciche grusze siedzą."
 
 func _ready() -> void:
 	var out = language_generation.process_dialogue(input)
-	print(out)
+	#print(out)
 	speech_player.play_speech(out)

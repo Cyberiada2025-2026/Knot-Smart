@@ -5,7 +5,7 @@ extends Node3D
 
 const SOMETHING_INTERESTING = preload("uid://crgmysckc65sm")
 
-func make_footstep():
+func make_footstep() -> void:
 	var footstep := SOMETHING_INTERESTING.instantiate()
 	get_tree().root.add_child(footstep)
 	footstep.global_position = player_physics.global_position

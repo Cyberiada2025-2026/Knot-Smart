@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://d2ucnrebee3ji"]
+
+[ext_resource type="Shader" uid="uid://cc2sc2ayx6j74" path="res://shared/vfx/blood/blood_splatter.gdshader" id="1_i4fch"]
+[ext_resource type="Texture2D" uid="uid://c7kupdtw5pnuq" path="res://shared/vfx/blood/blood_splatter.png" id="2_73fxo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0271w"]
+render_priority = 0
+shader = ExtResource("1_i4fch")
+shader_parameter/main_texture = ExtResource("2_73fxo")
+shader_parameter/alpha_treshold = 0.5
+shader_parameter/main_col = Color(0.9647059, 0.11372549, 0.21960784, 1)
+shader_parameter/sec_col = Color(0.49411765, 0.29411766, 0.5137255, 1)
+shader_parameter/dot_cutoff = Vector2(0.3, 0.5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_uvsuc"]
+
+[sub_resource type="Curve" id="Curve_uvsuc"]
+_data = [Vector2(0, 0.2971912), 0.0, 2.2369187, 0, 0, Vector2(1, 1), -0.020613575, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_hjhgv"]
+offsets = PackedFloat32Array(0, 0.53739613, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.21568628, 1, 1, 1, 0)
+
+[node name="CPUParticles3D" type="CPUParticles3D" unique_id=1330214445]
+material_override = SubResource("ShaderMaterial_0271w")
+emitting = false
+amount = 15
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("PlaneMesh_uvsuc")
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+flatness = 0.5
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.01
+initial_velocity_max = 0.01
+scale_amount_min = 1.75
+scale_amount_max = 2.5
+scale_amount_curve = SubResource("Curve_uvsuc")
+color_ramp = SubResource("Gradient_hjhgv")

@@ -1,0 +1,16 @@
+name: Gdlint checks
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  gdlint-checks:
+    name: 'Gdlint checks'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: Scony/godot-gdscript-toolkit@master
+    - run: gdlint $(find ./src/ -name '*.gd' -not -path "./src/addons/*" -not -path "./src/script_templates/*")

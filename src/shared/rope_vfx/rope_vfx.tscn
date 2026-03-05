@@ -1,0 +1,391 @@
+[gd_scene format=3 uid="uid://djqe8wkjmmn8n"]
+
+[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/rope_vfx/rope.gdshader" id="1_jo2uc"]
+[ext_resource type="Script" uid="uid://l0fhfdnlggk" path="res://shared/rope_vfx/rope_vfx.gd" id="1_mc67o"]
+[ext_resource type="Shader" uid="uid://1pvk0smpoe86" path="res://shared/shaders/fresnel_additive.gdshader" id="2_jo2uc"]
+[ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="4_lbvd8"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i5arm"]
+resource_local_to_scene = true
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.0
+radial_segments = 8
+rings = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mc67o"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_jo2uc")
+shader_parameter/mesh_width_change = 2.0
+shader_parameter/anim_start = 0.0
+shader_parameter/length_start = 10.0
+shader_parameter/length_curr = 10.0
+shader_parameter/segment_density = 10.0
+shader_parameter/width = 0.01
+shader_parameter/softness = 0.5
+shader_parameter/speed = 5.0
+shader_parameter/main_col_def = Color(0.34117648, 0.7176471, 0.41568628, 1)
+shader_parameter/main_col_stretch = Color(0.34509805, 0.60784316, 0.7176471, 1)
+shader_parameter/main_col_squish = Color(0.7490196, 0.3764706, 0.43529412, 1)
+shader_parameter/sec_col_def = Color(1, 1, 1, 1)
+shader_parameter/sec_col_stretch = Color(1, 1, 1, 1)
+shader_parameter/sec_col_squish = Color(1, 1, 1, 1)
+shader_parameter/vibrate_time = 0.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wc5p8"]
+render_priority = 0
+shader = ExtResource("2_jo2uc")
+shader_parameter/billboard = false
+shader_parameter/power = 8.0
+shader_parameter/tint = Vector4(1, 1, 1, 1)
+shader_parameter/alpha_cutoff = 0.001
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jsk3o"]
+top_radius = 0.11
+bottom_radius = 0.11
+height = 0.25
+radial_segments = 8
+rings = 1
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="Curve" id="Curve_4arys"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 5.8651686, 0, 0, Vector2(0.25287354, 2), 2.842278, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_6iypd"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 6.330659, 0, 0, Vector2(0.25287354, 2), 0.47710392, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_tereu"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.04054054, 0.10135135, 0.3108108)
+colors = PackedColorArray(0.3, 0.9766667, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0.3, 0.9766667, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_lbvd8"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5405405)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbvd8"]
+render_priority = 0
+shader = ExtResource("4_lbvd8")
+shader_parameter/billboard = true
+shader_parameter/use_vertex_color = true
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_re8p4"]
+size = Vector3(0.1, 0.1, 0.01)
+
+[sub_resource type="Curve" id="Curve_xs02k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.653312, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_gg86f"]
+offsets = PackedFloat32Array(0.4813278, 1)
+colors = PackedColorArray(0.34509805, 0.60784316, 0.7176471, 1, 1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngo2x"]
+render_priority = 0
+shader = ExtResource("4_lbvd8")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = true
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0w2s6"]
+radius = 0.05
+height = 0.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gg86f"]
+render_priority = 0
+shader = ExtResource("4_lbvd8")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/tint = Color(0.34509805, 0.60784316, 0.7176471, 1)
+
+[sub_resource type="Animation" id="Animation_mc67o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:material_override:shader_parameter/anim_start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/Splash:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CSGSphere3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh:material_override")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_mc67o")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mesh/Break1:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Mesh/Break2:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lbvd8"]
+resource_name = "break"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CSGSphere3D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/Splash:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh:material_override:shader_parameter/anim_start")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/Break1:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Mesh/Break2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jo2uc"]
+resource_name = "rope_on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh:material_override:shader_parameter/anim_start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh/Splash:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CSGSphere3D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.06666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lbvd8"]
+_data = {
+&"RESET": SubResource("Animation_mc67o"),
+&"break": SubResource("Animation_lbvd8"),
+&"rope_on": SubResource("Animation_jo2uc")
+}
+
+[node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "mesh_node", "splash", "break1", "break2", "first_ball", "second_ball")]
+script = ExtResource("1_mc67o")
+player = NodePath("AnimationPlayer")
+mesh = SubResource("CylinderMesh_i5arm")
+mesh_node = NodePath("Mesh")
+mat = SubResource("ShaderMaterial_mc67o")
+splash = NodePath("Mesh/Splash")
+break1 = NodePath("Mesh/Break1")
+break2 = NodePath("Mesh/Break2")
+first_ball = NodePath("CSGSphere3D")
+second_ball = NodePath("CSGSphere3D/CSGSphere3D")
+
+[node name="Mesh" type="CSGMesh3D" parent="." unique_id=1415216167]
+material_override = SubResource("ShaderMaterial_mc67o")
+mesh = SubResource("CylinderMesh_i5arm")
+
+[node name="Splash" type="CPUParticles3D" parent="Mesh" unique_id=1084427136]
+material_override = SubResource("ShaderMaterial_wc5p8")
+emitting = false
+amount = 4
+lifetime = 2.0
+local_coords = true
+mesh = SubResource("CylinderMesh_jsk3o")
+emission_shape = 3
+emission_box_extents = Vector3(0.01, 5, 0.01)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+damping_min = 5.0
+damping_max = 6.0
+scale_amount_min = 0.8
+scale_amount_max = 1.2
+split_scale = true
+scale_curve_x = SubResource("Curve_4arys")
+scale_curve_y = null
+scale_curve_z = SubResource("Curve_6iypd")
+color_ramp = SubResource("Gradient_tereu")
+color_initial_ramp = SubResource("Gradient_lbvd8")
+
+[node name="Break1" type="CPUParticles3D" parent="Mesh" unique_id=1437794247]
+material_override = SubResource("ShaderMaterial_lbvd8")
+emitting = false
+amount = 64
+lifetime = 1.2
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.3
+mesh = SubResource("PrismMesh_re8p4")
+emission_shape = 3
+emission_box_extents = Vector3(0.1, 5, 0.1)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, -5, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+damping_min = 4.0
+damping_max = 5.0
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 0.1
+scale_amount_curve = SubResource("Curve_xs02k")
+color_initial_ramp = SubResource("Gradient_gg86f")
+
+[node name="Break2" type="CPUParticles3D" parent="Mesh" unique_id=1791564360]
+material_override = SubResource("ShaderMaterial_ngo2x")
+emitting = false
+amount = 16
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.1
+mesh = SubResource("CapsuleMesh_0w2s6")
+emission_shape = 3
+emission_box_extents = Vector3(0.1, 5, 0.1)
+particle_flag_align_y = true
+direction = Vector3(0, -1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 4.0
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 0.8
+scale_amount_curve = SubResource("Curve_xs02k")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=311434849]
+visible = false
+material_override = SubResource("ShaderMaterial_gg86f")
+radius = 0.12
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGSphere3D" unique_id=1768756739]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+material_override = SubResource("ShaderMaterial_gg86f")
+radius = 0.12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1417330855]
+libraries/ = SubResource("AnimationLibrary_lbvd8")

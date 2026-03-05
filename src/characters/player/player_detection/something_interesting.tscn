@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://crgmysckc65sm"]
+[gd_scene format=3 uid="uid://crgmysckc65sm"]
 
 [ext_resource type="Script" uid="uid://1kkn8dm1yimx" path="res://shared/entities/time_clean.gd" id="1_10myn"]
 
@@ -10,7 +10,7 @@ albedo_color = Color(0.89932597, 0.31741896, 0, 1)
 material = SubResource("StandardMaterial3D_8uruy")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hawlq"]
-radius = 4.0
+radius = 3.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onkk8"]
 transparency = 1
@@ -18,25 +18,26 @@ albedo_color = Color(0.8666667, 0.35686275, 0, 0.2901961)
 
 [sub_resource type="SphereMesh" id="SphereMesh_xmuq3"]
 material = SubResource("StandardMaterial3D_onkk8")
-radius = 4.0
-height = 8.0
+radius = 3.5
+height = 7.0
 
-[node name="SomethingInteresting" type="Node3D" groups=["Interest"]]
+[node name="SomethingInteresting" type="Node3D" unique_id=1613719716 groups=["Interest"]]
 script = ExtResource("1_10myn")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2075805956]
+visible = false
 mesh = SubResource("SphereMesh_hawlq")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1511160939]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=785272909]
 shape = SubResource("SphereShape3D_hawlq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1483162163]
 mesh = SubResource("SphereMesh_xmuq3")
 skeleton = NodePath("../../MeshInstance3D")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer" type="Timer" parent="." unique_id=2021403061]
 wait_time = 0.5
 one_shot = true
 autostart = true

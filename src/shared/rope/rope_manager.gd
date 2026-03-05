@@ -19,8 +19,8 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var center_pos = get_viewport().size / 2
 	var camera = CameraSingleton.get_main_camera()
+	var center_pos = camera.get_viewport().size_2d_override / 2
 	var from = camera.project_ray_origin(center_pos)
 	var normal = camera.project_ray_normal(center_pos)
 	var to = from + normal * RAY_LENGTH

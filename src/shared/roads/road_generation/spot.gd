@@ -1,9 +1,8 @@
 @tool
-extends Resource
-
 ## single spot for building placement and roads, uses parts of cell.gd code from room generator [br][br]
 ## used to describe square areas on the map with start and end coordinates, inclusive
 class_name Spot
+extends Resource
 
 ## starting point of the spot, inclusive [br][br]
 ## start coordinates should be always smaller than end coordinates
@@ -49,3 +48,13 @@ func _get_spot_border_coordinates() -> Array[Vector2i]:
 func cast_on_blueprint(blueprint: Dictionary):
 	for pos in _get_spot_border_coordinates():
 		blueprint[pos]["type"] = "road"
+
+
+func visualize():
+	DebugDraw3D.draw_box(
+		Vector3(start.x, 0, start.y),
+		Quaternion.IDENTITY, 
+		Vector3(size().x, 1, size().y), 
+		Color(0.5, 0.2, 0.8, 1.0), 
+		false
+	)

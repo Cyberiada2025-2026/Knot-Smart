@@ -1,5 +1,4 @@
 @tool
-extends Node
 ## Class used for assigning road id's and proper rotations to road tiles [br][br]
 ## Rotations are in degrees (want in radians? can be done!) [br]
 ## Possible rotations: 0, 90, 180, 270, clockwise [br][br]
@@ -22,6 +21,7 @@ extends Node
 ## Parts of highway turns use highway_straight model so it should be taken into account when creating these models [br][br]
 ## For reference in code see road_id enum, values are with numbers to improve readability
 class_name RoadAutotile
+extends Node
 
 ## All road types possible to be created during generation
 enum road_id {

@@ -73,12 +73,12 @@ func update_rope():
 
 func _ready() -> void:
 	inner1.bind(node1)
-	if node1 is not RigidBody3D:
-		inner1.is_static = true
+	if node1 is RigidBody3D:
+		inner1.is_static = false
 	
 	inner2.bind(node2)
-	if node2 is not RigidBody3D:
-		inner2.is_static = true
+	if node2 is RigidBody3D:
+		inner2.is_static = false
 	
 	rope = Area3D.new()
 	init_rope_mesh()
@@ -97,11 +97,11 @@ func apply_forces(collided: bool) -> void:
 		var accel = inner2.get_hooke_accel()
 		node2.apply_impulse(-accel)
 
-	if node1 is StaticBody3D and node2 is CharacterBody3D:
+	if node1 is not RigidBody3D and node2 is CharacterBody3D:
 		var direction = node1.position - node2.position
 		node2.velocity += 2 * direction
 		
-	if node2 is StaticBody3D and node1 is CharacterBody3D:
+	if node2 is not RigidBody3D and node1 is CharacterBody3D:
 		var direction = node2.position - node1.position
 		node1.velocity += 2 * direction
 
@@ -127,10 +127,10 @@ func _physics_process(_delta: float) -> void:
 	elif node2 is not RigidBody3D and node1 is RigidBody3D:
 		inner2.equilibrium = inner2.position
 		inner1.equilibrium = inner2.position - direction * LENGTH
-	elif node1 is StaticBody3D and node2 is CharacterBody3D:
+	elif node1 is not RigidBody3D and node2 is CharacterBody3D:
 		inner1.equilibrium = inner1.position
 		inner2.equilibrium = inner1.position
-	elif node2 is StaticBody3D and node1 is CharacterBody3D:
+	elif node2 is not RigidBody3D and node1 is CharacterBody3D:
 		inner2.equilibrium = inner2.position
 		inner1.equilibrium = inner2.position
 	else:
@@ -141,7 +141,7 @@ func _physics_process(_delta: float) -> void:
 class InnerNode extends RigidBody3D:
 	var prev_pos: Vector3
 	var equilibrium: Vector3
-	var is_static = false
+	var is_static = true
 
 	var k = 5.0
 	var b = 0.5

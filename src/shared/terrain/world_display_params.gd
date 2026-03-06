@@ -1,4 +1,4 @@
-# Resource used to configure and store visual settings for the world generator.
+## Resource used to configure and store visual settings for the world generator.
 ## This allows for easy swapping of display profiles (e.g., Low vs. High settings).
 class_name WorldDisplayParams
 extends Resource

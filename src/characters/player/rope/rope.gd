@@ -137,12 +137,12 @@ class InnerNode extends RigidBody3D:
 	var prev_pos: Vector3
 	var equilibrium: Vector3
 
-	var k = 5.0
-	var b = 0.5
+	var spring_constant = 5.0
+	var damping = 0.5
 
 	func set_spring_params(k, b) -> void:
-		self.k = k
-		self.b = b
+		self.spring_constant = k
+		self.damping = b
 
 	func _init(pos) -> void:
 		self.freeze = true
@@ -155,17 +155,18 @@ class InnerNode extends RigidBody3D:
 		joint.node_b = obj.get_path()
 		add_child(joint)
 
-	func get_accel() -> Vector3:
+	func integrate_accel(k, b) -> Vector3:
 		var v = linear_velocity
 		var dx = position - equilibrium
 		var spring_accel = (-k*dx - b*v) / mass
 
 		return spring_accel
+
+	func get_total_accel() -> Vector3:
+		return integrate_accel(spring_constant, damping)
 	
 	func get_hooke_accel() -> Vector3:
-		var dx = position - equilibrium
-		return -k*dx / mass
-
+		return integrate_accel(spring_constant, 0)
 
 	func _physics_process(_delta: float) -> void:
-		apply_force(mass * get_accel())
+		apply_force(mass * get_total_accel())

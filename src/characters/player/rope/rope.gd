@@ -4,7 +4,7 @@ extends Node3D
 var node1
 var node2
 
-const LENGTH = 1.0
+const MIN_LENGTH = 1.0
 const MAX_LENGTH = 32.0
 const COLLISION_RADIUS = 0.01
 const COLLISION_BUFFER = 1.0
@@ -39,7 +39,7 @@ func _init(p1: Vector3, obj1: Node3D, p2: Vector3, obj2: Node3D) -> void:
 
 func init_rope_mesh():
 	vfx = rope_vfx.instantiate()
-	vfx.start(LENGTH)
+	vfx.start(MIN_LENGTH)
 	vfx.rotate_x(-PI/2)
 	rope.add_child(vfx)
 
@@ -112,12 +112,12 @@ func _physics_process(_delta: float) -> void:
 	
 	if node1 is RigidBody3D and node2 is RigidBody3D:
 		var midpoint = (inner1.position + inner2.position)/2
-		inner1.equilibrium = midpoint - direction * 0.5 * LENGTH
-		inner2.equilibrium = midpoint + direction * 0.5 * LENGTH
+		inner1.equilibrium = midpoint - direction * 0.5 * MIN_LENGTH
+		inner2.equilibrium = midpoint + direction * 0.5 * MIN_LENGTH
 	elif node1 is not RigidBody3D and node2 is RigidBody3D:
-		inner2.equilibrium = inner1.position + direction * LENGTH
+		inner2.equilibrium = inner1.position + direction * MIN_LENGTH
 	elif node2 is not RigidBody3D and node1 is RigidBody3D:
-		inner1.equilibrium = inner2.position - direction * LENGTH
+		inner1.equilibrium = inner2.position - direction * MIN_LENGTH
 	elif node1 is not RigidBody3D and node2 is CharacterBody3D:
 		inner2.equilibrium = inner1.position
 	elif node2 is not RigidBody3D and node1 is CharacterBody3D:

@@ -121,17 +121,12 @@ func _physics_process(_delta: float) -> void:
 		inner1.equilibrium = midpoint - direction * 0.5 * LENGTH
 		inner2.equilibrium = midpoint + direction * 0.5 * LENGTH
 	elif node1 is not RigidBody3D and node2 is RigidBody3D:
-		inner1.equilibrium = inner1.position
 		inner2.equilibrium = inner1.position + direction * LENGTH
-		pass
 	elif node2 is not RigidBody3D and node1 is RigidBody3D:
-		inner2.equilibrium = inner2.position
 		inner1.equilibrium = inner2.position - direction * LENGTH
 	elif node1 is not RigidBody3D and node2 is CharacterBody3D:
-		inner1.equilibrium = inner1.position
 		inner2.equilibrium = inner1.position
 	elif node2 is not RigidBody3D and node1 is CharacterBody3D:
-		inner2.equilibrium = inner2.position
 		inner1.equilibrium = inner2.position
 	else:
 		queue_free()

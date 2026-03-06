@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_1x7vy"]
 [ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="4_r2ijf"]
 [ext_resource type="Script" uid="uid://cvqd374qwurts" path="res://shared/beehave/condition/is_target_nearby.gd" id="5_r2ijf"]
-[ext_resource type="Script" uid="uid://dsf3a8vlolhx8" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="6_4sp7t"]
 [ext_resource type="Script" uid="uid://cjpvy7npubmpa" path="res://shared/beehave/action/set_random_direction.gd" id="6_lxbhr"]
 [ext_resource type="Script" uid="uid://8or73xedlaqi" path="res://shared/beehave/action/set_targets_current_position.gd" id="6_nr11u"]
 [ext_resource type="Script" uid="uid://d3hunwyfk54p2" path="res://shared/beehave/action/set_target.gd" id="6_r2ijf"]
@@ -14,8 +13,9 @@
 [ext_resource type="Script" uid="uid://bgjintiwxf4cw" path="res://shared/beehave/condition/is_in_range.gd" id="8_4sp7t"]
 [ext_resource type="Script" uid="uid://qxwvejkcr6c" path="res://shared/beehave/condition/has_reached_target.gd" id="8_ejf3g"]
 [ext_resource type="Script" uid="uid://nbj8xk6nqyb6" path="res://shared/beehave/action/toggle_movement.gd" id="9_2cllp"]
-[ext_resource type="Script" uid="uid://dvnmhlldp23hg" path="res://addons/beehave/nodes/composites/selector_random.gd" id="9_3myrp"]
 [ext_resource type="Script" uid="uid://cu3wfv8wcbr7x" path="res://shared/beehave/action/attack.gd" id="9_ejf3g"]
+[ext_resource type="Script" uid="uid://dcojdhvj8qcw0" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="11_3myrp"]
+[ext_resource type="Script" uid="uid://ch6b2rcr58t23" path="res://shared/beehave/action/set_retreating.gd" id="16_2vyja"]
 [ext_resource type="Script" uid="uid://cqyt2okqyfvfw" path="res://shared/beehave/condition/go_away_from_target.gd" id="16_fcxfv"]
 [ext_resource type="Script" uid="uid://we22430vcb44" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="16_nr11u"]
 
@@ -52,7 +52,7 @@ shape = SubResource("BoxShape3D_uwcne")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1892085315 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_r2ijf")
-blackboard = NodePath("@Node@29235")
+blackboard = NodePath("@Node@18563")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
@@ -60,9 +60,9 @@ metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 script = ExtResource("3_r2ijf")
 metadata/_custom_type_script = "uid://cw22yurt5l74k"
 
-[node name="Aggresive" type="Node" parent="BeehaveTree/SelectorReactiveComposite" unique_id=501125580]
-script = ExtResource("4_1x7vy")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+[node name="Aggresive" type="Node" parent="BeehaveTree/SelectorReactiveComposite" unique_id=1878838922]
+script = ExtResource("11_3myrp")
+metadata/_custom_type_script = "uid://dcojdhvj8qcw0"
 
 [node name="UpdateTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive" unique_id=1297066410]
 script = ExtResource("3_r2ijf")
@@ -91,110 +91,73 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 script = ExtResource("6_nr11u")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
-[node name="SelectRandomAttack" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive" unique_id=635297513]
-script = ExtResource("9_3myrp")
-use_weights = true
-Weights/Chase&Attack = 1
-Weights/Chase&Attack2 = 1
-metadata/_custom_type_script = "uid://dvnmhlldp23hg"
-
-[node name="Chase&Attack" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack" unique_id=1176453982]
-script = ExtResource("6_4sp7t")
-metadata/_custom_type_script = "uid://dsf3a8vlolhx8"
-
-[node name="AttackSequence" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack" unique_id=448776727]
+[node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive" unique_id=234644734]
 script = ExtResource("4_1x7vy")
 metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 
-[node name="GoTo" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack/AttackSequence" unique_id=2146132200]
-script = ExtResource("4_1x7vy")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
-
-[node name="StartNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack/AttackSequence/GoTo" unique_id=375326735]
-script = ExtResource("9_2cllp")
-can_move = true
-metadata/_custom_type_script = "uid://cv74jjdrwevpr"
-
-[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack/AttackSequence/GoTo" unique_id=1586372623]
-script = ExtResource("8_ejf3g")
-metadata/_custom_type_script = "uid://cbnbvj8prv63i"
-
-[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack/AttackSequence" unique_id=1112997648]
-script = ExtResource("4_r2ijf")
-wait_time = 1.0
-metadata/_custom_type_script = "uid://dorri1tul8gfx"
-
-[node name="Attack" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack/AttackSequence/DelayDecorator" unique_id=586853769]
-script = ExtResource("4_1x7vy")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
-
-[node name="IsPlayerInRange" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack/AttackSequence/DelayDecorator/Attack" unique_id=339699618]
-script = ExtResource("8_4sp7t")
-attack_range = 2.0
-metadata/_custom_type_script = "uid://cbnbvj8prv63i"
-
-[node name="Attack" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack/AttackSequence/DelayDecorator/Attack" unique_id=1054429450]
-script = ExtResource("9_ejf3g")
-metadata/_custom_type_script = "uid://cv74jjdrwevpr"
-
-[node name="Chase&Attack2" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack" unique_id=1452278496]
-script = ExtResource("6_4sp7t")
-metadata/_custom_type_script = "uid://dsf3a8vlolhx8"
-
-[node name="AttackSequence" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack2" unique_id=1944319755]
-script = ExtResource("4_1x7vy")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
-
-[node name="GoTo" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack2/AttackSequence" unique_id=290035459]
-script = ExtResource("4_1x7vy")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
-
-[node name="StartNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack2/AttackSequence/GoTo" unique_id=285968172]
-script = ExtResource("9_2cllp")
-can_move = true
-metadata/_custom_type_script = "uid://cv74jjdrwevpr"
-
-[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack2/AttackSequence/GoTo" unique_id=1694967247]
-script = ExtResource("8_ejf3g")
-metadata/_custom_type_script = "uid://cbnbvj8prv63i"
-
-[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack2/AttackSequence" unique_id=516575626]
-script = ExtResource("4_r2ijf")
-wait_time = 1.0
-metadata/_custom_type_script = "uid://dorri1tul8gfx"
-
-[node name="Attack" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack2/AttackSequence/DelayDecorator" unique_id=1359673583]
-script = ExtResource("4_1x7vy")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
-
-[node name="IsPlayerInRange" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack2/AttackSequence/DelayDecorator/Attack" unique_id=969177504]
-script = ExtResource("8_4sp7t")
-attack_range = 2.0
-metadata/_custom_type_script = "uid://cbnbvj8prv63i"
-
-[node name="Attack" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SelectRandomAttack/Chase&Attack2/AttackSequence/DelayDecorator/Attack" unique_id=2102157049]
-script = ExtResource("9_ejf3g")
-metadata/_custom_type_script = "uid://cv74jjdrwevpr"
-
-[node name="Retreat" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive" unique_id=1728723101]
-script = ExtResource("4_1x7vy")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
-
-[node name="GoAwayFromTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/Retreat" unique_id=1984825136]
-script = ExtResource("16_fcxfv")
-distance = 2.0
-metadata/_custom_type_script = "uid://cv74jjdrwevpr"
-
-[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/Retreat" unique_id=302736549]
-script = ExtResource("8_ejf3g")
-metadata/_custom_type_script = "uid://cbnbvj8prv63i"
-
-[node name="CooldownDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/Retreat" unique_id=350519469]
+[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite" unique_id=102438972]
 script = ExtResource("4_r2ijf")
 wait_time = 2.0
 metadata/_custom_type_script = "uid://dorri1tul8gfx"
 
-[node name="StopNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/Retreat/CooldownDecorator" unique_id=1386433279]
+[node name="AttackSequence" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/DelayDecorator" unique_id=757613482]
+script = ExtResource("4_1x7vy")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="GoTo" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/DelayDecorator/AttackSequence" unique_id=370873407]
+script = ExtResource("4_1x7vy")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="StartNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/DelayDecorator/AttackSequence/GoTo" unique_id=375326735]
+script = ExtResource("9_2cllp")
+can_move = true
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/DelayDecorator/AttackSequence/GoTo" unique_id=1586372623]
+script = ExtResource("8_ejf3g")
+desired_distance = null
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/DelayDecorator/AttackSequence" unique_id=1112997648]
+script = ExtResource("4_r2ijf")
+wait_time = 1.0
+metadata/_custom_type_script = "uid://dorri1tul8gfx"
+
+[node name="Attack" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/DelayDecorator/AttackSequence/DelayDecorator" unique_id=586853769]
+script = ExtResource("4_1x7vy")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="IsPlayerInRange" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/DelayDecorator/AttackSequence/DelayDecorator/Attack" unique_id=339699618]
+script = ExtResource("8_4sp7t")
+attack_range = 2.0
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="Attack" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/DelayDecorator/AttackSequence/DelayDecorator/Attack" unique_id=1054429450]
+script = ExtResource("9_ejf3g")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="Retreat" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite" unique_id=1728723101]
+script = ExtResource("4_1x7vy")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="SetRetreatingTrue" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/Retreat" unique_id=672332999]
+script = ExtResource("16_2vyja")
+does_retreat = true
+
+[node name="GoAwayFromTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/Retreat" unique_id=1984825136]
+script = ExtResource("16_fcxfv")
+distance = 2.0
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/Retreat" unique_id=302736549]
+script = ExtResource("8_ejf3g")
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="SetRetreatingFalse" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/Retreat" unique_id=1501747746]
+script = ExtResource("16_2vyja")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="StopNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/SequenceComposite/Retreat" unique_id=1386433279]
 script = ExtResource("9_2cllp")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
@@ -220,6 +183,7 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Interested" unique_id=940852759]
 script = ExtResource("8_ejf3g")
+desired_distance = null
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
 [node name="StopNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Interested" unique_id=1690103522]
@@ -251,6 +215,7 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Idle/TimeLimiterDecorator/Idle" unique_id=692924536]
 script = ExtResource("8_ejf3g")
+desired_distance = null
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
 [node name="StopNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Idle/TimeLimiterDecorator/Idle" unique_id=1966064262]
@@ -258,8 +223,6 @@ script = ExtResource("9_2cllp")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=452124013]
-path_desired_distance = 2.0
-target_desired_distance = 2.0
 avoidance_enabled = true
 height = 2.0
 

@@ -9,10 +9,17 @@ const IDLE_DIS := 20
 var can_move := false
 var world : World3D
 var target : Node3D
+var is_retreating : bool = false
 
 
 func _ready() -> void:
 	world =  Engine.get_main_loop().root.get_world_3d()
+
+
+func get_point_on_map(point: Vector3) -> Vector3:
+	return NavigationServer3D.map_get_closest_point(
+		world.get_navigation_map(),
+		point)	
 
 
 func get_random_point_near() -> Vector3:
@@ -22,9 +29,7 @@ func get_random_point_near() -> Vector3:
 		randf_range(-IDLE_DIS, IDLE_DIS)
 	)
 
-	return NavigationServer3D.map_get_closest_point(
-		world.get_navigation_map(),
-		random_point)
+	return get_point_on_map(random_point)
 
 
 func set_random_direction() -> void:

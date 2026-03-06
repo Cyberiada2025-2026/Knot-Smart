@@ -16,7 +16,7 @@ extends Node
 @export_tool_button("Log Rotations") var log_rotations_to_console = _print_to_console.bind("rotation")
 
 var _spot_generator = SpotGenerator.new()
-var _blueprint: Dictionary
+var blueprint: Dictionary
 var _map_size: int
 	
 func _process(_delta: float) -> void:
@@ -31,29 +31,29 @@ func _process(_delta: float) -> void:
 ## Clicking "Generate roads" will auto-initialize road generator [br][br]
 ## Changes tile "type" to "road" from "empty" when places road [br][br]
 ## Returns false on error
-func generate_roads(blueprint: Dictionary) -> bool:
+func generate_roads(_blueprint: Dictionary) -> bool:
 	if log_generation_steps:
 		print("start road generation!")
 	
 	_map_size = generation_params.map_size
 	
-	if blueprint.is_empty():
+	if _blueprint.is_empty():
 		# will be replaced by default creation from blueprint class
 		_create_default_blueprint()
 	else:
-		_blueprint = blueprint	
+		blueprint = _blueprint	
 	
 	generation_params.generation_areas = _get_generation_areas()
 	generation_params.prepare_generation_areas()
 	
-	_spot_generator.generate_spots(_blueprint, self)
+	_spot_generator.generate_spots(self)
 	
 	_spot_generator.cast_spots_to_blueprint()
 	
 	# later will be splitted and used outside of road generator
 	var autotiler: RoadAutotile = RoadAutotile.new()
 	
-	if not autotiler.autotile_roads(_blueprint, _map_size):
+	if not autotiler.autotile_roads(blueprint, _map_size):
 		return false
 		
 	if log_generation_steps:
@@ -89,7 +89,7 @@ func _create_default_blueprint() -> void:
 	for x in _map_size:
 		for y in _map_size:
 			var coord: Vector2i = Vector2i(x, y)
-			_blueprint[coord]= {
+			blueprint[coord]= {
 				"height": 0.0,
 				"type": "empty",
 				"can_place": "any",
@@ -98,23 +98,23 @@ func _create_default_blueprint() -> void:
 
 ## Printing blueprint map data from given dictionary key for debug
 func _print_to_console(key: String) -> void:
-	if _blueprint.is_empty():
+	if blueprint.is_empty():
 		return
 	print("printing '", key, "':")
 		
 	for y in _map_size:
 		var output: String = ""
 		for x in _map_size:
-			if _blueprint[Vector2i(x, y)]["type"] == "road":
+			if blueprint[Vector2i(x, y)]["type"] == "road":
 				if key == "type":
 					output += " R"
 				if key == "rotation":
-					output += " " + str(_blueprint[Vector2i(x, y)][key] / 90)
+					output += " " + str(blueprint[Vector2i(x, y)][key] / 90)
 				if key == "id":
-					if _blueprint[Vector2i(x, y)][key] >= 0 and _blueprint[Vector2i(x, y)][key] < 10:
-						output += " " + str(_blueprint[Vector2i(x, y)][key])
+					if blueprint[Vector2i(x, y)][key] >= 0 and blueprint[Vector2i(x, y)][key] < 10:
+						output += " " + str(blueprint[Vector2i(x, y)][key])
 					else:
-						output += str(_blueprint[Vector2i(x, y)][key])
+						output += str(blueprint[Vector2i(x, y)][key])
 			else:
 				output += "  "
 		print(output)
@@ -127,8 +127,8 @@ func _visualize() -> void:
 		spot.visualize()
 	
 	# visualize roads
-	for coord in _blueprint.keys():
-		if _blueprint[coord]["type"] == "road":
+	for coord in blueprint.keys():
+		if blueprint[coord]["type"] == "road":
 			DebugDraw3D.draw_box(
 				Vector3(coord.x, 0, coord.y),
 					Quaternion.IDENTITY, 

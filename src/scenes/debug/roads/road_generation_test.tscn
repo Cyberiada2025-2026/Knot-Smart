@@ -46,6 +46,6 @@ spot_limit_area = SubResource("Resource_r27d0")
 
 [node name="LimiterArea2" type="Node" parent="GenerationAreas" unique_id=498427490]
 script = ExtResource("4_ev4h5")
-min_spot_size = Vector2i(8, 8)
-max_spot_size = Vector2i(16, 16)
+min_spot_size = Vector2i(7, 7)
+max_spot_size = Vector2i(14, 14)
 spot_limit_area = SubResource("Resource_gvmpv")

@@ -1,6 +1,6 @@
 @tool
 class_name LimiterArea
-extends Resource
+extends Node
 
 ## Spot size limits, generated spots in this area will have size between limits. [br][br]
 ## Max size should be at least 2x bigger than min size [br]
@@ -29,3 +29,16 @@ extends Resource
 
 ## Area where spot limits will be applied 
 @export var spot_limit_area: Spot = Spot.new()
+
+
+func visualize():
+	if Engine.is_editor_hint():
+		var selection = EditorInterface.get_selection()
+		var selected_nodes = selection.get_selected_nodes()
+
+		# easier tracking of currently edited area
+		if self in selected_nodes:
+			spot_limit_area.visualize(Color(1, 1, 0, 1))
+		else:
+			spot_limit_area.visualize()
+			

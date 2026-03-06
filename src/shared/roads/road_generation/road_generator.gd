@@ -7,6 +7,7 @@ extends Node
 @export_tool_button("Generate roads") var generate_action = generate_roads.bind(Dictionary())
 # testing flags are splitted into different categories to ensure easy debugging
 @export_group("testing")
+@export var visualize_limiter_areas: bool
 @export var debug_visualization: bool
 
 @export var log_generation_steps: bool
@@ -22,8 +23,11 @@ var _final_spots: Array[Spot] = []
 #####################################################
 #                 GENERATOR FUNCTIONS               #
 #####################################################
-
+	
+	
 func _process(_delta: float) -> void:
+	if visualize_limiter_areas:
+		_visualize_limiter_areas()
 	if debug_visualization:
 		_visualize()
 		
@@ -158,8 +162,27 @@ func _generate_spots():
 #              MAIN GENERATION FUNCTION             #
 #####################################################
 
+func _create_generation_areas():
+	var generation_areas = GenerationAreas.new()
+	generation_areas.name = "GenerationAreas"
+	self.add_child(generation_areas)
+	generation_areas.owner = self
+	return generation_areas
+	
+
+func _get_generation_areas() -> Array[LimiterArea]:
+	var generation_areas = find_child("GenerationAreas", false)
+	
+	if generation_areas == null:
+		print("Generation areas not found, adding empty")
+		generation_areas = _create_generation_areas()
+		
+	return generation_areas.get_limiter_areas()
+
 
 ## Generate basic road map [br][br]
+## Add Limiter Areas to "GenerationAreas" node to customize generation [br][br]
+## Clicking "Generate roads" will auto-initialize road generator [br][br]
 ## Changes tile "type" to "road" from "empty" when places road [br][br]
 ## Returns false on error
 func generate_roads(blueprint: Dictionary) -> bool:
@@ -177,6 +200,7 @@ func generate_roads(blueprint: Dictionary) -> bool:
 	else:
 		_blueprint = blueprint	
 	
+	generation_params.generation_areas = _get_generation_areas()
 	generation_params.prepare_generation_areas()
 	_generate_spots()
 	
@@ -254,3 +278,9 @@ func _visualize() -> void:
 					Color(1.0, 1.0, 1.0, 1.0),
 					false
 				)
+				
+				
+## visualization for better areas setup
+func _visualize_limiter_areas():
+	for area in _get_generation_areas():
+		area.visualize()

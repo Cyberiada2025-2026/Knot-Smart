@@ -50,11 +50,11 @@ func cast_on_blueprint(blueprint: Dictionary):
 		blueprint[pos]["type"] = "road"
 
 
-func visualize():
+func visualize(color: Color = Color(0.5, 0.2, 0.8, 1.0)):
 	DebugDraw3D.draw_box(
 		Vector3(start.x, 0, start.y),
 		Quaternion.IDENTITY, 
 		Vector3(size().x, 1, size().y), 
-		Color(0.5, 0.2, 0.8, 1.0), 
+		color, 
 		false
 	)

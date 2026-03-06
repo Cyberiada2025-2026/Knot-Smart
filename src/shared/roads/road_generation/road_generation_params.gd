@@ -6,14 +6,8 @@ extends Resource
 var DEFAULT_LIMIT_AREA = LimiterArea.new()
 
 ## Min and max spot size dimensions are decreased by 1 when creating road map. [br][br]
-@export var generation_areas: Array[LimiterArea] = [LimiterArea.new()]:
-	set(value):
-		generation_areas = value
-		if generation_areas.is_empty() or generation_areas.back() == null:
-			generation_areas.pop_back()
-			generation_areas.push_back(LimiterArea.new())
+var generation_areas: Array[LimiterArea]
 		
-
 ## Determines amount of tile splits after which highways will generate. [br]
 ## For bigger maps higher value recommended
 @export var highway_generation_split_count = 20
@@ -36,10 +30,5 @@ enum {
 
 ## Format areas to make them usable for generator
 func prepare_generation_areas():
-	generation_areas = generation_areas.filter(func(area): return area != null)
-
 	# spots are sorted by their area, ascending
 	generation_areas.sort_custom(func(a,b): return a.spot_limit_area.area()< b.spot_limit_area.area())
-		
-	# show sorted values in editor
-	notify_property_list_changed()

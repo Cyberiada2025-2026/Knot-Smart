@@ -1,49 +1,38 @@
 [gd_scene format=3 uid="uid://bmc6xw2b4l7be"]
 
 [ext_resource type="Script" uid="uid://c52c7x4sbxs7o" path="res://shared/roads/road_generation/road_generator.gd" id="1_ntgsn"]
-[ext_resource type="Script" uid="uid://o5exsbtpsbth" path="res://shared/roads/road_generation/limiter_area.gd" id="2_oohkc"]
 [ext_resource type="Script" uid="uid://dq2orvfvtw68e" path="res://shared/roads/road_generation/road_generation_params.gd" id="3_ev4h5"]
-[ext_resource type="Script" uid="uid://1sivp1454oma" path="res://shared/roads/road_generation/spot.gd" id="3_oohkc"]
-
-[sub_resource type="Resource" id="Resource_q6ryc"]
-script = ExtResource("3_oohkc")
-start = Vector2i(15, 15)
-end = Vector2i(35, 35)
-
-[sub_resource type="Resource" id="Resource_bfipm"]
-script = ExtResource("2_oohkc")
-max_spot_size = Vector2i(7, 7)
-spot_limit_area = SubResource("Resource_q6ryc")
-
-[sub_resource type="Resource" id="Resource_gvmpv"]
-script = ExtResource("3_oohkc")
-start = Vector2i(10, 10)
-end = Vector2i(50, 50)
-
-[sub_resource type="Resource" id="Resource_oohkc"]
-script = ExtResource("2_oohkc")
-min_spot_size = Vector2i(5, 5)
-spot_limit_area = SubResource("Resource_gvmpv")
-metadata/_custom_type_script = "uid://o5exsbtpsbth"
-
-[sub_resource type="Resource" id="Resource_ev4h5"]
-script = ExtResource("3_oohkc")
-start = Vector2i(30, 30)
-end = Vector2i(90, 90)
-metadata/_custom_type_script = "uid://1sivp1454oma"
-
-[sub_resource type="Resource" id="Resource_6lgnl"]
-script = ExtResource("2_oohkc")
-min_spot_size = Vector2i(4, 4)
-spot_limit_area = SubResource("Resource_ev4h5")
+[ext_resource type="Script" uid="uid://clo0d36f066q1" path="res://shared/roads/road_generation/generation_areas.gd" id="3_ntgsn"]
+[ext_resource type="Script" uid="uid://o5exsbtpsbth" path="res://shared/roads/road_generation/limiter_area.gd" id="4_ev4h5"]
+[ext_resource type="Script" uid="uid://1sivp1454oma" path="res://shared/roads/road_generation/spot.gd" id="5_q6ryc"]
 
 [sub_resource type="Resource" id="Resource_dxu3u"]
 script = ExtResource("3_ev4h5")
-generation_areas = Array[ExtResource("2_oohkc")]([SubResource("Resource_bfipm"), SubResource("Resource_oohkc"), SubResource("Resource_6lgnl")])
 highway_generation_split_count = 8
 map_size = 128
 
-[node name="Node3D" type="Node3D" unique_id=49889973]
+[sub_resource type="Resource" id="Resource_5akc6"]
+script = ExtResource("5_q6ryc")
+start = Vector2i(20, 20)
+end = Vector2i(30, 30)
+
+[sub_resource type="Resource" id="Resource_gvmpv"]
+script = ExtResource("5_q6ryc")
+end = Vector2i(30, 30)
+
+[node name="RoadGenerator" type="Node3D" unique_id=49889973]
 script = ExtResource("1_ntgsn")
 generation_params = SubResource("Resource_dxu3u")
+visualize_limiter_areas = true
 metadata/_edit_group_ = true
+
+[node name="GenerationAreas" type="Node" parent="." unique_id=1367931778]
+script = ExtResource("3_ntgsn")
+
+[node name="LimiterArea" type="Node" parent="GenerationAreas" unique_id=742123303]
+script = ExtResource("4_ev4h5")
+spot_limit_area = SubResource("Resource_5akc6")
+
+[node name="LimiterArea2" type="Node" parent="GenerationAreas" unique_id=498733577]
+script = ExtResource("4_ev4h5")
+spot_limit_area = SubResource("Resource_gvmpv")

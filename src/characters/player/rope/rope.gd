@@ -57,12 +57,11 @@ func init_rope_collider():
 	rope.add_child(collider)
 
 func _on_area_entered(_node):
-	# TODO - refactor this
-	finish(true)
+	finish()
 
-func finish(collided = false):
+func finish():
 	vfx.end()
-	apply_forces(collided)
+	apply_forces()
 	queue_free()
 
 func update_rope():
@@ -85,7 +84,7 @@ func _ready() -> void:
 	rope.body_entered.connect(_on_area_entered)
 	add_child(rope)
 
-func apply_forces(collided: bool) -> void:
+func apply_forces() -> void:
 	if node1 is RigidBody3D:
 		var accel = inner1.get_hooke_accel()
 		node1.apply_impulse(-accel)

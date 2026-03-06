@@ -46,7 +46,7 @@ func generate_roads(blueprint: Dictionary) -> bool:
 	generation_params.generation_areas = _get_generation_areas()
 	generation_params.prepare_generation_areas()
 	
-	_spot_generator.generate_spots(_blueprint, generation_params, log_generation_steps)
+	_spot_generator.generate_spots(_blueprint, self)
 	
 	_spot_generator.cast_spots_to_blueprint()
 	

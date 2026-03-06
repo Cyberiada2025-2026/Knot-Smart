@@ -29,10 +29,10 @@ func _init(p1: Vector3, obj1: Node3D, p2: Vector3, obj2: Node3D) -> void:
 	node1 = obj1
 	node2 = obj2
 
-	inner1 = InnerNode.new(pt1)
+	inner1 = InnerNode.new(self, pt1)
 	add_child(inner1)
 
-	inner2 = InnerNode.new(pt2)
+	inner2 = InnerNode.new(self, pt2)
 	add_child(inner2)
 
 func init_rope_mesh():
@@ -106,9 +106,6 @@ func apply_forces(collided: bool) -> void:
 		node1.velocity += 2 * direction
 
 func _physics_process(_delta: float) -> void:
-	inner1.set_spring_params(spring_constant, damping)
-	inner2.set_spring_params(spring_constant, damping)
-
 	var difference = inner2.position - inner1.position
 
 	if difference.length_squared() > MAX_LENGTH:
@@ -136,16 +133,11 @@ func _physics_process(_delta: float) -> void:
 class InnerNode extends RigidBody3D:
 	var prev_pos: Vector3
 	var equilibrium: Vector3
+	var rope: Rope
 
-	var spring_constant = 5.0
-	var damping = 0.5
-
-	func set_spring_params(k, b) -> void:
-		self.spring_constant = k
-		self.damping = b
-
-	func _init(pos) -> void:
+	func _init(rope, pos) -> void:
 		self.freeze = true
+		self.rope = rope
 		self.position = pos
 		self.prev_pos = pos
 
@@ -163,10 +155,10 @@ class InnerNode extends RigidBody3D:
 		return spring_accel
 
 	func get_total_accel() -> Vector3:
-		return integrate_accel(spring_constant, damping)
+		return integrate_accel(rope.spring_constant, rope.damping)
 	
 	func get_hooke_accel() -> Vector3:
-		return integrate_accel(spring_constant, 0)
+		return integrate_accel(rope.spring_constant, 0)
 
 	func _physics_process(_delta: float) -> void:
 		apply_force(mass * get_total_accel())

@@ -42,3 +42,4 @@ script = ExtResource("4_4d0np")
 [node name="Node" type="Node" parent="." unique_id=834697655 node_paths=PackedStringArray("language_generation")]
 script = ExtResource("4_3vnpx")
 language_generation = NodePath("../SpeechPlayer/LanguageGeneration")
+mood = 3

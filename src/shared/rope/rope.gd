@@ -74,11 +74,11 @@ func update_rope():
 func _ready() -> void:
 	inner1.bind(node1)
 	if node1 is RigidBody3D:
-		inner1.is_static = false
+		inner1.freeze = false
 	
 	inner2.bind(node2)
 	if node2 is RigidBody3D:
-		inner2.is_static = false
+		inner2.freeze = false
 	
 	rope = Area3D.new()
 	init_rope_mesh()
@@ -141,7 +141,6 @@ func _physics_process(_delta: float) -> void:
 class InnerNode extends RigidBody3D:
 	var prev_pos: Vector3
 	var equilibrium: Vector3
-	var is_static = true
 
 	var k = 5.0
 	var b = 0.5
@@ -151,6 +150,7 @@ class InnerNode extends RigidBody3D:
 		self.b = b
 
 	func _init(pos) -> void:
+		self.freeze = true
 		self.position = pos
 		self.prev_pos = pos
 
@@ -161,9 +161,6 @@ class InnerNode extends RigidBody3D:
 		add_child(joint)
 
 	func get_accel() -> Vector3:
-		if is_static:
-			return Vector3.ZERO
-
 		var v = linear_velocity
 		var dx = position - equilibrium
 		var spring_accel = (-k*dx - b*v) / mass
@@ -171,9 +168,6 @@ class InnerNode extends RigidBody3D:
 		return spring_accel
 	
 	func get_hooke_accel() -> Vector3:
-		if is_static:
-			return Vector3.ZERO
-		
 		var dx = position - equilibrium
 		return -k*dx / mass
 

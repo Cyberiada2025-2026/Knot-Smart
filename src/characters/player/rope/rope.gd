@@ -89,21 +89,21 @@ func _ready() -> void:
 	add_child(rope)
 
 func apply_forces(collided: bool) -> void:
-	if node1 is RigidBody3D and (node2 is CharacterBody3D or collided):
+	if node1 is RigidBody3D:
 		var accel = inner1.get_hooke_accel()
 		node1.apply_impulse(-accel)
 
-	if node2 is RigidBody3D and (node1 is CharacterBody3D or collided):
+	if node2 is RigidBody3D:
 		var accel = inner2.get_hooke_accel()
 		node2.apply_impulse(-accel)
 
-	if node1 is not RigidBody3D and node2 is CharacterBody3D:
-		var direction = node1.position - node2.position
-		node2.velocity += 2 * direction
-		
-	if node2 is not RigidBody3D and node1 is CharacterBody3D:
+	if node1 is CharacterBody3D:
 		var direction = node2.position - node1.position
 		node1.velocity += 2 * direction
+
+	if node2 is CharacterBody3D:
+		var direction = node1.position - node2.position
+		node2.velocity += 2 * direction
 
 func _physics_process(_delta: float) -> void:
 	var difference = inner2.position - inner1.position

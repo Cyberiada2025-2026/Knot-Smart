@@ -1,8 +1,8 @@
 class_name Rope
 extends Node3D
 
-@export var node1: PhysicsBody3D
-@export var node2: PhysicsBody3D
+var node1
+var node2
 
 const LENGTH = 1.0
 const MAX_LENGTH = 32.0
@@ -154,7 +154,7 @@ class InnerNode extends RigidBody3D:
 		self.position = pos
 		self.prev_pos = pos
 
-	func bind(obj: PhysicsBody3D) -> void:
+	func bind(obj) -> void:
 		var joint = PinJoint3D.new()
 		joint.node_a = get_path()
 		joint.node_b = obj.get_path()

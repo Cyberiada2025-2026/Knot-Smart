@@ -11,6 +11,7 @@ const COLLISION_BUFFER = 1.0
 
 @export var spring_constant = 15.0
 @export var damping = 0.5
+@export var mass = 1.0
 
 var rope_vfx = preload("uid://djqe8wkjmmn8n")
 
@@ -146,7 +147,8 @@ class InnerNode extends RigidBody3D:
 	func integrate_accel(k, b) -> Vector3:
 		var v = linear_velocity
 		var dx = position - equilibrium
-		var spring_accel = (-k*dx - b*v) / mass
+		# Direct application of the damped oscillator formula
+		var spring_accel = -k*dx - b*v
 
 		return spring_accel
 
@@ -157,4 +159,4 @@ class InnerNode extends RigidBody3D:
 		return integrate_accel(rope.spring_constant, 0)
 
 	func _physics_process(_delta: float) -> void:
-		apply_force(mass * get_total_accel())
+		apply_force(rope.mass * get_total_accel())

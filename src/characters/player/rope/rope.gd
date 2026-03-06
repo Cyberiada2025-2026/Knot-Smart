@@ -12,7 +12,7 @@ const COLLISION_BUFFER = 1.0
 @export var spring_constant = 15.0
 @export var damping = 0.5
 
-var rope_vfx = preload("res://shared/rope/vfx/rope_vfx.tscn")
+var rope_vfx = preload("uid://djqe8wkjmmn8n")
 
 var inner1: InnerNode
 var inner2: InnerNode

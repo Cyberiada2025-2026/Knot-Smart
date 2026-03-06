@@ -7,8 +7,8 @@ var _map_size: int
 var _final_spots: Array[Spot] = []
 
 	
-func generate_spots(blueprint: Dictionary, road_generator: RoadGenerator):
-	_blueprint = blueprint
+func generate_spots(road_generator: RoadGenerator):
+	_blueprint = road_generator.blueprint
 	var generation_params = road_generator.generation_params
 	_map_size = generation_params.map_size
 	var spots: Array[Spot] = []

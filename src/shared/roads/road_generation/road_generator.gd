@@ -66,7 +66,7 @@ func _create_generation_areas():
 	var generation_areas = GenerationAreas.new()
 	generation_areas.name = "GenerationAreas"
 	self.add_child(generation_areas)
-	generation_areas.owner = self
+	generation_areas.owner = get_tree().edited_scene_root
 	return generation_areas
 	
 

@@ -29,10 +29,12 @@ func _init(p1: Vector3, obj1: Node3D, p2: Vector3, obj2: Node3D) -> void:
 	node1 = obj1
 	node2 = obj2
 
-	inner1 = InnerNode.new(self, pt1)
+	var is_frozen_1 = node1 is not RigidBody3D and node1 is not CharacterBody3D
+	inner1 = InnerNode.new(self, is_frozen_1, pt1)
 	add_child(inner1)
 
-	inner2 = InnerNode.new(self, pt2)
+	var is_frozen_2 = node2 is not RigidBody3D and node2 is not CharacterBody3D
+	inner2 = InnerNode.new(self, is_frozen_2, pt2)
 	add_child(inner2)
 
 func init_rope_mesh():
@@ -73,12 +75,7 @@ func update_rope():
 
 func _ready() -> void:
 	inner1.bind(node1)
-	if node1 is RigidBody3D:
-		inner1.freeze = false
-	
 	inner2.bind(node2)
-	if node2 is RigidBody3D:
-		inner2.freeze = false
 	
 	rope = Area3D.new()
 	init_rope_mesh()
@@ -135,8 +132,8 @@ class InnerNode extends RigidBody3D:
 	var equilibrium: Vector3
 	var rope: Rope
 
-	func _init(rope, pos) -> void:
-		self.freeze = true
+	func _init(rope, is_frozen, pos) -> void:
+		self.freeze = is_frozen
 		self.rope = rope
 		self.position = pos
 		self.prev_pos = pos

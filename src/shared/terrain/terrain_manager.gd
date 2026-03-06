@@ -5,6 +5,7 @@ extends Node3D
 @export var player: Player
 @export_tool_button("Generate world") var generate_action = generate_world
 @export_tool_button("Setup Components") var setup_action = setup_components
+@export_tool_button("Place") var t_action = test
 
 @export_group("Params")
 @export var world_generation_params: WorldGenerationParams
@@ -16,9 +17,20 @@ extends Node3D
 @export var building_generator: Node
 @export var chunk_generator: ChunkGenerator
 
+var structure_manager: StructureManager = StructureManager.new()
 
 var blueprint: Dictionary = {} # Vector2i: TileData
 var can_generate_chunks = false
+
+func test():
+	var o = PlaneMesh.new()
+	var transforms:Array = []
+	for i in range(1,6):
+		var c = Vector2i(i,i)
+		var t = Transform3D()
+		t.origin = Vector3(i,blueprint[c]["height"], i)
+		transforms.append(t)
+	structure_manager.place_object_bulk(transforms, o)
 
 func setup_components() -> void:
 	if terrain_generator: 

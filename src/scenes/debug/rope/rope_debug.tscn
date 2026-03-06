@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://chgpadypjq7vy"]
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_4qfti"]
-[ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://shared/rope/rope_manager.gd" id="2_0vcme"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tch0"]
 albedo_color = Color(0.10103265, 0.16858053, 0.1756905, 1)
@@ -92,7 +91,3 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=290209342]
 shape = SubResource("BoxShape3D_5tch0")
-
-[node name="RopeManager" type="Node3D" parent="." unique_id=1247926568]
-script = ExtResource("2_0vcme")
-metadata/_custom_type_script = "uid://bcy4v42bixjvm"

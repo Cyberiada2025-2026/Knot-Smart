@@ -94,7 +94,6 @@ const NEIGHBOUR_ARRAY_SIZE: int = 9
 var _road_id_bitmask: Dictionary = {}
 
 ## Simple clockwise neighbour array rotation function, returns copy of provided array
-# I have no idea how to make this with array.map, pls help
 static func _rotate_array(angle: int, array: Array):
 	# avoid editing original array
 	array = array.duplicate()

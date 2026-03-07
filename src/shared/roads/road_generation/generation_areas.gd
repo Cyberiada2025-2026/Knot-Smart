@@ -10,7 +10,6 @@ func _add_area():
 	area.name = "LimiterArea"
 	self.add_child(area, true)
 	area.owner = get_tree().edited_scene_root
-	print("wtf")
 
 
 func get_limiter_areas():

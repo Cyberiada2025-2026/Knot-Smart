@@ -39,24 +39,14 @@ func _physics_process(_delta: float) -> void:
 	match state:
 		State.SELECT_FIRST:
 			if Input.is_action_just_pressed("left_mouse"):
-				var marker = sphere.duplicate()
-				result.collider.add_child(marker)
-				marker.name = "PositionMarker"
-				marker.owner = result.collider
-				marker.global_transform = sphere.transform
-
+				place_marker_on_object(result.collider)
 				rope_points.append(result)
 				state = State.SELECT_SECOND
+
 		State.SELECT_SECOND:
 			if Input.is_action_just_pressed("left_mouse"):
-				var marker = sphere.duplicate()
-				result.collider.add_child(marker)
-				marker.name = "PositionMarker"
-				marker.owner = result.collider
-				marker.global_transform = sphere.transform
-
+				place_marker_on_object(result.collider)
 				rope_points.append(result)
-				state = State.SELECT_SECOND
 
 				var p1 = rope_points.pop_back()
 				var p2 = rope_points.pop_back()
@@ -73,3 +63,11 @@ func _physics_process(_delta: float) -> void:
 				var rope = Rope.new(pos1, p1.collider, pos2, p2.collider)
 				add_child(rope)
 				state = State.SELECT_FIRST
+
+
+func place_marker_on_object(collider):
+	var marker = sphere.duplicate()
+	collider.add_child(marker)
+	marker.name = "PositionMarker"
+	marker.owner = collider
+	marker.global_transform = sphere.transform

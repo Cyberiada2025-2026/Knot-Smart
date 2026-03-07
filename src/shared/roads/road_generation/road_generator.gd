@@ -137,7 +137,7 @@ func _visualize() -> void:
 				Vector3(coord.x, 0, coord.y),
 					Quaternion.IDENTITY,
 					Vector3(1, 0.01, 1),
-					Color(1.0, 1.0, 1.0, 1.0),
+					Color.WHITE,
 					false
 				)
 

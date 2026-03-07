@@ -50,11 +50,7 @@ func generate_spots(road_generator: RoadGenerator):
 	if not spots.is_empty():
 		if road_generator.log_generation_steps:
 			print("full splits failed for ", spots.size(), " spots, moving them to final array")
-		while not spots.is_empty():
-			if _is_spot_touching_map_bounds(spots.back()):
-				spots.pop_back()
-			else:
-				_final_spots.push_back(spots.pop_back())
+		_final_spots.append_array(spots.filter(_is_spot_touching_map_bounds))
 	
 	if road_generator.log_generation_steps:
 		print("Roads generated, road generation success steps: ", steps_success, " all: ", steps_all)

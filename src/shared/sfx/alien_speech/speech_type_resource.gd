@@ -1,5 +1,5 @@
-extends Resource
 class_name SpeechType
+extends Resource
 
 @export var sounds: Dictionary = {
 	"zip": null,

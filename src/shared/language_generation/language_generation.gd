@@ -1,6 +1,8 @@
+class_name LanguageGeneretion
+
+
 extends Node
 
-class_name LanguageGeneretion
 
 # we need to move these consts out
 const SYLLABLES = [

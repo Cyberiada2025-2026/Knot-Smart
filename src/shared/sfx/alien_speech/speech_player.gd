@@ -5,19 +5,6 @@ extends Node
 
 var curr_sentence = []
 
-
-func play_speech(input: Array, mood: AlienMoods.Moods = AlienMoods.Moods.NEUTRAL) -> void:
-	for sentence in input:
-		for word in sentence:
-			for i in range(len(word)):
-				if i != len(word) - 1:
-					play_sound(word[i], true, mood)
-				else:
-					play_sound(word[i], false, mood)
-				await audio_stream_player.finished
-		await get_tree().create_timer(0.25).timeout
-
-
 func play_sound(
 	sound: String, cut_ending: bool = true, mood: AlienMoods.Moods = AlienMoods.Moods.NEUTRAL
 ) -> void:
@@ -33,3 +20,15 @@ func play_sound(
 		await get_tree().create_timer(play_duration).timeout
 		audio_stream_player.stop()
 		audio_stream_player.emit_signal("finished")
+
+
+func play_speech(input: Array, mood: AlienMoods.Moods = AlienMoods.Moods.NEUTRAL) -> void:
+	for sentence in input:
+		for word in sentence:
+			for i in range(len(word)):
+				if i != len(word) - 1:
+					play_sound(word[i], true, mood)
+				else:
+					play_sound(word[i], false, mood)
+				await audio_stream_player.finished
+		await get_tree().create_timer(0.25).timeout

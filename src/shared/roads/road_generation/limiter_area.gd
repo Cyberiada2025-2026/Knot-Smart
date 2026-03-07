@@ -2,8 +2,8 @@
 class_name LimiterArea
 extends Node
 
-const SELECTION_HIGHLIGHT_COLOR = Color(1, 1, 0, 1)
-const HIGHLIGHT_COLOR = Color(0, 0, 1, 1)
+const HIGHLIGHT_COLOR = Color(1, 1, 0, 1)
+const VISUALIZATION_COLOR = Color(0, 0, 1, 1)
 
 ## Spot size limits, generated spots in this area will have size between limits. [br][br]
 ## Max size should be at least 2x bigger than min size [br]
@@ -31,7 +31,7 @@ const HIGHLIGHT_COLOR = Color(0, 0, 1, 1)
 			min_spot_size = new_min_spot_size
 
 ## Area where spot limits will be applied
-@export var spot_limit_area: Spot = Spot.new()
+@export var area_limits: Spot = Spot.new()
 
 func visualize():
 	if Engine.is_editor_hint():
@@ -40,6 +40,6 @@ func visualize():
 
 		# easier tracking of currently edited area
 		if self in selected_nodes:
-			spot_limit_area.visualize(SELECTION_HIGHLIGHT_COLOR)
+			area_limits.visualize(HIGHLIGHT_COLOR)
 		else:
-			spot_limit_area.visualize(HIGHLIGHT_COLOR)
+			area_limits.visualize(VISUALIZATION_COLOR)

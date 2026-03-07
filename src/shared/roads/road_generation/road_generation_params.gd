@@ -30,7 +30,7 @@ var default_limit_area = LimiterArea.new()
 ## Format areas to make them usable for generator
 func prepare_generation_areas():
 	# spots are sorted by their area, ascending
-	generation_areas.sort_custom(func(a,b): return a.spot_limit_area.area()< b.spot_limit_area.area())
+	generation_areas.sort_custom(func(a,b): return a.area_limits.area()< b.area_limits.area())
 
 
 func get_area(overlapping_spot: Spot) -> LimiterArea:
@@ -39,4 +39,4 @@ func get_area(overlapping_spot: Spot) -> LimiterArea:
 
 
 func _find_overlap_with_area(area: LimiterArea, spot: Spot):
-	return area.spot_limit_area.overlaps(spot)
+	return area.area_limits.overlaps(spot)

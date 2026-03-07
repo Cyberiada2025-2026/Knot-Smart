@@ -18,26 +18,27 @@
 ## - 10 - highway_corner_connected_mirrored(up) [br]
 ## - 11 - highway_corner_connected_both_sides [br]
 ## - 12 - highway_diagonal [br]
-## Parts of highway turns use highway_straight model so it should be taken into account when creating these models [br][br]
+## Parts of highway turns use highway_straight model [br]
+## so it should be taken into account when creating these models [br][br]
 ## For reference in code see road_id enum, values are with numbers to improve readability
 class_name RoadAutotile
 extends Node
 
 ## All road types possible to be created during generation
-enum road_id {
-	tiling_error = 0,
-	horizontal_straight = 1,
-	T_down = 2,
-	crossroad = 3,
-	turn_right_to_down = 4,
-	highway_horizontal_up = 5,
-	highway_horizontal_up_connected = 6,
-	highway_crossroad_up_left = 7,
-	highway_corner_up_left = 8,
-	highway_corner_up_left_connected_left = 9,
-	highway_corner_up_left_connected_up = 10,
-	highway_corner_up_left_connected_up_and_left = 11,
-	highway_diagonal_down_left_to_up_right = 12,
+enum RoadId {
+	TILING_ERROR = 0,
+	HORIZONTAL_STRAIGHT = 1,
+	T_DOWN = 2,
+	CROSSROAD = 3,
+	TURN_RIGHT_TO_DOWN = 4,
+	HIGHWAY_HORIZONTAL_UP = 5,
+	HIGHWAY_HORIZONTAL_UP_CONNECTED = 6,
+	HIGHWAY_CROSSROAD_UP_LEFT = 7,
+	HIGHWAY_CORNER_UP_LEFT = 8,
+	HIGHWAY_CORNER_UP_LEFT_CONNECTED_LEFT = 9,
+	HIGHWAY_CORNER_UP_LEFT_CONNECTED_UP = 10,
+	HIGHWAY_CORNER_UP_LEFT_CONNECTED_UP_AND_LEFT = 11,
+	HIGHWAY_DIAGONAL_DOWN_LEFT_TO_UP_RIGHT = 12,
 }
 
 ## Connections for autotiling
@@ -51,40 +52,40 @@ enum {
 ## Dictionary of base tiles which are used to create all other road tiles [br][br]
 ## Values represent 3x3 grid with targeted tile at center
 const BASE_TILES: Dictionary = {
-	road_id.horizontal_straight: [ANY, EMPTY, ANY,
+	RoadId.HORIZONTAL_STRAIGHT: [ANY, EMPTY, ANY,
 								ROAD, ROAD, ROAD,
 								ANY, EMPTY, ANY],
-	road_id.T_down: [ANY, EMPTY, ANY,
+	RoadId.T_DOWN: [ANY, EMPTY, ANY,
 					ROAD, ROAD, ROAD,
 					EMPTY, ROAD, EMPTY],
-	road_id.crossroad: [EMPTY, ROAD, EMPTY,
+	RoadId.CROSSROAD: [EMPTY, ROAD, EMPTY,
 						ROAD, ROAD, ROAD,
 						EMPTY, ROAD, EMPTY],
-	road_id.turn_right_to_down: [EMPTY, EMPTY, ANY,
+	RoadId.TURN_RIGHT_TO_DOWN: [EMPTY, EMPTY, ANY,
 								EMPTY, ROAD, ROAD,
 								ANY, ROAD, EMPTY],
-	road_id.highway_horizontal_up: [ANY, EMPTY, ANY,
+	RoadId.HIGHWAY_HORIZONTAL_UP: [ANY, EMPTY, ANY,
 									ROAD, ROAD, ROAD,
 									ROAD, ROAD, ROAD],
-	road_id.highway_horizontal_up_connected: [EMPTY, ROAD, EMPTY,
+	RoadId.HIGHWAY_HORIZONTAL_UP_CONNECTED: [EMPTY, ROAD, EMPTY,
 											ROAD, ROAD, ROAD,
 											ROAD, ROAD, ROAD],
-	road_id.highway_crossroad_up_left: [EMPTY, ROAD, ROAD,
+	RoadId.HIGHWAY_CROSSROAD_UP_LEFT: [EMPTY, ROAD, ROAD,
 										ROAD, ROAD, ROAD,
 										ROAD, ROAD, ROAD],
-	road_id.highway_corner_up_left: [EMPTY, EMPTY, EMPTY,
+	RoadId.HIGHWAY_CORNER_UP_LEFT: [EMPTY, EMPTY, EMPTY,
 									EMPTY, ROAD, ROAD,
 									EMPTY, ROAD, ROAD],
-	road_id.highway_corner_up_left_connected_left: [ANY, EMPTY, ANY,
+	RoadId.HIGHWAY_CORNER_UP_LEFT_CONNECTED_LEFT: [ANY, EMPTY, ANY,
 													ROAD, ROAD, ROAD,
 													EMPTY, ROAD, ROAD],
-	road_id.highway_corner_up_left_connected_up: [ANY, ROAD, EMPTY,
+	RoadId.HIGHWAY_CORNER_UP_LEFT_CONNECTED_UP: [ANY, ROAD, EMPTY,
 												EMPTY, ROAD, ROAD,
 												ANY, ROAD, ROAD],
-	road_id.highway_corner_up_left_connected_up_and_left: [EMPTY, ROAD, EMPTY,
+	RoadId.HIGHWAY_CORNER_UP_LEFT_CONNECTED_UP_AND_LEFT: [EMPTY, ROAD, EMPTY,
 														ROAD, ROAD, ROAD,
 														EMPTY, ROAD, ROAD],
-	road_id.highway_diagonal_down_left_to_up_right: [EMPTY, ROAD, ROAD,
+	RoadId.HIGHWAY_DIAGONAL_DOWN_LEFT_TO_UP_RIGHT: [EMPTY, ROAD, ROAD,
 													ROAD, ROAD, ROAD,
 													ROAD, ROAD, EMPTY],
 }
@@ -97,13 +98,13 @@ var _road_id_bitmask: Dictionary = {}
 static func _rotate_array(angle: int, array: Array):
 	# avoid editing original array
 	array = array.duplicate()
-	
+
 	var result: Array
 	result.resize(NEIGHBOUR_ARRAY_SIZE)
-	
+
 	while angle > 0:
 		for i in range(array.size()):
-			result[(i % 3 + 1) * 3 - 1 - (i / 3)] = array[i] 
+			result[(i % 3 + 1) * 3 - 1 - (i / 3)] = array[i]
 		array = result.duplicate()
 		angle -= 90
 	return array
@@ -129,7 +130,7 @@ func _convert_array_to_bitmask(
 				_convert_array_to_bitmask(array, data, bitmask_result, current_position + 1)
 			_:
 				printerr("wrong data type '", array[current_position], '\' in "BASE_TILES" dictionary')
-				return	
+				return
 	_road_id_bitmask.get_or_add(bitmask_result, data)
 
 
@@ -142,27 +143,27 @@ func _add_to_bitmask(id: int):
 		return
 	for angle in range(0, 360, 90):
 		var data: = {
-			"id": id, 
+			"id": id,
 			"rotation": angle
 		}
 		_convert_array_to_bitmask(_rotate_array(angle, neighbour_tiles), data)
-		
-		
+
+
 ## Generate bitmask keys for every road ID to use for autotiling
 func _create_bitmask() -> bool:
 	_road_id_bitmask.clear()
-	
+
 	# add every road id to bitmask dictionary
-	for id in road_id:
+	for id in RoadId:
 		# tiling error shouldn't be added to bitmask because there's no data for it
-		if id != "tiling_error":
-			_add_to_bitmask(road_id[id])
+		if id != "TILING_ERROR":
+			_add_to_bitmask(RoadId[id])
 
 	if _road_id_bitmask.is_empty():
 		printerr('road bitmask not created, check "_road_connections_by_id" dictionary data')
 		return false
 	return true
-	
+
 
 ## Create bitmask key for tile located in the blueprint
 func _get_tile_connections_bitmask(position: Vector2i, blueprint: Dictionary):
@@ -174,20 +175,20 @@ func _get_tile_connections_bitmask(position: Vector2i, blueprint: Dictionary):
 				bitmask += 1 << i
 			i += 1
 	return bitmask
-	
-	
+
+
 ## Converts road connection bitmask into proper autotiled road ID
 func _get_road_data_from_bitmask(bitmask_key: int) -> Dictionary:
 	if _road_id_bitmask.has(bitmask_key):
 		return _road_id_bitmask[bitmask_key]
-	else:
-		printerr("bitmask key not found:", bitmask_key)
-		return {
-			"id": road_id.tiling_error, 
-			"rotation": 0
-		}
-		
-		
+
+	printerr("bitmask key not found:", bitmask_key)
+	return {
+		"id": RoadId.TILING_ERROR,
+		"rotation": 0
+	}
+
+
 ## Generates road tile ID's and rotations and writes them to blueprint [br][br]
 ## Returns false on error [br]
 ## For tile description see class description
@@ -195,7 +196,7 @@ func autotile_roads(blueprint: Dictionary, map_size: int) -> bool:
 	if not _create_bitmask():
 		printerr("failed creating bitmask, autotile was skipped")
 		return false
-		
+
 	for x in range(map_size):
 		for y in range(map_size):
 			if blueprint[Vector2i(x, y)]["type"] == "road":

@@ -19,8 +19,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	sphere.hide()
+
 	if get_node("../PlayerCamera").get_view_type() == PlayerCamera.ViewType.THIRD_PERSON:
-		sphere.hide()
 		return
 	
 	var camera = CameraSingleton.get_main_camera()
@@ -34,33 +35,33 @@ func _physics_process(_delta: float) -> void:
 	var result = space_state.intersect_ray(query)
 	
 	if result.is_empty():
-		sphere.hide()
-	else:
-		sphere.show()
-		sphere.position = result["position"]
-	
-		if Input.is_action_just_pressed("left_mouse"):
-			rope_mode_toggle = not rope_mode_toggle
-			var marker = sphere.duplicate()
-			result.collider.add_child(marker)
-			marker.name = "PositionMarker"
-			marker.owner = result.collider
-			marker.global_transform = sphere.transform
+		return
 
-			rope_points.append(result)
+	sphere.position = result["position"]
+	sphere.show()
 
-			if not rope_mode_toggle:
-				var p1 = rope_points.pop_back()
-				var p2 = rope_points.pop_back()
-				var mark1 = p1.collider.find_child("PositionMarker*")
-				var pos1 = mark1.global_position
-				p1.collider.remove_child(mark1)
-				mark1.queue_free()
+	if Input.is_action_just_pressed("left_mouse"):
+		rope_mode_toggle = not rope_mode_toggle
+		var marker = sphere.duplicate()
+		result.collider.add_child(marker)
+		marker.name = "PositionMarker"
+		marker.owner = result.collider
+		marker.global_transform = sphere.transform
 
-				var mark2 = p2.collider.find_child("PositionMarker*")
-				var pos2 = mark2.global_position
-				p2.collider.remove_child(mark2)
-				mark2.queue_free()
+		rope_points.append(result)
 
-				var rope = Rope.new(pos1, p1.collider, pos2, p2.collider)
-				add_child(rope)
+		if not rope_mode_toggle:
+			var p1 = rope_points.pop_back()
+			var p2 = rope_points.pop_back()
+			var mark1 = p1.collider.find_child("PositionMarker*")
+			var pos1 = mark1.global_position
+			p1.collider.remove_child(mark1)
+			mark1.queue_free()
+
+			var mark2 = p2.collider.find_child("PositionMarker*")
+			var pos2 = mark2.global_position
+			p2.collider.remove_child(mark2)
+			mark2.queue_free()
+
+			var rope = Rope.new(pos1, p1.collider, pos2, p2.collider)
+			add_child(rope)

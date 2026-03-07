@@ -16,7 +16,7 @@ const int BLUR_SIZE[3] = {3, 5, 3};
 uniform float hard_scan: hint_range(-16.0, -4.0) = -8.0;
 
 /** Hardness of pixels in scanline */
-uniform float hard_pix: hint_range(-5.0, -0.5)=-2.5;
+uniform float hard_pix: hint_range(-10.0, -0.5)=-2.5;
 
 /** Warping screen along x */
 uniform float warp_x: hint_range(0.0, 0.125) = 0.03125;

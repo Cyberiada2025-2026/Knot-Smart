@@ -24,8 +24,8 @@ func generate_spots(road_generator: RoadGenerator):
 	# splitting rectangles until they reach proper size
 	while not spots.is_empty() and steps_all < generation_params.generation_steps_limit:
 		steps_all += 1
-		var curr_pos: int = randi() % len(spots)
-		var curr_spot: Spot = spots[curr_pos]
+		var curr_spot_idx: int = randi_range(0, len(spots))
+		var curr_spot: Spot = spots[curr_spot_idx]
 		var area_idx = generation_params.generation_areas.find_custom(_find_overlap_with_area.bind(curr_spot))
 		var area = generation_params.DEFAULT_LIMIT_AREA if area_idx == -1 else generation_params.generation_areas[area_idx]
 			

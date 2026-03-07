@@ -1,6 +1,11 @@
 class_name RopeManager
 extends Node3D
 
+
+enum State {SELECT_FIRST, SELECT_SECOND}
+var state = State.SELECT_FIRST
+
+
 var rope_mode_toggle = false
 var rope_points = []
 
@@ -31,28 +36,40 @@ func _physics_process(_delta: float) -> void:
 	sphere.position = result["position"]
 	sphere.show()
 
-	if Input.is_action_just_pressed("left_mouse"):
-		rope_mode_toggle = not rope_mode_toggle
-		var marker = sphere.duplicate()
-		result.collider.add_child(marker)
-		marker.name = "PositionMarker"
-		marker.owner = result.collider
-		marker.global_transform = sphere.transform
+	match state:
+		State.SELECT_FIRST:
+			if Input.is_action_just_pressed("left_mouse"):
+				var marker = sphere.duplicate()
+				result.collider.add_child(marker)
+				marker.name = "PositionMarker"
+				marker.owner = result.collider
+				marker.global_transform = sphere.transform
 
-		rope_points.append(result)
+				rope_points.append(result)
+				state = State.SELECT_SECOND
+		State.SELECT_SECOND:
+			if Input.is_action_just_pressed("left_mouse"):
+				var marker = sphere.duplicate()
+				result.collider.add_child(marker)
+				marker.name = "PositionMarker"
+				marker.owner = result.collider
+				marker.global_transform = sphere.transform
 
-		if not rope_mode_toggle:
-			var p1 = rope_points.pop_back()
-			var p2 = rope_points.pop_back()
-			var mark1 = p1.collider.find_child("PositionMarker*")
-			var pos1 = mark1.global_position
-			p1.collider.remove_child(mark1)
-			mark1.queue_free()
+				rope_points.append(result)
+				state = State.SELECT_SECOND
 
-			var mark2 = p2.collider.find_child("PositionMarker*")
-			var pos2 = mark2.global_position
-			p2.collider.remove_child(mark2)
-			mark2.queue_free()
+				var p1 = rope_points.pop_back()
+				var p2 = rope_points.pop_back()
+				var mark1 = p1.collider.find_child("PositionMarker*")
+				var pos1 = mark1.global_position
+				p1.collider.remove_child(mark1)
+				mark1.queue_free()
 
-			var rope = Rope.new(pos1, p1.collider, pos2, p2.collider)
-			add_child(rope)
+				var mark2 = p2.collider.find_child("PositionMarker*")
+				var pos2 = mark2.global_position
+				p2.collider.remove_child(mark2)
+				mark2.queue_free()
+
+				var rope = Rope.new(pos1, p1.collider, pos2, p2.collider)
+				add_child(rope)
+				state = State.SELECT_FIRST

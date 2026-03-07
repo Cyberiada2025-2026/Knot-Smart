@@ -13,5 +13,5 @@ class_name SpeechType
 	"blop": null,
 	"zop": null,
 	"lle": null,
-	"si": null
+	"si": null,
 }

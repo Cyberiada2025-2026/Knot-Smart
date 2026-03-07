@@ -1,7 +1,7 @@
 extends Node
 
-@export var language_generation : LanguageGeneretion
-@export var mood : AlienMoods.Moods
+@export var language_generation: LanguageGeneretion
+@export var mood: AlienMoods.Moods
 var input: String = (
 	"Litwo! Ojczyzno moja! ty jesteś jak zdrowie. "
 	+ "Ile cię trzeba cenić, ten tylko się dowie, "
@@ -28,6 +28,7 @@ var input: String = (
 )
 
 @onready var speech_player: Node = $"../SpeechPlayer"
+
 
 func _ready() -> void:
 	var out = language_generation.process_dialogue(input)

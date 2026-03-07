@@ -17,3 +17,7 @@ func change_view_to(camera: PlayerCamera) -> void:
 
 func zoom(_camera: PlayerCamera, _delta: float) -> void:
 	pass
+
+
+func get_view_type() -> PlayerCamera.ViewType:
+	return PlayerCamera.ViewType.FIRST_PERSON

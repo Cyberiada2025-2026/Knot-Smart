@@ -24,10 +24,10 @@ func generate_spots(road_generator: RoadGenerator):
 	# splitting rectangles until they reach proper size
 	while not spots.is_empty() and steps_all < generation_params.generation_steps_limit:
 		steps_all += 1
-		var curr_spot_idx: int = randi_range(0, len(spots))
+		var curr_spot_idx: int = randi_range(0, len(spots) - 1)
 		var curr_spot: Spot = spots[curr_spot_idx]
-		var area_idx = generation_params.generation_areas.find_custom(_find_overlap_with_area.bind(curr_spot))
-		var area = generation_params.DEFAULT_LIMIT_AREA if area_idx == -1 else generation_params.generation_areas[area_idx]
+		
+		var area = generation_params.get_area(curr_spot)
 			
 		# action decides whether we are splitting x or y direction
 		var axis = Utils.Axis2.values().pick_random()
@@ -36,10 +36,9 @@ func generate_spots(road_generator: RoadGenerator):
 			steps_success += 1
 			
 		if _is_spot_correctly_sized(curr_spot, area.max_spot_size):
-			if _is_spot_touching_map_bounds(curr_spot):
-				spots.remove_at(curr_pos)
-			else:
-				_final_spots.push_back(spots.pop_at(curr_pos))
+			var spot = spots.pop_at(curr_spot_idx)
+			if not _is_spot_touching_map_bounds(spot):
+				_final_spots.push_back(spot)
 			
 		# highways are created by moving all spots's start by 1
 		if steps_success == generation_params.highway_generation_split_count:
@@ -131,10 +130,6 @@ func _is_spot_touching_map_bounds(spot: Spot) -> bool:
 		):
 			return true
 	return false
-	
-	
-func _find_overlap_with_area(area: LimiterArea, spot: Spot):
-	return area.spot_limit_area.overlaps(spot)
 	
 	
 ## Move spots' start 1 tile forward

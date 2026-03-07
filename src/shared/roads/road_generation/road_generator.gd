@@ -5,10 +5,10 @@ extends Node
 @export var generation_params: RoadGenerationParams = RoadGenerationParams.new()
 
 @export_tool_button("Generate roads") var generate_action = generate_roads.bind(Dictionary())
-# testing flags are splitted into different categories to ensure easy debugging
+
 @export_group("Testing")
-@export var visualize_limiter_areas: bool
-@export var debug_visualization: bool
+@export var limit_areas_visualization: bool
+@export var map_visualization: bool
 
 @export var log_generation_steps: bool
 @export_tool_button("Log Generated Map") var log_generated_map_to_console = _print_to_console.bind("type")
@@ -20,9 +20,9 @@ var blueprint: Dictionary
 var _map_size: int
 	
 func _process(_delta: float) -> void:
-	if visualize_limiter_areas:
+	if limit_areas_visualization:
 		_visualize_limiter_areas()
-	if debug_visualization:
+	if map_visualization:
 		_visualize()
 		
 

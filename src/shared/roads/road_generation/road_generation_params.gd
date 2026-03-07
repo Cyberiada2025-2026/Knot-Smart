@@ -2,7 +2,6 @@
 class_name RoadGenerationParams
 extends Resource
 
-# TODO make const
 var DEFAULT_LIMIT_AREA = LimiterArea.new()
 
 ## Min and max spot size dimensions are decreased by 1 when creating road map. [br][br]
@@ -32,3 +31,12 @@ enum {
 func prepare_generation_areas():
 	# spots are sorted by their area, ascending
 	generation_areas.sort_custom(func(a,b): return a.spot_limit_area.area()< b.spot_limit_area.area())
+
+
+func get_area(overlapping_spot: Spot) -> LimiterArea:
+	var area_idx = generation_areas.find_custom(_find_overlap_with_area.bind(overlapping_spot))
+	return DEFAULT_LIMIT_AREA if area_idx == -1 else generation_areas[area_idx]
+
+
+func _find_overlap_with_area(area: LimiterArea, spot: Spot):
+	return area.spot_limit_area.overlaps(spot)

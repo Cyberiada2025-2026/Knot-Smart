@@ -19,6 +19,10 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if get_node("../PlayerCamera").get_view_type() == PlayerCamera.ViewType.THIRD_PERSON:
+		sphere.hide()
+		return
+	
 	var camera = CameraSingleton.get_main_camera()
 	var center_pos = camera.get_viewport().size_2d_override / 2
 	var from = camera.project_ray_origin(center_pos)

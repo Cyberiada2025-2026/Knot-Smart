@@ -1,5 +1,7 @@
 extends Node
 
+class_name LanguageGeneretion
+
 # we need to move these consts out
 const SYLLABLES = [
 	"zip", "ba", "rim", "waeb", "ga", "womp", "go", "lip", "blop", "zop", "lle", "si"

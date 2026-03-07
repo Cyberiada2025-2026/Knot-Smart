@@ -1,12 +1,12 @@
 extends Node
 
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-
-var curr_sentence = []
 @onready var speech_types: Node = $"../SpeechTypes"
 
+var curr_sentence = []
 
-func play_speech(input: Array, mood: AlienMoods.Moods = AlienMoods.Moods.neutral) -> void:
+
+func play_speech(input: Array, mood: AlienMoods.Moods = AlienMoods.Moods.NEUTRAL) -> void:
 	for sentence in input:
 		for word in sentence:
 			for i in range(len(word)):
@@ -15,11 +15,11 @@ func play_speech(input: Array, mood: AlienMoods.Moods = AlienMoods.Moods.neutral
 				else:
 					play_sound(word[i], false, mood)
 				await audio_stream_player.finished
-		await get_tree().create_timer(0.75).timeout
+		await get_tree().create_timer(0.25).timeout
 
 
 func play_sound(
-	sound: String, cut_ending: bool = true, mood: AlienMoods.Moods = AlienMoods.Moods.neutral
+	sound: String, cut_ending: bool = true, mood: AlienMoods.Moods = AlienMoods.Moods.NEUTRAL
 ) -> void:
 	var speech: Speech = speech_types.get_node(AlienMoods.get_mood_name(mood))
 	var sound_file: AudioStream = speech.speech_type.sounds[sound]

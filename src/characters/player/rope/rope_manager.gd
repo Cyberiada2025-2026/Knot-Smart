@@ -4,7 +4,6 @@ extends Node3D
 var rope_mode_toggle = false
 var rope_points = []
 
-const RAY_LENGTH = 1000.0
 const RADIUS = 0.1
 
 var sphere: MeshInstance3D
@@ -23,17 +22,9 @@ func _physics_process(_delta: float) -> void:
 
 	if get_node("../PlayerCamera").get_view_type() == PlayerCamera.ViewType.THIRD_PERSON:
 		return
-	
-	var camera = CameraSingleton.get_main_camera()
-	var center_pos = camera.get_viewport().size_2d_override / 2
-	var from = camera.project_ray_origin(center_pos)
-	var normal = camera.project_ray_normal(center_pos)
-	var to = from + normal * RAY_LENGTH
-	
-	var space_state = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.create(from, to)
-	var result = space_state.intersect_ray(query)
-	
+
+	var result = Utils.unsafe_raycast_from_screen_center(self)
+
 	if result.is_empty():
 		return
 

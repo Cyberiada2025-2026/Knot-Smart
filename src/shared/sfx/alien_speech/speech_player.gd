@@ -1,15 +1,14 @@
 extends Node
 
 var curr_sentence = []
-
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var speech_types: Node = $"../SpeechTypes"
-
-
 var base_pitch := 1.1
 var pitch_dif := 0.05
 var shorten_amount := 0.9
 var pause_between_sentence := 0.25
+
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var speech_types: Node = $"../SpeechTypes"
+
 
 func play_sound(
 	sound: String, cut_ending: bool = true, mood: AlienMoods.Moods = AlienMoods.Moods.NEUTRAL

@@ -2,7 +2,7 @@
 class_name LimiterArea
 extends Node
 
-const HIGHLIGHT_COLOR = Color(1, 1, 0, 1)
+const HIGHLIGHT_VISUALIZATION_COLOR = Color(1, 1, 0, 1)
 const VISUALIZATION_COLOR = Color(0, 0, 1, 1)
 
 ## Spot size limits, generated spots in this area will have size between limits. [br][br]
@@ -40,6 +40,6 @@ func visualize():
 
 		# easier tracking of currently edited area
 		if self in selected_nodes:
-			area_limits.visualize(HIGHLIGHT_COLOR)
+			area_limits.visualize(HIGHLIGHT_VISUALIZATION_COLOR)
 		else:
 			area_limits.visualize(VISUALIZATION_COLOR)

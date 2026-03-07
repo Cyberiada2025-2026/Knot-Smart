@@ -29,6 +29,7 @@ end = Vector2i(90, 90)
 [node name="RoadGenerator" type="Node3D" unique_id=49889973]
 script = ExtResource("1_ntgsn")
 generation_params = SubResource("Resource_dxu3u")
+limit_areas_visualization = null
 metadata/_edit_group_ = true
 
 [node name="GenerationAreas" type="Node" parent="." unique_id=1367931778]

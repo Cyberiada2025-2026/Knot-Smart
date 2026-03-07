@@ -10,6 +10,8 @@ extends Resource
 ## end point of the spot, inclusive
 @export var end: Vector2i = Vector2i.ONE
 
+const VISUALIZATION_COLOR = Color(0.5, 0.2, 0.8, 1.0)
+
 func _init(_start: Vector2i = Vector2i.ZERO, _end: Vector2i = Vector2i.ONE) -> void:
 	# ensure that start coordinates are smaller than end
 	start = Vector2i(mini(_start.x, _end.x), mini(_start.y, _end.y))
@@ -50,7 +52,7 @@ func cast_on_blueprint(blueprint: Dictionary):
 		blueprint[pos]["type"] = "road"
 
 
-func visualize(color: Color = Color(0.5, 0.2, 0.8, 1.0)):
+func visualize(color: Color = VISUALIZATION_COLOR):
 	DebugDraw3D.draw_box(
 		Vector3(start.x, 0, start.y),
 		Quaternion.IDENTITY, 

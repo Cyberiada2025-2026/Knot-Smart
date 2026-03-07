@@ -30,6 +30,8 @@ extends Node
 ## Area where spot limits will be applied 
 @export var spot_limit_area: Spot = Spot.new()
 
+const SELECTION_HIGHLIGHT_COLOR = Color(1, 1, 0, 1)
+const HIGHLIGHT_COLOR = Color(0, 0, 1, 1)
 
 func visualize():
 	if Engine.is_editor_hint():
@@ -38,7 +40,7 @@ func visualize():
 
 		# easier tracking of currently edited area
 		if self in selected_nodes:
-			spot_limit_area.visualize(Color(1, 1, 0, 1))
+			spot_limit_area.visualize(SELECTION_HIGHLIGHT_COLOR)
 		else:
-			spot_limit_area.visualize()
+			spot_limit_area.visualize(HIGHLIGHT_COLOR)
 			

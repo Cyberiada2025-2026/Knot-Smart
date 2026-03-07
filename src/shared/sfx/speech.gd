@@ -1,5 +1,5 @@
-extends Node
 class_name Speech
+extends Node
 
 @export var mood: AlienMoods.Moods
 var speech_type: SpeechType

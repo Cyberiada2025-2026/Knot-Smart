@@ -4,6 +4,10 @@ extends Node
 @onready var speech_types: Node = $"../SpeechTypes"
 
 var curr_sentence = []
+var base_pitch := 1.1
+var pitch_dif := 0.05
+var shorten_amount := 0.9
+var pause_between_sentence := 0.25
 
 func play_sound(
 	sound: String, cut_ending: bool = true, mood: AlienMoods.Moods = AlienMoods.Moods.NEUTRAL
@@ -11,11 +15,11 @@ func play_sound(
 	var speech: Speech = speech_types.get_node(AlienMoods.get_mood_name(mood))
 	var sound_file: AudioStream = speech.speech_type.sounds[sound]
 	audio_stream_player.stream = sound_file
-	audio_stream_player.pitch_scale = 1.1 + randf_range(-0.05, 0.05)
+	audio_stream_player.pitch_scale = base_pitch + randf_range(-pitch_dif, pitch_dif)
 	audio_stream_player.play()
 
 	if cut_ending:
-		var play_duration := sound_file.get_length() * 0.9
+		var play_duration := sound_file.get_length() * shorten_amount
 
 		await get_tree().create_timer(play_duration).timeout
 		audio_stream_player.stop()
@@ -31,4 +35,4 @@ func play_speech(input: Array, mood: AlienMoods.Moods = AlienMoods.Moods.NEUTRAL
 				else:
 					play_sound(word[i], false, mood)
 				await audio_stream_player.finished
-		await get_tree().create_timer(0.25).timeout
+		await get_tree().create_timer(pause_between_sentence).timeout

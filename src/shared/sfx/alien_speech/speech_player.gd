@@ -1,9 +1,11 @@
 extends Node
 
+var curr_sentence = []
+
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var speech_types: Node = $"../SpeechTypes"
 
-var curr_sentence = []
+
 var base_pitch := 1.1
 var pitch_dif := 0.05
 var shorten_amount := 0.9

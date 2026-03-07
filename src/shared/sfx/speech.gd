@@ -1,8 +1,9 @@
 extends Node
 class_name Speech
-var speech_type : SpeechType
-@export var mood : AlienMoods.Moods
+var speech_type: SpeechType
+@export var mood: AlienMoods.Moods
 var path := "res://shared/sfx/alien_speech/"
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

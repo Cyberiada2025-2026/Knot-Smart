@@ -1,17 +1,20 @@
 extends Node
 
-class_name LanguageGeneration
+# we need to move these consts out
+const SYLLABLES = [
+	"zip", "ba", "rim", "waeb", "ga", "womp", "go", "lip", "blop", "zop", "lle", "si"
+]
+const PRESETS = {"kurwa": ["waeb", "ba"], "mać": ["zip"], "do": ["zip"], "widzenia": ["zop"]}
+var syllable_count = len(SYLLABLES)
+var noise = FastNoiseLite.new()
 
-var syllables = []
-var syllable_count = 0
-var final_seed = 0
-
-var regex_sentence = RegEx.create_from_string("(?:(?:\\p{Z}|\\p{P})?[\\p{L}\\p{N}\\p{S}])+")  # matches sentences
-var regex_word = RegEx.create_from_string("\\p{L}+")  # matches words
+var regex_sentence = RegEx.create_from_string("(?:(?:\\p{Z}|\\p{P})?[\\p{L}\\p{N}\\p{S}])+")
+var regex_word = RegEx.create_from_string("\\p{L}+")
 
 
 func preprocess_string(input_str: String):
 	var output = []
+	input_str = input_str.to_lower()
 
 	for sentence in regex_sentence.search_all(input_str):
 		var sentence_output = []
@@ -22,33 +25,24 @@ func preprocess_string(input_str: String):
 	return output
 
 
-func translate_array(
-	input_array: Array, seed_val: int = final_seed, seed_seeking_mode: bool = false
-):
-	# Seed seeking mode avoids generating text from empty arrays during calls from find_seed_from_preset_words()
-	if not seed_seeking_mode and syllable_count == 0:
-		find_seed_from_preset_words()
-
+func translate_array(input_array: Array):
 	var output_line_array = []
 
 	for sentence in input_array:
 		var output_word_array = []
 
 		for word in sentence:
+			if word in PRESETS:
+				output_word_array.push_back(PRESETS[word])
+				continue
+
 			while word.length() < 2:
 				word += " "
 
 			var height_map = []
-
 			for i in range(word.length() - 1):
-				seed(seed_val + 100 * word.unicode_at(i) + word.unicode_at(i + 1))
-				# Making the actual seed dependent on the letters modified gives enough variance for the seed finder to not softlock
-				# while preserving rhymes between input and output
-
-				var val1 = word.unicode_at(i)
-				var val2 = word.unicode_at(i + 1)
-
-				height_map.append(val1 * randf() + val2 * randf())
+				# iterating through pairs of letters and checking the noise value for that pair
+				height_map.append(noise.get_noise_2d(word.unicode_at(i), word.unicode_at(i + 1)))
 
 			var output_word = []
 
@@ -61,12 +55,9 @@ func translate_array(
 				# in other words, the height must be a local peak
 
 				var result_syllable_id = abs(hash(height_map[i])) % syllable_count
-				if seed_seeking_mode:
-					output_word.push_back(result_syllable_id)
-				else:
-					output_word.push_back(syllables[result_syllable_id])
+				output_word.push_back(SYLLABLES[result_syllable_id])
 
-			# joining syllables into word
+			# joining SYLLABLES into word
 			output_word_array.push_back(output_word)
 
 		# joining words into a sentence
@@ -79,78 +70,6 @@ func translate_array(
 func process_dialogue(input_str):
 	var input_array = preprocess_string(input_str)
 	return translate_array(input_array)
-
-
-func find_seed_from_preset_words():
-	const available_syllables = [
-		"zip", "ba", "rim", "waeb", "ga", "womp", "go", "lip", "blop", "zop", "lle", "si"
-	]
-	var mapping = {}
-	var mapping_inverse = {}
-
-	syllable_count = len(available_syllables)
-
-	# This format should be changed
-	# Will be done later when this script will be optimised
-	var words = "Kurwa mać\nDo widzenia"
-	const expected_result = [[["waeb", "ba"], ["zip"]], [["zip"], ["zop"]]]
-
-	words = preprocess_string(words)
-
-	var temp_seed_val = 0
-	while temp_seed_val < 100000:  # Currently this cap is reached in about 2 seconds - less than before, still quite much
-		# but I think the algorithm should be optimised rather than cap reduced
-		var output = translate_array(words, temp_seed_val, true)
-		var fail = false
-
-		for sentence in range(len(expected_result)):
-			if fail == true:
-				break
-
-			for word in range(len(expected_result[sentence])):
-				if len(expected_result[sentence][word]) != len(output[sentence][word]):
-					fail = true
-				if fail == true:
-					break
-
-				for syllable in range(len(expected_result[sentence][word])):
-					if (
-						expected_result[sentence][word][syllable] not in mapping
-						and output[sentence][word][syllable] not in mapping_inverse
-					):
-						mapping[expected_result[sentence][word][syllable]] = output[sentence][word][syllable]
-						mapping_inverse[output[sentence][word][syllable]] = expected_result[sentence][word][syllable]
-					elif (
-						expected_result[sentence][word][syllable] not in mapping
-						or (
-							mapping[expected_result[sentence][word][syllable]]
-							!= output[sentence][word][syllable]
-						)
-					):
-						fail = true
-						break
-
-		if fail == false:
-			break
-
-		mapping.clear()
-		mapping_inverse.clear()
-		temp_seed_val += 1
-
-	print("found seed ", temp_seed_val)
-	final_seed = temp_seed_val
-
-	syllables.resize(syllable_count)  # extending an empty array
-	for syl in mapping:
-		syllables[mapping[syl]] = syl  # in order to be able to do this
-
-	var grab = 0
-	for i in range(syllable_count):
-		while grab < syllable_count and mapping.has(available_syllables[grab]):
-			grab += 1
-		if syllables[i] == null:
-			syllables[i] = available_syllables[grab]
-			grab += 1
 
 
 func _ready() -> void:

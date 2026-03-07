@@ -6,7 +6,7 @@ extends Node
 
 @export_tool_button("Generate roads") var generate_action = generate_roads.bind(Dictionary())
 # testing flags are splitted into different categories to ensure easy debugging
-@export_group("testing")
+@export_group("Testing")
 @export var visualize_limiter_areas: bool
 @export var debug_visualization: bool
 

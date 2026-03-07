@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d4hvm8i2l3fuc"]
+
+[ext_resource type="Script" uid="uid://d1kvwfw254pew" path="res://shared/language_generation/language_generation.gd" id="1_bgfs6"]
+
+[node name="LanguageGeneration" type="Node" unique_id=670000237]
+script = ExtResource("1_bgfs6")

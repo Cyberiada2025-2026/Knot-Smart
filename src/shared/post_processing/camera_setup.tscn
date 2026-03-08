@@ -17,7 +17,7 @@ shader_parameter/warp_y = 0.041667
 shader_parameter/mask_dark = 0.75
 shader_parameter/mask_light = 1.75
 
-[node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera")]
+[node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera", "scene")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 524288
 projection = 1
@@ -25,6 +25,7 @@ current = true
 far = 0.1
 script = ExtResource("1_3nir4")
 camera = NodePath("Control/SubViewportContainer/SubViewport/MainCamera")
+scene = NodePath("Control/SubViewportContainer/SubViewport/MainCamera/MainScene")
 
 [node name="Control" type="Control" parent="." unique_id=1065790436]
 light_mask = 0
@@ -62,6 +63,14 @@ transform = Transform3D(0.9914175, -2.231977e-08, -0.1307338, 0.053353444, 0.912
 cull_mask = 524287
 environment = ExtResource("1_rfpeg")
 
+[node name="MainScene" type="Control" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=1610041003]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=2005476111]
 visibility_layer = 1048575
 z_index = 4096
@@ -73,7 +82,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="CRT" type="ColorRect" parent="Control" unique_id=1296600594]
@@ -89,5 +98,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true

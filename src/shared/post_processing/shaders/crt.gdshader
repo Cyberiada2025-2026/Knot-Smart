@@ -10,7 +10,7 @@ const float MASK_SHAPE = 3.0;
 const int MAX_BLUR = 5;
 
 // Has to be positive, uneven, not greater than MAX_BLUR
-const int BLUR_SIZE[3] = {3, 5, 3};
+const int BLUR_SIZE[3] = {1, 1, 1};
 
 /**  Hardness of scanline */
 uniform float hard_scan: hint_range(-16.0, -4.0) = -8.0;

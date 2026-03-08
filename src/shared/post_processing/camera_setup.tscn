@@ -11,7 +11,7 @@ shader = ExtResource("2_i5s75")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tvswt"]
 shader = ExtResource("3_lwxwa")
 shader_parameter/hard_scan = -4.0
-shader_parameter/hard_pix = -4.9999988124999994
+shader_parameter/hard_pix = -3.9999954400000064
 shader_parameter/warp_x = 0.03125
 shader_parameter/warp_y = 0.041667
 shader_parameter/mask_dark = 0.75
@@ -40,6 +40,8 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=1778585895]
+light_mask = 524288
+visibility_layer = 524288
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
@@ -60,19 +62,22 @@ transform = Transform3D(0.9914175, -2.231977e-08, -0.1307338, 0.053353444, 0.912
 cull_mask = 524287
 environment = ExtResource("1_rfpeg")
 
-[node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=2005476111]
+[node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer" unique_id=2005476111]
+visibility_layer = 1048575
 z_index = 4096
 z_as_relative = false
+texture_filter = 1
 material = SubResource("ShaderMaterial_xylyt")
-offset_right = 320.0
-offset_bottom = 240.0
+layout_mode = 2
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="CRT" type="ColorRect" parent="Control" unique_id=1296600594]
-visibility_layer = 524288
+visibility_layer = 1048575
 z_index = 4096
 z_as_relative = false
+texture_filter = 1
+texture_repeat = 1
 material = SubResource("ShaderMaterial_tvswt")
 layout_mode = 1
 anchors_preset = 15
@@ -82,3 +87,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1182923631]
+visible = false
+offset_left = 31.0
+offset_top = 15.0
+offset_right = 86.0
+offset_bottom = 60.0
+rotation = 0.4627963

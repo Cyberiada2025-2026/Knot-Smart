@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cg0xq5ci3aupl"]
+[gd_scene format=3 uid="uid://cg0xq5ci3aupl"]
 
 [ext_resource type="Script" uid="uid://d3priws45vp1i" path="res://shared/tree_generator/tree_generator.gd" id="1_f05cq"]
 [ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/tree_generator/tree_parameters.gd" id="2_0ait5"]

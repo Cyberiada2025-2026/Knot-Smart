@@ -3,9 +3,6 @@ class_name TerrainManager
 extends Node3D
 
 @export var player: Player
-@export_tool_button("Generate world") var generate_action = generate_world
-@export_tool_button("Setup Components") var setup_action = setup_components
-@export_tool_button("Place") var t_action = test
 
 @export_group("Params")
 @export var world_generation_params: WorldGenerationParams
@@ -17,20 +14,14 @@ extends Node3D
 @export var building_generator: Node
 @export var chunk_generator: ChunkGenerator
 
+@export_group("Functions")
+@export_tool_button("Generate world") var generate_action = generate_world
+@export_tool_button("Clear terrain") var clean_action = _clean
+
 var structure_manager: StructureManager = StructureManager.new()
 
-var blueprint: Dictionary = {} # Vector2i: TileData
+var blueprint: TerrainBlueprint
 var can_generate_chunks = false
-
-func test():
-	var o = PlaneMesh.new()
-	var transforms:Array = []
-	for i in range(1,6):
-		var c = Vector2i(i,i)
-		var t = Transform3D()
-		t.origin = Vector3(i,blueprint[c]["height"], i)
-		transforms.append(t)
-	structure_manager.place_object_bulk(transforms, o)
 
 func setup_components() -> void:
 	if terrain_generator: 
@@ -39,40 +30,22 @@ func setup_components() -> void:
 		chunk_generator.world_generation_params = world_generation_params
 		chunk_generator.world_display_params = world_display_params
 	print("TerrainManager: Components initialized with shared WorldGenParams.")
-
-func create_default_blueprint() -> void:
-	blueprint.clear()
-	for x in world_generation_params.map_size:
-		for z in world_generation_params.map_size:
-			var coord = Vector2i(x, z)
-			blueprint[coord] = {
-				"height": 0.0,      # Flat ground at sea level
-				"type": "empty",
-				"can_place": "any",
-			}
-			
-	print("TerrainManager: Default flat blueprint created")
-					
 	
+func _clean() -> void:
+	chunk_generator.clear_chunks()
+
 func _ready() -> void:
 	setup_components()
+	generate_world()
 
 func generate_world() -> void:
 	
-	blueprint.clear()
+	var world_size = world_generation_params.map_size*world_generation_params.chunk_size
+	blueprint = TerrainBlueprint.new(world_size)
 	
 	if terrain_generator and terrain_generator.has_method("generate_terrain"):
-		var terrain_check = true
 		chunk_generator.clear_chunks()
-		terrain_check = terrain_generator.generate_terrain(blueprint)
-		
-		if terrain_check == false or blueprint.is_empty():
-			push_error("TerrainManager: Generation Failed!")
-			create_default_blueprint()
-			
-	else:
-		push_error("TerrainManager: Missing valid Terrain Generator!")
-		create_default_blueprint()
+		terrain_generator.generate_terrain(blueprint)
 		
 	if road_generator and road_generator.has_method("generate_roads"):
 		road_generator.generate_roads(blueprint)
@@ -87,16 +60,15 @@ func generate_world() -> void:
 	# temp solution
 	if chunk_generator and chunk_generator.has_method("generate_chunks"):
 		if player:
-			chunk_generator.generate_chunks(blueprint,player.position)
+			chunk_generator.generate_chunks(blueprint,player.player_physics.position)
 		else:
 			chunk_generator.generate_chunks(blueprint)
 	else:
 		push_warning("TerrainManager: Missing valid Chunk Generator!")
 	
-	
 	can_generate_chunks = true
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if can_generate_chunks == true and not Engine.is_editor_hint():
-		chunk_generator.generate_chunks(blueprint, player.position)
+		chunk_generator.generate_chunks(blueprint, player.player_physics.position)
 	

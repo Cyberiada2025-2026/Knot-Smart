@@ -9,7 +9,7 @@ const MAX_LENGTH = 32.0
 const COLLISION_RADIUS = 0.01
 const COLLISION_BUFFER = 1.0
 
-@export var spring_constant = 15.0
+@export var spring_constant = 5.0
 @export var damping = 0.5
 @export var mass = 1.0
 
@@ -30,12 +30,28 @@ func _init(p1: Vector3, obj1: Node3D, p2: Vector3, obj2: Node3D) -> void:
 	node1 = obj1
 	node2 = obj2
 
-	var is_frozen_1 = node1 is not RigidBody3D and node1 is not CharacterBody3D
-	inner1 = InnerNode.new(self, is_frozen_1, pt1)
+	var strategy
+	match node1.get_class():
+		"RigidBody3D":
+			strategy = BasicDynamicStrategy.new(MIN_LENGTH)
+		"CharacterBody3D":
+			strategy = BasicKinematicStrategy.new()
+		_:
+			strategy = BasicStaticStrategy.new()
+	inner1 = InnerNode.new(self, strategy, pt1)
+
 	add_child(inner1)
 
-	var is_frozen_2 = node2 is not RigidBody3D and node2 is not CharacterBody3D
-	inner2 = InnerNode.new(self, is_frozen_2, pt2)
+	var strategy2
+	match node2.get_class():
+		"RigidBody3D":
+			strategy2 = BasicDynamicStrategy.new(MIN_LENGTH)
+		"CharacterBody3D":
+			strategy2 = BasicKinematicStrategy.new()
+		_:
+			strategy2 = BasicStaticStrategy.new()
+	
+	inner2 = InnerNode.new(self, strategy2, pt2)
 	add_child(inner2)
 
 func init_rope_mesh():
@@ -74,9 +90,9 @@ func update_rope():
 	rope.look_at_from_position(inner1.position + direction/2, inner1.position)
 
 func _ready() -> void:
-	inner1.bind(node1)
-	inner2.bind(node2)
-	
+	inner1.bind(node1, inner2)
+	inner2.bind(node2, inner1)
+
 	rope = Area3D.new()
 	init_rope_mesh()
 	init_rope_collider()
@@ -107,38 +123,74 @@ func _physics_process(_delta: float) -> void:
 
 	if difference.length_squared() > MAX_LENGTH:
 		finish()
-	
-	var direction = difference.normalized()
-	
-	if node1 is RigidBody3D and node2 is RigidBody3D:
-		var midpoint = (inner1.position + inner2.position)/2
-		inner1.equilibrium = midpoint - direction * 0.5 * MIN_LENGTH
-		inner2.equilibrium = midpoint + direction * 0.5 * MIN_LENGTH
-	elif node1 is not RigidBody3D and node2 is RigidBody3D:
-		inner2.equilibrium = inner1.position + direction * MIN_LENGTH
-	elif node2 is not RigidBody3D and node1 is RigidBody3D:
-		inner1.equilibrium = inner2.position - direction * MIN_LENGTH
-	elif node1 is not RigidBody3D and node2 is CharacterBody3D:
-		inner2.equilibrium = inner1.position
-	elif node2 is not RigidBody3D and node1 is CharacterBody3D:
-		inner1.equilibrium = inner2.position
-	else:
-		queue_free()
-	
+
+	if inner1.strategy.get_strategy_type() == StrategyType.STATIC \
+		and inner2.strategy.get_strategy_type() == StrategyType.STATIC:
+		finish()
+
 	update_rope()
+
+enum StrategyType {
+	STATIC,
+	DYNAMIC,
+	KINEMATIC
+}
+
+class BasicStaticStrategy extends Node:
+	func get_strategy_type() -> StrategyType:
+		return StrategyType.STATIC
+
+	func get_equilibrium(current: InnerNode, _other: InnerNode):
+		return current.position
+
+class BasicDynamicStrategy extends Node:
+	var length
+
+	func _init(min_length):
+		self.length = min_length
+
+	func get_strategy_type() -> StrategyType:
+		return StrategyType.DYNAMIC
+	
+	func get_equilibrium(current: InnerNode, other: InnerNode) -> Vector3:
+		var direction = current.position - other.position
+		var equilibrium
+		match other.get_strategy_type():
+			StrategyType.STATIC:
+				equilibrium = other.position - direction * length
+			StrategyType.DYNAMIC:
+				var midpoint = (current.position + other.position)/2
+				equilibrium = midpoint - direction * 0.5 * length
+			StrategyType.KINEMATIC:
+				equilibrium = other.position
+				
+		return equilibrium
+
+class BasicKinematicStrategy extends Node:
+	func get_strategy_type() -> StrategyType:
+		return StrategyType.KINEMATIC
+
+	func get_equilibrium(current: InnerNode, _other: InnerNode):
+		return current.position
 
 class InnerNode extends RigidBody3D:
 	var prev_pos: Vector3
-	var equilibrium: Vector3
 	var rope: Rope
+	var other: InnerNode
+	var strategy: Node
 
-	func _init(rope, is_frozen, pos) -> void:
-		self.freeze = is_frozen
-		self.rope = rope
+	func _init(rope_ref, equilibrium_strategy, pos) -> void:
+		self.strategy = equilibrium_strategy
+		self.freeze = (get_strategy_type() == StrategyType.STATIC)
+		self.rope = rope_ref
 		self.position = pos
 		self.prev_pos = pos
 
-	func bind(obj) -> void:
+	func get_strategy_type():
+		return self.strategy.get_strategy_type()
+
+	func bind(obj, other_node) -> void:
+		self.other = other_node
 		var joint = PinJoint3D.new()
 		joint.node_a = get_path()
 		joint.node_b = obj.get_path()
@@ -146,6 +198,7 @@ class InnerNode extends RigidBody3D:
 
 	func integrate_accel(k, b) -> Vector3:
 		var v = linear_velocity
+		var equilibrium = strategy.get_equilibrium(self, other)
 		var dx = position - equilibrium
 		# Direct application of the damped oscillator formula
 		var spring_accel = -k*dx - b*v

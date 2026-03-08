@@ -63,6 +63,7 @@ func time_to_hour(time: float) -> float:
 	return fmod((1 - time/day_length_seconds()) * 24 + initial_hour, 24)
 
 func _ready() -> void:
+	world_environment.adjustment_enabled = true
 	sun.rotation.x = hour_to_sun_rotation(initial_hour)
 	time_of_day = hour_to_time_of_day(initial_hour)
 	day_timer.wait_time = day_length_seconds()

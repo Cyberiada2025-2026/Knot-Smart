@@ -1,6 +1,7 @@
 extends Camera3D
 
 @export var camera: Node3D
+@export var scene: Control
 
 var reference: Node3D
 

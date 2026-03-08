@@ -1,4 +1,4 @@
-extends UIReparent
+extends Control
 
 signal loaded_instance(instance)
 

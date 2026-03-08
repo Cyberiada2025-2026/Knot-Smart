@@ -11,7 +11,7 @@ shader = ExtResource("2_i5s75")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tvswt"]
 shader = ExtResource("3_lwxwa")
 shader_parameter/hard_scan = -4.0
-shader_parameter/hard_pix = -3.9999954400000064
+shader_parameter/hard_pix = -2.49999964375
 shader_parameter/warp_x = 0.03125
 shader_parameter/warp_y = 0.041667
 shader_parameter/mask_dark = 0.75
@@ -91,11 +91,3 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1182923631]
-visible = false
-offset_left = 31.0
-offset_top = 15.0
-offset_right = 86.0
-offset_bottom = 60.0
-rotation = 0.4627963

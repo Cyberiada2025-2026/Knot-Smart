@@ -11,7 +11,7 @@ shader = ExtResource("2_i5s75")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tvswt"]
 shader = ExtResource("3_lwxwa")
 shader_parameter/hard_scan = -4.0
-shader_parameter/hard_pix = -2.49999964375
+shader_parameter/hard_pix = -2.9999996675
 shader_parameter/warp_x = 0.03125
 shader_parameter/warp_y = 0.041667
 shader_parameter/mask_dark = 0.75

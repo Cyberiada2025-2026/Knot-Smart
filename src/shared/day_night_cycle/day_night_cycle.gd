@@ -21,7 +21,7 @@ enum TimeOfDay {
 @export var LUT_night: Texture3D
 
 @export_group("Refs")
-@export var world_environment: WorldEnvironment
+@onready var world_environment: Environment = CameraSingleton.main_camera.environment
 @export var sun: DirectionalLight3D
 @export var day_timer: Timer
 
@@ -31,17 +31,21 @@ var time_of_day: TimeOfDay:
 		time_of_day = value
 		match value:
 			TimeOfDay.DAY:
-				world_environment.environment.adjustment_color_correction = LUT_day
+				world_environment.adjustment_color_correction = LUT_day
 				day_started.emit()
+				print("day started")
 			TimeOfDay.SUNSET:
-				world_environment.environment.adjustment_color_correction = LUT_sunset
+				world_environment.adjustment_color_correction = LUT_sunset
 				sunset_started.emit()
+				print("sunset started")
 			TimeOfDay.NIGHT:
-				world_environment.environment.adjustment_color_correction = LUT_night
+				world_environment.adjustment_color_correction = LUT_night
 				night_started.emit()
+				print("night started")
 			TimeOfDay.DAWN:
-				world_environment.environment.adjustment_color_correction = LUT_sunset
+				world_environment.adjustment_color_correction = LUT_sunset
 				dawn_started.emit()
+				print("dawn started")
 
 signal dawn_started
 signal day_started

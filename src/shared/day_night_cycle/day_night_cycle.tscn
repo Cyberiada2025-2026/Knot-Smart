@@ -1,12 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5l6v07y036mo"]
+[gd_scene format=3 uid="uid://b5l6v07y036mo"]
 
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="1_st5v3"]
+[ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="2_eas8i"]
+[ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="3_j5n60"]
+[ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="4_dccq8"]
 
-[node name="DayNightCycle" type="Node3D" node_paths=PackedStringArray("day_timer")]
+[node name="DayNightCycle" type="Node3D" unique_id=931919189 node_paths=PackedStringArray("day_timer")]
 transform = Transform3D(1, 0, 0, 0, 0.8910065, 0.45399052, 0, -0.45399052, 0.8910065, 0, 0, 0)
 script = ExtResource("1_st5v3")
+LUT_day = ExtResource("2_eas8i")
+LUT_sunset = ExtResource("3_j5n60")
+LUT_night = ExtResource("4_dccq8")
 day_timer = NodePath("DayTimer")
 
-[node name="DayTimer" type="Timer" parent="."]
+[node name="DayTimer" type="Timer" parent="." unique_id=1843126689]
+autostart = true
 
 [connection signal="timeout" from="DayTimer" to="." method="_on_day_timer_timeout"]

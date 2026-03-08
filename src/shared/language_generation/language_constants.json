@@ -1,0 +1,9 @@
+{
+	"syllables": ["zip", "ba", "rim", "waeb", "ga", "womp", "go", "lip", "blop", "zop", "lle", "si"],
+	"presets": {
+		"kurwa": ["waeb", "ba"],
+		"mać": ["zip"],
+		"do": ["zip"],
+		"widzenia": ["zop"]
+	}
+}

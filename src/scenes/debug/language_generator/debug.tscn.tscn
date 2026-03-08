@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dcctb4kbsvm02"]
+
+[ext_resource type="Script" uid="uid://d1kvwfw254pew" path="res://shared/language_generation/language_generation.gd" id="1_mxf7t"]
+
+[node name="Debug_tscn" type="Node" unique_id=797911006]
+script = ExtResource("1_mxf7t")

@@ -62,13 +62,17 @@ transform = Transform3D(0.9914175, -2.231977e-08, -0.1307338, 0.053353444, 0.912
 cull_mask = 524287
 environment = ExtResource("1_rfpeg")
 
-[node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer" unique_id=2005476111]
+[node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=2005476111]
 visibility_layer = 1048575
 z_index = 4096
 z_as_relative = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_xylyt")
-layout_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 

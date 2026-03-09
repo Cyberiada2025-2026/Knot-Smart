@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 enum TimeOfDay {
@@ -67,7 +68,8 @@ func _ready() -> void:
 	sun.rotation.x = hour_to_sun_rotation(initial_hour)
 	time_of_day = hour_to_time_of_day(initial_hour)
 	day_timer.wait_time = day_length_seconds()
-	day_timer.start()
+	if not Engine.is_editor_hint():
+		day_timer.start()
 
 func hour_to_time_of_day(hour: float) -> TimeOfDay:
 	if hour < dawn_start or hour >= night_start:

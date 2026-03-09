@@ -6,8 +6,8 @@ enum State {SELECT_FIRST, SELECT_SECOND}
 var state = State.SELECT_FIRST
 
 
-var selected_objects = []
-var markers = []
+var selected_objects: Array[Node] = []
+var markers: Array[MeshInstance3D] = []
 
 const RADIUS = 0.1
 
@@ -46,20 +46,17 @@ func _physics_process(_delta: float) -> void:
 			if Input.is_action_just_pressed("left_mouse"):
 				place_marker_on_object(result.collider)
 
-				var obj1 = selected_objects.pop_back()
-				var obj2 = selected_objects.pop_back()
-				var mark1 = markers.pop_back()
-				var pos1 = mark1.global_position
-				obj1.remove_child(mark1)
-				mark1.queue_free()
-
-				var mark2 = markers.pop_back()
-				var pos2 = mark2.global_position
-				obj2.remove_child(mark2)
-				mark2.queue_free()
-
-				var rope = Rope.new(pos1, obj1, pos2, obj2)
+				var positions: Array[Vector3] = []
+				for marker in markers:
+					positions.append(marker.global_position)
+				var rope = Rope.new(selected_objects, positions)
 				add_child(rope)
+
+				selected_objects = []
+				for marker in markers:
+					marker.queue_free()
+				markers = []
+				
 				state = State.SELECT_FIRST
 
 

@@ -89,56 +89,8 @@ func _physics_process(_delta: float) -> void:
 	if difference.length_squared() > params.max_rope_length:
 		finish()
 
-	if end[0].strategy.get_strategy_type() == StrategyType.STATIC \
-		and end[1].strategy.get_strategy_type() == StrategyType.STATIC:
+	if end[0].strategy.get_strategy_type() == RopeEnd.StrategyType.STATIC \
+		and end[1].strategy.get_strategy_type() == RopeEnd.StrategyType.STATIC:
 		finish()
 
 	update_rope()
-
-class BasicStaticStrategy extends Node:
-	func get_strategy_type() -> StrategyType:
-		return StrategyType.STATIC
-
-	func get_equilibrium(current: RopeEnd, _other: RopeEnd):
-		return current.position
-
-	func release_force(_end: RopeEnd, _node: Node):
-		return
-
-class BasicDynamicStrategy extends Node:
-	var length
-
-	func _init(min_length):
-		self.length = min_length
-
-	func get_strategy_type() -> StrategyType:
-		return StrategyType.DYNAMIC
-	
-	func get_equilibrium(current: RopeEnd, other: RopeEnd) -> Vector3:
-		var direction = current.position - other.position
-		var equilibrium
-		match other.get_strategy_type():
-			StrategyType.STATIC:
-				equilibrium = other.position - direction * length
-			StrategyType.DYNAMIC:
-				var midpoint = (current.position + other.position)/2
-				equilibrium = midpoint - direction * 0.5 * length
-			StrategyType.KINEMATIC:
-				equilibrium = other.position
-				
-		return equilibrium
-
-	func release_force(end: RopeEnd, node: Node):
-		var accel = end.get_hooke_accel()
-		node.apply_impulse(-accel)
-
-class BasicKinematicStrategy extends Node:
-	func get_strategy_type() -> StrategyType:
-		return StrategyType.KINEMATIC
-
-	func get_equilibrium(current: RopeEnd, _other: RopeEnd):
-		return current.position
-
-	func release_force(end: RopeEnd, node: Node):
-		var direction = end.other.position - end.position
-		node.velocity += 2 * direction

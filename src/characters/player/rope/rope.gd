@@ -13,6 +13,7 @@ var node: Array[Node]
 var end: Array[RopeEnd]
 var pos: Array[Vector3]
 
+
 func _init(rope_params: RopeParams, nodes: Array[Node], positions: Array[Vector3]) -> void:
 	self.params = rope_params
 	self.node = nodes
@@ -32,15 +33,17 @@ func _init(rope_params: RopeParams, nodes: Array[Node], positions: Array[Vector3
 
 		add_child(end[i])
 
+
 func init_rope_mesh():
 	vfx = rope_vfx.instantiate()
 	vfx.start(params.min_rope_length)
-	vfx.rotate_x(-PI/2)
+	vfx.rotate_x(-PI / 2)
 	rope.add_child(vfx)
+
 
 func init_rope_collider():
 	var direction = pos[1] - pos[0]
-	
+
 	collision_shape = CapsuleShape3D.new()
 	collision_shape.radius = params.rope_collision_radius
 
@@ -48,16 +51,19 @@ func init_rope_collider():
 		collision_shape.height = direction.length() - params.rope_collision_buffer
 	var collider = CollisionShape3D.new()
 	collider.shape = collision_shape
-	collider.rotate_x(-PI/2)
+	collider.rotate_x(-PI / 2)
 	rope.add_child(collider)
+
 
 func _on_area_entered(_node):
 	finish()
+
 
 func finish():
 	vfx.end()
 	apply_forces()
 	queue_free()
+
 
 func update_rope():
 	var direction = end[1].position - end[0].position
@@ -65,7 +71,8 @@ func update_rope():
 	vfx.set_length(length)
 	if params.rope_collision_buffer < length:
 		collision_shape.height = length - params.rope_collision_buffer
-	rope.look_at_from_position(end[0].position + direction/2, end[0].position)
+	rope.look_at_from_position(end[0].position + direction / 2, end[0].position)
+
 
 func _ready() -> void:
 	end[0].bind(node[0], end[1])
@@ -75,13 +82,15 @@ func _ready() -> void:
 	init_rope_mesh()
 	init_rope_collider()
 	var direction = pos[1] - pos[0]
-	rope.look_at_from_position(pos[0] + direction/2, pos[0])
+	rope.look_at_from_position(pos[0] + direction / 2, pos[0])
 	rope.body_entered.connect(_on_area_entered)
 	add_child(rope)
+
 
 func apply_forces() -> void:
 	for i in range(2):
 		end[i].strategy.release_force(end[i], node[i])
+
 
 func _physics_process(_delta: float) -> void:
 	var difference = end[1].position - end[0].position
@@ -89,8 +98,10 @@ func _physics_process(_delta: float) -> void:
 	if difference.length_squared() > params.max_rope_length:
 		finish()
 
-	if end[0].strategy.get_strategy_type() == RopeEnd.StrategyType.STATIC \
-		and end[1].strategy.get_strategy_type() == RopeEnd.StrategyType.STATIC:
+	if (
+		end[0].strategy.get_strategy_type() == RopeEnd.StrategyType.STATIC
+		and end[1].strategy.get_strategy_type() == RopeEnd.StrategyType.STATIC
+	):
 		finish()
 
 	update_rope()

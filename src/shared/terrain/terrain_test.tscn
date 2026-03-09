@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://no1j1oowuup1" path="res://shared/terrain/world_generation_params.gd" id="2_aojt6"]
 [ext_resource type="Script" uid="uid://bmtv75byrd25q" path="res://shared/terrain/world_display_params.gd" id="3_17td6"]
 [ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="4_j56kj"]
-[ext_resource type="Script" uid="uid://c6t4u3jfv5two" path="res://shared/terrain/chunk_generator.gd" id="5_s86en"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="7_nolvv"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_tnrqe"]
@@ -94,57 +93,56 @@ data = PackedVector3Array(0, 105, 0, 16, 105, 0, 16, 105, 16, 0, 105, 0, 16, 105
 
 [node name="TerrainTest" type="Node3D" unique_id=1551696206]
 
-[node name="Terrain" type="Node3D" parent="." unique_id=1811810691 node_paths=PackedStringArray("player", "terrain_generator", "chunk_generator")]
+[node name="Terrain" type="Node3D" parent="." unique_id=1811810691 node_paths=PackedStringArray("player", "terrain_generator", "chunk_manager")]
 script = ExtResource("1_1hp32")
 player = NodePath("../Player")
 world_generation_params = SubResource("Resource_tnrqe")
 world_display_params = SubResource("Resource_nolvv")
 terrain_generator = NodePath("TerrainGenerator")
-chunk_generator = NodePath("ChunkGenerator")
+chunk_manager = NodePath("@Node3D@18562")
 
 [node name="TerrainGenerator" type="Node" parent="Terrain" unique_id=1904322367]
 script = ExtResource("1_aojt6")
 
 [node name="ChunkGenerator" type="Node3D" parent="Terrain" unique_id=1988845525]
-script = ExtResource("5_s86en")
 
-[node name="ChunkX0Z0" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=1762726232]
+[node name="ChunkX0Z0" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=302278830]
 material_override = SubResource("StandardMaterial3D_nolvv")
 mesh = SubResource("ArrayMesh_nolvv")
 
-[node name="ChunkX0Z0_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX0Z0" unique_id=1327087318]
+[node name="ChunkX0Z0_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX0Z0" unique_id=103807743]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX0Z0/ChunkX0Z0_col" unique_id=2049806901]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX0Z0/ChunkX0Z0_col" unique_id=477367209]
 shape = SubResource("ConcavePolygonShape3D_33pxs")
 
-[node name="ChunkX0Z1" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=1135192959]
+[node name="ChunkX0Z1" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=1250117908]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 material_override = SubResource("StandardMaterial3D_nolvv")
 mesh = SubResource("ArrayMesh_muk75")
 
-[node name="ChunkX0Z1_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX0Z1" unique_id=1617517420]
+[node name="ChunkX0Z1_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX0Z1" unique_id=829432856]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX0Z1/ChunkX0Z1_col" unique_id=484992116]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX0Z1/ChunkX0Z1_col" unique_id=616802771]
 shape = SubResource("ConcavePolygonShape3D_ose0w")
 
-[node name="ChunkX1Z0" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=227803159]
+[node name="ChunkX1Z0" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=214228532]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 0)
 material_override = SubResource("StandardMaterial3D_nolvv")
 mesh = SubResource("ArrayMesh_abr2e")
 
-[node name="ChunkX1Z0_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX1Z0" unique_id=256688961]
+[node name="ChunkX1Z0_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX1Z0" unique_id=1180777714]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX1Z0/ChunkX1Z0_col" unique_id=1859801502]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX1Z0/ChunkX1Z0_col" unique_id=779542380]
 shape = SubResource("ConcavePolygonShape3D_ir42u")
 
-[node name="ChunkX1Z1" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=787432473]
+[node name="ChunkX1Z1" type="MeshInstance3D" parent="Terrain/ChunkGenerator" unique_id=1232935494]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
 material_override = SubResource("StandardMaterial3D_nolvv")
 mesh = SubResource("ArrayMesh_citl2")
 
-[node name="ChunkX1Z1_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX1Z1" unique_id=128928249]
+[node name="ChunkX1Z1_col" type="StaticBody3D" parent="Terrain/ChunkGenerator/ChunkX1Z1" unique_id=1209776019]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX1Z1/ChunkX1Z1_col" unique_id=1719585385]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/ChunkGenerator/ChunkX1Z1/ChunkX1Z1_col" unique_id=1982468659]
 shape = SubResource("ConcavePolygonShape3D_7xt7g")
 
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("7_nolvv")]

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 gdformat $(find ./src/ -name '*.gd' -not -path "./src/addons/*")
 

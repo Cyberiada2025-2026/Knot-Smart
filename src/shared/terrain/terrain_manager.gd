@@ -18,8 +18,6 @@ extends Node3D
 @export_tool_button("Generate world") var generate_action = generate_world
 @export_tool_button("Clear terrain") var clean_action = _clean
 
-var structure_manager: StructureManager = StructureManager.new()
-
 var blueprint: TerrainBlueprint
 var can_generate_chunks = false
 
@@ -35,11 +33,11 @@ func _clean() -> void:
 	chunk_generator.clear_chunks()
 
 func _ready() -> void:
-	setup_components()
 	generate_world()
 
 func generate_world() -> void:
 	
+	setup_components()
 	var world_size = world_generation_params.map_size*world_generation_params.chunk_size
 	blueprint = TerrainBlueprint.new(world_size)
 	

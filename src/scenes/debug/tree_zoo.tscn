@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://jo47eplae3mw"]
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_crhmp"]
-[ext_resource type="PackedScene" uid="uid://cvq8akko8e0o0" path="res://shared/camera/camera_replacer.tscn" id="2_v77ug"]
+[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/tree_generator/tree_parameters.gd" id="3_7cgt4"]
 [ext_resource type="PackedScene" uid="uid://cg0xq5ci3aupl" path="res://shared/tree_generator/tree_generator.tscn" id="3_c24uh"]
+[ext_resource type="Resource" uid="uid://hif2ao4f4l5f" path="res://shared/tree_generator/tree_types/tree_type_cursed2.tres" id="4_7cgt4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v77ug"]
 size = Vector3(10000, 0.2, 10000)
@@ -56,14 +57,12 @@ mesh = SubResource("BoxMesh_c24uh")
 [node name="Player" parent="." unique_id=213669917 instance=ExtResource("1_crhmp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57033443, 0)
 
-[node name="CameraReplacer" parent="." unique_id=1941522840 node_paths=PackedStringArray("camera") instance=ExtResource("2_v77ug")]
-camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1621420604]
 transform = Transform3D(1, 0, 0, 0, 0.046025515, 0.9989403, 0, -0.9989403, 0.04602552, 0, 136.331, 59.296577)
 light_energy = 1.825
 
 [node name="TreeGenerator" parent="." unique_id=1839550397 instance=ExtResource("3_c24uh")]
+trees = Array[ExtResource("3_7cgt4")]([ExtResource("4_7cgt4")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1370181901]
 environment = SubResource("Environment_7cgt4")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TreeParameters" load_steps=2 format=3 uid="uid://c0dphyg8pou3k"]
+[gd_resource type="Resource" script_class="TreeParameters" format=3 uid="uid://c0dphyg8pou3k"]
 
 [ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/tree_generator/tree_parameters.gd" id="1_2gjy1"]
 

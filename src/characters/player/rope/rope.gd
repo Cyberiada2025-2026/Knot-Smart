@@ -102,21 +102,8 @@ func _ready() -> void:
 	add_child(rope)
 
 func apply_forces() -> void:
-	if node1 is RigidBody3D:
-		var accel = inner1.get_hooke_accel()
-		node1.apply_impulse(-accel)
-
-	if node2 is RigidBody3D:
-		var accel = inner2.get_hooke_accel()
-		node2.apply_impulse(-accel)
-
-	if node1 is CharacterBody3D:
-		var direction = node2.position - node1.position
-		node1.velocity += 2 * direction
-
-	if node2 is CharacterBody3D:
-		var direction = node1.position - node2.position
-		node2.velocity += 2 * direction
+	inner1.strategy.release_force(inner1, node1)
+	inner2.strategy.release_force(inner2, node2)
 
 func _physics_process(_delta: float) -> void:
 	var difference = inner2.position - inner1.position
@@ -143,6 +130,9 @@ class BasicStaticStrategy extends Node:
 	func get_equilibrium(current: InnerNode, _other: InnerNode):
 		return current.position
 
+	func release_force(_inner: InnerNode, _node: Node):
+		return
+
 class BasicDynamicStrategy extends Node:
 	var length
 
@@ -166,12 +156,20 @@ class BasicDynamicStrategy extends Node:
 				
 		return equilibrium
 
+	func release_force(inner: InnerNode, node: Node):
+		var accel = inner.get_hooke_accel()
+		node.apply_impulse(-accel)
+
 class BasicKinematicStrategy extends Node:
 	func get_strategy_type() -> StrategyType:
 		return StrategyType.KINEMATIC
 
 	func get_equilibrium(current: InnerNode, _other: InnerNode):
 		return current.position
+
+	func release_force(inner: InnerNode, node: Node):
+		var direction = inner.other.position - inner.position
+		node.velocity += 2 * direction
 
 class InnerNode extends RigidBody3D:
 	var prev_pos: Vector3

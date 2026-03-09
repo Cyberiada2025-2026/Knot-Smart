@@ -20,7 +20,7 @@ config/icon="res://icon.svg"
 SceneManager="*res://autoload/scene_manager.gd"
 BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
 BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
-CameraSingleton="*uid://bb7lvkneypequ"
+CameraSetup="*uid://rnx3yu0ofiwg"
 
 [debug_draw_3d]
 

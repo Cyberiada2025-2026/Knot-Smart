@@ -4,24 +4,6 @@ class_name TerrainBlueprint
 var data: Dictionary[Vector2i, TileInfo] = {}
 var world_size: int
 
-enum TileType {EMPTY, ROAD}
-enum PlacementRule { 
-	FLAT,  
-	SLOPE_X, 
-	SLOPE_Z, 
-	BLOCKED,
-}
-
-class TileInfo:
-	var height: float
-	var type: TileType
-	var placement_rule: PlacementRule
-
-	func _init(_h: float = 0.0, _t: TileType = TileType.EMPTY, _p: PlacementRule = PlacementRule.FLAT):
-		self.height = _h
-		self.type = _t
-		self.placement_rule = _p
-
 func _init(declared_map_size: int = 16) -> void:
 	self.world_size = declared_map_size
 	generate()

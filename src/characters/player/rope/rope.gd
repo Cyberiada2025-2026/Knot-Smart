@@ -1,9 +1,6 @@
 class_name Rope
 extends Node3D
 
-var node1
-var node2
-
 const MIN_LENGTH = 1.0
 const MAX_LENGTH = 32.0
 const COLLISION_RADIUS = 0.01
@@ -15,44 +12,31 @@ const COLLISION_BUFFER = 1.0
 
 var rope_vfx = preload("uid://djqe8wkjmmn8n")
 
-var inner1: InnerNode
-var inner2: InnerNode
 var vfx: RopeVFX
 var rope: Area3D
 var collision_shape: CapsuleShape3D
 
-var pt1: Vector3
-var pt2: Vector3
+var node: Array[Node]
+var inner: Array[InnerNode]
+var pos: Array[Vector3]
 
-func _init(p1: Vector3, obj1: Node3D, p2: Vector3, obj2: Node3D) -> void:
-	pt1 = p1
-	pt2 = p2
-	node1 = obj1
-	node2 = obj2
+func _init(nodes: Array[Node], positions: Array[Vector3]) -> void:
+	self.node = nodes
+	self.inner = []
+	self.pos = positions
 
-	var strategy
-	match node1.get_class():
-		"RigidBody3D":
-			strategy = BasicDynamicStrategy.new(MIN_LENGTH)
-		"CharacterBody3D":
-			strategy = BasicKinematicStrategy.new()
-		_:
-			strategy = BasicStaticStrategy.new()
-	inner1 = InnerNode.new(self, strategy, pt1)
+	for i in range(2):
+		var strategy
+		match node[i].get_class():
+			"RigidBody3D":
+				strategy = BasicDynamicStrategy.new(MIN_LENGTH)
+			"CharacterBody3D":
+				strategy = BasicKinematicStrategy.new()
+			_:
+				strategy = BasicStaticStrategy.new()
+		inner.append(InnerNode.new(self, strategy, pos[i]))
 
-	add_child(inner1)
-
-	var strategy2
-	match node2.get_class():
-		"RigidBody3D":
-			strategy2 = BasicDynamicStrategy.new(MIN_LENGTH)
-		"CharacterBody3D":
-			strategy2 = BasicKinematicStrategy.new()
-		_:
-			strategy2 = BasicStaticStrategy.new()
-	
-	inner2 = InnerNode.new(self, strategy2, pt2)
-	add_child(inner2)
+		add_child(inner[i])
 
 func init_rope_mesh():
 	vfx = rope_vfx.instantiate()
@@ -61,7 +45,7 @@ func init_rope_mesh():
 	rope.add_child(vfx)
 
 func init_rope_collider():
-	var direction = pt2 - pt1
+	var direction = pos[1] - pos[0]
 	
 	collision_shape = CapsuleShape3D.new()
 	collision_shape.radius = COLLISION_RADIUS
@@ -82,37 +66,37 @@ func finish():
 	queue_free()
 
 func update_rope():
-	var direction = inner2.position - inner1.position
+	var direction = inner[1].position - inner[0].position
 	var length = direction.length()
 	vfx.set_length(length)
 	if COLLISION_BUFFER < length:
 		collision_shape.height = length - COLLISION_BUFFER
-	rope.look_at_from_position(inner1.position + direction/2, inner1.position)
+	rope.look_at_from_position(inner[0].position + direction/2, inner[0].position)
 
 func _ready() -> void:
-	inner1.bind(node1, inner2)
-	inner2.bind(node2, inner1)
+	inner[0].bind(node[0], inner[1])
+	inner[1].bind(node[1], inner[0])
 
 	rope = Area3D.new()
 	init_rope_mesh()
 	init_rope_collider()
-	var direction = pt2 - pt1
-	rope.look_at_from_position(pt1 + direction/2, pt1)
+	var direction = pos[1] - pos[0]
+	rope.look_at_from_position(pos[0] + direction/2, pos[0])
 	rope.body_entered.connect(_on_area_entered)
 	add_child(rope)
 
 func apply_forces() -> void:
-	inner1.strategy.release_force(inner1, node1)
-	inner2.strategy.release_force(inner2, node2)
+	for i in range(2):
+		inner[i].strategy.release_force(inner[i], node[i])
 
 func _physics_process(_delta: float) -> void:
-	var difference = inner2.position - inner1.position
+	var difference = inner[1].position - inner[0].position
 
 	if difference.length_squared() > MAX_LENGTH:
 		finish()
 
-	if inner1.strategy.get_strategy_type() == StrategyType.STATIC \
-		and inner2.strategy.get_strategy_type() == StrategyType.STATIC:
+	if inner[0].strategy.get_strategy_type() == StrategyType.STATIC \
+		and inner[1].strategy.get_strategy_type() == StrategyType.STATIC:
 		finish()
 
 	update_rope()

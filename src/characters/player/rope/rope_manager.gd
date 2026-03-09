@@ -1,16 +1,15 @@
 class_name RopeManager
 extends Node3D
 
-@export var rope_params = RopeParams.new()
-
 enum State { SELECT_FIRST, SELECT_SECOND }
-var state = State.SELECT_FIRST
-
-var selected_objects: Array[Node] = []
-var markers: Array[MeshInstance3D] = []
 
 const RADIUS = 0.1
 
+@export var rope_params = RopeParams.new()
+
+var state = State.SELECT_FIRST
+var selected_objects: Array[Node] = []
+var markers: Array[MeshInstance3D] = []
 var sphere: MeshInstance3D
 
 

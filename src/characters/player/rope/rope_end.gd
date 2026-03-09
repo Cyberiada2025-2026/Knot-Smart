@@ -1,12 +1,12 @@
 class_name RopeEnd
 extends RigidBody3D
 
+enum StrategyType { STATIC, DYNAMIC, KINEMATIC }
+
 var prev_pos: Vector3
 var params: RopeParams
 var other: RopeEnd
 var strategy: Node
-
-enum StrategyType { STATIC, DYNAMIC, KINEMATIC }
 
 
 func _init(rope_params, equilibrium_strategy, pos) -> void:

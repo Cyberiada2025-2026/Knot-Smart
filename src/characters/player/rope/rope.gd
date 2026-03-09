@@ -1,14 +1,7 @@
 class_name Rope
 extends Node3D
 
-const MIN_LENGTH = 1.0
-const MAX_LENGTH = 32.0
-const COLLISION_RADIUS = 0.01
-const COLLISION_BUFFER = 1.0
-
-@export var spring_constant = 5.0
-@export var damping = 0.5
-@export var mass = 1.0
+var params: RopeParams
 
 var rope_vfx = preload("uid://djqe8wkjmmn8n")
 
@@ -20,7 +13,8 @@ var node: Array[Node]
 var inner: Array[InnerNode]
 var pos: Array[Vector3]
 
-func _init(nodes: Array[Node], positions: Array[Vector3]) -> void:
+func _init(rope_params: RopeParams, nodes: Array[Node], positions: Array[Vector3]) -> void:
+	self.params = rope_params
 	self.node = nodes
 	self.inner = []
 	self.pos = positions
@@ -29,18 +23,18 @@ func _init(nodes: Array[Node], positions: Array[Vector3]) -> void:
 		var strategy
 		match node[i].get_class():
 			"RigidBody3D":
-				strategy = BasicDynamicStrategy.new(MIN_LENGTH)
+				strategy = BasicDynamicStrategy.new(params.min_rope_length)
 			"CharacterBody3D":
 				strategy = BasicKinematicStrategy.new()
 			_:
 				strategy = BasicStaticStrategy.new()
-		inner.append(InnerNode.new(self, strategy, pos[i]))
+		inner.append(InnerNode.new(self.params, strategy, pos[i]))
 
 		add_child(inner[i])
 
 func init_rope_mesh():
 	vfx = rope_vfx.instantiate()
-	vfx.start(MIN_LENGTH)
+	vfx.start(params.min_rope_length)
 	vfx.rotate_x(-PI/2)
 	rope.add_child(vfx)
 
@@ -48,10 +42,10 @@ func init_rope_collider():
 	var direction = pos[1] - pos[0]
 	
 	collision_shape = CapsuleShape3D.new()
-	collision_shape.radius = COLLISION_RADIUS
+	collision_shape.radius = params.rope_collision_radius
 
-	if COLLISION_BUFFER*COLLISION_BUFFER < direction.length_squared():
-		collision_shape.height = direction.length() - COLLISION_BUFFER
+	if pow(params.rope_collision_buffer, 2) < direction.length_squared():
+		collision_shape.height = direction.length() - params.rope_collision_buffer
 	var collider = CollisionShape3D.new()
 	collider.shape = collision_shape
 	collider.rotate_x(-PI/2)
@@ -69,8 +63,8 @@ func update_rope():
 	var direction = inner[1].position - inner[0].position
 	var length = direction.length()
 	vfx.set_length(length)
-	if COLLISION_BUFFER < length:
-		collision_shape.height = length - COLLISION_BUFFER
+	if params.rope_collision_buffer < length:
+		collision_shape.height = length - params.rope_collision_buffer
 	rope.look_at_from_position(inner[0].position + direction/2, inner[0].position)
 
 func _ready() -> void:
@@ -92,7 +86,7 @@ func apply_forces() -> void:
 func _physics_process(_delta: float) -> void:
 	var difference = inner[1].position - inner[0].position
 
-	if difference.length_squared() > MAX_LENGTH:
+	if difference.length_squared() > params.max_rope_length:
 		finish()
 
 	if inner[0].strategy.get_strategy_type() == StrategyType.STATIC \
@@ -157,14 +151,14 @@ class BasicKinematicStrategy extends Node:
 
 class InnerNode extends RigidBody3D:
 	var prev_pos: Vector3
-	var rope: Rope
+	var params: RopeParams
 	var other: InnerNode
 	var strategy: Node
 
-	func _init(rope_ref, equilibrium_strategy, pos) -> void:
+	func _init(rope_params, equilibrium_strategy, pos) -> void:
 		self.strategy = equilibrium_strategy
 		self.freeze = (get_strategy_type() == StrategyType.STATIC)
-		self.rope = rope_ref
+		self.params = rope_params
 		self.position = pos
 		self.prev_pos = pos
 
@@ -188,10 +182,10 @@ class InnerNode extends RigidBody3D:
 		return spring_accel
 
 	func get_total_accel() -> Vector3:
-		return integrate_accel(rope.spring_constant, rope.damping)
+		return integrate_accel(params.spring_constant, params.damping)
 	
 	func get_hooke_accel() -> Vector3:
-		return integrate_accel(rope.spring_constant, 0)
+		return integrate_accel(params.spring_constant, 0)
 
 	func _physics_process(_delta: float) -> void:
-		apply_force(rope.mass * get_total_accel())
+		apply_force(params.mass * get_total_accel())

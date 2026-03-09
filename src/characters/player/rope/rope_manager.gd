@@ -1,6 +1,7 @@
 class_name RopeManager
 extends Node3D
 
+@export var rope_params = RopeParams.new()
 
 enum State {SELECT_FIRST, SELECT_SECOND}
 var state = State.SELECT_FIRST
@@ -49,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 				var positions: Array[Vector3] = []
 				for marker in markers:
 					positions.append(marker.global_position)
-				var rope = Rope.new(selected_objects, positions)
+				var rope = Rope.new(rope_params, selected_objects, positions)
 				add_child(rope)
 
 				selected_objects = []

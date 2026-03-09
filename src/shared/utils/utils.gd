@@ -14,7 +14,7 @@ enum Axis {
 static func unsafe_raycast_from_screen_pos(
 	ctx: Node3D, position: Vector2, ray_length = 1000.0
 ) -> Dictionary:
-	var camera = CameraSingleton.get_main_camera()
+	var camera = ctx.get_viewport().get_camera_3d()
 	var from = camera.project_ray_origin(position)
 	var normal = camera.project_ray_normal(position)
 	var to = from + normal * ray_length
@@ -29,6 +29,7 @@ static func unsafe_raycast_from_screen_pos(
 ## Unsafe: Has to be called from within _physics_process.
 ## Performs a ray-cast from the center of ctx's viewport
 static func unsafe_raycast_from_screen_center(ctx: Node3D, ray_length = 1000.0) -> Dictionary:
-	var camera = CameraSingleton.get_main_camera()
-	var center_pos = camera.get_viewport().size_2d_override / 2
+	var viewport = ctx.get_viewport()
+	var camera = viewport.get_camera_3d()
+	var center_pos = viewport.size / 2
 	return unsafe_raycast_from_screen_pos(ctx, center_pos, ray_length)

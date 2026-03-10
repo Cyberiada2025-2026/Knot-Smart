@@ -9,9 +9,13 @@ func _init(gen_params: WorldGenerationParams, disp_params: WorldDisplayParams):
 	world_generation_params = gen_params
 	world_display_params = disp_params
 
-func create_chunk_instance(chunk_coord: Vector2i, blueprint: TerrainBlueprint) -> MeshInstance3D:
+func create_chunk_instance(chunk_coord: Vector2i, blueprint: TerrainBlueprint, parent: Node3D) -> MeshInstance3D:
 	var chunk = MeshInstance3D.new()
 	chunk.name = "ChunkX%dZ%d" % [chunk_coord.x, chunk_coord.y]
+
+	# Godot requires to add node to tree before modifying it
+	parent.add_child(chunk)
+	chunk.owner = parent.get_tree().edited_scene_root
 
 	var chunk_unit_size = world_generation_params.chunk_size * world_generation_params.tile_size
 	chunk.global_position = Vector3(chunk_coord.x * chunk_unit_size, 0, chunk_coord.y * chunk_unit_size)

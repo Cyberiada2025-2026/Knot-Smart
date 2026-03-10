@@ -14,7 +14,6 @@ var chunk_unit_size: float:
 	get: return world_generation_params.chunk_size * world_generation_params.tile_size
 
 func clear_inactive_chunks(render_position = null) -> void:
-		
 	if render_position == null:
 		for child in find_children("", "MeshInstance3D"):
 			child.free()
@@ -50,19 +49,14 @@ func generate_chunks(blueprint, render_position = null) -> void:
 			for z in range(start_z, end_z):
 				var coord = Vector2i(x, z)
 				if not active_chunks.has(coord):
-					var chunk_node = chunk_generator.create_chunk_instance(coord, blueprint)
-		
-					add_child(chunk_node)
-					chunk_node.owner = get_tree().edited_scene_root
-					
+					var chunk_node = chunk_generator.create_chunk_instance(coord, blueprint, self)
+										
 					active_chunks[coord] = chunk_node
 					
 	else:
 		for x in world_generation_params.map_size:
 			for z in world_generation_params.map_size:
 				var coord = Vector2i(x, z)
-				var chunk_node = chunk_generator.create_chunk_instance(coord, blueprint)
-				add_child(chunk_node)
-				chunk_node.owner = get_tree().edited_scene_root
+				var chunk_node = chunk_generator.create_chunk_instance(coord, blueprint, self)
 					
 				active_chunks[coord] = chunk_node

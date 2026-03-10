@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://dvtuotksnd2hb"]
 
-[ext_resource type="PackedScene" uid="uid://rnx3yu0ofiwg" path="res://shared/post_processing/camera_setup.tscn" id="1_r2vhj"]
 [ext_resource type="PackedScene" uid="uid://djqe8wkjmmn8n" path="res://shared/rope_vfx/rope_vfx.tscn" id="2_cl5ih"]
 [ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/rope_vfx/rope.gdshader" id="3_agnij"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="4_epstj"]
@@ -120,8 +119,6 @@ size = Vector3(5, 15, 5)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1900288295]
 transform = Transform3D(0.23269954, -0.8061066, 0.5440983, 0.49356812, 0.5799406, 0.64811987, -0.83799845, 0.117732406, 0.53282046, 0, 10.764424, 0)
-
-[node name="HelperCamera" parent="." unique_id=891929691 instance=ExtResource("1_r2vhj")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1172598634]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 9.462083, -1.512742, 5.0268726)

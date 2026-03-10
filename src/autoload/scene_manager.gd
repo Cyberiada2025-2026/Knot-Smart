@@ -26,7 +26,6 @@ func _deferred_goto_scene(path):
 	loading_scene.set_path(path)
 
 	get_viewport().get_camera_3d().scene.add_child(loading_scene)
-	print(get_viewport().get_camera_3d())
 	current_scene = await loading_scene.loaded_instance
 	get_tree().root.add_child(current_scene)
 	current_scene.reparent(get_viewport().get_camera_3d().scene)

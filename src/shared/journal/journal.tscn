@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://cjjffdo72xk1u"]
 
+[ext_resource type="Script" uid="uid://bh62yi751w8jp" path="res://shared/journal/journal.gd" id="1_ohc7l"]
+
 [node name="Journal" type="Node" unique_id=9215286]
+script = ExtResource("1_ohc7l")

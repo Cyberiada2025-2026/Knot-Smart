@@ -1,6 +1,7 @@
 @tool
 extends WorldEnvironment
 
+
 func _ready() -> void:
 	var day_night_cycle = get_tree().get_nodes_in_group("day_night_cycle").get(0) as DayNightCycle
 	if day_night_cycle != null:

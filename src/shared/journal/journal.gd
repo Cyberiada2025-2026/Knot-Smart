@@ -5,6 +5,7 @@ var is_visible: bool = false
 var menu: Node
 var pages: Node
 var button_normal
+var click_number: int = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,12 +36,14 @@ func _on_button_pressed(number: int) -> void:
 	var button: Button = menu.get_child(0).get_child(number)
 	print(number+1)
 	
-	for i in range(pages.get_child_count()):
-		pages.get_child(i).set_visible(false)
-		menu.get_child(0).get_child(i).add_theme_stylebox_override("normal",button_normal)
+	if(pages.get_child(number).visible==false):
+		for i in range(pages.get_child_count()):
+			pages.get_child(i).set_visible(false)
+			menu.get_child(0).get_child(i).add_theme_stylebox_override("normal",button_normal)
+			
+		pages.get_child(number).set_visible(true)
+		button.add_theme_stylebox_override("normal",button.get_theme_stylebox("pressed", "Button"))
 		
-	pages.get_child(number).set_visible(true)
-	button.add_theme_stylebox_override("normal",button.get_theme_stylebox("pressed", "Button"))
-	
-	print(pages.get_child(number).has_focus())
+		pages.get_child(number).get_child(1).set_text(str(click_number))
+		click_number+=1
 	pass # Replace with function body.

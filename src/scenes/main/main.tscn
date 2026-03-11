@@ -41,9 +41,16 @@ script = ExtResource("5_hujxm")
 random_seed = 3
 metadata/_custom_type_script = "uid://uq2ee3iq6x08"
 
+[sub_resource type="Resource" id="Resource_raeie"]
+script = ExtResource("10_th5th")
+name = "Dawn"
+duration = 10.0
+color_lut = ExtResource("12_raeie")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
 [sub_resource type="Resource" id="Resource_nvumn"]
 script = ExtResource("10_th5th")
-name = "Day"
+name = "Daylight"
 duration = 20.0
 color_lut = ExtResource("11_7smn1")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
@@ -166,7 +173,8 @@ start = Vector3i(3, 0, 0)
 size = Vector3i(3, 4, 2)
 
 [node name="DayNightCycle" parent="." unique_id=886767263 instance=ExtResource("9_a8run")]
-times_of_day = Array[ExtResource("10_th5th")]([SubResource("Resource_nvumn"), SubResource("Resource_ou6is"), SubResource("Resource_necax")])
+times_of_day = Array[ExtResource("10_th5th")]([SubResource("Resource_raeie"), SubResource("Resource_nvumn"), SubResource("Resource_ou6is"), SubResource("Resource_necax")])
+seconds_since_start = null
 environment = ExtResource("14_raeie")
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]

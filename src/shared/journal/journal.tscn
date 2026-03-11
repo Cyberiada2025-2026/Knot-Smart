@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bh62yi751w8jp" path="res://shared/journal/journal.gd" id="1_ohc7l"]
 
+[sub_resource type="Theme" id="Theme_ohc7l"]
+
 [node name="Journal" type="Node" unique_id=9215286]
 script = ExtResource("1_ohc7l")
 
@@ -24,10 +26,13 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.3
+focus_mode = 1
+theme = SubResource("Theme_ohc7l")
 
 [node name="Button" type="Button" parent="Journal menu/Button container" unique_id=1085880251]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 3
 text = "1"
 
 [node name="Button2" type="Button" parent="Journal menu/Button container" unique_id=613089513]

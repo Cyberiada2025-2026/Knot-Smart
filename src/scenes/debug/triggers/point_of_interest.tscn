@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c4v5eb3q85mwc"]
+
+[ext_resource type="PackedScene" uid="uid://iuylqk5aiwnv" path="res://shared/point_of_interest/point-of_interest.tscn" id="1_xowle"]
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="2_r707f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r707f"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r707f"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xowle"]
+radius = 0.3
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yp54c"]
+radius = 0.3
+height = 1.8
+
+[node name="PointOfInterest" type="Node3D" unique_id=1254749057]
+
+[node name="10x10 floor" type="StaticBody3D" parent="." unique_id=1735178394]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="10x10 floor" unique_id=764228622]
+shape = SubResource("BoxShape3D_r707f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="10x10 floor" unique_id=685513414]
+mesh = SubResource("BoxMesh_r707f")
+
+[node name="trigger2" type="MeshInstance3D" parent="." unique_id=1352641290]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3404145, 0.9590628, -4.139635)
+mesh = SubResource("CapsuleMesh_xowle")
+
+[node name="PointOfInterest" parent="trigger2" unique_id=1343269529 instance=ExtResource("1_xowle")]
+message = "point of interest: debug object 2"
+
+[node name="trigger1" type="MeshInstance3D" parent="." unique_id=471416370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4707198, 1.4, -3.1927233)
+mesh = SubResource("CapsuleMesh_yp54c")
+
+[node name="PointOfInterest" parent="trigger1" unique_id=278872771 instance=ExtResource("1_xowle")]
+radius = 3.0
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_r707f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90629864, 0)

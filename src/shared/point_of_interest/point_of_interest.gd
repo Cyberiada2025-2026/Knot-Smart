@@ -13,6 +13,7 @@ extends Node
 			visualization_mesh.mesh.radius = radius
 			visualization_mesh.mesh.height = radius * 2
 			
+			
 @export var visualize: bool = true:
 	set(value):
 		visualize = value
@@ -20,3 +21,25 @@ extends Node
 			visualization_mesh.visible = visualize
 			
 			
+@export var trigger_group_name: StringName = "Player"
+
+## message to say after triggering point of interest
+@export_multiline var message: String;
+
+var triggered: bool = false
+
+func is_group_member_nearby() -> bool:
+	if shapecast.is_colliding():
+		for i in range(shapecast.get_collision_count()):
+			var hit: Node3D = shapecast.get_collider(i)
+				
+			# it works, but should be changed
+			if hit.get_parent().name == trigger_group_name:
+				return true
+	return false
+	
+func _physics_process(_delta: float) -> void:
+	if not triggered and is_group_member_nearby():
+		triggered = true
+		print(message)
+		visualization_mesh.visible = false;

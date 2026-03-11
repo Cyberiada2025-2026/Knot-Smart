@@ -24,3 +24,13 @@ Ask yourself:
 - Is it easy to reason what is happening inside your code for others?
 
 If not, then it's probably not easy to debug.
+
+## Making it easy for others to read
+
+> [!NOTE]
+> The fast inverse square root algorithm - an infamous example of an unreadable function
+> ![The fast inverse square root algorithm](img/contribution_guidelines/fast-inverse-square.png)
+
+The code that's easiest for other people to follow is also hardest to write. And because it's obvious to read it's also very hard to estimate how much work was put into it!
+
+Ask yourself - will you be able to understand your code after two months? Will other people understand exactly what's happening at a glance? This is a major topic, and it will be discussed in much more detail in the following sections

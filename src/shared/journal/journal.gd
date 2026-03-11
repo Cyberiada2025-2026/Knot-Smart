@@ -40,7 +40,7 @@ func _on_button_pressed(number: int) -> void:
 		menu.get_child(0).get_child(i).add_theme_stylebox_override("normal",button_normal)
 		
 	pages.get_child(number).set_visible(true)
-	button.add_theme_stylebox_override("normal",button.get_theme_stylebox("press", "Button"))
+	button.add_theme_stylebox_override("normal",button.get_theme_stylebox("pressed", "Button"))
 	
 	print(pages.get_child(number).has_focus())
 	pass # Replace with function body.

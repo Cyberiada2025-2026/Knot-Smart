@@ -4,6 +4,8 @@
 
 [sub_resource type="Theme" id="Theme_ohc7l"]
 
+[sub_resource type="Theme" id="Theme_erk7u"]
+
 [node name="Journal" type="Node" unique_id=9215286]
 script = ExtResource("1_ohc7l")
 
@@ -54,6 +56,7 @@ text = "4"
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+theme = SubResource("Theme_erk7u")
 
 [node name="Page1" type="Control" parent="Journal menu/Page container" unique_id=1508033879]
 anchors_preset = 0

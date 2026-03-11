@@ -3,6 +3,11 @@ extends Node3D
 
 signal camera_rotated(vector: Vector3, angle: float)
 
+enum ViewType {
+	FIRST_PERSON,
+	THIRD_PERSON,
+}
+
 @export_category("camera locations")
 @export var camera: Node3D
 @export var arm: SpringArm3D
@@ -28,7 +33,7 @@ var mouse_relative: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	CameraSetup.reference = camera
+	get_viewport().get_camera_3d().set_reference(camera)
 	rotation_strategy.start()
 	view_strategy.start(self)
 
@@ -83,3 +88,7 @@ func rotate_up_down(angle: float) -> void:
 
 func get_normal() -> Vector3:
 	return get_parent().ground_normal
+
+
+func get_view_type() -> ViewType:
+	return view_strategy.get_view_type()

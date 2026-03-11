@@ -4,15 +4,17 @@ extends Node
 static var constants = preload("res://shared/language_generation/language_constants.json").data
 
 
-func preprocess_string(input_str: String):
+static func _preprocess_string(input_str: String):
 	input_str = input_str.to_lower()
 
 	# swap shortenings for spoken words
 	for key in constants.input_replace:
 		input_str = input_str.replace(key, constants.input_replace[key])
 
-	for chr in [";", "!", "?", "—"]:
+	for chr in [";", "!", "?", "–", "—", "--"]:
 		input_str = input_str.replace(chr, ".")
+		# en-dash, em-dash and double hyphen are considered sentence breaks
+		# hyphen is not
 
 	var sentences = Array(input_str.split(".", false))
 	# Split sentences into arrays of words
@@ -21,7 +23,7 @@ func preprocess_string(input_str: String):
 	return sentences
 
 
-func translate_word(word: String):
+static func _translate_word(word: String):
 	if word in constants.presets:
 		return constants.presets[word]
 
@@ -51,14 +53,14 @@ func translate_word(word: String):
 	return output_word
 
 
-func translate_array(input_array: Array):
+static func _translate_array(input_array: Array):
 	var output_line_array = []
 
 	for sentence in input_array:
 		var output_word_array = []
 
 		for word in sentence:
-			output_word_array.push_back(translate_word(word))
+			output_word_array.push_back(_translate_word(word))
 
 		# joining words into a sentence
 		output_line_array.push_back(output_word_array)
@@ -67,6 +69,6 @@ func translate_array(input_array: Array):
 	return output_line_array
 
 
-func process_dialogue(input_str):
-	var input_array = preprocess_string(input_str)
-	return translate_array(input_array)
+static func process_dialogue(input_str):
+	var input_array = _preprocess_string(input_str)
+	return _translate_array(input_array)

@@ -5,7 +5,7 @@ func _ready() -> void:
 	var dialogues = load("res://scenes/debug/language_generator/dialogues.json").data
 	for scene in dialogues:
 		for line in dialogues[scene]:
-			print(LanguageGenerator.process_dialogue(dialogues[scene].dialogue))
+			print(LanguageGenerator.process_dialogue(line.dialogue))
 
 # In order to use language generator debugger,
 # edit dialogues.json in this folder, then run this scene.

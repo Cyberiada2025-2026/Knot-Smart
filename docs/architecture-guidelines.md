@@ -19,7 +19,10 @@ GDScript, on the other hand, is a language designed primarily for rapid prototyp
 ### The case for GDScript
 While we could use C# in our project the Godot Engine itself was built around GDScript. This is evident both in the documentation and the sheer amound of tutorials for GDScript.
 
-The C# support is still immature - a lot of functions don't have fully idiomatic bindings, use inconsistent naming conventions, and most importantly - **Godot 4 projects doesn't support exporting C#-based projects to the web**. Since web export is a hard requirement for this project, it makes C# a completely non-viable option for us.
+The C# support is still immature - a lot of functions don't have fully idiomatic bindings, use inconsistent naming conventions, and most importantly - **Godot 4 projects don't support exporting C#-based projects to the web**. Since web export is a hard requirement for this project, it makes C# a completely non-viable option for us.
+
+> [!WARNING]
+> Before suggesting a new plugin make sure that it provides a GDScript backend, or can be disabled for export (e.g. - [Debug Draw](https://github.com/DmitriySalnikov/godot_debug_draw_3d))
 
 ## Component-based design
 

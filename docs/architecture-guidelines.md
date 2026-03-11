@@ -2,10 +2,10 @@
 The Contribution Guidelines document described *what* we want to achieve. This document describes *how* to do it.
 
 ## Godot Fundamentals
-Before discussing the main architectural decisions we need to provide more context. The main abstraction that the Godot engine provides is the **scene tree** composed of **nodes**.
+Before discussing the main architectural decisions we need to provide more context. If you're already proficient in Godot programming feel free to skip this section.
 
 ### Scenes
-The "scene" is a misnomer - the main purpose of that structure is to serialize common nodes and their children to the disk for reuse later. These scenes can be then be **composed** with each other.
+The main abstraction that the Godot engine provides is the **scene tree** composed of **nodes**. The "scene" is a misnomer - the main purpose of that structure is to serialize common nodes and their children to the disk for reuse later. These scenes can be then be **composed** with each other.
 
 > [!NOTE]
 > Godot is centered around separating common node structures into **reusable components** in the form of scenes and scripted nodes. This is all powered by **composition**.

@@ -1,5 +1,6 @@
 extends Node
 
+
 func _ready() -> void:
 	var dialogues = load("res://scenes/debug/language_generator/dialogues.json").data
 	for scene in dialogues:
@@ -10,7 +11,7 @@ func _ready() -> void:
 # edit dialogues.json in this folder, then run this scene.
 # The output will appear in the output feed, where each line will give
 # a table of syllables, grouped into words, grouped into sentences.
-# 
+#
 # The format of the JSON file acts as a draft for the target
 # dialogue storage format and is as following:
 # {

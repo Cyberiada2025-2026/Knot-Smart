@@ -28,7 +28,7 @@ var mouse_relative: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	CameraSingleton.get_instance().reference = camera
+	get_viewport().get_camera_3d().set_reference(camera)
 	rotation_strategy.start()
 	view_strategy.start(self)
 

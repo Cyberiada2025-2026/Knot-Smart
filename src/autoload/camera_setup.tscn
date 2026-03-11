@@ -1,30 +1,31 @@
 [gd_scene format=3 uid="uid://rnx3yu0ofiwg"]
 
-[ext_resource type="Script" uid="uid://b2qmm8ipalct6" path="res://shared/camera/camera_replacer.gd" id="1_3nir4"]
-[ext_resource type="Environment" uid="uid://db3d7co0oblxp" path="res://shared/post_processing/environment.tres" id="1_rfpeg"]
-[ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://shared/post_processing/shaders/dithering.gdshader" id="2_i5s75"]
-[ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://shared/post_processing/shaders/crt.gdshader" id="3_lwxwa"]
+[ext_resource type="Script" uid="uid://b2qmm8ipalct6" path="res://shared/camera/camera_helper.gd" id="1_5jark"]
+[ext_resource type="Environment" uid="uid://db3d7co0oblxp" path="res://shared/post_processing/environment.tres" id="2_u1xjy"]
+[ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://shared/post_processing/shaders/dithering.gdshader" id="3_1y1hh"]
+[ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://shared/post_processing/shaders/crt.gdshader" id="4_ka213"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xylyt"]
-shader = ExtResource("2_i5s75")
+shader = ExtResource("3_1y1hh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tvswt"]
-shader = ExtResource("3_lwxwa")
+shader = ExtResource("4_ka213")
 shader_parameter/hard_scan = -4.0
-shader_parameter/hard_pix = -2.5
+shader_parameter/hard_pix = -2.9999996675
 shader_parameter/warp_x = 0.03125
 shader_parameter/warp_y = 0.041667
 shader_parameter/mask_dark = 0.75
 shader_parameter/mask_light = 1.75
 
-[node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera")]
+[node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera", "scene")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 524288
 projection = 1
 current = true
 far = 0.1
-script = ExtResource("1_3nir4")
+script = ExtResource("1_5jark")
 camera = NodePath("Control/SubViewportContainer/SubViewport/MainCamera")
+scene = NodePath("Control/SubViewportContainer/SubViewport/MainCamera/MainScene")
 
 [node name="Control" type="Control" parent="." unique_id=1065790436]
 light_mask = 0
@@ -40,20 +41,19 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Control" unique_id=1778585895]
+light_mask = 524288
+visibility_layer = 524288
 texture_filter = 1
 texture_repeat = 1
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 320.0
+offset_bottom = 240.0
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer" unique_id=917133895]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(1440, 1080)
+size = Vector2i(320, 240)
 size_2d_override = Vector2i(320, 240)
 size_2d_override_stretch = true
 render_target_update_mode = 4
@@ -61,21 +61,36 @@ render_target_update_mode = 4
 [node name="MainCamera" type="Camera3D" parent="Control/SubViewportContainer/SubViewport" unique_id=675698684]
 transform = Transform3D(0.9914175, -2.231977e-08, -0.1307338, 0.053353444, 0.91293395, 0.40460476, 0.11935132, -0.40810734, 0.90509874, -3.765843, 8.939763, 12.39052)
 cull_mask = 524287
-environment = ExtResource("1_rfpeg")
+environment = ExtResource("2_u1xjy")
+
+[node name="MainScene" type="Control" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=1610041003]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=2005476111]
+visibility_layer = 1048575
 z_index = 4096
 z_as_relative = false
+texture_filter = 1
 material = SubResource("ShaderMaterial_xylyt")
-offset_right = 320.0
-offset_bottom = 240.0
-mouse_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="CRT" type="ColorRect" parent="Control" unique_id=1296600594]
-visibility_layer = 524288
+visibility_layer = 1048575
 z_index = 4096
 z_as_relative = false
+texture_filter = 1
+texture_repeat = 1
 material = SubResource("ShaderMaterial_tvswt")
 layout_mode = 1
 anchors_preset = 15
@@ -83,5 +98,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true

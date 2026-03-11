@@ -50,3 +50,17 @@ Does your solution force others to:
 - Structure their nodes in a specific way?
 
 Then it's probably not a good fit for this project.
+
+## Not breaking the repository state
+> [!CAUTION]
+> Don't let any errors into the main repo!
+>
+> ![A typical Godot error](img/contribution_guidelines/godot-error.png)
+
+This one is very simple:
+- Does the main project crash?
+- Do any of the scenes crash?
+- Are any additional warnings being emitted?
+- Are there any unnecessary debug print statements?
+
+If yes - fix this.

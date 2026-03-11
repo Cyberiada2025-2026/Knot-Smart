@@ -9,4 +9,3 @@ fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.5636259, 0.5636254, 0.5636255, 1)
 fog_density = 1.0
-adjustment_enabled = true

@@ -13,7 +13,6 @@
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
 [ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="12_raeie"]
 [ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="13_hxu8e"]
-[ext_resource type="Environment" uid="uid://db3d7co0oblxp" path="res://shared/post_processing/environment.tres" id="14_raeie"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="15_hxu8e"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
@@ -172,10 +171,10 @@ script = ExtResource("6_ow5a4")
 start = Vector3i(3, 0, 0)
 size = Vector3i(3, 4, 2)
 
-[node name="DayNightCycle" parent="." unique_id=886767263 instance=ExtResource("9_a8run")]
+[node name="DayNightCycle" parent="." unique_id=886767263 groups=["day_night_cycle"] instance=ExtResource("9_a8run")]
 times_of_day = Array[ExtResource("10_th5th")]([SubResource("Resource_raeie"), SubResource("Resource_nvumn"), SubResource("Resource_ou6is"), SubResource("Resource_necax")])
-seconds_since_start = null
-environment = ExtResource("14_raeie")
+seconds_since_start = 8.32
+debug_log = true
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]
 

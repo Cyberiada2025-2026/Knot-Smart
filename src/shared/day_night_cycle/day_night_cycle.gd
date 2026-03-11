@@ -1,55 +1,65 @@
 @tool
+class_name DayNightCycle
 extends Node3D
+
+
+signal time_of_day_started(current: TimeOfDay)
+signal new_day_started(current: int)
+
 
 ## Times of day that constitute one cycle
 @export var times_of_day: Array[TimeOfDay] = []:
 	set(value):
 		times_of_day = value
-		day_duration = times_of_day.reduce(func(a: float, t: TimeOfDay): return a + t.duration, 0.0) 
+		day_duration = times_of_day.reduce(func(a: float, t: TimeOfDay): return a + t.duration, 0.0)
 
 ## Duration in seconds from beginning of day zero
 @export var seconds_since_start: float = 0.0:
 	set(value):
-		var last_tod: TimeOfDay = get_current_time_of_day()
-		var last_day: int = get_current_day()
-
 		seconds_since_start = value
+		current_day = seconds_to_day(seconds_since_start)
+		current_time_of_day = seconds_to_time_of_day(seconds_since_start)
 
-		var curr_tod: TimeOfDay = get_current_time_of_day()
-		var curr_day: int = get_current_day()
+@export var debug_log: bool = false
 
-		if curr_tod != last_tod:
-			time_of_day_started.emit(curr_tod)
-		if curr_day != last_day:
-			new_day_started.emit(curr_day)
+var day_duration: float
 
-@export var environment: Environment
+var current_time_of_day: TimeOfDay:
+	set(value):
+		if current_time_of_day == value:
+			return
+		current_time_of_day = value
+		time_of_day_started.emit(current_time_of_day)
+		if debug_log:
+			print(current_time_of_day.name, " time of day started")
 
-var day_duration: float 
+var current_day: int = -1:
+	set(value):
+		if current_day == value:
+			return
+		current_day = value
+		new_day_started.emit(current_day)
+		if debug_log:
+			print("Day ", current_day, " started")
 
 
-func get_current_day() -> int:
-	return floor(seconds_since_start / day_duration)
+func seconds_to_day(seconds: float) -> int:
+	return floor(seconds / day_duration)
 
-func get_current_time() -> float:
-	return fmod(seconds_since_start, day_duration)
 
-func get_current_time_of_day() -> TimeOfDay:
-	var time = get_current_time()
+func seconds_to_time(seconds: float) -> float:
+	return fmod(seconds, day_duration)
+
+
+func seconds_to_time_of_day(seconds: float) -> TimeOfDay:
+	var time = seconds_to_time(seconds)
 	for tod in times_of_day:
+		time -= tod.duration
 		if time <= 0:
 			return tod
-		time -= tod.duration
 	return times_of_day[-1]
-		
 
-signal time_of_day_started(current: TimeOfDay)
-signal new_day_started(curr_day: int)
 
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint():
 		seconds_since_start += delta
-
-func _ready() -> void:
-	environment.adjustment_enabled = true
-

@@ -14,9 +14,10 @@ material = SubResource("StandardMaterial3D_c3sj4")
 radius = 2.0
 height = 4.0
 
-[node name="PointOfInterest" type="Node" unique_id=1343269529]
+[node name="PointOfInterest" type="Node3D" unique_id=688953885]
 script = ExtResource("1_c3sj4")
-radius = 2
+radius = 2.0
+message = "point of interest: debug"
 
 [node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=1801020081]
 shape = SubResource("SphereShape3D_lq35b")

@@ -21,7 +21,7 @@ func get_strategy_type():
 	return self.strategy.get_strategy_type()
 
 
-func bind(obj, other_node) -> void:
+func pin(obj, other_node) -> void:
 	self.other = other_node
 	var joint = PinJoint3D.new()
 	joint.node_a = get_path()
@@ -29,6 +29,8 @@ func bind(obj, other_node) -> void:
 	add_child(joint)
 
 
+## [param k]: Spring constant
+## [param v]: Spring damping
 func integrate_accel(k, b) -> Vector3:
 	var v = linear_velocity
 	var equilibrium = strategy.get_equilibrium(self, other)

@@ -33,7 +33,7 @@ func _physics_process(_delta: float) -> void:
 	if result.is_empty():
 		return
 
-	sphere.position = result["position"]
+	sphere.position = result.position
 	sphere.show()
 
 	match state:

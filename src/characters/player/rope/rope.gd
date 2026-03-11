@@ -75,8 +75,8 @@ func update_rope():
 
 
 func _ready() -> void:
-	end[0].bind(node[0], end[1])
-	end[1].bind(node[1], end[0])
+	end[0].pin(node[0], end[1])
+	end[1].pin(node[1], end[0])
 
 	rope = Area3D.new()
 	init_rope_mesh()
@@ -93,9 +93,7 @@ func apply_forces() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var difference = end[1].position - end[0].position
-
-	if difference.length_squared() > params.max_rope_length:
+	if end[0].position.distance_squared_to(end[1].position) > pow(params.max_rope_length, 2):
 		finish()
 
 	if (

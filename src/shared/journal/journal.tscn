@@ -5,13 +5,14 @@
 [node name="Journal" type="Node" unique_id=9215286]
 script = ExtResource("1_ohc7l")
 
-[node name="Container" type="Control" parent="." unique_id=55202571]
+[node name="Journal menu" type="Control" parent="." unique_id=55202571]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container" unique_id=213378617]
+[node name="Button container" type="VBoxContainer" parent="Journal menu" unique_id=213378617]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -24,27 +25,130 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.3
 
-[node name="Button" type="Button" parent="Container/VBoxContainer" unique_id=1085880251]
+[node name="Button" type="Button" parent="Journal menu/Button container" unique_id=1085880251]
 layout_mode = 2
 size_flags_vertical = 3
 text = "1"
 
-[node name="Button2" type="Button" parent="Container/VBoxContainer" unique_id=613089513]
+[node name="Button2" type="Button" parent="Journal menu/Button container" unique_id=613089513]
 layout_mode = 2
 size_flags_vertical = 3
 text = "2"
 
-[node name="Button3" type="Button" parent="Container/VBoxContainer" unique_id=106492528]
+[node name="Button3" type="Button" parent="Journal menu/Button container" unique_id=106492528]
 layout_mode = 2
 size_flags_vertical = 3
 text = "3"
 
-[node name="Button4" type="Button" parent="Container/VBoxContainer" unique_id=1373959411]
+[node name="Button4" type="Button" parent="Journal menu/Button container" unique_id=1373959411]
 layout_mode = 2
 size_flags_vertical = 3
 text = "4"
 
-[connection signal="pressed" from="Container/VBoxContainer/Button" to="." method="_on_button1_pressed"]
-[connection signal="pressed" from="Container/VBoxContainer/Button2" to="." method="_on_button2_pressed"]
-[connection signal="pressed" from="Container/VBoxContainer/Button3" to="." method="_on_button3_pressed"]
-[connection signal="pressed" from="Container/VBoxContainer/Button4" to="." method="_on_button4_pressed"]
+[node name="Page container" type="Control" parent="Journal menu" unique_id=407790118]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Page1" type="Control" parent="Journal menu/Page container" unique_id=1508033879]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Journal menu/Page container/Page1" unique_id=478179113]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 22.0
+offset_right = 294.0
+offset_bottom = 224.0
+color = Color(0.7411765, 1, 1, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Journal menu/Page container/Page1" unique_id=800165442]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 40.0
+offset_right = 226.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0.17499474, 0.1586524, 0.3753977, 1)
+theme_override_colors/font_outline_color = Color(0.6646675, 0.36019012, 0.6474189, 1)
+text = "jeden"
+
+[node name="Page2" type="Control" parent="Journal menu/Page container" unique_id=644502999]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Journal menu/Page container/Page2" unique_id=100682665]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 22.0
+offset_right = 294.0
+offset_bottom = 224.0
+color = Color(0.99607843, 0.7019608, 1, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Journal menu/Page container/Page2" unique_id=2045687192]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 40.0
+offset_right = 226.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0.17499474, 0.1586524, 0.3753977, 1)
+theme_override_colors/font_outline_color = Color(0.6646675, 0.36019012, 0.6474189, 1)
+text = "dwa
+"
+
+[node name="Page3" type="Control" parent="Journal menu/Page container" unique_id=739074441]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Journal menu/Page container/Page3" unique_id=1089503335]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 22.0
+offset_right = 294.0
+offset_bottom = 224.0
+color = Color(1, 1, 0.7294118, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Journal menu/Page container/Page3" unique_id=424684126]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 40.0
+offset_right = 226.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0.17499474, 0.1586524, 0.3753977, 1)
+theme_override_colors/font_outline_color = Color(0.6646675, 0.36019012, 0.6474189, 1)
+text = "trzy
+"
+
+[node name="Page4" type="Control" parent="Journal menu/Page container" unique_id=1999210061]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Journal menu/Page container/Page4" unique_id=649860566]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 22.0
+offset_right = 294.0
+offset_bottom = 224.0
+color = Color(0.77254903, 1, 0.81960785, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Journal menu/Page container/Page4" unique_id=626828864]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 40.0
+offset_right = 226.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0.17499474, 0.1586524, 0.3753977, 1)
+theme_override_colors/font_outline_color = Color(0.6646675, 0.36019012, 0.6474189, 1)
+text = "cztery
+"
+
+[connection signal="pressed" from="Journal menu/Button container/Button" to="." method="_on_button_pressed" binds= [0]]
+[connection signal="pressed" from="Journal menu/Button container/Button2" to="." method="_on_button_pressed" binds= [1]]
+[connection signal="pressed" from="Journal menu/Button container/Button3" to="." method="_on_button_pressed" binds= [2]]
+[connection signal="pressed" from="Journal menu/Button container/Button4" to="." method="_on_button_pressed" binds= [3]]

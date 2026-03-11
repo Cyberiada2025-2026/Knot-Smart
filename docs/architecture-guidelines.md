@@ -46,3 +46,13 @@ This is an actual valid use-case since duck typing erases types. However - enabl
 
 > [!IMPORTANT]
 > Banning inheritance forces us to rethink our problems. That is - instead of thinking in terms of class hierarchies we have to ask ourselves how to decompose these problems into different nodes.
+
+## Common design patterns
+Although we ban inheritance the same can't be said about OOP design patterns in general. In particular - if you are struggling with decomposing your problem into nodes the following pattens can greatly help you
+- [Composite](https://refactoring.guru/design-patterns/composite) - the pattern that defines the whole scene tree. This is how it works under the hood.
+- [Singleton](https://refactoring.guru/design-patterns/singleton) - allows you to define a global entity, directly maps to [Autoloads](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html) in Godot
+- [Observer](https://refactoring.guru/design-patterns/observer) - allows you to connect handler functions to node events, directly maps to [signals](https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html) in Godot
+- [Strategy](https://www.gdquest.com/tutorial/godot/design-patterns/strategy/) - allows you to separate handler functions into separate nodes, then dynamically swap between them at runtime 
+- [Finite State Machine](https://www.gdquest.com/tutorial/godot/design-patterns/finite-state-machine/) - allows you to turn code handling a sequence of events into a series of nodes
+
+Check out [Game Programming Patterns](https://gameprogrammingpatterns.com/contents.html) for more useful design patterns.

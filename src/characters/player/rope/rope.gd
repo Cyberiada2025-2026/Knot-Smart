@@ -97,8 +97,8 @@ func _physics_process(_delta: float) -> void:
 		finish()
 
 	if (
-		end[0].strategy.get_strategy_type() == RopeEnd.StrategyType.STATIC
-		and end[1].strategy.get_strategy_type() == RopeEnd.StrategyType.STATIC
+		end[0].get_strategy_type() == RopeEnd.StrategyType.STATIC
+		and end[1].get_strategy_type() == RopeEnd.StrategyType.STATIC
 	):
 		finish()
 

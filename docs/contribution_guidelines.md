@@ -43,3 +43,10 @@ This is point is hard to evaluate without prior experience, especially since eve
 - If this were shipped with Godot by default would it fit our would it stick out?
 
 Trace the steps you took to integrate your solution with the main scene. If you notice that you can simplify some steps - do that.
+
+## Not forcing anyone to change their workflows unnecessarily
+Does your solution force others to:
+- Write future code in a specific way?
+- Structure their nodes in a specific way?
+
+Then it's probably not a good fit for this project.

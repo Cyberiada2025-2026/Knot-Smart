@@ -11,9 +11,13 @@ func start(camera: PlayerCamera) -> void:
 
 
 func change_view_to(camera: PlayerCamera) -> void:
-	camera.get_parent().hide()
+	camera.get_node("../PlayerPhysics/PlayerModel").hide()
 	camera.arm_length = 0.0
 
 
 func zoom(_camera: PlayerCamera, _delta: float) -> void:
 	pass
+
+
+func get_view_type() -> PlayerCamera.ViewType:
+	return PlayerCamera.ViewType.FIRST_PERSON

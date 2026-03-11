@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dcctb4kbsvm02"]
+
+[ext_resource type="Script" uid="uid://vmsa45hhsk3r" path="res://scenes/debug/language_generator/language_generation_test.gd" id="1_yk4hw"]
+
+[node name="Debug_tscn" type="Node" unique_id=797911006]
+script = ExtResource("1_yk4hw")

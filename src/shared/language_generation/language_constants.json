@@ -5,5 +5,11 @@
 		"mać": ["zip"],
 		"do": ["zip"],
 		"widzenia": ["zop"]
+	},
+	"input_replace": {
+		"mr.": "mister",
+		"mrs.": "mistress",
+		"etc.": "and so on",
+		"itp.": "i tak dalej"
 	}
 }

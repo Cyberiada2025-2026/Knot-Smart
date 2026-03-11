@@ -3,23 +3,22 @@ extends Node
 
 static var constants = preload("res://shared/language_generation/language_constants.json").data
 
-static var regex_sentence = RegEx.create_from_string("(?:(?:\\p{Z}|\\p{P})?[\\p{L}\\p{N}\\p{S}])+")
-static var regex_word = RegEx.create_from_string("\\p{L}+")
-
-
 func preprocess_string(input_str: String):
-	var output = []
 	input_str = input_str.to_lower()
-
-	for sentence in regex_sentence.search_all(input_str):
-		var sentence_output = []
-		for word in regex_word.search_all(sentence.get_string()):
-			sentence_output.push_back(word.get_string())
-		output.push_back(sentence_output)
-
-	return output
-
-
+	
+	# swap shortenings for spoken words
+	for key in constants.input_replace:
+		input_str = input_str.replace(key, constants.input_replace[key])
+	
+	for chr in [";", "!", "?", "—"]:
+		input_str = input_str.replace(chr, ".")
+	
+	var sentences = Array(input_str.split(".", false))
+	# Split sentences into arrays of words
+	sentences = sentences.map(func(sentence): return sentence.split(" ", false))
+	
+	return sentences
+	
 func translate_word(word: String):
 	if word in constants.presets:
 		return constants.presets[word]
@@ -51,6 +50,7 @@ func translate_word(word: String):
 
 
 func translate_array(input_array: Array):
+	
 	var output_line_array = []
 
 	for sentence in input_array:
@@ -69,14 +69,3 @@ func translate_array(input_array: Array):
 func process_dialogue(input_str):
 	var input_array = preprocess_string(input_str)
 	return translate_array(input_array)
-
-
-func _ready() -> void:
-	print(constants)
-
-	var dialogue = "This can't be... there's no way that's true! Mr. Smith is dead!"
-	print(dialogue)
-
-	var translation = process_dialogue(dialogue)
-	for sentence in translation:
-		print(sentence)

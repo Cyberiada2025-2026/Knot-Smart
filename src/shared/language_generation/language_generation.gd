@@ -3,22 +3,24 @@ extends Node
 
 static var constants = preload("res://shared/language_generation/language_constants.json").data
 
+
 func preprocess_string(input_str: String):
 	input_str = input_str.to_lower()
-	
+
 	# swap shortenings for spoken words
 	for key in constants.input_replace:
 		input_str = input_str.replace(key, constants.input_replace[key])
-	
+
 	for chr in [";", "!", "?", "—"]:
 		input_str = input_str.replace(chr, ".")
-	
+
 	var sentences = Array(input_str.split(".", false))
 	# Split sentences into arrays of words
 	sentences = sentences.map(func(sentence): return sentence.split(" ", false))
-	
+
 	return sentences
-	
+
+
 func translate_word(word: String):
 	if word in constants.presets:
 		return constants.presets[word]
@@ -50,7 +52,6 @@ func translate_word(word: String):
 
 
 func translate_array(input_array: Array):
-	
 	var output_line_array = []
 
 	for sentence in input_array:

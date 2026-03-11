@@ -8,10 +8,6 @@
 
 config_version=5
 
-[animation]
-
-compatibility/default_parent_skeleton_in_mesh_instance_3d=true
-
 [application]
 
 config/name="Knot Smart"
@@ -24,7 +20,7 @@ config/icon="res://icon.svg"
 SceneManager="*res://autoload/scene_manager.gd"
 BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
 BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
-CameraSetup="*res://shared/post_processing/camera_setup.tscn"
+CameraSetup="*uid://rnx3yu0ofiwg"
 
 [debug_draw_3d]
 
@@ -32,9 +28,12 @@ settings/addon_root_folder="res://addons/debug_draw_3d"
 
 [display]
 
-window/size/viewport_width=1440
-window/size/viewport_height=1080
-window/stretch/mode="viewport"
+window/size/viewport_width=320
+window/size/viewport_height=240
+window/size/window_width_override=1280
+window/size/window_height_override=960
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
@@ -131,6 +130,11 @@ left_mouse={
 ]
 }
 
+[internationalization]
+
+locale/vsync/vsync_mode=1
+locale/stretch/scale_mode="fractional"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -139,3 +143,7 @@ left_mouse={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=true
+textures/decals/filter=0
+textures/light_projectors/filter=0
+2d/snap/snap_2d_transforms_to_pixel=true

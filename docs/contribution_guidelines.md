@@ -36,13 +36,14 @@ The code that's easiest for other people to follow is also hardest to write. And
 Ask yourself - will you be able to understand your code after two months? Will other people understand exactly what's happening at a glance? This is a major topic, and it will be discussed in much more detail in the following sections
 
 ## Making it easy for others to use
-This is point is hard to evaluate without prior experience, especially since everything we do is subjective. This is best caught during code reviews. However, you can ask yourself:
-- Did I export enough variables my users to modify?
+This point is hard to evaluate without prior experience, especially since everything we do is subjective. This is best caught during code reviews. However, you can ask yourself:
+- Did I export enough variables for my users to modify?
 - Is it easy to integrate my node with the scene tree?
 - Are the results visible immediately?
-- If this were shipped with Godot by default would it fit our would it stick out?
+- Do the end users know they're using your node wrong?
+- If this were shipped with Godot by default would it fit or would it stick out?
 
-Trace the steps you took to integrate your solution with the main scene. If you notice that you can simplify some steps - do that.
+Trace the steps you took to integrate your solution with the main scene. If you notice that you can simplify some of them - do that.
 
 ## Not forcing anyone to change their workflows unnecessarily
 Does your solution force others to:

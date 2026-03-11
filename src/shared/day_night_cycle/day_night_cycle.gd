@@ -3,15 +3,15 @@ class_name DayNightCycle
 extends Node3D
 
 
-signal time_of_day_started(current: TimeOfDay)
-signal new_day_started(current: int)
+signal time_of_day_changed(current: TimeOfDay)
+signal day_changed(current: int)
 
 
 ## Times of day that constitute one cycle
 @export var times_of_day: Array[TimeOfDay] = []:
 	set(value):
 		times_of_day = value
-		day_duration = times_of_day.reduce(func(a: float, t: TimeOfDay): return a + t.duration, 0.0)
+		day_duration = times_of_day.reduce(func(a: float, t: TimeOfDay): return a + t.duration if t != null else a, 0.0)
 
 ## Duration in seconds from beginning of day zero
 @export var seconds_since_start: float = 0.0:
@@ -29,7 +29,7 @@ var current_time_of_day: TimeOfDay:
 		if current_time_of_day == value:
 			return
 		current_time_of_day = value
-		time_of_day_started.emit(current_time_of_day)
+		time_of_day_changed.emit(current_time_of_day)
 		if debug_log:
 			print(current_time_of_day.name, " time of day started")
 
@@ -38,7 +38,7 @@ var current_day: int = -1:
 		if current_day == value:
 			return
 		current_day = value
-		new_day_started.emit(current_day)
+		day_changed.emit(current_day)
 		if debug_log:
 			print("Day ", current_day, " started")
 
@@ -63,3 +63,7 @@ func seconds_to_time_of_day(seconds: float) -> TimeOfDay:
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint():
 		seconds_since_start += delta
+
+	
+func _init() -> void:
+	add_to_group("day_night_cycle")

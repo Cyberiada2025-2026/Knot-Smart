@@ -9,6 +9,10 @@
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://b5l6v07y036mo" path="res://shared/day_night_cycle/day_night_cycle.tscn" id="9_a8run"]
+[ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_of_day.gd" id="10_th5th"]
+[ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
+[ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="12_raeie"]
+[ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="13_hxu8e"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -34,6 +38,28 @@ metadata/_custom_type_script = "uid://uq2ee3iq6x08"
 script = ExtResource("5_hujxm")
 random_seed = 3
 metadata/_custom_type_script = "uid://uq2ee3iq6x08"
+
+[sub_resource type="Resource" id="Resource_nvumn"]
+script = ExtResource("10_th5th")
+name = "Day"
+duration = 20.0
+color_lut = ExtResource("11_7smn1")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[sub_resource type="Resource" id="Resource_ou6is"]
+script = ExtResource("10_th5th")
+name = "Sunset"
+duration = 10.0
+color_lut = ExtResource("12_raeie")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[sub_resource type="Resource" id="Resource_necax"]
+script = ExtResource("10_th5th")
+name = "Night"
+duration = 30.0
+color_lut = ExtResource("13_hxu8e")
+is_night = true
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Main" type="Node3D" unique_id=959478903]
 
@@ -138,7 +164,7 @@ start = Vector3i(3, 0, 0)
 size = Vector3i(3, 4, 2)
 
 [node name="DayNightCycle" parent="." unique_id=886767263 node_paths=PackedStringArray("sun") instance=ExtResource("9_a8run")]
-day_length = 1.0
+times_of_day = Array[ExtResource("10_th5th")]([SubResource("Resource_nvumn"), SubResource("Resource_ou6is"), SubResource("Resource_necax")])
 sun = NodePath("../DirectionalLight3D")
 
 [editable path="BuildingGenerator"]

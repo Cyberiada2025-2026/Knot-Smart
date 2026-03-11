@@ -1,14 +1,14 @@
 @tool
-extends Node
+extends Node3D
 
-@onready var shapecast = $ShapeCast3D
-@onready var visualization_mesh = $MeshInstance3D
+@onready var collider = $Area3D/CollisionShape3D
+@onready var visualization_mesh = $Area3D/MeshInstance3D
 
-@export var radius: float = 3:
+@export var radius: float = 2:
 	set(value):
 		radius = value
-		if shapecast is ShapeCast3D:
-			shapecast.shape.radius = radius
+		if collider is CollisionShape3D:
+			collider.shape.radius = radius
 		if visualization_mesh is MeshInstance3D:
 			visualization_mesh.mesh.radius = radius
 			visualization_mesh.mesh.height = radius * 2
@@ -26,20 +26,12 @@ extends Node
 ## message to say after triggering point of interest
 @export_multiline var message: String;
 
+## variable to avoiding doube-triggering
 var triggered: bool = false
 
-func is_group_member_nearby() -> bool:
-	if shapecast.is_colliding():
-		for i in range(shapecast.get_collision_count()):
-			var hit: Node3D = shapecast.get_collider(i)
-				
-			# it works, but should be changed
-			if hit.get_parent().name == trigger_group_name:
-				return true
-	return false
-	
-func _physics_process(_delta: float) -> void:
-	if not triggered and is_group_member_nearby():
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if not triggered and body.get_parent().is_in_group(trigger_group_name):
 		triggered = true
 		print(message)
 		visualization_mesh.visible = false;

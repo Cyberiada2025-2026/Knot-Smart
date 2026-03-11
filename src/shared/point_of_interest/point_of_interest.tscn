@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="1_c3sj4"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_lq35b"]
-radius = 2.0
+[sub_resource type="SphereShape3D" id="SphereShape3D_c3sj4"]
+radius = 4.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3sj4"]
 transparency = 1
@@ -11,17 +11,18 @@ albedo_color = Color(0.6156863, 0.7647059, 0.9843137, 0.19215687)
 
 [sub_resource type="SphereMesh" id="SphereMesh_7bdcs"]
 material = SubResource("StandardMaterial3D_c3sj4")
-radius = 2.0
-height = 4.0
+radius = 4.0
+height = 8.0
 
 [node name="PointOfInterest" type="Node3D" unique_id=688953885]
 script = ExtResource("1_c3sj4")
-radius = 2.0
-message = "point of interest: debug"
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=1801020081]
-shape = SubResource("SphereShape3D_lq35b")
-target_position = Vector3(0, 0, 0)
+[node name="Area3D" type="Area3D" parent="." unique_id=260022302]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1532005107]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=135795372]
+shape = SubResource("SphereShape3D_c3sj4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1532005107]
 mesh = SubResource("SphereMesh_7bdcs")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c4v5eb3q85mwc"]
 
-[ext_resource type="PackedScene" uid="uid://iuylqk5aiwnv" path="res://shared/point_of_interest/point-of_interest.tscn" id="1_xowle"]
+[ext_resource type="PackedScene" uid="uid://iuylqk5aiwnv" path="res://shared/point_of_interest/point_of_interest.tscn" id="1_xowle"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="2_r707f"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r707f"]
@@ -40,6 +40,7 @@ mesh = SubResource("CapsuleMesh_yp54c")
 
 [node name="PointOfInterest" parent="trigger1" unique_id=278872771 instance=ExtResource("1_xowle")]
 radius = 3.0
+message = "point of interest: debug  1"
 
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_r707f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90629864, 0)

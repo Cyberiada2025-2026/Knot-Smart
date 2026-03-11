@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://iuylqk5aiwnv"]
+
+[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="1_c3sj4"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lq35b"]
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c3sj4"]
+transparency = 1
+albedo_color = Color(0.6156863, 0.7647059, 0.9843137, 0.19215687)
+
+[sub_resource type="SphereMesh" id="SphereMesh_7bdcs"]
+material = SubResource("StandardMaterial3D_c3sj4")
+radius = 2.0
+height = 4.0
+
+[node name="PointOfInterest" type="Node" unique_id=1343269529]
+script = ExtResource("1_c3sj4")
+radius = 2
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=1801020081]
+shape = SubResource("SphereShape3D_lq35b")
+target_position = Vector3(0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1532005107]
+mesh = SubResource("SphereMesh_7bdcs")

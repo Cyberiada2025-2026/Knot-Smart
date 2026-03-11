@@ -20,3 +20,12 @@ GDScript, on the other hand, is a language designed primarily for rapid prototyp
 While we could use C# in our project the Godot Engine itself was built around GDScript. This is evident both in the documentation and the sheer amound of tutorials for GDScript.
 
 The C# support is still immature - a lot of functions don't have fully idiomatic bindings, use inconsistent naming conventions, and most importantly - **Godot 4 projects doesn't support exporting C#-based projects to the web**. Since web export is a hard requirement for this project, it makes C# completely non-viable for us.
+
+## Component-based design
+
+> [!TIP]
+> Here's a good introduction video to component-based design. Click on the thumbnail to go to YouTube.
+> 
+> [![An introduction to component-based design](https://img.youtube.com/vi/74y6zWZfQKk/0.jpg)](https://www.youtube.com/watch?v=74y6zWZfQKk)
+
+Given the previous information, we need a way to enforce component-based design across the entire project.

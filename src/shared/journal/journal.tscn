@@ -4,3 +4,11 @@
 
 [node name="Journal" type="Node" unique_id=9215286]
 script = ExtResource("1_ohc7l")
+
+[node name="Button" type="Button" parent="." unique_id=1085880251]
+offset_left = 1.0
+offset_top = 2.0
+offset_right = 125.0
+offset_bottom = 46.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

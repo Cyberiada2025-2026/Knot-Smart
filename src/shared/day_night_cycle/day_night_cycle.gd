@@ -13,9 +13,12 @@ var time_periods: Array[TimePeriod] = []
 	set(value):
 		if not is_node_ready():
 			return
+		value = max(value, 0)
 		if current_day == value:
 			return
-		current_day = max(value, 0)
+		current_day = value
+		timestamp = _get_timestamp(current_day, day_seconds)
+
 		day_changed.emit(current_day)
 		if debug_log:
 			print("Day ", current_day, " started")
@@ -24,22 +27,25 @@ var time_periods: Array[TimePeriod] = []
 	set(value):
 		if not is_node_ready():
 			return
+		value = clamp(value, 0, day_duration - 0.001)
 		if value == day_seconds:
 			return
-		day_seconds = clamp(value, 0, day_duration - 0.001)
+		day_seconds = value
 		timestamp = _get_timestamp(current_day, day_seconds)
 
 @export var debug_log: bool = false
 
-## Duration in seconds from beginning of day zero
-var timestamp: float = 0.0:
+## Duration in seconds from beginning of day zero. Is the source of truth.
+@export var timestamp: float = 0.0:
 	set(value):
 		if not is_node_ready():
 			return
 		if timestamp == value:
 			return
 		timestamp = value
+
 		current_day = timestamp_to_days(timestamp)
+		day_seconds = timestamp_to_relative(timestamp)
 		current_time_period = timestamp_to_time_period(timestamp)
 
 var day_duration: float
@@ -98,8 +104,8 @@ func _init() -> void:
 
 func _ready() -> void:
 	child_exiting_tree.connect(_on_child_exiting_tree)
-	child_order_changed.connect(_on_child_order_changed)
-	_on_child_order_changed()
+	child_order_changed.connect(_update_time_periods)
+	_update_time_periods()
 
 
 func _on_child_exiting_tree(node: Node):
@@ -109,16 +115,12 @@ func _on_child_exiting_tree(node: Node):
 		node.duration_changed.disconnect(update_day_duration)
 
 
-func _on_child_order_changed():
+func _update_time_periods():
 	time_periods.assign(get_children().filter(func(c): return c is TimePeriod))
-	print("child changed")
 	for tp in time_periods:
 		if not tp.duration_changed.is_connected(update_day_duration):
 			tp.duration_changed.connect(update_day_duration)
-	_update_time_periods()
 
-
-func _update_time_periods() -> void:
 	update_day_duration()
 	update_configuration_warnings()
 	if debug_log:

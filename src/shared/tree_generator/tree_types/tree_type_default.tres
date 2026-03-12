@@ -1,7 +1,10 @@
-[gd_resource type="Resource" script_class="TreeParameters" load_steps=2 format=3 uid="uid://c4cjyeqqa3ian"]
+[gd_resource type="Resource" script_class="TreeParameters" format=3 uid="uid://c4cjyeqqa3ian"]
 
 [ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/tree_generator/tree_parameters.gd" id="1_avkc2"]
 
 [resource]
 script = ExtResource("1_avkc2")
+diff = 0.9
+h = 1.5
+max_count = 4
 metadata/_custom_type_script = "uid://s0k1bcrvckmc"

@@ -67,3 +67,7 @@ light_energy = 1.825
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1370181901]
 environment = SubResource("Environment_7cgt4")
+
+[editable path="Player"]
+[editable path="Player/PlayerPhysics"]
+[editable path="Player/PlayerCamera"]

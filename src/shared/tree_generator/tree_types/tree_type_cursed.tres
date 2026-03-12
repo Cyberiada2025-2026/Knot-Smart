@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_2gjy1")
-levels = 3
+levels = 2
 r_low = 0.75
-min_count = 2
-max_count = 2
+max_count = 3
+rec_level = 3
 levels_branch = 7
 metadata/_custom_type_script = "uid://s0k1bcrvckmc"

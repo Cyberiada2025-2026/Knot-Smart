@@ -15,9 +15,10 @@ signal day_changed(current: int)
 		if timestamp == value:
 			return
 		timestamp = value
-
 		current_day = timestamp_to_days(timestamp)
+		timestamp = value
 		day_seconds = timestamp_to_relative(timestamp)
+		timestamp = value
 		current_time_period = timestamp_to_time_period(timestamp)
 
 @export var current_day: int = 0:

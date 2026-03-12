@@ -15,10 +15,11 @@ signal day_changed(current: int)
 
 		current_day = get_days_since_start()
 		day_seconds = get_relative_seconds()
-		time_period = timestamp_to_time_period(timestamp)
+		time_period = timestamp_to_time_period(get_elapsed_time())
 
 		_is_updating = false
 
+# is negative by default to force setter call on load.
 @export var current_day: int = -1:
 	set(value):
 		if current_day == value:
@@ -35,7 +36,8 @@ signal day_changed(current: int)
 # has custom export_range
 var day_seconds: float = 0.0:
 	set(value):
-		day_seconds = clamp(value, 0, day_duration - 0.001)
+		const DT: float = 0.001
+		day_seconds = clamp(value, 0, day_duration - DT)
 
 		if not _is_updating:
 			tick_count = _get_tick_count(current_day, day_seconds)
@@ -55,11 +57,12 @@ var time_period: TimePeriod:
 var time_periods: Array[TimePeriod] = []
 
 var tps: int = Engine.physics_ticks_per_second
-var timestamp: float:
-	get():
-		return float(tick_count) / tps
 
 var _is_updating: bool = true
+
+
+func get_elapsed_time() -> float:
+	return float(tick_count) / tps
 
 
 func _get_tick_count(day: int, seconds: float) -> int:
@@ -67,12 +70,12 @@ func _get_tick_count(day: int, seconds: float) -> int:
 
 
 func get_days_since_start() -> int:
-	return floor(timestamp / day_duration)
+	return floor(get_elapsed_time() / day_duration)
 
 
-## Converts timestamp to seconds relative to the beginning of the current day.
+## Converts get_elapsed_time to seconds relative to the beginning of the current day.
 func get_relative_seconds() -> float:
-	return timestamp - int(get_days_since_start() * day_duration)
+	return get_elapsed_time() - int(get_days_since_start() * day_duration)
 
 
 func timestamp_to_time_period(_timestamp: float) -> TimePeriod:
@@ -104,7 +107,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	_is_updating = false
-	time_period = timestamp_to_time_period(timestamp)
+	time_period = timestamp_to_time_period(get_elapsed_time())
 	child_exiting_tree.connect(_on_child_exiting_tree)
 	child_order_changed.connect(_update_time_periods)
 	_update_time_periods()

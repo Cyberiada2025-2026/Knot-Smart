@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://m82cumlpgpmo"
-path="res://.godot/imported/weab.wav-ac552a65731701d94ad9c41063760654.sample"
+uid="uid://mqte8ar0x5fg"
+path="res://.godot/imported/lle.wav-dbbe62bc5d7340e7ff86863590ba2c83.sample"
 
 [deps]
 
-source_file="res://shared/sfx/alien_speech/neutral/weab.wav"
-dest_files=["res://.godot/imported/weab.wav-ac552a65731701d94ad9c41063760654.sample"]
+source_file="res://shared/sfx/alien_speech/fast-other/lle.wav"
+dest_files=["res://.godot/imported/lle.wav-dbbe62bc5d7340e7ff86863590ba2c83.sample"]
 
 [params]
 

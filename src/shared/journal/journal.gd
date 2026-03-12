@@ -8,14 +8,21 @@ var button_normal
 var added_information: Array[bool] = [0,0,0,0]
 
 func add_mob(i: int) -> void:
-	var mob_page: RichTextLabel = pages.get_child(1).get_child(1)
+	var mob_page_cont = pages.get_child(0).get_child(1).get_child(0)
+	var mob_page: RichTextLabel = RichTextLabel.new()
+	mob_page.set_custom_minimum_size(Vector2(100,100))
+	mob_page.push_color(Color(0.9,0.5,0.5))
 	match i:
 		1:
 			print("dodawanie obiektu 1")
-			mob_page.add_text("\n to jest obiekt 1 \n nie robi nic")
+			mob_page.add_text("to jest obiekt 1 \n nie robi nic")
+			mob_page_cont.add_child(mob_page)
+			if added_information[1]==true:
+				mob_page_cont.move_child(mob_page, 0)
 		2:
 			print("dodawanie obiketu 2")
-			mob_page.add_text("\n to jest obiekt 2 \n robi coś")
+			mob_page.add_text("to jest obiekt 2 \n robi coś")
+			mob_page_cont.add_child(mob_page)
 	pass
 	
 

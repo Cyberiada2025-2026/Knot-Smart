@@ -1,6 +1,5 @@
 extends Node
 
-@export var language_generation: LanguageGeneretion
 @export var mood: AlienMoods.Moods
 var input: String = (
 	"Litwo! Ojczyzno moja! ty jesteś jak zdrowie. "
@@ -31,6 +30,6 @@ var input: String = (
 
 
 func _ready() -> void:
-	var out = language_generation.process_dialogue(input)
+	var out = LanguageGenerator.process_dialogue(input)
 	#print(out)
 	speech_player.play_speech(out, mood)

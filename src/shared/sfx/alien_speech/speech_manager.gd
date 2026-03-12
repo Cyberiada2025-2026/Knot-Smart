@@ -1,5 +1,7 @@
 extends Node
 
+class_name SpeechManager
+
 var curr_sentence = []
 var base_pitch := 1.1
 var pitch_dif := 0.05
@@ -30,10 +32,9 @@ func play_sound(
 func play_speech(input: Array, mood: AlienMoods.Moods = AlienMoods.Moods.NEUTRAL) -> void:
 	for sentence in input:
 		for word in sentence:
-			for i in range(len(word)):
-				if i != len(word) - 1:
-					play_sound(word[i], true, mood)
-				else:
-					play_sound(word[i], false, mood)
-				await audio_stream_player.finished
+			var cut_end := true
+			for i in range(len(word) - 1):
+				play_sound(word[i], cut_end, mood)
+			play_sound(word.back(), !cut_end, mood)
+			await audio_stream_player.finished
 		await get_tree().create_timer(pause_between_sentence).timeout

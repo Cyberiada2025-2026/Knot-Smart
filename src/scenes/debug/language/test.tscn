@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://n3o41jekpah0"]
 
-[ext_resource type="Script" uid="uid://d0x6a5ec5mlei" path="res://shared/sfx/alien_speech/speech_player.gd" id="2_4d0np"]
+[ext_resource type="Script" uid="uid://d0x6a5ec5mlei" path="res://shared/sfx/alien_speech/speech_manager.gd" id="2_4d0np"]
 [ext_resource type="Script" uid="uid://b6c7gs7ipg8ag" path="res://scenes/debug/language/tester.gd" id="4_3vnpx"]
 [ext_resource type="Script" uid="uid://ddkv0476k5lm2" path="res://shared/sfx/speech.gd" id="4_4d0np"]
 
@@ -16,6 +16,7 @@ bus = &"Speech"
 
 [node name="angry" type="Node" parent="SpeechTypes" unique_id=967454931]
 script = ExtResource("4_4d0np")
+mood = null
 
 [node name="zesty" type="Node" parent="SpeechTypes" unique_id=983247224]
 script = ExtResource("4_4d0np")

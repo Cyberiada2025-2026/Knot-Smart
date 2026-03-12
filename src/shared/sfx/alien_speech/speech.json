@@ -1,0 +1,226 @@
+{
+    "angry":[
+        {
+            "zip" : "angry/zip.wav",
+            "ba" : "angry/ba.wav",
+            "rim" : "angry/rim.wav",
+            "waeb" : "angry/waeb.wav",
+            "ga" : "angry/ga.wav",
+            "womp" : "angry/womp.wav",
+            "go" : "angry/go.wav",
+            "lip" : "angry/lip.wav",
+            "blop" : "angry/blop.wav",
+            "zop" : "angry/zop.wav",
+            "lle" : "angry/lle.wav",
+            "si" : "angry/si.wav"
+        }
+    ],
+    "angry-circumsized":[
+        {
+            "zip" : "angry-circumsized/zip.wav",
+            "ba" : "angry-circumsized/ba.wav",
+            "rim" : "angry-circumsized/rim.wav",
+            "waeb" : "angry-circumsized/waeb.wav",
+            "ga" : "angry-circumsized/ga.wav",
+            "womp" : "angry-circumsized/womp.wav",
+            "go" : "angry-circumsized/go.wav",
+            "lip" : "angry-circumsized/lip.wav",
+            "blop" : "angry-circumsized/blop.wav",
+            "zop" : "angry-circumsized/zop.wav",
+            "lle" : "angry-circumsized/lle.wav",
+            "si" : "angry-circumsized/si.wav"
+        }
+    ],
+    "damn-bro":[
+        {
+            "zip" : "damn-bro/zip.wav",
+            "ba" : "damn-bro/ba.wav",
+            "rim" : "damn-bro/rim.wav",
+            "waeb" : "damn-bro/waeb.wav",
+            "ga" : "damn-bro/ga.wav",
+            "womp" : "damn-bro/womp.wav",
+            "go" : "damn-bro/go.wav",
+            "lip" : "damn-bro/lip.wav",
+            "blop" : "damn-bro/blop.wav",
+            "zop" : "damn-bro/zop.wav",
+            "lle" : "damn-bro/lle.wav",
+            "si" : "damn-bro/si.wav"
+        }
+    ],
+    "excited":[
+        {
+            "zip" : "excited/zip.wav",
+            "ba" : "excited/ba.wav",
+            "rim" : "excited/rim.wav",
+            "waeb" : "excited/waeb.wav",
+            "ga" : "excited/ga.wav",
+            "womp" : "excited/womp.wav",
+            "go" : "excited/go.wav",
+            "lip" : "excited/lip.wav",
+            "blop" : "excited/blop.wav",
+            "zop" : "excited/zop.wav",
+            "lle" : "excited/lle.wav",
+            "si" : "excited/si.wav"
+        }
+    ],
+    "fast":[
+        {
+            "zip" : "fast/zip.wav",
+            "ba" : "fast/ba.wav",
+            "rim" : "fast/rim.wav",
+            "waeb" : "fast/waeb.wav",
+            "ga" : "fast/ga.wav",
+            "womp" : "fast/womp.wav",
+            "go" : "fast/go.wav",
+            "lip" : "fast/lip.wav",
+            "blop" : "fast/blop.wav",
+            "zop" : "fast/zop.wav",
+            "lle" : "fast/lle.wav",
+            "si" : "fast/si.wav"
+        }
+    ],
+    "fast-other":[
+        {
+            "zip" : "fast-other/zip.wav",
+            "ba" : "fast-other/ba.wav",
+            "rim" : "fast-other/rim.wav",
+            "waeb" : "fast-other/waeb.wav",
+            "ga" : "fast-other/ga.wav",
+            "womp" : "fast-other/womp.wav",
+            "go" : "fast-other/go.wav",
+            "lip" : "fast-other/lip.wav",
+            "blop" : "fast-other/blop.wav",
+            "zop" : "fast-other/zop.wav",
+            "lle" : "fast-other/lle.wav",
+            "si" : "fast-other/si.wav"
+        }
+    ],
+    "neutral":[
+        {
+            "zip" : "neutral/zip.wav",
+            "ba" : "neutral/ba.wav",
+            "rim" : "neutral/rim.wav",
+            "waeb" : "neutral/waeb.wav",
+            "ga" : "neutral/ga.wav",
+            "womp" : "neutral/womp.wav",
+            "go" : "neutral/go.wav",
+            "lip" : "neutral/lip.wav",
+            "blop" : "neutral/blop.wav",
+            "zop" : "neutral/zop.wav",
+            "lle" : "neutral/lle.wav",
+            "si" : "neutral/si.wav"
+        }
+    ],
+    "neutral-alternative":[
+        {
+            "zip" : "neutral-alternative/zip.wav",
+            "ba" : "neutral-alternative/ba.wav",
+            "rim" : "neutral-alternative/rim.wav",
+            "waeb" : "neutral-alternative/waeb.wav",
+            "ga" : "neutral-alternative/ga.wav",
+            "womp" : "neutral-alternative/womp.wav",
+            "go" : "neutral-alternative/go.wav",
+            "lip" : "neutral-alternative/lip.wav",
+            "blop" : "neutral-alternative/blop.wav",
+            "zop" : "neutral-alternative/zop.wav",
+            "lle" : "neutral-alternative/lle.wav",
+            "si" : "neutral-alternative/si.wav"
+        }
+    ],
+    "neutral-first-take":[
+        {
+            "zip" : "neutral-first-take/zip.wav",
+            "ba" : "neutral-first-take/ba.wav",
+            "rim" : "neutral-first-take/rim.wav",
+            "waeb" : "neutral-first-take/waeb.wav",
+            "ga" : "neutral-first-take/ga.wav",
+            "womp" : "neutral-first-take/womp.wav",
+            "go" : "neutral-first-take/go.wav",
+            "lip" : "neutral-first-take/lip.wav",
+            "blop" : "neutral-first-take/blop.wav",
+            "zop" : "neutral-first-take/zop.wav",
+            "lle" : "neutral-first-take/lle.wav",
+            "si" : "neutral-first-take/si.wav"
+        }
+    ],
+    "neutral-other-take":[
+        {
+            "zip" : "neutral-other-take/zip.wav",
+            "ba" : "neutral-other-take/ba.wav",
+            "rim" : "neutral-other-take/rim.wav",
+            "waeb" : "neutral-other-take/waeb.wav",
+            "ga" : "neutral-other-take/ga.wav",
+            "womp" : "neutral-other-take/womp.wav",
+            "go" : "neutral-other-take/go.wav",
+            "lip" : "neutral-other-take/lip.wav",
+            "blop" : "neutral-other-take/blop.wav",
+            "zop" : "neutral-other-take/zop.wav",
+            "lle" : "neutral-other-take/lle.wav",
+            "si" : "neutral-other-take/si.wav"
+        }
+    ],
+    "scared":[
+        {
+            "zip" : "scared/zip.wav",
+            "ba" : "scared/ba.wav",
+            "rim" : "scared/rim.wav",
+            "waeb" : "scared/waeb.wav",
+            "ga" : "scared/ga.wav",
+            "womp" : "scared/womp.wav",
+            "go" : "scared/go.wav",
+            "lip" : "scared/lip.wav",
+            "blop" : "scared/blop.wav",
+            "zop" : "scared/zop.wav",
+            "lle" : "scared/lle.wav",
+            "si" : "scared/si.wav"
+        }
+    ],
+    "scared-other-take":[
+        {
+            "zip" : "scared-other-take/zip.wav",
+            "ba" : "scared-other-take/ba.wav",
+            "rim" : "scared-other-take/rim.wav",
+            "waeb" : "scared-other-take/waeb.wav",
+            "ga" : "scared-other-take/ga.wav",
+            "womp" : "scared-other-take/womp.wav",
+            "go" : "scared-other-take/go.wav",
+            "lip" : "scared-other-take/lip.wav",
+            "blop" : "scared-other-take/blop.wav",
+            "zop" : "scared-other-take/zop.wav",
+            "lle" : "scared-other-take/lle.wav",
+            "si" : "scared-other-take/si.wav"
+        }
+    ],
+    "suprised":[
+        {
+            "zip" : "suprised/zip.wav",
+            "ba" : "suprised/ba.wav",
+            "rim" : "suprised/rim.wav",
+            "waeb" : "suprised/waeb.wav",
+            "ga" : "suprised/ga.wav",
+            "womp" : "suprised/womp.wav",
+            "go" : "suprised/go.wav",
+            "lip" : "suprised/lip.wav",
+            "blop" : "suprised/blop.wav",
+            "zop" : "suprised/zop.wav",
+            "lle" : "suprised/lle.wav",
+            "si" : "suprised/si.wav"
+        }
+    ],
+    "zesty":[
+        {
+            "zip" : "zesty/zip.wav",
+            "ba" : "zesty/ba.wav",
+            "rim" : "zesty/rim.wav",
+            "waeb" : "zesty/waeb.wav",
+            "ga" : "zesty/ga.wav",
+            "womp" : "zesty/womp.wav",
+            "go" : "zesty/go.wav",
+            "lip" : "zesty/lip.wav",
+            "blop" : "zesty/blop.wav",
+            "zop" : "zesty/zop.wav",
+            "lle" : "zesty/lle.wav",
+            "si" : "zesty/si.wav"
+        }
+    ]
+}

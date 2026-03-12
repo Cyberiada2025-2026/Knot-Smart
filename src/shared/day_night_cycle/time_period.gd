@@ -13,5 +13,6 @@ signal duration_changed
 ## Information whether this time period is considered night for gameplay reasons.
 @export var is_night: bool
 
+
 func _to_string() -> String:
 	return name

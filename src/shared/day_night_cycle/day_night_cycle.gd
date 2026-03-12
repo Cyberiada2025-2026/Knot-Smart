@@ -5,9 +5,7 @@ extends Node3D
 signal time_period_changed(current: TimePeriod)
 signal day_changed(current: int)
 
-## Times of day that constitute one cycle
-var time_periods: Array[TimePeriod] = []
-
+@export var debug_log: bool = false
 
 @export var current_day: int = 0:
 	set(value):
@@ -32,8 +30,6 @@ var time_periods: Array[TimePeriod] = []
 			return
 		day_seconds = value
 		timestamp = _get_timestamp(current_day, day_seconds)
-
-@export var debug_log: bool = false
 
 ## Duration in seconds from beginning of day zero. Is the source of truth.
 @export var timestamp: float = 0.0:
@@ -60,6 +56,9 @@ var current_time_period: TimePeriod:
 		time_period_changed.emit(current_time_period)
 		if debug_log:
 			print(current_time_period.name, " time of day started")
+
+## Times of day that constitute one cycle
+var time_periods: Array[TimePeriod] = []
 
 
 func _get_timestamp(day: int, seconds: float):

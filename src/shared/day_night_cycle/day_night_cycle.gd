@@ -7,6 +7,19 @@ signal day_changed(current: int)
 
 @export var debug_log: bool = false
 
+## Duration in seconds from beginning of day zero. Is the source of truth.
+@export var timestamp: float = 0.0:
+	set(value):
+		if not is_node_ready():
+			return
+		if timestamp == value:
+			return
+		timestamp = value
+
+		current_day = timestamp_to_days(timestamp)
+		day_seconds = timestamp_to_relative(timestamp)
+		current_time_period = timestamp_to_time_period(timestamp)
+
 @export var current_day: int = 0:
 	set(value):
 		if not is_node_ready():
@@ -21,7 +34,8 @@ signal day_changed(current: int)
 		if debug_log:
 			print("Day ", current_day, " started")
 
-@export var day_seconds: float:
+# has custom export_range
+var day_seconds: float:
 	set(value):
 		if not is_node_ready():
 			return
@@ -30,19 +44,6 @@ signal day_changed(current: int)
 			return
 		day_seconds = value
 		timestamp = _get_timestamp(current_day, day_seconds)
-
-## Duration in seconds from beginning of day zero. Is the source of truth.
-@export var timestamp: float = 0.0:
-	set(value):
-		if not is_node_ready():
-			return
-		if timestamp == value:
-			return
-		timestamp = value
-
-		current_day = timestamp_to_days(timestamp)
-		day_seconds = timestamp_to_relative(timestamp)
-		current_time_period = timestamp_to_time_period(timestamp)
 
 var day_duration: float
 
@@ -135,3 +136,17 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if day_duration <= 0.0:
 		return ["Ensure day duration is longer than 0."]
 	return []
+
+
+func _get_property_list() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	var script: Script = get_script()
+	var prop_list = script.get_script_property_list()
+	var property = prop_list[prop_list.find_custom(func(p): return p["name"] == "day_seconds")]
+	property["usage"] |= PROPERTY_USAGE_DEFAULT
+	property["hint"] |= PROPERTY_HINT_RANGE
+	property["hint_string"] = "%s,%s" % [0.0, day_duration]
+
+	result.push_back(property)
+
+	return result

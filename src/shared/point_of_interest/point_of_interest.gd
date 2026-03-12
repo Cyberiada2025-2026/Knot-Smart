@@ -1,8 +1,6 @@
 @tool
-extends Node3D
-
-@onready var collider = $Area3D/CollisionShape3D
-@onready var visualization_mesh = $Area3D/MeshInstance3D
+extends Node
+class_name PointOfInterest
 
 @export var radius: float = 2:
 	set(value):
@@ -29,6 +27,23 @@ extends Node3D
 ## variable to avoiding doube-triggering
 var triggered: bool = false
 
+## scene to add if empty node is created in editor
+var scene = preload("res://shared/point_of_interest/point_of_interest.tscn")
+
+var collider
+var visualization_mesh
+
+func _ready():
+	# replace node with scene added to scene as node
+	if get_children().is_empty():
+		var scene_instance = scene.instantiate()
+		get_parent().add_child(scene_instance)
+		scene_instance.name = self.name
+		scene_instance.owner = get_parent()
+		self.queue_free()
+		return
+	collider = $Area3D/CollisionShape3D
+	visualization_mesh = $Area3D/MeshInstance3D
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if not triggered and body.get_parent().is_in_group(trigger_group_name):

@@ -37,11 +37,11 @@ signal day_changed(current: int)
 # has custom export_range
 var day_seconds: float = 0.0:
 	set(value):
+		day_seconds = clamp(value, 0, day_duration - 0.001)
+
 		if _is_updating:
-			day_seconds = value
 			return
 
-		day_seconds = clamp(value, 0, day_duration - 0.001)
 		timestamp = _get_timestamp(current_day, day_seconds)
 
 var day_duration: float

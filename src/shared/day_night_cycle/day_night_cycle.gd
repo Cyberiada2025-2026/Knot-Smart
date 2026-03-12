@@ -10,49 +10,55 @@ signal day_changed(current: int)
 ## Duration in seconds from beginning of day zero. Is the source of truth.
 @export var timestamp: float = 0.0:
 	set(value):
-		if not is_node_ready():
+		if _is_updating or timestamp == value:
+			timestamp = value
 			return
-		if timestamp == value:
-			return
+
+		_is_updating = true
+
 		timestamp = value
 		current_day = timestamp_to_days(timestamp)
-		timestamp = value
 		day_seconds = timestamp_to_relative(timestamp)
-		timestamp = value
 		current_time_period = timestamp_to_time_period(timestamp)
+
+		_is_updating = false
 
 @export var current_day: int = 0:
 	set(value):
-		if not is_node_ready():
+		if _is_updating or current_day == value:
+			current_day = value
 			return
-		value = max(value, 0)
-		if current_day == value:
-			return
-		current_day = value
-		timestamp = _get_timestamp(current_day, day_seconds)
 
+		_is_updating = true
+
+		current_day = max(value, 0)
+		timestamp = _get_timestamp(current_day, day_seconds)
 		day_changed.emit(current_day)
+
+		_is_updating = false
+
 		if debug_log:
 			print("Day ", current_day, " started")
 
 # has custom export_range
-var day_seconds: float:
+var day_seconds: float = 0.0:
 	set(value):
-		if not is_node_ready():
+		if _is_updating:
+			day_seconds = value
 			return
-		value = clamp(value, 0, day_duration - 0.001)
-		if value == day_seconds:
-			return
-		day_seconds = value
+
+		_is_updating = true
+
+		day_seconds = clamp(value, 0, day_duration - 0.001)
 		timestamp = _get_timestamp(current_day, day_seconds)
+
+		_is_updating = false
 
 var day_duration: float
 
 var current_time_period: TimePeriod:
 	set(value):
 		if not is_node_ready():
-			return
-		if current_time_period == value:
 			return
 		current_time_period = value
 		time_period_changed.emit(current_time_period)
@@ -61,6 +67,8 @@ var current_time_period: TimePeriod:
 
 ## Times of day that constitute one cycle
 var time_periods: Array[TimePeriod] = []
+
+var _is_updating: bool = true
 
 
 func _get_timestamp(day: int, seconds: float):
@@ -104,6 +112,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	_is_updating = false
 	child_exiting_tree.connect(_on_child_exiting_tree)
 	child_order_changed.connect(_update_time_periods)
 	_update_time_periods()

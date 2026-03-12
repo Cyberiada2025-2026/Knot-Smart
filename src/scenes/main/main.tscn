@@ -144,9 +144,8 @@ size = Vector3i(3, 4, 2)
 [node name="DayNightCycle" type="Node3D" parent="." unique_id=106700811]
 script = ExtResource("10_a8run")
 debug_log = true
-timestamp = 150.0
-current_day = 5
-day_seconds = 10.0
+timestamp = 33.545
+day_seconds = 33.545
 metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
 
 [node name="Day" type="Node" parent="DayNightCycle" unique_id=1197592812]
@@ -159,6 +158,14 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 script = ExtResource("10_th5th")
 color_lut = ExtResource("12_th5th")
 is_night = true
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="TimePeriod" type="Node" parent="DayNightCycle" unique_id=1968494778]
+script = ExtResource("10_th5th")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="TimePeriod2" type="Node" parent="DayNightCycle" unique_id=844557744]
+script = ExtResource("10_th5th")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]

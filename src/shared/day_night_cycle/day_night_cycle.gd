@@ -11,9 +11,6 @@ signal day_changed(current: int)
 @export var timestamp: float = 0.0:
 	set(value):
 		timestamp = max(value, 0)
-		if _is_updating:
-			return
-
 		_is_updating = true
 
 		current_day = timestamp_to_days(timestamp)

@@ -2,10 +2,22 @@
 extends Node
 
 var is_visible: bool = false
-var menu: Node
-var pages: Node
+var menu: Control
+var pages: Control
 var button_normal
-var click_number: int = 1
+var added_information: Array[bool] = [0,0,0,0]
+
+func add_mob(i: int) -> void:
+	var mob_page: RichTextLabel = pages.get_child(1).get_child(1)
+	match i:
+		1:
+			print("dodawanie obiektu 1")
+			mob_page.add_text("\n to jest obiekt 1 \n nie robi nic")
+		2:
+			print("dodawanie obiketu 2")
+			mob_page.add_text("\n to jest obiekt 2 \n robi coś")
+	pass
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,6 +39,18 @@ func _process(delta: float) -> void:
 		else:
 			menu.visible = true
 	
+	if Input.is_action_just_pressed("ui_left"):
+		if added_information[0]==false:
+			added_information[0]=true
+			add_mob(1)
+		print("dodawanie info 1")
+		
+	if Input.is_action_just_pressed("ui_right"):
+		if added_information[1]==false:
+			added_information[1]=true
+			add_mob(2)
+		print("dodawanie info 2")
+	
 	pass
 	
 func _physics_process(delta: float) -> void:
@@ -44,6 +68,4 @@ func _on_button_pressed(number: int) -> void:
 		pages.get_child(number).set_visible(true)
 		button.add_theme_stylebox_override("normal",button.get_theme_stylebox("pressed", "Button"))
 		
-		pages.get_child(number).get_child(1).set_text(str(click_number))
-		click_number+=1
 	pass # Replace with function body.

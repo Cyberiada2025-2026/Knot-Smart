@@ -10,7 +10,6 @@
 script = ExtResource("1_ohc7l")
 
 [node name="Journal menu" type="Control" parent="." unique_id=55202571]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -59,6 +58,7 @@ offset_bottom = 40.0
 theme = SubResource("Theme_erk7u")
 
 [node name="Page1" type="Control" parent="Journal menu/Page container" unique_id=1508033879]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -76,13 +76,12 @@ layout_mode = 0
 offset_left = 111.0
 offset_top = 40.0
 offset_right = 226.0
-offset_bottom = 80.0
+offset_bottom = 202.0
 theme_override_colors/default_color = Color(0.17499474, 0.1586524, 0.3753977, 1)
 theme_override_colors/font_outline_color = Color(0.6646675, 0.36019012, 0.6474189, 1)
 text = "jeden"
 
 [node name="Page2" type="Control" parent="Journal menu/Page container" unique_id=644502999]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -97,14 +96,13 @@ color = Color(0.99607843, 0.7019608, 1, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Journal menu/Page container/Page2" unique_id=2045687192]
 layout_mode = 0
-offset_left = 111.0
+offset_left = 87.0
 offset_top = 40.0
-offset_right = 226.0
-offset_bottom = 80.0
+offset_right = 265.0
+offset_bottom = 203.0
 theme_override_colors/default_color = Color(0.17499474, 0.1586524, 0.3753977, 1)
 theme_override_colors/font_outline_color = Color(0.6646675, 0.36019012, 0.6474189, 1)
-text = "dwa
-"
+text = "dwa"
 
 [node name="Page3" type="Control" parent="Journal menu/Page container" unique_id=739074441]
 visible = false
@@ -125,7 +123,7 @@ layout_mode = 0
 offset_left = 111.0
 offset_top = 40.0
 offset_right = 226.0
-offset_bottom = 80.0
+offset_bottom = 205.0
 theme_override_colors/default_color = Color(0.17499474, 0.1586524, 0.3753977, 1)
 theme_override_colors/font_outline_color = Color(0.6646675, 0.36019012, 0.6474189, 1)
 text = "trzy
@@ -150,7 +148,7 @@ layout_mode = 0
 offset_left = 111.0
 offset_top = 40.0
 offset_right = 226.0
-offset_bottom = 80.0
+offset_bottom = 208.0
 theme_override_colors/default_color = Color(0.17499474, 0.1586524, 0.3753977, 1)
 theme_override_colors/font_outline_color = Color(0.6646675, 0.36019012, 0.6474189, 1)
 text = "cztery

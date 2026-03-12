@@ -10,6 +10,7 @@
 script = ExtResource("1_ohc7l")
 
 [node name="Journal menu" type="Control" parent="." unique_id=55202571]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

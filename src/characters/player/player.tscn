@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://by54s7xnmwcc1" path="res://characters/player/player_main.gd" id="1_4ntmi"]
 [ext_resource type="PackedScene" uid="uid://bd54neo0vnuug" path="res://characters/player/player_physics.tscn" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
-[ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://shared/rope/rope_manager.gd" id="4_5dc8e"]
+[ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="4_5dc8e"]
+[ext_resource type="PackedScene" uid="uid://cjjffdo72xk1u" path="res://shared/journal/journal.tscn" id="5_ixbpm"]
 
 [node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_floor_sensor")]
 script = ExtResource("1_4ntmi")
@@ -19,6 +20,8 @@ player_floor_sensor = NodePath("PlayerPhysics/PlayerFloorSensor")
 top_level = true
 script = ExtResource("4_5dc8e")
 metadata/_custom_type_script = "uid://bcy4v42bixjvm"
+
+[node name="Journal" parent="." unique_id=9215286 instance=ExtResource("5_ixbpm")]
 
 [connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 

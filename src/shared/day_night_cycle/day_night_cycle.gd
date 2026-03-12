@@ -5,39 +5,28 @@ extends Node3D
 signal time_period_changed(current: TimePeriod)
 signal day_changed(current: int)
 
-## Use if day_duration failed to update.
-@export_tool_button("Update day duration") var update_day_duration_action = update_day_duration
-
 ## Times of day that constitute one cycle
-@export var time_periods: Array[TimePeriod] = [TimePeriod.new()]:
-	set(value):
-		time_periods = value
-		update_day_duration()
-		update_configuration_warnings()
+var time_periods: Array[TimePeriod] = []
+
 
 @export var current_day: int = 0:
 	set(value):
+		if not is_node_ready():
+			return
 		if current_day == value:
 			return
 		current_day = max(value, 0)
-		timestamp = _get_timestamp(current_day, day_seconds)
 		day_changed.emit(current_day)
 		if debug_log:
 			print("Day ", current_day, " started")
 
-@export_range(0, 1) var day_progress: float:
-	set(value):
-		if value == day_progress:
-			return
-		day_progress = value
-		day_seconds = day_progress * day_duration
-
 @export var day_seconds: float:
 	set(value):
+		if not is_node_ready():
+			return
 		if value == day_seconds:
 			return
 		day_seconds = clamp(value, 0, day_duration - 0.001)
-		day_progress = day_seconds / day_duration
 		timestamp = _get_timestamp(current_day, day_seconds)
 
 @export var debug_log: bool = false
@@ -45,6 +34,8 @@ signal day_changed(current: int)
 ## Duration in seconds from beginning of day zero
 var timestamp: float = 0.0:
 	set(value):
+		if not is_node_ready():
+			return
 		if timestamp == value:
 			return
 		timestamp = value
@@ -55,6 +46,8 @@ var day_duration: float
 
 var current_time_period: TimePeriod:
 	set(value):
+		if not is_node_ready():
+			return
 		if current_time_period == value:
 			return
 		current_time_period = value
@@ -77,21 +70,21 @@ func timestamp_to_relative(_timestamp: float) -> float:
 
 
 func timestamp_to_time_period(_timestamp: float) -> TimePeriod:
+	if time_periods.is_empty():
+		return null
 	var time = timestamp_to_relative(_timestamp)
 	for time_period in time_periods:
 		time -= time_period.duration
 		if time <= 0:
 			return time_period
-	return time_periods.get(-1)
+	return time_periods.back()
 
 
 func update_day_duration() -> void:
-	day_duration = (
-		time_periods
-		. filter(func(t): return t != null)
-		. reduce(func(a, t): return a + t.duration, 0.0)
-	)
-	day_seconds = day_seconds
+	day_duration = time_periods.reduce(func(a, t): return a + t.duration, 0.0)
+
+	if debug_log:
+		print("New day duration: ", day_duration)
 
 
 func _physics_process(delta: float) -> void:
@@ -101,6 +94,35 @@ func _physics_process(delta: float) -> void:
 
 func _init() -> void:
 	add_to_group("day_night_cycle")
+
+
+func _ready() -> void:
+	child_exiting_tree.connect(_on_child_exiting_tree)
+	child_order_changed.connect(_on_child_order_changed)
+	_on_child_order_changed()
+
+
+func _on_child_exiting_tree(node: Node):
+	if not node is TimePeriod:
+		return
+	if node.duration_changed.is_connected(update_day_duration):
+		node.duration_changed.disconnect(update_day_duration)
+
+
+func _on_child_order_changed():
+	time_periods.assign(get_children().filter(func(c): return c is TimePeriod))
+	print("child changed")
+	for tp in time_periods:
+		if not tp.duration_changed.is_connected(update_day_duration):
+			tp.duration_changed.connect(update_day_duration)
+	_update_time_periods()
+
+
+func _update_time_periods() -> void:
+	update_day_duration()
+	update_configuration_warnings()
+	if debug_log:
+		print("New time periods: ", time_periods)
 
 
 func _get_configuration_warnings() -> PackedStringArray:

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://n3o41jekpah0"]
+
+[ext_resource type="PackedScene" uid="uid://d4hvm8i2l3fuc" path="res://shared/language_generation/language_generation.tscn" id="1_v2mph"]
+[ext_resource type="Script" uid="uid://d0x6a5ec5mlei" path="res://shared/sfx/alien_speech/speech_player.gd" id="2_4d0np"]
+[ext_resource type="Script" uid="uid://b6c7gs7ipg8ag" path="res://scenes/debug/language/tester.gd" id="2_tvrk1"]
+
+[node name="Node2D" type="Node2D" unique_id=32041945]
+
+[node name="SpeechPlayer" type="Node" parent="." unique_id=776774273]
+script = ExtResource("2_4d0np")
+
+[node name="LanguageGeneration" parent="SpeechPlayer" unique_id=670000237 instance=ExtResource("1_v2mph")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SpeechPlayer" unique_id=1574940291]
+bus = &"Speech"
+
+[node name="Node" type="Node" parent="." unique_id=450040687 node_paths=PackedStringArray("language_generation")]
+script = ExtResource("2_tvrk1")
+language_generation = NodePath("../SpeechPlayer/LanguageGeneration")

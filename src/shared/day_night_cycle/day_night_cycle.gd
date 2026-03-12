@@ -142,7 +142,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if time_periods.filter(func(t): return t != null).is_empty():
 		return [
 			"""Time periods array is empty. \
-			This node will not work correctly without at least one non-null time period."""
+			This node will not work correctly without at least one time period child."""
 		]
 	if day_duration <= 0.0:
 		return ["Ensure day duration is longer than 0."]

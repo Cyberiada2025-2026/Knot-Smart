@@ -9,9 +9,12 @@ signal day_changed(current: int)
 @export var times_of_day: Array[TimeOfDay] = []:
 	set(value):
 		times_of_day = value
-		day_duration = times_of_day.reduce(
-			func(a: float, t: TimeOfDay): return a + t.duration if t != null else a, 0.0
+		day_duration = (
+			times_of_day
+			. filter(func(t): return t != null)
+			. reduce(func(a, t): return a + t.duration, 0.0)
 		)
+		update_configuration_warnings()
 
 ## Duration in seconds from beginning of day zero
 @export var seconds_since_start: float = 0.0:
@@ -57,7 +60,7 @@ func seconds_to_time_of_day(seconds: float) -> TimeOfDay:
 		time -= tod.duration
 		if time <= 0:
 			return tod
-	return times_of_day[-1]
+	return times_of_day.get(-1)
 
 
 func _physics_process(delta: float) -> void:
@@ -67,3 +70,12 @@ func _physics_process(delta: float) -> void:
 
 func _init() -> void:
 	add_to_group("day_night_cycle")
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	if times_of_day.filter(func(t): return t != null).is_empty():
+		return [
+			"""Times of day array is empty. \
+			This node will not work correctly without at least one non-null time of day."""
+		]
+	return []

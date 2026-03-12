@@ -110,7 +110,7 @@ func _ready() -> void:
 
 
 func _on_child_exiting_tree(node: Node):
-	if not node is TimePeriod:
+	if node is not TimePeriod:
 		return
 	if node.duration_changed.is_connected(update_day_duration):
 		node.duration_changed.disconnect(update_day_duration)

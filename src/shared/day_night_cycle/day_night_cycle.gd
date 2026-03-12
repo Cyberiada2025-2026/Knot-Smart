@@ -17,10 +17,9 @@ signal day_changed(current: int)
 
 @export var current_day: int = 0:
 	set(value):
-		value = max(value, 0)
 		if current_day == value:
 			return
-		current_day = value
+		current_day = max(value, 0)
 		timestamp = _get_timestamp(current_day, day_seconds)
 		day_changed.emit(current_day)
 		if debug_log:

@@ -43,19 +43,20 @@ metadata/_custom_type_script = "uid://uq2ee3iq6x08"
 [sub_resource type="Resource" id="Resource_ouso4"]
 script = ExtResource("10_th5th")
 name = "Day"
+duration = 5.0
 color_lut = ExtResource("11_7smn1")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [sub_resource type="Resource" id="Resource_raeie"]
 script = ExtResource("10_th5th")
 name = "Sunset"
+duration = 5.0
 color_lut = ExtResource("12_7smn1")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [sub_resource type="Resource" id="Resource_7smn1"]
 script = ExtResource("10_th5th")
 name = "Night"
-duration = 20.0
 color_lut = ExtResource("12_th5th")
 is_night = true
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
@@ -165,8 +166,8 @@ size = Vector3i(3, 4, 2)
 [node name="DayNightCycle" type="Node3D" parent="." unique_id=106700811]
 script = ExtResource("10_a8run")
 time_periods = Array[ExtResource("10_th5th")]([SubResource("Resource_ouso4"), SubResource("Resource_raeie"), SubResource("Resource_7smn1")])
-day_progress = 0.44699999999999995
-day_seconds = 17.88
+day_progress = 0.9999499999999999
+day_seconds = 19.999
 metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]

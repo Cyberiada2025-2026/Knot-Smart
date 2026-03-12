@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_a8run"]
 [ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="10_th5th"]
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
+[ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="12_7smn1"]
 [ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="12_th5th"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="15_hxu8e"]
 
@@ -41,13 +42,22 @@ metadata/_custom_type_script = "uid://uq2ee3iq6x08"
 
 [sub_resource type="Resource" id="Resource_ouso4"]
 script = ExtResource("10_th5th")
+name = "Day"
 color_lut = ExtResource("11_7smn1")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[sub_resource type="Resource" id="Resource_raeie"]
+script = ExtResource("10_th5th")
+name = "Sunset"
+color_lut = ExtResource("12_7smn1")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [sub_resource type="Resource" id="Resource_7smn1"]
 script = ExtResource("10_th5th")
+name = "Night"
 duration = 20.0
 color_lut = ExtResource("12_th5th")
+is_night = true
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Main" type="Node3D" unique_id=959478903]
@@ -154,9 +164,9 @@ size = Vector3i(3, 4, 2)
 
 [node name="DayNightCycle" type="Node3D" parent="." unique_id=106700811]
 script = ExtResource("10_a8run")
-time_periods = Array[ExtResource("10_th5th")]([SubResource("Resource_ouso4"), SubResource("Resource_7smn1")])
-day_progress = 1.0
-day_seconds = 20.0
+time_periods = Array[ExtResource("10_th5th")]([SubResource("Resource_ouso4"), SubResource("Resource_raeie"), SubResource("Resource_7smn1")])
+day_progress = 0.44699999999999995
+day_seconds = 17.88
 metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]

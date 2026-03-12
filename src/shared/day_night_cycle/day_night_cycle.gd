@@ -37,13 +37,11 @@ signal day_changed(current: int)
 	set(value):
 		if value == day_seconds:
 			return
-		day_seconds = clamp(value, 0, day_duration)
+		day_seconds = clamp(value, 0, day_duration - 0.001)
 		day_progress = day_seconds / day_duration
-		
+		timestamp = _get_timestamp(current_day, day_seconds)
 
-func _get_timestamp(day: int, seconds: float):
-	return day * day_duration + seconds
-
+@export var debug_log: bool = false
 
 ## Duration in seconds from beginning of day zero
 var timestamp: float = 0.0:
@@ -53,8 +51,6 @@ var timestamp: float = 0.0:
 		timestamp = value
 		current_day = timestamp_to_days(timestamp)
 		current_time_period = timestamp_to_time_period(timestamp)
-
-@export var debug_log: bool = false
 
 var day_duration: float
 
@@ -68,6 +64,10 @@ var current_time_period: TimePeriod:
 			print(current_time_period.name, " time of day started")
 
 
+func _get_timestamp(day: int, seconds: float):
+	return day * day_duration + seconds
+
+
 func timestamp_to_days(seconds: float) -> int:
 	return floor(seconds / day_duration)
 
@@ -79,11 +79,12 @@ func timestamp_to_relative(_timestamp: float) -> float:
 
 func timestamp_to_time_period(_timestamp: float) -> TimePeriod:
 	var time = timestamp_to_relative(_timestamp)
-	for tod in time_periods:
-		time -= tod.duration
+	for time_period in time_periods:
+		time -= time_period.duration
 		if time <= 0:
-			return tod
+			return time_period
 	return time_periods.get(-1)
+
 
 func update_day_duration() -> void:
 	day_duration = (
@@ -91,6 +92,7 @@ func update_day_duration() -> void:
 		. filter(func(t): return t != null)
 		. reduce(func(a, t): return a + t.duration, 0.0)
 	)
+	day_seconds = day_seconds
 
 
 func _physics_process(delta: float) -> void:

@@ -144,8 +144,8 @@ size = Vector3i(3, 4, 2)
 [node name="DayNightCycle" type="Node3D" parent="." unique_id=106700811]
 script = ExtResource("10_a8run")
 debug_log = true
-timestamp = 33.545
-day_seconds = 33.545
+current_day = 0
+day_seconds = 0.0
 metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
 
 [node name="Day" type="Node" parent="DayNightCycle" unique_id=1197592812]

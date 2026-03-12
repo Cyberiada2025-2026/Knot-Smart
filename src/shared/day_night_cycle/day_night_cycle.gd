@@ -23,22 +23,23 @@ signal day_changed(current: int)
 
 		_is_updating = false
 
-@export var current_day: int = 0:
+@export var current_day: int = -1:
 	set(value):
-		if _is_updating or current_day == value:
-			current_day = value
+		if current_day == value:
 			return
 
-		_is_updating = true
-
 		current_day = max(value, 0)
-		timestamp = _get_timestamp(current_day, day_seconds)
 		day_changed.emit(current_day)
-
-		_is_updating = false
-
 		if debug_log:
 			print("Day ", current_day, " started")
+
+		if _is_updating:
+			return
+		_is_updating = true
+
+		timestamp = _get_timestamp(current_day, day_seconds)
+
+		_is_updating = false
 
 # has custom export_range
 var day_seconds: float = 0.0:
@@ -58,7 +59,7 @@ var day_duration: float
 
 var current_time_period: TimePeriod:
 	set(value):
-		if not is_node_ready():
+		if not is_node_ready() or current_time_period == value:
 			return
 		current_time_period = value
 		time_period_changed.emit(current_time_period)

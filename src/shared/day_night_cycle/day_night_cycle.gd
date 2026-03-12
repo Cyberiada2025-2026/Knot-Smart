@@ -63,7 +63,7 @@ var _is_updating: bool = true
 
 
 func _get_tick_count(day: int, seconds: float) -> int:
-	return floor(day * day_duration + seconds) * 60
+	return floor(day * day_duration + seconds) * tps
 
 
 func get_days_since_start() -> int:
@@ -79,10 +79,10 @@ func timestamp_to_time_period(_timestamp: float) -> TimePeriod:
 	if time_periods.is_empty():
 		return null
 	var time = get_relative_seconds()
-	for tp in time_periods:
-		time -= tp.duration
+	for period in time_periods:
+		time -= period.duration
 		if time <= 0:
-			return tp
+			return period
 	return time_periods.back()
 
 
@@ -119,9 +119,9 @@ func _on_child_exiting_tree(node: Node):
 
 func _update_time_periods():
 	time_periods.assign(get_children().filter(func(c): return c is TimePeriod))
-	for tp in time_periods:
-		if not tp.duration_changed.is_connected(update_day_duration):
-			tp.duration_changed.connect(update_day_duration)
+	for period in time_periods:
+		if not period.duration_changed.is_connected(update_day_duration):
+			period.duration_changed.connect(update_day_duration)
 
 	update_day_duration()
 	update_configuration_warnings()

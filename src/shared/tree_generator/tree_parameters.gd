@@ -7,7 +7,7 @@ extends Resource
 @export var branches_level = 2
 
 # trunk
-@export var levels = 5
+@export var levels = 3
 @export var r = 0.8
 @export var r_low = 0.85
 @export var sides = 6
@@ -15,6 +15,7 @@ extends Resource
 # branches
 @export var min_count = 3
 @export var max_count = 6
+@export var rec_level = 2
 @export var levels_branch = 5
 @export var r_branch = 0.3
 @export var r_low_branch = 0.85

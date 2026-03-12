@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_crhmp"]
 [ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/tree_generator/tree_parameters.gd" id="3_7cgt4"]
 [ext_resource type="PackedScene" uid="uid://cg0xq5ci3aupl" path="res://shared/tree_generator/tree_generator.tscn" id="3_c24uh"]
-[ext_resource type="Resource" uid="uid://hif2ao4f4l5f" path="res://shared/tree_generator/tree_types/tree_type_cursed2.tres" id="4_7cgt4"]
+[ext_resource type="Resource" uid="uid://c4cjyeqqa3ian" path="res://shared/tree_generator/tree_types/tree_type_default.tres" id="4_7cgt4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v77ug"]
 size = Vector3(10000, 0.2, 10000)
@@ -66,3 +66,7 @@ trees = Array[ExtResource("3_7cgt4")]([ExtResource("4_7cgt4")])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1370181901]
 environment = SubResource("Environment_7cgt4")
+
+[editable path="Player"]
+[editable path="Player/PlayerPhysics"]
+[editable path="Player/PlayerCamera"]

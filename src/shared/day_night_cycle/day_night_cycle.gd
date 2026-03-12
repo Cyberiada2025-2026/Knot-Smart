@@ -7,14 +7,14 @@ signal day_changed(current: int)
 
 @export var debug_log: bool = false
 
-## Duration in seconds from beginning of day zero. Is the source of truth.
-@export var timestamp: float = 0.0:
+## Duration in physics process ticks from beginning of day zero. Is the source of truth.
+@export var tick_count: int = 0:
 	set(value):
-		timestamp = max(value, 0)
+		tick_count = max(value, 0)
 		_is_updating = true
 
-		current_day = timestamp_to_days(timestamp)
-		day_seconds = timestamp_to_relative(timestamp)
+		current_day = get_days_since_start()
+		day_seconds = get_relative_seconds()
 		time_period = timestamp_to_time_period(timestamp)
 
 		_is_updating = false
@@ -29,20 +29,16 @@ signal day_changed(current: int)
 		if debug_log:
 			print("Day ", current_day, " started")
 
-		if _is_updating:
-			return
-
-		timestamp = _get_timestamp(current_day, day_seconds)
+		if not _is_updating:
+			tick_count = _get_tick_count(current_day, day_seconds)
 
 # has custom export_range
 var day_seconds: float = 0.0:
 	set(value):
 		day_seconds = clamp(value, 0, day_duration - 0.001)
 
-		if _is_updating:
-			return
-
-		timestamp = _get_timestamp(current_day, day_seconds)
+		if not _is_updating:
+			tick_count = _get_tick_count(current_day, day_seconds)
 
 var day_duration: float
 
@@ -58,26 +54,31 @@ var time_period: TimePeriod:
 ## Times of day that constitute one cycle
 var time_periods: Array[TimePeriod] = []
 
+var tps: int = Engine.physics_ticks_per_second
+var timestamp: float:
+	get():
+		return float(tick_count) / tps
+
 var _is_updating: bool = true
 
 
-func _get_timestamp(day: int, seconds: float):
-	return day * day_duration + seconds
+func _get_tick_count(day: int, seconds: float) -> int:
+	return floor(day * day_duration + seconds) * 60
 
 
-func timestamp_to_days(seconds: float) -> int:
-	return floor(seconds / day_duration)
+func get_days_since_start() -> int:
+	return floor(timestamp / day_duration)
 
 
 ## Converts timestamp to seconds relative to the beginning of the current day.
-func timestamp_to_relative(_timestamp: float) -> float:
-	return fmod(_timestamp, day_duration)
+func get_relative_seconds() -> float:
+	return timestamp - int(get_days_since_start() * day_duration)
 
 
 func timestamp_to_time_period(_timestamp: float) -> TimePeriod:
 	if time_periods.is_empty():
 		return null
-	var time = timestamp_to_relative(_timestamp)
+	var time = get_relative_seconds()
 	for tp in time_periods:
 		time -= tp.duration
 		if time <= 0:
@@ -92,9 +93,9 @@ func update_day_duration() -> void:
 		print("New day duration: ", day_duration)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if not Engine.is_editor_hint() and day_duration > 0.0:
-		timestamp += delta
+		timestamp += 1
 
 
 func _init() -> void:

@@ -10,16 +10,15 @@ signal day_changed(current: int)
 ## Duration in seconds from beginning of day zero. Is the source of truth.
 @export var timestamp: float = 0.0:
 	set(value):
-		if _is_updating or timestamp == value:
-			timestamp = value
+		timestamp = max(value, 0)
+		if _is_updating:
 			return
 
 		_is_updating = true
 
-		timestamp = value
 		current_day = timestamp_to_days(timestamp)
 		day_seconds = timestamp_to_relative(timestamp)
-		current_time_period = timestamp_to_time_period(timestamp)
+		time_period = timestamp_to_time_period(timestamp)
 
 		_is_updating = false
 
@@ -35,11 +34,8 @@ signal day_changed(current: int)
 
 		if _is_updating:
 			return
-		_is_updating = true
 
 		timestamp = _get_timestamp(current_day, day_seconds)
-
-		_is_updating = false
 
 # has custom export_range
 var day_seconds: float = 0.0:
@@ -48,23 +44,19 @@ var day_seconds: float = 0.0:
 			day_seconds = value
 			return
 
-		_is_updating = true
-
 		day_seconds = clamp(value, 0, day_duration - 0.001)
 		timestamp = _get_timestamp(current_day, day_seconds)
 
-		_is_updating = false
-
 var day_duration: float
 
-var current_time_period: TimePeriod:
+var time_period: TimePeriod:
 	set(value):
-		if not is_node_ready() or current_time_period == value:
+		if not is_node_ready() or time_period == value:
 			return
-		current_time_period = value
-		time_period_changed.emit(current_time_period)
+		time_period = value
+		time_period_changed.emit(time_period)
 		if debug_log:
-			print(current_time_period.name, " time of day started")
+			print(time_period.name, " time of day started")
 
 ## Times of day that constitute one cycle
 var time_periods: Array[TimePeriod] = []
@@ -89,10 +81,10 @@ func timestamp_to_time_period(_timestamp: float) -> TimePeriod:
 	if time_periods.is_empty():
 		return null
 	var time = timestamp_to_relative(_timestamp)
-	for time_period in time_periods:
-		time -= time_period.duration
+	for tp in time_periods:
+		time -= tp.duration
 		if time <= 0:
-			return time_period
+			return tp
 	return time_periods.back()
 
 
@@ -114,6 +106,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	_is_updating = false
+	time_period = timestamp_to_time_period(timestamp)
 	child_exiting_tree.connect(_on_child_exiting_tree)
 	child_order_changed.connect(_update_time_periods)
 	_update_time_periods()
@@ -151,13 +144,14 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func _get_property_list() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
-	var script: Script = get_script()
-	var prop_list = script.get_script_property_list()
-	var property = prop_list[prop_list.find_custom(func(p): return p["name"] == "day_seconds")]
-	property["usage"] |= PROPERTY_USAGE_DEFAULT
-	property["hint"] |= PROPERTY_HINT_RANGE
-	property["hint_string"] = "%s,%s" % [0.0, day_duration]
+	var prop_list = get_script().get_script_property_list()
 
-	result.push_back(property)
+	var day_seconds_prop = prop_list[prop_list.find_custom(
+		func(p): return p["name"] == "day_seconds"
+	)]
+	day_seconds_prop["usage"] |= PROPERTY_USAGE_DEFAULT
+	day_seconds_prop["hint"] |= PROPERTY_HINT_RANGE
+	day_seconds_prop["hint_string"] = "%s,%s" % [0.0, day_duration]
+	result.push_back(day_seconds_prop)
 
 	return result

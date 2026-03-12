@@ -2,70 +2,100 @@
 class_name DayNightCycle
 extends Node3D
 
-signal time_of_day_changed(current: TimeOfDay)
+signal time_period_changed(current: TimePeriod)
 signal day_changed(current: int)
 
+## Use if day_duration failed to update.
+@export_tool_button("Update day duration") var update_day_duration_action = update_day_duration
+
 ## Times of day that constitute one cycle
-@export var times_of_day: Array[TimeOfDay] = []:
+@export var time_periods: Array[TimePeriod] = [TimePeriod.new()]:
 	set(value):
-		times_of_day = value
-		day_duration = (
-			times_of_day
-			. filter(func(t): return t != null)
-			. reduce(func(a, t): return a + t.duration, 0.0)
-		)
+		time_periods = value
+		update_day_duration()
 		update_configuration_warnings()
 
-## Duration in seconds from beginning of day zero
-@export var seconds_since_start: float = 0.0:
+@export var current_day: int = 0:
 	set(value):
-		seconds_since_start = value
-		current_day = seconds_to_day(seconds_since_start)
-		current_time_of_day = seconds_to_time_of_day(seconds_since_start)
+		value = max(value, 0)
+		if current_day == value:
+			return
+		current_day = value
+		timestamp = _get_timestamp(current_day, day_seconds)
+		day_changed.emit(current_day)
+		if debug_log:
+			print("Day ", current_day, " started")
+
+@export_range(0, 1) var day_progress: float:
+	set(value):
+		if value == day_progress:
+			return
+		day_progress = value
+		day_seconds = day_progress * day_duration
+
+@export var day_seconds: float:
+	set(value):
+		if value == day_seconds:
+			return
+		day_seconds = clamp(value, 0, day_duration)
+		day_progress = day_seconds / day_duration
+		
+
+func _get_timestamp(day: int, seconds: float):
+	return day * day_duration + seconds
+
+
+## Duration in seconds from beginning of day zero
+var timestamp: float = 0.0:
+	set(value):
+		if timestamp == value:
+			return
+		timestamp = value
+		current_day = timestamp_to_days(timestamp)
+		current_time_period = timestamp_to_time_period(timestamp)
 
 @export var debug_log: bool = false
 
 var day_duration: float
 
-var current_time_of_day: TimeOfDay:
+var current_time_period: TimePeriod:
 	set(value):
-		if current_time_of_day == value:
+		if current_time_period == value:
 			return
-		current_time_of_day = value
-		time_of_day_changed.emit(current_time_of_day)
+		current_time_period = value
+		time_period_changed.emit(current_time_period)
 		if debug_log:
-			print(current_time_of_day.name, " time of day started")
-
-var current_day: int = -1:
-	set(value):
-		if current_day == value:
-			return
-		current_day = value
-		day_changed.emit(current_day)
-		if debug_log:
-			print("Day ", current_day, " started")
+			print(current_time_period.name, " time of day started")
 
 
-func seconds_to_day(seconds: float) -> int:
+func timestamp_to_days(seconds: float) -> int:
 	return floor(seconds / day_duration)
 
 
-func seconds_to_time(seconds: float) -> float:
-	return fmod(seconds, day_duration)
+## Converts timestamp to seconds relative to the beginning of the current day.
+func timestamp_to_relative(_timestamp: float) -> float:
+	return fmod(_timestamp, day_duration)
 
 
-func seconds_to_time_of_day(seconds: float) -> TimeOfDay:
-	var time = seconds_to_time(seconds)
-	for tod in times_of_day:
+func timestamp_to_time_period(_timestamp: float) -> TimePeriod:
+	var time = timestamp_to_relative(_timestamp)
+	for tod in time_periods:
 		time -= tod.duration
 		if time <= 0:
 			return tod
-	return times_of_day.get(-1)
+	return time_periods.get(-1)
+
+func update_day_duration() -> void:
+	day_duration = (
+		time_periods
+		. filter(func(t): return t != null)
+		. reduce(func(a, t): return a + t.duration, 0.0)
+	)
 
 
 func _physics_process(delta: float) -> void:
-	if not Engine.is_editor_hint():
-		seconds_since_start += delta
+	if not Engine.is_editor_hint() and day_duration > 0.0:
+		timestamp += delta
 
 
 func _init() -> void:
@@ -73,9 +103,11 @@ func _init() -> void:
 
 
 func _get_configuration_warnings() -> PackedStringArray:
-	if times_of_day.filter(func(t): return t != null).is_empty():
+	if time_periods.filter(func(t): return t != null).is_empty():
 		return [
-			"""Times of day array is empty. \
-			This node will not work correctly without at least one non-null time of day."""
+			"""Time periods array is empty. \
+			This node will not work correctly without at least one non-null time period."""
 		]
+	if day_duration <= 0.0:
+		return ["Ensure day duration is longer than 0."]
 	return []

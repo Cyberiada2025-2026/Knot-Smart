@@ -9,10 +9,9 @@
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_a8run"]
-[ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_of_day.gd" id="10_th5th"]
+[ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="10_th5th"]
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
-[ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="12_raeie"]
-[ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="13_hxu8e"]
+[ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="12_th5th"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="15_hxu8e"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
@@ -40,33 +39,15 @@ script = ExtResource("5_hujxm")
 random_seed = 3
 metadata/_custom_type_script = "uid://uq2ee3iq6x08"
 
-[sub_resource type="Resource" id="Resource_7smn1"]
+[sub_resource type="Resource" id="Resource_ouso4"]
 script = ExtResource("10_th5th")
-name = "Dusk"
-duration = 10.0
-color_lut = ExtResource("12_raeie")
-metadata/_custom_type_script = "uid://bspfhf53tg7of"
-
-[sub_resource type="Resource" id="Resource_raeie"]
-script = ExtResource("10_th5th")
-name = "Daylight"
-duration = 30.0
 color_lut = ExtResource("11_7smn1")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
-[sub_resource type="Resource" id="Resource_hxu8e"]
+[sub_resource type="Resource" id="Resource_7smn1"]
 script = ExtResource("10_th5th")
-name = "Sunset"
-duration = 10.0
-color_lut = ExtResource("12_raeie")
-metadata/_custom_type_script = "uid://bspfhf53tg7of"
-
-[sub_resource type="Resource" id="Resource_nvumn"]
-script = ExtResource("10_th5th")
-name = "Night"
-duration = 30.0
-color_lut = ExtResource("13_hxu8e")
-is_night = true
+duration = 20.0
+color_lut = ExtResource("12_th5th")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Main" type="Node3D" unique_id=959478903]
@@ -173,7 +154,9 @@ size = Vector3i(3, 4, 2)
 
 [node name="DayNightCycle" type="Node3D" parent="." unique_id=106700811]
 script = ExtResource("10_a8run")
-times_of_day = Array[ExtResource("10_th5th")]([SubResource("Resource_7smn1"), SubResource("Resource_raeie"), SubResource("Resource_hxu8e"), SubResource("Resource_nvumn")])
+time_periods = Array[ExtResource("10_th5th")]([SubResource("Resource_ouso4"), SubResource("Resource_7smn1")])
+day_progress = 1.0
+day_seconds = 20.0
 metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]

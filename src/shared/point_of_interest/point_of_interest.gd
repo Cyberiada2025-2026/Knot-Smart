@@ -1,6 +1,7 @@
 @tool
-extends Node
 class_name PointOfInterest
+extends Node
+
 
 @export var radius: float = 2:
 	set(value):
@@ -10,15 +11,15 @@ class_name PointOfInterest
 		if visualization_mesh is MeshInstance3D:
 			visualization_mesh.mesh.radius = radius
 			visualization_mesh.mesh.height = radius * 2
-			
-			
+
+
 @export var visualize: bool = true:
 	set(value):
 		visualize = value
 		if visualization_mesh is MeshInstance3D:
 			visualization_mesh.visible = visualize
-			
-			
+
+
 @export var trigger_group_name: StringName = "Player"
 
 ## message to say after triggering point of interest

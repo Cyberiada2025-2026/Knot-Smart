@@ -1,6 +1,6 @@
 [gd_resource type="Environment" format=3 uid="uid://db3d7co0oblxp"]
 
-[ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="1_wx3nh"]
+[ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="1_wx3nh"]
 
 [resource]
 background_color = Color(0.37284583, 0.65785354, 0.57790345, 1)

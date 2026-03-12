@@ -95,7 +95,7 @@ func update_day_duration() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if not Engine.is_editor_hint() and day_duration > 0.0:
-		timestamp += 1
+		tick_count += 1
 
 
 func _init() -> void:

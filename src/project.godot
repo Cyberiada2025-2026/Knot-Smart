@@ -39,6 +39,10 @@ window/stretch/scale_mode="integer"
 
 enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
+[global_group]
+
+day_night_cycle="Group containing only the DayNightCycle node if it exists."
+
 [importer_defaults]
 
 animation_library={

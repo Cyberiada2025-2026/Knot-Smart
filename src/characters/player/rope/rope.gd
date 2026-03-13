@@ -92,6 +92,7 @@ func fuse():
 					child.linked.finish()
 				else:
 					child.reparent(combined)
+			combined.mass += n.mass
 			n.queue_free()
 
 		finish()

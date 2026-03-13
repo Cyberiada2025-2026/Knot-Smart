@@ -28,13 +28,19 @@ func _physics_process(_delta: float) -> void:
 	if get_node("../PlayerCamera").get_view_type() == PlayerCamera.ViewType.THIRD_PERSON:
 		return
 
-	var result = UnsafeRaycastBuilder.new(self).raycast()
+	var result = UnsafeRaycastBuilder.new(self) \
+		.enable_collisions_with_areas() \
+		.raycast()
 
 	if result.is_empty():
 		return
 
 	sphere.position = result.position
 	sphere.show()
+
+	if result.collider.get_parent() is Rope:
+		if Input.is_action_just_pressed("break_rope"):
+			result.collider.get_parent().finish()
 
 	match state:
 		State.SELECT_FIRST:

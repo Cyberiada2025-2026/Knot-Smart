@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var speed := 30000
+@export var speed := 5.0
 @onready var navigation_agent_3d : NavigationAgent3D = $NavigationAgent3D
 @onready var shapecast = $ShapeCast3D
 
@@ -9,7 +9,7 @@ const IDLE_DIS := 20
 var can_move := false
 var world : World3D
 var target : Node3D
-var is_retreating : bool = false
+var should_track_target : bool = false
 
 
 func _ready() -> void:
@@ -86,3 +86,7 @@ func _physics_process(_delta: float) -> void:
 func attack() -> void:
 	#we can use like seperate class attack for diffrent attack types
 	print("attack!")
+
+
+func set_speed(val : float):
+	speed = val

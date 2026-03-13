@@ -7,6 +7,7 @@ var space_state: PhysicsDirectSpaceState3D
 var camera: Camera3D
 var screen_pos: Vector2
 var ray_length = 1000.0
+var collide_with_areas = false
 
 
 ## Unsafe: Can only be created during physics_process.
@@ -28,6 +29,11 @@ func set_screen_position(position: Vector2) -> UnsafeRaycastBuilder:
 	return self
 
 
+func enable_collisions_with_areas() -> UnsafeRaycastBuilder:
+	collide_with_areas = true
+	return self
+
+
 ## Unsafe: Has to be called from within _physics_process.
 ## Builds a raycast query and performs it, then destroys the builder
 func raycast() -> Dictionary:
@@ -35,6 +41,7 @@ func raycast() -> Dictionary:
 	var normal = camera.project_ray_normal(screen_pos)
 	var to = from + normal * ray_length
 	var query = PhysicsRayQueryParameters3D.create(from, to)
+	query.collide_with_areas = collide_with_areas
 
 	var result = space_state.intersect_ray(query)
 

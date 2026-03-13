@@ -8,4 +8,3 @@ func _ready() -> void:
 		print(LanguageGenerator.process_dialogue(line.dialogue))
 		SpeechManager.set_mood(line.mood)
 		await SpeechManager.play_speech(LanguageGenerator.process_dialogue(line.dialogue))
-		

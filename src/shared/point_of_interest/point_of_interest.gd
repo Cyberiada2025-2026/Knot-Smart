@@ -2,6 +2,10 @@
 class_name PointOfInterest
 extends Node3D
 
+const VISUALIZATION_MATERIAL = (
+	preload("res://shared/point_of_interest/point_of_interest_visualization_material.tres")
+)
+
 @export var radius: float = 0.5:
 	set(value):
 		radius = value
@@ -19,8 +23,6 @@ extends Node3D
 
 ## message to say after triggering point of interest
 @export_multiline var message: String;
-
-const VISUALIZATION_MATERIAL = preload("res://shared/point_of_interest/point_of_interest_visualization_material.tres")
 
 var collider
 var visualization_mesh

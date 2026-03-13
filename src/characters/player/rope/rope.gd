@@ -88,7 +88,10 @@ func fuse():
 		
 		for n in node:
 			for child in n.get_children():
-				child.reparent(combined)
+				if child is NodeLink and child.linked is Rope:
+					child.linked.finish()
+				else:
+					child.reparent(combined)
 			n.queue_free()
 
 		finish()

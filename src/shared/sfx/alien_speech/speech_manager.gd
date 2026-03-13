@@ -60,10 +60,10 @@ func play_speech(input: Array) -> void:
 	for sentence in input:
 		for word in sentence:
 			for i in range(len(word) - 1):
-				play_sound(word[i], CUT_ENDING) 
+				play_sound(word[i], CUT_ENDING)
 				await audio_stream_player.finished
 
-			play_sound(word.back(), PLAY_FULL) 
+			play_sound(word.back(), PLAY_FULL)
 			await audio_stream_player.finished
 
 		await get_tree().create_timer(pause_between_sentence).timeout

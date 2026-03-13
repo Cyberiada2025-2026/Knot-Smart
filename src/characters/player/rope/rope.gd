@@ -76,7 +76,8 @@ func fuse():
 			node[i].position = final_pos + diff
 		
 		var combined = RigidBody3D.new()
-		get_parent().add_child(combined)
+		combined.position = final_pos
+		get_node("../../../").add_child(combined)
 		for child in node[0].get_children():
 			child.reparent(combined)
 		for child in node[1].get_children():

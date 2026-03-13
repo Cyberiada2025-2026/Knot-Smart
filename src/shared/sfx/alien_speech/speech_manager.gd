@@ -1,9 +1,11 @@
-extends Node
-
 class_name SpeechManager
 
-const PATH := "res://shared/sfx/alien_speech/"
+extends Node
+
+signal finished_playing
+
 const SPEECH := preload("res://shared/sfx/alien_speech/speech.json").data
+const PATH := "res://shared/sfx/alien_speech/"
 
 @export var curr_sentence = []
 @export var base_pitch := 1.1
@@ -11,12 +13,10 @@ const SPEECH := preload("res://shared/sfx/alien_speech/speech.json").data
 @export var shorten_amount := 0.8
 @export var pause_between_sentence := 0.25
 
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-signal finished_playing
-
 var speech_types: Dictionary
 var current_mood: String
 
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
 	speech_types = load_speech()
@@ -59,17 +59,12 @@ func play_speech(input: Array) -> void:
 	const PLAY_FULL := false
 	for sentence in input:
 		for word in sentence:
-			# Odtwarzanie wszystkich głosek oprócz ostatniej
 			for i in range(len(word) - 1):
-				play_sound(word[i], CUT_ENDING)  # cut_ending = true
-				# Czekamy na zakończenie skróconego odtwarzania
+				play_sound(word[i], CUT_ENDING) 
 				await audio_stream_player.finished
 
-			# Odtwarzanie ostatniej głoski bez skracania
-			play_sound(word.back(), PLAY_FULL)  # cut_ending = false
+			play_sound(word.back(), PLAY_FULL) 
 			await audio_stream_player.finished
 
-		# Przerwa między zdaniami
 		await get_tree().create_timer(pause_between_sentence).timeout
-
 	finished_playing.emit()

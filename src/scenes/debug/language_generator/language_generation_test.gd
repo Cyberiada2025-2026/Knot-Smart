@@ -4,7 +4,7 @@ extends Node
 func _ready() -> void:
 	var dialogues = load("res://scenes/debug/language_generator/dialogues.json").data
 	for scene in dialogues:
-		#for line in dialogues[scene]:
+		for line in dialogues[scene]:
 			print(LanguageGenerator.process_dialogue(line.dialogue))
 			#print(line.mood)
 		print(scene)

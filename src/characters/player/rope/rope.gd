@@ -70,11 +70,10 @@ func finish():
 func fuse():
 	if node[0] is RigidBody3D and node[1] is RigidBody3D:
 		var final_pos = (end[0].position + end[1].position) / 2
-		end[0].position = final_pos
-		end[1].position = final_pos
 
-		for n in node:
-			n.position = final_pos
+		for i in range(2):
+			var diff = end[i].position - node[i].position
+			node[i].position = final_pos + diff
 		
 		var combined = RigidBody3D.new()
 		get_parent().add_child(combined)
@@ -82,6 +81,9 @@ func fuse():
 			child.reparent(combined)
 		for child in node[1].get_children():
 			child.reparent(combined)
+
+		for n in node:
+			n.queue_free()
 
 		finish()
 

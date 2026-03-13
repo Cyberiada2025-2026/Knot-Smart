@@ -47,15 +47,17 @@ func init_rope_collider():
 	collision_shape = CapsuleShape3D.new()
 	collision_shape.radius = params.rope_collision_radius
 
-	if pow(params.rope_collision_buffer, 2) < direction.length_squared():
-		collision_shape.height = direction.length() - params.rope_collision_buffer
+	collision_shape.height = direction.length()
 	var collider = CollisionShape3D.new()
 	collider.shape = collision_shape
 	collider.rotate_x(-PI / 2)
 	rope.add_child(collider)
 
 
-func _on_area_entered(_node):
+func _on_area_entered(body: Node3D):
+	for n in self.node:
+		if body.get_instance_id() == n.get_instance_id():
+			return
 	finish()
 
 
@@ -69,8 +71,7 @@ func update_rope():
 	var direction = end[1].position - end[0].position
 	var length = direction.length()
 	vfx.set_length(length)
-	if params.rope_collision_buffer < length:
-		collision_shape.height = length - params.rope_collision_buffer
+	collision_shape.height = length
 	rope.look_at_from_position(end[0].position + direction / 2, end[0].position)
 
 

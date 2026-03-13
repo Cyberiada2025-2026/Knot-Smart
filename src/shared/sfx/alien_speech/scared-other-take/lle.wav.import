@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://hrxkbrn425nj"
-path="res://.godot/imported/le.wav-44d5f81f140eaddf35eb7f801d7703c6.sample"
+path="res://.godot/imported/lle.wav-e7811ec4b523c1749f54bb17a2d14390.sample"
 
 [deps]
 
-source_file="res://shared/sfx/alien_speech/scared-other-take/le.wav"
-dest_files=["res://.godot/imported/le.wav-44d5f81f140eaddf35eb7f801d7703c6.sample"]
+source_file="res://shared/sfx/alien_speech/scared-other-take/lle.wav"
+dest_files=["res://.godot/imported/lle.wav-e7811ec4b523c1749f54bb17a2d14390.sample"]
 
 [params]
 

@@ -2,9 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dh2w1k74fxdh3" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gl0q7"]
-bg_color = Color(0, 0, 0, 1)
-
 [node name="MainMenu" type="Control" unique_id=1677560445]
 layout_mode = 3
 anchors_preset = 15
@@ -14,31 +11,43 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uhj5c")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1142129450]
+[node name="Background" type="ColorRect" parent="." unique_id=183335166]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_gl0q7")
+color = Color(0, 0, 0, 1)
 
-[node name="Game title" type="RichTextLabel" parent="." unique_id=1947432400]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 73.0
-offset_right = 399.0
-offset_bottom = 158.0
-theme_override_font_sizes/normal_font_size = 56
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=331304660]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Padding" type="Control" parent="HBoxContainer" unique_id=516679975]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1716038917]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Game title" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=1947432400]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/normal_font_size = 16
 text = "Knot smart"
+fit_content = true
 
-[node name="Button" type="Button" parent="." unique_id=1527863379]
-layout_mode = 0
-offset_left = 83.0
-offset_top = 167.0
-offset_right = 188.0
-offset_bottom = 242.0
-theme_override_font_sizes/font_size = 48
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1527863379]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 16
 text = "Play"
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

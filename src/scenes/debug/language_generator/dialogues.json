@@ -1,0 +1,26 @@
+{
+	"intro_cutscene": [
+		{
+			"mood": "excited",
+			"dialogue": "Ale fajnie jest w końcu dotrzeć na miejsce moich wymarzonych wakacji!"
+		},
+		{
+			"mood": "suprised",
+			"dialogue": "Co to było?"
+		},
+		{
+			"mood": "scared",
+			"dialogue": "O boże, o kurwa"
+		}
+	],
+	"rope_tutorial": [
+		{
+			"mood": "rope_tutorial",
+			"dialogue": "To jest lina — podstawowe wyposażenie każdego z nas, kto podróżuje w kosmos. Lina może—"
+		},
+		{
+			"mood": "damn_bro",
+			"dialogue": "A tam, niepotrzebne mi to. Jakoś sobie poradzę"
+		}
+	]
+}

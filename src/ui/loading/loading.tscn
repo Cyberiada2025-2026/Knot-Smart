@@ -23,11 +23,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_0y627")
 
-[node name="Game title" type="RichTextLabel" parent="." unique_id=1113021049]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 73.0
-offset_right = 399.0
-offset_bottom = 158.0
+[node name="Game title" type="RichTextLabel" parent="PanelContainer" unique_id=1113021049]
+layout_mode = 2
 theme_override_font_sizes/normal_font_size = 56
 text = "loading..."
+horizontal_alignment = 1
+vertical_alignment = 1

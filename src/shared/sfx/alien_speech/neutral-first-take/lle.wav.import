@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cvv4afhruoj64"
-path="res://.godot/imported/le.wav-6fb85c39af66246a6c4f39b4f4c8ed28.sample"
+path="res://.godot/imported/lle.wav-adefeadaa6e12d32e6cc634e23d618de.sample"
 
 [deps]
 
-source_file="res://shared/sfx/alien_speech/neutral-first-take/le.wav"
-dest_files=["res://.godot/imported/le.wav-6fb85c39af66246a6c4f39b4f4c8ed28.sample"]
+source_file="res://shared/sfx/alien_speech/neutral-first-take/lle.wav"
+dest_files=["res://.godot/imported/lle.wav-adefeadaa6e12d32e6cc634e23d618de.sample"]
 
 [params]
 

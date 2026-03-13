@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://cvk0w2oqdpub0"
-path="res://.godot/imported/lib.wav-7381ba7d0ea965559abf142c3f68666f.sample"
+path="res://.godot/imported/lip.wav-a37d1005674a44503fd35843a8ba55fb.sample"
 
 [deps]
 
-source_file="res://shared/sfx/alien_speech/fast-other/lib.wav"
-dest_files=["res://.godot/imported/lib.wav-7381ba7d0ea965559abf142c3f68666f.sample"]
+source_file="res://shared/sfx/alien_speech/fast-other/lip.wav"
+dest_files=["res://.godot/imported/lip.wav-a37d1005674a44503fd35843a8ba55fb.sample"]
 
 [params]
 

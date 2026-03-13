@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://n3o41jekpah0"]
+
+[ext_resource type="Script" uid="uid://b6c7gs7ipg8ag" path="res://scenes/debug/speech/tester.gd" id="4_3vnpx"]
+
+[node name="Node2D" type="Node2D" unique_id=32041945]
+
+[node name="Node" type="Node" parent="." unique_id=834697655]
+script = ExtResource("4_3vnpx")

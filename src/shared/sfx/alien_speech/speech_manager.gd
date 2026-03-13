@@ -1,5 +1,3 @@
-class_name SpeechManager
-
 extends Node
 
 signal finished_playing
@@ -11,12 +9,16 @@ const PATH := "res://shared/sfx/alien_speech/"
 @export var base_pitch := 1.1
 @export var pitch_dif := 0.05
 @export var shorten_amount := 0.8
-@export var pause_between_sentence := 0.25
+@export var pause_between_sentence := 0.1
 
 var speech_types: Dictionary
 var current_mood: String
 
-@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+var audio_stream_player: AudioStreamPlayer
+
+func _init() -> void:
+	audio_stream_player = AudioStreamPlayer.new()
+	add_child(audio_stream_player)
 
 func _ready() -> void:
 	speech_types = load_speech()

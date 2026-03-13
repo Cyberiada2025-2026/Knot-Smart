@@ -67,6 +67,20 @@ func finish():
 	queue_free()
 
 
+func fuse():
+	if node[0] is RigidBody3D and node[1] is RigidBody3D:
+		var final_pos = (end[0].position + end[1].position) / 2
+		end[0].position = final_pos
+		end[1].position = final_pos
+		
+		var combined = RigidBody3D.new()
+		for child in node[0].get_children():
+			child.reparent(combined)
+		for child in node[1].get_children():
+			child.reparent(combined)
+
+		finish()
+
 func update_rope():
 	var direction = end[1].position - end[0].position
 	var length = direction.length()

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://rnx3yu0ofiwg"]
 
 [ext_resource type="Script" uid="uid://b2qmm8ipalct6" path="res://shared/camera/camera_helper.gd" id="1_5jark"]
-[ext_resource type="PackedScene" uid="uid://ds23isyj385on" path="res://shared/pause_menu/pause_menu.tscn" id="2_5jark"]
+[ext_resource type="PackedScene" uid="uid://ds23isyj385on" path="res://ui/pause_menu/pause_menu.tscn" id="2_5jark"]
 [ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://shared/post_processing/shaders/dithering.gdshader" id="3_1y1hh"]
 [ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://shared/post_processing/shaders/crt.gdshader" id="4_ka213"]
 

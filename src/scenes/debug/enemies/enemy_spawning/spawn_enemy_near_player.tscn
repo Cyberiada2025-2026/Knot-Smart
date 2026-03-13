@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cjtgulb35tycd"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_w063n"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_w063n"]
+
+[node name="SpawnEnemyNearPlayer" type="Node3D" unique_id=1013178963]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=854278800]
+transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_w063n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1433564982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+navigation_mesh = SubResource("NavigationMesh_w063n")
+
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1740409380]
+use_collision = true
+size = Vector3(50, 1, 50)

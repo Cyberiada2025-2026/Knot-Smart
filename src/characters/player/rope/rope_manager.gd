@@ -46,12 +46,12 @@ func _physics_process(_delta: float) -> void:
 	match state:
 		State.SELECT_FIRST:
 			if Input.is_action_just_pressed("left_mouse"):
-				place_marker_on_object(result.collider)
+				place_marker_from_unsafe_raycast(result)
 				state = State.SELECT_SECOND
 
 		State.SELECT_SECOND:
 			if Input.is_action_just_pressed("left_mouse"):
-				place_marker_on_object(result.collider)
+				place_marker_from_unsafe_raycast(result)
 
 				create_rope()
 				state = State.SELECT_FIRST
@@ -63,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 				raycast.target_position = raycast.to_local(get_node("../PlayerPhysics").global_position)
 				raycast.force_raycast_update()
 
-				place_marker(raycast.get_collider(), raycast.get_collision_point() + Vector3.UP * 0.3)
+				place_marker_from_node_raycast(raycast)
 				raycast.queue_free()
 
 				create_rope()
@@ -83,14 +83,12 @@ func create_rope():
 	markers = []
 
 
-func place_marker_on_object(collider):
-	var marker = sphere.duplicate()
-	collider.add_child(marker)
-	marker.name = "PositionMarker"
-	marker.owner = collider
-	marker.global_transform = sphere.transform
-	selected_objects.append(collider)
-	markers.append(marker)
+func place_marker_from_unsafe_raycast(raycast_result):
+	place_marker(raycast_result.collider, sphere.global_position)
+
+
+func place_marker_from_node_raycast(raycast):
+	place_marker(raycast.get_collider(), raycast.get_collision_point() + Vector3.UP * 0.3)
 
 
 func place_marker(collider, pos):

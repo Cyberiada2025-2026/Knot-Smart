@@ -2,8 +2,8 @@
 class_name PointOfInterest
 extends Node3D
 
-const VISUALIZATION_MATERIAL = (
-	preload("res://shared/point_of_interest/point_of_interest_visualization_material.tres")
+const VISUALIZATION_MATERIAL = preload(
+	"res://shared/point_of_interest/point_of_interest_visualization_material.tres"
 )
 
 @export var radius: float = 0.5:
@@ -13,7 +13,6 @@ const VISUALIZATION_MATERIAL = (
 		visualization_mesh.mesh.radius = radius
 		visualization_mesh.mesh.height = radius * 2
 
-
 @export var visualize: bool = true:
 	set(value):
 		visualize = value
@@ -22,7 +21,7 @@ const VISUALIZATION_MATERIAL = (
 @export var trigger_group_name: StringName = "Player"
 
 ## message to say after triggering point of interest
-@export_multiline var message: String;
+@export_multiline var message: String
 
 var collider
 var visualization_mesh

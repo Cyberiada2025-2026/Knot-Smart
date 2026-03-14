@@ -28,9 +28,7 @@ func _physics_process(_delta: float) -> void:
 	if get_node("../PlayerCamera").get_view_type() == PlayerCamera.ViewType.THIRD_PERSON:
 		return
 
-	var result = UnsafeRaycastBuilder.new(self) \
-		.enable_collisions_with_areas() \
-		.raycast()
+	var result = UnsafeRaycastBuilder.new(self).enable_collisions_with_areas().raycast()
 
 	if result.is_empty():
 		return

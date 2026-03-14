@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://ds23isyj385on"]
+
+[ext_resource type="Script" uid="uid://doqxxfg1qiy8i" path="res://ui/pause_menu/pause_menu.gd" id="1_b8ecp"]
+
+[node name="PauseMenu" type="Node" unique_id=473504245]
+process_mode = 3
+script = ExtResource("1_b8ecp")
+
+[node name="Control" type="Control" parent="." unique_id=1401324083]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1224272992]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 37.0
+offset_right = 305.0
+offset_bottom = 201.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control" unique_id=1501121890]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 4.125
+anchor_bottom = 2.075
+offset_left = 104.0
+offset_top = 61.0
+offset_right = 269.0
+offset_bottom = 144.0
+theme_override_colors/default_color = Color(0.4, 0.4117647, 1, 1)
+text = "pause
+"
+
+[node name="Button" type="Button" parent="Control" unique_id=281467682]
+process_mode = 3
+layout_mode = 0
+offset_left = 79.0
+offset_top = 137.0
+offset_right = 217.0
+offset_bottom = 168.0
+text = "close menu"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_return_button_pressed"]

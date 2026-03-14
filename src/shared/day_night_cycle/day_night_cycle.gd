@@ -11,6 +11,10 @@ signal day_changed(current: int)
 @export var tick_count: int = 0:
 	set(value):
 		tick_count = max(value, 0)
+
+		if _is_updating:
+			return 
+
 		_is_updating = true
 
 		current_day = get_days_since_start()
@@ -22,13 +26,13 @@ signal day_changed(current: int)
 # is negative by default to force setter call on load.
 @export var current_day: int = -1:
 	set(value):
-		if current_day == value:
-			return
-
+		var prev_day = current_day
 		current_day = max(value, 0)
-		day_changed.emit(current_day)
-		if debug_log:
-			print("Day ", current_day, " started")
+
+		if current_day != prev_day:
+			day_changed.emit(current_day)
+			if debug_log:
+				print("Day ", current_day, " started")
 
 		if not _is_updating:
 			tick_count = _get_tick_count(current_day, day_seconds)
@@ -128,6 +132,7 @@ func _update_time_periods():
 
 	update_day_duration()
 	update_configuration_warnings()
+	tick_count = tick_count
 	if debug_log:
 		print("New time periods: ", time_periods)
 

@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://u07j5gdfhxfa"
-path="res://.godot/imported/womp.wav-4546a1a4ae82fa9c92f1bda346757042.sample"
+path="res://.godot/imported/womp.wav-9558a8f5f7caa22e27dc4e785c2d79dd.sample"
 
 [deps]
 
-source_file="res://shared/sfx/alien_speech/suprised/womp.wav"
-dest_files=["res://.godot/imported/womp.wav-4546a1a4ae82fa9c92f1bda346757042.sample"]
+source_file="res://shared/sfx/alien_speech/surprised/womp.wav"
+dest_files=["res://.godot/imported/womp.wav-9558a8f5f7caa22e27dc4e785c2d79dd.sample"]
 
 [params]
 

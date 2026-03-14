@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b02mafici0u6m"
-path="res://.godot/imported/rim.wav-badc57febc753968a6f7d76f1cf07a10.sample"
+path="res://.godot/imported/rim.wav-c2e8e348050f4f4b1167cef805159089.sample"
 
 [deps]
 
-source_file="res://shared/sfx/alien_speech/angry-circumsized/rim.wav"
-dest_files=["res://.godot/imported/rim.wav-badc57febc753968a6f7d76f1cf07a10.sample"]
+source_file="res://shared/sfx/alien_speech/angry-less-distortion/rim.wav"
+dest_files=["res://.godot/imported/rim.wav-c2e8e348050f4f4b1167cef805159089.sample"]
 
 [params]
 

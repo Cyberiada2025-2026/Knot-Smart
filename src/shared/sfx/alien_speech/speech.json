@@ -13,19 +13,19 @@
 		"lle": "angry/lle.wav",
 		"si": "angry/si.wav"
 	},
-	"angry-circumsized": {
-		"zip": "angry-circumsized/zip.wav",
-		"ba": "angry-circumsized/ba.wav",
-		"rim": "angry-circumsized/rim.wav",
-		"waeb": "angry-circumsized/waeb.wav",
-		"ga": "angry-circumsized/ga.wav",
-		"womp": "angry-circumsized/womp.wav",
-		"go": "angry-circumsized/go.wav",
-		"lip": "angry-circumsized/lip.wav",
-		"blop": "angry-circumsized/blop.wav",
-		"zop": "angry-circumsized/zop.wav",
-		"lle": "angry-circumsized/lle.wav",
-		"si": "angry-circumsized/si.wav"
+	"angry-less-distortion": {
+		"zip": "angry-less-distortion/zip.wav",
+		"ba": "angry-less-distortion/ba.wav",
+		"rim": "angry-less-distortion/rim.wav",
+		"waeb": "angry-less-distortion/waeb.wav",
+		"ga": "angry-less-distortion/ga.wav",
+		"womp": "angry-less-distortion/womp.wav",
+		"go": "angry-less-distortion/go.wav",
+		"lip": "angry-less-distortion/lip.wav",
+		"blop": "angry-less-distortion/blop.wav",
+		"zop": "angry-less-distortion/zop.wav",
+		"lle": "angry-less-distortion/lle.wav",
+		"si": "angry-less-distortion/si.wav"
 	},
 	"damn-bro": {
 		"zip": "damn-bro/zip.wav",
@@ -167,19 +167,19 @@
 		"lle": "scared-other-take/lle.wav",
 		"si": "scared-other-take/si.wav"
 	},
-	"suprised": {
-		"zip": "suprised/zip.wav",
-		"ba": "suprised/ba.wav",
-		"rim": "suprised/rim.wav",
-		"waeb": "suprised/waeb.wav",
-		"ga": "suprised/ga.wav",
-		"womp": "suprised/womp.wav",
-		"go": "suprised/go.wav",
-		"lip": "suprised/lip.wav",
-		"blop": "suprised/blop.wav",
-		"zop": "suprised/zop.wav",
-		"lle": "suprised/lle.wav",
-		"si": "suprised/si.wav"
+	"surprised": {
+		"zip": "surprised/zip.wav",
+		"ba": "surprised/ba.wav",
+		"rim": "surprised/rim.wav",
+		"waeb": "surprised/waeb.wav",
+		"ga": "surprised/ga.wav",
+		"womp": "surprised/womp.wav",
+		"go": "surprised/go.wav",
+		"lip": "surprised/lip.wav",
+		"blop": "surprised/blop.wav",
+		"zop": "surprised/zop.wav",
+		"lle": "surprised/lle.wav",
+		"si": "surprised/si.wav"
 	},
 	"zesty": {
 		"zip": "zesty/zip.wav",

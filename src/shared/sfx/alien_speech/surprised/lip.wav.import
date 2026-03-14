@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://baf2pe7poiyu6"
-path="res://.godot/imported/zop.wav-9c215e5e1d6664df0979d98bd22bcd1e.sample"
+uid="uid://ngjq2243tbpj"
+path="res://.godot/imported/lip.wav-f136d469050521b6d42d6448a6348ae0.sample"
 
 [deps]
 
-source_file="res://shared/sfx/alien_speech/suprised/zop.wav"
-dest_files=["res://.godot/imported/zop.wav-9c215e5e1d6664df0979d98bd22bcd1e.sample"]
+source_file="res://shared/sfx/alien_speech/surprised/lip.wav"
+dest_files=["res://.godot/imported/lip.wav-f136d469050521b6d42d6448a6348ae0.sample"]
 
 [params]
 

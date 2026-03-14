@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://2bqlhbepwe6o"
-path="res://.godot/imported/lle.wav-0a1cd9eeb71c2b66f87054ecac93709b.sample"
+path="res://.godot/imported/lle.wav-5fb74a0f312c7d5f0063ea9fb56a3673.sample"
 
 [deps]
 
-source_file="res://shared/sfx/alien_speech/angry-circumsized/lle.wav"
-dest_files=["res://.godot/imported/lle.wav-0a1cd9eeb71c2b66f87054ecac93709b.sample"]
+source_file="res://shared/sfx/alien_speech/angry-less-distortion/lle.wav"
+dest_files=["res://.godot/imported/lle.wav-5fb74a0f312c7d5f0063ea9fb56a3673.sample"]
 
 [params]
 

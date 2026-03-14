@@ -52,13 +52,11 @@ func _physics_process(_delta: float) -> void:
 		State.SELECT_SECOND:
 			if Input.is_action_just_pressed("left_mouse"):
 				place_marker_from_unsafe_raycast(result)
-
 				create_rope()
 				state = State.SELECT_FIRST
 
 			elif Input.is_action_just_pressed("fuse"):
 				place_marker_on_player()
-
 				create_rope()
 				state = State.SELECT_FIRST
 

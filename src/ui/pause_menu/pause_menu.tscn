@@ -30,7 +30,7 @@ offset_top = 61.0
 offset_right = 269.0
 offset_bottom = 144.0
 theme_override_colors/default_color = Color(0.4, 0.4117647, 1, 1)
-text = "pauza
+text = "pause
 "
 
 [node name="Button" type="Button" parent="Control" unique_id=281467682]
@@ -40,6 +40,6 @@ offset_left = 79.0
 offset_top = 137.0
 offset_right = 217.0
 offset_bottom = 168.0
-text = "zamknij menu"
+text = "close menu"
 
 [connection signal="pressed" from="Control/Button" to="." method="_on_return_button_pressed"]

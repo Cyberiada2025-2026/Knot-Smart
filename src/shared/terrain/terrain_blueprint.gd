@@ -17,12 +17,9 @@ func generate() -> void:
 	print("TerrainBlueprint: Created blueprint of size ", world_size)
 	
 func get_height(coord: Vector2i) -> float:
-	if data.has(coord): 
-		return data[coord].height
-		
-	for x in [-1, 0, 1]:
-		for z in [-1, 0, 1]:
-			var target = coord + Vector2i(x, z)
+	for x in 2:
+		for z in 2:
+			var target = coord - Vector2i(x, z)
 			if data.has(target):
 				return data[target].height
 	return 0.0

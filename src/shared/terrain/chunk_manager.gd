@@ -2,20 +2,23 @@
 extends Node3D
 class_name ChunkManager
 
+@export var terrain_manager: TerrainManager
 
 var world_generation_params: WorldGenerationParams
 var world_display_params: WorldDisplayParams
 
 var chunk_generator: ChunkGenerator
 
-var active_chunks: Dictionary[Vector2i, MeshInstance3D] = {}
+var active_chunks: Dictionary[Vector2i, Node3D] = {}
+var can_generate = false
+var blueprint: TerrainBlueprint
 
 var chunk_unit_size: float:
 	get: return world_generation_params.chunk_size * world_generation_params.tile_size
 
 func clear_inactive_chunks(render_position = null) -> void:
 	if render_position == null:
-		for child in find_children("", "MeshInstance3D"):
+		for child in find_children("", "Node3D"):
 			child.free()
 		active_chunks.clear()
 		return
@@ -27,14 +30,27 @@ func clear_inactive_chunks(render_position = null) -> void:
 	
 	for coord in active_chunks.keys():
 		var diff = (coord - center_coord).abs()
-		if diff.x > world_display_params.render_distance or diff.y > world_display_params.render_distance:
+		if max(diff.x, diff.y) > world_display_params.render_distance:
 			if is_instance_valid(active_chunks[coord]):
 				active_chunks[coord].queue_free()
 				remove_child(active_chunks[coord])
 			active_chunks.erase(coord)
-			
-func generate_chunks(blueprint, render_position = null) -> void:
+func _get_render_position() -> Variant:
+	var players = get_tree().get_nodes_in_group("Player")
+	if players.size() > 0:
+		return players[0].player_physics.position
+	return null
+		
+func begin_generation(_blueprint: TerrainBlueprint):
+	world_display_params = terrain_manager.world_display_params
+	world_generation_params = terrain_manager.world_generation_params
+	can_generate = true
+	blueprint = _blueprint
+	print("can run")
+	
+func generate_chunks() -> void:
 	chunk_generator = ChunkGenerator.new(world_generation_params, world_display_params)
+	var render_position = _get_render_position()
 	clear_inactive_chunks(render_position)
 	if render_position != null:
 		var center_chunk = (render_position / chunk_unit_size).floor()
@@ -60,3 +76,12 @@ func generate_chunks(blueprint, render_position = null) -> void:
 				var chunk_node = chunk_generator.create_chunk_instance(coord, blueprint, self)
 					
 				active_chunks[coord] = chunk_node
+				
+func _ready() -> void:
+	terrain_manager.clear_terrain.connect(clear_inactive_chunks)
+	
+	terrain_manager.terrain_generation_finished.connect(begin_generation)
+	
+func _process(_delta: float) -> void:
+	if can_generate == true:
+		generate_chunks()

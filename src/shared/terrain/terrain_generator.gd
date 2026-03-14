@@ -3,11 +3,11 @@ class_name TerrainGenerator
 extends Node
 
 var world_generation_params: WorldGenerationParams
+var blueprint: TerrainBlueprint
 
-func generate_terrain(blueprint: TerrainBlueprint) -> bool:
-	if not world_generation_params:
-		push_error("TerrainGenerator: No params found!")
-		return false
+func execute(manager: TerrainManager) -> bool:
+	blueprint = manager.blueprint
+	world_generation_params = manager.world_generation_params
 	
 	for x in blueprint.world_size:
 		for z in blueprint.world_size:

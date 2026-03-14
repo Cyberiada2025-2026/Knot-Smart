@@ -66,6 +66,29 @@ func _physics_process(_delta: float) -> void:
 
 				state = State.SELECT_FIRST
 
+			elif Input.is_action_just_pressed("fuse"):
+				var raycast = RayCast3D.new()
+				add_child(raycast)
+				raycast.global_position = markers[0].global_position
+				raycast.target_position = raycast.to_local(get_node("../PlayerPhysics").global_position)
+				raycast.force_raycast_update()
+
+				place_marker(raycast.get_collider(), raycast.get_collision_point())
+				raycast.queue_free()
+
+				var positions: Array[Vector3] = []
+				for marker in markers:
+					positions.append(marker.global_position)
+				var rope = Rope.new(rope_params, selected_objects, positions)
+				add_child(rope)
+
+				selected_objects = []
+				for marker in markers:
+					marker.queue_free()
+				markers = []
+
+				state = State.SELECT_FIRST
+
 
 func place_marker_on_object(collider):
 	var marker = sphere.duplicate()
@@ -73,5 +96,15 @@ func place_marker_on_object(collider):
 	marker.name = "PositionMarker"
 	marker.owner = collider
 	marker.global_transform = sphere.transform
+	selected_objects.append(collider)
+	markers.append(marker)
+
+
+func place_marker(collider, pos):
+	var marker = sphere.duplicate()
+	collider.add_child(marker)
+	marker.name = "PositionMarker"
+	marker.owner = collider
+	marker.global_position = pos
 	selected_objects.append(collider)
 	markers.append(marker)

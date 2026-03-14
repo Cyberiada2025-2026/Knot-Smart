@@ -5,7 +5,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0y627"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="Loading" type="Control" unique_id=1965110580 groups=["not_pausable"]]
+[node name="Loading" type="Control" unique_id=1965110580 groups=["unpausable"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

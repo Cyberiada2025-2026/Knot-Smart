@@ -42,4 +42,4 @@ offset_right = 217.0
 offset_bottom = 168.0
 text = "zamknij menu"
 
-[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_return_button_pressed"]

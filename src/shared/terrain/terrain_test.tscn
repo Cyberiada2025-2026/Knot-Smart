@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://fano4j1haopw"]
+
+[ext_resource type="Script" uid="uid://cn6l7oaf3xw32" path="res://shared/terrain/terrain_manager.gd" id="1_1hp32"]
+[ext_resource type="Script" uid="uid://0212vvhximbx" path="res://shared/terrain/terrain_generator.gd" id="1_aojt6"]
+[ext_resource type="Script" uid="uid://no1j1oowuup1" path="res://shared/terrain/world_generation_params.gd" id="2_aojt6"]
+[ext_resource type="Script" uid="uid://bmtv75byrd25q" path="res://shared/terrain/world_display_params.gd" id="3_17td6"]
+[ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="4_j56kj"]
+[ext_resource type="Script" uid="uid://u5hpdit2bo4g" path="res://shared/terrain/chunk_manager.gd" id="6_nolvv"]
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="7_nolvv"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tnrqe"]
+noise_type = 2
+seed = 9
+frequency = 0.005
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nolvv"]
+noise_type = 2
+frequency = 0.05
+
+[sub_resource type="Resource" id="Resource_tnrqe"]
+script = ExtResource("2_aojt6")
+map_size = 16
+chunk_size = 8
+tile_size = 16
+tile_height = 7.0
+noise = SubResource("FastNoiseLite_tnrqe")
+water_noise = SubResource("FastNoiseLite_nolvv")
+metadata/_custom_type_script = "uid://no1j1oowuup1"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nolvv"]
+albedo_texture = ExtResource("4_j56kj")
+
+[sub_resource type="Resource" id="Resource_nolvv"]
+script = ExtResource("3_17td6")
+render_distance = 1
+terrain_material = SubResource("StandardMaterial3D_nolvv")
+metadata/_custom_type_script = "uid://bmtv75byrd25q"
+
+[node name="Terrain" type="Node3D" unique_id=1551696206]
+
+[node name="ChunkManager" type="Node3D" parent="." unique_id=1999529371 node_paths=PackedStringArray("terrain_manager")]
+script = ExtResource("6_nolvv")
+terrain_manager = NodePath("../TerrainManager")
+metadata/_custom_type_script = "uid://u5hpdit2bo4g"
+
+[node name="TerrainManager" type="Node3D" parent="." unique_id=1811810691 node_paths=PackedStringArray("player")]
+script = ExtResource("1_1hp32")
+player = NodePath("../Player")
+world_generation_params = SubResource("Resource_tnrqe")
+world_display_params = SubResource("Resource_nolvv")
+
+[node name="TerrainGenerator" type="Node" parent="TerrainManager" unique_id=1904322367]
+script = ExtResource("1_aojt6")
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("7_nolvv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 120, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=229003036]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 245.36331, 0)
+light_energy = 9.645

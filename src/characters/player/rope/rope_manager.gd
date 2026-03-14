@@ -40,6 +40,9 @@ func _physics_process(_delta: float) -> void:
 		if Input.is_action_just_pressed("break_rope"):
 			result.collider.get_parent().finish()
 
+		elif Input.is_action_just_pressed("fuse"):
+			result.collider.get_parent().fuse()
+
 	match state:
 		State.SELECT_FIRST:
 			if Input.is_action_just_pressed("left_mouse"):

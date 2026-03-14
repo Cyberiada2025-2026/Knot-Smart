@@ -94,6 +94,15 @@ func place_marker_from_node_raycast(raycast):
 	place_marker(raycast.get_collider(), raycast.get_collision_point() + displacement)
 
 
+func place_marker_on_player():
+	var player = get_node("../PlayerPhysics")
+	var player_height = player.get_node("CollisionShape3D").shape.height
+	var local_placement = Vector3.UP * 0.5 * player_height
+	var marker_pos = player.to_global(local_placement)
+
+	place_marker(player, marker_pos)
+
+
 func place_marker(collider, pos):
 	var marker = sphere.duplicate()
 	collider.add_child(marker)

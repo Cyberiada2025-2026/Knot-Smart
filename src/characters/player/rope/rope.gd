@@ -111,7 +111,7 @@ func align_nodes():
 		alignment_transfer.look_at(end[i].global_position)
 
 		# Change rope endpoints' parents to dummy *while keeping global transform*
-		# Now each node obeys the dummy forward exis
+		# Now each reparented node is aligned with the dummy node's forward axis
 		node[i].reparent(alignment_transfer)
 		end[i].reparent(alignment_transfer)
 

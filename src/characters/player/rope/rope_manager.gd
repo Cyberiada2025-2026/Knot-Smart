@@ -60,7 +60,8 @@ func _physics_process(_delta: float) -> void:
 				var raycast = RayCast3D.new()
 				add_child(raycast)
 				raycast.global_position = markers[0].global_position
-				raycast.target_position = raycast.to_local(get_node("../PlayerPhysics").global_position)
+				var target_global = get_node("../PlayerPhysics").global_position
+				raycast.target_position = raycast.to_local(target_global)
 				raycast.force_raycast_update()
 
 				place_marker_from_node_raycast(raycast)

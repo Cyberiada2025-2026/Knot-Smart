@@ -13,7 +13,7 @@ signal day_changed(current: int)
 		tick_count = max(value, 0)
 
 		if _is_updating:
-			return 
+			return
 
 		_is_updating = true
 

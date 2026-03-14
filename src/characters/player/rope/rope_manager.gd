@@ -53,17 +53,7 @@ func _physics_process(_delta: float) -> void:
 			if Input.is_action_just_pressed("left_mouse"):
 				place_marker_on_object(result.collider)
 
-				var positions: Array[Vector3] = []
-				for marker in markers:
-					positions.append(marker.global_position)
-				var rope = Rope.new(rope_params, selected_objects, positions)
-				add_child(rope)
-
-				selected_objects = []
-				for marker in markers:
-					marker.queue_free()
-				markers = []
-
+				create_rope()
 				state = State.SELECT_FIRST
 
 			elif Input.is_action_just_pressed("fuse"):
@@ -76,18 +66,21 @@ func _physics_process(_delta: float) -> void:
 				place_marker(raycast.get_collider(), raycast.get_collision_point() + Vector3.UP * 0.3)
 				raycast.queue_free()
 
-				var positions: Array[Vector3] = []
-				for marker in markers:
-					positions.append(marker.global_position)
-				var rope = Rope.new(rope_params, selected_objects, positions)
-				add_child(rope)
-
-				selected_objects = []
-				for marker in markers:
-					marker.queue_free()
-				markers = []
-
+				create_rope()
 				state = State.SELECT_FIRST
+
+
+func create_rope():
+	var positions: Array[Vector3] = []
+	for marker in markers:
+		positions.append(marker.global_position)
+	var rope = Rope.new(rope_params, selected_objects, positions)
+	add_child(rope)
+
+	selected_objects = []
+	for marker in markers:
+		marker.queue_free()
+	markers = []
 
 
 func place_marker_on_object(collider):

@@ -29,10 +29,10 @@ func generate_world() -> void:
 	blueprint = TerrainBlueprint.new(world_size)
 	clear_t()
 	
-	var generators = get_children().filter(func(c): return c.has_method("generate"))
+	var generators = get_children().filter(func(c): return c.has_method("execute"))
 	
 	for generator in generators:
 		generator.execute(self)
-		
+	
 	terrain_generation_finished.emit(blueprint)
 	

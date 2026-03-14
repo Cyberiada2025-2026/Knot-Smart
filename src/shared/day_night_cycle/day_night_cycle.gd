@@ -26,13 +26,13 @@ signal day_changed(current: int)
 # is negative by default to force setter call on load.
 @export var current_day: int = -1:
 	set(value):
-		var prev_day = current_day
-		current_day = max(value, 0)
+		if current_day == value:
+			return
 
-		if current_day != prev_day:
-			day_changed.emit(current_day)
-			if debug_log:
-				print("Day ", current_day, " started")
+		current_day = max(value, 0)
+		day_changed.emit(current_day)
+		if debug_log:
+			print("Day ", current_day, " started")
 
 		if not _is_updating:
 			tick_count = _get_tick_count(current_day, day_seconds)

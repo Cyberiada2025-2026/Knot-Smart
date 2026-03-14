@@ -80,12 +80,6 @@ func place_marker_from_unsafe_raycast(raycast_result):
 	place_marker(raycast_result.collider, sphere.global_position)
 
 
-func place_marker_from_node_raycast(raycast):
-	var player_height = get_node("../PlayerPhysics/CollisionShape3D").shape.height
-	var displacement = Vector3.UP * 0.5 * player_height
-	place_marker(raycast.get_collider(), raycast.get_collision_point() + displacement)
-
-
 func place_marker_on_player():
 	var player = get_node("../PlayerPhysics")
 	var player_height = player.get_node("CollisionShape3D").shape.height

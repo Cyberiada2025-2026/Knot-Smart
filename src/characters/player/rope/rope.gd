@@ -96,6 +96,30 @@ func fuse():
 
 		finish()
 
+
+func align_nodes():
+	var final_pos = (end[0].global_position + end[1].global_position) / 2
+
+	for i in range(2):
+		var alignment_transfer = Node3D.new()
+
+		# Align dummy node's forward axis to the rope end
+		node[i].get_parent().add_child(alignment_transfer)
+		alignment_transfer.global_position = node[i].global_position
+		alignment_transfer.look_at(end[i].global_position)
+		
+		# Change node parent to dummy *while keeping global transform*
+		# Now node obeys the dummy forward exis (i.e. - it points to the rope end)
+		node[i].reparent(alignment_transfer)
+
+		# Look at the midpoint between ends. This also reorients the child node.
+		alignment_transfer.look_at(final_pos)
+		
+		# Restore previous tree relationship while keeping the new global transform.
+		node[i].reparent(alignment_transfer.get_parent())
+		alignment_transfer.queue_free()
+
+
 func update_rope():
 	var direction = end[1].position - end[0].position
 	var length = direction.length()

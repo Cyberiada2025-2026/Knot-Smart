@@ -73,7 +73,7 @@ func _physics_process(_delta: float) -> void:
 				raycast.target_position = raycast.to_local(get_node("../PlayerPhysics").global_position)
 				raycast.force_raycast_update()
 
-				place_marker(raycast.get_collider(), raycast.get_collision_point())
+				place_marker(raycast.get_collider(), raycast.get_collision_point() + Vector3.UP * 0.3)
 				raycast.queue_free()
 
 				var positions: Array[Vector3] = []

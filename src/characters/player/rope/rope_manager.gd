@@ -25,33 +25,31 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	sphere.hide()
 
-	if get_node("../PlayerCamera").get_view_type() == PlayerCamera.ViewType.THIRD_PERSON:
-		return
+	var raycast_result
 
-	var result = UnsafeRaycastBuilder.new(self).enable_collisions_with_areas().raycast()
+	if get_node("../PlayerCamera").get_view_type() == PlayerCamera.ViewType.FIRST_PERSON:
+		raycast_result = UnsafeRaycastBuilder.new(self).enable_collisions_with_areas().raycast()
 
-	if result.is_empty():
-		return
+		if not raycast_result.is_empty():
+			sphere.position = raycast_result.position
+			sphere.show()
 
-	sphere.position = result.position
-	sphere.show()
+			if raycast_result.collider.get_parent() is Rope:
+				if Input.is_action_just_pressed("break_rope"):
+					raycast_result.collider.get_parent().finish()
 
-	if result.collider.get_parent() is Rope:
-		if Input.is_action_just_pressed("break_rope"):
-			result.collider.get_parent().finish()
-
-		elif Input.is_action_just_pressed("fuse"):
-			result.collider.get_parent().fuse()
+				elif Input.is_action_just_pressed("fuse"):
+					raycast_result.collider.get_parent().fuse()
 
 	match state:
 		State.SELECT_FIRST:
-			if Input.is_action_just_pressed("left_mouse"):
-				place_marker_from_unsafe_raycast(result)
+			if Input.is_action_just_pressed("left_mouse") and sphere.visible:
+				place_marker_from_unsafe_raycast(raycast_result)
 				state = State.SELECT_SECOND
 
 		State.SELECT_SECOND:
-			if Input.is_action_just_pressed("left_mouse"):
-				place_marker_from_unsafe_raycast(result)
+			if Input.is_action_just_pressed("left_mouse") and sphere.visible:
+				place_marker_from_unsafe_raycast(raycast_result)
 				create_rope()
 				state = State.SELECT_FIRST
 

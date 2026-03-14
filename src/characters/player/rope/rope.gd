@@ -75,11 +75,13 @@ func finish():
 
 func fuse():
 	if node[0] is RigidBody3D and node[1] is RigidBody3D:
+		align_nodes()
+		
 		var final_pos = (end[0].global_position + end[1].global_position) / 2
 
 		for i in range(2):
-			var diff = end[i].position - node[i].position
-			node[i].position = final_pos + diff
+			var diff = node[i].global_position - end[i].global_position
+			node[i].global_position = final_pos + diff
 		
 		var combined = RigidBody3D.new()
 		get_node("../../../").add_child(combined)
@@ -108,15 +110,17 @@ func align_nodes():
 		alignment_transfer.global_position = node[i].global_position
 		alignment_transfer.look_at(end[i].global_position)
 		
-		# Change node parent to dummy *while keeping global transform*
-		# Now node obeys the dummy forward exis (i.e. - it points to the rope end)
+		# Change rope endpoints' parents to dummy *while keeping global transform*
+		# Now each node obeys the dummy forward exis
 		node[i].reparent(alignment_transfer)
+		end[i].reparent(alignment_transfer)
 
-		# Look at the midpoint between ends. This also reorients the child node.
+		# Look at the rope midpoint. This also reorients the child nodes.
 		alignment_transfer.look_at(final_pos)
 		
 		# Restore previous tree relationship while keeping the new global transform.
 		node[i].reparent(alignment_transfer.get_parent())
+		end[i].reparent(self)
 		alignment_transfer.queue_free()
 
 

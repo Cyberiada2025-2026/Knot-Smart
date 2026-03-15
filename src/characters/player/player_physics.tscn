@@ -8,7 +8,6 @@ radius = 0.25
 height = 0.8
 
 [node name="PlayerPhysics" type="CharacterBody3D" unique_id=655149680]
-wall_min_slide_angle = 3.14159
 script = ExtResource("1_267bi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=333128885]

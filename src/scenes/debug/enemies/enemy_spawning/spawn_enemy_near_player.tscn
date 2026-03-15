@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="10_g6eoa"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_w063n"]
-vertices = PackedVector3Array(-24.5, 1, -24.5, -24.5, 1, 24.5, 24.5, 1, 24.5, 24.5, 1, -24.5)
+vertices = PackedVector3Array(-24.5, 1, -24.5, -24.5, 1, 24.25, 24.5, 1, 24.25, 24.5, 1, -24.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45npv"]

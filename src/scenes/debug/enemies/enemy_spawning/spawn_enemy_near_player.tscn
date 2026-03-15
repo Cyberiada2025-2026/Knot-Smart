@@ -60,7 +60,7 @@ material = SubResource("StandardMaterial3D_nc8uk")
 script = ExtResource("2_tcgoh")
 min_spawn_distance_to_player = 10.0
 max_spawn_distance_to_player = 20.0
-despawn_distance = 20.0
+despawn_distance = 50.0
 nav_region = NodePath("../NavigationRegion3D")
 debug_log = true
 

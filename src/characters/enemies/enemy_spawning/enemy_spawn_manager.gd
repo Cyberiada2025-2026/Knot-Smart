@@ -78,5 +78,5 @@ func _on_time_period_changed(current: TimePeriod) -> void:
 func _physics_process(_delta: float) -> void:
 	if active_enemy == null:
 		return
-	if active_enemy.global_position.distance_squared_to(player.player_physics.global_position) >= despawn_distance:
+	if active_enemy.global_position.distance_squared_to(player.player_physics.global_position) >= pow(despawn_distance,2):
 		despawn_enemy()

@@ -21,6 +21,7 @@ func _ready() -> void:
 	if not dnc_group.is_empty():
 		day_night_cycle = dnc_group[0]
 		day_night_cycle.time_period_changed.connect(_on_time_period_changed)
+		print("connected tpc")
 	else:
 		push_warning("No DayNightCycle found for EnemySpawnManager.")
 

@@ -53,6 +53,8 @@ var time_period: TimePeriod:
 		if not is_node_ready() or time_period == value:
 			return
 		time_period = value
+		if time_period == null:
+			return
 		time_period_changed.emit(time_period)
 		if debug_log:
 			print(time_period.name, " time of day started")

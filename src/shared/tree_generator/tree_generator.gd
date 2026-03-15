@@ -2,16 +2,16 @@ class_name TreeGenerator
 extends Node3D
 
 
+const TEX_DARKEN = 0.5
+
 @export var params: TreeParameters
 
 var tree_skeleton: TreeSkeleton
 var tree_mesh_generator: TreeMeshGenerator
 var tree: StaticBody3D
 
-const TEX_DARKEN = 0.5
 
-
-func _ready() -> void:	
+func _ready() -> void:
 	tree = StaticBody3D.new()
 	add_child(tree)
 	generate_tree()
@@ -34,9 +34,8 @@ func generate_mesh(branch: TreeBranch):
 	material.albedo_texture = texture
 	material.albedo_color *= TEX_DARKEN
 	array_mesh.surface_set_material(0, material)
-	mesh.mesh = array_mesh	
+	mesh.mesh = array_mesh
 	tree.add_child(mesh)
-	
 	var collision = CollisionShape3D.new()
 	collision.shape = mesh.mesh.create_convex_shape()
 	tree.add_child(collision)

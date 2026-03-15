@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cjtgulb35tycd"]
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_w063n"]
-[ext_resource type="Script" uid="uid://d3b3ejnxvoa3s" path="res://characters/enemies/enemy_spawning/enemy_spawn_manager.gd" id="2_tcgoh"]
+[ext_resource type="PackedScene" uid="uid://crw78figsw5kr" path="res://characters/enemies/enemy_spawning/enemy_spawn_manager.tscn" id="2_45npv"]
 [ext_resource type="Script" uid="uid://b3g2uvv66tqc1" path="res://characters/enemies/enemy_spawning/enemy_spawn_area.gd" id="3_n8p1c"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="4_3ybt4"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="5_45npv"]
@@ -58,26 +58,23 @@ material = SubResource("StandardMaterial3D_nc8uk")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1738229304]
 
-[node name="EnemySpawnManager" type="Node3D" parent="." unique_id=691273896 node_paths=PackedStringArray("nav_region", "enemy_spawn_node")]
-script = ExtResource("2_tcgoh")
+[node name="EnemySpawnManager" parent="." unique_id=98034417 node_paths=PackedStringArray("nav_region", "enemy_spawn_node") instance=ExtResource("2_45npv")]
 nav_region = NodePath("../NavigationRegion3D")
 enemy_spawn_node = NodePath("../Enemies")
 
-[node name="SpawnAttemptInterval" type="Timer" parent="EnemySpawnManager" unique_id=1447704485]
-
-[node name="EnemySpawnArea" type="Area3D" parent="EnemySpawnManager" unique_id=442876394]
+[node name="EnemySpawnArea3" type="Area3D" parent="EnemySpawnManager" unique_id=885428250]
 script = ExtResource("3_n8p1c")
 enemy_scene = ExtResource("4_3ybt4")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager/EnemySpawnArea" unique_id=357165483]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager/EnemySpawnArea3" unique_id=1715126684]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.2)
 shape = SubResource("BoxShape3D_65pxy")
 
-[node name="EnemySpawnArea2" type="Area3D" parent="EnemySpawnManager" unique_id=2005696442]
+[node name="EnemySpawnArea4" type="Area3D" parent="EnemySpawnManager" unique_id=1006707602]
 script = ExtResource("3_n8p1c")
 enemy_scene = ExtResource("4_3ybt4")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager/EnemySpawnArea2" unique_id=752895117]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager/EnemySpawnArea4" unique_id=543583530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.850001)
 shape = SubResource("BoxShape3D_65pxy")
 

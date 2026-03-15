@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://duea7u0sgueau" path="res://shared/tree_generator/tree_mesh_generator.gd" id="2_2xdni"]
 [ext_resource type="Script" uid="uid://i8b0a8xqrom7" path="res://shared/tree_generator/tree_skeleton.gd" id="3_0ait5"]
 
-[node name="TreeGenerator" type="Node"]
+[node name="TreeGenerator" type="Node3D" unique_id=321865084]
 script = ExtResource("1_f05cq")
 
-[node name="TreeSkeleton" type="Node" parent="."]
+[node name="TreeSkeleton" type="Node" parent="." unique_id=743355951]
 script = ExtResource("3_0ait5")
 
-[node name="TreeMesh" type="Node" parent="."]
+[node name="TreeMesh" type="Node" parent="." unique_id=46464858]
 script = ExtResource("2_2xdni")

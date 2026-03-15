@@ -1,21 +1,42 @@
 class_name TreeGenerator
-extends Node
+extends Node3D
+
+
+@export var params: TreeParameters
 
 var tree_skeleton: TreeSkeleton
 var tree_mesh_generator: TreeMeshGenerator
-@export var trees: Array[TreeParameters]
+var tree: StaticBody3D
+
+const TEX_DARKEN = 0.5
 
 
-# wowee this code is so shitty change it asap
 func _ready() -> void:	
-	# for test purpose
-		
-	for params in trees:
-		for i in range(10):
-			for j in range(20):
-				if randf() < 0.5:
-					var tree = TreeMesh.new()
-					tree.params = params
-					add_child(tree)
-					tree.generate_tree()
-					tree.global_position = Vector3(i*5.0+randf_range(-2.0,2.5),0.0,j*6.0+randf_range(-2.0,2.0))
+	tree = StaticBody3D.new()
+	add_child(tree)
+	generate_tree()
+
+
+func generate_tree():
+	#	skeleton - blueprint for mesh
+	var skeleton = tree_skeleton.generate_skeleton(params)
+	for branch in skeleton:
+		generate_mesh(branch)
+
+
+func generate_mesh(branch: TreeBranch):
+	var mesh = MeshInstance3D.new()
+	var array_mesh = tree_mesh_generator.generate_skin(branch)
+	var material = StandardMaterial3D.new()
+	var texture = load(params.tex_path)
+	material.uv1_triplanar = true
+	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	material.albedo_texture = texture
+	material.albedo_color *= TEX_DARKEN
+	array_mesh.surface_set_material(0, material)
+	mesh.mesh = array_mesh	
+	tree.add_child(mesh)
+	
+	var collision = CollisionShape3D.new()
+	collision.shape = mesh.mesh.create_convex_shape()
+	tree.add_child(collision)

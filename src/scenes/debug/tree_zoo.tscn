@@ -63,10 +63,17 @@ camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")
 transform = Transform3D(1, 0, 0, 0, 0.046025515, 0.9989403, 0, -0.9989403, 0.04602552, 0, 136.331, 59.296577)
 light_energy = 1.825
 
+<<<<<<< HEAD
 [node name="TreeGenerator" parent="." unique_id=1839550397 instance=ExtResource("3_c24uh")]
 
+=======
+>>>>>>> 81dd576 (Next recurion of branches have smaller r + slightly cleaning things up)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1370181901]
 environment = SubResource("Environment_7cgt4")
+
+[node name="TreeGenerator" parent="." unique_id=321865084 instance=ExtResource("3_c24uh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.38, 0, 4.94)
+params = ExtResource("4_7cgt4")
 
 [editable path="Player"]
 [editable path="Player/PlayerPhysics"]

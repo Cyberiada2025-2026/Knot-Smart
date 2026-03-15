@@ -64,6 +64,9 @@ despawn_distance = 50.0
 nav_region = NodePath("../NavigationRegion3D")
 debug_log = true
 
+[node name="SpawnAttemptInterval" type="Timer" parent="EnemySpawnManager" unique_id=1447704485]
+wait_time = 2.0
+
 [node name="EnemySpawnArea" type="Area3D" parent="EnemySpawnManager" unique_id=442876394]
 script = ExtResource("3_n8p1c")
 enemy_scene = ExtResource("4_3ybt4")

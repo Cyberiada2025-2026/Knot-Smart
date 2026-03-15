@@ -15,8 +15,16 @@
 vertices = PackedVector3Array(-24.5, 1, -24.5, -24.5, 1, 24.5, 24.5, 1, 24.5, 24.5, 1, -24.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_lom7u"]
-radius = 30.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45npv"]
+albedo_color = Color(0, 0.049999714, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65pxy"]
+albedo_color = Color(1, 0, 0.016666412, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nc8uk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_65pxy"]
+size = Vector3(50, 10, 20.7)
 
 [node name="SpawnEnemyNearPlayer" type="Node3D" unique_id=1013178963]
 
@@ -31,8 +39,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 navigation_mesh = SubResource("NavigationMesh_w063n")
 
 [node name="Floor" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1740409380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.9)
 use_collision = true
-size = Vector3(50, 1, 50)
+size = Vector3(50, 1, 20.2)
+material = SubResource("StandardMaterial3D_45npv")
+
+[node name="Floor2" type="CSGBox3D" parent="NavigationRegion3D" unique_id=23862694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.600001)
+use_collision = true
+size = Vector3(50, 1, 20.2)
+material = SubResource("StandardMaterial3D_65pxy")
+
+[node name="Floor3" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1032700786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.14999628)
+use_collision = true
+size = Vector3(50, 1, 9.3)
+material = SubResource("StandardMaterial3D_nc8uk")
 
 [node name="EnemySpawnManager" type="Node3D" parent="." unique_id=691273896 node_paths=PackedStringArray("nav_region")]
 script = ExtResource("2_tcgoh")
@@ -47,14 +69,23 @@ script = ExtResource("3_n8p1c")
 enemy_scene = ExtResource("4_3ybt4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager/EnemySpawnArea" unique_id=357165483]
-shape = SubResource("CylinderShape3D_lom7u")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.2)
+shape = SubResource("BoxShape3D_65pxy")
+
+[node name="EnemySpawnArea2" type="Area3D" parent="EnemySpawnManager" unique_id=2005696442]
+script = ExtResource("3_n8p1c")
+enemy_scene = ExtResource("4_3ybt4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager/EnemySpawnArea2" unique_id=752895117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.850001)
+shape = SubResource("BoxShape3D_65pxy")
 
 [node name="DayNightCycle" type="Node3D" parent="." unique_id=425255072]
 script = ExtResource("5_45npv")
 debug_log = true
-tick_count = 1800
+tick_count = 2100
 current_day = 0
-day_seconds = 30.0
+day_seconds = 35.0
 metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
 
 [node name="Dusk" type="Node" parent="DayNightCycle" unique_id=1979024616]

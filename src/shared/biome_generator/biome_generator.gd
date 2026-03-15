@@ -16,7 +16,11 @@ var line_scene: PackedScene = preload("res://shared/biome_generator/debug/genera
 
 @export_category("Biomes")
 ## Minimal area of biomes in m^2
-@export var biomes_sizes: Dictionary[String, int] = {"biome1": 10000, "biome2": 10000, "biome3": 10000}
+@export var biomes_sizes: Dictionary[String, int] = {
+	"biome1": 10000, 
+	"biome2": 10000, 
+	"biome3": 10000
+}
 
 @export_category("GeneratorVariables")
 @export_group("location")
@@ -250,7 +254,10 @@ func _set_passages() -> void:
 				if unchecked_triangles.find(adjacent_triangle) >= 0:
 					_check_passage(
 						passage,
-						passage.adjacent_triangles.get((passage.adjacent_triangles.find(adjacent_triangle)+1)%passage.adjacent_triangles.size()),
+						passage.adjacent_triangles.get(
+							(passage.adjacent_triangles.find(adjacent_triangle)+1)%
+							passage.adjacent_triangles.size()
+						),
 						adjacent_triangle,
 						unchecked_triangles,
 						checked_triangles,

@@ -53,7 +53,7 @@ func _physics_process(_delta: float) -> void:
 				create_rope()
 				state = State.SELECT_FIRST
 
-			elif Input.is_action_just_pressed("fuse"):
+			elif Input.is_action_just_pressed("select_player"):
 				place_marker_on_player()
 				create_rope()
 				state = State.SELECT_FIRST

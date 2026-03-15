@@ -28,8 +28,9 @@ func _process(delta: float) -> void:
 	_update_to_new_rotation(delta)
 
 
-func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
+func _on_player_camera_camera_rotated(vector: Vector3, angle: float) -> void:
 	front = front.rotated(ground_normal, angle)
+	player_physics.player_model.rotate(vector, angle)
 
 
 ## set new rotation values

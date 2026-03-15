@@ -162,5 +162,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457032, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player" unique_id=1887677303]
 transform = Transform3D(1, 0, 0, 0, 0.0460255, 0.99894, 0, -0.99894, 0.0460255, 0, 136.331, 0)
-
-[node name="CameraReplacer" parent="." unique_id=998944845]

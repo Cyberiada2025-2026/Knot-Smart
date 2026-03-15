@@ -6,6 +6,8 @@ extends CharacterBody3D
 @export var jump_strength = 9.5
 @export var gravity_strength = 19.0
 
+@export var player_model: Node3D
+
 var player: Player
 
 

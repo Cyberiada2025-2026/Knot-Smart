@@ -22,7 +22,7 @@ func get_equilibrium(current: RopeEnd, other: RopeEnd) -> Vector3:
 			var midpoint = (current.position + other.position) / 2
 			equilibrium = midpoint - direction * 0.5 * length
 		RopeEnd.StrategyType.KINEMATIC:
-			equilibrium = other.position
+			equilibrium = other.strategy.get_equilibrium(other, current)
 
 	return equilibrium
 

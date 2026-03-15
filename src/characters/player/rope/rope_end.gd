@@ -11,6 +11,7 @@ var strategy: Node
 
 func _init(rope_params, equilibrium_strategy, pos) -> void:
 	self.strategy = equilibrium_strategy
+	self.add_child(self.strategy)
 	self.freeze = (get_strategy_type() == StrategyType.STATIC)
 	self.params = rope_params
 	self.position = pos

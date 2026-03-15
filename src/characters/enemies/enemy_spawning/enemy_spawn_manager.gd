@@ -1,5 +1,8 @@
 class_name EnemySpawnManager
 extends Node3D
+## Controls the spawning and despawning of enemies around the player.
+## In order to determine which enemy will be spawned it requires EnemySpawnAreas as its children.
+## Will only spawn one enemy per EnemySpawnArea.
 
 @export var debug_log: bool = false
 
@@ -8,11 +11,14 @@ extends Node3D
 @export var max_spawn_distance: float = 20.0
 @export var despawn_distance: float = 40.0
 @export var max_active_enemies: int = 2
+## Time between enemy spawn attempts.
 @export_custom(PROPERTY_HINT_NONE, "suffix:s") var spawn_attempt_interval: float = 5.0
+## How many times enemy spawn is attempted per interval.
 @export var spawn_attempt_count: int = 2
 
 @export_group("References")
 @export var nav_region: NavigationRegion3D
+## Enemies will be spawned as children of this node.
 @export var enemy_spawn_node: Node3D
 
 var spawn_areas: Array[EnemySpawnArea]
@@ -26,7 +32,10 @@ var day_night_cycle: DayNightCycle
 func _ready() -> void:
 	spawn_attempt_timer.wait_time = spawn_attempt_interval
 	spawn_attempt_timer.timeout.connect(_on_spawn_interval_timeout)
+
 	spawn_areas.assign(find_children("", "EnemySpawnArea"))
+	if spawn_areas.is_empty():
+		push_warning("No EnemySpawnAreas found.")
 
 	var dnc_group = get_tree().get_nodes_in_group("day_night_cycle")
 	if dnc_group.is_empty():

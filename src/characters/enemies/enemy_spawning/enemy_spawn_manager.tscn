@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://crw78figsw5kr"]
+
+[ext_resource type="Script" uid="uid://d3b3ejnxvoa3s" path="res://characters/enemies/enemy_spawning/enemy_spawn_manager.gd" id="1_kfijl"]
+
+[node name="EnemySpawnManager" type="Node3D" unique_id=98034417]
+script = ExtResource("1_kfijl")
+
+[node name="SpawnAttemptInterval" type="Timer" parent="." unique_id=111131630]

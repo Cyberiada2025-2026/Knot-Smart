@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="TreeParameters" format=3 uid="uid://hif2ao4f4l5f"]
+
+[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/tree_generator/tree_parameters.gd" id="1_5m6wf"]
+
+[resource]
+script = ExtResource("1_5m6wf")
+diff = 1.4
+levels = 8
+r = 2.0
+r_low = 0.9
+h = 2.0
+min_count = 6
+max_count = 9
+rec_level = 3
+levels_branch = 6
+r_branch = 1.2
+r_low_branch = 0.65
+metadata/_custom_type_script = "uid://s0k1bcrvckmc"

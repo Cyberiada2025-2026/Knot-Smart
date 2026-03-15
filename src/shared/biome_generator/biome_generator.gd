@@ -17,8 +17,8 @@ var line_scene: PackedScene = preload("res://shared/biome_generator/debug/genera
 @export_category("Biomes")
 ## Minimal area of biomes in m^2
 @export var biomes_sizes: Dictionary[String, int] = {
-	"biome1": 10000, 
-	"biome2": 10000, 
+	"biome1": 10000,
+	"biome2": 10000,
 	"biome3": 10000
 }
 

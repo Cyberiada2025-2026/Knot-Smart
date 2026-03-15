@@ -26,10 +26,12 @@ var active_enemies: Dictionary[Area3D, Node3D]
 
 var player: Player
 var day_night_cycle: DayNightCycle
-@onready var spawn_attempt_timer: Timer = $"./SpawnAttemptInterval"
+var spawn_attempt_timer: Timer
 
 
 func _ready() -> void:
+	spawn_attempt_timer = Timer.new()
+	add_child(spawn_attempt_timer)
 	spawn_attempt_timer.wait_time = spawn_attempt_interval
 	spawn_attempt_timer.timeout.connect(_on_spawn_interval_timeout)
 

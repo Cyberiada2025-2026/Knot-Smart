@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_avkc2")
-diff = 0.9
+diff = 1.2
 h = 1.5
 max_count = 4
+r_branch = 0.5
 metadata/_custom_type_script = "uid://s0k1bcrvckmc"

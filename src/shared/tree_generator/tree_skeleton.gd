@@ -2,10 +2,13 @@ class_name TreeSkeleton
 extends Node
 
 var tree_generator: TreeGenerator
-var box: Vector3
 var params: TreeParameters
-
 var branch_count: int
+var branches: Array[TreeBranch] = []
+
+const ANGLE1 = PI
+const ANGLE2 = -PI/20
+
 
 func _enter_tree() -> void:
 	tree_generator = get_parent()
@@ -13,60 +16,65 @@ func _enter_tree() -> void:
 	
 
 func generate_skeleton(parameters: TreeParameters) -> Array:
-	var points_arrays: Array = []
 	params = parameters
+	# trunk
 	var trunk = skeleton_branch(Vector3.ZERO, Vector3.ZERO, params.h, params.levels)
-	points_arrays.push_back(trunk)
-	branch_count = randi()%(params.max_count-1)+2 # random [2, max_count]
-	var angle: float = 2*PI / branch_count
+	trunk.r = params.r
+	trunk.r_low = params.r_low
+	trunk.sides = params.sides
+	branches.push_back(trunk)
+	branch_count = randi()%(params.max_count-params.min_count+1)+params.min_count
+	var angle: float = 2*PI / branch_count # line branches growing from trunk in a circle
+	# branches first level
 	for i in range(branch_count):
-		var branch = skeleton_branch(trunk[trunk.size()-1]*0.95, Vector3(cos(i*angle), 0.0, sin(i*angle)), params.h_branch, params.levels_branch)
-		points_arrays.push_back(branch)
-		rec_branches(points_arrays, branch, 1, Vector3(cos(i*angle), 0.0, sin(i*angle)), params.levels_branch)
-	return points_arrays
+		var rotation = Vector3(cos(i*angle), 0.0, sin(i*angle))
+		var branch = skeleton_branch(trunk.pos_array[trunk.pos_array.size()-1]*0.95, rotation, params.h_branch, params.levels_branch)
+		branch.r = params.r_branch
+		branch.r_low = params.r_low_branch
+		branch.sides = 	params.sides_branch
+		branches.push_back(branch)
+		# branches next levels
+		rec_branches(branch, 2, rotation, params.levels_branch)
+	return branches
 
 
-func rec_branches(points: Array, curr_branch: Array, rec_level: int, rotation: Vector3, levels_branch: int):
-	if params.rec_level<=rec_level:
+func rec_branches(curr_branch: TreeBranch, rec_level: int, rotation: Vector3, levels_branch: int):
+	if params.rec_level<rec_level:
 		return
+	var branch = curr_branch.pos_array
 	for i in range(randi()%branch_count+1):
-		var idx = randi() % len(curr_branch)
-		var angle = randf()*PI+1.0
-		
-		var rot = Transform3D()
-		rot.basis = Basis(Vector3(cos(angle), -sin(angle), 0.0), Vector3(sin(angle), cos(angle), 0.0), Vector3.BACK)
-		#rot.origin = curr_branch[idx]
-		var rot2 = Transform3D()
-		rot2.basis = Basis(Vector3.RIGHT, Vector3(0.0, cos(angle), -sin(angle)), Vector3(0.0, sin(angle), cos(angle)))
-		var rot3 = Transform3D()
-		rot3.basis = Basis(Vector3(cos(angle), 0.0, sin(angle)), Vector3.UP, Vector3(-sin(angle), 0.0, cos(angle)))
-		var new_rotation = (rot*rotation.normalized()).normalized()
-		new_rotation = (rot2*new_rotation).normalized()
-		new_rotation = (rot3*new_rotation).normalized()
-		print(new_rotation)
-		
-		var branch = skeleton_branch(curr_branch[idx], new_rotation, params.h, levels_branch)
-		points.push_back(branch)
-		rec_branches(points, branch, rec_level+1, new_rotation, clampi(levels_branch-(params.levels_branch/params.rec_level+1), 1, levels_branch))
+		var idx = randi() % len(branch)
+		var angle = randf()*ANGLE1 + ANGLE1/2
+		# vibes based math (trying to rotate branch against its parent branch)
+		var new_rotation = rotation.rotated(Vector3.BACK, angle)
+		new_rotation = new_rotation.rotated(Vector3.RIGHT, angle)
+		new_rotation = new_rotation.rotated(Vector3.UP, angle)
+
+		var new_branch = skeleton_branch(branch[idx], new_rotation, params.h, levels_branch)
+		new_branch.r = curr_branch.r*pow(curr_branch.r_low,2)
+		new_branch.r_low = 	curr_branch.r_low
+		new_branch.sides = curr_branch.sides
+		branches.push_back(new_branch)
+		var new_levels_branch = clampi(levels_branch-(params.levels_branch/params.rec_level+1), 1, levels_branch)
+		rec_branches(new_branch, rec_level+1, new_rotation, new_levels_branch)
 
 
-func skeleton_branch(offset: Vector3, rotation: Vector3, h: float, levels: int) -> Array:
-	var branch = []
+func skeleton_branch(offset: Vector3, rotation: Vector3, h: float, levels: int) -> TreeBranch:
+	var branch_pos = []
 	var last = offset
-	var angle = -PI/30
+	var angle = ANGLE2
 	var ax = last.cross(rotation).normalized()
-	branch.push_back(last)
+	branch_pos.push_back(last)
 	for i in range(levels):		
 		var new = last + Vector3(
-			add_rand(params.diff),
-			add_rand(params.diff)+h,
-			add_rand(params.diff))
+			randf()*params.diff-params.diff/2,
+			randf()*params.diff-params.diff/2+h,
+			randf()*params.diff-params.diff/2)
 			
+		# vibes based math cd
 		last = new.rotated(ax, angle)
-		branch.push_back(last)
+		branch_pos.push_back(last)
 		
+	var branch = TreeBranch.new()
+	branch.pos_array = branch_pos
 	return branch
-
-
-func add_rand(param) -> float:
-	return randf()*param-param/2

@@ -1,17 +1,10 @@
+@tool
 class_name BiomeTriangle
 extends Node
 
-var line_a: BiomeLine
-var line_b: BiomeLine
-var line_c: BiomeLine
+var lines: Array[BiomeLine]
 var biome: Biome
 
 
 func get_area() -> float:
-	#print("getArea")
-	var a: float = line_a.get_length()
-	var b: float = line_b.get_length()
-	var c: float = line_c.get_length()
-	var p: float = (a + b + c) / 2
-	#print(a, "   ", b, "   ", c, "   ", sqrt(p*(p-a)*(p-b)*(p-c)))
-	return sqrt(p * (p - a) * (p - b) * (p - c))
+	return (abs(lines[0].get_vector().cross(lines[1].get_vector()))/2)

@@ -1,3 +1,5 @@
+@tool
+class_name BiomeGenerator
 extends Node3D
 
 @export_category("GeneratorNodes")
@@ -13,30 +15,22 @@ var line_scene: PackedScene = preload("res://shared/biome_generator/debug/genera
 )
 
 @export_category("Biomes")
-@export var biomes_sizes: Dictionary[String, int] = {"biom1": 13000, "biom2": 13000, "biom3": 13000}
-@export var biomes_colors: Dictionary[String, Color] = {
-	"biom1": Color.BLUE, "biom2": Color.RED, "biom3": Color.PURPLE
-}
+## Minimal area of biomes in m^2
+@export var biomes_sizes: Dictionary[String, int] = {"biome1": 10000, "biome2": 10000, "biome3": 10000}
 
 @export_category("GeneratorVariables")
 @export_group("location")
-@export var size_x: float = 200
-@export var size_z: float = 200
-@export var start_x: float = -100
-@export var start_z: float = -100
+@export var size: Vector2 = Vector2(200, 200)
+@export var start: Vector2 = Vector2(-100, -100)
 @export_group("points")
-## number of points in x
-@export var points_in_x: int = 50
-## number of points in z
-@export var points_in_z: int = 50
+## number of points in x/z
+@export var points_in: Vector2 = Vector2(50, 50)
 ## number of points from border that will not be affected by randomization
-@export var points_distance_from_border_not_randomized: int = 0
-## percentage of half averange distance in x
-@export var points_randomize_in_x: float = 0.99
-## percentage of half averange distance in z
-@export var points_randomize_in_z: float = 0.99
+@export var randomization_margin: int = 0
+## percentage of half averange distance
+@export var randomization_strength: Vector2 = Vector2(0.99, 0.99)
 @export_group("triangles selection")
-## chance to shuffle possible triangles, durring every selection of next biome triangle
+## chance to shuffle possible triangles, during every selection of next biome triangle
 @export var chance_to_shuffle: float = 0.01
 @export_group("Entrances")
 ## number of entrances that will generate besides minimal ones
@@ -54,118 +48,103 @@ var walls_combiner: WallsCombiner
 
 
 func show_debug() -> void:
-	get_tree().get_nodes_in_group("camera_debug_group").pop_front().queue_free()
 	#_show_points()
 	#_show_lines()
 	_show_biomes()
 
 
 func generate() -> void:
-	_set_points()
+	_create_point_grid()
 	_randomize_points()
 	_set_lines_and_triangles()
 	_set_biome()
 	create_walls()
-	_set_entrances()
+	_set_passages()
 	walls_combiner.force_update_transform()
 	walls_combiner.use_collision = false
 	walls_combiner.use_collision = true
 
+func _get_step_size_x() -> float:
+	return (size.x / (points_in.x - 1))
 
-func _set_points() -> void:
-	for z: int in range(points_in_z):
-		for x: int in range(points_in_x):
+func _get_step_size_z() -> float:
+	return (size.y / (points_in.y - 1))
+
+func _create_point_grid() -> void:
+	for z: int in range(points_in.y):
+		for x: int in range(points_in.x):
 			points[Vector2(x, z)] = Vector2(
-				(x) * (size_x / (points_in_x - 1)) + start_x,
-				(z) * (size_z / (points_in_z - 1)) + start_z
+				(x) * _get_step_size_x() + start.x,
+				(z) * _get_step_size_z() + start.y
 			)
 
 
 func _randomize_points() -> void:
 	for z: int in range(
-		points_distance_from_border_not_randomized,
-		points_in_z - points_distance_from_border_not_randomized
+		randomization_margin,
+		points_in.y - randomization_margin
 	):
 		for x: int in range(
-			points_distance_from_border_not_randomized,
-			points_in_x - points_distance_from_border_not_randomized
+			randomization_margin,
+			points_in.x - randomization_margin
 		):
 			points[Vector2(x, z)].x += (
-				(size_x / (points_in_x - 1)) * (randf() - 0.5) * points_randomize_in_x
+				_get_step_size_x() * (randf() - 0.5) * randomization_strength.x
 			)
 			points[Vector2(x, z)].y += (
-				(size_z / (points_in_z - 1)) * (randf() - 0.5) * points_randomize_in_z
+				_get_step_size_z() * (randf() - 0.5) * randomization_strength.y
 			)
 
 
 func _set_lines_and_triangles() -> void:
 	# Horizontal lines
-	for z: int in range(points_in_z):
-		for x: int in range(points_in_x - 1):
+	for z: int in range(points_in.y):
+		for x: int in range(points_in.x - 1):
 			horizontal_lines.append(_create_line(points[Vector2(x, z)], points[Vector2(x + 1, z)]))
 	# Vertical lines
-	for z: int in range(points_in_z - 1):
-		for x: int in range(points_in_x):
+	for z: int in range(points_in.y - 1):
+		for x: int in range(points_in.x):
 			vertical_lines.append(_create_line(points[Vector2(x, z)], points[Vector2(x, z + 1)]))
 	# Middle lines and triangles
-	for z: int in range(points_in_z - 1):
-		for x: int in range(points_in_x - 1):
-			if randi() % 2 == 1:
-				middle_lines.append(
-					_create_line(points[Vector2(x, z)], points[Vector2(x + 1, z + 1)])
-				)
-				triangles.append(
-					_create_triangle(
-						horizontal_lines[z * (points_in_x - 1) + x],
-						vertical_lines[z * points_in_x + x + 1],
-						middle_lines[-1]
-					)
-				)
-				triangles.append(
-					_create_triangle(
-						horizontal_lines[z * (points_in_x - 1) + x + points_in_x - 1],
-						vertical_lines[z * points_in_x + x],
-						middle_lines[-1]
-					)
-				)
-			else:
-				middle_lines.append(
-					_create_line(points[Vector2(x + 1, z)], points[Vector2(x, z + 1)])
-				)
-				triangles.append(
-					_create_triangle(
-						horizontal_lines[z * (points_in_x - 1) + x],
-						vertical_lines[z * points_in_x + x],
-						middle_lines[-1]
-					)
-				)
-				triangles.append(
-					_create_triangle(
-						horizontal_lines[z * (points_in_x - 1) + x + points_in_x - 1],
-						vertical_lines[z * points_in_x + x + 1],
-						middle_lines[-1]
-					)
-				)
+	for z: int in range(points_in.y - 1):
+		for x: int in range(points_in.x - 1):
+			_create_triangles_from_lines(x, z, randi()%2)
 	lines.append_array(horizontal_lines)
 	lines.append_array(vertical_lines)
 	lines.append_array(middle_lines)
 
+func _create_triangles_from_lines(x: int, z: int, r: int) -> void:
+	middle_lines.append(
+		_create_line(points[Vector2(x+(1-r), z)], points[Vector2(x+r, z+1)])
+	)
+	triangles.append(
+		_create_triangle(
+			horizontal_lines[z * (points_in.x - 1) + x],
+			vertical_lines[z * points_in.x + x + r],
+			middle_lines[-1]
+		)
+	)
+	triangles.append(
+		_create_triangle(
+			horizontal_lines[z * (points_in.x - 1) + x + points_in.x - 1],
+			vertical_lines[z * points_in.x + x + (1-r)],
+			middle_lines[-1]
+		)
+	)
 
-func _create_line(start: Vector2, end: Vector2) -> BiomeLine:
+func _create_line(line_start: Vector2, line_end: Vector2) -> BiomeLine:
 	var line: BiomeLine = BiomeLine.new()
-	line.start_point = start
-	line.end_point = end
+	line.start_point = line_start
+	line.end_point = line_end
 	return line
 
 
 func _create_triangle(line_a: BiomeLine, line_b: BiomeLine, line_c: BiomeLine) -> BiomeTriangle:
 	var triangle: BiomeTriangle = BiomeTriangle.new()
-	triangle.line_a = line_a
-	triangle.line_b = line_b
-	triangle.line_c = line_c
-	line_a.adjacent_triangles.append(triangle)
-	line_b.adjacent_triangles.append(triangle)
-	line_c.adjacent_triangles.append(triangle)
+	var tmp_array = [line_a, line_b, line_c]
+	for line in tmp_array:
+		triangle.lines.append(line)
+		line.adjacent_triangles.append(triangle)
 	return triangle
 
 
@@ -198,7 +177,6 @@ func _init_biome(biome: Biome, biome_name: String) -> void:
 	biomes.append(biome)
 	biome.name = biome_name
 	biome.biome_name = biome_name
-	biome.color = biomes_colors[biome_name]
 
 
 func _get_biome_starting_triangle(biome: Biome) -> void:
@@ -207,44 +185,29 @@ func _get_biome_starting_triangle(biome: Biome) -> void:
 
 
 func _get_biome_new_triangle(biome: Biome) -> void:
-	var triangle: BiomeTriangle
 	if randf() <= chance_to_shuffle:
 		biome.lines.shuffle()
 	var line_count: int = biome.lines.size()
-	var i: int = 0
-	while true:
+	for i in range(line_count):
 		var line: BiomeLine = biome.lines.pop_front()
 		biome.lines.push_back(line)
-		if i == line_count:
-			if biome.area >= biomes_sizes[biome.biome_name]:
-				biome.area = INF
-			else:
-				_get_biome_starting_triangle(biome)
-			return
-		var r: int = randi() % line.adjacent_triangles.size()
-		var traingle1 = line.adjacent_triangles[r]
-		var traingle2 = line.adjacent_triangles[(r + 1) % line.adjacent_triangles.size()]
-		if free_triangles.find(traingle1) >= 0:
-			triangle = traingle1
-			biome.lines.erase(line)
-			_add_triangle_to_biome(biome, triangle)
-			biome.lines.erase(line)
-			break
-		elif free_triangles.find(traingle2) >= 0:
-			triangle = traingle2
-			biome.lines.erase(line)
-			_add_triangle_to_biome(biome, triangle)
-			biome.lines.erase(line)
-			break
-		i += 1
+		for triangle in line.adjacent_triangles:
+			if free_triangles.find(triangle) >= 0:
+				biome.lines.erase(line)
+				_add_triangle_to_biome(biome, triangle)
+				biome.lines.erase(line)
+				return
+	if biome.area >= biomes_sizes[biome.biome_name]:
+		biome.area = INF
+	else:
+		_get_biome_starting_triangle(biome)
 
 
 func _add_triangle_to_biome(biome: Biome, triangle: BiomeTriangle) -> void:
 	free_triangles.erase(triangle)
 	biome.triangles.append(triangle)
-	_add_line_to_biome(biome, triangle.line_a)
-	_add_line_to_biome(biome, triangle.line_b)
-	_add_line_to_biome(biome, triangle.line_c)
+	for line in triangle.lines:
+		_add_line_to_biome(biome, line)
 	biome.area += triangle.get_area()
 
 
@@ -252,68 +215,48 @@ func _add_line_to_biome(biome: Biome, line: BiomeLine) -> void:
 	if line.adjacent_triangles.size() == 1:
 		biome.lines.append(line)
 		return
-	if biome.triangles.find(line.adjacent_triangles[0]) == -1:
-		biome.lines.append(line)
-		return
-	biome.lines.erase(line)
-	if biome.triangles.find(line.adjacent_triangles[1]) == -1:
-		biome.lines.append(line)
-		return
-	biome.lines.erase(line)
+	for triangle in line.adjacent_triangles:
+		if biome.triangles.find(triangle) == -1:
+			biome.lines.append(line)
+			return
+		biome.lines.erase(line)
 
 
-func _set_entrances() -> void:
+func _set_passages() -> void:
 	var unchecked_triangles: Array[BiomeTriangle] = triangles.duplicate(false)
 	var checked_triangles: Array[BiomeTriangle] = []
 	var possible_passages: Array[BiomeLine] = []
 	var blocked_passages: Array[BiomeLine] = []
 	var starting_triangle: BiomeTriangle = unchecked_triangles.pop_front()
 	checked_triangles.push_back(starting_triangle)
-	possible_passages.push_back(starting_triangle.line_a)
-	possible_passages.push_back(starting_triangle.line_b)
-	possible_passages.push_back(starting_triangle.line_c)
+	possible_passages.append_array(starting_triangle.lines)
 	while not unchecked_triangles.is_empty():
 		var passage: BiomeLine = possible_passages.pop_front()
 		if passage == null:
 			passage = blocked_passages.pick_random()
 			_add_entrance_on_line(passage)
 			blocked_passages.erase(passage)
-			if unchecked_triangles.find(passage.adjacent_triangles[0]) >= 0:
-				_check_triangle(
-					passage.adjacent_triangles[0],
-					unchecked_triangles,
-					checked_triangles,
-					possible_passages
-				)
-			elif unchecked_triangles.find(passage.adjacent_triangles[1]) >= 0:
-				_check_triangle(
-					passage.adjacent_triangles[1],
-					unchecked_triangles,
-					checked_triangles,
-					possible_passages
-				)
+			for adjacent_triangle in passage.adjacent_triangles:
+				if unchecked_triangles.find(adjacent_triangle) >= 0:
+					_check_triangle(
+						adjacent_triangle,
+						unchecked_triangles,
+						checked_triangles,
+						possible_passages
+					)
 			continue
 		elif passage.adjacent_triangles.size() >= 2:
-			if unchecked_triangles.find(passage.adjacent_triangles[0]) >= 0:
-				_check_passage(
-					passage,
-					passage.adjacent_triangles[1],
-					passage.adjacent_triangles[0],
-					unchecked_triangles,
-					checked_triangles,
-					possible_passages,
-					blocked_passages
-				)
-			elif unchecked_triangles.find(passage.adjacent_triangles[1]) >= 0:
-				_check_passage(
-					passage,
-					passage.adjacent_triangles[0],
-					passage.adjacent_triangles[1],
-					unchecked_triangles,
-					checked_triangles,
-					possible_passages,
-					blocked_passages
-				)
+			for adjacent_triangle in passage.adjacent_triangles:
+				if unchecked_triangles.find(adjacent_triangle) >= 0:
+					_check_passage(
+						passage,
+						passage.adjacent_triangles.get((passage.adjacent_triangles.find(adjacent_triangle)+1)%passage.adjacent_triangles.size()),
+						adjacent_triangle,
+						unchecked_triangles,
+						checked_triangles,
+						possible_passages,
+						blocked_passages
+					)
 	for i in range(additional_entrances):
 		if blocked_passages.is_empty():
 			break
@@ -347,9 +290,8 @@ func _check_triangle(
 ) -> void:
 	unchecked_triangles.erase(triangle)
 	checked_triangles.push_back(triangle)
-	possible_passages.push_front(triangle.line_a)
-	possible_passages.push_front(triangle.line_b)
-	possible_passages.push_front(triangle.line_c)
+	for line in triangle.lines:
+		possible_passages.push_front(line)
 
 
 func _add_entrance_on_line(line: BiomeLine) -> void:
@@ -384,34 +326,38 @@ func _show_lines() -> void:
 		mesh.mesh.resource_local_to_scene = true
 		mesh.mesh.size.x = line.get_length()
 		mesh.rotation.y = line.get_rotation()
-		mesh.position.x = line.start_point.x + (line.end_point.x - line.start_point.x) / 2
-		mesh.position.z = line.start_point.y + (line.end_point.y - line.start_point.y) / 2
+		mesh.position.x = line.get_middle().x
+		mesh.position.z = line.get_middle().y
 		self.add_child(mesh)
 
 
 func _show_biomes() -> void:
 	for biome in biomes:
 		for triangle in biome.triangles:
-			var point1: Vector2 = triangle.line_a.start_point
-			var point2: Vector2 = triangle.line_a.end_point
-			var point3: Vector2
-			if triangle.line_b.start_point != point1 and triangle.line_b.start_point != point2:
-				point3 = triangle.line_b.start_point
-			else:
-				point3 = triangle.line_b.end_point
-			var mesh: CSGPolygon3D = triangle_scene.instantiate()
-			mesh.polygon = PackedVector2Array([point1, point2, point3])
-			mesh.material.albedo_color = biome.color
-			mesh.material.resource_local_to_scene = true
-			mesh.position.x = 0
-			mesh.position.z = 0
-			self.add_child(mesh)
+			_show_biome_triangle(triangle)
 		for line: BiomeLine in biome.lines:
-			var mesh: MeshInstance3D = line_scene.instantiate()
-			mesh.mesh.resource_local_to_scene = true
-			mesh.mesh.size.x = line.get_length()
-			mesh.rotation.y = line.get_rotation()
-			mesh.position.x = line.start_point.x + (line.end_point.x - line.start_point.x) / 2
-			mesh.position.y += 0
-			mesh.position.z = line.start_point.y + (line.end_point.y - line.start_point.y) / 2
-			self.add_child(mesh)
+			_show_biome_line(line)
+
+func _show_biome_triangle(triangle: BiomeTriangle) -> void:
+	var point1: Vector2 = triangle.lines[0].start_point
+	var point2: Vector2 = triangle.lines[0].end_point
+	var point3: Vector2
+	if triangle.lines[1].start_point != point1 and triangle.lines[1].start_point != point2:
+		point3 = triangle.lines[1].start_point
+	else:
+		point3 = triangle.lines[1].end_point
+	var mesh: CSGPolygon3D = triangle_scene.instantiate()
+	mesh.polygon = PackedVector2Array([point1, point2, point3])
+	mesh.position.x = 0
+	mesh.position.z = 0
+	self.add_child(mesh)
+
+func _show_biome_line(line: BiomeLine) -> void:
+	var mesh: MeshInstance3D = line_scene.instantiate()
+	mesh.mesh.resource_local_to_scene = true
+	mesh.mesh.size.x = line.get_length()
+	mesh.rotation.y = line.get_rotation()
+	mesh.position.x = line.get_middle().x
+	mesh.position.y += 0
+	mesh.position.z = line.get_middle().y
+	self.add_child(mesh)

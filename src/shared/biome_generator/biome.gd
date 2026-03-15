@@ -1,9 +1,9 @@
+@tool
 class_name Biome
 extends Node
 
 var biome_name: String = ""
 var area: float = 0
-var color: Color = Color.BLUE
 var triangles: Array[BiomeTriangle] = []
 var lines: Array[BiomeLine] = []
 var walls: Array[BiomeWall] = []

@@ -36,10 +36,6 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
-[global_group]
-
-camera_debug_group=""
-
 [importer_defaults]
 
 animation_library={

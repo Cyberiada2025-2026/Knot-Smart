@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://jix48lt4ey48"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0lbsl"]
-albedo_color = Color(0, 1, 0, 1)
-
-[node name="WallColumn" type="CSGCylinder3D" unique_id=1570898569]
-height = 30.0
-material = SubResource("StandardMaterial3D_0lbsl")

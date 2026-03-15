@@ -21,6 +21,7 @@ SceneManager="*res://autoload/scene_manager.gd"
 BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
 BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
 CameraSetup="*uid://rnx3yu0ofiwg"
+SpeechManager="*uid://d0x6a5ec5mlei"
 
 [debug_draw_3d]
 

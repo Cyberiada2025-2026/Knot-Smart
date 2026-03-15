@@ -15,7 +15,7 @@ var spawn_areas: Array[EnemySpawnArea]
 var player: Player
 var day_night_cycle: DayNightCycle
 
-var active_enemies: Array[Node3D]
+var active_enemies: Dictionary[Area3D, Node3D]
 
 func _ready() -> void:
 	spawn_attempt_interval_timer.timeout.connect(_on_spawn_interval_timeout)
@@ -45,6 +45,13 @@ func get_spawn_point():
 
 
 func spawn_enemy() -> bool:
+	var picked_spawn_area: EnemySpawnArea = get_spawn_area()
+	if picked_spawn_area == null:
+		print("Player is outside any spawn area. Failed to spawn an enemy.")
+		return false
+	if active_enemies.has(picked_spawn_area):
+		print("Enemy from this spawn area already exists.")
+		return false
 	var rand_point_on_mesh = get_spawn_point()
 	if rand_point_on_mesh == null:
 		print("No valid spawn point found.")
@@ -52,15 +59,11 @@ func spawn_enemy() -> bool:
 	if debug_log:
 		print("Random enemy spawnpoint picked: ", rand_point_on_mesh)
 
-	var picked_spawn_area: EnemySpawnArea = get_spawn_area()
-	if picked_spawn_area == null:
-		print("Player is outside any spawn area. Failed to spawn an enemy.")
-		return false
 
 	var enemy: Node3D = picked_spawn_area.enemy_scene.instantiate()
 	add_child(enemy)
 	enemy.position = rand_point_on_mesh
-	active_enemies.push_back(enemy)
+	active_enemies.set(picked_spawn_area, enemy)
 	if debug_log:
 		print("Spawned enemy: %s at point: %s" % [enemy.name, rand_point_on_mesh])
 
@@ -73,9 +76,10 @@ func get_spawn_area() -> EnemySpawnArea:
 	return active_spawn_areas.pick_random() if not active_spawn_areas.is_empty() else null
 
 
-func despawn_enemy(enemy: Node3D) -> void:
+func despawn_enemy(area: Area3D) -> void:
+	var enemy = active_enemies.get(area)
 	enemy.queue_free()
-	active_enemies.erase(enemy)
+	active_enemies.erase(area)
 
 	if debug_log:
 		print("Despawning enemy: ", enemy)
@@ -92,15 +96,16 @@ func _on_time_period_changed(current: TimePeriod) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	for enemy in active_enemies:
+	for area in active_enemies.keys():
+		var enemy = active_enemies.get(area)
 		if enemy.global_position.distance_squared_to(player.player_physics.global_position) >= pow(despawn_distance,2):
 			print("enemy out of range: ", enemy)
-			despawn_enemy(enemy)
+			despawn_enemy(area)
 
 
 
 func _on_spawn_interval_timeout() -> void:
-	if len(active_enemies) >= max_active_enemies:
+	if active_enemies.size() >= max_active_enemies:
 		return
 	for i in max_spawn_attemts:
 		if spawn_enemy():

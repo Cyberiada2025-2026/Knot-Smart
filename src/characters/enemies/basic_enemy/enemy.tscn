@@ -203,6 +203,8 @@ collision_mask = 0
 input_ray_pickable = false
 script = ExtResource("17_nr11u")
 is_disabled = true
+critical_velocity = null
+critical_multiplier = null
 metadata/_custom_type_script = "uid://seb5futqxfli"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BasicAttackHurtBox" unique_id=571735578]

@@ -82,6 +82,6 @@ func _ready() -> void:
 	
 	terrain_manager.terrain_generation_finished.connect(begin_generation)
 	
-func _process(_delta: float) -> void:
-	if can_generate == true:
-		generate_chunks()
+#func _process(_delta: float) -> void:
+	#if can_generate == true:
+	#	generate_chunks()

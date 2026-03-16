@@ -41,19 +41,19 @@ func clear() -> void:
 	models_placer.clear_models()
 	clear_navmesh_obstacles()
 
+
 func clear_navmesh_obstacles() -> void:
 	for obstacle in find_children("", "NavigationObstacle3D"):
 		obstacle.queue_free()
 
-	
+
 func generate_navmesh_obstacles() -> void:
 	clear_navmesh_obstacles()
-	
+
 	var scaling: Vector3 = models_placer.gridmaps[0].cell_size
 
 	for cell in initial_cells:
 		var outline = cell.get_outline(scaling)
-
 
 		var obstacle = NavigationObstacle3D.new()
 		obstacle.affect_navigation_mesh = true

@@ -41,8 +41,15 @@ func generate_mesh(branch: TreeBranch):
 	var collision = CollisionShape3D.new()
 	collision.shape = mesh.mesh.create_convex_shape()
 	tree.add_child(collision)
+	if Engine.is_editor_hint():
+		tree.owner = get_tree().edited_scene_root
+		mesh.owner = get_tree().edited_scene_root
+		collision.owner = get_tree().edited_scene_root
 
 
 func on_generate_click():
-	tree.queue_free()
+	var children = get_children(false)
+	for child in children:
+		if child is StaticBody3D:
+			child.queue_free()
 	generate_tree()

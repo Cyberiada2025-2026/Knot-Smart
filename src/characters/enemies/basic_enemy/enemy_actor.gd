@@ -9,6 +9,7 @@ var world: World3D
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var shapecast = $ShapeCast3D
+@onready var basic_attack_hurtbox: HurtBox = $BasicAttackHurtBox
 
 
 func _ready() -> void:
@@ -84,3 +85,10 @@ func _physics_process(_delta: float) -> void:
 func attack() -> void:
 	#we can use like seperate class attack for diffrent attack types
 	print("attack!")
+
+	basic_attack_hurtbox.is_disabled = false
+	await get_tree().create_timer(0.1).timeout
+	basic_attack_hurtbox.is_disabled = true
+
+	print("end of attack")
+

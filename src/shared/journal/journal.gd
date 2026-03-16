@@ -35,10 +35,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("journal_show"):
 		print("click1")
-		if menu.visible == true:
-			menu.visible = false
+		if get_tree().paused == true and menu.visible == false:
+			print("error")
 		else:
-			menu.visible = true
+			if menu.visible == true:
+				get_tree().paused = false
+				menu.visible = false
+			else:
+				get_tree().paused = true
+				menu.visible = true
 
 	if Input.is_action_just_pressed("ui_left"):
 		if added_information[0] == false:

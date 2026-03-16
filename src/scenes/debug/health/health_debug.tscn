@@ -29,11 +29,6 @@ material = SubResource("StandardMaterial3D_comv1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=74193918]
 shape = SubResource("BoxShape3D_meaqy")
 
-[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_0oggy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("3_comv1")]
-
 [node name="HealBox" type="Area3D" parent="." unique_id=1598647363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.25, 0)
 script = ExtResource("1_p6168")
@@ -44,6 +39,11 @@ material = SubResource("StandardMaterial3D_meaqy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HealBox" unique_id=695146750]
 shape = SubResource("BoxShape3D_meaqy")
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_0oggy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("3_comv1")]
 
 [connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
 [connection signal="area_entered" from="HealBox" to="HealBox" method="_on_area_entered"]

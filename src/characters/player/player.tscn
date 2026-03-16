@@ -38,7 +38,6 @@ metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1622957288]
 script = ExtResource("6_c6leb")
-debug_log = true
 
 [connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 

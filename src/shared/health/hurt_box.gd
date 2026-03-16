@@ -16,7 +16,7 @@ var velocity: float
 
 
 func get_damage() -> float:
-	return base_damage * (velocity >= minimum_velocity as float)
+	return base_damage * (velocity >= minimum_velocity as int)
 
 func _ready() -> void:
 	is_disabled = is_disabled

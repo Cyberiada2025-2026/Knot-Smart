@@ -36,6 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.25, 0)
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_p6168")
+base_damage = -1.0
 
 [node name="HealArea" type="CSGBox3D" parent="HealBox" unique_id=743554083]
 material = SubResource("StandardMaterial3D_meaqy")

@@ -1,9 +1,11 @@
+@tool
 class_name TreeGenerator
 extends Node3D
 
 
 const TEX_DARKEN = 0.5
 
+@export_tool_button("Generate", "Callable") var generate_button = on_generate_click
 @export var params: TreeParameters
 
 var tree_skeleton: TreeSkeleton
@@ -12,12 +14,12 @@ var tree: StaticBody3D
 
 
 func _ready() -> void:
-	tree = StaticBody3D.new()
-	add_child(tree)
 	generate_tree()
 
 
 func generate_tree():
+	tree = StaticBody3D.new()
+	add_child(tree)
 	#	skeleton - blueprint for mesh
 	var skeleton = tree_skeleton.generate_skeleton(params)
 	for branch in skeleton:
@@ -39,3 +41,8 @@ func generate_mesh(branch: TreeBranch):
 	var collision = CollisionShape3D.new()
 	collision.shape = mesh.mesh.create_convex_shape()
 	tree.add_child(collision)
+
+
+func on_generate_click():
+	tree.queue_free()
+	generate_tree()

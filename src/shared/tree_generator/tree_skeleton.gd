@@ -1,3 +1,4 @@
+@tool
 class_name TreeSkeleton
 extends Node
 
@@ -17,6 +18,7 @@ func _enter_tree() -> void:
 
 
 func generate_skeleton(parameters: TreeParameters) -> Array:
+	branches = []
 	params = parameters
 	# trunk
 	var trunk = skeleton_branch(Vector3.ZERO, Vector3.ZERO, params.h, params.levels)

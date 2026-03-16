@@ -26,5 +26,3 @@ signal health_depleted
 			if debug_log:
 				print("Health depleted")
 			health_depleted.emit()
-
-	

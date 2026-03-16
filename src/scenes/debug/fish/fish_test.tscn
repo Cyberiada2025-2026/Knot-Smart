@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://brr6ra6xyy3rq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipt1g"]
+transparency = 1
+albedo_color = Color(0.3003088, 0.0008976385, 0.7123897, 0.31764707)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fjt4i"]
+material = SubResource("StandardMaterial3D_ipt1g")
+size = Vector3(5, 1, 5)
+
+[node name="FishTest" type="Node3D" unique_id=721419022]
+
+[node name="WaterSource" type="MeshInstance3D" parent="." unique_id=1197154573]
+mesh = SubResource("BoxMesh_fjt4i")

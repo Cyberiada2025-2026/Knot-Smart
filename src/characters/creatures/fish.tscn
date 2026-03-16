@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dawhgsiefjn6n"]
+
+[ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_lcqsv"]
+[ext_resource type="Script" uid="uid://cw22yurt5l74k" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="2_3lpnf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yicxl"]
+
+[node name="Fish" type="CharacterBody3D" unique_id=520851514]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=660197419]
+shape = SubResource("BoxShape3D_yicxl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1441706487]
+
+[node name="BeehaveTree" type="Node" parent="." unique_id=916587150 node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_lcqsv")
+blackboard = NodePath("@Node@55549")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
+
+[node name="SelectorReactiveComposite" type="Node" parent="BeehaveTree" unique_id=264159694]
+script = ExtResource("2_3lpnf")
+metadata/_custom_type_script = "uid://cw22yurt5l74k"

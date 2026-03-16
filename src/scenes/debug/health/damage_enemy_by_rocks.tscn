@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_s7cml"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="2_2nnky"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="3_ph052"]
-[ext_resource type="Script" uid="uid://seb5futqxfli" path="res://shared/health/hurt_box.gd" id="4_2nnky"]
+[ext_resource type="PackedScene" uid="uid://dx21c5ighykbx" path="res://scenes/debug/projectiles/rock_placeholder.tscn" id="4_2nnky"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w01rd"]
 albedo_color = Color(0.15479487, 0.21179658, 0.23663604, 1)
@@ -14,12 +14,6 @@ size = Vector3(0.5, 6, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2nnky"]
 size = Vector3(0.5, 6, 4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_2nnky"]
-size = Vector3(0.5, 0.5, 0.5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ph052"]
-size = Vector3(0.5, 0.5, 0.5)
 
 [node name="HealthDebug" type="Node3D" unique_id=223631406]
 
@@ -55,96 +49,17 @@ mesh = SubResource("BoxMesh_s7cml")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=618632055]
 shape = SubResource("BoxShape3D_2nnky")
 
-[node name="RigidBody3D2" type="RigidBody3D" parent="." unique_id=284629700]
+[node name="RigidBody3D5" parent="." unique_id=1852927063 instance=ExtResource("4_2nnky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0006670058, 5.336998, 4)
+
+[node name="RigidBody3D4" parent="." unique_id=230371886 instance=ExtResource("4_2nnky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.98699975, 4.0027485, 0.5)
+
+[node name="RigidBody3D3" parent="." unique_id=2046369098 instance=ExtResource("4_2nnky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8246665, 2.668499, 0)
+
+[node name="RigidBody3D2" parent="." unique_id=2003344229 instance=ExtResource("4_2nnky")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83766675, 1.3342495, 0)
-collision_layer = 2
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2" unique_id=1825046225]
-mesh = SubResource("BoxMesh_2nnky")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2" unique_id=1578346463]
-shape = SubResource("BoxShape3D_ph052")
-
-[node name="HurtBox" type="Area3D" parent="RigidBody3D2" unique_id=1643020075]
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("4_2nnky")
-minimum_velocity = 1.0
-critical_velocity = 25.0
-critical_multiplier = 4.0
-metadata/_custom_type_script = "uid://seb5futqxfli"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2/HurtBox" unique_id=706229644]
-shape = SubResource("BoxShape3D_ph052")
-
-[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1734261771]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.1671247, 4)
-collision_layer = 2
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=678063239]
-mesh = SubResource("BoxMesh_2nnky")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1377589995]
-shape = SubResource("BoxShape3D_ph052")
-
-[node name="HurtBox" type="Area3D" parent="RigidBody3D" unique_id=480307327]
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("4_2nnky")
-minimum_velocity = 1.0
-critical_velocity = 25.0
-critical_multiplier = 4.0
-metadata/_custom_type_script = "uid://seb5futqxfli"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/HurtBox" unique_id=713621899]
-shape = SubResource("BoxShape3D_ph052")
-
-[node name="RigidBody3D3" type="RigidBody3D" parent="." unique_id=718441630]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9185122, 0.521386, 2.0622873)
-collision_layer = 2
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D3" unique_id=1276823549]
-mesh = SubResource("BoxMesh_2nnky")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3" unique_id=1834852203]
-shape = SubResource("BoxShape3D_ph052")
-
-[node name="HurtBox" type="Area3D" parent="RigidBody3D3" unique_id=1676516892]
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("4_2nnky")
-minimum_velocity = 1.0
-critical_velocity = 25.0
-critical_multiplier = 4.0
-metadata/_custom_type_script = "uid://seb5futqxfli"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3/HurtBox" unique_id=277479718]
-shape = SubResource("BoxShape3D_ph052")
-
-[node name="RigidBody3D4" type="RigidBody3D" parent="." unique_id=1109151259]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9254273, 0.521386, 2.0622873)
-collision_layer = 2
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D4" unique_id=1727326464]
-mesh = SubResource("BoxMesh_2nnky")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4" unique_id=1952955392]
-shape = SubResource("BoxShape3D_ph052")
-
-[node name="HurtBox" type="Area3D" parent="RigidBody3D4" unique_id=1422906233]
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("4_2nnky")
-minimum_velocity = 5.0
-critical_velocity = 25.0
-critical_multiplier = 4.0
-metadata/_custom_type_script = "uid://seb5futqxfli"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4/HurtBox" unique_id=986023159]
-shape = SubResource("BoxShape3D_ph052")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1209018960]
 transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)

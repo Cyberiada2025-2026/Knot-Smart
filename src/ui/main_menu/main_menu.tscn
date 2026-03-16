@@ -50,4 +50,11 @@ size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 16
 text = "Play"
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="Quit button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1598593622]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 16
+text = "Quit"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit button" to="." method="_on_quit_button_pressed"]

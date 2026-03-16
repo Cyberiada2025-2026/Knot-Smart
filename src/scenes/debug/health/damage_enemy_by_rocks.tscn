@@ -69,6 +69,8 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_2nnky")
 minimum_velocity = 1.0
+critical_velocity = 25.0
+critical_multiplier = 2.0
 metadata/_custom_type_script = "uid://seb5futqxfli"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2/HurtBox" unique_id=706229644]
@@ -89,6 +91,8 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_2nnky")
 minimum_velocity = 1.0
+critical_velocity = 25.0
+critical_multiplier = 2.0
 metadata/_custom_type_script = "uid://seb5futqxfli"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/HurtBox" unique_id=713621899]
@@ -109,6 +113,8 @@ collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_2nnky")
 minimum_velocity = 1.0
+critical_velocity = 25.0
+critical_multiplier = 2.0
 metadata/_custom_type_script = "uid://seb5futqxfli"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3/HurtBox" unique_id=277479718]
@@ -128,7 +134,9 @@ shape = SubResource("BoxShape3D_ph052")
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_2nnky")
-minimum_velocity = 1.0
+minimum_velocity = 5.0
+critical_velocity = 25.0
+critical_multiplier = 2.0
 metadata/_custom_type_script = "uid://seb5futqxfli"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4/HurtBox" unique_id=986023159]

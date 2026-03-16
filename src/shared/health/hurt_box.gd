@@ -10,13 +10,18 @@ extends Area3D
 
 ## Minimum velocity at which damage is applied. Otherwise the damage is 0.
 @export var minimum_velocity: float = 0.0
+## Minimum velocity at which critical_multiplier is applied.
+@export var critical_velocity: float = 0.0
+## Multiplier applied to the base_damage at critical_velocity
+@export var critical_multiplier: float = 1.0
 
 var _prev_position: Vector3
 var velocity: float
 
 
 func get_damage() -> float:
-	return base_damage * (velocity >= minimum_velocity as int)
+	var critical_velocity_multiplier = critical_multiplier if velocity >= critical_velocity else 1.0
+	return base_damage * (velocity >= minimum_velocity as int) * critical_velocity_multiplier
 
 func _ready() -> void:
 	is_disabled = is_disabled

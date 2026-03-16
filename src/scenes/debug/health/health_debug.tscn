@@ -21,6 +21,8 @@ size = Vector3(10, 0.5, 10)
 
 [node name="HurtBox" type="Area3D" parent="." unique_id=265826181]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.25, 0)
+collision_layer = 32
+collision_mask = 0
 script = ExtResource("1_p6168")
 
 [node name="HurtArea" type="CSGBox3D" parent="HurtBox" unique_id=1912019799]
@@ -31,8 +33,9 @@ shape = SubResource("BoxShape3D_meaqy")
 
 [node name="HealBox" type="Area3D" parent="." unique_id=1598647363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.25, 0)
+collision_layer = 32
+collision_mask = 0
 script = ExtResource("1_p6168")
-damage = -1.0
 
 [node name="HealArea" type="CSGBox3D" parent="HealBox" unique_id=743554083]
 material = SubResource("StandardMaterial3D_meaqy")

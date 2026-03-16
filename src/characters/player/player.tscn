@@ -20,6 +20,8 @@ player_floor_sensor = NodePath("PlayerPhysics/PlayerFloorSensor")
 [node name="PlayerPhysics" parent="." unique_id=1615832908 instance=ExtResource("1_l8h54")]
 
 [node name="HitBox" type="Area3D" parent="PlayerPhysics" unique_id=1516471157 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 32
 script = ExtResource("3_ixbpm")
 health_component = NodePath("../../HealthComponent")
 metadata/_custom_type_script = "uid://7sxs6ubjcqmo"

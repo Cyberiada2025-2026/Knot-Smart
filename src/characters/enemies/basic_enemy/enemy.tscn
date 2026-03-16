@@ -17,6 +17,8 @@
 [ext_resource type="Script" uid="uid://cu3wfv8wcbr7x" path="res://shared/beehave/action/attack.gd" id="9_ejf3g"]
 [ext_resource type="Script" uid="uid://bd3201sehmgdt" path="res://shared/beehave/action/destroy_target.gd" id="14_3ad5t"]
 [ext_resource type="Script" uid="uid://seb5futqxfli" path="res://shared/health/hurt_box.gd" id="17_nr11u"]
+[ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="18_3myrp"]
+[ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="19_fcxfv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nr11u"]
 render_priority = 0
@@ -196,11 +198,31 @@ collide_with_areas = true
 mesh = SubResource("SphereMesh_ejf3g")
 
 [node name="BasicAttackHurtBox" type="Area3D" parent="." unique_id=1076725684]
+collision_layer = 32
+collision_mask = 0
 input_ray_pickable = false
 script = ExtResource("17_nr11u")
+base_damage = null
 is_disabled = true
+minimum_velocity = null
 metadata/_custom_type_script = "uid://seb5futqxfli"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BasicAttackHurtBox" unique_id=571735578]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("SphereShape3D_2vyja")
+
+[node name="HitBox" type="Area3D" parent="." unique_id=332146229 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("18_3myrp")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://7sxs6ubjcqmo"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=126329277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_uwcne")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1094944780]
+script = ExtResource("19_fcxfv")
+debug_log = true
+metadata/_custom_type_script = "uid://b5oot86kgom7d"

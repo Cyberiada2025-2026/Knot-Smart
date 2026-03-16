@@ -170,6 +170,11 @@ rope_push={
 locale/vsync/vsync_mode=1
 locale/stretch/scale_mode="fractional"
 
+[layer_names]
+
+3d_physics/layer_5="player_hurtboxes"
+3d_physics/layer_6="enemy_hurtboxes"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

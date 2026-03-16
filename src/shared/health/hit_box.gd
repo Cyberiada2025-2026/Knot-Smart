@@ -6,6 +6,7 @@ extends Area3D
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
+	
 
 
 func _on_area_entered(area: Area3D) -> void:
@@ -13,4 +14,4 @@ func _on_area_entered(area: Area3D) -> void:
 	if hurt_box == null:
 		return
 
-	health_component.health -= hurt_box.damage
+	health_component.health -= hurt_box.get_damage()

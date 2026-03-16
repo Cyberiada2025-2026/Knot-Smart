@@ -30,11 +30,30 @@ func generate_building() -> void:
 	neighbors_generator.generate_neighbors(self)
 	models_placer.place_models(self)
 
+	generate_navmesh_obstacle()
+
 
 func clear() -> void:
 	cells = []
 	neighbors = []
 	models_placer.clear_models()
+
+	
+func generate_navmesh_obstacle() -> void:
+	var outline = get_building_outline()
+
+	var obstacle = NavigationObstacle3D.new()
+	obstacle.affect_navigation_mesh = true
+	obstacle.avoidance_enabled = false
+	obstacle.height = 30.0
+	obstacle.vertices = outline
+
+	add_child(obstacle)
+	obstacle.owner = get_tree().edited_scene_root
+
+
+func get_building_outline() -> PackedVector3Array:
+	return PackedVector3Array([Vector3(-5, 0, -5), Vector3(5, 0, -5), Vector3(5, 0, 5), Vector3(-5, 0, 5)])
 
 
 func _get_configuration_warnings() -> PackedStringArray:

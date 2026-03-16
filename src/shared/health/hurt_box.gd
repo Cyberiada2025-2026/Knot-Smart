@@ -15,19 +15,21 @@ extends Area3D
 ## Multiplier applied to the base_damage at critical_velocity
 @export var critical_multiplier: float = 1.0
 
+var _velocity: float
 var _prev_position: Vector3
-var velocity: float
 
 
 func get_damage() -> float:
-	var critical_velocity_multiplier = critical_multiplier if velocity >= critical_velocity else 1.0
-	return base_damage * (velocity >= minimum_velocity as int) * critical_velocity_multiplier
+	var critical_velocity_multiplier = (
+		critical_multiplier if _velocity >= critical_velocity else 1.0
+	)
+	return base_damage * (_velocity >= minimum_velocity as int) * critical_velocity_multiplier
+
 
 func _ready() -> void:
 	is_disabled = is_disabled
 
 
 func _physics_process(delta: float) -> void:
-	velocity = global_position.distance_to(_prev_position) / delta
+	_velocity = global_position.distance_to(_prev_position) / delta
 	_prev_position = global_position
-

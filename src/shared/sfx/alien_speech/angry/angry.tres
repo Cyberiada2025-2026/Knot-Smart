@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="SpeechType" format=3 uid="uid://cok8fds7mex7y"]
-
-[ext_resource type="Script" uid="uid://cio1gi65y8g20" path="res://shared/sfx/alien_speech/speech_type_resource.gd" id="1_me413"]
-
-[resource]
-script = ExtResource("1_me413")
-metadata/_custom_type_script = "uid://cio1gi65y8g20"

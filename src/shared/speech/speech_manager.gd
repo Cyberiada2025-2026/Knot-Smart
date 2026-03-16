@@ -20,7 +20,8 @@ func set_mood(mood: VoiceBank):
 func play_sound(sound: String, multiplier: float = 1.0):
 	var sound_file: AudioStream = voice_bank.syllables[sound]
 	audio_stream_player.stream = sound_file
-	audio_stream_player.pitch_scale = voice_bank.base_pitch + randf_range(-voice_bank.pitch_variance, voice_bank.pitch_variance)
+	var new_pitch := voice_bank.base_pitch + randf_range(-voice_bank.pitch_variance, voice_bank.pitch_variance)
+	audio_stream_player.pitch_scale = new_pitch
 	audio_stream_player.play()
 
 	var play_duration := sound_file.get_length() * multiplier

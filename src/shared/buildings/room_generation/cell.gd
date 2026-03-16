@@ -111,3 +111,7 @@ func get_all_borders() -> Array[BorderInfo]:
 		borders.append(BorderInfo.new(start_vec, end))
 
 	return borders
+
+
+func get_outline(scaling: Vector3) -> PackedVector3Array:
+	return PackedVector3Array([Vector3(start), Vector3(start.x, start.y, end.z), Vector3(end.x, start.y, end.z), Vector3(end.x, start.y, start.z)].map(func(v): return v * scaling))

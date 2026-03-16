@@ -2,6 +2,8 @@
 class_name BuildingGenerator
 extends Node3D
 
+const NAV_MESH_OBSTACLE_HEIGHT: float = 30.0
+
 @export var room_generation_params: RoomGenerationParams
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
@@ -30,30 +32,37 @@ func generate_building() -> void:
 	neighbors_generator.generate_neighbors(self)
 	models_placer.place_models(self)
 
-	generate_navmesh_obstacle()
+	generate_navmesh_obstacles()
 
 
 func clear() -> void:
 	cells = []
 	neighbors = []
 	models_placer.clear_models()
+	clear_navmesh_obstacles()
+
+func clear_navmesh_obstacles() -> void:
+	for obstacle in find_children("", "NavigationObstacle3D"):
+		obstacle.queue_free()
 
 	
-func generate_navmesh_obstacle() -> void:
-	var outline = get_building_outline()
+func generate_navmesh_obstacles() -> void:
+	clear_navmesh_obstacles()
+	
+	var scaling: Vector3 = models_placer.gridmaps[0].cell_size
 
-	var obstacle = NavigationObstacle3D.new()
-	obstacle.affect_navigation_mesh = true
-	obstacle.avoidance_enabled = false
-	obstacle.height = 30.0
-	obstacle.vertices = outline
-
-	add_child(obstacle)
-	obstacle.owner = get_tree().edited_scene_root
+	for cell in initial_cells:
+		var outline = cell.get_outline(scaling)
 
 
-func get_building_outline() -> PackedVector3Array:
-	return PackedVector3Array([Vector3(-5, 0, -5), Vector3(5, 0, -5), Vector3(5, 0, 5), Vector3(-5, 0, 5)])
+		var obstacle = NavigationObstacle3D.new()
+		obstacle.affect_navigation_mesh = true
+		obstacle.avoidance_enabled = false
+		obstacle.height = NAV_MESH_OBSTACLE_HEIGHT
+		obstacle.vertices = outline
+
+		add_child(obstacle)
+		obstacle.owner = get_tree().edited_scene_root
 
 
 func _get_configuration_warnings() -> PackedStringArray:

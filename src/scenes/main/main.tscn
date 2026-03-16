@@ -117,6 +117,24 @@ script = ExtResource("6_ow5a4")
 start = Vector3i(5, 0, 2)
 size = Vector3i(2, 1, 3)
 
+[node name="@NavigationObstacle3D@23117" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=995187149]
+height = 30.0
+vertices = PackedVector3Array(-4, 0, 0, -4, 0, 10, 10, 0, 10, 10, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="@NavigationObstacle3D@23118" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=1168317296]
+height = 30.0
+vertices = PackedVector3Array(10, 0, 0, 10, 0, 4, 20, 0, 4, 20, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="@NavigationObstacle3D@23119" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=162416428]
+height = 30.0
+vertices = PackedVector3Array(10, 0, 4, 10, 0, 10, 14, 0, 10, 14, 0, 4)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
 [node name="BuildingGenerator2" parent="." unique_id=1007513251 instance=ExtResource("4_6q06x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0.5, 2.5)
 room_generation_params = SubResource("Resource_b1x3f")
@@ -148,6 +166,18 @@ size = Vector3i(3, 2, 4)
 script = ExtResource("6_ow5a4")
 start = Vector3i(3, 0, 0)
 size = Vector3i(3, 4, 2)
+
+[node name="@NavigationObstacle3D@23325" type="NavigationObstacle3D" parent="BuildingGenerator2" unique_id=477449889]
+height = 30.0
+vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 6, 0, 8, 6, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="@NavigationObstacle3D@23326" type="NavigationObstacle3D" parent="BuildingGenerator2" unique_id=249465686]
+height = 30.0
+vertices = PackedVector3Array(6, 0, 0, 6, 0, 4, 12, 0, 4, 12, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
 
 [node name="DayNightCycle" type="Node3D" parent="." unique_id=106700811]
 script = ExtResource("10_a8run")

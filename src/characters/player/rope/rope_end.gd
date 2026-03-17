@@ -34,7 +34,7 @@ func pin(obj, other_node) -> void:
 ## [param v]: Spring damping
 func integrate_accel(k, b) -> Vector3:
 	var v = linear_velocity
-	var equilibrium = strategy.get_equilibrium(self, other)
+	var equilibrium = strategy.get_equilibrium(other)
 	var dx = position - equilibrium
 	# Direct application of the damped oscillator formula
 	var spring_accel = -k * dx - b * v

@@ -14,7 +14,6 @@ var world: World3D
 
 func _ready() -> void:
 	world = Engine.get_main_loop().root.get_world_3d()
-	$HealthComponent.health_depleted.connect(_on_health_depleted)
 
 
 func get_random_point_near() -> Vector3:
@@ -92,8 +91,3 @@ func attack() -> void:
 	basic_attack_hurtbox.is_disabled = true
 
 	print("end of attack")
-
-
-func _on_health_depleted() -> void:
-	print("enemy killed")
-	queue_free()

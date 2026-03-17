@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://seb5futqxfli" path="res://shared/health/hurt_box.gd" id="17_nr11u"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="18_3myrp"]
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="19_fcxfv"]
+[ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="20_fcxfv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nr11u"]
 render_priority = 0
@@ -226,3 +227,7 @@ shape = SubResource("BoxShape3D_uwcne")
 script = ExtResource("19_fcxfv")
 debug_log = true
 metadata/_custom_type_script = "uid://b5oot86kgom7d"
+
+[node name="DeathComponent" type="Node" parent="." unique_id=1828287102 node_paths=PackedStringArray("health_component")]
+script = ExtResource("20_fcxfv")
+health_component = NodePath("../HealthComponent")

@@ -30,6 +30,5 @@ func generate_world() -> void:
 	
 	for generator in generators:
 		generator.execute(self)
-		print("exec")
 	
 	chunk_manager.begin_generation(blueprint, world_display_params, world_generation_params)

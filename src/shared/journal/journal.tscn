@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cjjffdo72xk1u"]
 
 [ext_resource type="Script" uid="uid://bh62yi751w8jp" path="res://shared/journal/journal.gd" id="1_ohc7l"]
-[ext_resource type="PackedScene" uid="uid://bi7hkhprp31go" path="res://characters/player/player_model.glb" id="2_erk7u"]
 
 [sub_resource type="Theme" id="Theme_ohc7l"]
 
@@ -111,37 +110,6 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="Journal menu/Page container/Page1/ScrollContainer" unique_id=1651774704]
 custom_minimum_size = Vector2(220, 180)
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Journal menu/Page container/Page1/ScrollContainer/VBoxContainer" unique_id=699607210]
-custom_minimum_size = Vector2(220, 100)
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Journal menu/Page container/Page1/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1554591356]
-layout_mode = 2
-
-[node name="SubViewport" type="SubViewport" parent="Journal menu/Page container/Page1/ScrollContainer/VBoxContainer/HBoxContainer/SubViewportContainer" unique_id=180504424]
-own_world_3d = true
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(100, 100)
-render_target_update_mode = 0
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Journal menu/Page container/Page1/ScrollContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=151130]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.117183626, 0.51101226, 0.24621534)
-
-[node name="Camera2D" type="Camera3D" parent="Journal menu/Page container/Page1/ScrollContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport" unique_id=1642705226]
-
-[node name="player_model" parent="Journal menu/Page container/Page1/ScrollContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport/Camera2D" unique_id=2129174973 instance=ExtResource("2_erk7u")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, -0.46481776)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Journal menu/Page container/Page1/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=2028998457]
-custom_minimum_size = Vector2(120, 0)
-layout_mode = 2
-theme_override_colors/default_color = Color(1, 0, 1, 1)
-text = "kosmita"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Page2" type="Control" parent="Journal menu/Page container" unique_id=644502999]
 visible = false

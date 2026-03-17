@@ -3,6 +3,8 @@ extends Node
 
 var prev_mouse_mode
 
+var entry_scene = preload("res://shared/journal/journal_entry.tscn")
+
 var is_visible: bool = false
 var menu: Control
 var pages: Control
@@ -12,45 +14,20 @@ var models: Array[Node3D]
 
 func add_object(description: String, name:String, model:Node3D, page_no: int):
 	var page = pages.get_child(page_no).get_child(1).get_child(0)
-	var hbox: HBoxContainer = HBoxContainer.new()
-	hbox.set_custom_minimum_size(Vector2(220,100))
-	hbox.add_theme_constant_override("Separator",0)
-	page.add_child(hbox)
-	var subviewcont: SubViewportContainer = SubViewportContainer.new()
-	hbox.add_child(subviewcont)
-	var subview: SubViewport = SubViewport.new()
-	subview.set_size(Vector2i(100,100))
-	subview.own_world_3d=true
-	subview.transparent_bg=true
-	subviewcont.add_child(subview)
-	var spotlight: SpotLight3D = SpotLight3D.new()
-	spotlight.set_position(Vector3(0.11,0.51,0.24))
-	subview.add_child(spotlight)
-	var camera:Camera3D = Camera3D.new()
-	subview.add_child(camera)
-	#var model1 = load("res://characters/player/player_model.glb")
-	#var model = model1.instantiate()
+	var entry = entry_scene.instantiate()
+	page.add_child(entry);
+	var camera = entry.get_child(0).get_child(0).get_child(1)
 	model.set_scale(Vector3(0.3,0.3,0.3))
 	model.set_position(Vector3(0.0,0.0,-0.4))
 	camera.add_child(model)
 	models.append(model)
-	
-	var obj_text: RichTextLabel = RichTextLabel.new()
-	obj_text.set_custom_minimum_size(Vector2(120, 100))
-	obj_text.push_color(Color(0.9, 0.5, 0.5))
-	obj_text.add_text(name + "\n" + description)
-	hbox.add_child(obj_text)
-	
+	var obj_text = entry.get_child(1)
+	obj_text.append_text("[b]"+name+"[/b]\n"+description)
 
 func _ready() -> void:
 	menu = $"Journal menu"
 	pages = menu.get_child(1)
-	#menu.get_node("Button container/Page co")
 	button_normal = menu.get_child(0).get_child(1).get_theme_stylebox("normal", "Button")
-	#model=get_child(0).get_child(1).get_child(0).get_child(1).get_child(0).get_child(0).get_child(0).get_child(0).get_child(1).get_child(0)
-	models.append($"Journal menu/Page container/Page1/ScrollContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport/Camera2D/player_model")
-	
-	
 	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("journal_show"):

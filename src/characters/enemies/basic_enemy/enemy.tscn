@@ -58,7 +58,7 @@ shape = SubResource("BoxShape3D_uwcne")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1744263067 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_r2ijf")
-blackboard = NodePath("@Node@18603")
+blackboard = NodePath("@Node@120435")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
@@ -192,10 +192,11 @@ collide_with_areas = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ShapeCast3D" unique_id=1346628574]
 mesh = SubResource("SphereMesh_ejf3g")
 
-[node name="ObjectDescription" type="Node" parent="." unique_id=1380003878 node_paths=PackedStringArray("Model")]
+[node name="ObjectDescription" type="Node" parent="." unique_id=1380003878 node_paths=PackedStringArray("model")]
 script = ExtResource("17_2vyja")
-Model = NodePath("../MeshInstance3D")
-Name = "Enemy"
-Description = "This is enemy"
-Page = 3
+model = NodePath("../MeshInstance3D")
+object_name = "Enemy"
+description = "This is an enemny"
+page = 3
+scale = 0.4
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"

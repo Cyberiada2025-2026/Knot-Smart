@@ -48,7 +48,7 @@ func generate_navmesh_obstacles() -> void:
 	var scaling: Vector3 = models_placer.gridmaps[0].cell_size
 
 	for cell in initial_cells:
-		var outline = cell.get_outline(scaling)
+		var outline = cell.get_base_vertices(scaling)
 
 		var obstacle = NavigationObstacle3D.new()
 		obstacle.affect_navigation_mesh = true

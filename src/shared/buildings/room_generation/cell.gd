@@ -113,7 +113,7 @@ func get_all_borders() -> Array[BorderInfo]:
 	return borders
 
 
-func get_outline(scaling: Vector3) -> PackedVector3Array:
+func get_base_vertices(scaling: Vector3) -> PackedVector3Array:
 	var outline = [
 		Vector3(start),
 		Vector3(start.x, start.y, end.z),

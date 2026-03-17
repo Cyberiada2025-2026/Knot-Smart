@@ -2,6 +2,8 @@
 extends Node3D
 class_name ChunkManager
 
+@export var player: Player
+
 var world_generation_params: WorldGenerationParams
 var world_display_params: WorldDisplayParams
 
@@ -34,23 +36,20 @@ func clear_inactive_chunks(render_position = null) -> void:
 				active_chunks[coord].queue_free()
 				remove_child(active_chunks[coord])
 			active_chunks.erase(coord)
+			
 func _get_render_position() -> Variant:
-	var players = get_tree().get_nodes_in_group("Player")
-	if players.size() > 0:
-		print("position",players[0].player_physics.position)
-		return players[0].player_physics.position
+	if player != null:
+		return player.player_physics.position
 	return null
 		
-func begin_generation(b,d,g):
+func begin_generation(_blueprint: TerrainBlueprint, _display_params: WorldDisplayParams, _generation_params: WorldGenerationParams):
 	can_generate = true
-	blueprint = b
-	world_display_params = d
-	world_generation_params = g
+	blueprint = _blueprint
+	world_display_params = _display_params
+	world_generation_params = _generation_params
 	generate_chunks()
-	print("can run")
 	
 func generate_chunks() -> void:
-	print("achunkgen")
 	chunk_generator = ChunkGenerator.new(world_generation_params, world_display_params)
 	var render_position = _get_render_position()
 	clear_inactive_chunks(render_position)
@@ -79,6 +78,6 @@ func generate_chunks() -> void:
 					
 				active_chunks[coord] = chunk_node
 				
-#func _process(_delta: float) -> void:
-#	if can_generate == true:
-#		generate_chunks()
+func _process(_delta: float) -> void:
+	if can_generate == true:
+		generate_chunks()

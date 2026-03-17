@@ -6,7 +6,7 @@ const LANGUAGE_CONSTANTS = preload("res://shared/language_generation/language_co
 @export var syllables: Dictionary[String, AudioStream] = {}
 @export var base_pitch := 1.1
 @export var pitch_variance := 0.05
-@export var shorten_amount := 0.8
+@export var length_multiplier := 0.8
 @export var pause_between_sentence := 0.1
 
 func _init():

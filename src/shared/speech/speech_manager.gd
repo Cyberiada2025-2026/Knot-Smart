@@ -3,9 +3,8 @@ extends Node
 
 signal finished_playing
 
+@export var voice_bank : VoiceBank
 var curr_sentence = []
-var voice_bank : VoiceBank
-
 var audio_stream_player: AudioStreamPlayer
 
 func _init() -> void:
@@ -35,7 +34,7 @@ func play_speech(input: Array):
 	for sentence in input:
 		for word in sentence:
 			for i in range(len(word) - 1):
-				await play_sound(word[i], voice_bank.shorten_amount)
+				await play_sound(word[i], voice_bank.length_multiplier)
 			await play_sound(word.back())
 
 		await get_tree().create_timer(voice_bank.pause_between_sentence).timeout

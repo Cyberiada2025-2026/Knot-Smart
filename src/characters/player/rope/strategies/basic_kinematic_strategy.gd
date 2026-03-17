@@ -13,15 +13,15 @@ func get_equilibrium(current: RopeEnd, other: RopeEnd):
 	var new_pull = pull
 
 	if Input.is_action_just_released("rope_pull"):
-		new_pull -= PULL_UNIT
+		new_pull += PULL_UNIT
 	elif Input.is_action_just_released("rope_push"):
-		new_pull = clampf(new_pull + PULL_UNIT, new_pull, 0.0)
+		new_pull = clampf(new_pull - PULL_UNIT, 0.0, new_pull)
 
 	if current.position.distance_squared_to(other.position) > 1.0 or abs(new_pull) < abs(pull):
 		pull = new_pull
 
 	var unit_direction = (current.position - other.position).normalized()
-	return current.position - unit_direction * pull
+	return current.position + unit_direction * pull
 
 
 func release_force(end: RopeEnd, node: Node):

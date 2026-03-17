@@ -22,11 +22,10 @@ var chunk_unit_size: float:
 
 
 func clear_inactive_chunks() -> void:
-	active_chunks_start = Vector2i.ZERO
-	active_chunks_end = -Vector2i.ONE
 	is_active = false
-	update_active_chunks()
-
+	active_chunks.clear()
+	for child in get_children():
+		child.queue_free()
 
 func begin_generation(
 	_blueprint: TerrainBlueprint,
@@ -37,7 +36,6 @@ func begin_generation(
 	world_display_params = _world_display_params
 	world_generation_params = _world_generation_params
 	is_active = true
-	update_active_chunks_borders()
 	print("ChunkManager: Is active")
 
 

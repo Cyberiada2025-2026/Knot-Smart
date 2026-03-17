@@ -22,10 +22,10 @@ var chunk_unit_size: float:
 
 
 func clear_inactive_chunks() -> void:
-	active_chunks_start = Vector2i.ZERO
-	active_chunks_end = -Vector2i.ONE
 	is_active = false
-	update_active_chunks()
+	active_chunks.clear()
+	for child in get_children():
+		child.queue_free()
 
 
 func begin_generation(

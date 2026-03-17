@@ -1,7 +1,6 @@
 class_name BasicKinematicStrategy
 extends Node
 
-
 const PULL_UNIT = 1.0
 var pull = 0.0
 
@@ -17,11 +16,10 @@ func get_equilibrium(current: RopeEnd, other: RopeEnd):
 		new_pull -= PULL_UNIT
 	elif Input.is_action_just_released("rope_axis_up"):
 		new_pull = clampf(new_pull + PULL_UNIT, new_pull, 0.0)
-	
-	if current.position.distance_squared_to(other.position) > 1.0 \
-		or abs(new_pull) < abs(pull):
+
+	if current.position.distance_squared_to(other.position) > 1.0 or abs(new_pull) < abs(pull):
 		pull = new_pull
-	
+
 	var unit_direction = (current.position - other.position).normalized()
 	return current.position - unit_direction * pull
 

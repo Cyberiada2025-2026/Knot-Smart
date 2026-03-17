@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://rnx3yu0ofiwg"]
 
 [ext_resource type="Script" uid="uid://b2qmm8ipalct6" path="res://shared/camera/camera_helper.gd" id="1_5jark"]
+[ext_resource type="PackedScene" uid="uid://ds23isyj385on" path="res://ui/pause_menu/pause_menu.tscn" id="2_5jark"]
 [ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://shared/post_processing/shaders/dithering.gdshader" id="3_1y1hh"]
 [ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://shared/post_processing/shaders/crt.gdshader" id="4_ka213"]
 
@@ -17,6 +18,7 @@ shader_parameter/mask_dark = 0.75
 shader_parameter/mask_light = 1.75
 
 [node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera", "scene")]
+process_mode = 3
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 524288
 projection = 1
@@ -62,12 +64,15 @@ transform = Transform3D(0.9914175, -2.231977e-08, -0.1307338, 0.053353444, 0.912
 cull_mask = 524287
 
 [node name="MainScene" type="Control" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=1610041003]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="PauseMenu" parent="Control/SubViewportContainer/SubViewport/MainCamera/MainScene" unique_id=473504245 instance=ExtResource("2_5jark")]
 
 [node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=2005476111]
 visibility_layer = 1048575

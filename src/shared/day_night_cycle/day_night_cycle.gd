@@ -11,6 +11,10 @@ signal day_changed(current: int)
 @export var tick_count: int = 0:
 	set(value):
 		tick_count = max(value, 0)
+
+		if _is_updating:
+			return
+
 		_is_updating = true
 
 		current_day = get_days_since_start()
@@ -128,6 +132,7 @@ func _update_time_periods():
 
 	update_day_duration()
 	update_configuration_warnings()
+	tick_count = tick_count
 	if debug_log:
 		print("New time periods: ", time_periods)
 

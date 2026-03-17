@@ -91,3 +91,23 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=290209342]
 shape = SubResource("BoxShape3D_5tch0")
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="." unique_id=1407675285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9185122, 0.521386, 2.0622873)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D3" unique_id=617237566]
+mesh = SubResource("BoxMesh_w01rd")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3" unique_id=343134149]
+shape = SubResource("BoxShape3D_5tch0")
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="." unique_id=1756186780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9254273, 0.521386, 2.0622873)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D4" unique_id=868174004]
+mesh = SubResource("BoxMesh_w01rd")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4" unique_id=361279547]
+shape = SubResource("BoxShape3D_5tch0")

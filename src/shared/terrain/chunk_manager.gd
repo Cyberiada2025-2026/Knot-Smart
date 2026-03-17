@@ -72,6 +72,7 @@ func update_active_chunks_borders() -> void:
 
 		update_active_chunks()
 
+
 func update_active_chunks() -> void:
 	print("ChunkManager: Updating visible chunks")
 	#remove far chunks

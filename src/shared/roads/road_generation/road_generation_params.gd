@@ -2,12 +2,7 @@
 class_name RoadGenerationParams
 extends Resource
 
-enum {
-	EMPTY_TILE = 0,
-	TERRAIN,
-	ROAD,
-	HIGHWAY
-}
+enum { EMPTY_TILE = 0, TERRAIN, ROAD, HIGHWAY }
 
 ## Determines amount of tile splits after which highways will generate. [br]
 ## For bigger maps higher value recommended
@@ -27,10 +22,11 @@ var generation_areas: Array[LimiterArea]
 
 var default_limit_area = LimiterArea.new()
 
+
 ## Format areas to make them usable for generator
 func prepare_generation_areas():
 	# spots are sorted by their area, ascending
-	generation_areas.sort_custom(func(a,b): return a.area_limits.area()< b.area_limits.area())
+	generation_areas.sort_custom(func(a, b): return a.area_limits.area() < b.area_limits.area())
 
 
 func get_area(overlapping_spot: Spot) -> LimiterArea:

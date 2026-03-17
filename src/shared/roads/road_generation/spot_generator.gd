@@ -52,7 +52,9 @@ func generate_spots(road_generator: RoadGenerator):
 		_final_spots.append_array(spots.filter(_is_spot_touching_map_bounds))
 
 	if road_generator.log_generation_steps:
-		print("Roads generated, road generation success steps: ", steps_success, " all: ", steps_all)
+		print(
+			"Roads generated, road generation success steps: ", steps_success, " all: ", steps_all
+		)
 
 
 func cast_spots_to_blueprint():
@@ -77,16 +79,10 @@ func _get_area_positions_array(start: Vector2i, end: Vector2i) -> Array:
 
 func _is_valid_tile(position: Vector2i, axis: int):
 	return (
-			(
-				axis == Utils.Axis2.X
-				and _blueprint[position]["can_place"] == "slope_x"
-			)
-			or (
-				axis == Utils.Axis2.Y
-				and _blueprint[position]["can_place"] == "slope_z"
-			)
-			or _blueprint[position]["can_place"] == "any"
-		)
+		(axis == Utils.Axis2.X and _blueprint[position]["can_place"] == "slope_x")
+		or (axis == Utils.Axis2.Y and _blueprint[position]["can_place"] == "slope_z")
+		or _blueprint[position]["can_place"] == "any"
+	)
 
 
 ## Splits spot into 2 smaller ones if possible
@@ -95,8 +91,7 @@ func _split_spot(spot: Spot, area: LimiterArea, axis: int, spots: Array) -> bool
 		return false
 
 	var split_point = randi_range(
-		area.min_spot_size[axis],
-		spot.size()[axis] - area.min_spot_size[axis]
+		area.min_spot_size[axis], spot.size()[axis] - area.min_spot_size[axis]
 	)
 
 	var e1: Vector2i = spot.end
@@ -124,10 +119,7 @@ func _is_spot_correctly_sized(spot: Spot, max_spot_size: Vector2i) -> bool:
 
 func _is_spot_touching_map_bounds(spot: Spot) -> bool:
 	for axis in Utils.Axis2.values():
-		if(
-			spot.start[axis] == 0
-			or spot.end[axis] ==  _map_size - 1
-		):
+		if spot.start[axis] == 0 or spot.end[axis] == _map_size - 1:
 			return true
 	return false
 

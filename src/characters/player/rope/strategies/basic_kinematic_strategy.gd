@@ -20,8 +20,7 @@ func get_equilibrium(current: RopeEnd, other: RopeEnd):
 	if current.position.distance_squared_to(other.position) > 1.0 or abs(new_pull) < abs(pull):
 		pull = new_pull
 
-	var unit_direction = (current.position - other.position).normalized()
-	return current.position + unit_direction * pull
+	return current.position + other.position.direction_to(current.position) * pull
 
 
 func release_force(end: RopeEnd, node: Node):

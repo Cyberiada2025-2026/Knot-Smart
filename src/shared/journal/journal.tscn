@@ -6,11 +6,8 @@
 
 [sub_resource type="Theme" id="Theme_erk7u"]
 
-[node name="Journal" type="Node" unique_id=9215286]
+[node name="Journal menu" type="Control" unique_id=883052313 groups=["unpausable"]]
 process_mode = 3
-script = ExtResource("1_ohc7l")
-
-[node name="Journal menu" type="Control" parent="." unique_id=55202571 groups=["unpausable"]]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -24,8 +21,9 @@ offset_right = 150.0
 offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ohc7l")
 
-[node name="Button container" type="VBoxContainer" parent="Journal menu" unique_id=213378617]
+[node name="Button container" type="VBoxContainer" parent="." unique_id=1593425837]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -40,28 +38,28 @@ size_flags_stretch_ratio = 3.3
 focus_mode = 1
 theme = SubResource("Theme_ohc7l")
 
-[node name="Button" type="Button" parent="Journal menu/Button container" unique_id=1085880251]
+[node name="Button" type="Button" parent="Button container" unique_id=781982142]
 layout_mode = 2
 size_flags_vertical = 3
 focus_mode = 3
 text = "1"
 
-[node name="Button2" type="Button" parent="Journal menu/Button container" unique_id=613089513]
+[node name="Button2" type="Button" parent="Button container" unique_id=689343871]
 layout_mode = 2
 size_flags_vertical = 3
 text = "2"
 
-[node name="Button3" type="Button" parent="Journal menu/Button container" unique_id=106492528]
+[node name="Button3" type="Button" parent="Button container" unique_id=212756644]
 layout_mode = 2
 size_flags_vertical = 3
 text = "3"
 
-[node name="Button4" type="Button" parent="Journal menu/Button container" unique_id=1373959411]
+[node name="Button4" type="Button" parent="Button container" unique_id=74658397]
 layout_mode = 2
 size_flags_vertical = 3
 text = "4"
 
-[node name="Page container" type="Control" parent="Journal menu" unique_id=407790118]
+[node name="Page container" type="Control" parent="." unique_id=290103834]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -75,7 +73,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme = SubResource("Theme_erk7u")
 
-[node name="Page1" type="Control" parent="Journal menu/Page container" unique_id=1508033879]
+[node name="Page1" type="Control" parent="Page container" unique_id=783195239]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,7 +81,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Journal menu/Page container/Page1" unique_id=478179113]
+[node name="ColorRect" type="ColorRect" parent="Page container/Page1" unique_id=1370023506]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,7 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.7411765, 1, 1, 1)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Journal menu/Page container/Page1" unique_id=400992884]
+[node name="ScrollContainer" type="ScrollContainer" parent="Page container/Page1" unique_id=1719931752]
 custom_minimum_size = Vector2(220, 180)
 layout_mode = 1
 anchors_preset = 8
@@ -107,11 +105,11 @@ offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Journal menu/Page container/Page1/ScrollContainer" unique_id=1651774704]
+[node name="VBoxContainer" type="VBoxContainer" parent="Page container/Page1/ScrollContainer" unique_id=1872089458]
 custom_minimum_size = Vector2(220, 180)
 layout_mode = 2
 
-[node name="Page2" type="Control" parent="Journal menu/Page container" unique_id=644502999]
+[node name="Page2" type="Control" parent="Page container" unique_id=356127469]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -120,7 +118,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Journal menu/Page container/Page2" unique_id=100682665]
+[node name="ColorRect" type="ColorRect" parent="Page container/Page2" unique_id=124220274]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -129,7 +127,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.99607843, 0.7019608, 1, 1)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Journal menu/Page container/Page2" unique_id=207762277]
+[node name="ScrollContainer" type="ScrollContainer" parent="Page container/Page2" unique_id=610879704]
 custom_minimum_size = Vector2(220, 180)
 layout_mode = 1
 anchors_preset = 8
@@ -144,11 +142,11 @@ offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Journal menu/Page container/Page2/ScrollContainer" unique_id=949300702]
+[node name="VBoxContainer" type="VBoxContainer" parent="Page container/Page2/ScrollContainer" unique_id=1899224433]
 custom_minimum_size = Vector2(220, 180)
 layout_mode = 2
 
-[node name="Page3" type="Control" parent="Journal menu/Page container" unique_id=739074441]
+[node name="Page3" type="Control" parent="Page container" unique_id=1254324211]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -157,7 +155,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Journal menu/Page container/Page3" unique_id=1089503335]
+[node name="ColorRect" type="ColorRect" parent="Page container/Page3" unique_id=164092214]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,7 +164,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 0.7294118, 1)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Journal menu/Page container/Page3" unique_id=232007613]
+[node name="ScrollContainer" type="ScrollContainer" parent="Page container/Page3" unique_id=991367828]
 custom_minimum_size = Vector2(220, 180)
 layout_mode = 1
 anchors_preset = 8
@@ -181,11 +179,11 @@ offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Journal menu/Page container/Page3/ScrollContainer" unique_id=1257416694]
+[node name="VBoxContainer" type="VBoxContainer" parent="Page container/Page3/ScrollContainer" unique_id=121918011]
 custom_minimum_size = Vector2(220, 180)
 layout_mode = 2
 
-[node name="Page4" type="Control" parent="Journal menu/Page container" unique_id=1999210061]
+[node name="Page4" type="Control" parent="Page container" unique_id=1807406823]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -194,7 +192,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Journal menu/Page container/Page4" unique_id=649860566]
+[node name="ColorRect" type="ColorRect" parent="Page container/Page4" unique_id=349500929]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -203,7 +201,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.77254903, 1, 0.81960785, 1)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Journal menu/Page container/Page4" unique_id=1327155997]
+[node name="ScrollContainer" type="ScrollContainer" parent="Page container/Page4" unique_id=2126320730]
 custom_minimum_size = Vector2(220, 180)
 layout_mode = 1
 anchors_preset = 8
@@ -218,11 +216,11 @@ offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Journal menu/Page container/Page4/ScrollContainer" unique_id=112981484]
+[node name="VBoxContainer" type="VBoxContainer" parent="Page container/Page4/ScrollContainer" unique_id=891928023]
 custom_minimum_size = Vector2(220, 180)
 layout_mode = 2
 
-[connection signal="pressed" from="Journal menu/Button container/Button" to="." method="_on_button_pressed" binds= [0]]
-[connection signal="pressed" from="Journal menu/Button container/Button2" to="." method="_on_button_pressed" binds= [1]]
-[connection signal="pressed" from="Journal menu/Button container/Button3" to="." method="_on_button_pressed" binds= [2]]
-[connection signal="pressed" from="Journal menu/Button container/Button4" to="." method="_on_button_pressed" binds= [3]]
+[connection signal="pressed" from="Button container/Button" to="." method="_on_button_pressed" binds= [0]]
+[connection signal="pressed" from="Button container/Button2" to="." method="_on_button_pressed" binds= [1]]
+[connection signal="pressed" from="Button container/Button3" to="." method="_on_button_pressed" binds= [2]]
+[connection signal="pressed" from="Button container/Button4" to="." method="_on_button_pressed" binds= [3]]

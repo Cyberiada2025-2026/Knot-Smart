@@ -25,3 +25,4 @@ func on_object_notice() -> void:
 	var journal: Node = players[0].get_node("Journal")
 	var model_duplicate = model.duplicate(7)
 	journal.add_object(description, object_name, model_duplicate, page, scale)
+	self.queue_free()

@@ -27,6 +27,7 @@ func clear_inactive_chunks() -> void:
 	for child in get_children():
 		child.queue_free()
 
+
 func begin_generation(
 	_blueprint: TerrainBlueprint,
 	_world_display_params: WorldDisplayParams,

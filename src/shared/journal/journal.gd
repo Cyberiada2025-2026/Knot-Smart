@@ -6,56 +6,63 @@ var menu: Control
 var pages: Control
 var button_normal
 var added_information: Array[bool] = [0, 0, 0, 0]
+var models: Array[Node3D]
 
-
-func add_mob(i: int) -> void:
-	var mob_page_cont = pages.get_child(0).get_child(1).get_child(0)
-	var mob_page: RichTextLabel = RichTextLabel.new()
-	mob_page.set_custom_minimum_size(Vector2(100, 100))
-	mob_page.push_color(Color(0.9, 0.5, 0.5))
-	match i:
-		1:
-			print("dodawanie obiektu 1")
-			mob_page.add_text("to jest obiekt 1 \n nie robi nic")
-			mob_page_cont.add_child(mob_page)
-			if added_information[1] == true:
-				mob_page_cont.move_child(mob_page, 0)
-		2:
-			print("dodawanie obiketu 2")
-			mob_page.add_text("to jest obiekt 2 \n robi coś")
-			mob_page_cont.add_child(mob_page)
-
+func add_object(description: String, name:String, model:Node3D, page_no: int):
+	var page = pages.get_child(page_no).get_child(1).get_child(0)
+	var hbox: HBoxContainer = HBoxContainer.new()
+	hbox.set_custom_minimum_size(Vector2(220,100))
+	hbox.add_theme_constant_override("Separator",0)
+	page.add_child(hbox)
+	var subviewcont: SubViewportContainer = SubViewportContainer.new()
+	hbox.add_child(subviewcont)
+	var subview: SubViewport = SubViewport.new()
+	subview.set_size(Vector2i(100,100))
+	subview.own_world_3d=true
+	subview.transparent_bg=true
+	subviewcont.add_child(subview)
+	var spotlight: SpotLight3D = SpotLight3D.new()
+	spotlight.set_position(Vector3(0.11,0.51,0.24))
+	subview.add_child(spotlight)
+	var camera:Camera3D = Camera3D.new()
+	subview.add_child(camera)
+	#var model1 = load("res://characters/player/player_model.glb")
+	#var model = model1.instantiate()
+	model.set_scale(Vector3(0.3,0.3,0.3))
+	model.set_position(Vector3(0.0,0.0,-0.4))
+	camera.add_child(model)
+	models.append(model)
+	
+	var obj_text: RichTextLabel = RichTextLabel.new()
+	obj_text.set_custom_minimum_size(Vector2(120, 100))
+	obj_text.push_color(Color(0.9, 0.5, 0.5))
+	obj_text.add_text(name + "\n" + description)
+	hbox.add_child(obj_text)
+	
 
 func _ready() -> void:
-	menu = get_child(0)
+	menu = $"Journal menu"
 	pages = menu.get_child(1)
+	#menu.get_node("Button container/Page co")
 	button_normal = menu.get_child(0).get_child(1).get_theme_stylebox("normal", "Button")
-
-
+	#model=get_child(0).get_child(1).get_child(0).get_child(1).get_child(0).get_child(0).get_child(0).get_child(0).get_child(1).get_child(0)
+	models.append($"Journal menu/Page container/Page1/ScrollContainer/VBoxContainer/HBoxContainer/SubViewportContainer/SubViewport/Camera2D/player_model")
+	
+	
+	
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("journal_show"):
 		print("click1")
-		if get_tree().paused == true and menu.visible == false:
-			print("error")
-		else:
+		if not (get_tree().paused == true and menu.visible == false):
 			if menu.visible == true:
 				get_tree().paused = false
 				menu.visible = false
 			else:
 				get_tree().paused = true
 				menu.visible = true
-
-	if Input.is_action_just_pressed("ui_left"):
-		if added_information[0] == false:
-			added_information[0] = true
-			add_mob(1)
-		print("dodawanie info 1")
-
-	if Input.is_action_just_pressed("ui_right"):
-		if added_information[1] == false:
-			added_information[1] = true
-			add_mob(2)
-		print("dodawanie info 2")
+		
+	for model in models:
+		model.rotate_y(0.1)
 
 
 func _on_button_pressed(number: int) -> void:

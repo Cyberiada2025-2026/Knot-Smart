@@ -2,6 +2,8 @@
 class_name PointOfInterest
 extends Node3D
 
+signal noticed
+
 const VISUALIZATION_MATERIAL = preload(
 	"res://shared/point_of_interest/point_of_interest_visualization_material.tres"
 )
@@ -46,4 +48,5 @@ func _init():
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.get_parent().is_in_group(trigger_group_name):
 		print(message)
+		noticed.emit()
 		self.queue_free()

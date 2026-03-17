@@ -1,6 +1,8 @@
 ## Manages the journal system
 extends Node
 
+var prev_mouse_mode
+
 var is_visible: bool = false
 var menu: Control
 var pages: Control
@@ -57,9 +59,12 @@ func _process(_delta: float) -> void:
 			if menu.visible == true:
 				get_tree().paused = false
 				menu.visible = false
+				Input.set_mouse_mode(prev_mouse_mode)
 			else:
 				get_tree().paused = true
 				menu.visible = true
+				prev_mouse_mode = Input.get_mouse_mode()
+				Input.set_mouse_mode(0)
 		
 	for model in models:
 		model.rotate_y(0.1)

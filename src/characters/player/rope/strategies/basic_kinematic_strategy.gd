@@ -12,9 +12,9 @@ func get_strategy_type() -> RopeEnd.StrategyType:
 func get_equilibrium(current: RopeEnd, other: RopeEnd):
 	var new_pull = pull
 
-	if Input.is_action_just_released("rope_axis_down"):
+	if Input.is_action_just_released("rope_pull"):
 		new_pull -= PULL_UNIT
-	elif Input.is_action_just_released("rope_axis_up"):
+	elif Input.is_action_just_released("rope_push"):
 		new_pull = clampf(new_pull + PULL_UNIT, new_pull, 0.0)
 
 	if current.position.distance_squared_to(other.position) > 1.0 or abs(new_pull) < abs(pull):

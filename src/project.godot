@@ -172,8 +172,8 @@ locale/stretch/scale_mode="fractional"
 
 [layer_names]
 
-3d_physics/layer_5="player_hurtboxes"
-3d_physics/layer_6="enemy_hurtboxes"
+3d_physics/layer_5="hurts_enemies"
+3d_physics/layer_6="hurts_player"
 
 [physics]
 

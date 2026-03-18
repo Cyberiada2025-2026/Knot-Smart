@@ -3,7 +3,7 @@ extends CharacterBody3D
 const IDLE_DIS := 20
 
 @export var speed := 30000
-@export var basic_attack: TimedArea 
+@export var basic_attack: TimedArea
 
 var can_move := false
 var world: World3D

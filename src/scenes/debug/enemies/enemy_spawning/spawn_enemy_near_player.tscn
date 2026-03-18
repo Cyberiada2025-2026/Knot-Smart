@@ -58,9 +58,10 @@ material = SubResource("StandardMaterial3D_nc8uk")
 
 [node name="Enemies" type="Node3D" parent="." unique_id=1738229304]
 
-[node name="EnemySpawnManager2" type="Node3D" parent="." unique_id=1150800883 node_paths=PackedStringArray("nav_region", "enemy_spawn_node")]
+[node name="EnemySpawnManager2" type="Node3D" parent="." unique_id=1150800883 node_paths=PackedStringArray("nav_region", "day_night_cycle", "enemy_spawn_node")]
 script = ExtResource("2_tcgoh")
 nav_region = NodePath("../NavigationRegion3D")
+day_night_cycle = NodePath("../DayNightCycle")
 enemy_spawn_node = NodePath("../Enemies")
 metadata/_custom_type_script = "uid://d3b3ejnxvoa3s"
 

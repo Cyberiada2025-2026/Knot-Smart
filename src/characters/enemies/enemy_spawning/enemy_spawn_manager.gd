@@ -4,6 +4,13 @@ extends Node3D
 ## In order to determine which enemy will be spawned it requires EnemySpawnAreas as its children.
 ## Will only spawn one enemy per EnemySpawnArea.
 
+enum SpawnResult {
+	SUCCESS,
+	NO_SPAWN_AREA,
+	AREA_ENEMY_ALREADY_EXISTS,
+	NO_VALID_SPAWNPOINT,
+}
+
 @export var debug_log: bool = false
 
 @export_group("Spawn parameters")
@@ -18,6 +25,7 @@ extends Node3D
 
 @export_group("References")
 @export var nav_region: NavigationRegion3D
+@export var day_night_cycle: DayNightCycle
 ## Enemies will be spawned as children of this node.
 @export var enemy_spawn_node: Node3D
 
@@ -25,7 +33,6 @@ var spawn_areas: Array[EnemySpawnArea]
 var active_enemies: Dictionary[Area3D, Node3D]
 
 var player: Player
-var day_night_cycle: DayNightCycle
 var spawn_attempt_timer: Timer
 
 
@@ -39,12 +46,10 @@ func _ready() -> void:
 	if spawn_areas.is_empty():
 		push_warning("No EnemySpawnAreas found.")
 
-	var dnc_group = get_tree().get_nodes_in_group("day_night_cycle")
-	if dnc_group.is_empty():
+	if day_night_cycle == null:
 		push_warning("No DayNightCycle found for EnemySpawnManager. No enemies will be spawned.")
 		return
 
-	day_night_cycle = dnc_group[0]
 	day_night_cycle.time_period_changed.connect(_on_time_period_changed)
 
 	var player_group = get_tree().get_nodes_in_group("Player")
@@ -70,28 +75,23 @@ func get_spawn_point():
 	return null
 
 
-func spawn_enemy() -> bool:
+func spawn_enemy() -> SpawnResult:
 	var picked_spawn_area: EnemySpawnArea = get_spawn_area()
-	if picked_spawn_area == null or active_enemies.has(picked_spawn_area):
-		if debug_log:
-			print("Failed to pick valid spawn area.")
-		return false
+	if picked_spawn_area == null:
+		return SpawnResult.NO_SPAWN_AREA
+	if active_enemies.has(picked_spawn_area):
+		return SpawnResult.AREA_ENEMY_ALREADY_EXISTS
 
 	var rand_point_on_mesh = get_spawn_point()
 	if rand_point_on_mesh == null:
-		if debug_log:
-			print("Failed to find valid spawn point.")
-		return false
+		return SpawnResult.NO_VALID_SPAWNPOINT
 
 	var enemy: Node3D = picked_spawn_area.enemy_scene.instantiate()
 	enemy_spawn_node.add_child(enemy)
 	enemy.position = rand_point_on_mesh
 	active_enemies.set(picked_spawn_area, enemy)
 
-	if debug_log:
-		print("Spawned enemy: %s at point: %s" % [enemy.name, rand_point_on_mesh])
-
-	return true
+	return SpawnResult.SUCCESS
 
 
 func get_spawn_area() -> EnemySpawnArea:
@@ -132,5 +132,8 @@ func _on_spawn_interval_timeout() -> void:
 		return
 
 	for i in spawn_attempt_count:
-		if spawn_enemy():
+		var result = spawn_enemy()
+		if debug_log:
+			print("Spawn attempt: ", SpawnResult.keys()[result])
+		if result == SpawnResult.SUCCESS: 
 			break

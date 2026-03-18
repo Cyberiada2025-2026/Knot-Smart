@@ -1,6 +1,7 @@
 class_name ProjectileDamageComponent
 extends Node
-## Requires parent to be a RigidBody3d
+## Deals damage based on the parent object's momentum.
+## Requires parent to be a RigidBody3d.
 
 @export var base_damage: float = 1.0
 @export var max_damage: float = 5.0

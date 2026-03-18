@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://dktjlwqp00lcr"]
 
+[ext_resource type="Script" uid="uid://br4ibu8huxipr" path="res://shared/journal/journal_entry.gd" id="1_hawqf"]
+
 [node name="HBoxContainer" type="HBoxContainer" unique_id=351905527]
 custom_minimum_size = Vector2(220, 100)
 theme_override_constants/separation = 0
+script = ExtResource("1_hawqf")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=680437381]
 layout_mode = 2

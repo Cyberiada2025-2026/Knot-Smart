@@ -1,28 +1,35 @@
 class_name ObjectDescription
 extends Node
 
+enum pages{ITEMS=1, OBJECTS, MOBS}
+
 ##Insert model of an object
 @export var model: Node3D
 ##Type name of an object
 @export var object_name: String
 ##Insert description of the object
 @export var description: String
-##Type at what page the object should be (3 - mobs, 2 - objects, 1 - items)
-@export var page: int
+##Set at what page the object should be 
+@export var page: pages
 ##Set the scale of an object
-@export var scale: float
+@export var scale: float = 0.5
+##Set the radius of point of interest
+@export var radius: float = 1.0
+##Check if point of interest mesh should be visible
+@export var visible: bool = true
 
 
 func _init() -> void:
 	var poi: PointOfInterest = PointOfInterest.new()
 	poi.noticed.connect(on_object_notice)
-	poi.radius = 1.0
+	poi.radius = radius
+	poi.visualize = visible
 	add_child(poi)
 
 
 func on_object_notice() -> void:
-	var players = get_tree().get_nodes_in_group("Player")
-	var journal: Node = players[0].get_node("Journal")
-	var model_duplicate = model.duplicate(7)
-	journal.add_object(description, object_name, model_duplicate, page, scale)
+	var player = get_tree().get_first_node_in_group("Player")
+	var journal: Node = player.get_node("Journal")
+	model = model.duplicate(DUPLICATE_SCRIPTS + DUPLICATE_SIGNALS)
+	journal.add_object(self)
 	self.queue_free()

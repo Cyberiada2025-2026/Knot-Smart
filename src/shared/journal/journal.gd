@@ -2,34 +2,27 @@ extends Node
 
 var prev_mouse_mode
 
-var entry_scene = preload("res://shared/journal/journal_entry.tscn")
+var entry_scene = preload("uid://dktjlwqp00lcr")
 
-var is_visible: bool = false
 var pages: Control
 var buttons: Control
-var button_normal
-var models: Array[Node3D]
+@onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
 
-
-func add_object(
-	description: String, object_name: String, model: Node3D, page_no: int, scale: float
-):
-	var page = pages.get_child(page_no).get_child(1).get_child(0)
+func add_object(obj_des:ObjectDescription):
+	var page = pages.get_child(obj_des.page_no).get_child(1).get_child(0)
 	var entry = entry_scene.instantiate()
 	page.add_child(entry)
 	var camera = entry.get_child(0).get_child(0).get_child(1)
-	model.set_scale(Vector3(scale, scale, scale))
-	model.set_position(Vector3(0.0, 0.0, -0.4))
+	var model = obj_des.model
+	model.set_scale(Vector3(obj_des.scale, obj_des.scale, obj_des.scale))
+	model.set_position(Vector3(0.0, 0.0, -0.4)) #ideal position to see model
 	camera.add_child(model)
-	models.append(model)
 	var obj_text = entry.get_child(1)
-	obj_text.append_text("[b]" + object_name + "[/b]\n" + description)
-
+	obj_text.append_text("[b]" + obj_des.object_name + "[/b]\n" + obj_des.description)
 
 func _ready() -> void:
 	pages = $"Page container"
 	buttons = $"Button container"
-	button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
 
 
 func _process(_delta: float) -> void:
@@ -44,9 +37,6 @@ func _process(_delta: float) -> void:
 				self.visible = true
 				prev_mouse_mode = Input.get_mouse_mode()
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	for model in models:
-		model.rotate_y(0.1)
-
 
 func _on_button_pressed(number: int) -> void:
 	var button: Button = buttons.get_child(number)

@@ -13,13 +13,16 @@ func _enter_tree() -> void:
 func generate_skin(branch: TreeBranch) -> ArrayMesh:
 	var vertices = PackedVector3Array()
 	var indices = PackedInt32Array()
+	var tangents = PackedFloat32Array()
 	add_stripes(vertices, branch, branch.sides)
 	add_indices(indices, len(branch.pos_array)-1, branch.sides)
+	add_tangents(vertices, tangents)
 	var arr_mesh = ArrayMesh.new()
 	var arrays = []
 	arrays.resize(Mesh.ARRAY_MAX)
 	arrays[Mesh.ARRAY_VERTEX] = vertices
 	arrays[Mesh.ARRAY_INDEX] = indices
+	arrays[Mesh.ARRAY_TANGENT] = tangents
 	arr_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLE_STRIP, arrays)
 	return arr_mesh
 
@@ -29,8 +32,7 @@ func add_stripes(vertices: PackedVector3Array, branch: TreeBranch, sides: int):
 	for center in branch.pos_array:
 		var angle: float = 2*PI / sides
 		for i in range(sides, 0, -1):
-			var vertex = Vector3(cos(i*angle)*r, 0.0, sin(i*angle)*r)
-			vertex += center
+			var vertex = Vector3(cos(i*angle)*r, 0.0, sin(i*angle)*r) + center
 			vertices.push_back(vertex)
 		r *= branch.r_low
 
@@ -42,3 +44,9 @@ func add_indices(indices: PackedInt32Array, levels: int, length: int):
 			indices.push_back((i+1)*length+j)
 		indices.push_back(i*length)
 		indices.push_back((i+1)*length)
+
+
+func add_tangents(vertices: PackedVector3Array, tangents: PackedFloat32Array):
+	for vertex in vertices:
+		for i in range(4):
+			tangents.push_back(1)

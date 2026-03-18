@@ -3,9 +3,6 @@ class_name TreeSkeleton
 extends Node
 
 
-const ANGLE1 = PI
-const ANGLE2 = -PI/20
-
 var tree_generator: TreeGenerator
 var params: TreeParameters
 var branch_count: int
@@ -44,7 +41,7 @@ func rec_branches(curr_branch: TreeBranch, rec_level: int, rotation: Vector3, le
 	var branch = curr_branch.pos_array
 	for i in range(randi()%branch_count+1):
 		var idx = randi() % len(branch)
-		var angle = randf()*ANGLE1 + ANGLE1/2
+		var angle = randf()*PI
 		# vibes based math (trying to rotate branch against its parent branch)
 		var new_rotation = rotation.rotated(Vector3.BACK, angle)
 		new_rotation = new_rotation.rotated(Vector3.RIGHT, angle)
@@ -60,8 +57,6 @@ func rec_branches(curr_branch: TreeBranch, rec_level: int, rotation: Vector3, le
 func skeleton_branch(offset: Vector3, rotation: Vector3, h: float, levels: int) -> TreeBranch:
 	var branch_pos = []
 	var last = offset
-	var angle = ANGLE2
-	var ax = last.cross(rotation).normalized()
 	branch_pos.push_back(last)
 	for i in range(levels):
 		var new = last + Vector3(
@@ -69,8 +64,12 @@ func skeleton_branch(offset: Vector3, rotation: Vector3, h: float, levels: int) 
 			randf()*params.diff-params.diff/2+h,
 			randf()*params.diff-params.diff/2)
 		# vibes based math cd
-		last = new.rotated(ax, angle)
-		branch_pos.push_back(last)
+		if rotation.is_normalized():
+			new = new.rotated(rotation, params.angle)
+		else:
+			new+=rotation
+		branch_pos.push_back(new)
+		last = new
 	var branch = TreeBranch.new()
 	branch.pos_array = branch_pos
 	return branch

@@ -39,7 +39,9 @@ func generate_mesh(branch: TreeBranch):
 	mesh.mesh = array_mesh
 	tree.add_child(mesh)
 	var collision = CollisionShape3D.new()
-	collision.shape = mesh.mesh.create_convex_shape()
+	var shape = ConcavePolygonShape3D.new()
+	shape.set_faces(array_mesh.get_faces())
+	collision.shape = shape
 	tree.add_child(collision)
 	if Engine.is_editor_hint():
 		tree.owner = get_tree().edited_scene_root

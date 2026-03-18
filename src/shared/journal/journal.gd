@@ -11,14 +11,28 @@ var buttons: Control
 func add_object(obj_des:ObjectDescription):
 	var page = pages.get_child(obj_des.page_no).get_child(1).get_child(0)
 	var entry = entry_scene.instantiate()
+	entry.add_entry(obj_des)
+	var entry_text=entry.get_child(1)
+	
+	var journal_entries = get_tree().get_nodes_in_group("journal_text")
+		
+	for journal_text in journal_entries:
+		if journal_text.get_text() == entry_text.get_text():
+			return
+		
 	page.add_child(entry)
-	var camera = entry.get_child(0).get_child(0).get_child(1)
-	var model = obj_des.model
-	model.set_scale(Vector3(obj_des.scale, obj_des.scale, obj_des.scale))
-	model.set_position(Vector3(0.0, 0.0, -0.4)) #ideal position to see model
-	camera.add_child(model)
-	var obj_text = entry.get_child(1)
-	obj_text.append_text("[b]" + obj_des.object_name + "[/b]\n" + obj_des.description)
+	
+	var current_page_journal_entries: Array[RichTextLabel]
+	
+	for journal_text in journal_entries:
+		if journal_text.get_parent().get_parent() == page:
+			current_page_journal_entries.append(journal_text)
+	
+	for journal_text in current_page_journal_entries:
+		if journal_text.get_text() > entry_text.get_text():
+			move_child(entry,journal_text.get_parent().get_index())
+			return
+			
 
 func _ready() -> void:
 	pages = $"Page container"

@@ -23,7 +23,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.117183626, 0.51101226, 0.24
 
 [node name="Camera2D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1408827181]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1558799605]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1558799605 groups=["journal_text"]]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 theme_override_colors/default_color = Color(1, 0, 1, 1)

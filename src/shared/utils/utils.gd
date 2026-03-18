@@ -7,3 +7,6 @@ enum Axis {
 	Y = Vector3i.Axis.AXIS_Y,
 	Z = Vector3i.Axis.AXIS_Z,
 }
+
+static func normalize(value: float, range_min: float, range_max: float) -> float:
+	return (value - range_min)/(range_max - range_min)

@@ -5,7 +5,7 @@ extends Area3D
 
 ## Minimum velocity at which damage is applied. Otherwise the damage is 0.
 @export var minimum_velocity: float = 0.0
-## Minimum velocity at which critical_multiplier is applied.
+## Minimum velocity at  which critical_multiplier is applied.
 @export var critical_velocity: float = 0.0
 ## Multiplier applied to the base_damage at critical_velocity
 @export var critical_multiplier: float = 1.0

@@ -135,5 +135,5 @@ func _on_spawn_interval_timeout() -> void:
 		var result = spawn_enemy()
 		if debug_log:
 			print("Spawn attempt: ", SpawnResult.keys()[result])
-		if result == SpawnResult.SUCCESS: 
+		if result == SpawnResult.SUCCESS:
 			break

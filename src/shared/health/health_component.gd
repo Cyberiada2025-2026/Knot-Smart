@@ -10,7 +10,7 @@ signal health_depleted
 @export var max_health: float = 10.0:
 	set(value):
 		max_health = max(value, 0)
-		health = health
+		health = min(health, max_health) 
 		if debug_log:
 			print("Max health changed to ", max_health)
 		max_health_changed.emit(max_health)

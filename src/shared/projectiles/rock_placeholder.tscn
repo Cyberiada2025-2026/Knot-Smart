@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dx21c5ighykbx"]
 
-[ext_resource type="Script" uid="uid://seb5futqxfli" path="res://shared/health/hurt_box.gd" id="1_2irik"]
+[ext_resource type="Script" uid="uid://uuhido8vjpvw" path="res://shared/health/projectile_damage_component.gd" id="1_or7e1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2nnky"]
 size = Vector3(0.5, 0.5, 0.5)
@@ -9,7 +9,7 @@ size = Vector3(0.5, 0.5, 0.5)
 size = Vector3(0.5, 0.5, 0.5)
 
 [node name="RigidBody3D2" type="RigidBody3D" unique_id=1852927063]
-collision_layer = 2
+collision_layer = 16
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=91419916]
 mesh = SubResource("BoxMesh_2nnky")
@@ -17,14 +17,6 @@ mesh = SubResource("BoxMesh_2nnky")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1028740520]
 shape = SubResource("BoxShape3D_ph052")
 
-[node name="HurtBox" type="Area3D" parent="." unique_id=836167424]
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("1_2irik")
-minimum_velocity = 1.0
-critical_velocity = 25.0
-critical_multiplier = 4.0
-metadata/_custom_type_script = "uid://seb5futqxfli"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=1149015166]
-shape = SubResource("BoxShape3D_ph052")
+[node name="ProjectileDamageComponent" type="Node" parent="." unique_id=2015781766]
+script = ExtResource("1_or7e1")
+metadata/_custom_type_script = "uid://uuhido8vjpvw"

@@ -5,12 +5,11 @@ extends Area3D
 
 
 func _ready() -> void:
-	area_entered.connect(_on_area_entered)
+	area_entered.connect(_on_damage_entered)
+	body_entered.connect(_on_damage_entered)
 
 
-func _on_area_entered(area: Area3D) -> void:
-	var hurt_box = area as HurtBox
-	if hurt_box == null:
-		return
-
-	health_component.health -= hurt_box.get_damage()
+func _on_damage_entered(node: Node) -> void:
+	var damage_components = node.find_children("*DamageComponent")
+	for damage in damage_components:
+		health_component.health -= damage.get_damage()

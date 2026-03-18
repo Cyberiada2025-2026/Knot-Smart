@@ -3,13 +3,13 @@ extends CharacterBody3D
 const IDLE_DIS := 20
 
 @export var speed := 30000
+@export var basic_attack: TimedAttack 
 
 var can_move := false
 var world: World3D
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var shapecast = $ShapeCast3D
-@onready var basic_attack_hurtbox: HurtBox = $BasicAttackHurtBox
 
 
 func _ready() -> void:
@@ -86,8 +86,6 @@ func attack() -> void:
 	#we can use like seperate class attack for diffrent attack types
 	print("attack!")
 
-	basic_attack_hurtbox.is_disabled = false
-	await get_tree().create_timer(0.1).timeout
-	basic_attack_hurtbox.is_disabled = true
+	basic_attack.attack()
 
 	print("end of attack")

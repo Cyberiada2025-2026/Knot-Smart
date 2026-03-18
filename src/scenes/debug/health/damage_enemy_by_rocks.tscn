@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_s7cml"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="2_2nnky"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="3_ph052"]
-[ext_resource type="PackedScene" uid="uid://dx21c5ighykbx" path="res://scenes/debug/projectiles/rock_placeholder.tscn" id="4_2nnky"]
+[ext_resource type="PackedScene" uid="uid://dx21c5ighykbx" path="res://shared/projectiles/rock_placeholder.tscn" id="4_2nnky"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w01rd"]
 albedo_color = Color(0.15479487, 0.21179658, 0.23663604, 1)

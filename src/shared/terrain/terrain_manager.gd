@@ -10,7 +10,6 @@ extends Node3D
 @export_group("Debug")
 @export var debug_flag: bool
 
-
 @export_group("Functions")
 @export_tool_button("Generate world") var generate_action = generate_world
 @export_tool_button("Clear terrain") var clean_action = clean
@@ -34,6 +33,12 @@ func generate_world() -> void:
 	var generators = get_children().filter(func(c): return c.has_method("execute"))
 
 	for generator in generators:
+		if debug_flag == true:
+			print("TerrainManager: Starting generation for: " + generator.name)
 		generator.execute(self)
+		if debug_flag == true:
+			print("TerrainManager: Finished generation for: " + generator.name)
 
+	if debug_flag == true:
+			print("TerrainManager: Generation completed")
 	chunk_manager.begin_generation(self)

@@ -1,7 +1,7 @@
 class_name ObjectDescription
 extends Node3D
 
-enum pages{Items=1, Objects, Mobs}
+enum Pages { ITEMS = 1, OBJECTS, MOBS }
 
 ##Insert model of an object
 @export var model: Node3D
@@ -9,8 +9,8 @@ enum pages{Items=1, Objects, Mobs}
 @export var object_name: String
 ##Insert description of the object
 @export var description: String
-##Set at what page the object should be 
-@export var page: pages = pages.Items
+##Set at what page the object should be
+@export var page: Pages = Pages.ITEMS
 ##Set the scale of an object
 @export var object_scale: float = 0.5
 ##Set the radius of point of interest

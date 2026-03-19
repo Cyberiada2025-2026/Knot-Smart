@@ -20,5 +20,7 @@ func get_damage() -> float:
 	if momentum < minimum_momentum:
 		return 0.0
 
-	var momentum_normalized = clampf(Utils.normalize(momentum, minimum_momentum, maximum_momentum),0.0,1.0)
+	var momentum_normalized = clampf(
+		Utils.normalize(momentum, minimum_momentum, maximum_momentum), 0.0, 1.0
+	)
 	return lerpf(base_damage, max_damage, momentum_normalized)

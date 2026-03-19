@@ -4,7 +4,6 @@ extends Area3D
 ## Damage will be based on DamageComponents attatched to the other node.
 ## Control over what can damage the hitbox is set using physics collision layer masks.
 
-
 @export var health_component: Node
 
 

@@ -85,7 +85,5 @@ func _physics_process(_delta: float) -> void:
 func attack() -> void:
 	#we can use like seperate class attack for diffrent attack types
 	print("attack!")
-
-	basic_attack.appear()
-
+	await basic_attack.enable_until_timeout()
 	print("end of attack")

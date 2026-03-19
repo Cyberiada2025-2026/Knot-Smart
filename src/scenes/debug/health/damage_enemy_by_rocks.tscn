@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://blecvtduq1yer"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_s7cml"]
+[ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="2_2nnky"]
+[ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="3_ph052"]
+[ext_resource type="PackedScene" uid="uid://dx21c5ighykbx" path="res://shared/projectiles/rock_placeholder.tscn" id="4_2nnky"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w01rd"]
+albedo_color = Color(0.15479487, 0.21179658, 0.23663604, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s7cml"]
+material = SubResource("StandardMaterial3D_w01rd")
+size = Vector3(0.5, 6, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2nnky"]
+size = Vector3(0.5, 6, 4)
+
+[node name="HealthDebug" type="Node3D" unique_id=223631406]
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_s7cml")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
+
+[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("2_2nnky")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2121414612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(20, 0.5, 20)
+
+[node name="Enemy" parent="." unique_id=768992349 instance=ExtResource("3_ph052")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="Wall2" type="StaticBody3D" parent="." unique_id=1133006989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7736145, 2.5516033, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall2" unique_id=691764702]
+mesh = SubResource("BoxMesh_s7cml")
+skeleton = NodePath("../../Wall2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2" unique_id=919376171]
+shape = SubResource("BoxShape3D_2nnky")
+
+[node name="Wall" type="StaticBody3D" parent="." unique_id=576273841]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7317564, 2.4479983, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall" unique_id=1445364661]
+mesh = SubResource("BoxMesh_s7cml")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall" unique_id=618632055]
+shape = SubResource("BoxShape3D_2nnky")
+
+[node name="RockPlaceholder" parent="." unique_id=1852927063 instance=ExtResource("4_2nnky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0006670058, 5.336998, 4)
+
+[node name="RockPlaceholder2" parent="." unique_id=230371886 instance=ExtResource("4_2nnky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.98699975, 4.0027485, 0.5)
+
+[node name="RockPlaceholder3" parent="." unique_id=2046369098 instance=ExtResource("4_2nnky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8246665, 2.668499, 0)
+
+[node name="RockPlaceholder4" parent="." unique_id=2003344229 instance=ExtResource("4_2nnky")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83766675, 1.3342495, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1209018960]
+transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)

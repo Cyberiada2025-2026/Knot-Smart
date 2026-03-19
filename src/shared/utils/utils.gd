@@ -9,6 +9,10 @@ enum Axis {
 }
 
 
+static func normalize(value: float, range_min: float, range_max: float) -> float:
+	return (value - range_min) / (range_max - range_min)
+
+
 ## Returns random point in a circular ring around the center point.
 ## Y_AXIS value of the returned vector equals 0.
 ## source: https://narimanfarsad.blogspot.com/2012/11/uniformly-distributed-points-inside_9.html

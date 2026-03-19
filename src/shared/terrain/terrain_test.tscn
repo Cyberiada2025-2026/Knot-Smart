@@ -38,19 +38,18 @@ metadata/_custom_type_script = "uid://bmtv75byrd25q"
 
 [node name="Terrain" type="Node3D" unique_id=1551696206]
 
-[node name="ChunkManager" type="Node3D" parent="." unique_id=1999529371 node_paths=PackedStringArray("terrain_manager")]
-script = ExtResource("6_nolvv")
-terrain_manager = NodePath("../TerrainManager")
-metadata/_custom_type_script = "uid://u5hpdit2bo4g"
-
-[node name="TerrainManager" type="Node3D" parent="." unique_id=1811810691 node_paths=PackedStringArray("player")]
+[node name="TerrainManager" type="Node3D" parent="." unique_id=1811810691 node_paths=PackedStringArray("chunk_manager")]
 script = ExtResource("1_1hp32")
-player = NodePath("../Player")
 world_generation_params = SubResource("Resource_tnrqe")
 world_display_params = SubResource("Resource_nolvv")
+chunk_manager = NodePath("../ChunkManager")
 
 [node name="TerrainGenerator" type="Node" parent="TerrainManager" unique_id=1904322367]
 script = ExtResource("1_aojt6")
+
+[node name="ChunkManager" type="Node3D" parent="." unique_id=1999529371]
+script = ExtResource("6_nolvv")
+metadata/_custom_type_script = "uid://u5hpdit2bo4g"
 
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("7_nolvv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 120, 0)

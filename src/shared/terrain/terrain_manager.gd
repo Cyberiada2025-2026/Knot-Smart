@@ -2,11 +2,14 @@
 class_name TerrainManager
 extends Node3D
 
-@export_group("Params")
+@export_group("Dependencies")
 @export var world_generation_params: WorldGenerationParams
 @export var world_display_params: WorldDisplayParams
-
 @export var chunk_manager: ChunkManager
+
+@export_group("Debug")
+@export var debug_flag: bool
+
 
 @export_group("Functions")
 @export_tool_button("Generate world") var generate_action = generate_world
@@ -33,4 +36,4 @@ func generate_world() -> void:
 	for generator in generators:
 		generator.execute(self)
 
-	chunk_manager.begin_generation(blueprint, world_display_params, world_generation_params)
+	chunk_manager.begin_generation(self)

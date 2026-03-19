@@ -182,7 +182,7 @@ avoidance_enabled = false
 [node name="DayNightCycle" type="Node3D" parent="." unique_id=106700811]
 script = ExtResource("10_a8run")
 current_day = 0
-day_seconds = 0.0
+day_seconds = -0.001
 metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
 
 [node name="Dusk" type="Node" parent="DayNightCycle" unique_id=1615816852]

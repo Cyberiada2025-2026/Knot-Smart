@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://cjtgulb35tycd"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_w063n"]
+[ext_resource type="Script" uid="uid://d3b3ejnxvoa3s" path="res://characters/enemies/enemy_spawning/enemy_spawn_manager.gd" id="2_tcgoh"]
+[ext_resource type="Script" uid="uid://b3g2uvv66tqc1" path="res://characters/enemies/enemy_spawning/enemy_spawn_area.gd" id="3_n8p1c"]
+[ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="4_3ybt4"]
+[ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="5_45npv"]
+[ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="6_65pxy"]
+[ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="7_nc8uk"]
+[ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="8_0nr7i"]
+[ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="9_fkq0b"]
+[ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="10_g6eoa"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_w063n"]
+vertices = PackedVector3Array(-24.5, 1, -24.5, -24.5, 1, 24.25, 24.5, 1, 24.25, 24.5, 1, -24.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_45npv"]
+albedo_color = Color(0, 0.049999714, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65pxy"]
+albedo_color = Color(1, 0, 0.016666412, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nc8uk"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_65pxy"]
+size = Vector3(50, 10, 20.7)
+
+[node name="SpawnEnemyNearPlayer" type="Node3D" unique_id=1013178963]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=854278800]
+transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_w063n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1433564982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+navigation_mesh = SubResource("NavigationMesh_w063n")
+
+[node name="Floor" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1740409380]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.9)
+use_collision = true
+size = Vector3(50, 1, 20.2)
+material = SubResource("StandardMaterial3D_45npv")
+
+[node name="Floor2" type="CSGBox3D" parent="NavigationRegion3D" unique_id=23862694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.600001)
+use_collision = true
+size = Vector3(50, 1, 20.2)
+material = SubResource("StandardMaterial3D_65pxy")
+
+[node name="Floor3" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1032700786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.14999628)
+use_collision = true
+size = Vector3(50, 1, 9.3)
+material = SubResource("StandardMaterial3D_nc8uk")
+
+[node name="Enemies" type="Node3D" parent="." unique_id=1738229304]
+
+[node name="EnemySpawnManager2" type="Node3D" parent="." unique_id=1150800883 node_paths=PackedStringArray("nav_region", "day_night_cycle", "enemy_spawn_node")]
+script = ExtResource("2_tcgoh")
+nav_region = NodePath("../NavigationRegion3D")
+day_night_cycle = NodePath("../DayNightCycle")
+enemy_spawn_node = NodePath("../Enemies")
+metadata/_custom_type_script = "uid://d3b3ejnxvoa3s"
+
+[node name="EnemySpawnArea3" type="Area3D" parent="EnemySpawnManager2" unique_id=885428250]
+script = ExtResource("3_n8p1c")
+enemy_scene = ExtResource("4_3ybt4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager2/EnemySpawnArea3" unique_id=1715126684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.2)
+shape = SubResource("BoxShape3D_65pxy")
+
+[node name="EnemySpawnArea4" type="Area3D" parent="EnemySpawnManager2" unique_id=1006707602]
+script = ExtResource("3_n8p1c")
+enemy_scene = ExtResource("4_3ybt4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager2/EnemySpawnArea4" unique_id=543583530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 14.850001)
+shape = SubResource("BoxShape3D_65pxy")
+
+[node name="DayNightCycle" type="Node3D" parent="." unique_id=1622885077]
+script = ExtResource("5_45npv")
+tick_count = 2100
+current_day = 0
+day_seconds = 35.0
+metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
+
+[node name="Dusk" type="Node" parent="DayNightCycle" unique_id=1300395187]
+script = ExtResource("6_65pxy")
+color_lut = ExtResource("7_nc8uk")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Day" type="Node" parent="DayNightCycle" unique_id=305725851]
+script = ExtResource("6_65pxy")
+duration = 20.0
+color_lut = ExtResource("8_0nr7i")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Sunset" type="Node" parent="DayNightCycle" unique_id=1087695670]
+script = ExtResource("6_65pxy")
+color_lut = ExtResource("7_nc8uk")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Night" type="Node" parent="DayNightCycle" unique_id=698984228]
+script = ExtResource("6_65pxy")
+duration = 30.0
+color_lut = ExtResource("9_fkq0b")
+is_night = true
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("10_g6eoa")]

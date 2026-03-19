@@ -5,7 +5,7 @@ extends Node3D
 
 const TEX_DARKEN = 0.5
 
-@export_tool_button("Generate", "Callable") var generate_button = on_generate_click
+@export_tool_button("Generate", "Callable") var generate_button = on_generate
 @export var params: TreeParameters
 
 var tree_skeleton: TreeSkeleton
@@ -14,7 +14,7 @@ var tree: StaticBody3D
 
 
 func _ready() -> void:
-	generate_tree()
+	on_generate()
 
 
 func generate_tree():
@@ -49,7 +49,7 @@ func generate_mesh(branch: TreeBranch):
 		collision.owner = get_tree().edited_scene_root
 
 
-func on_generate_click():
+func on_generate():
 	var children = get_children(false)
 	for child in children:
 		if child is StaticBody3D:

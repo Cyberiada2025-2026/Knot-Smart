@@ -4,7 +4,7 @@ extends Resource
 @export var diff: float = 0.8
 @export var tex_path: String = "res://shared/tree_generator/kora.png"
 @export var angle: float = PI/20
-@export_enum("NORMAL", "SIDE", "UP") var subtype: String = "NORMAL"
+@export_enum("NORMAL", "SIDE") var subtype: String = "NORMAL"
 
 @export_group("Trunk")
 @export var levels = 3 ## num of stripes

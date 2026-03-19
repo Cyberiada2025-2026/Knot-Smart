@@ -1,3 +1,4 @@
+@tool
 class_name WorldGenerationParams
 extends Resource
 
@@ -25,3 +26,7 @@ extends Resource
 @export var noise: FastNoiseLite
 
 @export var water_noise: FastNoiseLite
+
+
+func get_chunk_unit_size():
+	return chunk_size * tile_size

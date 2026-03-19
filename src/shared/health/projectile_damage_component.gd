@@ -5,7 +5,9 @@ extends Node
 
 @export var base_damage: float = 1.0
 @export var max_damage: float = 5.0
+## Momentum at which the object starts dealing base_damage
 @export var minimum_momentum: float = 0.2
+## Momentum at which the object deals max_damage
 @export var maximum_momentum: float = 5.0
 
 @onready var rigid_body: RigidBody3D = get_parent()

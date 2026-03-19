@@ -86,6 +86,6 @@ func attack() -> void:
 	#we can use like seperate class attack for diffrent attack types
 	print("attack!")
 
-	basic_attack.attack()
+	basic_attack.appear()
 
 	print("end of attack")

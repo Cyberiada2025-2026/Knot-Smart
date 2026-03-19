@@ -14,6 +14,6 @@ func _ready() -> void:
 
 
 func _on_damage_entered(node: Node) -> void:
-	var damage_components = node.find_children("*DamageComponent")
+	var damage_components = node.get_children().filter(func(c): return c.has_method("get_damage"))
 	for damage in damage_components:
 		health_component.health -= damage.get_damage()

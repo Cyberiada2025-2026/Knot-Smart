@@ -18,8 +18,8 @@ handle_input_locally = false
 size = Vector2i(100, 100)
 render_target_update_mode = 4
 
-[node name="SpotLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport" unique_id=1687972842]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.117183626, 0.51101226, 0.24621534)
+[node name="SpotLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1886246878]
+transform = Transform3D(1, 0, 0, 0, -0.0716367, 0.9974308, 0, -0.9974308, -0.0716367, 0.117183626, 1.8995318, 0.24621534)
 
 [node name="Camera2D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1408827181]
 

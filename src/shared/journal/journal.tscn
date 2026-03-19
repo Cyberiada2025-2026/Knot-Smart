@@ -35,29 +35,33 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.3
-focus_mode = 1
 theme = SubResource("Theme_ohc7l")
 
 [node name="Button" type="Button" parent="Button container" unique_id=781982142]
+visible = false
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-size_flags_vertical = 3
 focus_mode = 3
-text = "1"
+text = "Text"
 
 [node name="Button2" type="Button" parent="Button container" unique_id=689343871]
+visible = false
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-size_flags_vertical = 3
-text = "2"
+text = "Items"
 
 [node name="Button3" type="Button" parent="Button container" unique_id=212756644]
+visible = false
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-size_flags_vertical = 3
-text = "3"
+theme_override_font_sizes/font_size = 12
+text = "Objects"
 
 [node name="Button4" type="Button" parent="Button container" unique_id=74658397]
+visible = false
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-size_flags_vertical = 3
-text = "4"
+text = "Mobs"
 
 [node name="Page container" type="Control" parent="." unique_id=290103834]
 layout_mode = 1

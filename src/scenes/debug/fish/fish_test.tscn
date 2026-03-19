@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://brr6ra6xyy3rq"]
 
+[ext_resource type="PackedScene" uid="uid://fycj0pcw4mcl" path="res://shared/fish/fish.tscn" id="1_fjt4i"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipt1g"]
 transparency = 1
 albedo_color = Color(0.3003088, 0.0008976385, 0.7123897, 0.31764707)
@@ -12,3 +14,6 @@ size = Vector3(5, 1, 5)
 
 [node name="WaterSource" type="MeshInstance3D" parent="." unique_id=1197154573]
 mesh = SubResource("BoxMesh_fjt4i")
+
+[node name="Fish" parent="." unique_id=655270515 instance=ExtResource("1_fjt4i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5359201, 0, -2.203)

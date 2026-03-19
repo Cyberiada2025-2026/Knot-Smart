@@ -104,8 +104,10 @@ offset_right = 110.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Page container/Page1/ScrollContainer" unique_id=1872089458]
+clip_contents = true
 custom_minimum_size = Vector2(220, 180)
 layout_mode = 2
 
@@ -141,6 +143,7 @@ offset_right = 120.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Page container/Page2/ScrollContainer" unique_id=1899224433]
 custom_minimum_size = Vector2(220, 180)
@@ -178,6 +181,7 @@ offset_right = 120.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Page container/Page3/ScrollContainer" unique_id=121918011]
 custom_minimum_size = Vector2(220, 180)
@@ -215,6 +219,7 @@ offset_right = 120.0
 offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
+horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Page container/Page4/ScrollContainer" unique_id=891928023]
 custom_minimum_size = Vector2(220, 180)

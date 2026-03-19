@@ -3,7 +3,7 @@ extends HBoxContainer
 var model: Node3D
 
 func add_entry(obj_des: ObjectDescription) -> void:
-	var model = obj_des.model
+	model = obj_des.model
 	model.set_scale(Vector3(obj_des.scale, obj_des.scale, obj_des.scale))
 	model.set_position(Vector3(0.0, 0.0, -0.4)) #ideal position to see model
 	$"SubViewportContainer/SubViewport/Camera2D".add_child(model)

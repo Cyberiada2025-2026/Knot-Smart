@@ -2,14 +2,13 @@ extends Node
 
 var prev_mouse_mode
 
-var entry_scene = preload("uid://dktjlwqp00lcr")
-
 var pages: Control
 var buttons: Control
 var buttons_visible: Array[bool] = [0,0,0,0]
 @onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
 
 func add_object(obj_des:ObjectDescription):
+	var entry_scene = preload("uid://dktjlwqp00lcr")
 	var page = pages.get_child(obj_des.page).get_child(1).get_child(0)
 	var entry = entry_scene.instantiate()
 	entry.add_entry(obj_des)
@@ -19,6 +18,7 @@ func add_object(obj_des:ObjectDescription):
 		
 	for journal_text in journal_entries:
 		if journal_text.get_text() == entry_text.get_text():
+			print("m" + entry_text.get_text())
 			entry.free()
 			return
 		
@@ -31,8 +31,8 @@ func add_object(obj_des:ObjectDescription):
 			current_page_journal_entries.append(journal_text)
 	
 	for journal_text in current_page_journal_entries:
-		if journal_text.get_text() < entry_text.get_text():
-			move_child(entry,journal_text.get_parent().get_index())
+		if journal_text.get_text() > entry_text.get_text():
+			page.move_child(entry,journal_text.get_parent().get_index())
 			return
 
 #Right now, we don't need to add text entries after certain triggers (like, seeing something or discovering something) so the only way to trigger this is through this scripts' code, but in future, I will add class like ObjectDescription but for adding text entries instead of journal entries

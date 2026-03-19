@@ -1,5 +1,5 @@
 class_name ObjectDescription
-extends Node
+extends Node3D
 
 enum pages{Items=1, Objects, Mobs}
 
@@ -12,24 +12,24 @@ enum pages{Items=1, Objects, Mobs}
 ##Set at what page the object should be 
 @export var page: pages = pages.Items
 ##Set the scale of an object
-@export var scale: float = 0.5
+@export var object_scale: float = 0.5
 ##Set the radius of point of interest
 @export var radius: float = 1.0
 ##Check if point of interest mesh should be visible
-@export var visible: bool = true
+@export var poi_visible: bool = true
 
 
 func _init() -> void:
 	var poi: PointOfInterest = PointOfInterest.new()
 	poi.noticed.connect(on_object_notice)
 	poi.radius = radius
-	poi.visualize = visible
+	poi.visualize = poi_visible
 	add_child(poi)
 
 
 func on_object_notice() -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	var journal: Node = player.get_node("Journal")
-	model = model.duplicate(DUPLICATE_SCRIPTS + DUPLICATE_SIGNALS)
+	model = model.duplicate(0)
 	journal.add_object(self)
 	self.queue_free()

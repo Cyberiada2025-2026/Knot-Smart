@@ -192,11 +192,11 @@ collide_with_areas = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ShapeCast3D" unique_id=1346628574]
 mesh = SubResource("SphereMesh_ejf3g")
 
-[node name="ObjectDescription" type="Node" parent="." unique_id=1380003878 node_paths=PackedStringArray("model")]
+[node name="ObjectDescription" type="Node3D" parent="." unique_id=792436402 node_paths=PackedStringArray("model")]
 script = ExtResource("17_2vyja")
 model = NodePath("../MeshInstance3D")
 object_name = "Enemy"
 description = "This is an enemy"
 page = 3
-scale = 0.3
+object_scale = 0.3
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"

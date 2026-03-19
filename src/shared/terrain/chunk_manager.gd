@@ -17,7 +17,7 @@ var is_active: bool = false
 var blueprint: TerrainBlueprint
 
 var chunk_unit_size: float:
-	get: 
+	get:
 		return world_generation_params.get_chunk_unit_size()
 
 

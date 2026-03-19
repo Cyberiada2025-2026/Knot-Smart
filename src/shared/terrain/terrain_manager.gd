@@ -40,5 +40,5 @@ func generate_world() -> void:
 			print("TerrainManager: Finished generation for: " + generator.name)
 
 	if debug_flag == true:
-			print("TerrainManager: Generation completed")
+		print("TerrainManager: Generation completed")
 	chunk_manager.begin_generation(self)

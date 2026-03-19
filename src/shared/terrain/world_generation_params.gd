@@ -27,5 +27,6 @@ extends Resource
 
 @export var water_noise: FastNoiseLite
 
+
 func get_chunk_unit_size():
 	return chunk_size * tile_size

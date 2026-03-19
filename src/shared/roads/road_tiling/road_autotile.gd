@@ -42,57 +42,35 @@ enum RoadId {
 }
 
 ## Connections for autotiling
-enum {
-	EMPTY,
-	ROAD,
-	ANY
-}
+enum { EMPTY, ROAD, ANY }
 
 # array values should be visually positioned as 3x3 grid to approve readability
 ## Dictionary of base tiles which are used to create all other road tiles [br][br]
 ## Values represent 3x3 grid with targeted tile at center
 const BASE_TILES: Dictionary = {
-	RoadId.HORIZONTAL_STRAIGHT: [ANY, EMPTY, ANY,
-								ROAD, ROAD, ROAD,
-								ANY, EMPTY, ANY],
-	RoadId.T_DOWN: [ANY, EMPTY, ANY,
-					ROAD, ROAD, ROAD,
-					EMPTY, ROAD, EMPTY],
-	RoadId.CROSSROAD: [EMPTY, ROAD, EMPTY,
-						ROAD, ROAD, ROAD,
-						EMPTY, ROAD, EMPTY],
-	RoadId.TURN_RIGHT_TO_DOWN: [EMPTY, EMPTY, ANY,
-								EMPTY, ROAD, ROAD,
-								ANY, ROAD, EMPTY],
-	RoadId.HIGHWAY_HORIZONTAL_UP: [ANY, EMPTY, ANY,
-									ROAD, ROAD, ROAD,
-									ROAD, ROAD, ROAD],
-	RoadId.HIGHWAY_HORIZONTAL_UP_CONNECTED: [EMPTY, ROAD, EMPTY,
-											ROAD, ROAD, ROAD,
-											ROAD, ROAD, ROAD],
-	RoadId.HIGHWAY_CROSSROAD_UP_LEFT: [EMPTY, ROAD, ROAD,
-										ROAD, ROAD, ROAD,
-										ROAD, ROAD, ROAD],
-	RoadId.HIGHWAY_CORNER_UP_LEFT: [EMPTY, EMPTY, EMPTY,
-									EMPTY, ROAD, ROAD,
-									EMPTY, ROAD, ROAD],
-	RoadId.HIGHWAY_CORNER_UP_LEFT_CONNECTED_LEFT: [ANY, EMPTY, ANY,
-													ROAD, ROAD, ROAD,
-													EMPTY, ROAD, ROAD],
-	RoadId.HIGHWAY_CORNER_UP_LEFT_CONNECTED_UP: [ANY, ROAD, EMPTY,
-												EMPTY, ROAD, ROAD,
-												ANY, ROAD, ROAD],
-	RoadId.HIGHWAY_CORNER_UP_LEFT_CONNECTED_UP_AND_LEFT: [EMPTY, ROAD, EMPTY,
-														ROAD, ROAD, ROAD,
-														EMPTY, ROAD, ROAD],
-	RoadId.HIGHWAY_DIAGONAL_DOWN_LEFT_TO_UP_RIGHT: [EMPTY, ROAD, ROAD,
-													ROAD, ROAD, ROAD,
-													ROAD, ROAD, EMPTY],
+	RoadId.HORIZONTAL_STRAIGHT: [ANY, EMPTY, ANY, ROAD, ROAD, ROAD, ANY, EMPTY, ANY],
+	RoadId.T_DOWN: [ANY, EMPTY, ANY, ROAD, ROAD, ROAD, EMPTY, ROAD, EMPTY],
+	RoadId.CROSSROAD: [EMPTY, ROAD, EMPTY, ROAD, ROAD, ROAD, EMPTY, ROAD, EMPTY],
+	RoadId.TURN_RIGHT_TO_DOWN: [EMPTY, EMPTY, ANY, EMPTY, ROAD, ROAD, ANY, ROAD, EMPTY],
+	RoadId.HIGHWAY_HORIZONTAL_UP: [ANY, EMPTY, ANY, ROAD, ROAD, ROAD, ROAD, ROAD, ROAD],
+	RoadId.HIGHWAY_HORIZONTAL_UP_CONNECTED:
+	[EMPTY, ROAD, EMPTY, ROAD, ROAD, ROAD, ROAD, ROAD, ROAD],
+	RoadId.HIGHWAY_CROSSROAD_UP_LEFT: [EMPTY, ROAD, ROAD, ROAD, ROAD, ROAD, ROAD, ROAD, ROAD],
+	RoadId.HIGHWAY_CORNER_UP_LEFT: [EMPTY, EMPTY, EMPTY, EMPTY, ROAD, ROAD, EMPTY, ROAD, ROAD],
+	RoadId.HIGHWAY_CORNER_UP_LEFT_CONNECTED_LEFT:
+	[ANY, EMPTY, ANY, ROAD, ROAD, ROAD, EMPTY, ROAD, ROAD],
+	RoadId.HIGHWAY_CORNER_UP_LEFT_CONNECTED_UP:
+	[ANY, ROAD, EMPTY, EMPTY, ROAD, ROAD, ANY, ROAD, ROAD],
+	RoadId.HIGHWAY_CORNER_UP_LEFT_CONNECTED_UP_AND_LEFT:
+	[EMPTY, ROAD, EMPTY, ROAD, ROAD, ROAD, EMPTY, ROAD, ROAD],
+	RoadId.HIGHWAY_DIAGONAL_DOWN_LEFT_TO_UP_RIGHT:
+	[EMPTY, ROAD, ROAD, ROAD, ROAD, ROAD, ROAD, ROAD, EMPTY],
 }
 
 # all neighbour arrays are 3x3 but are represented as singe dimension array
 const NEIGHBOUR_ARRAY_SIZE: int = 9
 var _road_id_bitmask: Dictionary = {}
+
 
 ## Simple clockwise neighbour array rotation function, returns copy of provided array
 static func _rotate_array(angle: int, array: Array):
@@ -114,8 +92,8 @@ static func _rotate_array(angle: int, array: Array):
 ## Recurrent conversion allows creating proper values whe ANY connection type appears
 func _convert_array_to_bitmask(
 	array: Array, data: Dictionary, bitmask_result: int = 0, current_position: int = 0
-	):
-	if current_position < NEIGHBOUR_ARRAY_SIZE :
+):
+	if current_position < NEIGHBOUR_ARRAY_SIZE:
 		match array[current_position]:
 			ROAD:
 				bitmask_result += 1 << current_position
@@ -129,7 +107,9 @@ func _convert_array_to_bitmask(
 				bitmask_result += 1 << current_position
 				_convert_array_to_bitmask(array, data, bitmask_result, current_position + 1)
 			_:
-				printerr("wrong data type '", array[current_position], '\' in "BASE_TILES" dictionary')
+				printerr(
+					"wrong data type '", array[current_position], '\' in "BASE_TILES" dictionary'
+				)
 				return
 	_road_id_bitmask.get_or_add(bitmask_result, data)
 
@@ -142,10 +122,7 @@ func _add_to_bitmask(id: int):
 		printerr("found wrong-sized neighbour array in autotiling")
 		return
 	for angle in range(0, 360, 90):
-		var data: = {
-			"id": id,
-			"rotation": angle
-		}
+		var data := {"id": id, "rotation": angle}
 		_convert_array_to_bitmask(_rotate_array(angle, neighbour_tiles), data)
 
 
@@ -183,10 +160,7 @@ func _get_road_data_from_bitmask(bitmask_key: int) -> Dictionary:
 		return _road_id_bitmask[bitmask_key]
 
 	printerr("bitmask key not found:", bitmask_key)
-	return {
-		"id": RoadId.TILING_ERROR,
-		"rotation": 0
-	}
+	return {"id": RoadId.TILING_ERROR, "rotation": 0}
 
 
 ## Generates road tile ID's and rotations and writes them to blueprint [br][br]
@@ -202,6 +176,6 @@ func autotile_roads(blueprint: Dictionary, map_size: int) -> bool:
 			if blueprint[Vector2i(x, y)]["type"] == "road":
 				var bitmask_key = _get_tile_connections_bitmask(Vector2i(x, y), blueprint)
 				var data: Dictionary = _get_road_data_from_bitmask(bitmask_key)
-				blueprint[Vector2i(x, y)]["id"]  = data["id"]
-				blueprint[Vector2i(x, y)]["rotation"]  = data["rotation"]
+				blueprint[Vector2i(x, y)]["id"] = data["id"]
+				blueprint[Vector2i(x, y)]["rotation"] = data["rotation"]
 	return true

@@ -11,17 +11,16 @@ extends Node
 @export var map_visualization: bool
 
 @export var log_generation_steps: bool
-@export_tool_button("Log Generated Map") var log_generated_map_to_console = (
-	_print_to_console.bind("type")
-)
+@export_tool_button("Log Generated Map")
+var log_generated_map_to_console = _print_to_console.bind("type")
 @export_tool_button("Log ID's") var log_id_to_console = _print_to_console.bind("id")
-@export_tool_button("Log Rotations") var log_rotations_to_console = (
-	_print_to_console.bind("rotation")
-)
+@export_tool_button("Log Rotations")
+var log_rotations_to_console = _print_to_console.bind("rotation")
 
 var blueprint: Dictionary
 var _spot_generator = SpotGenerator.new()
 var _map_size: int
+
 
 func _process(_delta: float) -> void:
 	if limit_areas_visualization:
@@ -93,7 +92,7 @@ func _create_default_blueprint() -> void:
 	for x in _map_size:
 		for y in _map_size:
 			var coord: Vector2i = Vector2i(x, y)
-			blueprint[coord]= {
+			blueprint[coord] = {
 				"height": 0.0,
 				"type": "empty",
 				"can_place": "any",
@@ -135,11 +134,11 @@ func _visualize() -> void:
 		if blueprint[coord]["type"] == "road":
 			DebugDraw3D.draw_box(
 				Vector3(coord.x, 0, coord.y),
-					Quaternion.IDENTITY,
-					Vector3(1, 0.01, 1),
-					Color.WHITE,
-					false
-				)
+				Quaternion.IDENTITY,
+				Vector3(1, 0.01, 1),
+				Color.WHITE,
+				false
+			)
 
 
 ## visualization for better areas setup

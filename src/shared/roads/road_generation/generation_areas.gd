@@ -5,6 +5,7 @@ extends Node
 ## tool button for lazy people
 @export_tool_button("Add limiter area") var add_limiter_area = _add_area
 
+
 func _add_area():
 	var area = LimiterArea.new()
 	area.name = "LimiterArea"

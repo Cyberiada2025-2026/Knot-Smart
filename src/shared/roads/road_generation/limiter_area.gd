@@ -33,6 +33,7 @@ const VISUALIZATION_COLOR = Color(0, 0, 1, 1)
 ## Area where spot limits will be applied
 @export var area_limits: Spot = Spot.new()
 
+
 func visualize():
 	if Engine.is_editor_hint():
 		var selection = EditorInterface.get_selection()

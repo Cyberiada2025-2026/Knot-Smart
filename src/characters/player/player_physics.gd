@@ -1,6 +1,8 @@
 class_name PlayerPhysics
 extends CharacterBody3D
 
+
+@export var player: Player
 @export var speed = 500.0
 @export var slowing_speed = 500.0
 @export var jump_strength = 9.5
@@ -8,7 +10,6 @@ extends CharacterBody3D
 
 @export var player_model: Node3D
 
-var player: Player
 
 
 func _ready() -> void:

@@ -27,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 
 	var raycast_result
 
-	if get_node("../PlayerCamera").get_view_type() == PlayerCamera.ViewType.FIRST_PERSON:
+	if get_node("../PlayerPhysics/PlayerCamera").get_view_type() == PlayerCamera.ViewType.FIRST_PERSON:
 		raycast_result = UnsafeRaycastBuilder.new(self).enable_collisions_with_areas().raycast()
 
 		if not raycast_result.is_empty():

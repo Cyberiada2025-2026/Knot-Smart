@@ -4,22 +4,26 @@
 [ext_resource type="PackedScene" uid="uid://bd54neo0vnuug" path="res://characters/player/player_physics.tscn" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="4_5dc8e"]
+[ext_resource type="PackedScene" uid="uid://b0gb5qnl30ap5" path="res://characters/player/gravity_controller.tscn" id="4_ixbpm"]
 
-[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_floor_sensor")]
+[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_gravity_controller")]
 script = ExtResource("1_4ntmi")
 player_physics = NodePath("PlayerPhysics")
-player_camera = NodePath("PlayerCamera")
-player_floor_sensor = NodePath("PlayerPhysics/PlayerFloorSensor")
+player_camera = NodePath("PlayerPhysics/PlayerCamera")
+player_gravity_controller = NodePath("PlayerPhysics/gravityController")
 
-[node name="PlayerPhysics" parent="." unique_id=1615832908 instance=ExtResource("1_l8h54")]
+[node name="PlayerPhysics" parent="." unique_id=1615832908 node_paths=PackedStringArray("player") instance=ExtResource("1_l8h54")]
+player = NodePath("..")
 
-[node name="PlayerCamera" parent="." unique_id=693967780 instance=ExtResource("3_btcbx")]
+[node name="PlayerCamera" parent="PlayerPhysics" unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
+player = NodePath("../..")
+
+[node name="gravityController" parent="PlayerPhysics" unique_id=1906056142 node_paths=PackedStringArray("player") instance=ExtResource("4_ixbpm")]
+player = NodePath("../..")
 
 [node name="RopeManager" type="Node3D" parent="." unique_id=1597735802]
 top_level = true
 script = ExtResource("4_5dc8e")
 metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 
-[connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
-
-[editable path="PlayerPhysics"]
+[connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]

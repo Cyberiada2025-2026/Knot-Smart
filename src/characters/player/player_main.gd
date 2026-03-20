@@ -58,14 +58,20 @@ func _update_to_new_rotation(delta: float) -> void:
 		is_rotating = true
 		var moved_ground_normal := (
 			ground_normal
-			. move_toward(
+			.move_toward(
 				new_ground_normal, delta * gravity_rotation_speed_modifier * rotation_speed
 			)
-			. normalized()
+			.normalized()
 		)
-		var angle := ground_normal.angle_to(moved_ground_normal)
-		front = front.rotated(ground_normal.cross(moved_ground_normal).normalized(), angle)
-		ground_normal = moved_ground_normal
+		var angle: float
+		if ground_normal == moved_ground_normal:
+			angle = delta * gravity_rotation_speed_modifier * rotation_speed * 10
+			front = front.rotated(ground_normal.cross(front).normalized(), angle)
+			ground_normal = ground_normal.rotated(ground_normal.cross(front).normalized(), angle)
+		else:
+			angle = ground_normal.angle_to(moved_ground_normal)
+			front = front.rotated(ground_normal.cross(moved_ground_normal).normalized(), angle)
+			ground_normal = moved_ground_normal
 		player_physics.up_direction = ground_normal
 		_rotate_player()
 	else:

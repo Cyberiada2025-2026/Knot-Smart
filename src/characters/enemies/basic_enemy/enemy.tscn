@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://dcojdhvj8qcw0" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="11_3myrp"]
 [ext_resource type="Script" uid="uid://ch6b2rcr58t23" path="res://shared/beehave/action/set_tracking.gd" id="16_2vyja"]
 [ext_resource type="Script" uid="uid://bgknqprqq0468" path="res://shared/beehave/condition/set_dir_in_relation_to_player.gd" id="16_3myrp"]
+[ext_resource type="Script" uid="uid://bbaojjriq676j" path="res://addons/beehave/nodes/composites/sequence_star.gd" id="16_ect5e"]
 [ext_resource type="Script" uid="uid://we22430vcb44" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="16_nr11u"]
 [ext_resource type="Script" uid="uid://stdko1cvpgmi" path="res://characters/enemies/basic_enemy/set_speed.gd" id="17_id0xw"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="18_3myrp"]
@@ -194,9 +195,9 @@ script = ExtResource("4_r2ijf")
 wait_time = 2.0
 metadata/_custom_type_script = "uid://dorri1tul8gfx"
 
-[node name="AttackSequence" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash" unique_id=1097029274]
-script = ExtResource("4_1x7vy")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+[node name="AttackSequence" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash" unique_id=597425406]
+script = ExtResource("16_ect5e")
+metadata/_custom_type_script = "uid://bbaojjriq676j"
 
 [node name="SetTrackingTrue2" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash/AttackSequence" unique_id=1018842908]
 script = ExtResource("16_2vyja")
@@ -236,7 +237,12 @@ script = ExtResource("19_ect5e")
 attack_area = NodePath("../../../../../../../../ChargeAttack")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
-[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash/AttackSequence" unique_id=940852759]
+[node name="TimeLimiterDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash/AttackSequence" unique_id=523714860]
+script = ExtResource("16_nr11u")
+wait_time = 1.0
+metadata/_custom_type_script = "uid://we22430vcb44"
+
+[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash/AttackSequence/TimeLimiterDecorator" unique_id=940852759]
 script = ExtResource("8_ejf3g")
 desired_distance = 1.0
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"

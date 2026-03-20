@@ -6,8 +6,6 @@
 @icon("../../icons/action.svg")
 class_name ActionLeaf extends Leaf
 
-@export var is_disabled: bool = false
-
 
 func get_class_name() -> Array[StringName]:
 	var classes := super()

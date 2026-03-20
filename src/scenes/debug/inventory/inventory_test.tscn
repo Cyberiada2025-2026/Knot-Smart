@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cfrlyynmmc8a8"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_r4630"]
+[ext_resource type="Script" uid="uid://b8ebgacxkx24m" path="res://ui/inventory/interact_zone.gd" id="2_ppl51"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tch0"]
+albedo_color = Color(0.10103265, 0.16858053, 0.1756905, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k4dir"]
+material = SubResource("StandardMaterial3D_5tch0")
+size = Vector3(40, 0.3, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4630"]
+size = Vector3(40, 0.3, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r4630"]
+albedo_color = Color(0.54399896, 0.47471994, 0.4290116, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ppl51"]
+material = SubResource("StandardMaterial3D_r4630")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_eqodw"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppl51"]
+size = Vector3(2, 1, 2)
+
+[node name="InventoryTest" type="Node3D" unique_id=2014510867]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1842078996]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=767585252]
+mesh = SubResource("BoxMesh_k4dir")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=715109383]
+shape = SubResource("BoxShape3D_r4630")
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_r4630")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5551528, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=884876532]
+transform = Transform3D(0.9350857, 0.2908988, 0.20246622, -0.35442162, 0.76749074, 0.5341753, 0, -0.57125807, 0.8207705, 0.7263887, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1742881792 groups=["collectable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.60537004, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1476680726]
+mesh = SubResource("BoxMesh_ppl51")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1720548774]
+shape = SubResource("ConcavePolygonShape3D_eqodw")
+
+[node name="Area3D" type="Area3D" parent="StaticBody3D" unique_id=299384484]
+script = ExtResource("2_ppl51")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D/Area3D" unique_id=2066401194]
+shape = SubResource("BoxShape3D_ppl51")
+
+[connection signal="body_entered" from="StaticBody3D/Area3D" to="StaticBody3D/Area3D" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="StaticBody3D/Area3D" to="StaticBody3D/Area3D" method="_on_area_3d_body_exited"]

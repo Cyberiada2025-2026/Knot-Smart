@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cqikghn2wbpuv"]
+
+[node name="InventoryItem" type="Control" unique_id=357209800]
+layout_mode = 3
+anchors_preset = 0

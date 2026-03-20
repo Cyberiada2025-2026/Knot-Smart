@@ -21,6 +21,7 @@ SceneManager="*res://autoload/scene_manager.gd"
 BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
 BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
 CameraSetup="*uid://rnx3yu0ofiwg"
+InventoryManager="*uid://sf6x58peklug"
 
 [debug_draw_3d]
 
@@ -43,6 +44,7 @@ enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
 day_night_cycle="Group containing only the DayNightCycle node if it exists."
 unpausable="If node is added to group, you can't make pause menu pop up"
+collectable=""
 
 [importer_defaults]
 
@@ -162,6 +164,16 @@ rope_pull={
 rope_push={
 "deadzone": 0.2,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":8,"position":Vector2(342, 12),"global_position":Vector2(351, 60),"factor":1.0,"button_index":4,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+interact={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":70,"key_label":0,"unicode":102,"location":0,"echo":false,"script":null)
+]
+}
+check_inventory={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194306,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 

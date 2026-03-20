@@ -1,14 +1,12 @@
-@tool
 extends Control
 
 
 @export var column_num = 7
 @export var row_num = 2
-@export_tool_button("Run", "Callable") var run = set_cells
+#@export_tool_button("Run", "Callable") var run = set_cells
 
 var grid: GridContainer
-var can_interact: bool = false
-var interactable_item: Node3D
+var interactable_item: ItemDescription
 
 
 func _ready() -> void:
@@ -18,7 +16,8 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
-		pass
+		if interactable_item != null:
+			print(interactable_item.item_name)
 	if event.is_action_pressed("check_inventory"):
 		grid.visible = not grid.visible
 
@@ -53,3 +52,11 @@ func remove_item(item: ItemDescription):
 	for cell in grid.get_children():
 		if cell.get_type()==item.name:
 			cell.remove_item()
+
+
+func set_collectable_item(can_interact: bool, item: ItemDescription):
+	if can_interact:
+		interactable_item = item
+	else:
+		if item.get_instance_id() == interactable_item.get_instance_id():
+			interactable_item = null

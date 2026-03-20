@@ -25,5 +25,6 @@ extends Resource
 ## The noise algorithm used to calculate elevation.
 @export var noise: FastNoiseLite
 
+
 func get_chunk_unit_size():
 	return chunk_size * tile_size

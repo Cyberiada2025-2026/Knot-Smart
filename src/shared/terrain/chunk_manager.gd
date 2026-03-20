@@ -19,6 +19,7 @@ var is_active: bool = false
 
 var blueprint: TerrainBlueprint
 
+
 func clear_inactive_chunks() -> void:
 	is_active = false
 	active_chunks.clear()
@@ -49,7 +50,9 @@ func update_active_chunks_borders() -> void:
 			world_display_params.render_distance, world_display_params.render_distance
 		)
 
-	var current_chunk: Vector2i = floor(render_position / world_generation_params.get_chunk_unit_size())
+	var current_chunk: Vector2i = floor(
+		render_position / world_generation_params.get_chunk_unit_size()
+	)
 
 	var new_start: Vector2i = (current_chunk - render_distance).clampi(
 		0, world_generation_params.map_size

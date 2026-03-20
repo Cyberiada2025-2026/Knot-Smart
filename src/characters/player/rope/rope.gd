@@ -147,7 +147,7 @@ func _ready() -> void:
 
 func apply_forces() -> void:
 	for i in range(2):
-		end[i].strategy.release_force(end[i], node[i])
+		end[i].strategy.release_force(node[i])
 
 
 func _physics_process(_delta: float) -> void:

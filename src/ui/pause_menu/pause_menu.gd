@@ -32,3 +32,7 @@ func _process(_delta: float) -> void:
 
 func _on_return_button_pressed() -> void:
 	unpause_game()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()

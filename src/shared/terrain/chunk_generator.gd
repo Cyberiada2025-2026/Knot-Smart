@@ -24,7 +24,9 @@ func create_chunk_instance(
 	chunk.owner = parent.get_tree().edited_scene_root
 
 	chunk.global_position = Vector3(
-		chunk_coord.x * world_generation_params.get_chunk_unit_size(), 0, chunk_coord.y * world_generation_params.get_chunk_unit_size()
+		chunk_coord.x * world_generation_params.get_chunk_unit_size(),
+		0,
+		chunk_coord.y * world_generation_params.get_chunk_unit_size()
 	)
 
 	var chunk_mesh_instance = MeshInstance3D.new()

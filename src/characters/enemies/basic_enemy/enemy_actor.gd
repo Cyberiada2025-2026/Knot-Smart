@@ -6,6 +6,8 @@ extends CharacterBody3D
 
 const IDLE_DIS := 20
 
+@export var basic_attack: TimedArea
+
 var can_move := false
 var world : World3D
 var target : Node3D
@@ -86,7 +88,8 @@ func _physics_process(_delta: float) -> void:
 func attack() -> void:
 	#we can use like seperate class attack for diffrent attack types
 	print("attack!")
-
+	await basic_attack.enable_until_timeout()
+	print("end of attack")
 
 func set_speed(val : float):
 	speed = val

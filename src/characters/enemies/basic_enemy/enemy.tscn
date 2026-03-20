@@ -145,7 +145,12 @@ script = ExtResource("9_2cllp")
 can_move = true
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
-[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Chase&Attack/AttackSequence/GoTo" unique_id=1586372623]
+[node name="TimeLimiterDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Chase&Attack/AttackSequence/GoTo" unique_id=812807659]
+script = ExtResource("16_nr11u")
+wait_time = 5.0
+metadata/_custom_type_script = "uid://we22430vcb44"
+
+[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Chase&Attack/AttackSequence/GoTo/TimeLimiterDecorator" unique_id=1586372623]
 script = ExtResource("8_ejf3g")
 desired_distance = 1.5
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"

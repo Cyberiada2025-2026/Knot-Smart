@@ -4,6 +4,9 @@ extends Node3D
 
 @export var player: Player
 
+@export_group("Debug")
+@export var debug_flag: bool
+
 var world_generation_params: WorldGenerationParams
 var world_display_params: WorldDisplayParams
 
@@ -15,11 +18,6 @@ var active_chunks_end: Vector2i = -Vector2i.ONE
 var is_active: bool = false
 
 var blueprint: TerrainBlueprint
-
-var chunk_unit_size: float:
-	get:
-		return world_generation_params.get_chunk_unit_size()
-
 
 func clear_inactive_chunks() -> void:
 	is_active = false
@@ -51,7 +49,7 @@ func update_active_chunks_borders() -> void:
 			world_display_params.render_distance, world_display_params.render_distance
 		)
 
-	var current_chunk: Vector2i = floor(render_position / chunk_unit_size)
+	var current_chunk: Vector2i = floor(render_position / world_generation_params.get_chunk_unit_size())
 
 	var new_start: Vector2i = (current_chunk - render_distance).clampi(
 		0, world_generation_params.map_size
@@ -62,15 +60,16 @@ func update_active_chunks_borders() -> void:
 	if new_start != active_chunks_start or new_end != active_chunks_end:
 		active_chunks_start = new_start
 		active_chunks_end = new_end
-
-		print("ChunkManager: [Current Chunk] [Render Start] [Render End]")
-		prints(current_chunk, active_chunks_start, active_chunks_end)
+		if debug_flag == true:
+			print("ChunkManager: [Current Chunk] [Render Start] [Render End]")
+			prints(current_chunk, active_chunks_start, active_chunks_end)
 
 		update_active_chunks()
 
 
 func update_active_chunks() -> void:
-	print("ChunkManager: Updating visible chunks")
+	if debug_flag == true:
+		print("ChunkManager: Updating visible chunks")
 	#remove far chunks
 	for coord in active_chunks.keys():
 		if coord.clamp(active_chunks_start, active_chunks_end) != coord:

@@ -44,6 +44,7 @@ script = ExtResource("1_aojt6")
 [node name="ChunkManager" type="Node3D" parent="." unique_id=153936737 node_paths=PackedStringArray("player")]
 script = ExtResource("6_kkw0o")
 player = NodePath("../Player")
+debug_flag = null
 metadata/_custom_type_script = "uid://u5hpdit2bo4g"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=52888776]

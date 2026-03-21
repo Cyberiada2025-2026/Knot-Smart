@@ -1,9 +1,10 @@
 extends Node3D
 
+const SOMETHING_INTERESTING = preload("uid://crgmysckc65sm")
+
 @onready var player_physics: PlayerPhysics = $".."
 @onready var timer: Timer = $Timer
 
-const SOMETHING_INTERESTING = preload("uid://crgmysckc65sm")
 
 func make_footstep() -> void:
 	var footstep := SOMETHING_INTERESTING.instantiate()
@@ -12,13 +13,16 @@ func make_footstep() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if player_physics.velocity != Vector3.ZERO && player_physics.is_on_floor() && timer.is_stopped():
+	if (
+		player_physics.velocity != Vector3.ZERO
+		&& player_physics.is_on_floor()
+		&& timer.is_stopped()
+	):
 		make_footstep()
 		timer.start()
 
 
-
 func _on_timer_timeout() -> void:
 	make_footstep()
-	if  player_physics.velocity == Vector3.ZERO || !player_physics.is_on_floor():
+	if player_physics.velocity == Vector3.ZERO || !player_physics.is_on_floor():
 		timer.stop()

@@ -1,32 +1,30 @@
 extends CharacterBody3D
 
-@export var speed := 5.0
-@onready var navigation_agent_3d : NavigationAgent3D = $NavigationAgent3D
-@onready var shapecast = $ShapeCast3D
-
 const IDLE_DIS := 20
 
+@export var speed := 5.0
+
 var can_move := false
-var world : World3D
-var target : Node3D
-var should_track_target : bool = false
+var world: World3D
+var target: Node3D
+var should_track_target: bool = false
+
+@onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
+@onready var shapecast = $ShapeCast3D
 
 
 func _ready() -> void:
-	world =  Engine.get_main_loop().root.get_world_3d()
+	world = Engine.get_main_loop().root.get_world_3d()
 
 
 func get_point_on_map(point: Vector3) -> Vector3:
-	return NavigationServer3D.map_get_closest_point(
-		world.get_navigation_map(),
-		point)	
+	return NavigationServer3D.map_get_closest_point(world.get_navigation_map(), point)
 
 
 func get_random_point_near() -> Vector3:
-	var random_point := global_position + Vector3(
-		randf_range(-IDLE_DIS, IDLE_DIS),
-		0,
-		randf_range(-IDLE_DIS, IDLE_DIS)
+	var random_point := (
+		global_position
+		+ Vector3(randf_range(-IDLE_DIS, IDLE_DIS), 0, randf_range(-IDLE_DIS, IDLE_DIS))
 	)
 
 	return get_point_on_map(random_point)
@@ -51,12 +49,12 @@ func is_at_destination() -> bool:
 	return navigation_agent_3d.is_target_reached()
 
 
-func is_group_member_nearby (group_name: StringName) -> bool:
+func is_group_member_nearby(group_name: StringName) -> bool:
 	shapecast.force_shapecast_update()
 
 	if shapecast.is_colliding():
 		for i in range(shapecast.get_collision_count()):
-			var hit : Node3D = shapecast.get_collider(i)
+			var hit: Node3D = shapecast.get_collider(i)
 			if hit.get_parent().is_in_group(group_name):
 				return true
 	return false
@@ -67,7 +65,7 @@ func get_object_around(group_name: StringName) -> Node3D:
 
 	if shapecast.is_colliding():
 		for i in range(shapecast.get_collision_count()):
-			var hit : Node3D = shapecast.get_collider(i)
+			var hit: Node3D = shapecast.get_collider(i)
 			if hit.get_parent().is_in_group(group_name):
 				return hit.get_parent()
 	return null
@@ -89,5 +87,5 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 
 
-func set_speed(val : float):
+func set_speed(val: float):
 	speed = val

@@ -2,8 +2,8 @@ class_name HealthComponent
 extends Node
 
 signal health_changed(new_value: float)
-signal health_decreased()
-signal health_increased()
+signal health_decreased
+signal health_increased
 signal max_health_changed(new_value: float)
 signal health_depleted
 

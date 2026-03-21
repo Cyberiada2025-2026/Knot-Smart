@@ -1,4 +1,5 @@
 @tool
+class_name SetTracking
 extends ActionLeaf
 
 @export var should_track_target: bool

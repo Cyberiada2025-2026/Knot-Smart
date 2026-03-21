@@ -29,7 +29,7 @@ func get_random_point_near() -> Vector3:
 	return get_point_on_map(random_point)
 
 
-func set_random_direction() -> void:
+func set_random_nav_target() -> void:
 	navigation_agent_3d.set_target_position(get_random_point_near())
 
 

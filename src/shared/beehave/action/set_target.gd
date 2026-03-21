@@ -1,4 +1,5 @@
 @tool
+class_name SetTarget
 extends ActionLeaf
 
 @export var searched: StringName

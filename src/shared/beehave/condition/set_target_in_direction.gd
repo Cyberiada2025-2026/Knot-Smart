@@ -1,4 +1,5 @@
 @tool
+class_name SetTargetInDirection
 extends ActionLeaf
 
 @export var distance := 10.0

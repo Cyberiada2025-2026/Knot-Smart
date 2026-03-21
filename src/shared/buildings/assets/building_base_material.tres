@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://bjkeopeq3ehmb"]
 
-[ext_resource type="Shader" uid="uid://kaq856dfkhje" path="res://shared/shaders/shaded_PS1_with_alt.gdshader" id="1_k45uo"]
+[ext_resource type="Shader" path="res://shared/shaders/shaded_PS1_with_alt.gdshader" id="1_k45uo"]
 [ext_resource type="Texture2D" uid="uid://y3vsdc8r7git" path="res://shared/buildings/assets/WallTextureDamaged.png" id="2_3rpud"]
 [ext_resource type="NoiseTexture3D" uid="uid://bfi6y3xtjd6am" path="res://shared/buildings/assets/building_damage_mask.tres" id="2_mj825"]
 [ext_resource type="Texture2D" uid="uid://cx3twkweb5dan" path="res://shared/buildings/assets/WallTextureMain.png" id="3_mj825"]
@@ -12,5 +12,5 @@ shader_parameter/billboard = false
 shader_parameter/main_texture = ExtResource("3_mj825")
 shader_parameter/alt_texture = ExtResource("2_3rpud")
 shader_parameter/alt_mask = ExtResource("2_mj825")
-shader_parameter/alt_transform = Projection(0.125, -0.105, 0, 0, 0.3, 0.025, 0.105, 0, 0, 0.12, 0.125, 0, 0, 0, 0, 1)
+shader_parameter/alt_transform = Projection(0.125, -0.105, 0, 0, 0.3, 0.47, 0.105, 0, 0, 0.12, 0.125, 0, 0, 0, 0, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)

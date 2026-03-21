@@ -1,8 +1,8 @@
-class_name InteractZone
+class_name TakeItemZone
 extends Area3D
 
 
-var item: ItemDescription
+@export var item: ItemDescription
 
 
 func _ready() -> void:
@@ -11,10 +11,10 @@ func _ready() -> void:
 	
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body.name == "PlayerPhysics":
+	if body is PlayerPhysics:
 		InventoryManager.set_collectable_item(true, item)
 	
 	
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	if body.name == "PlayerPhysics":
+	if body is PlayerPhysics:
 		InventoryManager.set_collectable_item(false, item)

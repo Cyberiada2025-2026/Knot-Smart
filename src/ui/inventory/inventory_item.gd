@@ -11,17 +11,21 @@ var items: Array[ItemDescription]
 func add_item(item: ItemDescription):
 	items.push_back(item)
 	if num==0:
-		item.parent.reparent(subviewport)
-		item.parent.global_position = Vector3.ZERO
+		item.main_node.reparent(subviewport)
+		item.main_node.global_position = Vector3.ZERO
 	else:
-		item.parent.get_parent().remove_child(item.parent)
+		item.main_node.get_parent().remove_child(item.main_node)
 	num+=1
 	on_item_num_changed()
 
 
-func remove_item() -> ItemDescription:
-	num = 0 if num == 0 else num-1
-	return items.pop_back()
+func remove_item(item: ItemDescription):
+	for i in clampi(item.quantity, 0, num):
+		var popped_item = items.pop_back()
+		popped_item.main_node.queue_free()
+	var diff = num-item.quantity
+	num = 0 if diff<0 else diff
+	item.quantity = 0 if diff>=0 else -diff
 	on_item_num_changed()
 
 

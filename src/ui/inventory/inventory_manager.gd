@@ -1,12 +1,15 @@
 extends Control
 
 
+enum Interact {NONE, TAKE, PUT}
+
 @export var column_num = 7
 @export var row_num = 2
-#@export_tool_button("Run", "Callable") var run = set_cells
 
 var grid: GridContainer
 var interactable_item: ItemDescription
+var needed_items: Array[ItemDescription] = []
+var interaction: Interact = Interact.NONE
 
 
 func _ready() -> void:
@@ -16,9 +19,10 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
-		if interactable_item != null:
-			print(interactable_item.item_name)
+		if interaction == Interact.TAKE:
 			add_item()
+		if interaction == Interact.PUT:
+			remove_item()
 	if event.is_action_pressed("check_inventory"):
 		grid.visible = not grid.visible
 
@@ -51,17 +55,35 @@ func add_item():
 			break
 
 
-func remove_item(item: ItemDescription):
-	for cell in grid.get_children():
-		if cell.get_type()==item.name:
-			cell.remove_item()
+func remove_item():
+	for item in needed_items:
+		for cell in grid.get_children():
+			if cell.get_type()==item.item_name:
+				cell.remove_item(item)
+				break
 
 
 func set_collectable_item(can_interact: bool, item: ItemDescription):
 	if can_interact:
 		interactable_item = item
+		interaction = Interact.TAKE
 	else:
 		if interactable_item == null:
+			interaction = Interact.NONE
 			return
 		if item.get_instance_id() == interactable_item.get_instance_id():
+			interaction = Interact.NONE
 			interactable_item = null
+
+
+func set_needed_items(can_interact: bool, items: Array[ItemDescription]):
+	if can_interact:
+		needed_items = items
+		interaction = Interact.PUT
+	else:
+		if needed_items.is_empty():
+			interaction = Interact.NONE
+			return
+		if items.front().get_instance_id() == needed_items.front().get_instance_id():
+			interaction = Interact.NONE
+			items = []

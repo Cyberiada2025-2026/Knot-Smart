@@ -1,5 +1,5 @@
 class_name InventoryCell
-extends Control
+extends PanelContainer
 
 
 @export var subviewport: SubViewport
@@ -8,17 +8,15 @@ var items: Array[ItemDescription]
 
 
 func _ready() -> void:
-	var box = ColorRect.new()
+	pass
 	size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	size_flags_vertical = Control.SIZE_EXPAND_FILL
-	box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	box.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	add_child(box)
 
 
 func add_item(item: ItemDescription):
-	item.parent.get_parent().remove_child(item.parent)
 	items.push_back(item)
+	item.parent.reparent(subviewport)
+	item.parent.global_position = Vector3.ZERO
 	num+=1
 
 

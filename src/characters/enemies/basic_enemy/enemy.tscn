@@ -26,6 +26,8 @@
 [ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="20_fcxfv"]
 [ext_resource type="Script" uid="uid://djg0m48s04bny" path="res://shared/health/base_damage_component.gd" id="20_id0xw"]
 [ext_resource type="Script" uid="uid://dsf3a8vlolhx8" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="20_mpfi1"]
+[ext_resource type="Script" uid="uid://bwbgvbw8rs0aa" path="res://shared/vfx/player/vfx_player_sequence.gd" id="27_eykdo"]
+[ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="27_mpfi1"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ntsgn"]
 radius = 0.4
@@ -69,7 +71,7 @@ shape = SubResource("BoxShape3D_uwcne")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1892085315 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_r2ijf")
-blackboard = NodePath("@Node@18837")
+blackboard = NodePath("@Node@40945")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
@@ -427,3 +429,10 @@ shape = SubResource("SphereShape3D_2vyja")
 [node name="DamageComponent" type="Node" parent="BasicAttack" unique_id=2110839671]
 script = ExtResource("20_id0xw")
 metadata/_custom_type_script = "uid://djg0m48s04bny"
+
+[node name="VfxPlayerSequence" type="Node3D" parent="." unique_id=988250431]
+script = ExtResource("27_eykdo")
+
+[node name="BloodVfx" parent="VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("27_mpfi1")]
+
+[connection signal="health_decreased" from="HealthComponent" to="VfxPlayerSequence" method="play"]

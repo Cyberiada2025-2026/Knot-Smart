@@ -5,6 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="4_5dc8e"]
 [ext_resource type="PackedScene" uid="uid://cjjffdo72xk1u" path="res://shared/journal/journal.tscn" id="5_ixbpm"]
+[ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
+[ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="4_5dc8e"]
+[ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="6_c6leb"]
+[ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="7_dirf7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hysn5"]
+radius = 0.25
+height = 0.8
 
 [node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_floor_sensor")]
 script = ExtResource("1_4ntmi")
@@ -14,6 +22,16 @@ player_floor_sensor = NodePath("PlayerPhysics/PlayerFloorSensor")
 
 [node name="PlayerPhysics" parent="." unique_id=1615832908 instance=ExtResource("1_l8h54")]
 
+[node name="HitBox" type="Area3D" parent="PlayerPhysics" unique_id=1516471157 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("3_ixbpm")
+health_component = NodePath("../../HealthComponent")
+metadata/_custom_type_script = "uid://7sxs6ubjcqmo"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPhysics/HitBox" unique_id=1332460509]
+shape = SubResource("CapsuleShape3D_hysn5")
+
 [node name="PlayerCamera" parent="." unique_id=693967780 instance=ExtResource("3_btcbx")]
 
 [node name="RopeManager" type="Node3D" parent="." unique_id=1597735802]
@@ -22,6 +40,14 @@ script = ExtResource("4_5dc8e")
 metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 
 [node name="Journal" parent="." unique_id=9215286 instance=ExtResource("5_ixbpm")]
+[node name="HealthComponent" type="Node" parent="." unique_id=1622957288]
+script = ExtResource("6_c6leb")
+debug_log = true
+
+[node name="DeathComponent" type="Node" parent="." unique_id=1137866372 node_paths=PackedStringArray("health_component")]
+script = ExtResource("7_dirf7")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://dy0ohauxfd8go"
 
 [connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 

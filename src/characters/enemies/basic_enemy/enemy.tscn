@@ -214,7 +214,7 @@ should_track_target = true
 script = ExtResource("6_nr11u")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
-[node name="SetDashDir" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash/AttackSequence" unique_id=1081499895]
+[node name="SetDashTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash/AttackSequence" unique_id=1081499895]
 script = ExtResource("16_3myrp")
 distance = 20.0
 is_moving_away = null

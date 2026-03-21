@@ -71,7 +71,7 @@ shape = SubResource("BoxShape3D_uwcne")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1892085315 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_r2ijf")
-blackboard = NodePath("@Node@40945")
+blackboard = NodePath("@Node@31125")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
@@ -100,10 +100,9 @@ script = ExtResource("5_r2ijf")
 searched = &"Player"
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
-[node name="SetTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SetNewTarget" unique_id=520005335 node_paths=PackedStringArray("nav_agent")]
+[node name="SetTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SetNewTarget" unique_id=520005335]
 script = ExtResource("6_r2ijf")
 searched = &"Player"
-nav_agent = NodePath("../../../../../../NavigationAgent3D")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="SetTargetsCurrentPosition" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive" unique_id=843952943]
@@ -166,7 +165,7 @@ metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
 [node name="DelayDecorator" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Chase&Attack/AttackSequence" unique_id=1112997648]
 script = ExtResource("4_r2ijf")
-wait_time = 1.0
+wait_time = 0.2
 metadata/_custom_type_script = "uid://dorri1tul8gfx"
 
 [node name="Attack" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Chase&Attack/AttackSequence/DelayDecorator" unique_id=586853769]
@@ -217,8 +216,8 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="SetDashDir" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash/AttackSequence" unique_id=1081499895]
 script = ExtResource("16_3myrp")
-from = 1
 distance = 20.0
+is_moving_away = null
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="SetSpeedFast" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash/AttackSequence" unique_id=44780103]
@@ -282,8 +281,8 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="GoAwayFromTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/Retreat" unique_id=1984825136]
 script = ExtResource("16_3myrp")
-to = 1
 distance = 6.0
+is_moving_away = true
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="StartNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/Retreat" unique_id=1322046572]
@@ -317,10 +316,9 @@ script = ExtResource("5_r2ijf")
 searched = &"Interest"
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
-[node name="SetTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Interested" unique_id=1644501664 node_paths=PackedStringArray("nav_agent")]
+[node name="SetTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Interested" unique_id=1644501664]
 script = ExtResource("6_r2ijf")
 searched = &"Interest"
-nav_agent = NodePath("../../../../NavigationAgent3D")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="StartNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Interested" unique_id=477411320]

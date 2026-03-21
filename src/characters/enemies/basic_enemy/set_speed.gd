@@ -5,5 +5,5 @@ extends ActionLeaf
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	actor.set_speed(speed)
+	actor.speed = speed
 	return SUCCESS

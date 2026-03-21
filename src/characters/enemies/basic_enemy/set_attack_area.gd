@@ -1,4 +1,5 @@
 @tool
+class_name SetAttackArea
 extends ActionLeaf
 
 @export var area_disabled: bool = false

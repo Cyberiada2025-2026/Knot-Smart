@@ -5,5 +5,5 @@ extends ActionLeaf
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	actor.toggle_movement(can_move)
+	actor.can_move = can_move
 	return SUCCESS

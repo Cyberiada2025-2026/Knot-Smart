@@ -2,7 +2,6 @@
 extends ActionLeaf
 
 @export var searched: StringName
-@export var nav_agent: NavigationAgent3D
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:

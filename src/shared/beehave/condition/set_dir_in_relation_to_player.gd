@@ -1,28 +1,19 @@
 @tool
 extends ActionLeaf
 
-enum Entities {
-	PLAYER,
-	ENEMY,
-}
-
-@export var from: Entities
-@export var to: Entities
 @export var distance := 10.0
-
-var entities_pos: Dictionary = {
-	Entities.PLAYER: null,
-	Entities.ENEMY: null,
-}
+@export var is_moving_away: bool
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	entities_pos[Entities.PLAYER] = actor.get_target_pos()
-	entities_pos[Entities.ENEMY] = actor.global_position
+	var actor_pos: Vector3 = actor.global_position
+	var target_pos: Vector3 = actor.get_target_pos()
 
-	var direction: Vector3 = (entities_pos[to] - entities_pos[from]).normalized()
-	var target_pos: Vector3 = entities_pos[Entities.ENEMY] + direction * distance
+	var direction = actor_pos.direction_to(target_pos)
+	if is_moving_away:
+		direction *= -1
 
-	var point = actor.get_point_on_map(target_pos)
-	actor.navigation_agent_3d.set_target_position(point)
+	var target_point = actor.get_point_on_map(actor_pos + direction * distance)
+	actor.navigation_agent_3d.set_target_position(target_point)
+
 	return SUCCESS

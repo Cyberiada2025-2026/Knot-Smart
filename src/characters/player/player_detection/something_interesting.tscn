@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://crgmysckc65sm"]
 
-[ext_resource type="Script" uid="uid://1kkn8dm1yimx" path="res://shared/entities/time_clean.gd" id="1_10myn"]
+[ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="2_jjbpd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uruy"]
 transparency = 1
@@ -22,7 +22,6 @@ radius = 3.5
 height = 7.0
 
 [node name="SomethingInteresting" type="Node3D" unique_id=1613719716 groups=["Interest"]]
-script = ExtResource("1_10myn")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2075805956]
 visible = false
@@ -42,4 +41,8 @@ wait_time = 0.5
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="DeathComponent" type="Node" parent="." unique_id=1879895356]
+script = ExtResource("2_jjbpd")
+metadata/_custom_type_script = "uid://dy0ohauxfd8go"
+
+[connection signal="timeout" from="Timer" to="DeathComponent" method="_on_death"]

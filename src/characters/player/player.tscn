@@ -59,13 +59,13 @@ metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 script = ExtResource("6_c6leb")
 debug_log = true
 
-[node name="DeathComponent" type="Node" parent="." unique_id=1137866372 node_paths=PackedStringArray("health_component")]
+[node name="DeathComponent" type="Node" parent="." unique_id=1137866372]
 script = ExtResource("7_dirf7")
-health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dy0ohauxfd8go"
 
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]
 [connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="health_decreased" from="HealthComponent" to="PlayerPhysics/VfxPlayerSequence" method="play"]
+[connection signal="health_depleted" from="HealthComponent" to="DeathComponent" method="_on_death"]
 
 [editable path="PlayerPhysics"]

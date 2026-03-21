@@ -10,7 +10,7 @@ albedo_color = Color(0.89932597, 0.31741896, 0, 1)
 material = SubResource("StandardMaterial3D_8uruy")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hawlq"]
-radius = 3.5
+radius = 10.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onkk8"]
 transparency = 1
@@ -33,6 +33,7 @@ mesh = SubResource("SphereMesh_hawlq")
 shape = SubResource("SphereShape3D_hawlq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1483162163]
+visible = false
 mesh = SubResource("SphereMesh_xmuq3")
 skeleton = NodePath("../../MeshInstance3D")
 

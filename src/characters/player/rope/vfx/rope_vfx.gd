@@ -29,7 +29,7 @@ func start():
 	mat.set_shader_parameter(START_LENGTH_PARAM, default_length)
 	set_length(default_length)
 	player.play(ANIM_ON)
-	
+
 
 ## Call when rope changes length
 func set_length(length: float):

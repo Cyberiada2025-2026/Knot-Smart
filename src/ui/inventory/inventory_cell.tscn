@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cqikghn2wbpuv"]
 
-[ext_resource type="Script" uid="uid://bvy27e3v1pdrk" path="res://shared/inventory/inventory_item.gd" id="1_wiepw"]
+[ext_resource type="Script" uid="uid://bvy27e3v1pdrk" path="res://ui/inventory/inventory_cell.gd" id="1_vexbf"]
 
-[node name="InventoryItem" type="PanelContainer" unique_id=973214465 node_paths=PackedStringArray("subviewport", "text_label")]
+[node name="InventoryCell" type="PanelContainer" unique_id=973214465 node_paths=PackedStringArray("subviewport", "text_label")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,7 +10,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_wiepw")
+script = ExtResource("1_vexbf")
 subviewport = NodePath("SubViewportContainer/SubViewport")
 text_label = NodePath("RichTextLabel")
 

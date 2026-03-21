@@ -10,9 +10,11 @@ var grid: GridContainer
 var interactable_item: ItemDescription
 var needed_items: Array[ItemDescription] = []
 var interaction: Interact = Interact.NONE
+var inventory_cell: PackedScene
 
 
 func _ready() -> void:
+	inventory_cell = preload("res://ui/inventory/inventory_cell.tscn")
 	set_grid()
 	set_cells()
 
@@ -41,9 +43,8 @@ func set_cells():
 	for child in grid.get_children():
 		child.queue_free()
 	grid.columns = column_num
-	var inventory_cell_scene = preload("res://ui/inventory/inventory_item.tscn")
 	for i in range(column_num*row_num):
-		var cell = inventory_cell_scene.instantiate()
+		var cell = inventory_cell.instantiate()
 		grid.add_child(cell)
 
 

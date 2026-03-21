@@ -2,24 +2,23 @@ extends Node
 
 var prev_mouse_mode
 
-var pages: Control
 var buttons: Control
-var buttons_visible: Array[bool] = [0, 0, 0, 0]
+var page_visible_index: int
 @onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
 
 
 func add_object(obj_des: ObjectDescription):
 	var entry_scene = load("uid://dktjlwqp00lcr")
-	var page = pages.get_child(obj_des.page).get_child(1).get_child(0)
+	var page = get_node(obj_des.page)
 	var entry = entry_scene.instantiate()
 	entry.add_entry(obj_des)
-	var entry_text = entry.get_child(1)
+	var entry_text = entry.text
 
 	var journal_entries = get_tree().get_nodes_in_group("journal_text")
 
 	for journal_text in journal_entries:
 		if journal_text.get_text() == entry_text.get_text():
-			print("m" + entry_text.get_text())
+			print("entry" + entry_text.get_text() + "already exists")
 			entry.free()
 			return
 
@@ -28,7 +27,7 @@ func add_object(obj_des: ObjectDescription):
 	var current_page_journal_entries: Array[RichTextLabel]
 
 	for journal_text in journal_entries:
-		if journal_text.get_parent().get_parent() == page:
+		if journal_text.get_node("../../") == page:
 			current_page_journal_entries.append(journal_text)
 
 	for journal_text in current_page_journal_entries:
@@ -47,7 +46,7 @@ func add_text_entry(text: String, add_number: bool):
 	var entry: RichTextLabel = RichTextLabel.new()
 	entry.set_custom_minimum_size(Vector2(200, 0))
 	entry.fit_content = true
-	entry.push_color(Color(1, 0, 1))
+	entry.push_color(Color.MAGENTA)
 	entry.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER)
 	page.add_child(entry)
 	if add_number:
@@ -56,7 +55,6 @@ func add_text_entry(text: String, add_number: bool):
 
 
 func _ready() -> void:
-	pages = $"Page container"
 	buttons = $"Button container"
 	add_text_entry(
 		(
@@ -68,6 +66,7 @@ func _ready() -> void:
 	)
 	add_text_entry("me crashed, me sad", 1)
 	add_text_entry("me saw monster, me scared", 1)
+	page_visible_index = 0
 
 
 func _process(_delta: float) -> void:
@@ -84,17 +83,16 @@ func _process(_delta: float) -> void:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 	for button_no in range(buttons.get_child_count()):
-		if buttons_visible[button_no] == false:
-			if not pages.get_child(button_no).get_child(1).get_child(0).get_children().is_empty():
+		if buttons.get_child(button_no).visible == false:
+			if not get_node("Page container").get_child(button_no).get_node("ScrollContainer/VBoxContainer").get_children().is_empty():
 				buttons.get_child(button_no).visible = true
-				buttons_visible[button_no] = true
 
 
 func _on_button_pressed(number: int) -> void:
 	var button: Button = buttons.get_child(number)
-	if pages.get_child(number).visible == false:
-		for i in range(pages.get_child_count()):
-			pages.get_child(i).set_visible(false)
-			buttons.get_child(i).add_theme_stylebox_override("normal", button_normal)
-		pages.get_child(number).set_visible(true)
+	if page_visible_index != number:
+		get_node("Page container").get_child(page_visible_index).set_visible(false)
+		buttons.get_child(page_visible_index).add_theme_stylebox_override("normal", button_normal)
+		get_node("Page container").get_child(number).set_visible(true)
 		button.add_theme_stylebox_override("normal", button.get_theme_stylebox("pressed", "Button"))
+		page_visible_index = number

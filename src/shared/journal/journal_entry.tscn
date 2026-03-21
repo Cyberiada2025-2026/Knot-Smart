@@ -2,10 +2,16 @@
 
 [ext_resource type="Script" uid="uid://br4ibu8huxipr" path="res://shared/journal/journal_entry.gd" id="1_hawqf"]
 
-[node name="HBoxContainer" type="HBoxContainer" unique_id=351905527]
+[sub_resource type="Environment" id="Environment_hawqf"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" unique_id=351905527 node_paths=PackedStringArray("text", "subview")]
 custom_minimum_size = Vector2(220, 100)
 theme_override_constants/separation = 0
 script = ExtResource("1_hawqf")
+text = NodePath("RichTextLabel")
+subview = NodePath("SubViewportContainer/SubViewport")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=680437381]
 layout_mode = 2
@@ -18,12 +24,11 @@ handle_input_locally = false
 size = Vector2i(100, 100)
 render_target_update_mode = 4
 
-[node name="SpotLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport" unique_id=1854917994]
-transform = Transform3D(1, 0, 0, 0, 0.8141155, 0.58070296, 0, -0.58070296, 0.8141155, 0, 0.3, 0.45)
-light_angular_distance = 0.537
-
 [node name="Camera2D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1408827181]
 transform = Transform3D(1, 0, 0, 0, 0.814227, 0.5805466, 0, -0.5805466, 0.814227, 0, 0.3, 0.45)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=989688942]
+environment = SubResource("Environment_hawqf")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1558799605 groups=["journal_text"]]
 custom_minimum_size = Vector2(120, 0)

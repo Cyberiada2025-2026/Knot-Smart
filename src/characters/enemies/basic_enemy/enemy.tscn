@@ -197,6 +197,6 @@ script = ExtResource("17_2vyja")
 model = NodePath("../MeshInstance3D")
 object_name = "Enemy"
 description = "This is an enemy"
-page = 3
+set_page = 2
 object_scale = 0.3
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"

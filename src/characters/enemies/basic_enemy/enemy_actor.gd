@@ -77,9 +77,15 @@ func get_target_pos() -> Vector3:
 	return navigation_agent_3d.get_target_position()
 
 
+func rotate_with_velocity() -> void:
+	if velocity.length_squared() > 0:
+		look_at(global_position + velocity)
+
+
 func _physics_process(_delta: float) -> void:
 	if can_move:
 		set_velocity_to_target()
+		rotate_with_velocity()
 		move_and_slide()
 
 

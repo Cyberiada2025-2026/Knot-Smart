@@ -31,6 +31,9 @@
 radius = 0.4
 height = 1.6
 
+[sub_resource type="BoxMesh" id="BoxMesh_ect5e"]
+size = Vector3(0.2, 0.2, 0.5)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_uwcne"]
 size = Vector3(1, 1.6, 1)
 
@@ -56,13 +59,17 @@ script = ExtResource("1_2cllp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 mesh = SubResource("CapsuleMesh_ntsgn")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1367237865]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49999994, -0.5)
+mesh = SubResource("BoxMesh_ect5e")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1344185253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 shape = SubResource("BoxShape3D_uwcne")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1892085315 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_r2ijf")
-blackboard = NodePath("@Node@32806")
+blackboard = NodePath("@Node@18837")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 

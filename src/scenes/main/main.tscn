@@ -1,8 +1,6 @@
 [gd_scene format=3 uid="uid://3rax0onuo76f"]
 
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
-[ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="2_yyfjg"]
-[ext_resource type="Script" uid="uid://cfqche3hcpffv" path="res://scenes/debug/vfx/blood&rope/blood_test.gd" id="3_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://50058jf30t1n" path="res://shared/buildings/building_generation/building_generator.tscn" id="4_6q06x"]
 [ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="4_b1x3f"]
@@ -163,13 +161,6 @@ avoidance_enabled = false
 
 [node name="Enemy" parent="." unique_id=124557404 instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
-speed = 5.0
-
-[node name="CPUParticles3D" parent="Enemy" unique_id=1658616428 instance=ExtResource("2_yyfjg")]
-
-[node name="Node3D" type="Node3D" parent="Enemy/CPUParticles3D" unique_id=2116421219 node_paths=PackedStringArray("particles")]
-script = ExtResource("3_b1x3f")
-particles = NodePath("..")
 
 [node name="PointOfInterest" type="Node3D" parent="Enemy" unique_id=1132202533]
 script = ExtResource("4_b1x3f")

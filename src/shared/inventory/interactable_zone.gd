@@ -5,6 +5,9 @@ extends Node3D
 @export_enum("TAKE", "PUT") var interact_type: String
 @export var items: Array[ItemDescription] = []
 
+const SCALE_VECTOR = Vector3(1.2, 1.2, 1.2)
+const COLLISION_MASK = 2
+
 func _ready() -> void:
 	var zone: Area3D
 	for i in range(len(items)):
@@ -17,9 +20,9 @@ func _ready() -> void:
 	else:
 		zone = PutItemZone.new()
 		zone.items = items
-	for sibling in get_parent().get_children():
-		if sibling is CollisionShape3D:
+	for sibling in get_parent().find_children("", "CollisionShape3D"):
 			zone.add_child(sibling.duplicate())
 			break
-	zone.transform = zone.transform.scaled(Vector3(1.2, 1.2, 1.2))
+	zone.collision_mask = COLLISION_MASK
+	zone.transform = zone.transform.scaled(SCALE_VECTOR)
 	add_child(zone)

@@ -7,14 +7,18 @@ enum Interact {NONE, TAKE, PUT}
 @export var row_num = 2
 
 var grid: GridContainer
-var interactable_item: ItemDescription
+var collectable_item: ItemDescription
 var needed_items: Array[ItemDescription] = []
 var interaction: Interact = Interact.NONE
 var inventory_cell: PackedScene
 
+const SIZE = Vector2(320.0, 240.0)
+const POSITION = Vector2(0.0, 170.0)
+const GRID_SIZE = Vector2(320.0, 70.0)
+
 
 func _ready() -> void:
-	inventory_cell = preload("res://ui/inventory/inventory_cell.tscn")
+	inventory_cell = preload("uid://cqikghn2wbpuv")
 	set_grid()
 	set_cells()
 
@@ -25,16 +29,16 @@ func _input(event: InputEvent) -> void:
 			add_item()
 		if interaction == Interact.PUT:
 			remove_item()
-	if event.is_action_pressed("check_inventory"):
+	if event.is_action_pressed("toggle_inventory"):
 		grid.visible = not grid.visible
 
 
 func set_grid():
 	set_anchors_preset(Control.PRESET_FULL_RECT)
-	size = Vector2(320.0, 240.0)
-	position = Vector2(0.0, 170.0)
+	size = SIZE
+	position = POSITION
 	grid = GridContainer.new()
-	grid.size = Vector2(320.0, 70.0)
+	grid.size = GRID_SIZE
 	grid.visible = false
 	add_child(grid)
 
@@ -50,9 +54,9 @@ func set_cells():
 
 func add_item():
 	for cell in grid.get_children():
-		if cell.is_empty() or cell.get_type()==interactable_item.item_name:
-			cell.add_item(interactable_item)
-			interactable_item = null
+		if cell.is_empty() or cell.get_type()==collectable_item.item_name:
+			cell.add_item(collectable_item)
+			collectable_item = null
 			break
 
 
@@ -66,15 +70,15 @@ func remove_item():
 
 func set_collectable_item(can_interact: bool, item: ItemDescription):
 	if can_interact:
-		interactable_item = item
+		collectable_item = item
 		interaction = Interact.TAKE
 	else:
-		if interactable_item == null:
+		if collectable_item == null:
 			interaction = Interact.NONE
 			return
-		if item.get_instance_id() == interactable_item.get_instance_id():
+		if item.get_instance_id() == collectable_item.get_instance_id():
 			interaction = Interact.NONE
-			interactable_item = null
+			collectable_item = null
 
 
 func set_needed_items(can_interact: bool, items: Array[ItemDescription]):

@@ -11,10 +11,8 @@ func _ready() -> void:
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	if body is PlayerPhysics:
-		InventoryManager.set_collectable_item(true, item)
+	InventoryManager.set_collectable_item(true, item)
 
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	if body is PlayerPhysics:
-		InventoryManager.set_collectable_item(false, item)
+	InventoryManager.set_collectable_item(false, item)

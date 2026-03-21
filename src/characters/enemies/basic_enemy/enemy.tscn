@@ -16,6 +16,11 @@
 [ext_resource type="Script" uid="uid://nbj8xk6nqyb6" path="res://shared/beehave/action/toggle_movement.gd" id="9_2cllp"]
 [ext_resource type="Script" uid="uid://cu3wfv8wcbr7x" path="res://shared/beehave/action/attack.gd" id="9_ejf3g"]
 [ext_resource type="Script" uid="uid://bd3201sehmgdt" path="res://shared/beehave/action/destroy_target.gd" id="14_3ad5t"]
+[ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="18_3myrp"]
+[ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="19_fcxfv"]
+[ext_resource type="Script" uid="uid://c24bwn0043vhi" path="res://shared/health/timed_area.gd" id="20_16ot4"]
+[ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="20_fcxfv"]
+[ext_resource type="Script" uid="uid://djg0m48s04bny" path="res://shared/health/base_damage_component.gd" id="20_id0xw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nr11u"]
 render_priority = 0
@@ -42,9 +47,13 @@ material = SubResource("StandardMaterial3D_4sp7t")
 radius = 3.0
 height = 6.0
 
-[node name="Enemy" type="CharacterBody3D" unique_id=768992349]
+[sub_resource type="SphereShape3D" id="SphereShape3D_2vyja"]
+radius = 1.5
+
+[node name="Enemy" type="CharacterBody3D" unique_id=768992349 node_paths=PackedStringArray("basic_attack")]
 script = ExtResource("1_2cllp")
 speed = 5
+basic_attack = NodePath("BasicAttack")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=782035487]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -57,7 +66,7 @@ shape = SubResource("BoxShape3D_uwcne")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1744263067 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_r2ijf")
-blackboard = NodePath("@Node@18850")
+blackboard = NodePath("@Node@25763")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
@@ -190,3 +199,36 @@ collide_with_areas = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ShapeCast3D" unique_id=1346628574]
 mesh = SubResource("SphereMesh_ejf3g")
+
+[node name="HitBox" type="Area3D" parent="." unique_id=332146229 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("18_3myrp")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://7sxs6ubjcqmo"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=126329277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_uwcne")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1094944780]
+script = ExtResource("19_fcxfv")
+debug_log = true
+metadata/_custom_type_script = "uid://b5oot86kgom7d"
+
+[node name="DeathComponent" type="Node" parent="." unique_id=1828287102 node_paths=PackedStringArray("health_component")]
+script = ExtResource("20_fcxfv")
+health_component = NodePath("../HealthComponent")
+
+[node name="BasicAttack" type="Area3D" parent="." unique_id=847560660]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("20_16ot4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicAttack" unique_id=571735578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_2vyja")
+
+[node name="DamageComponent" type="Node" parent="BasicAttack" unique_id=2110839671]
+script = ExtResource("20_id0xw")
+metadata/_custom_type_script = "uid://djg0m48s04bny"

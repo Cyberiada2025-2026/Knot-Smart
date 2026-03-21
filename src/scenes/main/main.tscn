@@ -5,9 +5,16 @@
 [ext_resource type="Script" uid="uid://cfqche3hcpffv" path="res://scenes/debug/vfx/blood&rope/blood_test.gd" id="3_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://50058jf30t1n" path="res://shared/buildings/building_generation/building_generator.tscn" id="4_6q06x"]
+[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="4_b1x3f"]
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params.gd" id="5_hujxm"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
+[ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_a8run"]
+[ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="10_th5th"]
+[ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
+[ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="12_7smn1"]
+[ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="12_th5th"]
+[ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="15_hxu8e"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -63,6 +70,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
 script = ExtResource("3_b1x3f")
 particles = NodePath("..")
 
+[node name="PointOfInterest" type="Node3D" parent="Enemy" unique_id=1132202533]
+script = ExtResource("4_b1x3f")
+radius = 4.0
+message = "Player: \"enemy spotted\""
+metadata/_custom_type_script = "uid://bm0wrygl0ikje"
+
 [node name="Player" parent="." unique_id=1226528489 instance=ExtResource("3_k2fmo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6612322, 1.435396, 3.9698668)
 
@@ -104,6 +117,24 @@ script = ExtResource("6_ow5a4")
 start = Vector3i(5, 0, 2)
 size = Vector3i(2, 1, 3)
 
+[node name="@NavigationObstacle3D@23117" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=995187149]
+height = 30.0
+vertices = PackedVector3Array(-4, 0, 0, -4, 0, 10, 10, 0, 10, 10, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="@NavigationObstacle3D@23118" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=1168317296]
+height = 30.0
+vertices = PackedVector3Array(10, 0, 0, 10, 0, 4, 20, 0, 4, 20, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="@NavigationObstacle3D@23119" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=162416428]
+height = 30.0
+vertices = PackedVector3Array(10, 0, 4, 10, 0, 10, 14, 0, 10, 14, 0, 4)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
 [node name="BuildingGenerator2" parent="." unique_id=1007513251 instance=ExtResource("4_6q06x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0.5, 2.5)
 room_generation_params = SubResource("Resource_b1x3f")
@@ -135,6 +166,49 @@ size = Vector3i(3, 2, 4)
 script = ExtResource("6_ow5a4")
 start = Vector3i(3, 0, 0)
 size = Vector3i(3, 4, 2)
+
+[node name="@NavigationObstacle3D@23325" type="NavigationObstacle3D" parent="BuildingGenerator2" unique_id=477449889]
+height = 30.0
+vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 6, 0, 8, 6, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="@NavigationObstacle3D@23326" type="NavigationObstacle3D" parent="BuildingGenerator2" unique_id=249465686]
+height = 30.0
+vertices = PackedVector3Array(6, 0, 0, 6, 0, 4, 12, 0, 4, 12, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="DayNightCycle" type="Node3D" parent="." unique_id=106700811]
+script = ExtResource("10_a8run")
+current_day = 0
+day_seconds = -0.001
+metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
+
+[node name="Dusk" type="Node" parent="DayNightCycle" unique_id=1615816852]
+script = ExtResource("10_th5th")
+color_lut = ExtResource("12_7smn1")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Day" type="Node" parent="DayNightCycle" unique_id=150412593]
+script = ExtResource("10_th5th")
+duration = 20.0
+color_lut = ExtResource("11_7smn1")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Sunset" type="Node" parent="DayNightCycle" unique_id=291254206]
+script = ExtResource("10_th5th")
+color_lut = ExtResource("12_7smn1")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Night" type="Node" parent="DayNightCycle" unique_id=481852965]
+script = ExtResource("10_th5th")
+duration = 30.0
+color_lut = ExtResource("12_th5th")
+is_night = true
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]
 
 [editable path="BuildingGenerator"]
 [editable path="BuildingGenerator2"]

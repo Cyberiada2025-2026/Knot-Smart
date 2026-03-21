@@ -14,9 +14,9 @@ func make_footstep() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if (
-		player_physics.velocity != Vector3.ZERO
-		&& player_physics.is_on_floor()
-		&& timer.is_stopped()
+		not player_physics.velocity.is_zero_approx()
+		and player_physics.is_on_floor()
+		and timer.is_stopped()
 	):
 		make_footstep()
 		timer.start()

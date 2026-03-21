@@ -6,23 +6,23 @@
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_1x7vy"]
 [ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="4_r2ijf"]
 [ext_resource type="Script" uid="uid://cvqd374qwurts" path="res://shared/beehave/condition/is_target_nearby.gd" id="5_r2ijf"]
-[ext_resource type="Script" uid="uid://cjpvy7npubmpa" path="res://shared/beehave/action/set_random_nav_target.gd" id="6_lxbhr"]
-[ext_resource type="Script" uid="uid://8or73xedlaqi" path="res://shared/beehave/action/update_target_position.gd" id="6_nr11u"]
+[ext_resource type="Script" path="res://shared/beehave/action/set_random_nav_target.gd" id="6_lxbhr"]
+[ext_resource type="Script" path="res://shared/beehave/action/update_target_position.gd" id="6_nr11u"]
 [ext_resource type="Script" uid="uid://d3hunwyfk54p2" path="res://shared/beehave/action/set_target.gd" id="6_r2ijf"]
-[ext_resource type="Script" uid="uid://c30td6ukrmguq" path="res://shared/beehave/condition/has_target.gd" id="7_3ad5t"]
+[ext_resource type="Script" path="res://shared/beehave/condition/has_target.gd" id="7_3ad5t"]
 [ext_resource type="Script" uid="uid://qxwvejkcr6c" path="res://shared/beehave/condition/has_reached_target.gd" id="8_ejf3g"]
-[ext_resource type="Script" uid="uid://nbj8xk6nqyb6" path="res://shared/beehave/action/set_movement.gd" id="9_2cllp"]
+[ext_resource type="Script" path="res://shared/beehave/action/set_movement.gd" id="9_2cllp"]
 [ext_resource type="Script" uid="uid://dvnmhlldp23hg" path="res://addons/beehave/nodes/composites/selector_random.gd" id="10_fcxfv"]
 [ext_resource type="Script" uid="uid://dcojdhvj8qcw0" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="11_3myrp"]
 [ext_resource type="Script" uid="uid://crjqmr7expgtl" path="res://addons/beehave/nodes/decorators/limiter.gd" id="15_eykdo"]
-[ext_resource type="Script" uid="uid://ch6b2rcr58t23" path="res://shared/beehave/action/set_tracking.gd" id="16_2vyja"]
-[ext_resource type="Script" uid="uid://bgknqprqq0468" path="res://shared/beehave/condition/set_nav_target_in_direction.gd" id="16_3myrp"]
+[ext_resource type="Script" path="res://shared/beehave/action/set_tracking.gd" id="16_2vyja"]
 [ext_resource type="Script" uid="uid://we22430vcb44" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="16_nr11u"]
-[ext_resource type="Script" uid="uid://stdko1cvpgmi" path="res://characters/enemies/basic_enemy/set_speed.gd" id="17_id0xw"]
+[ext_resource type="Script" path="res://characters/enemies/basic_enemy/set_speed.gd" id="17_id0xw"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="18_3myrp"]
-[ext_resource type="Script" uid="uid://0jgj5q1d0fkh" path="res://characters/enemies/basic_enemy/set_attack_area.gd" id="19_ect5e"]
+[ext_resource type="Script" uid="uid://bgknqprqq0468" path="res://shared/beehave/action/set_nav_target_in_direction.gd" id="18_eykdo"]
+[ext_resource type="Script" path="res://characters/enemies/basic_enemy/set_attack_area.gd" id="19_ect5e"]
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="19_fcxfv"]
-[ext_resource type="Script" uid="uid://c24bwn0043vhi" path="res://shared/health/toggleable_area.gd" id="20_16ot4"]
+[ext_resource type="Script" path="res://shared/health/toggleable_area.gd" id="20_16ot4"]
 [ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="20_fcxfv"]
 [ext_resource type="Script" uid="uid://djg0m48s04bny" path="res://shared/health/base_damage_component.gd" id="20_id0xw"]
 [ext_resource type="Script" uid="uid://dsf3a8vlolhx8" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="20_mpfi1"]
@@ -71,7 +71,7 @@ shape = SubResource("BoxShape3D_uwcne")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1892085315 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_r2ijf")
-blackboard = NodePath("@Node@64726")
+blackboard = NodePath("@Node@18817")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
@@ -220,7 +220,7 @@ script = ExtResource("6_nr11u")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="SetDashTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/SelectorRandomAttack/Dash/AttackSequence" unique_id=1081499895]
-script = ExtResource("16_3myrp")
+script = ExtResource("18_eykdo")
 distance = 20.0
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
@@ -284,7 +284,7 @@ script = ExtResource("6_nr11u")
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="GoAwayFromTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSequence/Retreat" unique_id=1984825136]
-script = ExtResource("16_3myrp")
+script = ExtResource("18_eykdo")
 distance = 6.0
 is_moving_away = true
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"

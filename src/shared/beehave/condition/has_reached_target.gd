@@ -6,7 +6,6 @@ extends ConditionLeaf
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	actor = actor as EnemyActor
 	var curr_dist = actor.global_position.distance_squared_to(actor.get_target_pos())
 
 	if curr_dist < pow(desired_distance, 2):

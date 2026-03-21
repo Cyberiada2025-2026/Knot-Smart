@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode skip_vertex_transform, unshaded, cull_disabled;
+render_mode skip_vertex_transform, unshaded, cull_disabled, depth_draw_opaque;
 
 #include "res://shared/shaders/include/dither_setup.gdshaderinc"
 const vec2 res = vec2(320, 240);
@@ -32,18 +32,20 @@ void vertex() {
 	vec3 vert_temp = VERTEX;
 	vert_temp.y *= length_curr;
 	vec4 world_space = MODEL_MATRIX * vec4(vert_temp, 1);
+	
+	//Squash and stretch
+	float mid = sqrt(1.0-abs(VERTEX.y/length_curr*2.0));
+	world_space.xz +=  mid*VERTEX.xz*(length_start/length_curr-1.0)*mesh_width_change;
+	
 	vec4 clip_space = PROJECTION_MATRIX * VIEW_MATRIX * world_space;
 	vec4 vertex = clip_space;
-	
+	//Ofsset in clip space for vibrations
 	vec2 offset = vec2(
-		round(sin(MULT_X * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME/vibrate_time))),
-		round(sin(MULT_Y * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME/vibrate_time))));
-		
+	round(sin(MULT_X * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME/vibrate_time))),
+	round(sin(MULT_Y * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME/vibrate_time))));
+	
 	// Vertex snapping
 	vertex.xy = (round(clip_space.xy / clip_space.w * VIEWPORT_SIZE.xy + offset))/ VIEWPORT_SIZE.xy * clip_space.w;
-	
-	float mid = sqrt(1.0-abs(VERTEX.y/length_curr*2.0));
-	vertex.xz += mid*VERTEX.xz*(length_start/length_curr-1.0)*mesh_width_change;
 	
 	POSITION = vertex;
 	

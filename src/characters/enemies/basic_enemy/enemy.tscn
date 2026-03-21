@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="18_3myrp"]
 [ext_resource type="Script" uid="uid://0jgj5q1d0fkh" path="res://characters/enemies/basic_enemy/set_attack_area.gd" id="19_ect5e"]
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="19_fcxfv"]
-[ext_resource type="Script" uid="uid://c24bwn0043vhi" path="res://shared/health/togglable_area.gd" id="20_16ot4"]
+[ext_resource type="Script" uid="uid://c24bwn0043vhi" path="res://shared/health/toggleable_area.gd" id="20_16ot4"]
 [ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="20_fcxfv"]
 [ext_resource type="Script" uid="uid://djg0m48s04bny" path="res://shared/health/base_damage_component.gd" id="20_id0xw"]
 [ext_resource type="Script" uid="uid://dsf3a8vlolhx8" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="20_mpfi1"]

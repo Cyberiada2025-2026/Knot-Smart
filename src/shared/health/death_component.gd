@@ -6,4 +6,3 @@ extends Node
 func _on_death() -> void:
 	var parent = get_parent()
 	parent.queue_free()
-

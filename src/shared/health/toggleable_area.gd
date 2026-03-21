@@ -1,4 +1,4 @@
-class_name TogglableArea
+class_name ToggleableArea
 extends Area3D
 ## An area that can be toggled.
 ## or be enabled for the specified duration

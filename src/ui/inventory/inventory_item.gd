@@ -3,26 +3,26 @@ extends PanelContainer
 
 
 @export var subviewport: SubViewport
+@export var text_label: RichTextLabel
 var num: int = 0
 var items: Array[ItemDescription]
 
 
-func _ready() -> void:
-	pass
-	size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	size_flags_vertical = Control.SIZE_EXPAND_FILL
-
-
 func add_item(item: ItemDescription):
 	items.push_back(item)
-	item.parent.reparent(subviewport)
-	item.parent.global_position = Vector3.ZERO
+	if num==0:
+		item.parent.reparent(subviewport)
+		item.parent.global_position = Vector3.ZERO
+	else:
+		item.parent.get_parent().remove_child(item.parent)
 	num+=1
+	on_item_num_changed()
 
 
 func remove_item() -> ItemDescription:
 	num = 0 if num == 0 else num-1
 	return items.pop_back()
+	on_item_num_changed()
 
 
 func get_type() -> String:
@@ -33,3 +33,8 @@ func get_type() -> String:
 
 func is_empty() -> bool:
 	return num == 0
+
+
+func on_item_num_changed():
+	text_label.text = str(num)
+	text_label.visible = true if num>0 else false

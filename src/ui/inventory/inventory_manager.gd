@@ -45,7 +45,7 @@ func set_cells():
 
 func add_item():
 	for cell in grid.get_children():
-		if cell.is_empty() or cell.get_type()==interactable_item.name:
+		if cell.is_empty() or cell.get_type()==interactable_item.item_name:
 			cell.add_item(interactable_item)
 			interactable_item = null
 			break

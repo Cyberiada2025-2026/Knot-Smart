@@ -59,6 +59,32 @@ shape = SubResource("ConcavePolygonShape3D_eqodw")
 item_name = "kostka"
 model = NodePath("../MeshInstance3D")
 
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=154274034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2647943, 0.60537004, 10.763785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3" unique_id=594084630]
+mesh = SubResource("BoxMesh_ppl51")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=1271732204]
+shape = SubResource("ConcavePolygonShape3D_eqodw")
+
+[node name="ItemDescription" parent="StaticBody3D3" unique_id=483188369 node_paths=PackedStringArray("model") instance=ExtResource("2_ppl51")]
+item_name = "kostka"
+model = NodePath("../MeshInstance3D")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=2116346796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.191352, 0.60537004, -5.8576007)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4" unique_id=2071205397]
+mesh = SubResource("BoxMesh_ppl51")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" unique_id=2125797858]
+shape = SubResource("ConcavePolygonShape3D_eqodw")
+
+[node name="ItemDescription" parent="StaticBody3D4" unique_id=141025747 node_paths=PackedStringArray("model") instance=ExtResource("2_ppl51")]
+item_name = "kostka"
+model = NodePath("../MeshInstance3D")
+
 [node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=39152537]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.360682, 0.60537004, 3.9106236)
 

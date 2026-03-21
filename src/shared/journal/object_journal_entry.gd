@@ -1,9 +1,10 @@
 extends HBoxContainer
 
+@export var text: RichTextLabel
+@export var subview: Node
+var rotate_angle
 var model: Node3D = null
-@export var text:RichTextLabel
-@export var subview:Node
-var rotate_angle;
+
 
 func add_entry(obj_des: ObjectDescription) -> void:
 	model = obj_des.model
@@ -11,7 +12,7 @@ func add_entry(obj_des: ObjectDescription) -> void:
 	model.set_position(Vector3.ZERO)  #to ensure model is at the right place
 	subview.add_child(model)
 	text.text += ("[b]" + obj_des.object_name + "[/b]\n" + obj_des.description)
-	rotate_angle=obj_des.rotation_angle
+	rotate_angle = obj_des.rotation_angle
 
 
 func _process(_delta: float) -> void:

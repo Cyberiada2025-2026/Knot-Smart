@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dktjlwqp00lcr"]
 
-[ext_resource type="Script" uid="uid://br4ibu8huxipr" path="res://shared/journal/journal_entry.gd" id="1_hawqf"]
+[ext_resource type="Script" uid="uid://br4ibu8huxipr" path="res://shared/journal/object_journal_entry.gd" id="1_rn63u"]
 
 [sub_resource type="Environment" id="Environment_hawqf"]
 ambient_light_source = 2
@@ -9,7 +9,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 [node name="HBoxContainer" type="HBoxContainer" unique_id=351905527 node_paths=PackedStringArray("text", "subview")]
 custom_minimum_size = Vector2(220, 100)
 theme_override_constants/separation = 0
-script = ExtResource("1_hawqf")
+script = ExtResource("1_rn63u")
 text = NodePath("RichTextLabel")
 subview = NodePath("SubViewportContainer/SubViewport")
 

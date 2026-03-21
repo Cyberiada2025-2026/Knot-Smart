@@ -1,7 +1,6 @@
 extends Node
 
 var prev_mouse_mode
-
 var buttons: Control
 var page_visible_index: int
 @onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
@@ -64,8 +63,6 @@ func _ready() -> void:
 		),
 		0
 	)
-	add_text_entry("me crashed, me sad", 1)
-	add_text_entry("me saw monster, me scared", 1)
 	page_visible_index = 0
 
 
@@ -84,7 +81,13 @@ func _process(_delta: float) -> void:
 
 	for button_no in range(buttons.get_child_count()):
 		if buttons.get_child(button_no).visible == false:
-			if not get_node("Page container").get_child(button_no).get_node("ScrollContainer/VBoxContainer").get_children().is_empty():
+			if not (
+				get_node("Page container")
+				. get_child(button_no)
+				. get_node("ScrollContainer/VBoxContainer")
+				. get_children()
+				. is_empty()
+			):
 				buttons.get_child(button_no).visible = true
 
 

@@ -1,9 +1,6 @@
 class_name ObjectDescription
 extends Node3D
 
-var page
-var page_dict={ 0:"Page container/Page2/ScrollContainer/VBoxContainer", 1:"Page container/Page3/ScrollContainer/VBoxContainer", 2:"Page container/Page4/ScrollContainer/VBoxContainer"}
-
 ##Insert model of an object
 @export var model: Node3D
 ##Type name of an object
@@ -11,7 +8,7 @@ var page_dict={ 0:"Page container/Page2/ScrollContainer/VBoxContainer", 1:"Page 
 ##Insert description of the object
 @export var description: String
 ##Set at what page the object should be
-@export_enum("Items", "Objects ","Mobs") var set_page
+@export_enum("Items", "Objects ", "Mobs") var set_page
 ##Set the scale of an object
 @export var object_scale: float = 0.5
 ##Set the radius of point of interest
@@ -20,6 +17,13 @@ var page_dict={ 0:"Page container/Page2/ScrollContainer/VBoxContainer", 1:"Page 
 @export var poi_visible: bool = true
 ##Angle in radians that object should rotate by.
 @export var rotation_angle: float = 0.1
+
+var page
+var page_dict = {
+	0: "Page container/Page2/ScrollContainer/VBoxContainer",
+	1: "Page container/Page3/ScrollContainer/VBoxContainer",
+	2: "Page container/Page4/ScrollContainer/VBoxContainer"
+}
 
 
 func _init() -> void:

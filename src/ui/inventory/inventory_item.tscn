@@ -1,5 +1,22 @@
 [gd_scene format=3 uid="uid://cqikghn2wbpuv"]
 
-[node name="InventoryItem" type="Control" unique_id=357209800]
+[ext_resource type="Script" uid="uid://bvy27e3v1pdrk" path="res://ui/inventory/inventory_item.gd" id="1_wiepw"]
+
+[node name="InventoryItem" type="Control" unique_id=357209800 node_paths=PackedStringArray("subviewport")]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_wiepw")
+subviewport = NodePath("SubViewportContainer/SubViewport")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1593400255]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1194965750]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=582500995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+cull_mask = 1048574

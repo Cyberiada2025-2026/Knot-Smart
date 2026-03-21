@@ -5,12 +5,14 @@ extends Node
 @export var item_name: String = ""
 @export var description: String = ""
 @export var model: Node3D
+var parent: Node3D
 
 
 func _ready() -> void:
+	parent = get_parent()
 	var interact_zone = InteractZone.new()
 	interact_zone.item = self
-	for sibling in get_parent().get_children():
+	for sibling in parent.get_children():
 		if sibling is CollisionShape3D:
 			interact_zone.add_child(sibling.duplicate())
 			break

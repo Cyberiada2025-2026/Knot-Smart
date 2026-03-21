@@ -1,7 +1,8 @@
 class_name InventoryCell
-extends PanelContainer
+extends Control
 
 
+@export var subviewport: SubViewport
 var num: int = 0
 var items: Array[ItemDescription]
 
@@ -16,6 +17,7 @@ func _ready() -> void:
 
 
 func add_item(item: ItemDescription):
+	item.parent.get_parent().remove_child(item.parent)
 	items.push_back(item)
 	num+=1
 

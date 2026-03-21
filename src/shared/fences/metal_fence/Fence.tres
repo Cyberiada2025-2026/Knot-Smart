@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://1780wtw8time"]
+
+[ext_resource type="Texture2D" uid="uid://dictx1kao78jd" path="res://shared/fences/metal_fence/metal_fence_fence.png" id="1_yjp5t"]
+
+[resource]
+resource_name = "Fence"
+transparency = 4
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_yjp5t")
+texture_filter = 0

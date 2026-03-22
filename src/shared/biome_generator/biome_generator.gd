@@ -124,7 +124,6 @@ func _create_triangles_from_lines(x: int, z: int, chosen_middle_line: int) -> vo
 	)
 	_create_upper_triangle_from_lines(x, z, chosen_middle_line)
 	_create_lower_triangle_from_lines(x, z, chosen_middle_line)
-	
 
 func _create_upper_triangle_from_lines(x: int, z: int, chosen_middle_line: int) -> void:
 	triangles.append(

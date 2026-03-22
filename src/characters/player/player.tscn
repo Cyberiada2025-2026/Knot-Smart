@@ -6,21 +6,33 @@
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="4_5dc8e"]
 [ext_resource type="PackedScene" uid="uid://cjjffdo72xk1u" path="res://shared/journal/journal.tscn" id="5_ixbpm"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
-[ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="4_5dc8e"]
+[ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_5dc8e"]
+[ext_resource type="Script" uid="uid://byo26dev45wl4" path="res://characters/player/player_detection/footstapes_maker.gd" id="4_ixbpm"]
+[ext_resource type="Script" uid="uid://bwbgvbw8rs0aa" path="res://shared/vfx/player/vfx_player_sequence.gd" id="6_3t07l"]
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="6_c6leb"]
 [ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="7_dirf7"]
+[ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="7_on558"]
+[ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hysn5"]
 radius = 0.25
 height = 0.8
 
-[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_floor_sensor")]
+[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_floor_sensor") groups=["Player"]]
 script = ExtResource("1_4ntmi")
 player_physics = NodePath("PlayerPhysics")
 player_camera = NodePath("PlayerCamera")
 player_floor_sensor = NodePath("PlayerPhysics/PlayerFloorSensor")
 
 [node name="PlayerPhysics" parent="." unique_id=1615832908 instance=ExtResource("1_l8h54")]
+
+[node name="PlayerDecoy" parent="PlayerPhysics" unique_id=2037856166 instance=ExtResource("4_5dc8e")]
+
+[node name="FootstepsMaker" type="Node3D" parent="PlayerPhysics" unique_id=324333915]
+script = ExtResource("4_ixbpm")
+
+[node name="Timer" type="Timer" parent="PlayerPhysics/FootstepsMaker" unique_id=2075759140]
+wait_time = 0.3
 
 [node name="HitBox" type="Area3D" parent="PlayerPhysics" unique_id=1516471157 node_paths=PackedStringArray("health_component")]
 collision_layer = 0
@@ -32,11 +44,17 @@ metadata/_custom_type_script = "uid://7sxs6ubjcqmo"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPhysics/HitBox" unique_id=1332460509]
 shape = SubResource("CapsuleShape3D_hysn5")
 
+[node name="VfxPlayerSequence" type="Node3D" parent="PlayerPhysics" unique_id=2032308502]
+script = ExtResource("6_3t07l")
+metadata/_custom_type_script = "uid://bwbgvbw8rs0aa"
+
+[node name="BloodVfx" parent="PlayerPhysics/VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("7_on558")]
+
 [node name="PlayerCamera" parent="." unique_id=693967780 instance=ExtResource("3_btcbx")]
 
 [node name="RopeManager" type="Node3D" parent="." unique_id=1597735802]
 top_level = true
-script = ExtResource("4_5dc8e")
+script = ExtResource("7_rpf03")
 metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 
 [node name="Journal" parent="." unique_id=9215286 instance=ExtResource("5_ixbpm")]
@@ -44,11 +62,13 @@ metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 script = ExtResource("6_c6leb")
 debug_log = true
 
-[node name="DeathComponent" type="Node" parent="." unique_id=1137866372 node_paths=PackedStringArray("health_component")]
+[node name="DeathComponent" type="Node" parent="." unique_id=1137866372]
 script = ExtResource("7_dirf7")
-health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dy0ohauxfd8go"
 
+[connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]
 [connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
+[connection signal="health_decreased" from="HealthComponent" to="PlayerPhysics/VfxPlayerSequence" method="play"]
+[connection signal="health_depleted" from="HealthComponent" to="DeathComponent" method="_on_death"]
 
 [editable path="PlayerPhysics"]

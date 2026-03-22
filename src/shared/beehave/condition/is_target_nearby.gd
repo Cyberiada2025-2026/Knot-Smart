@@ -1,4 +1,5 @@
 @tool
+class_name IsTargetNearby
 extends ConditionLeaf
 
 @export var searched: StringName

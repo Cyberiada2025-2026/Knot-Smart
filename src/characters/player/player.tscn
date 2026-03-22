@@ -30,7 +30,17 @@ player = NodePath("../..")
 
 [node name="gravityController" parent="PlayerPhysics" unique_id=1906056142 node_paths=PackedStringArray("player", "sensors") instance=ExtResource("4_ixbpm")]
 player = NodePath("../..")
-sensors = {}
+sensors = {
+"falling_ui_down": NodePath("FallingSensors/back_sensor"),
+"falling_ui_left": NodePath("FallingSensors/left_sensor"),
+"falling_ui_right": NodePath("FallingSensors/right_sensor"),
+"falling_ui_up": NodePath("FallingSensors/front_sensor"),
+"floor": NodePath("floor_sensor"),
+"ui_down": NodePath("MoveingSensors/back_sensor"),
+"ui_left": NodePath("MoveingSensors/left_sensor"),
+"ui_right": NodePath("MoveingSensors/right_sensor"),
+"ui_up": NodePath("MoveingSensors/front_sensor")
+}
 
 [node name="PlayerDecoy" parent="PlayerPhysics" unique_id=2037856166 instance=ExtResource("4_6dc8e")]
 

@@ -32,27 +32,30 @@ func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
 func _check_new_rotation(_delta: float) -> void:
 	if not is_rotating:
 		var getting_on_wall: bool = false
+		var floor_normal = player_gravity_controller.get_sensor_normal("floor")
 		for direction in ["ui_up", "ui_down", "ui_right", "ui_left"]:
+			var sensor_normal = player_gravity_controller.get_sensor_normal(direction)
 			if (
 				Input.is_action_pressed(direction) and
-				player_gravity_controller.get_sensor_normal(direction) != null
+				sensor_normal != null
 			):
-				new_ground_normal = player_gravity_controller.get_sensor_normal(direction)
+				new_ground_normal = sensor_normal
 				getting_on_wall = true
 				break
-			elif (
+			sensor_normal = player_gravity_controller.get_sensor_normal("falling_"+direction)
+			if (
 				not player_physics.is_on_floor() and
-				player_gravity_controller.get_sensor_normal("falling_"+direction) != null and
-				player_gravity_controller.get_sensor_normal("floor") == null
+				sensor_normal != null and
+				floor_normal == null
 			):
-				new_ground_normal = player_gravity_controller.get_sensor_normal("falling_"+direction)
+				new_ground_normal = sensor_normal
 				getting_on_wall = true
 				break
 		if getting_on_wall:
 			player_gravity_controller.gravity_no_floor_timer.stop()
-		elif player_gravity_controller.get_sensor_normal("floor") != null:
+		elif floor_normal != null:
 			player_gravity_controller.gravity_no_floor_timer.stop()
-			new_ground_normal = player_gravity_controller.get_sensor_normal("floor")
+			new_ground_normal = floor_normal
 		elif player_gravity_controller.gravity_no_floor_timer.is_stopped():
 			player_gravity_controller.gravity_no_floor_timer.start()
 
@@ -65,11 +68,12 @@ func _update_to_new_rotation(delta: float) -> void:
 	if (
 		abs(ground_normal.angle_to(new_ground_normal)) > ground_normal_sensitivity
 	):
+		var modified_delta: float = delta * gravity_rotation_speed_modifier * rotation_speed
 		is_rotating = true
 		var moved_ground_normal := (
 			ground_normal
 			.move_toward(
-				new_ground_normal, delta * gravity_rotation_speed_modifier * rotation_speed
+				new_ground_normal, modified_delta
 			)
 			.normalized()
 		)
@@ -78,7 +82,7 @@ func _update_to_new_rotation(delta: float) -> void:
 			angle = ground_normal.angle_to(
 				ground_normal.move_toward(
 					front,
-					delta * gravity_rotation_speed_modifier * rotation_speed
+					modified_delta
 				)
 			)
 			front = front.rotated(ground_normal.cross(front).normalized(), angle)

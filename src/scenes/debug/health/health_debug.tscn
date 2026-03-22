@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://bijmtfrstwgu"]
+
+[ext_resource type="Script" uid="uid://djg0m48s04bny" path="res://shared/health/base_damage_component.gd" id="1_comv1"]
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="2_0oggy"]
+[ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="3_comv1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_comv1"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_meaqy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_meaqy"]
+albedo_color = Color(0, 1, 0.14901961, 1)
+
+[node name="HealthDebug" type="Node3D" unique_id=223631406]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2121414612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(10, 0.5, 10)
+
+[node name="HurtBox" type="Area3D" parent="." unique_id=265826181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.25, 0)
+collision_layer = 32
+collision_mask = 0
+
+[node name="HurtArea" type="CSGBox3D" parent="HurtBox" unique_id=1912019799]
+material = SubResource("StandardMaterial3D_comv1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HurtBox" unique_id=74193918]
+shape = SubResource("BoxShape3D_meaqy")
+
+[node name="BaseDamageComponent" type="Node" parent="HurtBox" unique_id=1897598183]
+script = ExtResource("1_comv1")
+metadata/_custom_type_script = "uid://djg0m48s04bny"
+
+[node name="HealBox" type="Area3D" parent="." unique_id=1598647363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.25, 0)
+collision_layer = 32
+collision_mask = 0
+
+[node name="HealArea" type="CSGBox3D" parent="HealBox" unique_id=743554083]
+material = SubResource("StandardMaterial3D_meaqy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealBox" unique_id=695146750]
+shape = SubResource("BoxShape3D_meaqy")
+
+[node name="BaseDamageComponent" type="Node" parent="HealBox" unique_id=13997198]
+script = ExtResource("1_comv1")
+base_damage = -1.0
+metadata/_custom_type_script = "uid://djg0m48s04bny"
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_0oggy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("3_comv1")]
+
+[connection signal="area_entered" from="HurtBox" to="HurtBox" method="_on_area_entered"]
+[connection signal="area_entered" from="HealBox" to="HealBox" method="_on_area_entered"]

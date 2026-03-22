@@ -1,10 +1,32 @@
 {
-	"syllables": ["zip", "ba", "rim", "waeb", "ga", "womp", "go", "lip", "blop", "zop", "lle", "si"],
+	"syllables": [
+		"zip",
+		"ba",
+		"rim",
+		"waeb",
+		"ga",
+		"womp",
+		"go",
+		"lip",
+		"blop",
+		"zop",
+		"lle",
+		"si"
+	],
 	"presets": {
-		"kurwa": ["waeb", "ba"],
-		"mać": ["zip"],
-		"do": ["zip"],
-		"widzenia": ["zop"]
+		"kurwa": [
+			"waeb",
+			"ba"
+		],
+		"mać": [
+			"zip"
+		],
+		"do": [
+			"zip"
+		],
+		"widzenia": [
+			"zop"
+		]
 	},
 	"input_replace": {
 		"mr.": "mister",

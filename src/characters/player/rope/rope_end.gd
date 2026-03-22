@@ -11,6 +11,7 @@ var strategy: Node
 
 func _init(rope_params, equilibrium_strategy, pos) -> void:
 	self.strategy = equilibrium_strategy
+	self.add_child(self.strategy)
 	self.freeze = (get_strategy_type() == StrategyType.STATIC)
 	self.params = rope_params
 	self.position = pos
@@ -33,7 +34,7 @@ func pin(obj, other_node) -> void:
 ## [param v]: Spring damping
 func integrate_accel(k, b) -> Vector3:
 	var v = linear_velocity
-	var equilibrium = strategy.get_equilibrium(self, other)
+	var equilibrium = strategy.get_equilibrium(other)
 	var dx = position - equilibrium
 	# Direct application of the damped oscillator formula
 	var spring_accel = -k * dx - b * v

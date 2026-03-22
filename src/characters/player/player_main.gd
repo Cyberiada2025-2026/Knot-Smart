@@ -26,10 +26,6 @@ func get_normal() -> Vector3:
 	return player_gravity_controller.ground_normal
 
 
-func set_normal(normal: Vector3) -> void:
-	player_gravity_controller.ground_normal = normal
-
-
 func get_front() -> Vector3:
 	return player_gravity_controller.front
 
@@ -40,7 +36,3 @@ func set_front(front: Vector3) -> void:
 
 func get_is_rotating() -> bool:
 	return player_gravity_controller.is_rotating
-
-
-func toogle_is_rotating() -> void:
-	player_gravity_controller.is_rotating = not player_gravity_controller.is_rotating

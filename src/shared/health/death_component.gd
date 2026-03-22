@@ -1,6 +1,6 @@
 class_name DeathComponent
 extends Node
-## Despawns parent node on signal
+## Despawns parent node when _on_death is called.
 
 
 func _on_death() -> void:

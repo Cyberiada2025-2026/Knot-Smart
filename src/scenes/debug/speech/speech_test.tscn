@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://n3o41jekpah0"]
+
+[ext_resource type="Script" uid="uid://d0x6a5ec5mlei" path="res://shared/speech/speech_manager.gd" id="1_42m65"]
+[ext_resource type="Script" uid="uid://b6c7gs7ipg8ag" path="res://scenes/debug/speech/speech_tester.gd" id="2_2gn8g"]
+
+[node name="Node2D" type="Node2D" unique_id=32041945]
+
+[node name="SpeechManager" type="Node" parent="." unique_id=1882015659]
+script = ExtResource("1_42m65")
+
+[node name="Node" type="Node" parent="." unique_id=834697655 node_paths=PackedStringArray("speech_manager")]
+script = ExtResource("2_2gn8g")
+speech_manager = NodePath("../SpeechManager")

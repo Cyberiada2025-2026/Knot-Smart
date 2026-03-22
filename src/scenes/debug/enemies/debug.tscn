@@ -1,9 +1,6 @@
 [gd_scene format=3 uid="uid://cu6j537pnu5cb"]
 
-[ext_resource type="Script" uid="uid://bhou8gwqda4jq" path="res://characters/enemies/debug/debug.gd" id="1_vwopa"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_8bay0"]
-[ext_resource type="PackedScene" uid="uid://crgmysckc65sm" path="res://characters/player/player_detection/something_interesting.tscn" id="2_sqqyo"]
-[ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="3_ofw1j"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iuonh"]
 radius = 0.25
@@ -25,12 +22,6 @@ size = Vector3(10, 1, 10)
 size = Vector3(10, 1, 10)
 
 [node name="Debug" type="Node3D" unique_id=1160564006]
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1721661560]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.83084583, 6.6413774, 0.1811347)
-script = ExtResource("1_vwopa")
-interesting = ExtResource("2_sqqyo")
-player = ExtResource("3_ofw1j")
 
 [node name="AlienHeight" type="MeshInstance3D" parent="." unique_id=2068006547]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.426, 0.9, 0)

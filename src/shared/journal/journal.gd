@@ -1,14 +1,20 @@
 extends Node
 
+@export var pages: Node
+@export var text_page_last_container: Node
+@export var items_page_last_container: Node
+@export var objects_page_last_container: Node
+@export var mobs_page_last_container: Node
 var prev_mouse_mode
 var buttons: Control
 var page_visible_index: int
+var page_dict:Dictionary[int, Node]
 @onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
 
 
 func add_object(obj_des: ObjectDescription):
 	var entry_scene = load("uid://dktjlwqp00lcr")
-	var page = get_node(obj_des.page)
+	var page = page_dict[obj_des.page]
 	var entry = entry_scene.instantiate()
 	entry.add_entry(obj_des)
 	var entry_text = entry.text
@@ -22,17 +28,6 @@ func add_object(obj_des: ObjectDescription):
 			return
 
 	page.add_child(entry)
-
-	var current_page_journal_entries: Array[RichTextLabel]
-
-	for journal_text in journal_entries:
-		if journal_text.get_node("../../") == page:
-			current_page_journal_entries.append(journal_text)
-
-	for journal_text in current_page_journal_entries:
-		if journal_text.get_text() > entry_text.get_text():
-			page.move_child(entry, journal_text.get_parent().get_index())
-			return
 
 
 #Right now, we don't need to add text entries after certain triggers
@@ -55,6 +50,13 @@ func add_text_entry(text: String, add_number: bool):
 
 func _ready() -> void:
 	buttons = $"Button container"
+	page_dict = {
+		0: text_page_last_container,
+		1: items_page_last_container,
+		2: objects_page_last_container,
+		3: mobs_page_last_container
+	}
+
 	add_text_entry(
 		(
 			"This is journal, on this page you have aliens thoughts as"
@@ -81,20 +83,14 @@ func _process(_delta: float) -> void:
 
 	for button_no in range(buttons.get_child_count()):
 		if buttons.get_child(button_no).visible == false:
-			if not (
-				get_node("Page container")
-				. get_child(button_no)
-				. get_node("ScrollContainer/VBoxContainer")
-				. get_children()
-				. is_empty()
-			):
+			if not (page_dict[button_no]. get_children().is_empty()):
 				buttons.get_child(button_no).visible = true
 
 
 func _on_button_pressed(number: int) -> void:
 	var button: Button = buttons.get_child(number)
 	if page_visible_index != number:
-		get_node("Page container").get_child(page_visible_index).set_visible(false)
+		pages.get_child(page_visible_index).set_visible(false)
 		buttons.get_child(page_visible_index).add_theme_stylebox_override("normal", button_normal)
 		get_node("Page container").get_child(number).set_visible(true)
 		button.add_theme_stylebox_override("normal", button.get_theme_stylebox("pressed", "Button"))

@@ -50,7 +50,7 @@ script = ExtResource("2_40cw0")
 model = NodePath("../MeshInstance3D")
 object_name = "Box"
 description = "This is box, it is basic object"
-set_page = 1
+page = 2
 object_scale = 0.3
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
 
@@ -66,7 +66,7 @@ script = ExtResource("2_40cw0")
 model = NodePath("../MeshInstance3D")
 object_name = "Box"
 description = "This is box, it is basic object"
-set_page = 1
+page = 2
 object_scale = 0.3
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
 
@@ -83,9 +83,9 @@ script = ExtResource("2_40cw0")
 model = NodePath("../player_model")
 object_name = "Alien"
 description = "Le alien"
-set_page = 2
-object_scale = 0.1
+page = 3
 radius = 3.0
+object_scale = 0.1
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
 
 [node name="player_model" parent="Node3D" unique_id=2129174973 instance=ExtResource("3_cht0e")]
@@ -103,7 +103,7 @@ script = ExtResource("2_40cw0")
 model = NodePath("../MeshInstance3D")
 object_name = "Cylinder"
 description = "This is cylinder"
-set_page = 1
+page = 2
 object_scale = 0.2
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
 
@@ -119,7 +119,7 @@ script = ExtResource("2_40cw0")
 model = NodePath("../MeshInstance3D")
 object_name = "Prism"
 description = "This is prism mob"
-set_page = 2
+page = 3
 object_scale = 0.3
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
 
@@ -136,7 +136,7 @@ script = ExtResource("2_40cw0")
 model = NodePath("../MeshInstance3D")
 object_name = "Prism 2"
 description = "This is prism mob but he is blue"
-set_page = 2
+page = 3
 object_scale = 0.3
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
 
@@ -153,6 +153,6 @@ script = ExtResource("2_40cw0")
 model = NodePath("../MeshInstance3D")
 object_name = "Sphere"
 description = "This is sphere item"
-set_page = 0
+page = 1
 object_scale = 0.3
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"

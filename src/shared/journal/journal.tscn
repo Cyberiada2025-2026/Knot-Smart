@@ -6,7 +6,7 @@
 
 [sub_resource type="Theme" id="Theme_erk7u"]
 
-[node name="Journal menu" type="Control" unique_id=883052313 groups=["unpausable"]]
+[node name="Journal menu" type="Control" unique_id=883052313 node_paths=PackedStringArray("pages", "text_page_last_container", "items_page_last_container", "objects_page_last_container", "mobs_page_last_container") groups=["unpausable"]]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -22,6 +22,11 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ohc7l")
+pages = NodePath("Page container")
+text_page_last_container = NodePath("Page container/Page1/ScrollContainer/VBoxContainer")
+items_page_last_container = NodePath("Page container/Page2/ScrollContainer/VBoxContainer")
+objects_page_last_container = NodePath("Page container/Page3/ScrollContainer/VBoxContainer")
+mobs_page_last_container = NodePath("Page container/Page4/ScrollContainer/VBoxContainer")
 
 [node name="Button container" type="VBoxContainer" parent="." unique_id=1593425837]
 layout_mode = 1

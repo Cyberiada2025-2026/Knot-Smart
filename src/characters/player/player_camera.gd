@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 	camera.rotation.z = 0
 
 	## CAMERA ROTATION
-	if player.is_rotating == false:
+	if player.get_is_rotating() == false:
 		rotation_strategy.rotate(self, mouse_relative, delta)
 	mouse_relative = Vector2.ZERO
 
@@ -87,7 +87,7 @@ func rotate_up_down(angle: float) -> void:
 
 
 func get_normal() -> Vector3:
-	return player.ground_normal
+	return player.get_normal()
 
 
 func get_view_type() -> ViewType:

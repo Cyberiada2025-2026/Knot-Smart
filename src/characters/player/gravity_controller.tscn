@@ -49,3 +49,5 @@ target_position = Vector3(5, 0, 0)
 target_position = Vector3(-5, 0, 0)
 
 [node name="gravity_no_floor_timer" type="Timer" parent="." unique_id=1142889003]
+
+[connection signal="timeout" from="gravity_no_floor_timer" to="." method="_on_gravity_no_floor_timer_timeout"]

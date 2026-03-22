@@ -35,7 +35,7 @@ albedo_color = Color(0.3936752, 0.43001437, 0.20454189, 1)
 albedo_color = Color(0.24183932, 0.365363, 9.62615e-08, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf360"]
-size = Vector3(193.5, 20, 261.5)
+size = Vector3(193.5, 84, 261.5)
 
 [node name="CityLayout" type="Node3D" unique_id=785355627]
 
@@ -44,38 +44,6 @@ transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90
 
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_p16xr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.661232, 31.435394, -13.030133)
-
-[node name="DayNightCycle" type="Node3D" parent="." unique_id=480120386]
-script = ExtResource("2_5vwar")
-debug_log = true
-tick_count = 13800
-current_day = 0
-day_seconds = 230.0
-metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
-
-[node name="Dusk" type="Node" parent="DayNightCycle" unique_id=1131286790]
-script = ExtResource("3_k0vsf")
-color_lut = ExtResource("4_182vm")
-metadata/_custom_type_script = "uid://bspfhf53tg7of"
-
-[node name="Day" type="Node" parent="DayNightCycle" unique_id=1212831125]
-script = ExtResource("3_k0vsf")
-duration = 120.0
-color_lut = ExtResource("5_l7e7e")
-metadata/_custom_type_script = "uid://bspfhf53tg7of"
-
-[node name="Sunset" type="Node" parent="DayNightCycle" unique_id=1365067797]
-script = ExtResource("3_k0vsf")
-duration = 20.0
-color_lut = ExtResource("4_182vm")
-metadata/_custom_type_script = "uid://bspfhf53tg7of"
-
-[node name="Night" type="Node" parent="DayNightCycle" unique_id=404714931]
-script = ExtResource("3_k0vsf")
-duration = 120.0
-color_lut = ExtResource("6_4ehc0")
-is_night = true
-metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1418717700]
 navigation_mesh = SubResource("NavigationMesh_4ehc0")
@@ -519,9 +487,12 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 24, 
 [node name="RigidBody3D25" parent="Projectiles" unique_id=1758236923 instance=ExtResource("10_l7e7e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, -34)
 
-[node name="EnemySpawnManager" type="Node3D" parent="." unique_id=536600417]
+[node name="EnemySpawnManager" type="Node3D" parent="." unique_id=536600417 node_paths=PackedStringArray("nav_region", "day_night_cycle", "enemy_spawn_node")]
 script = ExtResource("13_mp7ty")
 debug_log = true
+nav_region = NodePath("../NavigationRegion3D")
+day_night_cycle = NodePath("../DayNightCycle")
+enemy_spawn_node = NodePath("../Enemies")
 metadata/_custom_type_script = "uid://d3b3ejnxvoa3s"
 
 [node name="EnemySpawnArea" type="Area3D" parent="EnemySpawnManager" unique_id=1009900220]
@@ -530,6 +501,39 @@ enemy_scene = ExtResource("15_68ryy")
 metadata/_custom_type_script = "uid://b3g2uvv66tqc1"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager/EnemySpawnArea" unique_id=251858223]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0, -50.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 32, -50.25)
 shape = SubResource("BoxShape3D_yf360")
-disabled = true
+
+[node name="Enemies" type="Node3D" parent="." unique_id=1783401391]
+
+[node name="DayNightCycle" type="Node3D" parent="." unique_id=480120386]
+script = ExtResource("2_5vwar")
+debug_log = true
+tick_count = 13800
+current_day = 0
+day_seconds = 230.0
+metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
+
+[node name="Dusk" type="Node" parent="DayNightCycle" unique_id=1131286790]
+script = ExtResource("3_k0vsf")
+color_lut = ExtResource("4_182vm")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Day" type="Node" parent="DayNightCycle" unique_id=1212831125]
+script = ExtResource("3_k0vsf")
+duration = 120.0
+color_lut = ExtResource("5_l7e7e")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Sunset" type="Node" parent="DayNightCycle" unique_id=1365067797]
+script = ExtResource("3_k0vsf")
+duration = 20.0
+color_lut = ExtResource("4_182vm")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Night" type="Node" parent="DayNightCycle" unique_id=404714931]
+script = ExtResource("3_k0vsf")
+duration = 120.0
+color_lut = ExtResource("6_4ehc0")
+is_night = true
+metadata/_custom_type_script = "uid://bspfhf53tg7of"

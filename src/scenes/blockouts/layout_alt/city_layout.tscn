@@ -18,10 +18,13 @@ albedo_color = Color(0.27630895, 0.27630895, 0.27630895, 1)
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_5vwar"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_l7e7e"]
-size = Vector2(250, 250)
+size = Vector2(250, 300)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7e7e"]
 albedo_color = Color(0.3936752, 0.43001437, 0.20454189, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ehc0"]
+albedo_color = Color(0.24183932, 0.365363, 9.62615e-08, 1)
 
 [node name="CityLayout" type="Node3D" unique_id=785355627]
 
@@ -82,8 +85,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, -0.25, -30.25)
 size = Vector3(5, 0.5, 64.5)
 
 [node name="CSGBox3D11" type="CSGBox3D" parent="LayoutMapStatic/Roads" unique_id=788844470]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 94.5, -0.25, 18.25)
-size = Vector3(5, 0.5, 26.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.5, -0.25, 41.75)
+size = Vector3(5, 0.5, 43.5)
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="LayoutMapStatic/Roads" unique_id=1395887675]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, -0.25, -2.5)
@@ -157,6 +160,10 @@ size = Vector3(159.5, 0.5, 5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.75, -0.25, -135)
 size = Vector3(159.5, 0.5, 5)
 
+[node name="CSGBox3D26" type="CSGBox3D" parent="LayoutMapStatic/Roads" unique_id=719477219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.75, -0.25, -103.5)
+size = Vector3(27.5, 0.5, 5)
+
 [node name="CSGBox3D6" type="CSGBox3D" parent="LayoutMapStatic/Roads" unique_id=184186189]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.25, -0.25, 18)
 size = Vector3(149.5, 0.5, 5)
@@ -169,7 +176,7 @@ shape = SubResource("WorldBoundaryShape3D_5vwar")
 [node name="BuildingsLayout" parent="LayoutMapStatic" unique_id=1133925247 instance=ExtResource("7_k0vsf")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LayoutMapStatic" unique_id=2053391392]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.05, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.5, -0.05, -23)
 mesh = SubResource("PlaneMesh_l7e7e")
 surface_material_override/0 = SubResource("StandardMaterial3D_l7e7e")
 
@@ -316,6 +323,43 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 35.5
 [node name="MetalFence5" parent="LayoutMapStatic/Props/Node3D4" unique_id=1461974134 instance=ExtResource("11_4ehc0")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 39.5, 0, 29.5)
 
+[node name="PlantWall" type="CSGCombiner3D" parent="LayoutMapStatic" unique_id=2103556532]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="LayoutMapStatic/PlantWall" unique_id=1240544962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.25, 25.5, 72)
+size = Vector3(66.5, 60, 5)
+material = SubResource("StandardMaterial3D_4ehc0")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="LayoutMapStatic/PlantWall" unique_id=719533045]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 49.5901, 25.5, 44.4099)
+size = Vector3(112, 60, 5)
+material = SubResource("StandardMaterial3D_4ehc0")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="LayoutMapStatic/PlantWall" unique_id=208504973]
+transform = Transform3D(0, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 0, 76.92373, 25.5, 4.8262672)
+size = Vector3(59, 60, 5)
+material = SubResource("StandardMaterial3D_4ehc0")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="LayoutMapStatic/PlantWall" unique_id=1282501486]
+transform = Transform3D(-0.49999994, 0, 0.86602527, 0, 1, 0, -0.86602527, 0, -0.49999994, 34.923733, 25.5, -86.45575)
+size = Vector3(193, 60, 5)
+material = SubResource("StandardMaterial3D_4ehc0")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="LayoutMapStatic/PlantWall" unique_id=969030645]
+transform = Transform3D(-0.9659257, 0, -0.25881907, 0, 1, 0, 0.25881907, 0, -0.9659257, -45.317013, 25.5, -160.27908)
+size = Vector3(105.5, 60, 5)
+material = SubResource("StandardMaterial3D_4ehc0")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="LayoutMapStatic/PlantWall" unique_id=2041932951]
+transform = Transform3D(2.9802322e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 2.9802322e-08, -91.369736, 25.5, -80.68169)
+size = Vector3(148, 60, 5)
+material = SubResource("StandardMaterial3D_4ehc0")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="LayoutMapStatic/PlantWall" unique_id=1575507967]
+transform = Transform3D(0.5, 0, -0.8660252, 0, 1, 0, 0.8660252, 0, 0.5, -63.369736, 25.5, 38.318314)
+size = Vector3(148, 60, 5)
+material = SubResource("StandardMaterial3D_4ehc0")
+
 [node name="Projectiles" type="Node3D" parent="." unique_id=848029096]
 
 [node name="RigidBody3D2" parent="Projectiles" unique_id=1852927063 instance=ExtResource("10_l7e7e")]
@@ -357,35 +401,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49, 0.5, -3)
 [node name="RigidBody3D14" parent="Projectiles" unique_id=2088760473 instance=ExtResource("11_i7gfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.5, 0.5, -3.5)
 
-[node name="RigidBody3D2" parent="." unique_id=1795225122 instance=ExtResource("11_i7gfn")]
+[node name="RigidBody3D15" parent="Projectiles" unique_id=1795225122 instance=ExtResource("11_i7gfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.5, 0.5, -50)
 
-[node name="RigidBody3D3" parent="." unique_id=1555419512 instance=ExtResource("11_i7gfn")]
+[node name="RigidBody3D16" parent="Projectiles" unique_id=1555419512 instance=ExtResource("11_i7gfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56, 0.5, -48)
 
-[node name="RigidBody3D4" parent="." unique_id=656861475 instance=ExtResource("11_i7gfn")]
+[node name="RigidBody3D17" parent="Projectiles" unique_id=656861475 instance=ExtResource("11_i7gfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 0.5, -42)
 
-[node name="RigidBody3D5" parent="." unique_id=1260731367 instance=ExtResource("11_i7gfn")]
+[node name="RigidBody3D18" parent="Projectiles" unique_id=1260731367 instance=ExtResource("11_i7gfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.5, 1)
 
-[node name="RigidBody3D6" parent="." unique_id=116444718 instance=ExtResource("11_i7gfn")]
+[node name="RigidBody3D19" parent="Projectiles" unique_id=116444718 instance=ExtResource("11_i7gfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 0.5, 0.5)
 
-[node name="RigidBody3D7" parent="." unique_id=1641159518 instance=ExtResource("11_i7gfn")]
+[node name="RigidBody3D20" parent="Projectiles" unique_id=1641159518 instance=ExtResource("11_i7gfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.5, -3)
 
-[node name="RigidBody3D8" parent="." unique_id=1623020924 instance=ExtResource("11_i7gfn")]
+[node name="RigidBody3D21" parent="Projectiles" unique_id=1623020924 instance=ExtResource("11_i7gfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0.5, 31.5)
 
-[node name="RigidBody3D9" parent="." unique_id=1125588437 instance=ExtResource("11_i7gfn")]
+[node name="RigidBody3D22" parent="Projectiles" unique_id=1125588437 instance=ExtResource("11_i7gfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0, 33.5)
 
-[node name="RigidBody3D10" parent="." unique_id=1165587652 instance=ExtResource("10_l7e7e")]
+[node name="RigidBody3D23" parent="Projectiles" unique_id=1165587652 instance=ExtResource("10_l7e7e")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 24, 1, -43)
 
-[node name="RigidBody3D11" parent="." unique_id=1141658564 instance=ExtResource("10_l7e7e")]
+[node name="RigidBody3D24" parent="Projectiles" unique_id=1141658564 instance=ExtResource("10_l7e7e")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 24, 1, -40)
 
-[node name="RigidBody3D12" parent="." unique_id=1758236923 instance=ExtResource("10_l7e7e")]
+[node name="RigidBody3D25" parent="Projectiles" unique_id=1758236923 instance=ExtResource("10_l7e7e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, -34)

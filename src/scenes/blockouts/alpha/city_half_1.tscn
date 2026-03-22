@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cxkn1boo0l1uw"]
+
+[ext_resource type="PackedScene" uid="uid://b2gk1au12qxv2" path="res://scenes/blockouts/alpha/city_half_1.glb" id="1_v1voa"]
+
+[node name="city_half_1" unique_id=1284654193 instance=ExtResource("1_v1voa")]

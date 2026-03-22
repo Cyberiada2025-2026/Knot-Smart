@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://d4lwobgm85sqb"]
+
+[ext_resource type="PackedScene" uid="uid://br3j2upjihbvs" path="res://shared/roads/assets/roads_merged.glb" id="1_un6v5"]
+[ext_resource type="Texture2D" uid="uid://6i3bya7qkeea" path="res://shared/roads/assets/pavement_texture.png" id="2_4sut7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jiakq"]
+shading_mode = 0
+albedo_texture = ExtResource("2_4sut7")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+
+[node name="Node3D" type="Node3D" unique_id=1504954648]
+
+[node name="roads_merged" parent="." unique_id=580430985 instance=ExtResource("1_un6v5")]
+
+[node name="Box001" parent="roads_merged" index="1" unique_id=1083524246]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik004" parent="roads_merged" index="3" unique_id=988076850]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik234" parent="roads_merged" index="5" unique_id=260177362]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik01" parent="roads_merged" index="7" unique_id=1542993063]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik_zakręt005" parent="roads_merged" index="9" unique_id=1432979219]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik_zakręt072" parent="roads_merged" index="11" unique_id=154036842]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik216" parent="roads_merged" index="13" unique_id=587539905]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="Box005" parent="roads_merged" index="15" unique_id=1458267084]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik_zakręt076" parent="roads_merged" index="17" unique_id=875249050]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik214" parent="roads_merged" index="19" unique_id=1503061588]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik_zakręt079" parent="roads_merged" index="21" unique_id=1452567041]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik212" parent="roads_merged" index="23" unique_id=1825343389]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[node name="chodnik213" parent="roads_merged" index="25" unique_id=1514390337]
+surface_material_override/0 = SubResource("StandardMaterial3D_jiakq")
+
+[editable path="roads_merged"]

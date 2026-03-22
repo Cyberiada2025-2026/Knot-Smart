@@ -4,3 +4,4 @@
 
 [node name="BiomeGenerator" type="Node3D" unique_id=301086409]
 script = ExtResource("1_uqoj5")
+custom_seed = null

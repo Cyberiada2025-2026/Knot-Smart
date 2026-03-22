@@ -23,6 +23,7 @@ var line_scene: PackedScene = preload("res://shared/biome_generator/debug/genera
 }
 
 @export_category("GeneratorVariables")
+@export var custom_seed: String = ""
 @export_group("location")
 @export var size: Vector2 = Vector2(200, 200)
 @export var start: Vector2 = Vector2(-100, -100)
@@ -49,7 +50,14 @@ var triangles: Array[BiomeTriangle]
 var free_triangles: Array[BiomeTriangle]
 var biomes: Array[Biome]
 var walls_combiner: WallsCombiner
+var rng: RandomNumberGeneratorUpgraded
 
+func _ready() -> void:
+	rng = RandomNumberGenerator.new()
+	if custom_seed == "":
+		rng.randomize()
+	else:
+		rng.seed = custom_seed.hash()
 
 func show_debug() -> void:
 	_show_biomes()
@@ -91,10 +99,10 @@ func _randomize_points() -> void:
 			points_in.x - randomization_margin
 		):
 			points[Vector2(x, z)].x += (
-				_get_step_size_x() * (randf() - 0.5) * randomization_strength.x
+				_get_step_size_x() * (rng.randf() - 0.5) * randomization_strength.x
 			)
 			points[Vector2(x, z)].y += (
-				_get_step_size_z() * (randf() - 0.5) * randomization_strength.y
+				_get_step_size_z() * (rng.randf() - 0.5) * randomization_strength.y
 			)
 
 
@@ -110,7 +118,7 @@ func _set_lines_and_triangles() -> void:
 	# Middle lines and triangles
 	for z: int in range(points_in.y - 1):
 		for x: int in range(points_in.x - 1):
-			_create_triangles_from_lines(x, z, randi()%2)
+			_create_triangles_from_lines(x, z, rng.randi()%2)
 	lines.append_array(horizontal_lines)
 	lines.append_array(vertical_lines)
 	lines.append_array(middle_lines)
@@ -198,13 +206,13 @@ func _init_biome(biome: Biome, biome_name: String) -> void:
 
 
 func _get_biome_starting_triangle(biome: Biome) -> void:
-	var triangle: BiomeTriangle = free_triangles.pick_random()
+	var triangle: BiomeTriangle = rng.pick_random(free_triangles)
 	_add_triangle_to_biome(biome, triangle)
 
 
 func _get_biome_new_triangle(biome: Biome) -> void:
-	if randf() <= chance_to_shuffle:
-		biome.lines.shuffle()
+	if rng.randf() <= chance_to_shuffle:
+		rng.shuffle(biome.lines)
 	var line_count: int = biome.lines.size()
 	for i in range(line_count):
 		var line: BiomeLine = biome.lines.pop_front()
@@ -269,7 +277,7 @@ func _set_passages() -> void:
 	for i in range(additional_entrances):
 		if blocked_passages.is_empty():
 			break
-		var passage: BiomeLine = blocked_passages.pick_random()
+		var passage: BiomeLine = rng.pick_random(blocked_passages)
 		_add_entrance_on_line(passage)
 		blocked_passages.erase(passage)
 
@@ -280,7 +288,7 @@ func _open_blocked_passage(
 	blocked_passages: Array[BiomeLine]
 ) -> BiomeLine:
 	var passage: BiomeLine
-	passage = blocked_passages.pick_random()
+	passage = rng.pick_random(blocked_passages)
 	_add_entrance_on_line(passage)
 	blocked_passages.erase(passage)
 	for adjacent_triangle in passage.adjacent_triangles:

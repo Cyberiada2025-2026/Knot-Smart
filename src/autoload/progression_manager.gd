@@ -2,6 +2,7 @@ extends Node
 
 @export var max_death_count: int = 1
 
+var respawn_pos: Vector3
 var _death_count: int = 0
 
 
@@ -12,4 +13,4 @@ func record_death():
 
 
 func game_over():
-	SceneManager.goto_scene("res://scenes/game_over/game_over.tscn")
+	SceneManager.goto_scene("res://ui/game_over/game_over.tscn")

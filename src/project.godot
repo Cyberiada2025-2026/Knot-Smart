@@ -185,6 +185,7 @@ locale/stretch/scale_mode="fractional"
 [physics]
 
 3d/physics_engine="Jolt Physics"
+3d/solver/solver_iterations=8
 
 [rendering]
 

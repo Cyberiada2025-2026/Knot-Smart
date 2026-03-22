@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://6i3bya7qkeea" path="res://shared/roads/assets/pavement_texture.png" id="2_4sut7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jiakq"]
+shading_mode = 0
 albedo_texture = ExtResource("2_4sut7")
 uv1_scale = Vector3(2, 2, 2)
 uv1_triplanar = true

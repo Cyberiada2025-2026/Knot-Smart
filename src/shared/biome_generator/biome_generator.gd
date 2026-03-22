@@ -67,7 +67,8 @@ func reset() -> void:
 	triangles = []
 	free_triangles = []
 	biomes = []
-	walls_combiner.queue_free()
+	if walls_combiner != null:
+		walls_combiner.queue_free()
 	_set_rng()
 
 func _set_rng():

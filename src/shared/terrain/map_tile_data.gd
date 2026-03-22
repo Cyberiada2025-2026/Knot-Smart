@@ -1,4 +1,4 @@
-class_name TerrainBlueprint
+class_name MapTileData
 extends Resource
 
 var data: Dictionary[Vector2i, TileInfo] = {}
@@ -16,7 +16,7 @@ func generate() -> void:
 		for z in world_size:
 			var coord = Vector2i(x, z)
 			data[coord] = TileInfo.new()
-	print("TerrainBlueprint: Created blueprint of size ", world_size)
+	print(self.name, ": Created blueprint of size ", world_size)
 
 
 func get_height(coord: Vector2i) -> float:

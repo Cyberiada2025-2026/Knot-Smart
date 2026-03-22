@@ -1,5 +1,5 @@
 @tool
-class_name ChunkGenerator
+class_name ChunkInstancer
 extends Resource
 
 var world_generation_params: WorldGenerationParams
@@ -12,7 +12,7 @@ func _init(gen_params: WorldGenerationParams, disp_params: WorldDisplayParams):
 
 
 func create_chunk_instance(
-	chunk_coord: Vector2i, blueprint: TerrainBlueprint, parent: Node3D
+	chunk_coord: Vector2i, blueprint: MapTileData, parent: Node3D
 ) -> Node3D:
 	world_display_params = parent.world_display_params
 	world_generation_params = parent.world_generation_params
@@ -44,7 +44,7 @@ func create_chunk_instance(
 	return chunk
 
 
-func generate_chunk_mesh(chunk_coord: Vector2i, blueprint: TerrainBlueprint) -> Mesh:
+func generate_chunk_mesh(chunk_coord: Vector2i, blueprint: MapTileData) -> Mesh:
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 

@@ -1,23 +1,24 @@
 @tool
-class_name ChunkManager
+class_name MapRenderer
 extends Node3D
 
 @export var player: Player
 
+@export_group("Dependencies")
+@export var world_generation_params: WorldGenerationParams
+@export var world_display_params: WorldDisplayParams
+
 @export_group("Debug")
 @export var debug_flag: bool
 
-var world_generation_params: WorldGenerationParams
-var world_display_params: WorldDisplayParams
-
 var active_chunks: Dictionary[Vector2i, Node3D] = {}
 
-var active_chunks_start: Vector2i = Vector2i.ZERO
-var active_chunks_end: Vector2i = -Vector2i.ONE
+var active_chunks_start: Vector2i
+var active_chunks_end: Vector2i
 
 var is_active: bool = false
 
-var blueprint: TerrainBlueprint
+var blueprint: MapTileData
 
 
 func clear_inactive_chunks() -> void:
@@ -27,7 +28,7 @@ func clear_inactive_chunks() -> void:
 		child.queue_free()
 
 
-func begin_generation(manager: TerrainManager):
+func begin_generation(manager: GenerationPipeline):
 	blueprint = manager.blueprint
 	world_display_params = manager.world_display_params
 	world_generation_params = manager.world_generation_params
@@ -85,7 +86,7 @@ func update_active_chunks() -> void:
 		for y in range(active_chunks_start.y, active_chunks_end.y):
 			var coord = Vector2i(x, y)
 			if not active_chunks.has(coord):
-				var chunk_generator = ChunkGenerator.new(
+				var chunk_generator = ChunkInstancer.new(
 					world_generation_params, world_display_params
 				)
 				var chunk_node = chunk_generator.create_chunk_instance(coord, blueprint, self)

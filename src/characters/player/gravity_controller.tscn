@@ -5,26 +5,47 @@
 [node name="gravityController" type="Node3D" unique_id=1906056142 node_paths=PackedStringArray("sensors", "gravity_no_floor_timer")]
 script = ExtResource("1_p4xsd")
 sensors = {
+"falling_ui_down": NodePath("FallingSensors/back_sensor"),
+"falling_ui_left": NodePath("FallingSensors/left_sensor"),
+"falling_ui_right": NodePath("FallingSensors/right_sensor"),
+"falling_ui_up": NodePath("FallingSensors/front_sensor"),
 "floor": NodePath("floor_sensor"),
-"ui_down": NodePath("back_sensor"),
-"ui_left": NodePath("left_sensor"),
-"ui_right": NodePath("right_sensor"),
-"ui_up": NodePath("front_sensor")
+"ui_down": NodePath("MoveingSensors/back_sensor"),
+"ui_left": NodePath("MoveingSensors/left_sensor"),
+"ui_right": NodePath("MoveingSensors/right_sensor"),
+"ui_up": NodePath("MoveingSensors/front_sensor")
 }
 gravity_no_floor_timer = NodePath("gravity_no_floor_timer")
 
 [node name="floor_sensor" type="RayCast3D" parent="." unique_id=2120322272]
+target_position = Vector3(0, -4, 0)
 
-[node name="front_sensor" type="RayCast3D" parent="." unique_id=550562788]
+[node name="MoveingSensors" type="Node3D" parent="." unique_id=1952313153]
+
+[node name="front_sensor" type="RayCast3D" parent="MoveingSensors" unique_id=550562788]
 target_position = Vector3(0, 0, -0.5)
 
-[node name="back_sensor" type="RayCast3D" parent="." unique_id=1184644016]
+[node name="back_sensor" type="RayCast3D" parent="MoveingSensors" unique_id=1184644016]
 target_position = Vector3(0, 0, 0.5)
 
-[node name="right_sensor" type="RayCast3D" parent="." unique_id=2031059892]
+[node name="right_sensor" type="RayCast3D" parent="MoveingSensors" unique_id=2031059892]
 target_position = Vector3(0.5, 0, 0)
 
-[node name="left_sensor" type="RayCast3D" parent="." unique_id=561812690]
+[node name="left_sensor" type="RayCast3D" parent="MoveingSensors" unique_id=561812690]
 target_position = Vector3(-0.5, 0, 0)
+
+[node name="FallingSensors" type="Node3D" parent="." unique_id=423864532]
+
+[node name="front_sensor" type="RayCast3D" parent="FallingSensors" unique_id=716612857]
+target_position = Vector3(0, 0, -5)
+
+[node name="back_sensor" type="RayCast3D" parent="FallingSensors" unique_id=1575531594]
+target_position = Vector3(0, 0, 5)
+
+[node name="right_sensor" type="RayCast3D" parent="FallingSensors" unique_id=1263849897]
+target_position = Vector3(5, 0, 0)
+
+[node name="left_sensor" type="RayCast3D" parent="FallingSensors" unique_id=1777555893]
+target_position = Vector3(-5, 0, 0)
 
 [node name="gravity_no_floor_timer" type="Timer" parent="." unique_id=1142889003]

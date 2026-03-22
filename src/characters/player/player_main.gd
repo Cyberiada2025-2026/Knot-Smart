@@ -40,6 +40,14 @@ func _check_new_rotation(_delta: float) -> void:
 				new_ground_normal = player_gravity_controller.get_sensor_normal(direction)
 				getting_on_wall = true
 				break
+			elif (
+				not player_physics.is_on_floor() and
+				player_gravity_controller.get_sensor_normal("falling_"+direction) != null and
+				player_gravity_controller.get_sensor_normal("floor") == null
+			):
+				new_ground_normal = player_gravity_controller.get_sensor_normal("falling_"+direction)
+				getting_on_wall = true
+				break
 		if getting_on_wall:
 			player_gravity_controller.gravity_no_floor_timer.stop()
 		elif player_gravity_controller.get_sensor_normal("floor") != null:

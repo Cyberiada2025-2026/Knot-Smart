@@ -16,10 +16,6 @@ var front: Vector3 = Vector3.FORWARD
 var is_rotating: bool = false
 
 
-func _ready():
-	add_to_group("Player")
-
-
 func _process(delta: float) -> void:
 	##new rotation
 	_check_new_rotation(delta)

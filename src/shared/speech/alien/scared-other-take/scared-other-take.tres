@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="VoiceBank" format=3 uid="uid://cyo6328p7kwfe"]
+
+[ext_resource type="Script" uid="uid://bfsr7bu0ebxo1" path="res://shared/speech/voice_bank.gd" id="1_cfhly"]
+[ext_resource type="AudioStream" uid="uid://usfvopeybfpf" path="res://shared/speech/alien/scared-other-take/zip.wav" id="2_tfj2r"]
+[ext_resource type="AudioStream" uid="uid://dfi5ncvt0uklk" path="res://shared/speech/alien/scared-other-take/ba.wav" id="3_2qhl0"]
+[ext_resource type="AudioStream" uid="uid://bm54xaehectt" path="res://shared/speech/alien/scared-other-take/rim.wav" id="4_btrcc"]
+[ext_resource type="AudioStream" uid="uid://dcrmwyuwdycs2" path="res://shared/speech/alien/scared-other-take/waeb.wav" id="5_qcapl"]
+[ext_resource type="AudioStream" uid="uid://b88jqsx5ky1dl" path="res://shared/speech/alien/scared-other-take/ga.wav" id="6_yrw62"]
+[ext_resource type="AudioStream" uid="uid://eopbqo2sjwnb" path="res://shared/speech/alien/scared-other-take/womp.wav" id="7_k7o53"]
+[ext_resource type="AudioStream" uid="uid://b8sieilciy8gk" path="res://shared/speech/alien/scared-other-take/go.wav" id="8_40lmi"]
+[ext_resource type="AudioStream" uid="uid://bb0hwesbxhilr" path="res://shared/speech/alien/scared-other-take/lip.wav" id="9_gh76i"]
+[ext_resource type="AudioStream" uid="uid://blpsd86awahw3" path="res://shared/speech/alien/scared-other-take/blop.wav" id="10_b6qgu"]
+[ext_resource type="AudioStream" uid="uid://cymfq5v3ihl8k" path="res://shared/speech/alien/scared-other-take/zop.wav" id="11_ea8r1"]
+[ext_resource type="AudioStream" uid="uid://hrxkbrn425nj" path="res://shared/speech/alien/scared-other-take/lle.wav" id="12_857xj"]
+[ext_resource type="AudioStream" uid="uid://dvm02yv2re6xr" path="res://shared/speech/alien/scared-other-take/si.wav" id="13_shmpg"]
+
+[resource]
+script = ExtResource("1_cfhly")
+syllables = Dictionary[String, AudioStream]({
+"ba": ExtResource("3_2qhl0"),
+"blop": ExtResource("10_b6qgu"),
+"ga": ExtResource("6_yrw62"),
+"go": ExtResource("8_40lmi"),
+"lip": ExtResource("9_gh76i"),
+"lle": ExtResource("12_857xj"),
+"rim": ExtResource("4_btrcc"),
+"si": ExtResource("13_shmpg"),
+"waeb": ExtResource("5_qcapl"),
+"womp": ExtResource("7_k7o53"),
+"zip": ExtResource("2_tfj2r"),
+"zop": ExtResource("11_ea8r1")
+})
+metadata/_custom_type_script = "uid://bfsr7bu0ebxo1"

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cxr2xiej7ep2p"]
 
-[ext_resource type="Script" uid="uid://cd4dokcyyfwdv" path="res://shared/post_processing/world_environment.gd" id="1_6axk0"]
+[ext_resource type="Script" path="res://shared/post_processing/world_environment.gd" id="1_6axk0"]
 [ext_resource type="Environment" uid="uid://db3d7co0oblxp" path="res://shared/post_processing/environment.tres" id="1_dq54c"]
 
 [sub_resource type="CompositorEffect" id="CompositorEffect_cdqbm"]

@@ -10,6 +10,7 @@ var rope: Area3D
 var collision_shape: CapsuleShape3D
 
 var node: Array[Node]
+var links: Array[NodeLink]
 var end: Array[RopeEnd]
 var pos: Array[Vector3]
 
@@ -21,6 +22,9 @@ func _init(rope_params: RopeParams, nodes: Array[Node], positions: Array[Vector3
 	self.pos = positions
 
 	for i in range(2):
+		var link = NodeLink.new(self)
+		links.append(link)
+		node[i].add_child(link)
 		var strategy
 		match node[i].get_class():
 			"RigidBody3D":
@@ -64,7 +68,60 @@ func _on_area_entered(body: Node3D):
 func finish():
 	vfx.end()
 	apply_forces()
+	for link in links:
+		link.queue_free()
 	queue_free()
+
+
+func fuse():
+	if node[0] is RigidBody3D and node[1] is RigidBody3D:
+		align_nodes()
+
+		var final_pos = (end[0].global_position + end[1].global_position) / 2
+
+		for i in range(2):
+			var diff = node[i].global_position - end[i].global_position
+			node[i].global_position = final_pos + diff
+
+		var combined = RigidBody3D.new()
+		get_node("../../../").add_child(combined)
+		combined.global_position = final_pos
+
+		for n in node:
+			for child in n.get_children():
+				if child is NodeLink and child.linked is Rope:
+					child.linked.finish()
+				else:
+					child.reparent(combined)
+			combined.mass += n.mass
+			n.queue_free()
+
+		finish()
+
+
+func align_nodes():
+	var final_pos = (end[0].global_position + end[1].global_position) / 2
+
+	for i in range(2):
+		var alignment_transfer = Node3D.new()
+
+		# Align dummy node's forward axis to the rope end
+		node[i].get_parent().add_child(alignment_transfer)
+		alignment_transfer.global_position = node[i].global_position
+		alignment_transfer.look_at(end[i].global_position)
+
+		# Change rope endpoints' parents to dummy *while keeping global transform*
+		# Now each reparented node is aligned with the dummy node's forward axis
+		node[i].reparent(alignment_transfer)
+		end[i].reparent(alignment_transfer)
+
+		# Look at the rope midpoint. This also reorients the child nodes.
+		alignment_transfer.look_at(final_pos)
+
+		# Restore previous tree relationship while keeping the new global transform.
+		node[i].reparent(alignment_transfer.get_parent())
+		end[i].reparent(self)
+		alignment_transfer.queue_free()
 
 
 func update_rope():
@@ -90,7 +147,7 @@ func _ready() -> void:
 
 func apply_forces() -> void:
 	for i in range(2):
-		end[i].strategy.release_force(end[i], node[i])
+		end[i].strategy.release_force(node[i])
 
 
 func _physics_process(_delta: float) -> void:

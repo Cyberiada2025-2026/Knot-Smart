@@ -8,9 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b0gb5qnl30ap5" path="res://characters/player/gravity_controller.tscn" id="4_ixbpm"]
 [ext_resource type="Script" uid="uid://bwbgvbw8rs0aa" path="res://shared/vfx/player/vfx_player_sequence.gd" id="6_3t07l"]
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="6_c6leb"]
-[ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="7_dirf7"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="7_on558"]
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
+[ext_resource type="Script" uid="uid://bkffe8kvogeke" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hysn5"]
 radius = 0.25
@@ -74,11 +74,13 @@ metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 script = ExtResource("6_c6leb")
 debug_log = true
 
-[node name="DeathComponent" type="Node" parent="." unique_id=1137866372]
-script = ExtResource("7_dirf7")
-metadata/_custom_type_script = "uid://dy0ohauxfd8go"
+[node name="PlayerRespawnComponent" type="Node" parent="." unique_id=15480088 node_paths=PackedStringArray("health_component")]
+script = ExtResource("11_3t07l")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://bkffe8kvogeke"
 
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]
 [connection signal="health_decreased" from="HealthComponent" to="PlayerPhysics/VfxPlayerSequence" method="play"]
-[connection signal="health_depleted" from="HealthComponent" to="DeathComponent" method="_on_death"]
+
+[editable path="PlayerPhysics"]

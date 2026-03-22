@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b7x4eyygbdby5"]
 
-[ext_resource type="Script" uid="uid://cp4oulw7o6dy7" path="res://ui/win_screen/win_screen.gd" id="1_pge7v"]
+[ext_resource type="Script" uid="uid://cffaye7bhetfe" path="res://ui/win/win.gd" id="1_pge7v"]
 
 [node name="WinScreen" type="Control" unique_id=492886027]
 process_mode = 3

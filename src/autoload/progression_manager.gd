@@ -13,4 +13,4 @@ func record_death():
 
 
 func game_over():
-	SceneManager.goto_scene("res://ui/game_over/game_over.tscn")
+	SceneManager.goto_scene("uid://d0kdyvkq8gmfg")

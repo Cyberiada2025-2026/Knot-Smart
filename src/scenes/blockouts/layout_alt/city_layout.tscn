@@ -555,6 +555,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0.5, -51)
 [node name="EnemySpawnManager" type="Node3D" parent="." unique_id=536600417 node_paths=PackedStringArray("nav_region", "day_night_cycle", "enemy_spawn_node")]
 script = ExtResource("13_mp7ty")
 debug_log = true
+min_spawn_distance = 30.0
+max_spawn_distance = 60.0
+despawn_distance = 80.0
 nav_region = NodePath("../NavigationRegion3D")
 day_night_cycle = NodePath("../DayNightCycle")
 enemy_spawn_node = NodePath("../Enemies")

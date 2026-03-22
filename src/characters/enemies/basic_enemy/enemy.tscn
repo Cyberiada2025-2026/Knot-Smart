@@ -11,6 +11,10 @@
 [ext_resource type="Script" uid="uid://d3hunwyfk54p2" path="res://shared/beehave/action/set_target.gd" id="6_r2ijf"]
 [ext_resource type="Script" path="res://shared/beehave/condition/has_target.gd" id="7_3ad5t"]
 [ext_resource type="Script" uid="uid://qxwvejkcr6c" path="res://shared/beehave/condition/has_reached_target.gd" id="8_ejf3g"]
+[ext_resource type="Script" uid="uid://nbj8xk6nqyb6" path="res://shared/beehave/action/toggle_movement.gd" id="9_2cllp"]
+[ext_resource type="Script" uid="uid://cu3wfv8wcbr7x" path="res://shared/beehave/action/attack.gd" id="9_ejf3g"]
+[ext_resource type="Script" uid="uid://bd3201sehmgdt" path="res://shared/beehave/action/destroy_target.gd" id="14_3ad5t"]
+[ext_resource type="Script" uid="uid://cfbfg51ucp1a2" path="res://shared/journal/object_description.gd" id="17_2vyja"]
 [ext_resource type="Script" path="res://shared/beehave/action/set_movement.gd" id="9_2cllp"]
 [ext_resource type="Script" uid="uid://dvnmhlldp23hg" path="res://addons/beehave/nodes/composites/selector_random.gd" id="10_fcxfv"]
 [ext_resource type="Script" uid="uid://dcojdhvj8qcw0" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="11_3myrp"]
@@ -384,6 +388,15 @@ collide_with_areas = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ShapeCast3D" unique_id=1954915395]
 visible = false
 mesh = SubResource("SphereMesh_ejf3g")
+
+[node name="ObjectDescription" type="Node3D" parent="." unique_id=792436402 node_paths=PackedStringArray("model")]
+script = ExtResource("17_2vyja")
+model = NodePath("../MeshInstance3D")
+object_name = "Enemy"
+description = "This is an enemy"
+page = 3
+object_scale = 0.3
+metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
 
 [node name="HitBox" type="Area3D" parent="." unique_id=332146229 node_paths=PackedStringArray("health_component")]
 collision_layer = 0

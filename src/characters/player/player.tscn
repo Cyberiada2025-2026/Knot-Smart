@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://by54s7xnmwcc1" path="res://characters/player/player_main.gd" id="1_4ntmi"]
 [ext_resource type="PackedScene" uid="uid://bd54neo0vnuug" path="res://characters/player/player_physics.tscn" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
+[ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="4_5dc8e"]
+[ext_resource type="PackedScene" uid="uid://cjjffdo72xk1u" path="res://shared/journal/journal.tscn" id="5_ixbpm"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
 [ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_5dc8e"]
 [ext_resource type="Script" uid="uid://byo26dev45wl4" path="res://characters/player/player_detection/footstapes_maker.gd" id="4_ixbpm"]
@@ -55,6 +57,7 @@ top_level = true
 script = ExtResource("7_rpf03")
 metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 
+[node name="Journal" parent="." unique_id=9215286 instance=ExtResource("5_ixbpm")]
 [node name="HealthComponent" type="Node" parent="." unique_id=1622957288]
 script = ExtResource("6_c6leb")
 debug_log = true

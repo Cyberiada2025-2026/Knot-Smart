@@ -20,10 +20,6 @@ size = Vector3(1000, 1, 1000)
 script = ExtResource("1_rosry")
 generator_scene = ExtResource("3_oohvf")
 
-[node name="camera" type="Camera3D" parent="." unique_id=1523006046]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 183.2528, 0)
-current = true
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=836375888]
 transform = Transform3D(1, 0, 0, 0, 0.013333956, 0.9999111, 0, -0.9999111, 0.013333956, 0, 134.36926, 0)
 light_energy = 16.0

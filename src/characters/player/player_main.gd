@@ -31,25 +31,20 @@ func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
 ## set new rotation values
 func _check_new_rotation(_delta: float) -> void:
 	if not is_rotating:
-		if Input.is_action_pressed("ui_up") and player_gravity_controller.get_front_normal() != null:
-			player_gravity_controller.reset_gravity_no_floor_timer()
-			new_ground_normal = player_gravity_controller.get_front_normal()
-		elif Input.is_action_pressed("ui_down") and player_gravity_controller.get_back_normal() != null:
-			player_gravity_controller.reset_gravity_no_floor_timer()
-			new_ground_normal = player_gravity_controller.get_back_normal()
-		elif Input.is_action_pressed("ui_right") and player_gravity_controller.get_right_normal() != null:
-			player_gravity_controller.reset_gravity_no_floor_timer()
-			new_ground_normal = player_gravity_controller.get_right_normal()
-		elif Input.is_action_pressed("ui_left") and player_gravity_controller.get_left_normal() != null:
-			player_gravity_controller.reset_gravity_no_floor_timer()
-			new_ground_normal = player_gravity_controller.get_left_normal()
-		elif player_physics.is_on_floor() and player_gravity_controller.get_floor_normal() != null:
-			player_gravity_controller.reset_gravity_no_floor_timer()
+		for direction in ["ui_up", "ui_down", "ui_right", "ui_left"]:
+			if (
+				Input.is_action_pressed(direction) and
+				player_gravity_controller.get_sensor_normal(direction) != null
+			):
+				player_gravity_controller.gravity_no_floor_timer.stop()
+				player_gravity_controller.get_sensor_normal(direction)
+		if player_gravity_controller.get_floor_normal() != null:
+			player_gravity_controller.gravity_no_floor_timer.stop()
 			new_ground_normal = player_gravity_controller.get_floor_normal()
-		elif player_gravity_controller.gravity_no_floor_timer_is_stopped():
-			player_gravity_controller.start_gravity_no_floor_timer()
+		elif player_gravity_controller.gravity_no_floor_timer.is_stopped():
+			player_gravity_controller.gravity_no_floor_timer.start()
 
-func _on_gravity_controller_gravity_no_floor_timer_timeout() -> void:
+func _on_gravity_no_floor_timer_timeout() -> void:
 	new_ground_normal = Vector3.UP
 
 

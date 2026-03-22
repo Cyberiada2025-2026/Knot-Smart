@@ -2,13 +2,15 @@
 
 [ext_resource type="Script" uid="uid://b3dom76emqvnu" path="res://characters/player/gravity_controller.gd" id="1_p4xsd"]
 
-[node name="gravityController" type="Node3D" unique_id=1906056142 node_paths=PackedStringArray("floor_sensor", "front_sensor", "back_sensor", "right_sensor", "left_sensor", "gravity_no_floor_timer")]
+[node name="gravityController" type="Node3D" unique_id=1906056142 node_paths=PackedStringArray("sensors", "gravity_no_floor_timer")]
 script = ExtResource("1_p4xsd")
-floor_sensor = NodePath("floor_sensor")
-front_sensor = NodePath("front_sensor")
-back_sensor = NodePath("back_sensor")
-right_sensor = NodePath("right_sensor")
-left_sensor = NodePath("left_sensor")
+sensors = {
+"floor": NodePath("floor_sensor"),
+"ui_down": NodePath("back_sensor"),
+"ui_left": NodePath("left_sensor"),
+"ui_right": NodePath("right_sensor"),
+"ui_up": NodePath("front_sensor")
+}
 gravity_no_floor_timer = NodePath("gravity_no_floor_timer")
 
 [node name="floor_sensor" type="RayCast3D" parent="." unique_id=2120322272]
@@ -26,5 +28,3 @@ target_position = Vector3(0.5, 0, 0)
 target_position = Vector3(-0.5, 0, 0)
 
 [node name="gravity_no_floor_timer" type="Timer" parent="." unique_id=1142889003]
-
-[connection signal="timeout" from="gravity_no_floor_timer" to="." method="_on_gravity_no_floor_timer_timeout"]

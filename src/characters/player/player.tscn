@@ -28,8 +28,19 @@ player = NodePath("..")
 [node name="PlayerCamera" parent="PlayerPhysics" unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
 player = NodePath("../..")
 
-[node name="gravityController" parent="PlayerPhysics" unique_id=1906056142 node_paths=PackedStringArray("player") instance=ExtResource("4_ixbpm")]
+[node name="gravityController" parent="PlayerPhysics" unique_id=1906056142 node_paths=PackedStringArray("player", "sensors") instance=ExtResource("4_ixbpm")]
 player = NodePath("../..")
+sensors = {
+"back": NodePath("back_sensor"),
+"floor": NodePath("floor_sensor"),
+"front": NodePath("front_sensor"),
+"left": NodePath("left_sensor"),
+"right": NodePath("right_sensor"),
+"ui_down": NodePath("back_sensor"),
+"ui_left": NodePath("left_sensor"),
+"ui_right": NodePath("right_sensor"),
+"ui_up": NodePath("front_sensor")
+}
 
 [node name="PlayerDecoy" parent="PlayerPhysics" unique_id=2037856166 instance=ExtResource("4_6dc8e")]
 
@@ -68,7 +79,9 @@ script = ExtResource("7_dirf7")
 metadata/_custom_type_script = "uid://dy0ohauxfd8go"
 
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
-[connection signal="gravity_no_floor_timer_timeout" from="PlayerPhysics/gravityController" to="." method="_on_gravity_controller_gravity_no_floor_timer_timeout"]
+[connection signal="timeout" from="PlayerPhysics/gravityController/gravity_no_floor_timer" to="." method="_on_gravity_no_floor_timer_timeout"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]
 [connection signal="health_decreased" from="HealthComponent" to="PlayerPhysics/VfxPlayerSequence" method="play"]
 [connection signal="health_depleted" from="HealthComponent" to="DeathComponent" method="_on_death"]
+
+[editable path="PlayerPhysics/gravityController"]

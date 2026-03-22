@@ -24,6 +24,9 @@ size = Vector3(0.5, 6, 4)
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_hudno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
 
+[node name="HealthComponent" parent="Player" index="3" unique_id=1622957288]
+debug_log = false
+
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("2_qqkcj")]
 
 [node name="Enemy" parent="." unique_id=768992349 instance=ExtResource("3_66nb8")]
@@ -70,3 +73,6 @@ mesh = SubResource("BoxMesh_s7cml")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall" unique_id=618632055]
 shape = SubResource("BoxShape3D_2nnky")
+
+[editable path="Player"]
+[editable path="Player/PlayerPhysics"]

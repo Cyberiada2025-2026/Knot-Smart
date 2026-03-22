@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var speed := 5.0
 @export var idle_wander_distance := 20
+@export var push_force: float = 1.0
 
 var can_move := false
 var world: World3D
@@ -75,3 +76,11 @@ func _physics_process(_delta: float) -> void:
 		set_velocity_to_target()
 		rotate_with_velocity()
 		move_and_slide()
+		push_rigid_bodies()
+
+
+func push_rigid_bodies() -> void:
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody3D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)

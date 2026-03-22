@@ -479,13 +479,40 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0.5, 31.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 0, 33.5)
 
 [node name="RigidBody3D23" parent="Projectiles" unique_id=1165587652 instance=ExtResource("10_l7e7e")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 24, 1, -43)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 23, 1, -43)
 
 [node name="RigidBody3D24" parent="Projectiles" unique_id=1141658564 instance=ExtResource("10_l7e7e")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 24, 1, -40)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 23, 1, -40)
 
 [node name="RigidBody3D25" parent="Projectiles" unique_id=1758236923 instance=ExtResource("10_l7e7e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 1, -34)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1, -34)
+
+[node name="RigidBody3D26" parent="Projectiles" unique_id=1857179233 instance=ExtResource("10_l7e7e")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.5, 1, -67)
+
+[node name="RigidBody3D27" parent="Projectiles" unique_id=1697466474 instance=ExtResource("10_l7e7e")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.5, 1, -64)
+
+[node name="RigidBody3D28" parent="Projectiles" unique_id=680705421 instance=ExtResource("10_l7e7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 1, -58)
+
+[node name="RigidBody3D29" parent="Projectiles" unique_id=1031991405 instance=ExtResource("11_i7gfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, 0.5, 33.5)
+
+[node name="RigidBody3D30" parent="Projectiles" unique_id=1307418328 instance=ExtResource("11_i7gfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0.5, 30.5)
+
+[node name="RigidBody3D32" parent="Projectiles" unique_id=1502499865 instance=ExtResource("10_l7e7e")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -64, 1, 22.5)
+
+[node name="RigidBody3D33" parent="Projectiles" unique_id=2082416520 instance=ExtResource("10_l7e7e")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -61, 1, 22.5)
+
+[node name="RigidBody3D31" parent="Projectiles" unique_id=873772825 instance=ExtResource("10_l7e7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.5, 1, -139)
+
+[node name="RigidBody3D34" parent="Projectiles" unique_id=1968060440 instance=ExtResource("10_l7e7e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63.5, 1, -136)
 
 [node name="EnemySpawnManager" type="Node3D" parent="." unique_id=536600417 node_paths=PackedStringArray("nav_region", "day_night_cycle", "enemy_spawn_node")]
 script = ExtResource("13_mp7ty")
@@ -537,3 +564,9 @@ duration = 120.0
 color_lut = ExtResource("6_4ehc0")
 is_night = true
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="RigidBody3D2" parent="." unique_id=1855370505 instance=ExtResource("11_i7gfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0.5, -53)
+
+[node name="RigidBody3D3" parent="." unique_id=1024941042 instance=ExtResource("11_i7gfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 0.5, -51)

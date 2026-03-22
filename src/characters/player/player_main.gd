@@ -18,7 +18,6 @@ var gravity_reset_timer: float = 0.0
 var is_rotating: bool = false
 
 
-
 func _process(delta: float) -> void:
 	##new rotation
 	_check_new_rotation(delta)

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d4lwobgm85sqb"]
+
+[ext_resource type="PackedScene" uid="uid://br3j2upjihbvs" path="res://shared/roads/assets/roads_merged.glb" id="1_un6v5"]
+
+[node name="Node3D" type="Node3D" unique_id=1504954648]
+
+[node name="roads_merged" parent="." unique_id=580430985 instance=ExtResource("1_un6v5")]

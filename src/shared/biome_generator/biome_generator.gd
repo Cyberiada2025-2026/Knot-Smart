@@ -53,15 +53,29 @@ var walls_combiner: WallsCombiner
 var rng: RandomNumberGeneratorUpgraded
 
 func _ready() -> void:
-	rng = RandomNumberGenerator.new()
-	if custom_seed == "":
-		rng.randomize()
-	else:
-		rng.seed = custom_seed.hash()
+	_set_rng()
 
 func show_debug() -> void:
 	_show_biomes()
 
+func reset() -> void:
+	points = {}
+	lines = []
+	vertical_lines = []
+	horizontal_lines = []
+	middle_lines = []
+	triangles = []
+	free_triangles = []
+	biomes = []
+	walls_combiner.queue_free()
+	_set_rng()
+
+func _set_rng():
+	rng = RandomNumberGeneratorUpgraded.new()
+	if custom_seed == "":
+		rng.randomize()
+	else:
+		rng.seed = custom_seed.hash()
 
 func generate() -> void:
 	_create_point_grid()

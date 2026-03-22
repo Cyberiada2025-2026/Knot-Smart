@@ -20,6 +20,7 @@ func create_wall(start: Vector2, end: Vector2) -> void:
 func _make_simple_wall() -> void:
 	var box: CSGBox3D = simple_wall_scene.instantiate()
 	self.add_child(box)
+	box.owner = self.owner
 	box.global_position = (start_point + end_point) / 2
 	box.rotate_y(get_wall_angle())
 	box.size.x = start_point.distance_to(end_point)

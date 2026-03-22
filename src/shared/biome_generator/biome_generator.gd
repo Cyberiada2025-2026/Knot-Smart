@@ -67,8 +67,8 @@ func reset() -> void:
 	triangles = []
 	free_triangles = []
 	biomes = []
-	if walls_combiner != null:
-		walls_combiner.queue_free()
+	if get_child(0) != null:
+		get_child(0).queue_free()
 	_set_rng()
 
 func _set_rng():
@@ -356,10 +356,12 @@ func _add_entrance_on_line(line: BiomeLine) -> void:
 func create_walls() -> void:
 	walls_combiner = WallsCombiner.new()
 	self.add_child(walls_combiner)
+	walls_combiner.owner = self
 	for line in lines:
 		if not line.biomes.is_empty():
 			var wall: BiomeWall = wall_scene.instantiate()
 			walls_combiner.add_child(wall)
+			wall.owner = self
 			wall.create_wall(line.start_point, line.end_point)
 			for biome in line.biomes:
 				wall.add_biome(biome)

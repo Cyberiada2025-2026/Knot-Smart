@@ -16,9 +16,9 @@ size = Vector3(1000, 0.2, 1000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rosry"]
 size = Vector3(1000, 1, 1000)
 
-[node name="BiomeGeneratorTest" type="Node3D" unique_id=486918440]
+[node name="BiomeGeneratorTest" type="Node3D" unique_id=486918440 node_paths=PackedStringArray("generator")]
 script = ExtResource("1_rosry")
-generator_scene = ExtResource("3_oohvf")
+generator = NodePath("BiomeGenerator")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=836375888]
 transform = Transform3D(1, 0, 0, 0, 0.013333956, 0.9999111, 0, -0.9999111, 0.013333956, 0, 134.36926, 0)
@@ -43,3 +43,5 @@ shape = SubResource("BoxShape3D_rosry")
 
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_qrj8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6472224, 5.529564)
+
+[node name="BiomeGenerator" parent="." unique_id=301086409 instance=ExtResource("3_oohvf")]

@@ -1,7 +1,9 @@
 @tool
 extends ActionLeaf
 
+@export var speed: float
+
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	actor.attack()
+	actor.speed = speed
 	return SUCCESS

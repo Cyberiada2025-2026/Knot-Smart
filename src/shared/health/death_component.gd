@@ -1,15 +1,8 @@
 class_name DeathComponent
 extends Node
-## Despawns parent node on health_depleted
-
-@export var health_component: HealthComponent
+## Despawns parent node when _on_death is called.
 
 
-func _ready() -> void:
-	health_component.health_depleted.connect(_on_health_depleted)
-
-
-func _on_health_depleted() -> void:
+func _on_death() -> void:
 	var parent = get_parent()
-	print(parent, " killed")
 	parent.queue_free()

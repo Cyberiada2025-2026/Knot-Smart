@@ -1,9 +1,10 @@
 @tool
+class_name SetMovement
 extends ActionLeaf
 
-@export var target_group: StringName
+@export var can_move: bool
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	actor.destroy_target(target_group)
+	actor.can_move = can_move
 	return SUCCESS

@@ -13,6 +13,10 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_rlwjg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
+[node name="HealthComponent" parent="Player" index="3" unique_id=1622957288]
+max_health = 1000.0
+health = 1000.0
+
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("3_52hlj")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1306290851]
@@ -25,3 +29,6 @@ size = Vector3(20, 0.5, 20)
 
 [node name="Enemy" parent="." unique_id=768992349 instance=ExtResource("3_4rvfw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
+
+[editable path="Player"]
+[editable path="Player/PlayerPhysics"]

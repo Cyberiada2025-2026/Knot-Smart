@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://crgmysckc65sm"]
 
+[ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="2_jjbpd"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uruy"]
 transparency = 1
 albedo_color = Color(0.89932597, 0.31741896, 0, 1)
@@ -8,7 +10,7 @@ albedo_color = Color(0.89932597, 0.31741896, 0, 1)
 material = SubResource("StandardMaterial3D_8uruy")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_hawlq"]
-radius = 4.0
+radius = 10.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onkk8"]
 transparency = 1
@@ -16,19 +18,32 @@ albedo_color = Color(0.8666667, 0.35686275, 0, 0.2901961)
 
 [sub_resource type="SphereMesh" id="SphereMesh_xmuq3"]
 material = SubResource("StandardMaterial3D_onkk8")
-radius = 4.0
-height = 8.0
+radius = 3.5
+height = 7.0
 
-[node name="SomethingInteresting" type="Node3D" unique_id=367221309 groups=["Interest"]]
+[node name="SomethingInteresting" type="Node3D" unique_id=1613719716 groups=["Interest"]]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1871982141]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2075805956]
+visible = false
 mesh = SubResource("SphereMesh_hawlq")
 
-[node name="Area3D" type="Area3D" parent="." unique_id=1415726710]
+[node name="Area3D" type="Area3D" parent="." unique_id=1511160939]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=2086716853]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=785272909]
 shape = SubResource("SphereShape3D_hawlq")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=234890905]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=1483162163]
+visible = false
 mesh = SubResource("SphereMesh_xmuq3")
 skeleton = NodePath("../../MeshInstance3D")
+
+[node name="Timer" type="Timer" parent="." unique_id=2021403061]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="DeathComponent" type="Node" parent="." unique_id=1879895356]
+script = ExtResource("2_jjbpd")
+metadata/_custom_type_script = "uid://dy0ohauxfd8go"
+
+[connection signal="timeout" from="Timer" to="DeathComponent" method="_on_death"]

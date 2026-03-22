@@ -43,6 +43,7 @@ enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
 day_night_cycle="Group containing only the DayNightCycle node if it exists."
 unpausable="If node is added to group, you can't make pause menu pop up"
+Player=""
 
 [importer_defaults]
 

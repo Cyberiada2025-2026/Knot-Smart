@@ -4,15 +4,18 @@ extends Resource
 
 var world_generation_params: WorldGenerationParams
 var world_display_params: WorldDisplayParams
+var blueprint: MapTileData
 
 
 func _init(gen_params: WorldGenerationParams, disp_params: WorldDisplayParams):
 	world_generation_params = gen_params
 	world_display_params = disp_params
 
+func create_map_instance() -> :
+	
 
 func create_chunk_instance(
-	chunk_coord: Vector2i, blueprint: MapTileData, parent: Node3D
+	chunk_coord: Vector2i, parent: Node3D
 ) -> Node3D:
 	world_display_params = parent.world_display_params
 	world_generation_params = parent.world_generation_params
@@ -35,7 +38,7 @@ func create_chunk_instance(
 	chunk.add_child(chunk_mesh_instance)
 	chunk_mesh_instance.owner = parent.get_tree().edited_scene_root
 
-	chunk_mesh_instance.mesh = generate_chunk_mesh(chunk_coord, blueprint)
+	chunk_mesh_instance.mesh = generate_chunk_mesh(chunk_coord)
 
 	if world_display_params.terrain_material:
 		chunk_mesh_instance.material_override = world_display_params.terrain_material
@@ -44,7 +47,7 @@ func create_chunk_instance(
 	return chunk
 
 
-func generate_chunk_mesh(chunk_coord: Vector2i, blueprint: MapTileData) -> Mesh:
+func generate_chunk_mesh(chunk_coord: Vector2i) -> Mesh:
 	var st = SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 

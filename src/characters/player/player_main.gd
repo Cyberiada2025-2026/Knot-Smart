@@ -31,16 +31,20 @@ func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
 ## set new rotation values
 func _check_new_rotation(_delta: float) -> void:
 	if not is_rotating:
+		var getting_on_wall: bool = false
 		for direction in ["ui_up", "ui_down", "ui_right", "ui_left"]:
 			if (
 				Input.is_action_pressed(direction) and
 				player_gravity_controller.get_sensor_normal(direction) != null
 			):
-				player_gravity_controller.gravity_no_floor_timer.stop()
-				player_gravity_controller.get_sensor_normal(direction)
-		if player_gravity_controller.get_floor_normal() != null:
+				new_ground_normal = player_gravity_controller.get_sensor_normal(direction)
+				getting_on_wall = true
+				break
+		if getting_on_wall:
 			player_gravity_controller.gravity_no_floor_timer.stop()
-			new_ground_normal = player_gravity_controller.get_floor_normal()
+		elif player_gravity_controller.get_sensor_normal("floor") != null:
+			player_gravity_controller.gravity_no_floor_timer.stop()
+			new_ground_normal = player_gravity_controller.get_sensor_normal("floor")
 		elif player_gravity_controller.gravity_no_floor_timer.is_stopped():
 			player_gravity_controller.gravity_no_floor_timer.start()
 
@@ -63,7 +67,12 @@ func _update_to_new_rotation(delta: float) -> void:
 		)
 		var angle: float
 		if ground_normal == moved_ground_normal:
-			angle = delta * gravity_rotation_speed_modifier * rotation_speed * 10
+			angle = ground_normal.angle_to(
+				ground_normal.move_toward(
+					front,
+					delta * gravity_rotation_speed_modifier * rotation_speed
+				)
+			)
 			front = front.rotated(ground_normal.cross(front).normalized(), angle)
 			ground_normal = ground_normal.rotated(ground_normal.cross(front).normalized(), angle)
 		else:

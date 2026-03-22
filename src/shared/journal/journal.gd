@@ -8,7 +8,7 @@ extends Node
 var prev_mouse_mode
 var buttons: Control
 var page_visible_index: int
-var page_dict:Dictionary[int, Node]
+var page_dict: Dictionary[int, Node]
 @onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
 
 
@@ -83,7 +83,7 @@ func _process(_delta: float) -> void:
 
 	for button_no in range(buttons.get_child_count()):
 		if buttons.get_child(button_no).visible == false:
-			if not (page_dict[button_no]. get_children().is_empty()):
+			if not (page_dict[button_no].get_children().is_empty()):
 				buttons.get_child(button_no).visible = true
 
 

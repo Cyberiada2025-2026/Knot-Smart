@@ -21,6 +21,7 @@ extends Node3D
 ##Angle in radians that object should rotate by.
 @export var rotation_angle: float = 0.1
 
+
 func _init() -> void:
 	var poi: PointOfInterest = PointOfInterest.new()
 	poi.noticed.connect(on_object_notice)

@@ -48,7 +48,7 @@ func _check_new_rotation(_delta: float) -> void:
 		elif gravity_no_floor_timer.is_stopped():
 			gravity_no_floor_timer.start()
 
-func check_direction_senseors(floor_normal: Vector3) -> bool:
+func check_direction_senseors(floor_normal) -> bool:
 	for direction in ["ui_up", "ui_down", "ui_right", "ui_left"]:
 		var sensor_normal = get_sensor_normal(direction)
 		if (

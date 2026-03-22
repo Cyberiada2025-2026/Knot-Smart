@@ -8,13 +8,11 @@ extends Node3D
 @export_category("VARIABLES")
 @export var rotation_speed: float = 1.0
 @export var gravity_rotation_speed_modifier: float = 5.0
-@export var gravity_reset_time: float = 1.0
 @export var ground_normal_sensitivity: float = 0.0001
 
 var ground_normal: Vector3 = Vector3.UP
 var new_ground_normal: Vector3 = Vector3.UP
 var front: Vector3 = Vector3.FORWARD
-var gravity_reset_timer: float = 0.0
 var is_rotating: bool = false
 
 
@@ -37,17 +35,26 @@ func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
 ## set new rotation values
 func _check_new_rotation(delta: float) -> void:
 	if not is_rotating:
-		if player_gravity_controller.get_front_normal() != null:
-			gravity_reset_timer = 0.0
+		if Input.is_action_pressed("ui_up") and player_gravity_controller.get_front_normal() != null:
+			player_gravity_controller.reset_gravity_no_floor_timer()
 			new_ground_normal = player_gravity_controller.get_front_normal()
+		elif Input.is_action_pressed("ui_down") and player_gravity_controller.get_back_normal() != null:
+			player_gravity_controller.reset_gravity_no_floor_timer()
+			new_ground_normal = player_gravity_controller.get_back_normal()
+		elif Input.is_action_pressed("ui_right") and player_gravity_controller.get_right_normal() != null:
+			player_gravity_controller.reset_gravity_no_floor_timer()
+			new_ground_normal = player_gravity_controller.get_right_normal()
+		elif Input.is_action_pressed("ui_left") and player_gravity_controller.get_left_normal() != null:
+			player_gravity_controller.reset_gravity_no_floor_timer()
+			new_ground_normal = player_gravity_controller.get_left_normal()
 		elif player_physics.is_on_floor() and player_gravity_controller.get_floor_normal() != null:
-			gravity_reset_timer = 0.0
+			player_gravity_controller.reset_gravity_no_floor_timer()
 			new_ground_normal = player_gravity_controller.get_floor_normal()
-		else:
-			gravity_reset_timer += delta
+		elif player_gravity_controller.gravity_no_floor_timer_is_stopped():
+			player_gravity_controller.start_gravity_no_floor_timer()
 
-	if gravity_reset_timer >= gravity_reset_time:
-		new_ground_normal = Vector3.UP
+func _on_gravity_controller_gravity_no_floor_timer_timeout() -> void:
+	new_ground_normal = Vector3.UP
 
 
 ## update rotation values

@@ -53,3 +53,4 @@ health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://dy0ohauxfd8go"
 
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
+[connection signal="gravity_no_floor_timer_timeout" from="PlayerPhysics/gravityController" to="." method="_on_gravity_controller_gravity_no_floor_timer_timeout"]

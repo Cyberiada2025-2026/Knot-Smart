@@ -1,7 +1,7 @@
 [gd_resource type="MeshLibrary" format=4 uid="uid://bs65acvjybasw"]
 
-[ext_resource type="Material" path="res://shared/buildings/assets/building_floor_material.tres" id="1_mbvi7"]
-[ext_resource type="Material" path="res://shared/buildings/assets/building_base_material.tres" id="3_6pj4p"]
+[ext_resource type="Material" uid="uid://p23eoepvxe0s" path="res://shared/buildings/assets/building_floor_material.tres" id="1_mbvi7"]
+[ext_resource type="Material" uid="uid://bjkeopeq3ehmb" path="res://shared/buildings/assets/building_base_material.tres" id="3_6pj4p"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_1etr1"]
 _surfaces = [{

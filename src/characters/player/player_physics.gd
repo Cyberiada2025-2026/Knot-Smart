@@ -1,12 +1,13 @@
 class_name PlayerPhysics
 extends CharacterBody3D
 
+@export var player: Player
 @export var speed = 500.0
 @export var slowing_speed = 500.0
 @export var jump_strength = 9.5
 @export var gravity_strength = 19.0
 
-var player: Player
+@export var player_model: Node3D
 
 
 func _ready() -> void:
@@ -25,20 +26,20 @@ func _handle_movement(delta: float) -> void:
 
 
 func _convert_to_flat() -> void:
-	var right: Vector3 = player.front.rotated(player.ground_normal, PI / 2)
+	var right: Vector3 = player.get_front().rotated(player.get_normal(), PI / 2)
 	var real_velocity = velocity
 	velocity.x = real_velocity.dot(right)
-	velocity.y = real_velocity.dot(player.ground_normal)
-	velocity.z = real_velocity.dot(player.front)
+	velocity.y = real_velocity.dot(player.get_normal())
+	velocity.z = real_velocity.dot(player.get_front())
 
 
 func _convert_to_real() -> void:
-	var right: Vector3 = player.front.rotated(player.ground_normal, PI / 2)
+	var right: Vector3 = player.get_front().rotated(player.get_normal(), PI / 2)
 	var flat_velocity = velocity
 	velocity = (
 		(flat_velocity.x * right)
-		+ (flat_velocity.y * player.ground_normal)
-		+ (flat_velocity.z * player.front)
+		+ (flat_velocity.y * player.get_normal())
+		+ (flat_velocity.z * player.get_front())
 	)
 
 

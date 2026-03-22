@@ -67,20 +67,20 @@ start = Vector3i(-4, 0, 10)
 size = Vector3i(9, 5, 6)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_65896" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=218442446]
-height = 30.0
+[node name="@NavigationObstacle3D@59150" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=2025937]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 10, 10, 0, 10, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_65897" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=434361748]
-height = 30.0
+[node name="@NavigationObstacle3D@59151" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=863338]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 10, 0, 0, 20, 8, 0, 20, 8, 0, 10)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_65898" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=251686606]
-height = 30.0
+[node name="@NavigationObstacle3D@59152" type="NavigationObstacle3D" parent="BuildingGenerator" unique_id=1186466480]
+height = 100.0
 vertices = PackedVector3Array(-8, 0, 20, -8, 0, 32, 10, 0, 32, 10, 0, 20)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -126,20 +126,20 @@ start = Vector3i(-4, 0, 10)
 size = Vector3i(9, 5, 6)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_65896" type="NavigationObstacle3D" parent="BuildingGenerator13" unique_id=1636444829]
-height = 30.0
+[node name="@NavigationObstacle3D@59153" type="NavigationObstacle3D" parent="BuildingGenerator13" unique_id=771185122]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 10, 10, 0, 10, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_65897" type="NavigationObstacle3D" parent="BuildingGenerator13" unique_id=1351765844]
-height = 30.0
+[node name="@NavigationObstacle3D@59154" type="NavigationObstacle3D" parent="BuildingGenerator13" unique_id=1322410137]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 10, 0, 0, 20, 8, 0, 20, 8, 0, 10)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_65898" type="NavigationObstacle3D" parent="BuildingGenerator13" unique_id=1574329057]
-height = 30.0
+[node name="@NavigationObstacle3D@59155" type="NavigationObstacle3D" parent="BuildingGenerator13" unique_id=2137001574]
+height = 100.0
 vertices = PackedVector3Array(-8, 0, 20, -8, 0, 32, 10, 0, 32, 10, 0, 20)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -185,20 +185,20 @@ start = Vector3i(-11, 0, 0)
 size = Vector3i(11, 3, 7)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_80304" type="NavigationObstacle3D" parent="BuildingGenerator4" unique_id=511040000]
-height = 30.0
+[node name="@NavigationObstacle3D@59156" type="NavigationObstacle3D" parent="BuildingGenerator4" unique_id=1940917353]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 10, 10, 0, 10, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_80305" type="NavigationObstacle3D" parent="BuildingGenerator4" unique_id=1245726864]
-height = 30.0
+[node name="@NavigationObstacle3D@59157" type="NavigationObstacle3D" parent="BuildingGenerator4" unique_id=1710978974]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 10, 0, 0, 20, 8, 0, 20, 8, 0, 10)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_80306" type="NavigationObstacle3D" parent="BuildingGenerator4" unique_id=358783209]
-height = 30.0
+[node name="@NavigationObstacle3D@59158" type="NavigationObstacle3D" parent="BuildingGenerator4" unique_id=1447198437]
+height = 100.0
 vertices = PackedVector3Array(-22, 0, 0, -22, 0, 14, 0, 0, 14, 0, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -244,20 +244,20 @@ start = Vector3i(-11, 0, 0)
 size = Vector3i(11, 3, 7)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_80304" type="NavigationObstacle3D" parent="BuildingGenerator12" unique_id=118224196]
-height = 30.0
+[node name="@NavigationObstacle3D@59159" type="NavigationObstacle3D" parent="BuildingGenerator12" unique_id=156715120]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 10, 10, 0, 10, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_80305" type="NavigationObstacle3D" parent="BuildingGenerator12" unique_id=383629001]
-height = 30.0
+[node name="@NavigationObstacle3D@59160" type="NavigationObstacle3D" parent="BuildingGenerator12" unique_id=1628155588]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 10, 0, 0, 20, 8, 0, 20, 8, 0, 10)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_80306" type="NavigationObstacle3D" parent="BuildingGenerator12" unique_id=1913400657]
-height = 30.0
+[node name="@NavigationObstacle3D@59161" type="NavigationObstacle3D" parent="BuildingGenerator12" unique_id=11285698]
+height = 100.0
 vertices = PackedVector3Array(-22, 0, 0, -22, 0, 14, 0, 0, 14, 0, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -303,20 +303,20 @@ start = Vector3i(-6, 0, 0)
 size = Vector3i(6, 5, 3)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_72776" type="NavigationObstacle3D" parent="BuildingGenerator2" unique_id=117846102]
-height = 30.0
+[node name="@NavigationObstacle3D@59162" type="NavigationObstacle3D" parent="BuildingGenerator2" unique_id=201783423]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 10, 10, 0, 10, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_72777" type="NavigationObstacle3D" parent="BuildingGenerator2" unique_id=2042268541]
-height = 30.0
+[node name="@NavigationObstacle3D@59163" type="NavigationObstacle3D" parent="BuildingGenerator2" unique_id=523338197]
+height = 100.0
 vertices = PackedVector3Array(2, 0, 10, 2, 0, 28, 10, 0, 28, 10, 0, 10)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_72778" type="NavigationObstacle3D" parent="BuildingGenerator2" unique_id=716032362]
-height = 30.0
+[node name="@NavigationObstacle3D@59164" type="NavigationObstacle3D" parent="BuildingGenerator2" unique_id=823810700]
+height = 100.0
 vertices = PackedVector3Array(-12, 0, 0, -12, 0, 6, 0, 0, 6, 0, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -350,8 +350,8 @@ script = ExtResource("4_wx0ig")
 size = Vector3i(5, 8, 16)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_79186" type="NavigationObstacle3D" parent="BuildingGenerator3" unique_id=154012821]
-height = 30.0
+[node name="@NavigationObstacle3D@59165" type="NavigationObstacle3D" parent="BuildingGenerator3" unique_id=637431698]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 32, 10, 0, 32, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -387,8 +387,8 @@ script = ExtResource("4_wx0ig")
 size = Vector3i(5, 1, 4)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_29681" type="NavigationObstacle3D" parent="Small/BuildingGenerator15" unique_id=888509674]
-height = 30.0
+[node name="@NavigationObstacle3D@60204" type="NavigationObstacle3D" parent="Small/BuildingGenerator15" unique_id=271918841]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 10, 0, 8, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -422,8 +422,8 @@ script = ExtResource("4_wx0ig")
 size = Vector3i(5, 1, 4)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_29681" type="NavigationObstacle3D" parent="Small/BuildingGenerator16" unique_id=854320221]
-height = 30.0
+[node name="@NavigationObstacle3D@60205" type="NavigationObstacle3D" parent="Small/BuildingGenerator16" unique_id=925564937]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 10, 0, 8, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -457,8 +457,8 @@ script = ExtResource("4_wx0ig")
 size = Vector3i(5, 2, 4)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_31319" type="NavigationObstacle3D" parent="Small/BuildingGenerator17" unique_id=91345968]
-height = 30.0
+[node name="@NavigationObstacle3D@60203" type="NavigationObstacle3D" parent="Small/BuildingGenerator17" unique_id=1088446207]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 10, 0, 8, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -494,8 +494,8 @@ script = ExtResource("4_wx0ig")
 size = Vector3i(5, 1, 4)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_29681" type="NavigationObstacle3D" parent="Small2/BuildingGenerator15" unique_id=29541654]
-height = 30.0
+[node name="@NavigationObstacle3D@60201" type="NavigationObstacle3D" parent="Small2/BuildingGenerator15" unique_id=725963745]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 10, 0, 8, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -529,8 +529,8 @@ script = ExtResource("4_wx0ig")
 size = Vector3i(5, 1, 4)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_29681" type="NavigationObstacle3D" parent="Small2/BuildingGenerator16" unique_id=1751989881]
-height = 30.0
+[node name="@NavigationObstacle3D@60202" type="NavigationObstacle3D" parent="Small2/BuildingGenerator16" unique_id=1608062396]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 10, 0, 8, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -564,8 +564,8 @@ script = ExtResource("4_wx0ig")
 size = Vector3i(5, 2, 4)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_31319" type="NavigationObstacle3D" parent="Small2/BuildingGenerator17" unique_id=773575676]
-height = 30.0
+[node name="@NavigationObstacle3D@60200" type="NavigationObstacle3D" parent="Small2/BuildingGenerator17" unique_id=1551222808]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 10, 0, 8, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -599,8 +599,8 @@ script = ExtResource("4_wx0ig")
 size = Vector3i(5, 8, 16)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_79186" type="NavigationObstacle3D" parent="BuildingGenerator7" unique_id=1064930021]
-height = 30.0
+[node name="@NavigationObstacle3D@59166" type="NavigationObstacle3D" parent="BuildingGenerator7" unique_id=1357862858]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 32, 10, 0, 32, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -634,8 +634,8 @@ script = ExtResource("4_wx0ig")
 size = Vector3i(5, 8, 16)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_79186" type="NavigationObstacle3D" parent="BuildingGenerator8" unique_id=781453484]
-height = 30.0
+[node name="@NavigationObstacle3D@59167" type="NavigationObstacle3D" parent="BuildingGenerator8" unique_id=643196753]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 32, 10, 0, 32, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -669,8 +669,8 @@ script = ExtResource("4_wx0ig")
 size = Vector3i(5, 8, 16)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_79186" type="NavigationObstacle3D" parent="BuildingGenerator9" unique_id=1807115032]
-height = 30.0
+[node name="@NavigationObstacle3D@59168" type="NavigationObstacle3D" parent="BuildingGenerator9" unique_id=353651253]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 32, 10, 0, 32, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -710,14 +710,14 @@ start = Vector3i(19, 0, 0)
 size = Vector3i(16, 11, 18)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_21016" type="NavigationObstacle3D" parent="BuildingGenerator6" unique_id=1351526950]
-height = 30.0
+[node name="@NavigationObstacle3D@59169" type="NavigationObstacle3D" parent="BuildingGenerator6" unique_id=29349907]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 28, 38, 0, 28, 38, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_21017" type="NavigationObstacle3D" parent="BuildingGenerator6" unique_id=131482202]
-height = 30.0
+[node name="@NavigationObstacle3D@59170" type="NavigationObstacle3D" parent="BuildingGenerator6" unique_id=780682428]
+height = 100.0
 vertices = PackedVector3Array(38, 0, 0, 38, 0, 36, 70, 0, 36, 70, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -757,14 +757,14 @@ start = Vector3i(0, 0, 13)
 size = Vector3i(7, 11, 6)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_84977" type="NavigationObstacle3D" parent="BuildingGenerator5" unique_id=1004905981]
-height = 30.0
+[node name="@NavigationObstacle3D@59171" type="NavigationObstacle3D" parent="BuildingGenerator5" unique_id=138195882]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 26, 10, 0, 26, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_84978" type="NavigationObstacle3D" parent="BuildingGenerator5" unique_id=1117054597]
-height = 30.0
+[node name="@NavigationObstacle3D@59172" type="NavigationObstacle3D" parent="BuildingGenerator5" unique_id=395131517]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 26, 0, 0, 38, 14, 0, 38, 14, 0, 26)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -810,20 +810,20 @@ start = Vector3i(8, 0, 13)
 size = Vector3i(14, 5, 6)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_28239" type="NavigationObstacle3D" parent="BuildingGenerator14" unique_id=1340840535]
-height = 30.0
+[node name="@NavigationObstacle3D@59173" type="NavigationObstacle3D" parent="BuildingGenerator14" unique_id=47962970]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 26, 10, 0, 26, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_28240" type="NavigationObstacle3D" parent="BuildingGenerator14" unique_id=1659575607]
-height = 30.0
+[node name="@NavigationObstacle3D@59174" type="NavigationObstacle3D" parent="BuildingGenerator14" unique_id=799439539]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 26, 0, 0, 38, 16, 0, 38, 16, 0, 26)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_28241" type="NavigationObstacle3D" parent="BuildingGenerator14" unique_id=146322258]
-height = 30.0
+[node name="@NavigationObstacle3D@59175" type="NavigationObstacle3D" parent="BuildingGenerator14" unique_id=1587102193]
+height = 100.0
 vertices = PackedVector3Array(16, 0, 26, 16, 0, 38, 44, 0, 38, 44, 0, 26)
 affect_navigation_mesh = true
 avoidance_enabled = false
@@ -863,14 +863,14 @@ start = Vector3i(0, 0, 13)
 size = Vector3i(7, 11, 6)
 metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
-[node name="_NavigationObstacle3D_84977" type="NavigationObstacle3D" parent="BuildingGenerator11" unique_id=290862348]
-height = 30.0
+[node name="@NavigationObstacle3D@59176" type="NavigationObstacle3D" parent="BuildingGenerator11" unique_id=1797978815]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 0, 0, 0, 26, 10, 0, 26, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="_NavigationObstacle3D_84978" type="NavigationObstacle3D" parent="BuildingGenerator11" unique_id=940663479]
-height = 30.0
+[node name="@NavigationObstacle3D@59177" type="NavigationObstacle3D" parent="BuildingGenerator11" unique_id=38933963]
+height = 100.0
 vertices = PackedVector3Array(0, 0, 26, 0, 0, 38, 14, 0, 38, 14, 0, 26)
 affect_navigation_mesh = true
 avoidance_enabled = false

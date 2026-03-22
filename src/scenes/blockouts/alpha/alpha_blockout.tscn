@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c6fbktrr88nnn"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="5_7xvdi"]
+[ext_resource type="PackedScene" uid="uid://cu81at0x2qjj3" path="res://scenes/blockouts/alpha/city_blockout.tscn" id="8_e0l7u"]
+[ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_b4byj"]
+[ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="11_xhla0"]
+[ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="12_ac6uc"]
+[ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="13_e6rlv"]
+[ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="14_2oe1n"]
+[ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="15_27518"]
+
+[node name="Main" type="Node3D" unique_id=959478903]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1969210004]
+transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
+
+[node name="Player" parent="." unique_id=1226528489 instance=ExtResource("5_7xvdi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6612322, 1.435396, 3.9698668)
+
+[node name="DayNightCycle" type="Node3D" parent="." unique_id=106700811]
+script = ExtResource("10_b4byj")
+current_day = 0
+day_seconds = 0.0
+metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
+
+[node name="Dusk" type="Node" parent="DayNightCycle" unique_id=1615816852]
+script = ExtResource("11_xhla0")
+color_lut = ExtResource("12_ac6uc")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Day" type="Node" parent="DayNightCycle" unique_id=150412593]
+script = ExtResource("11_xhla0")
+duration = 20.0
+color_lut = ExtResource("13_e6rlv")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Sunset" type="Node" parent="DayNightCycle" unique_id=291254206]
+script = ExtResource("11_xhla0")
+color_lut = ExtResource("12_ac6uc")
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="Night" type="Node" parent="DayNightCycle" unique_id=481852965]
+script = ExtResource("11_xhla0")
+duration = 30.0
+color_lut = ExtResource("14_2oe1n")
+is_night = true
+metadata/_custom_type_script = "uid://bspfhf53tg7of"
+
+[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_27518")]
+
+[node name="City" parent="." unique_id=752114806 instance=ExtResource("8_e0l7u")]

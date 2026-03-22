@@ -29,7 +29,7 @@ func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
 
 
 ## set new rotation values
-func _check_new_rotation(delta: float) -> void:
+func _check_new_rotation(_delta: float) -> void:
 	if not is_rotating:
 		if Input.is_action_pressed("ui_up") and player_gravity_controller.get_front_normal() != null:
 			player_gravity_controller.reset_gravity_no_floor_timer()

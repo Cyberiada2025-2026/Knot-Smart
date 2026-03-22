@@ -1,6 +1,6 @@
 extends Node
 
-@export var max_death_count: int = 1
+@export var max_death_count: int = 2
 
 var respawn_pos: Vector3
 var _death_count: int = 0

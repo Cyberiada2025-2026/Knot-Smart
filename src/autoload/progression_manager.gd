@@ -1,11 +1,15 @@
 extends Node
 
+@export var max_death_count: int = 1
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var _death_count: int = 0
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func record_death():
+	_death_count += 1
+	if _death_count == max_death_count:
+		game_over()
+
+
+func game_over():
+	SceneManager.goto_scene("res://scenes/game_over/game_over.tscn")

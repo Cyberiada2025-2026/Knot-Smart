@@ -8,7 +8,7 @@ extends Node3D
 
 
 func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
-	set_front(get_front().rotated(get_normal(), angle))
+	player_gravity_controller.front = get_front().rotated(get_normal(), angle)
 	player_physics.player_model.rotate(Vector3.UP, angle)
 	player_gravity_controller.rotate(Vector3.UP, angle)
 
@@ -28,10 +28,6 @@ func get_normal() -> Vector3:
 
 func get_front() -> Vector3:
 	return player_gravity_controller.front
-
-
-func set_front(front: Vector3) -> void:
-	player_gravity_controller.front = front
 
 
 func get_is_rotating() -> bool:

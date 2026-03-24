@@ -2,14 +2,14 @@ class_name InventoryManager
 extends Control
 
 
-var interact = {"NONE": 0, "TAKE": 1, "PUT": 2}
+var interaction = {"NONE": 0, "TAKE": 1, "PUT": 2}
 
 @export var column_num = 7
 @export var row_num = 2
 
 var grid: GridContainer
 var items: Array[ItemDescription] = []
-var interaction: int = interact["NONE"]
+var interaction_type: int = interaction["NONE"]
 var inventory_cell: PackedScene
 
 const SIZE = Vector2(320.0, 240.0)
@@ -25,7 +25,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
-		idk_item()
+		interact()
 	if event.is_action_pressed("toggle_inventory"):
 		grid.visible = not grid.visible
 
@@ -49,25 +49,27 @@ func set_cells():
 		grid.add_child(cell)
 
 
-func idk_item():
+func interact():
 	for item in items:
 		for cell in grid.get_children():
-			if cell.get_type()==item.item_name and interaction == interact["PUT"]:
-				cell.remove_item(item)
-				break
-			elif (cell.get_type()==item.item_name or cell.is_empty()) and interaction == interact["TAKE"]:
-				cell.add_item(item)	
-				break
+			if interaction_type == interaction["PUT"]:
+				if cell.get_type()==item.item_name:
+					cell.remove_item(item)
+					break
+			elif interaction_type == interaction["TAKE"]:
+				if cell.get_type()==item.item_name or cell.is_empty():
+					cell.add_item(item)	
+					break
 
 
 func set_items(can_interact: bool, items: Array[ItemDescription], type: String):
 	if can_interact:
 		self.items = items
-		interaction = interact[type]
+		interaction_type = interaction[type]
 	else:
 		if self.items.is_empty():
-			interaction = interact["NONE"]
+			interaction_type = interaction["NONE"]
 			return
 		if items.front().get_instance_id() == self.items.front().get_instance_id():
-			interaction = interact["NONE"]
+			interaction_type = interaction["NONE"]
 			self.items = []

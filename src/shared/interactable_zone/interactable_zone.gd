@@ -4,11 +4,12 @@ extends Area3D
 
 @export_enum("TAKE", "PUT") var interact_type: String
 @export var items: Array[ItemDescription] = []
+@export var collider_scale = Vector3(1.2, 1.2, 1.2)
 var inventory_manager: InventoryManager
 var zone: Node3D
 
-const SCALE_VECTOR = Vector3(1.2, 1.2, 1.2)
-const COLLISION_MASK = 2 # same as player collision mask
+## Same as player collision layer
+const COLLISION_MASK = 2
 
 
 func _ready() -> void:
@@ -23,7 +24,7 @@ func _ready() -> void:
 		add_child(sibling.duplicate())
 		break
 	collision_mask = COLLISION_MASK
-	transform = transform.scaled(SCALE_VECTOR)
+	transform = transform.scaled(collider_scale)
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:

@@ -5,6 +5,7 @@ extends Node3D
 @export var player_physics: PlayerPhysics
 @export var player_camera: PlayerCamera
 @export var player_floor_sensor: RayCast3D
+@export var inventory_manager: InventoryManager
 @export_category("VARIABLES")
 @export var rotation_speed: float = 1.0
 @export var gravity_rotation_speed_modifier: float = 5.0

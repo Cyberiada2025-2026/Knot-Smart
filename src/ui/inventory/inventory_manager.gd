@@ -2,15 +2,14 @@ class_name InventoryManager
 extends Control
 
 
-enum Interact {NONE, TAKE, PUT}
+var interact = {"NONE": 0, "TAKE": 1, "PUT": 2}
 
 @export var column_num = 7
 @export var row_num = 2
 
 var grid: GridContainer
-var collectable_item: ItemDescription
-var needed_items: Array[ItemDescription] = []
-var interaction: Interact = Interact.NONE
+var items: Array[ItemDescription] = []
+var interaction: int = interact["NONE"]
 var inventory_cell: PackedScene
 
 const SIZE = Vector2(320.0, 240.0)
@@ -26,10 +25,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
-		if interaction == Interact.TAKE:
-			add_item()
-		if interaction == Interact.PUT:
-			remove_item()
+		idk_item()
 	if event.is_action_pressed("toggle_inventory"):
 		grid.visible = not grid.visible
 
@@ -53,43 +49,25 @@ func set_cells():
 		grid.add_child(cell)
 
 
-func add_item():
-	for cell in grid.get_children():
-		if cell.is_empty() or cell.get_type()==collectable_item.item_name:
-			cell.add_item(collectable_item)
-			collectable_item = null
-			break
-
-
-func remove_item():
-	for item in needed_items:
+func idk_item():
+	for item in items:
 		for cell in grid.get_children():
-			if cell.get_type()==item.item_name:
+			if cell.get_type()==item.item_name and interaction == interact["PUT"]:
 				cell.remove_item(item)
+				break
+			elif (cell.get_type()==item.item_name or cell.is_empty()) and interaction == interact["TAKE"]:
+				cell.add_item(item)	
 				break
 
 
-func set_collectable_item(can_interact: bool, item: ItemDescription):
+func set_items(can_interact: bool, items: Array[ItemDescription], type: String):
 	if can_interact:
-		collectable_item = item
-		interaction = Interact.TAKE
+		self.items = items
+		interaction = interact[type]
 	else:
-		if collectable_item == null:
-			interaction = Interact.NONE
+		if self.items.is_empty():
+			interaction = interact["NONE"]
 			return
-		if item.get_instance_id() == collectable_item.get_instance_id():
-			interaction = Interact.NONE
-			collectable_item = null
-
-
-func set_needed_items(can_interact: bool, items: Array[ItemDescription]):
-	if can_interact:
-		needed_items = items
-		interaction = Interact.PUT
-	else:
-		if needed_items.is_empty():
-			interaction = Interact.NONE
-			return
-		if items.front().get_instance_id() == needed_items.front().get_instance_id():
-			interaction = Interact.NONE
-			items = []
+		if items.front().get_instance_id() == self.items.front().get_instance_id():
+			interaction = interact["NONE"]
+			self.items = []

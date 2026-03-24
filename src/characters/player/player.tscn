@@ -6,11 +6,12 @@
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="4_5dc8e"]
 [ext_resource type="PackedScene" uid="uid://c2vhugd8h4so4" path="res://ui/inventory/inventory_manager.tscn" id="5_ixbpm"]
 
-[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_floor_sensor")]
+[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_floor_sensor", "inventory_manager")]
 script = ExtResource("1_4ntmi")
 player_physics = NodePath("PlayerPhysics")
 player_camera = NodePath("PlayerCamera")
 player_floor_sensor = NodePath("PlayerPhysics/PlayerFloorSensor")
+inventory_manager = NodePath("InventoryManager")
 
 [node name="PlayerPhysics" parent="." unique_id=1615832908 instance=ExtResource("1_l8h54")]
 collision_layer = 3

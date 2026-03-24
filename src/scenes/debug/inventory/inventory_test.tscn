@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cfrlyynmmc8a8"]
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_r4630"]
-[ext_resource type="PackedScene" uid="uid://cn35vlnhhb4i0" path="res://shared/inventory/interactable_zone.tscn" id="2_eqodw"]
+[ext_resource type="PackedScene" uid="uid://cn35vlnhhb4i0" path="res://shared/interactable_zone/interactable_zone.tscn" id="2_eqodw"]
 [ext_resource type="Script" uid="uid://dvy1b1v48ym8a" path="res://ui/inventory/item_description.gd" id="3_eqodw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tch0"]
@@ -47,14 +47,15 @@ size = Vector3(5, 3, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x045t"]
 size = Vector3(5, 3, 3)
 
-[sub_resource type="Resource" id="Resource_g8dkm"]
+[sub_resource type="Resource" id="Resource_eqodw"]
 script = ExtResource("3_eqodw")
 item_name = "kostka"
 metadata/_custom_type_script = "uid://dvy1b1v48ym8a"
 
-[sub_resource type="Resource" id="Resource_3waoe"]
+[sub_resource type="Resource" id="Resource_g8dkm"]
 script = ExtResource("3_eqodw")
 item_name = "kostka2"
+quantity = 2
 metadata/_custom_type_script = "uid://dvy1b1v48ym8a"
 
 [node name="InventoryTest" type="Node3D" unique_id=2014510867]
@@ -147,6 +148,6 @@ mesh = SubResource("BoxMesh_eqodw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=41238405]
 shape = SubResource("BoxShape3D_x045t")
 
-[node name="InteractableZone" parent="StaticBody3D3" unique_id=1541833684 instance=ExtResource("2_eqodw")]
+[node name="InteractableZone" parent="StaticBody3D3" unique_id=1892577059 instance=ExtResource("2_eqodw")]
 interact_type = "PUT"
-items = Array[ExtResource("3_eqodw")]([SubResource("Resource_g8dkm"), SubResource("Resource_3waoe")])
+items = Array[ExtResource("3_eqodw")]([SubResource("Resource_eqodw"), SubResource("Resource_g8dkm")])

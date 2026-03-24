@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://djqe8wkjmmn8n"]
 
-[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/rope/vfx/rope.gdshader" id="1_jo2uc"]
-[ext_resource type="Script" uid="uid://l0fhfdnlggk" path="res://shared/rope/vfx/rope_vfx.gd" id="1_mc67o"]
+[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://characters/player/rope/vfx/rope.gdshader" id="1_jo2uc"]
+[ext_resource type="Script" uid="uid://l0fhfdnlggk" path="res://characters/player/rope/vfx/rope_vfx.gd" id="1_mc67o"]
 [ext_resource type="Shader" uid="uid://1pvk0smpoe86" path="res://shared/shaders/fresnel_additive.gdshader" id="2_jo2uc"]
 [ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="4_lbvd8"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_i5arm"]
 resource_local_to_scene = true
-top_radius = 0.05
-bottom_radius = 0.05
+top_radius = 0.2
+bottom_radius = 0.2
 height = 1.0
 radial_segments = 8
 rings = 10
@@ -17,14 +17,14 @@ rings = 10
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_jo2uc")
-shader_parameter/mesh_width_change = 2.0
+shader_parameter/mesh_width_change = 0.2
 shader_parameter/anim_start = 0.0
 shader_parameter/length_start = 10.0
 shader_parameter/length_curr = 10.0
-shader_parameter/segment_density = 10.0
-shader_parameter/width = 0.01
-shader_parameter/softness = 0.5
-shader_parameter/speed = 5.0
+shader_parameter/segment_density = 5.0
+shader_parameter/width = 0.2
+shader_parameter/softness = 0.1
+shader_parameter/speed = 1.0
 shader_parameter/main_col_def = Color(0.34117648, 0.7176471, 0.41568628, 1)
 shader_parameter/main_col_stretch = Color(0.34509805, 0.60784316, 0.7176471, 1)
 shader_parameter/main_col_squish = Color(0.7490196, 0.3764706, 0.43529412, 1)

@@ -2,19 +2,18 @@ class_name InventoryManager
 extends Control
 
 
-var interaction = {"NONE": 0, "TAKE": 1, "PUT": 2}
+const SIZE = Vector2(320.0, 240.0)
+const POSITION = Vector2(0.0, 170.0)
+const GRID_SIZE = Vector2(320.0, 70.0)
 
 @export var column_num = 7
 @export var row_num = 2
 
+var interaction = {"NONE": 0, "TAKE": 1, "PUT": 2}
 var grid: GridContainer
 var items: Array[ItemDescription] = []
 var interaction_type: int = interaction["NONE"]
 var inventory_cell: PackedScene
-
-const SIZE = Vector2(320.0, 240.0)
-const POSITION = Vector2(0.0, 170.0)
-const GRID_SIZE = Vector2(320.0, 70.0)
 
 
 func _ready() -> void:
@@ -58,7 +57,7 @@ func interact():
 					break
 			elif interaction_type == interaction["TAKE"]:
 				if cell.get_type()==item.item_name or cell.is_empty():
-					cell.add_item(item)	
+					cell.add_item(item)
 					break
 
 

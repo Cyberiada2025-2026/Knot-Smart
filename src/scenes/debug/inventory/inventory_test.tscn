@@ -156,3 +156,4 @@ shape = SubResource("BoxShape3D_x045t")
 [node name="InteractableZone" parent="StaticBody3D3" unique_id=1892577059 instance=ExtResource("2_eqodw")]
 interact_type = "PUT"
 items = Array[ExtResource("3_eqodw")]([SubResource("Resource_eqodw"), SubResource("Resource_g8dkm")])
+collider_scale = Vector3(1.3, 1.3, 1.3)

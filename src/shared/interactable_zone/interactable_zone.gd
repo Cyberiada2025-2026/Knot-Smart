@@ -1,15 +1,14 @@
 class_name InteractableZone
 extends Area3D
 
+## Same as player collision layer
+const COLLISION_MASK = 2
 
 @export_enum("TAKE", "PUT") var interact_type: String
 @export var items: Array[ItemDescription] = []
-@export var collider_scale = Vector3(1.2, 1.2, 1.2)
+@export var collider_scale = Vector3(1.5, 1.5, 1.5)
 var inventory_manager: InventoryManager
 var zone: Node3D
-
-## Same as player collision layer
-const COLLISION_MASK = 2
 
 
 func _ready() -> void:
@@ -27,11 +26,11 @@ func _ready() -> void:
 	transform = transform.scaled(collider_scale)
 
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _on_area_3d_body_entered(_body: Node3D) -> void:
 	set_items(true)
 
 
-func _on_area_3d_body_exited(body: Node3D) -> void:
+func _on_area_3d_body_exited(_body: Node3D) -> void:
 	set_items(false)
 
 

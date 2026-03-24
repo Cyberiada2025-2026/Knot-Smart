@@ -50,6 +50,7 @@ size = Vector3(5, 3, 3)
 [sub_resource type="Resource" id="Resource_eqodw"]
 script = ExtResource("3_eqodw")
 item_name = "kostka"
+quantity = 1
 metadata/_custom_type_script = "uid://dvy1b1v48ym8a"
 
 [sub_resource type="Resource" id="Resource_g8dkm"]

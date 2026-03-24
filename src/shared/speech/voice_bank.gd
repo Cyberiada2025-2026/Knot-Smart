@@ -9,6 +9,7 @@ const LANGUAGE_CONSTANTS = preload("res://shared/language_generation/language_co
 @export var length_multiplier := 0.8
 @export var pause_between_sentence := 0.1
 
+
 func _init():
 	var syllable_list = LANGUAGE_CONSTANTS.data.syllables
 	for name in syllable_list:

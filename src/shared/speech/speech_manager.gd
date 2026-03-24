@@ -3,9 +3,10 @@ extends Node
 
 signal finished_playing
 
-@export var voice_bank : VoiceBank
+@export var voice_bank: VoiceBank
 var curr_sentence = []
 var audio_stream_player: AudioStreamPlayer
+
 
 func _init() -> void:
 	audio_stream_player = AudioStreamPlayer.new()

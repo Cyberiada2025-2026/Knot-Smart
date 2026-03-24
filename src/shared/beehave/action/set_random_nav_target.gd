@@ -1,9 +1,8 @@
 @tool
+class_name SetRandomNavTarget
 extends ActionLeaf
-
-@export var can_move: bool
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	actor.toggle_movement(can_move)
+	actor.set_random_nav_target()
 	return SUCCESS

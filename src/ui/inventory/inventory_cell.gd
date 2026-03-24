@@ -18,10 +18,10 @@ func add_item(item: ItemDescription):
 
 
 func remove_item(item: ItemDescription):
+	var diff = len(items)-item.quantity
 	for i in clampi(item.quantity, 0, len(items)):
 		var popped_item = items.pop_back()
 		popped_item.main_node.queue_free()
-	var diff = len(items)-item.quantity
 	item.quantity = max(0, -diff)
 	on_item_num_changed()
 

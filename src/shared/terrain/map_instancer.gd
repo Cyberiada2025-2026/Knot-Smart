@@ -30,8 +30,14 @@ func create_map_instance(MAP_DIR: String = SCENE_DIR) -> void:
 		for z in world_generation_params.map_size:
 			var CHUNK_PATH = "res://" + SCENE_DIR + "chunks/chunk_%d_%d.tscn" % [x, z]
 			create_chunk_scene(Vector2i(x,z), CHUNK_PATH)
+			
+			var chunk = ResourceLoader.load(CHUNK_PATH)
+			var chunk_node = chunk.instantiate()
+			chunks_node.add_child(chunk_node)
+			chunk_node.owner = root_node
 	
 	var scene = PackedScene.new()
+	scene.take_over_path("res://" + SCENE_DIR + SCENE_NAME + ".tscn")
 
 	# Only `node` and `body` are now packed.
 	var result = scene.pack(root_node)
@@ -43,14 +49,12 @@ func create_map_instance(MAP_DIR: String = SCENE_DIR) -> void:
 
 func create_chunk_scene(chunk_coord: Vector2i, CHUNK_PATH: String) -> void:
 	
-	var chunk = Node3D.new()
-	chunk.name = "ChunkX%dZ%d" % [chunk_coord.x, chunk_coord.y]
+	var chunk_node = Node3D.new()
+	chunk_node.name = "ChunkX%dZ%d" % [chunk_coord.x, chunk_coord.y]
 
 	# Godot requires to add node to tree before modifying it
-	parent.add_child(chunk)
-	chunk.owner = root_owner
 
-	chunk.position = Vector3(
+	chunk_node.position = Vector3(
 		chunk_coord.x * world_generation_params.get_chunk_unit_size(),
 		0,
 		chunk_coord.y * world_generation_params.get_chunk_unit_size()
@@ -58,8 +62,8 @@ func create_chunk_scene(chunk_coord: Vector2i, CHUNK_PATH: String) -> void:
 
 	var chunk_mesh_instance = MeshInstance3D.new()
 	chunk_mesh_instance.name = "ChunkMesh"
-	chunk.add_child(chunk_mesh_instance)
-	chunk_mesh_instance.owner = root_owner
+	chunk_node.add_child(chunk_mesh_instance)
+	chunk_mesh_instance.owner = chunk_node
 
 	chunk_mesh_instance.mesh = generate_chunk_mesh(chunk_coord)
 
@@ -68,14 +72,15 @@ func create_chunk_scene(chunk_coord: Vector2i, CHUNK_PATH: String) -> void:
 
 	chunk_mesh_instance.create_trimesh_collision()
 	for child in chunk_mesh_instance.get_children():
-		child.owner = root_owner
+		child.owner = chunk_node
 		for grand_child in child.get_children():
-			grand_child.owner = root_owner
+			grand_child.owner = chunk_node
 			
 	var scene = PackedScene.new()
+	scene.take_over_path(CHUNK_PATH)
 	var result = scene.pack(chunk_node)
 	if result == OK:
-		var error = ResourceSaver.save(scene, )
+		var error = ResourceSaver.save(scene, CHUNK_PATH)
 		if error != OK:
 			push_error("An error occurred while saving chunk to disk.")
 

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cn6l7oaf3xw32" path="res://shared/terrain/grid_generation_pipeline.gd" id="1_nm6oi"]
 [ext_resource type="Script" uid="uid://no1j1oowuup1" path="res://shared/terrain/world_generation_params.gd" id="2_htb35"]
 [ext_resource type="Script" uid="uid://bmtv75byrd25q" path="res://shared/terrain/world_display_params.gd" id="3_biq8l"]
+[ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="4_biq8l"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="7_htb35"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="8_biq8l"]
 
@@ -15,8 +16,12 @@ script = ExtResource("2_htb35")
 noise = SubResource("FastNoiseLite_htb35")
 metadata/_custom_type_script = "uid://no1j1oowuup1"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5xeo"]
+albedo_texture = ExtResource("4_biq8l")
+
 [sub_resource type="Resource" id="Resource_xedym"]
 script = ExtResource("3_biq8l")
+terrain_material = SubResource("StandardMaterial3D_k5xeo")
 metadata/_custom_type_script = "uid://bmtv75byrd25q"
 
 [node name="TerrainTest" type="Node3D" unique_id=1551696206]

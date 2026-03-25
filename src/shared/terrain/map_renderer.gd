@@ -2,97 +2,30 @@
 class_name MapRenderer
 extends Node3D
 
-@export var player: Player
-
 @export_group("Dependencies")
 @export var world_generation_params: WorldGenerationParams
 @export var world_display_params: WorldDisplayParams
 
 @export_group("Debug")
 @export var debug_flag: bool
-
-var active_chunks: Dictionary[Vector2i, Node3D] = {}
-
-var active_chunks_start: Vector2i
-var active_chunks_end: Vector2i
-
-var is_active: bool = false
+@export_tool_button("Generate Map") var generate_map = begin_generation
 
 var blueprint: MapTileData
+var chunk_manager: ChunkManager
+var map_instancer: MapInstancer
 
-
-func clear_inactive_chunks() -> void:
-	is_active = false
-	active_chunks.clear()
-	for child in get_children():
-		child.queue_free()
-
-
-func begin_generation(manager: GenerationPipeline):
-	blueprint = manager.blueprint
-	world_display_params = manager.world_display_params
-	world_generation_params = manager.world_generation_params
-	active_chunks_start = Vector2i.ZERO
-	active_chunks_end = -Vector2i.ONE
-	is_active = true
-	print("ChunkManager: Is active")
-
-
-func update_active_chunks_borders() -> void:
-	var render_position: Vector2i = Vector2i.ZERO
-	var render_distance: Vector2i = Vector2i(
-		world_generation_params.map_size, world_generation_params.map_size
-	)
-
-	if player != null and player.is_inside_tree():
-		var player_position = player.player_physics.global_position
-		render_position = Vector2i(player_position.x, player_position.z)
-		render_distance = Vector2i(
-			world_display_params.render_distance, world_display_params.render_distance
-		)
-
-	var current_chunk: Vector2i = floor(
-		render_position / world_generation_params.get_chunk_unit_size()
-	)
-
-	var new_start: Vector2i = (current_chunk - render_distance).clampi(
-		0, world_generation_params.map_size
-	)
-	var new_end: Vector2i = (current_chunk + render_distance + Vector2i.ONE).clampi(
-		0, world_generation_params.map_size
-	)
-	if new_start != active_chunks_start or new_end != active_chunks_end:
-		active_chunks_start = new_start
-		active_chunks_end = new_end
+func begin_generation():
+	var world_size = world_generation_params.map_size * world_generation_params.chunk_size
+	blueprint = MapTileData.new(world_size)
+	
+	var pipelines = get_children().filter(func(c): return c.has_method("run_pipeline"))
+	
+	for pipeline in pipelines:
 		if debug_flag == true:
-			print("ChunkManager: [Current Chunk] [Render Start] [Render End]")
-			prints(current_chunk, active_chunks_start, active_chunks_end)
-
-		update_active_chunks()
-
-
-func update_active_chunks() -> void:
-	if debug_flag == true:
-		print("ChunkManager: Updating visible chunks")
-	#remove far chunks
-	for coord in active_chunks.keys():
-		if coord.clamp(active_chunks_start, active_chunks_end) != coord:
-			active_chunks[coord].queue_free()
-			remove_child(active_chunks[coord])
-			active_chunks.erase(coord)
-
-	# add missing chunks
-	for x in range(active_chunks_start.x, active_chunks_end.x):
-		for y in range(active_chunks_start.y, active_chunks_end.y):
-			var coord = Vector2i(x, y)
-			if not active_chunks.has(coord):
-				var chunk_generator = ChunkInstancer.new(
-					world_generation_params, world_display_params
-				)
-				var chunk_node = chunk_generator.create_chunk_instance(coord, blueprint, self)
-				active_chunks[coord] = chunk_node
-
-
-func _process(_delta: float) -> void:
-	if is_active:
-		update_active_chunks_borders()
+			print(self.name + ": Starting generation pipeline: " + pipeline.name)
+		generator.run_generation(self)
+		if debug_flag == true:
+			print(self.name + ": Finished generation for: " + pipeline.name)
+	
+	map_instancer = MapInstancer.new(self)
+	

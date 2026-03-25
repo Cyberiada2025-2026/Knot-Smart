@@ -2,26 +2,24 @@
 class_name GridGenerationPipeline
 extends Node
 
-var world_generation_params
-
 @export_group("Debug")
 @export var debug_flag: bool
 
+var world_generation_params
 var blueprint: MapTileData
 
-func generate_world(manager: MapRenderer) -> void:
+func run_pipeline(manager: MapRenderer) -> void:
 	world_generation_params = manager.world_generation_params
-	var world_size = world_generation_params.map_size * world_generation_params.chunk_size
-	blueprint = MapTileData.new(world_size)
-
-	var generators = get_children().filter(func(c): return c.has_method("execute"))
+	blueprint = manager.blueprint
+	
+	var generators = get_children().filter(func(c): return c.has_method("run_generation"))
 
 	for generator in generators:
 		if debug_flag == true:
-			print("TerrainManager: Starting generation for: " + generator.name)
-		generator.execute(self)
+			print(self.name + ": Starting generation for: " + generator.name)
+		generator.run_generation(self)
 		if debug_flag == true:
-			print("TerrainManager: Finished generation for: " + generator.name)
+			print(self.name + ": Finished generation for: " + generator.name)
 
 	if debug_flag == true:
-		print("TerrainManager: Generation completed")
+		print(self.name + ": Generation completed")

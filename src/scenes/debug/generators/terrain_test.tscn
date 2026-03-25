@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ci3waxxyk4pbs"]
 
 [ext_resource type="Script" uid="uid://0212vvhximbx" path="res://shared/terrain/terrain_generator.gd" id="1_aojt6"]
+[ext_resource type="Script" uid="uid://u5hpdit2bo4g" path="res://shared/terrain/map_renderer.gd" id="1_dka5w"]
 [ext_resource type="Script" uid="uid://cn6l7oaf3xw32" path="res://shared/terrain/grid_generation_pipeline.gd" id="1_nm6oi"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="7_htb35"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="8_biq8l"]
@@ -8,7 +9,7 @@
 [node name="TerrainTest" type="Node3D" unique_id=1551696206]
 
 [node name="MapRenderer" type="Node3D" parent="." unique_id=2108384034]
-script = ExtResource("1_nm6oi")
+script = ExtResource("1_dka5w")
 
 [node name="GridGenerationPipeline" type="Node" parent="MapRenderer" unique_id=1756213863]
 script = ExtResource("1_nm6oi")

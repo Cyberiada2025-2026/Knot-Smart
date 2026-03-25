@@ -6,7 +6,7 @@ var world_generation_params: WorldGenerationParams
 var blueprint: MapTileData
 
 
-func execute(manager: GridGenerationPipeline) -> bool:
+func execute(manager: GridGenerationPipeline) -> void:
 	blueprint = manager.blueprint
 	world_generation_params = manager.world_generation_params
 
@@ -25,5 +25,3 @@ func execute(manager: GridGenerationPipeline) -> bool:
 			var final_height = step_index * world_generation_params.tile_height
 
 			blueprint.data[coord].height = final_height
-
-	return true

@@ -1,5 +1,5 @@
 @tool
-class_name ChunkInstancer
+class_name MapInstancer
 extends Resource
 
 var world_generation_params: WorldGenerationParams
@@ -7,18 +7,18 @@ var world_display_params: WorldDisplayParams
 var blueprint: MapTileData
 
 
-func _init(gen_params: WorldGenerationParams, disp_params: WorldDisplayParams):
-	world_generation_params = gen_params
-	world_display_params = disp_params
+func _init(manager: MapRenderer):
+	blueprint = manager.blueprint
+	world_generation_params = manager.world_generation_params
+	world_display_params = manager.world_display_params
 
-func create_map_instance() -> :
-	
+func create_map_instance(manager: MapRenderer) -> void:
+	print("test")
 
 func create_chunk_instance(
 	chunk_coord: Vector2i, parent: Node3D
 ) -> Node3D:
-	world_display_params = parent.world_display_params
-	world_generation_params = parent.world_generation_params
+	
 	var chunk = Node3D.new()
 	chunk.name = "ChunkX%dZ%d" % [chunk_coord.x, chunk_coord.y]
 

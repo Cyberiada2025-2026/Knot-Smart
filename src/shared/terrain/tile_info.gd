@@ -9,17 +9,14 @@ enum PlacementRule {
 }
 
 var height: float
-var object: MeshInstance3D
-var appears_many_times: bool
+var objects: Array[MeshInstance3D]
 var placement_rule: PlacementRule
 
 func _init(
 	_height: float = 0.0,
 	_placement_rule: PlacementRule = PlacementRule.FLAT,
-	_object: MeshInstance3D =  null,
-	_appears_many_times: bool = false
+	_objects: Array[MeshInstance3D] =  [],
 ):
 	self.height = _height
 	self.placement_rule = _placement_rule
-	self.object = _object
-	self.appears_many_times = _appears_many_times
+	self.objects = _objects

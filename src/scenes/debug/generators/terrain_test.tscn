@@ -3,13 +3,28 @@
 [ext_resource type="Script" uid="uid://0212vvhximbx" path="res://shared/terrain/terrain_generator.gd" id="1_aojt6"]
 [ext_resource type="Script" uid="uid://u5hpdit2bo4g" path="res://shared/terrain/map_renderer.gd" id="1_dka5w"]
 [ext_resource type="Script" uid="uid://cn6l7oaf3xw32" path="res://shared/terrain/grid_generation_pipeline.gd" id="1_nm6oi"]
+[ext_resource type="Script" uid="uid://no1j1oowuup1" path="res://shared/terrain/world_generation_params.gd" id="2_htb35"]
+[ext_resource type="Script" uid="uid://bmtv75byrd25q" path="res://shared/terrain/world_display_params.gd" id="3_biq8l"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="7_htb35"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="8_biq8l"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_htb35"]
+
+[sub_resource type="Resource" id="Resource_k5xeo"]
+script = ExtResource("2_htb35")
+noise = SubResource("FastNoiseLite_htb35")
+metadata/_custom_type_script = "uid://no1j1oowuup1"
+
+[sub_resource type="Resource" id="Resource_xedym"]
+script = ExtResource("3_biq8l")
+metadata/_custom_type_script = "uid://bmtv75byrd25q"
 
 [node name="TerrainTest" type="Node3D" unique_id=1551696206]
 
 [node name="MapRenderer" type="Node3D" parent="." unique_id=2108384034]
 script = ExtResource("1_dka5w")
+world_generation_params = SubResource("Resource_k5xeo")
+world_display_params = SubResource("Resource_xedym")
 
 [node name="GridGenerationPipeline" type="Node" parent="MapRenderer" unique_id=1756213863]
 script = ExtResource("1_nm6oi")

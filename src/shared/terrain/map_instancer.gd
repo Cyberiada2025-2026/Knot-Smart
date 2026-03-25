@@ -2,7 +2,9 @@
 class_name MapInstancer
 extends Resource
 
-var SCENE_PATH: String =  ""
+var SCENE_DIR: String = "scenes/map/"
+var SCENE_NAME: String = "generated_map"
+var ROOT_NAME: String = "Map"
 
 var world_generation_params: WorldGenerationParams
 var world_display_params: WorldDisplayParams
@@ -14,27 +16,41 @@ func _init(manager: MapRenderer):
 	world_generation_params = manager.world_generation_params
 	world_display_params = manager.world_display_params
 
-func create_map_instance(manager: MapRenderer) -> void:
-	var map_node := Node3D.new()
+func create_map_instance(MAP_DIR: String = SCENE_DIR) -> void:
+	SCENE_DIR = MAP_DIR
+	var root_node := Node3D.new()
+	root_node.name = ROOT_NAME
+	
 	var chunks_node := Node3D.new()
+	chunks_node.name = "Chunks"
+	root_node.add_child(chunks_node)	
+	chunks_node.owner = root_node
 	
 	for x in world_generation_params.map_size:
 		for z in world_generation_params.map_size:
-			create_chunk_instance(Vector2i(x,z), chunks_node)
-			
-	chunks_node.owner = map_node
+			var CHUNK_PATH = "res://" + SCENE_DIR + "chunks/chunk_%d_%d.tscn" % [x, z]
+			create_chunk_scene(Vector2i(x,z), CHUNK_PATH)
+	
+	var scene = PackedScene.new()
 
-func create_chunk_instance(
-	chunk_coord: Vector2i, parent: Node3D
-) -> Node3D:
+	# Only `node` and `body` are now packed.
+	var result = scene.pack(root_node)
+	if result == OK:
+		var error = ResourceSaver.save(scene, "res://" + SCENE_DIR + SCENE_NAME + ".tscn")
+		if error != OK:
+			push_error("An error occurred while saving the map to disk.")
+
+
+func create_chunk_scene(chunk_coord: Vector2i, CHUNK_PATH: String) -> void:
 	
 	var chunk = Node3D.new()
 	chunk.name = "ChunkX%dZ%d" % [chunk_coord.x, chunk_coord.y]
 
 	# Godot requires to add node to tree before modifying it
 	parent.add_child(chunk)
+	chunk.owner = root_owner
 
-	chunk.global_position = Vector3(
+	chunk.position = Vector3(
 		chunk_coord.x * world_generation_params.get_chunk_unit_size(),
 		0,
 		chunk_coord.y * world_generation_params.get_chunk_unit_size()
@@ -42,9 +58,8 @@ func create_chunk_instance(
 
 	var chunk_mesh_instance = MeshInstance3D.new()
 	chunk_mesh_instance.name = "ChunkMesh"
-
 	chunk.add_child(chunk_mesh_instance)
-	chunk_mesh_instance.owner = parent.get_tree().edited_scene_root
+	chunk_mesh_instance.owner = root_owner
 
 	chunk_mesh_instance.mesh = generate_chunk_mesh(chunk_coord)
 
@@ -52,7 +67,17 @@ func create_chunk_instance(
 		chunk_mesh_instance.material_override = world_display_params.terrain_material
 
 	chunk_mesh_instance.create_trimesh_collision()
-	return chunk
+	for child in chunk_mesh_instance.get_children():
+		child.owner = root_owner
+		for grand_child in child.get_children():
+			grand_child.owner = root_owner
+			
+	var scene = PackedScene.new()
+	var result = scene.pack(chunk_node)
+	if result == OK:
+		var error = ResourceSaver.save(scene, )
+		if error != OK:
+			push_error("An error occurred while saving chunk to disk.")
 
 
 func generate_chunk_mesh(chunk_coord: Vector2i) -> Mesh:

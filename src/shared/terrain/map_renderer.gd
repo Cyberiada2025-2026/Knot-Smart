@@ -29,3 +29,5 @@ func begin_generation():
 	
 	map_instancer = MapInstancer.new(self)
 	
+	map_instancer.create_map_instance()
+	

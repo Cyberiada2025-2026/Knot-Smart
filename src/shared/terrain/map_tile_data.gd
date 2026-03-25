@@ -16,7 +16,7 @@ func generate() -> void:
 		for z in world_size:
 			var coord = Vector2i(x, z)
 			data[coord] = TileInfo.new()
-	print(self.name, ": Created blueprint of size ", world_size)
+	print("MapTileData: Created blueprint of size ", world_size)
 
 
 func get_height(coord: Vector2i) -> float:

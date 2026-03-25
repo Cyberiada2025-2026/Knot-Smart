@@ -38,7 +38,7 @@ func update_active_chunks_borders() -> void:
 	var render_distance: Vector2i = Vector2i(
 		world_generation_params.map_size, world_generation_params.map_size
 	)
-
+	#TODO HANDLE PLAYER FROM GROUP
 	if player != null and player.is_inside_tree():
 		var player_position = player.player_physics.global_position
 		render_position = Vector2i(player_position.x, player_position.z)
@@ -81,6 +81,7 @@ func update_active_chunks() -> void:
 			var coord = Vector2i(x, y)
 			if not active_chunks.has(coord):
 				var chunk_node: Node3D
+				#TODO handle chunks from files
 				active_chunks[coord] = chunk_node
 
 func _process(_delta: float) -> void:

@@ -23,7 +23,7 @@ func begin_generation():
 	for pipeline in pipelines:
 		if debug_flag == true:
 			print(self.name + ": Starting generation pipeline: " + pipeline.name)
-		generator.run_generation(self)
+		pipeline.run_pipeline(self)
 		if debug_flag == true:
 			print(self.name + ": Finished generation for: " + pipeline.name)
 	

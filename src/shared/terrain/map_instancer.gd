@@ -2,6 +2,8 @@
 class_name MapInstancer
 extends Resource
 
+var SCENE_PATH: String =  ""
+
 var world_generation_params: WorldGenerationParams
 var world_display_params: WorldDisplayParams
 var blueprint: MapTileData
@@ -13,7 +15,14 @@ func _init(manager: MapRenderer):
 	world_display_params = manager.world_display_params
 
 func create_map_instance(manager: MapRenderer) -> void:
-	print("test")
+	var map_node := Node3D.new()
+	var chunks_node := Node3D.new()
+	
+	for x in world_generation_params.map_size:
+		for z in world_generation_params.map_size:
+			create_chunk_instance(Vector2i(x,z), chunks_node)
+			
+	chunks_node.owner = map_node
 
 func create_chunk_instance(
 	chunk_coord: Vector2i, parent: Node3D
@@ -24,7 +33,6 @@ func create_chunk_instance(
 
 	# Godot requires to add node to tree before modifying it
 	parent.add_child(chunk)
-	chunk.owner = parent.get_tree().edited_scene_root
 
 	chunk.global_position = Vector3(
 		chunk_coord.x * world_generation_params.get_chunk_unit_size(),

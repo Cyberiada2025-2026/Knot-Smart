@@ -23,3 +23,5 @@ func run_pipeline(manager: MapRenderer) -> void:
 
 	if debug_flag == true:
 		print(self.name + ": Generation completed")
+		
+	

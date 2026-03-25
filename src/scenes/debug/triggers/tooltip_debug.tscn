@@ -50,6 +50,10 @@ mesh = SubResource("CapsuleMesh_xowle")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger2" unique_id=1244845603]
 shape = SubResource("CapsuleShape3D_7feem")
 
+[node name="Tooltip" parent="trigger2" unique_id=482693882 instance=ExtResource("3_0sxf1")]
+visible = false
+message = "piwo"
+
 [node name="trigger RigidBody3D" type="RigidBody3D" parent="." unique_id=1040917000]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20530367, 0.8737354, 4.106735)
 
@@ -59,6 +63,10 @@ skeleton = NodePath("../../trigger1/MeshInstance3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger RigidBody3D" unique_id=571376870]
 shape = SubResource("BoxShape3D_nwa4q")
+
+[node name="Tooltip" parent="trigger RigidBody3D" unique_id=1464137811 instance=ExtResource("3_0sxf1")]
+visible = false
+message = "ttp2 "
 
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_0sxf1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90629864, 0)
@@ -75,5 +83,5 @@ mesh = SubResource("CapsuleMesh_yp54c")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="trigger1" unique_id=1989142259]
 shape = SubResource("CapsuleShape3D_nwa4q")
 
-[node name="Tooltip" parent="trigger1" unique_id=482693882 instance=ExtResource("3_0sxf1")]
+[node name="Tooltip" parent="trigger1" unique_id=949261188 instance=ExtResource("3_0sxf1")]
 visible = false

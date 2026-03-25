@@ -1,22 +1,20 @@
 [gd_scene format=3 uid="uid://ci3waxxyk4pbs"]
 
-[ext_resource type="Script" uid="uid://cn6l7oaf3xw32" path="res://shared/terrain/generation_pipeline.gd" id="1_1hp32"]
 [ext_resource type="Script" uid="uid://0212vvhximbx" path="res://shared/terrain/terrain_generator.gd" id="1_aojt6"]
-[ext_resource type="Script" uid="uid://u5hpdit2bo4g" path="res://shared/terrain/map_renderer.gd" id="6_kkw0o"]
+[ext_resource type="Script" uid="uid://cn6l7oaf3xw32" path="res://shared/terrain/grid_generation_pipeline.gd" id="1_nm6oi"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="7_htb35"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="8_biq8l"]
 
 [node name="TerrainTest" type="Node3D" unique_id=1551696206]
 
 [node name="MapRenderer" type="Node3D" parent="." unique_id=2108384034]
-script = ExtResource("6_kkw0o")
-metadata/_custom_type_script = "uid://u5hpdit2bo4g"
+script = ExtResource("1_nm6oi")
 
-[node name="GenerationPipeline" type="Node" parent="MapRenderer" unique_id=1456123067]
-script = ExtResource("1_1hp32")
+[node name="GridGenerationPipeline" type="Node" parent="MapRenderer" unique_id=1756213863]
+script = ExtResource("1_nm6oi")
 metadata/_custom_type_script = "uid://cn6l7oaf3xw32"
 
-[node name="TerrainGenerator" type="Node" parent="MapRenderer/GenerationPipeline" unique_id=1269694157]
+[node name="TerrainGenerator" type="Node" parent="MapRenderer/GridGenerationPipeline" unique_id=1647112656]
 script = ExtResource("1_aojt6")
 metadata/_custom_type_script = "uid://0212vvhximbx"
 

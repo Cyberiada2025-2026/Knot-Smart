@@ -1,7 +1,6 @@
 class_name TileInfo
 extends Resource
 
-enum TileType { EMPTY, ROAD }
 enum PlacementRule {
 	FLAT,
 	SLOPE_X,
@@ -10,15 +9,17 @@ enum PlacementRule {
 }
 
 var height: float
-var type: TileType
+var object: MeshInstance3D
+var appears_many_times: bool
 var placement_rule: PlacementRule
-
 
 func _init(
 	_height: float = 0.0,
-	_type: TileType = TileType.EMPTY,
-	_placement_rule: PlacementRule = PlacementRule.FLAT
+	_placement_rule: PlacementRule = PlacementRule.FLAT,
+	_object: MeshInstance3D =  null,
+	_appears_many_times: bool = false
 ):
 	self.height = _height
-	self.type = _type
 	self.placement_rule = _placement_rule
+	self.object = _object
+	self.appears_many_times = _appears_many_times

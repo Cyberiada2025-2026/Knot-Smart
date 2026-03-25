@@ -6,7 +6,7 @@ var world_generation_params: WorldGenerationParams
 var blueprint: MapTileData
 
 
-func execute(manager: GenerationPipeline) -> bool:
+func execute(manager: GridGenerationPipeline) -> bool:
 	blueprint = manager.blueprint
 	world_generation_params = manager.world_generation_params
 

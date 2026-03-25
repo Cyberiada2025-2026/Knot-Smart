@@ -1,5 +1,5 @@
 @tool
-class_name GenerationPipeline
+class_name GridGenerationPipeline
 extends Node
 
 var world_generation_params

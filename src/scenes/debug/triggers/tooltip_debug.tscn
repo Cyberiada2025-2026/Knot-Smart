@@ -85,3 +85,4 @@ shape = SubResource("CapsuleShape3D_nwa4q")
 
 [node name="Tooltip" parent="trigger1" unique_id=949261188 instance=ExtResource("3_0sxf1")]
 visible = false
+message = "Very long testing tooltip lorem ipsum dolor wtf why not working waebba zip"

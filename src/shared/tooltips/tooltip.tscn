@@ -10,7 +10,6 @@ offset_top = 109.0
 offset_right = 166.0
 offset_bottom = 109.0
 script = ExtResource("1_gs4nm")
-message = "Very long testing tooltip lorem ipsum dolor wtf why not working"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=27882816]
 layout_mode = 1

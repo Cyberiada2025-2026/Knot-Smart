@@ -1,261 +1,261 @@
-[gd_scene format=3 uid="uid://d1ne0opfspi3j"]
+[gd_scene format=3]
 
-[ext_resource type="PackedScene" uid="uid://fy04p8tlh3wb" path="res://scenes/map/chunks/chunk_0_0.tscn" id="1_ngyjn"]
-[ext_resource type="PackedScene" uid="uid://oow3uge41s43" path="res://scenes/map/chunks/chunk_0_1.tscn" id="2_ks77o"]
-[ext_resource type="PackedScene" uid="uid://bnagq8sio5kq3" path="res://scenes/map/chunks/chunk_0_2.tscn" id="3_6qttj"]
-[ext_resource type="PackedScene" uid="uid://bw2uwxxu48mdx" path="res://scenes/map/chunks/chunk_0_3.tscn" id="4_24hrp"]
-[ext_resource type="PackedScene" uid="uid://c0srsa7xooouk" path="res://scenes/map/chunks/chunk_0_4.tscn" id="5_j7igj"]
-[ext_resource type="PackedScene" uid="uid://cobpgyygv1oil" path="res://scenes/map/chunks/chunk_0_5.tscn" id="6_ov4iw"]
-[ext_resource type="PackedScene" uid="uid://027o016senll" path="res://scenes/map/chunks/chunk_0_6.tscn" id="7_4744q"]
-[ext_resource type="PackedScene" uid="uid://b2qhjwd6xvaip" path="res://scenes/map/chunks/chunk_0_7.tscn" id="8_sfk7f"]
-[ext_resource type="PackedScene" uid="uid://nidinjtufu12" path="res://scenes/map/chunks/chunk_1_0.tscn" id="9_4dal8"]
-[ext_resource type="PackedScene" uid="uid://cw8d2yo4c87fl" path="res://scenes/map/chunks/chunk_1_1.tscn" id="10_upfkh"]
-[ext_resource type="PackedScene" uid="uid://btmywitnvdjyr" path="res://scenes/map/chunks/chunk_1_2.tscn" id="11_msec4"]
-[ext_resource type="PackedScene" uid="uid://cvvemwa6tr0mk" path="res://scenes/map/chunks/chunk_1_3.tscn" id="12_jnj6r"]
-[ext_resource type="PackedScene" uid="uid://dsemkc0gqgci0" path="res://scenes/map/chunks/chunk_1_4.tscn" id="13_rhjbk"]
-[ext_resource type="PackedScene" uid="uid://cf2ko11ox7jiv" path="res://scenes/map/chunks/chunk_1_5.tscn" id="14_q0tqi"]
-[ext_resource type="PackedScene" uid="uid://o5psfkrwohae" path="res://scenes/map/chunks/chunk_1_6.tscn" id="15_w6cst"]
-[ext_resource type="PackedScene" uid="uid://bhjoa6l8gl6ij" path="res://scenes/map/chunks/chunk_1_7.tscn" id="16_c1gmu"]
-[ext_resource type="PackedScene" uid="uid://edxkqa6criko" path="res://scenes/map/chunks/chunk_2_0.tscn" id="17_prfw3"]
-[ext_resource type="PackedScene" uid="uid://csnus6elh4ojc" path="res://scenes/map/chunks/chunk_2_1.tscn" id="18_6jo83"]
-[ext_resource type="PackedScene" uid="uid://iykfmoyqa4td" path="res://scenes/map/chunks/chunk_2_2.tscn" id="19_iy3ch"]
-[ext_resource type="PackedScene" uid="uid://choisdrbh01y8" path="res://scenes/map/chunks/chunk_2_3.tscn" id="20_5oaj2"]
-[ext_resource type="PackedScene" uid="uid://dc7p7mnch1njc" path="res://scenes/map/chunks/chunk_2_4.tscn" id="21_73366"]
-[ext_resource type="PackedScene" uid="uid://u7ovkpsm5y2j" path="res://scenes/map/chunks/chunk_2_5.tscn" id="22_gur3s"]
-[ext_resource type="PackedScene" uid="uid://cstbk1ucj7vsr" path="res://scenes/map/chunks/chunk_2_6.tscn" id="23_7hpot"]
-[ext_resource type="PackedScene" uid="uid://dyrydc53yhahi" path="res://scenes/map/chunks/chunk_2_7.tscn" id="24_a5cn8"]
-[ext_resource type="PackedScene" uid="uid://be4boe1ystrg8" path="res://scenes/map/chunks/chunk_3_0.tscn" id="25_absr0"]
-[ext_resource type="PackedScene" uid="uid://6ivvws6gw5le" path="res://scenes/map/chunks/chunk_3_1.tscn" id="26_haakm"]
-[ext_resource type="PackedScene" uid="uid://duf18wlarqlpu" path="res://scenes/map/chunks/chunk_3_2.tscn" id="27_6ch74"]
-[ext_resource type="PackedScene" uid="uid://d0au3ubw837f" path="res://scenes/map/chunks/chunk_3_3.tscn" id="28_bgy11"]
-[ext_resource type="PackedScene" uid="uid://dn8ud3ara04v7" path="res://scenes/map/chunks/chunk_3_4.tscn" id="29_uhr6w"]
-[ext_resource type="PackedScene" uid="uid://cahbkteah4h0o" path="res://scenes/map/chunks/chunk_3_5.tscn" id="30_w3hsr"]
-[ext_resource type="PackedScene" uid="uid://b1h71j11gyn05" path="res://scenes/map/chunks/chunk_3_6.tscn" id="31_nrdjn"]
-[ext_resource type="PackedScene" uid="uid://dkc7x12gft1vq" path="res://scenes/map/chunks/chunk_3_7.tscn" id="32_2qikq"]
-[ext_resource type="PackedScene" uid="uid://c8bct2lgp0hf4" path="res://scenes/map/chunks/chunk_4_0.tscn" id="33_rrivy"]
-[ext_resource type="PackedScene" uid="uid://jok64ra3cy1d" path="res://scenes/map/chunks/chunk_4_1.tscn" id="34_mlv6i"]
-[ext_resource type="PackedScene" uid="uid://dp2wqd2kujyxk" path="res://scenes/map/chunks/chunk_4_2.tscn" id="35_ynegy"]
-[ext_resource type="PackedScene" uid="uid://b8ammfrgwts4r" path="res://scenes/map/chunks/chunk_4_3.tscn" id="36_ttmmy"]
-[ext_resource type="PackedScene" uid="uid://7i1rxtpddmt7" path="res://scenes/map/chunks/chunk_4_4.tscn" id="37_b4ka2"]
-[ext_resource type="PackedScene" uid="uid://k84auoy4gjnu" path="res://scenes/map/chunks/chunk_4_5.tscn" id="38_7rdx5"]
-[ext_resource type="PackedScene" uid="uid://b72sklfygnv4e" path="res://scenes/map/chunks/chunk_4_6.tscn" id="39_xlqx1"]
-[ext_resource type="PackedScene" uid="uid://dgxsbyj36wua1" path="res://scenes/map/chunks/chunk_4_7.tscn" id="40_3tjwq"]
-[ext_resource type="PackedScene" uid="uid://cyjpo3x0mag4f" path="res://scenes/map/chunks/chunk_5_0.tscn" id="41_en071"]
-[ext_resource type="PackedScene" uid="uid://baty3yk5b0v40" path="res://scenes/map/chunks/chunk_5_1.tscn" id="42_ueasl"]
-[ext_resource type="PackedScene" uid="uid://buohwirc2f8kl" path="res://scenes/map/chunks/chunk_5_2.tscn" id="43_57c3m"]
-[ext_resource type="PackedScene" uid="uid://bdljca8nqjg7t" path="res://scenes/map/chunks/chunk_5_3.tscn" id="44_7po03"]
-[ext_resource type="PackedScene" uid="uid://b6mwcv5l7ob32" path="res://scenes/map/chunks/chunk_5_4.tscn" id="45_3h8hw"]
-[ext_resource type="PackedScene" uid="uid://x55jlx1kqygd" path="res://scenes/map/chunks/chunk_5_5.tscn" id="46_eji6y"]
-[ext_resource type="PackedScene" uid="uid://bf2mlq18vx5hc" path="res://scenes/map/chunks/chunk_5_6.tscn" id="47_ex4i0"]
-[ext_resource type="PackedScene" uid="uid://hcti518aiwe" path="res://scenes/map/chunks/chunk_5_7.tscn" id="48_lltox"]
-[ext_resource type="PackedScene" uid="uid://c6o8xpdv0m874" path="res://scenes/map/chunks/chunk_6_0.tscn" id="49_dan76"]
-[ext_resource type="PackedScene" uid="uid://d3yo7rsawqyk8" path="res://scenes/map/chunks/chunk_6_1.tscn" id="50_vpdev"]
-[ext_resource type="PackedScene" uid="uid://dvry3njplxjy1" path="res://scenes/map/chunks/chunk_6_2.tscn" id="51_dfohh"]
-[ext_resource type="PackedScene" uid="uid://bjfuduyvqqhoy" path="res://scenes/map/chunks/chunk_6_3.tscn" id="52_durtb"]
-[ext_resource type="PackedScene" uid="uid://cvnii55vedft8" path="res://scenes/map/chunks/chunk_6_4.tscn" id="53_bykjl"]
-[ext_resource type="PackedScene" uid="uid://d05ql60sm47ms" path="res://scenes/map/chunks/chunk_6_5.tscn" id="54_dt253"]
-[ext_resource type="PackedScene" uid="uid://b0s0rv0ekipn0" path="res://scenes/map/chunks/chunk_6_6.tscn" id="55_yecfw"]
-[ext_resource type="PackedScene" uid="uid://cusa2an6s1l1b" path="res://scenes/map/chunks/chunk_6_7.tscn" id="56_xtc7e"]
-[ext_resource type="PackedScene" uid="uid://bj02oj13f7as7" path="res://scenes/map/chunks/chunk_7_0.tscn" id="57_rtsnv"]
-[ext_resource type="PackedScene" uid="uid://bwnbbjgieoaq6" path="res://scenes/map/chunks/chunk_7_1.tscn" id="58_3dxkw"]
-[ext_resource type="PackedScene" uid="uid://b1vyf1rjsai20" path="res://scenes/map/chunks/chunk_7_2.tscn" id="59_tgrki"]
-[ext_resource type="PackedScene" uid="uid://dgy02gdwpnast" path="res://scenes/map/chunks/chunk_7_3.tscn" id="60_ja7gk"]
-[ext_resource type="PackedScene" uid="uid://h8pxovsxx7iq" path="res://scenes/map/chunks/chunk_7_4.tscn" id="61_0tvqa"]
-[ext_resource type="PackedScene" uid="uid://cvd6rq31vex6e" path="res://scenes/map/chunks/chunk_7_5.tscn" id="62_ukv8x"]
-[ext_resource type="PackedScene" uid="uid://dahmvkns155fu" path="res://scenes/map/chunks/chunk_7_6.tscn" id="63_jwhff"]
-[ext_resource type="PackedScene" uid="uid://kppm2fivalj2" path="res://scenes/map/chunks/chunk_7_7.tscn" id="64_qs3aq"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_0_0.tscn" id="1_ngyjn"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_0_1.tscn" id="2_ks77o"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_0_2.tscn" id="3_6qttj"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_0_3.tscn" id="4_24hrp"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_0_4.tscn" id="5_j7igj"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_0_5.tscn" id="6_ov4iw"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_0_6.tscn" id="7_4744q"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_0_7.tscn" id="8_sfk7f"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_1_0.tscn" id="9_4dal8"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_1_1.tscn" id="10_upfkh"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_1_2.tscn" id="11_msec4"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_1_3.tscn" id="12_jnj6r"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_1_4.tscn" id="13_rhjbk"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_1_5.tscn" id="14_q0tqi"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_1_6.tscn" id="15_w6cst"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_1_7.tscn" id="16_c1gmu"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_2_0.tscn" id="17_prfw3"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_2_1.tscn" id="18_6jo83"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_2_2.tscn" id="19_iy3ch"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_2_3.tscn" id="20_5oaj2"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_2_4.tscn" id="21_73366"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_2_5.tscn" id="22_gur3s"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_2_6.tscn" id="23_7hpot"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_2_7.tscn" id="24_a5cn8"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_3_0.tscn" id="25_absr0"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_3_1.tscn" id="26_haakm"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_3_2.tscn" id="27_6ch74"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_3_3.tscn" id="28_bgy11"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_3_4.tscn" id="29_uhr6w"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_3_5.tscn" id="30_w3hsr"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_3_6.tscn" id="31_nrdjn"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_3_7.tscn" id="32_2qikq"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_4_0.tscn" id="33_rrivy"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_4_1.tscn" id="34_mlv6i"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_4_2.tscn" id="35_ynegy"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_4_3.tscn" id="36_ttmmy"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_4_4.tscn" id="37_b4ka2"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_4_5.tscn" id="38_7rdx5"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_4_6.tscn" id="39_xlqx1"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_4_7.tscn" id="40_3tjwq"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_5_0.tscn" id="41_en071"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_5_1.tscn" id="42_ueasl"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_5_2.tscn" id="43_57c3m"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_5_3.tscn" id="44_7po03"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_5_4.tscn" id="45_3h8hw"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_5_5.tscn" id="46_eji6y"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_5_6.tscn" id="47_ex4i0"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_5_7.tscn" id="48_lltox"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_6_0.tscn" id="49_dan76"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_6_1.tscn" id="50_vpdev"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_6_2.tscn" id="51_dfohh"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_6_3.tscn" id="52_durtb"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_6_4.tscn" id="53_bykjl"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_6_5.tscn" id="54_dt253"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_6_6.tscn" id="55_yecfw"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_6_7.tscn" id="56_xtc7e"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_7_0.tscn" id="57_rtsnv"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_7_1.tscn" id="58_3dxkw"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_7_2.tscn" id="59_tgrki"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_7_3.tscn" id="60_ja7gk"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_7_4.tscn" id="61_0tvqa"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_7_5.tscn" id="62_ukv8x"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_7_6.tscn" id="63_jwhff"]
+[ext_resource type="PackedScene" path="res://scenes/map/chunks/chunk_7_7.tscn" id="64_qs3aq"]
 
-[node name="Map" type="Node3D" unique_id=690108951]
+[node name="Map" type="Node3D" unique_id=2116072281]
 
-[node name="Chunks" type="Node3D" parent="." unique_id=1936851590]
+[node name="Chunks" type="Node3D" parent="." unique_id=1765306030]
 
-[node name="ChunkX0Z0" type="Node3D" parent="Chunks" unique_id=1429151521 instance=ExtResource("1_ngyjn")]
+[node name="ChunkX0Z0" type="Node3D" parent="Chunks" unique_id=56960316 instance=ExtResource("1_ngyjn")]
 
-[node name="ChunkX0Z1" type="Node3D" parent="Chunks" unique_id=1381802793 instance=ExtResource("2_ks77o")]
+[node name="ChunkX0Z1" type="Node3D" parent="Chunks" unique_id=530918478 instance=ExtResource("2_ks77o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32)
 
-[node name="ChunkX0Z2" type="Node3D" parent="Chunks" unique_id=961242418 instance=ExtResource("3_6qttj")]
+[node name="ChunkX0Z2" type="Node3D" parent="Chunks" unique_id=1017962373 instance=ExtResource("3_6qttj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
 
-[node name="ChunkX0Z3" type="Node3D" parent="Chunks" unique_id=1820241037 instance=ExtResource("4_24hrp")]
+[node name="ChunkX0Z3" type="Node3D" parent="Chunks" unique_id=265658363 instance=ExtResource("4_24hrp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 96)
 
-[node name="ChunkX0Z4" type="Node3D" parent="Chunks" unique_id=1234204640 instance=ExtResource("5_j7igj")]
+[node name="ChunkX0Z4" type="Node3D" parent="Chunks" unique_id=1601765929 instance=ExtResource("5_j7igj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
 
-[node name="ChunkX0Z5" type="Node3D" parent="Chunks" unique_id=521019759 instance=ExtResource("6_ov4iw")]
+[node name="ChunkX0Z5" type="Node3D" parent="Chunks" unique_id=85280670 instance=ExtResource("6_ov4iw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 160)
 
-[node name="ChunkX0Z6" type="Node3D" parent="Chunks" unique_id=1117056897 instance=ExtResource("7_4744q")]
+[node name="ChunkX0Z6" type="Node3D" parent="Chunks" unique_id=100667073 instance=ExtResource("7_4744q")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 192)
 
-[node name="ChunkX0Z7" type="Node3D" parent="Chunks" unique_id=1883601018 instance=ExtResource("8_sfk7f")]
+[node name="ChunkX0Z7" type="Node3D" parent="Chunks" unique_id=181237506 instance=ExtResource("8_sfk7f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 224)
 
-[node name="ChunkX1Z0" type="Node3D" parent="Chunks" unique_id=1380898009 instance=ExtResource("9_4dal8")]
+[node name="ChunkX1Z0" type="Node3D" parent="Chunks" unique_id=1733252891 instance=ExtResource("9_4dal8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 0)
 
-[node name="ChunkX1Z1" type="Node3D" parent="Chunks" unique_id=108422556 instance=ExtResource("10_upfkh")]
+[node name="ChunkX1Z1" type="Node3D" parent="Chunks" unique_id=485820593 instance=ExtResource("10_upfkh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 32)
 
-[node name="ChunkX1Z2" type="Node3D" parent="Chunks" unique_id=893333756 instance=ExtResource("11_msec4")]
+[node name="ChunkX1Z2" type="Node3D" parent="Chunks" unique_id=1962303414 instance=ExtResource("11_msec4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 64)
 
-[node name="ChunkX1Z3" type="Node3D" parent="Chunks" unique_id=841164995 instance=ExtResource("12_jnj6r")]
+[node name="ChunkX1Z3" type="Node3D" parent="Chunks" unique_id=1929901861 instance=ExtResource("12_jnj6r")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 96)
 
-[node name="ChunkX1Z4" type="Node3D" parent="Chunks" unique_id=704726258 instance=ExtResource("13_rhjbk")]
+[node name="ChunkX1Z4" type="Node3D" parent="Chunks" unique_id=1149565424 instance=ExtResource("13_rhjbk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 128)
 
-[node name="ChunkX1Z5" type="Node3D" parent="Chunks" unique_id=1824709291 instance=ExtResource("14_q0tqi")]
+[node name="ChunkX1Z5" type="Node3D" parent="Chunks" unique_id=620635479 instance=ExtResource("14_q0tqi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 160)
 
-[node name="ChunkX1Z6" type="Node3D" parent="Chunks" unique_id=1698208745 instance=ExtResource("15_w6cst")]
+[node name="ChunkX1Z6" type="Node3D" parent="Chunks" unique_id=1225823669 instance=ExtResource("15_w6cst")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 192)
 
-[node name="ChunkX1Z7" type="Node3D" parent="Chunks" unique_id=1686728628 instance=ExtResource("16_c1gmu")]
+[node name="ChunkX1Z7" type="Node3D" parent="Chunks" unique_id=165184720 instance=ExtResource("16_c1gmu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 224)
 
-[node name="ChunkX2Z0" type="Node3D" parent="Chunks" unique_id=1947593286 instance=ExtResource("17_prfw3")]
+[node name="ChunkX2Z0" type="Node3D" parent="Chunks" unique_id=801275584 instance=ExtResource("17_prfw3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
 
-[node name="ChunkX2Z1" type="Node3D" parent="Chunks" unique_id=1259751702 instance=ExtResource("18_6jo83")]
+[node name="ChunkX2Z1" type="Node3D" parent="Chunks" unique_id=177505817 instance=ExtResource("18_6jo83")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 32)
 
-[node name="ChunkX2Z2" type="Node3D" parent="Chunks" unique_id=1490682916 instance=ExtResource("19_iy3ch")]
+[node name="ChunkX2Z2" type="Node3D" parent="Chunks" unique_id=218995750 instance=ExtResource("19_iy3ch")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 64)
 
-[node name="ChunkX2Z3" type="Node3D" parent="Chunks" unique_id=194291458 instance=ExtResource("20_5oaj2")]
+[node name="ChunkX2Z3" type="Node3D" parent="Chunks" unique_id=928317196 instance=ExtResource("20_5oaj2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 96)
 
-[node name="ChunkX2Z4" type="Node3D" parent="Chunks" unique_id=805178015 instance=ExtResource("21_73366")]
+[node name="ChunkX2Z4" type="Node3D" parent="Chunks" unique_id=1983413253 instance=ExtResource("21_73366")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 128)
 
-[node name="ChunkX2Z5" type="Node3D" parent="Chunks" unique_id=2102148618 instance=ExtResource("22_gur3s")]
+[node name="ChunkX2Z5" type="Node3D" parent="Chunks" unique_id=1609044726 instance=ExtResource("22_gur3s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 160)
 
-[node name="ChunkX2Z6" type="Node3D" parent="Chunks" unique_id=1641309219 instance=ExtResource("23_7hpot")]
+[node name="ChunkX2Z6" type="Node3D" parent="Chunks" unique_id=1262816034 instance=ExtResource("23_7hpot")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 192)
 
-[node name="ChunkX2Z7" type="Node3D" parent="Chunks" unique_id=1290175625 instance=ExtResource("24_a5cn8")]
+[node name="ChunkX2Z7" type="Node3D" parent="Chunks" unique_id=1711698014 instance=ExtResource("24_a5cn8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 224)
 
-[node name="ChunkX3Z0" type="Node3D" parent="Chunks" unique_id=368307393 instance=ExtResource("25_absr0")]
+[node name="ChunkX3Z0" type="Node3D" parent="Chunks" unique_id=2058170315 instance=ExtResource("25_absr0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 0)
 
-[node name="ChunkX3Z1" type="Node3D" parent="Chunks" unique_id=1728791517 instance=ExtResource("26_haakm")]
+[node name="ChunkX3Z1" type="Node3D" parent="Chunks" unique_id=697018898 instance=ExtResource("26_haakm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 32)
 
-[node name="ChunkX3Z2" type="Node3D" parent="Chunks" unique_id=1793002116 instance=ExtResource("27_6ch74")]
+[node name="ChunkX3Z2" type="Node3D" parent="Chunks" unique_id=1495958911 instance=ExtResource("27_6ch74")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 64)
 
-[node name="ChunkX3Z3" type="Node3D" parent="Chunks" unique_id=2073585207 instance=ExtResource("28_bgy11")]
+[node name="ChunkX3Z3" type="Node3D" parent="Chunks" unique_id=60007622 instance=ExtResource("28_bgy11")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 96)
 
-[node name="ChunkX3Z4" type="Node3D" parent="Chunks" unique_id=1720183362 instance=ExtResource("29_uhr6w")]
+[node name="ChunkX3Z4" type="Node3D" parent="Chunks" unique_id=696335693 instance=ExtResource("29_uhr6w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 128)
 
-[node name="ChunkX3Z5" type="Node3D" parent="Chunks" unique_id=2108885487 instance=ExtResource("30_w3hsr")]
+[node name="ChunkX3Z5" type="Node3D" parent="Chunks" unique_id=297956256 instance=ExtResource("30_w3hsr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 160)
 
-[node name="ChunkX3Z6" type="Node3D" parent="Chunks" unique_id=841345741 instance=ExtResource("31_nrdjn")]
+[node name="ChunkX3Z6" type="Node3D" parent="Chunks" unique_id=2040140896 instance=ExtResource("31_nrdjn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 192)
 
-[node name="ChunkX3Z7" type="Node3D" parent="Chunks" unique_id=695751499 instance=ExtResource("32_2qikq")]
+[node name="ChunkX3Z7" type="Node3D" parent="Chunks" unique_id=1576127158 instance=ExtResource("32_2qikq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 224)
 
-[node name="ChunkX4Z0" type="Node3D" parent="Chunks" unique_id=1551238756 instance=ExtResource("33_rrivy")]
+[node name="ChunkX4Z0" type="Node3D" parent="Chunks" unique_id=1803937641 instance=ExtResource("33_rrivy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 0)
 
-[node name="ChunkX4Z1" type="Node3D" parent="Chunks" unique_id=1121318087 instance=ExtResource("34_mlv6i")]
+[node name="ChunkX4Z1" type="Node3D" parent="Chunks" unique_id=932107764 instance=ExtResource("34_mlv6i")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 32)
 
-[node name="ChunkX4Z2" type="Node3D" parent="Chunks" unique_id=1705022124 instance=ExtResource("35_ynegy")]
+[node name="ChunkX4Z2" type="Node3D" parent="Chunks" unique_id=886065902 instance=ExtResource("35_ynegy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 64)
 
-[node name="ChunkX4Z3" type="Node3D" parent="Chunks" unique_id=823435868 instance=ExtResource("36_ttmmy")]
+[node name="ChunkX4Z3" type="Node3D" parent="Chunks" unique_id=371425613 instance=ExtResource("36_ttmmy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 96)
 
-[node name="ChunkX4Z4" type="Node3D" parent="Chunks" unique_id=1427380424 instance=ExtResource("37_b4ka2")]
+[node name="ChunkX4Z4" type="Node3D" parent="Chunks" unique_id=1857286106 instance=ExtResource("37_b4ka2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
 
-[node name="ChunkX4Z5" type="Node3D" parent="Chunks" unique_id=12156707 instance=ExtResource("38_7rdx5")]
+[node name="ChunkX4Z5" type="Node3D" parent="Chunks" unique_id=1898694557 instance=ExtResource("38_7rdx5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 160)
 
-[node name="ChunkX4Z6" type="Node3D" parent="Chunks" unique_id=1027937383 instance=ExtResource("39_xlqx1")]
+[node name="ChunkX4Z6" type="Node3D" parent="Chunks" unique_id=971892276 instance=ExtResource("39_xlqx1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 192)
 
-[node name="ChunkX4Z7" type="Node3D" parent="Chunks" unique_id=68083385 instance=ExtResource("40_3tjwq")]
+[node name="ChunkX4Z7" type="Node3D" parent="Chunks" unique_id=1343426924 instance=ExtResource("40_3tjwq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 224)
 
-[node name="ChunkX5Z0" type="Node3D" parent="Chunks" unique_id=1592543176 instance=ExtResource("41_en071")]
+[node name="ChunkX5Z0" type="Node3D" parent="Chunks" unique_id=1221079530 instance=ExtResource("41_en071")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 0)
 
-[node name="ChunkX5Z1" type="Node3D" parent="Chunks" unique_id=102684870 instance=ExtResource("42_ueasl")]
+[node name="ChunkX5Z1" type="Node3D" parent="Chunks" unique_id=1811527453 instance=ExtResource("42_ueasl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 32)
 
-[node name="ChunkX5Z2" type="Node3D" parent="Chunks" unique_id=1822696065 instance=ExtResource("43_57c3m")]
+[node name="ChunkX5Z2" type="Node3D" parent="Chunks" unique_id=1563940206 instance=ExtResource("43_57c3m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 64)
 
-[node name="ChunkX5Z3" type="Node3D" parent="Chunks" unique_id=1459070663 instance=ExtResource("44_7po03")]
+[node name="ChunkX5Z3" type="Node3D" parent="Chunks" unique_id=2082398839 instance=ExtResource("44_7po03")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 96)
 
-[node name="ChunkX5Z4" type="Node3D" parent="Chunks" unique_id=2068796439 instance=ExtResource("45_3h8hw")]
+[node name="ChunkX5Z4" type="Node3D" parent="Chunks" unique_id=1203747407 instance=ExtResource("45_3h8hw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 128)
 
-[node name="ChunkX5Z5" type="Node3D" parent="Chunks" unique_id=1238413014 instance=ExtResource("46_eji6y")]
+[node name="ChunkX5Z5" type="Node3D" parent="Chunks" unique_id=529906918 instance=ExtResource("46_eji6y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 160)
 
-[node name="ChunkX5Z6" type="Node3D" parent="Chunks" unique_id=1673984914 instance=ExtResource("47_ex4i0")]
+[node name="ChunkX5Z6" type="Node3D" parent="Chunks" unique_id=1743623033 instance=ExtResource("47_ex4i0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 192)
 
-[node name="ChunkX5Z7" type="Node3D" parent="Chunks" unique_id=345307935 instance=ExtResource("48_lltox")]
+[node name="ChunkX5Z7" type="Node3D" parent="Chunks" unique_id=1167733136 instance=ExtResource("48_lltox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 224)
 
-[node name="ChunkX6Z0" type="Node3D" parent="Chunks" unique_id=1597658426 instance=ExtResource("49_dan76")]
+[node name="ChunkX6Z0" type="Node3D" parent="Chunks" unique_id=867524565 instance=ExtResource("49_dan76")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 0)
 
-[node name="ChunkX6Z1" type="Node3D" parent="Chunks" unique_id=1596475641 instance=ExtResource("50_vpdev")]
+[node name="ChunkX6Z1" type="Node3D" parent="Chunks" unique_id=83630145 instance=ExtResource("50_vpdev")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 32)
 
-[node name="ChunkX6Z2" type="Node3D" parent="Chunks" unique_id=262104756 instance=ExtResource("51_dfohh")]
+[node name="ChunkX6Z2" type="Node3D" parent="Chunks" unique_id=1238996065 instance=ExtResource("51_dfohh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 64)
 
-[node name="ChunkX6Z3" type="Node3D" parent="Chunks" unique_id=1955742116 instance=ExtResource("52_durtb")]
+[node name="ChunkX6Z3" type="Node3D" parent="Chunks" unique_id=1677222367 instance=ExtResource("52_durtb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 96)
 
-[node name="ChunkX6Z4" type="Node3D" parent="Chunks" unique_id=1256289548 instance=ExtResource("53_bykjl")]
+[node name="ChunkX6Z4" type="Node3D" parent="Chunks" unique_id=842197995 instance=ExtResource("53_bykjl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 128)
 
-[node name="ChunkX6Z5" type="Node3D" parent="Chunks" unique_id=863953856 instance=ExtResource("54_dt253")]
+[node name="ChunkX6Z5" type="Node3D" parent="Chunks" unique_id=772347078 instance=ExtResource("54_dt253")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 160)
 
-[node name="ChunkX6Z6" type="Node3D" parent="Chunks" unique_id=1343796742 instance=ExtResource("55_yecfw")]
+[node name="ChunkX6Z6" type="Node3D" parent="Chunks" unique_id=1271030023 instance=ExtResource("55_yecfw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 192)
 
-[node name="ChunkX6Z7" type="Node3D" parent="Chunks" unique_id=1196313966 instance=ExtResource("56_xtc7e")]
+[node name="ChunkX6Z7" type="Node3D" parent="Chunks" unique_id=1389863364 instance=ExtResource("56_xtc7e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 224)
 
-[node name="ChunkX7Z0" type="Node3D" parent="Chunks" unique_id=975717873 instance=ExtResource("57_rtsnv")]
+[node name="ChunkX7Z0" type="Node3D" parent="Chunks" unique_id=887001590 instance=ExtResource("57_rtsnv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224, 0, 0)
 
-[node name="ChunkX7Z1" type="Node3D" parent="Chunks" unique_id=1397820631 instance=ExtResource("58_3dxkw")]
+[node name="ChunkX7Z1" type="Node3D" parent="Chunks" unique_id=1081432687 instance=ExtResource("58_3dxkw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224, 0, 32)
 
-[node name="ChunkX7Z2" type="Node3D" parent="Chunks" unique_id=1664267679 instance=ExtResource("59_tgrki")]
+[node name="ChunkX7Z2" type="Node3D" parent="Chunks" unique_id=126082845 instance=ExtResource("59_tgrki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224, 0, 64)
 
-[node name="ChunkX7Z3" type="Node3D" parent="Chunks" unique_id=69229742 instance=ExtResource("60_ja7gk")]
+[node name="ChunkX7Z3" type="Node3D" parent="Chunks" unique_id=2145031474 instance=ExtResource("60_ja7gk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224, 0, 96)
 
-[node name="ChunkX7Z4" type="Node3D" parent="Chunks" unique_id=343470948 instance=ExtResource("61_0tvqa")]
+[node name="ChunkX7Z4" type="Node3D" parent="Chunks" unique_id=726790698 instance=ExtResource("61_0tvqa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224, 0, 128)
 
-[node name="ChunkX7Z5" type="Node3D" parent="Chunks" unique_id=2069137916 instance=ExtResource("62_ukv8x")]
+[node name="ChunkX7Z5" type="Node3D" parent="Chunks" unique_id=1046338644 instance=ExtResource("62_ukv8x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224, 0, 160)
 
-[node name="ChunkX7Z6" type="Node3D" parent="Chunks" unique_id=1444118693 instance=ExtResource("63_jwhff")]
+[node name="ChunkX7Z6" type="Node3D" parent="Chunks" unique_id=1939333853 instance=ExtResource("63_jwhff")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224, 0, 192)
 
-[node name="ChunkX7Z7" type="Node3D" parent="Chunks" unique_id=1619992121 instance=ExtResource("64_qs3aq")]
+[node name="ChunkX7Z7" type="Node3D" parent="Chunks" unique_id=848707773 instance=ExtResource("64_qs3aq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 224, 0, 224)

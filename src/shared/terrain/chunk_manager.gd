@@ -1,6 +1,8 @@
 class_name ChunkManager
 extends Node3D
 
+var SCENE_DIR: String = "scenes/map/"
+
 var debug_flag: bool = false
 var isRendering: bool = false
 
@@ -12,6 +14,8 @@ var active_chunks: Dictionary[Vector2i, Node3D] = {}
 
 var active_chunks_start: Vector2i
 var active_chunks_end: Vector2i
+
+var player: Player
 
 func _init(manager: MapRenderer) -> void:
 	blueprint = manager.blueprint
@@ -33,13 +37,19 @@ func clear_inactive_chunks() -> void:
 	for child in get_children():
 		child.queue_free()
 
+func get_player() -> Node3D:
+	var players = get_tree().get_nodes_in_group("Player")
+	return players[0]
+	
+
 func update_active_chunks_borders() -> void:
 	var render_position: Vector2i = Vector2i.ZERO
 	var render_distance: Vector2i = Vector2i(
 		world_generation_params.map_size, world_generation_params.map_size
 	)
-	#TODO HANDLE PLAYER FROM GROUP
-	if player != null and player.is_inside_tree():
+	if player == null:
+		player = get_player()
+	if player != null:
 		var player_position = player.player_physics.global_position
 		render_position = Vector2i(player_position.x, player_position.z)
 		render_distance = Vector2i(
@@ -80,8 +90,10 @@ func update_active_chunks() -> void:
 		for y in range(active_chunks_start.y, active_chunks_end.y):
 			var coord = Vector2i(x, y)
 			if not active_chunks.has(coord):
-				var chunk_node: Node3D
-				#TODO handle chunks from files
+				var CHUNK_PATH = "res://" + SCENE_DIR + "chunks/chunk_%d_%d.tscn" % [x, y]
+				var chunk = ResourceLoader.load(CHUNK_PATH)
+				var chunk_node = chunk.instantiate()
+				self.add_child(chunk_node)
 				active_chunks[coord] = chunk_node
 
 func _process(_delta: float) -> void:

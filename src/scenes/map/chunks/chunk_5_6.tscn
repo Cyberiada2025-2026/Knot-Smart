@@ -1,6 +1,6 @@
-[gd_scene format=4 uid="uid://bf2mlq18vx5hc"]
+[gd_scene format=4]
 
-[ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="1_1fqh0"]
+[ext_resource type="Texture2D" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="1_1fqh0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5xeo"]
 albedo_texture = ExtResource("1_1fqh0")
@@ -19,14 +19,14 @@ _surfaces = [{
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jn38q"]
 data = PackedVector3Array(0, 88, 0, 8, 88, 0, 8, 96, 8, 0, 88, 0, 8, 96, 8, 0, 88, 8, 0, 88, 8, 8, 96, 8, 8, 104, 16, 0, 88, 8, 8, 104, 16, 0, 96, 16, 0, 96, 16, 8, 104, 16, 8, 112, 24, 0, 96, 16, 8, 112, 24, 0, 104, 24, 0, 104, 24, 8, 112, 24, 8, 112, 32, 0, 104, 24, 8, 112, 32, 0, 112, 32, 8, 88, 0, 16, 96, 0, 16, 96, 8, 8, 88, 0, 16, 96, 8, 8, 96, 8, 8, 96, 8, 16, 96, 8, 16, 104, 16, 8, 96, 8, 16, 104, 16, 8, 104, 16, 8, 104, 16, 16, 104, 16, 16, 112, 24, 8, 104, 16, 16, 112, 24, 8, 112, 24, 8, 112, 24, 16, 112, 24, 16, 112, 32, 8, 112, 24, 16, 112, 32, 8, 112, 32, 16, 96, 0, 24, 96, 0, 24, 96, 8, 16, 96, 0, 24, 96, 8, 16, 96, 8, 16, 96, 8, 24, 96, 8, 24, 96, 16, 16, 96, 8, 24, 96, 16, 16, 104, 16, 16, 104, 16, 24, 96, 16, 24, 104, 24, 16, 104, 16, 24, 104, 24, 16, 112, 24, 16, 112, 24, 24, 104, 24, 24, 104, 32, 16, 112, 24, 24, 104, 32, 16, 112, 32, 24, 96, 0, 32, 96, 0, 32, 96, 8, 24, 96, 0, 32, 96, 8, 24, 96, 8, 24, 96, 8, 32, 96, 8, 32, 88, 16, 24, 96, 8, 32, 88, 16, 24, 96, 16, 24, 96, 16, 32, 88, 16, 32, 96, 24, 24, 96, 16, 32, 96, 24, 24, 104, 24, 24, 104, 24, 32, 96, 24, 32, 96, 32, 24, 104, 24, 32, 96, 32, 24, 104, 32)
 
-[node name="ChunkX5Z6" type="Node3D" unique_id=1673984914]
+[node name="ChunkX5Z6" type="Node3D" unique_id=1743623033]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 160, 0, 192)
 
-[node name="ChunkMesh" type="MeshInstance3D" parent="." unique_id=893035396]
+[node name="ChunkMesh" type="MeshInstance3D" parent="." unique_id=117993316]
 material_override = SubResource("StandardMaterial3D_k5xeo")
 mesh = SubResource("ArrayMesh_erlrg")
 
-[node name="ChunkMesh_col" type="StaticBody3D" parent="ChunkMesh" unique_id=1429605188]
+[node name="ChunkMesh_col" type="StaticBody3D" parent="ChunkMesh" unique_id=572373566]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ChunkMesh/ChunkMesh_col" unique_id=1812480069]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChunkMesh/ChunkMesh_col" unique_id=2010078008]
 shape = SubResource("ConcavePolygonShape3D_jn38q")

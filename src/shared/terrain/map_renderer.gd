@@ -31,3 +31,11 @@ func begin_generation():
 	
 	map_instancer.create_map_instance()
 	
+	if Engine.is_editor_hint() == false:
+		chunk_manager = ChunkManager.new(self)
+		chunk_manager.name = "Chunks"
+
+func _ready():
+	begin_generation()
+		
+	

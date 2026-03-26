@@ -20,18 +20,18 @@ script = ExtResource("5_w7gwg")
 [node name="NeighborGenerator" type="Node" parent="." unique_id=53622853]
 script = ExtResource("6_rrnor")
 
-[node name="FloorGridMap" type="GridMap" parent="."]
+[node name="FloorGridMap" type="GridMap" parent="." unique_id=1484100214]
 mesh_library = ExtResource("4_ncxfg")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
 
-[node name="WallXGrid" type="GridMap" parent="."]
+[node name="WallXGrid" type="GridMap" parent="." unique_id=1264644853]
 mesh_library = ExtResource("4_ncxfg")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="WallZGrid" type="GridMap" parent="."]
+[node name="WallZGrid" type="GridMap" parent="." unique_id=348183093]
 mesh_library = ExtResource("4_ncxfg")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false

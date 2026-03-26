@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://ci3waxxyk4pbs"]
+
+[ext_resource type="Script" uid="uid://0212vvhximbx" path="res://shared/terrain/terrain_generator.gd" id="1_aojt6"]
+[ext_resource type="Script" uid="uid://u5hpdit2bo4g" path="res://shared/terrain/map_renderer.gd" id="1_dka5w"]
+[ext_resource type="Script" uid="uid://cn6l7oaf3xw32" path="res://shared/terrain/grid_generation_pipeline.gd" id="1_nm6oi"]
+[ext_resource type="Script" uid="uid://no1j1oowuup1" path="res://shared/terrain/world_generation_params.gd" id="2_htb35"]
+[ext_resource type="Script" uid="uid://bmtv75byrd25q" path="res://shared/terrain/world_display_params.gd" id="3_biq8l"]
+[ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="4_biq8l"]
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="7_htb35"]
+[ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="8_biq8l"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_htb35"]
+
+[sub_resource type="Resource" id="Resource_k5xeo"]
+script = ExtResource("2_htb35")
+noise = SubResource("FastNoiseLite_htb35")
+metadata/_custom_type_script = "uid://no1j1oowuup1"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5xeo"]
+albedo_texture = ExtResource("4_biq8l")
+
+[sub_resource type="Resource" id="Resource_xedym"]
+script = ExtResource("3_biq8l")
+terrain_material = SubResource("StandardMaterial3D_k5xeo")
+metadata/_custom_type_script = "uid://bmtv75byrd25q"
+
+[node name="TerrainTest" type="Node3D" unique_id=1551696206]
+
+[node name="MapRenderer" type="Node3D" parent="." unique_id=2108384034]
+script = ExtResource("1_dka5w")
+world_generation_params = SubResource("Resource_k5xeo")
+world_display_params = SubResource("Resource_xedym")
+
+[node name="GridGenerationPipeline" type="Node" parent="MapRenderer" unique_id=1756213863]
+script = ExtResource("1_nm6oi")
+metadata/_custom_type_script = "uid://cn6l7oaf3xw32"
+
+[node name="TerrainGenerator" type="Node" parent="MapRenderer/GridGenerationPipeline" unique_id=1647112656]
+script = ExtResource("1_aojt6")
+metadata/_custom_type_script = "uid://0212vvhximbx"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=52888776]
+transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("7_htb35")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 163.477, 0, 184.911)
+
+[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("8_biq8l")]

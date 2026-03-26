@@ -1,5 +1,5 @@
 class_name TreeBranch
-extends Node
+extends Node3D
 
 var pos_array: PackedVector3Array
 var r: float

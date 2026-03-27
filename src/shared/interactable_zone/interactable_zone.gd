@@ -11,7 +11,7 @@ var collider_scale = Vector3(1.5, 1.5, 1.5)
 var inventory_manager: InventoryManager
 
 
-func set_shit() -> void:
+func set_zone() -> void:
 	if not Engine.is_editor_hint():
 		inventory_manager = get_tree().root.find_child("InventoryManager", true, false)
 		body_entered.connect(_on_area_3d_body_entered)

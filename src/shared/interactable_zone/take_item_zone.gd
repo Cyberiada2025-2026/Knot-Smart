@@ -11,4 +11,4 @@ func _ready() -> void:
 	zone.items.push_back(item)
 	zone.collider_scale = collider_scale
 	zone.interact_type = "TAKE"
-	zone.set_shit()
+	zone.set_zone()

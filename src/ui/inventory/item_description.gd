@@ -26,7 +26,6 @@ func _get_property_list():
 	if Engine.is_editor_hint():
 		var ret =[]
 		if quantity_show:
-			# This is how you add a normal variable, like String (TYPE_STRING), int (TYPE_INT)...etc
 			ret.append({
 			"name": &"quantity",
 			"type": TYPE_INT,

@@ -17,6 +17,18 @@
 radius = 0.25
 height = 0.8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_on558"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_gravity_controller") groups=["Player"]]
 script = ExtResource("1_4ntmi")
 player_physics = NodePath("PlayerPhysics")
@@ -85,40 +97,28 @@ script = ExtResource("12_on558")
 metadata/_custom_type_script = "uid://c0v1x4a4fbhnn"
 
 [node name="Control" type="Control" parent="TooltipManager" unique_id=2085146444]
+modulate = Color(1, 1, 1, 0.6509804)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TooltipManager/Control" unique_id=573052081]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 166.0
-offset_top = 4.0
-offset_right = 246.0
-offset_bottom = 69.0
-grow_vertical = 0
-pivot_offset = Vector2(0, 50)
+use_parent_material = true
+custom_minimum_size = Vector2(80, 65)
+layout_mode = 0
+offset_left = 160.0
+offset_top = 120.0
+offset_right = 240.0
+offset_bottom = 185.0
 
 [node name="TooltipText" type="RichTextLabel" parent="TooltipManager/Control/VBoxContainer" unique_id=487937702]
+clip_contents = false
+custom_minimum_size = Vector2(65, 0)
 layout_mode = 2
 size_flags_vertical = 10
 theme_override_font_sizes/normal_font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_on558")
 text = "Very long testing tooltip lorem ipsum dolor wtf"
 fit_content = true
-
-[node name="ColorRect" type="ColorRect" parent="TooltipManager/Control/VBoxContainer/TooltipText" unique_id=669640053]
-show_behind_parent = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-color = Color(0, 0, 0, 1)
 
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]

@@ -17,7 +17,7 @@ height = 1.0
 radius = 0.3
 height = 1.8
 
-[node name="PointOfInterestt" type="Node3D" unique_id=1254749057]
+[node name="PointOfInterest" type="Node3D" unique_id=1254749057]
 
 [node name="10x10 floor" type="StaticBody3D" parent="." unique_id=1735178394]
 
@@ -27,21 +27,21 @@ shape = SubResource("BoxShape3D_r707f")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="10x10 floor" unique_id=685513414]
 mesh = SubResource("BoxMesh_r707f")
 
-[node name="trigger2" type="MeshInstance3D" parent="." unique_id=1352641290]
+[node name="Trigger2" type="MeshInstance3D" parent="." unique_id=1352641290]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3404145, 0.9590628, -4.139635)
 mesh = SubResource("CapsuleMesh_xowle")
 
-[node name="PointOfInterest" type="Node3D" parent="trigger2" unique_id=1310453744]
+[node name="PointOfInterest" type="Node3D" parent="Trigger2" unique_id=1310453744]
 script = ExtResource("2_esi2j")
 radius = 2.0
 message = "point of interest debug 1"
 metadata/_custom_type_script = "uid://bm0wrygl0ikje"
 
-[node name="trigger1" type="MeshInstance3D" parent="." unique_id=471416370]
+[node name="Trigger1" type="MeshInstance3D" parent="." unique_id=471416370]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4707198, 1.4, -3.1927233)
 mesh = SubResource("CapsuleMesh_yp54c")
 
-[node name="PointOfInterest" type="Node3D" parent="trigger1" unique_id=1595307592]
+[node name="PointOfInterest" type="Node3D" parent="Trigger1" unique_id=1595307592]
 script = ExtResource("2_esi2j")
 radius = 4.0
 message = "point of interest debug 2"

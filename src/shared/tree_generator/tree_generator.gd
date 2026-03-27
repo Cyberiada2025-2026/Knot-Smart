@@ -20,14 +20,12 @@ func _ready() -> void:
 func generate_tree():
 	tree = StaticBody3D.new()
 	add_child(tree)
-	#	skeleton - blueprint for mesh
-	#var skeleton = tree_skeleton.generate_skeleton(params)
+	# skeleton - blueprint for mesh
 	tree_skeleton.params = params
 	var level_branches: Array[TreeBranch] = []
 	for i in range(params.rec_level+1):
-		var skeleton = tree_skeleton.generate_skeleton(level_branches)
-		level_branches = skeleton
-		for branch in skeleton:
+		level_branches = tree_skeleton.generate_skeleton(level_branches)
+		for branch in level_branches:
 			generate_mesh(branch)
 
 

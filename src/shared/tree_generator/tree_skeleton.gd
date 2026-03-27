@@ -78,8 +78,9 @@ func set_branch(branch:TreeBranch, r: float, r_low: float, sides: int):
 func calculate_rotation(base: Transform3D, is_first_level = false) -> Transform3D:
 	var rot_matrix = Transform3D()
 	var angle = randf()*PI
+	print(angle)
 	if params.subtype == "SIDE":
-		return rot_matrix.rotated(Vector3.RIGHT, PI/3)
+		return rot_matrix.rotated(Vector3.RIGHT, params.angle)
 	if is_first_level:
 		return base
 	if randf()>0.5:

@@ -7,6 +7,7 @@ var text_container: RichTextLabel
 func _ready() -> void:
 	vbox = $Control/VBoxContainer
 	text_container = $Control/VBoxContainer/TooltipText
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	
 func _physics_process(_delta: float) -> void:
@@ -14,8 +15,8 @@ func _physics_process(_delta: float) -> void:
 	var camera = get_node("../PlayerPhysics/PlayerCamera")
 	
 	if (
-		camera.get_view_type()
-		== PlayerCamera.ViewType.FIRST_PERSON
+		camera.get_view_type() == PlayerCamera.ViewType.FIRST_PERSON
+		and not get_tree().paused
 	):
 		raycast_result = UnsafeRaycastBuilder.new(self).enable_collisions_with_areas().raycast()
 	

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dr8wmvb6mwpwv"]
+
+[ext_resource type="Script" uid="uid://dles3x4ape0fk" path="res://shared/interactable_zone/take_item_zone.gd" id="1_q0fgo"]
+[ext_resource type="PackedScene" uid="uid://cn35vlnhhb4i0" path="res://shared/interactable_zone/interactable_zone.tscn" id="2_xwsea"]
+
+[node name="TakeItemZone" type="Node3D" unique_id=92495965 node_paths=PackedStringArray("zone")]
+script = ExtResource("1_q0fgo")
+zone = NodePath("InteractableZone")
+
+[node name="InteractableZone" parent="." unique_id=1012610153 instance=ExtResource("2_xwsea")]

@@ -39,14 +39,13 @@ func rec_branches(parent_branches: Array[TreeBranch]):
 			var idx: int # where on the branch is located child branch
 			if rec_level>1:
 				idx = randi() % len(parent_branch.pos_array)
-				branch.transform = calculate_rotation(parent_branch.transform)
+				branch.transform = calculate_rotation(parent_branch.transform, get_angle())
 			else: # first level of branches coming from trunk
 				var angle: float = FULL_ANGLE / branch_count
 				idx = parent_branch.pos_array.size()-1
-				branch.transform = calculate_rotation(parent_branch.transform)
-				#branch_transform = calculate_rotation(Vector3(sin(i*angle), 0.0, cos(i*angle)), true)
-			var origin = parent_branch.transform.translated_local(parent_branch.pos_array[idx]).origin
-			branch.transform.origin = origin
+				branch.transform = calculate_rotation(parent_branch.transform, angle*i)
+			var translated = parent_branch.transform.translated_local(parent_branch.pos_array[idx])
+			branch.transform.origin = translated.origin
 			branch.pos_array = skeleton_branch(params.h_branch, params.levels_branch)
 			if rec_level>1:
 				set_branch(branch, get_new_r(parent_branch), parent_branch.r_low, parent_branch.sides)
@@ -75,25 +74,25 @@ func set_branch(branch:TreeBranch, r: float, r_low: float, sides: int):
 	branch.sides = sides
 
 
-func calculate_rotation(base: Transform3D, is_first_level = false) -> Transform3D:
+func calculate_rotation(base: Transform3D, angle: float) -> Transform3D:
 	var rot_matrix = Transform3D()
-	var angle = randf()*PI
-	print(angle)
 	if params.subtype == "SIDE":
 		return rot_matrix.rotated(Vector3.RIGHT, params.angle)
-	if is_first_level:
-		return base
-	if randf()>0.5:
-		rot_matrix = base.rotated(Vector3.BACK, angle)
-	else:
-		rot_matrix = rot_matrix.rotated(Vector3.FORWARD, angle)
-	if randf()>0.5:
-		rot_matrix = rot_matrix.rotated(Vector3.RIGHT, angle)
-	else:
-		rot_matrix = rot_matrix.rotated(Vector3.LEFT, angle)
+	if rec_level==1:
+		rot_matrix = base.rotated(Vector3(1.0,0.0,1.0).normalized(),params.angle)
+		rot_matrix = rot_matrix.rotated(Vector3.UP, angle)
+		return rot_matrix
+	var direction = Vector3.BACK if randf() > 0.5 else Vector3.FORWARD
+	rot_matrix = base.rotated(direction, angle)
+	direction = Vector3.RIGHT if randf() > 0.5 else Vector3.LEFT
+	rot_matrix = rot_matrix.rotated(direction, angle)
 	rot_matrix = rot_matrix.rotated(Vector3.UP, angle)
 	return rot_matrix
 
-# shrink base radius of branches from the next level
+## shrink base radius of branches from the next level
 func get_new_r(branch: TreeBranch) -> float:
 	return branch.r*pow(branch.r_low, 2)
+
+
+func get_angle() -> float:
+	return randf()*FULL_ANGLE

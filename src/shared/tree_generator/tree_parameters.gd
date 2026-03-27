@@ -1,12 +1,13 @@
-@tool
 class_name TreeParameters
 extends Resource
 
 @export var diff: float = 0.8
 @export var tex_path: String = "res://shared/tree_generator/kora.png"
+## how much first branches (every branch for SIDE tree) are snatched towards the ground
+@export var angle: float = PI/20
 
 @export_group("Trunk")
-@export var levels = 3 ## num of stripes
+@export var levels = 3 ## number of stripes
 @export var r = 0.8 ## radius
 @export_range(0.1, 1.0, 0.01) var r_low = 0.85 ## pace of radius shrinking
 @export var sides = 6 ## faces num of one stripe
@@ -23,19 +24,4 @@ extends Resource
 @export var h_branch: float = 1.0
 
 @export_group("Type")
-@export_enum("NORMAL", "SIDE") var subtype: String = "NORMAL":
-	set(value):
-		subtype = value
-		notify_property_list_changed()
-var angle: float = PI/20
-
-func _get_property_list():
-	if Engine.is_editor_hint():
-		var ret = []
-		if subtype == "SIDE":
-			ret.append({
-			"name": &"angle",
-			"type": TYPE_FLOAT,
-			"usage": PROPERTY_USAGE_DEFAULT,
-			})
-		return ret
+@export_enum("NORMAL", "SIDE") var subtype: String = "NORMAL"

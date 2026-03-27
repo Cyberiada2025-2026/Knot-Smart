@@ -35,26 +35,7 @@ height = 8.0
 height = 8.0
 radius = 4.0
 
-<<<<<<< HEAD
 [node name="mapa" type="Node3D" unique_id=1637073653]
-=======
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g64kt"]
-sky_top_color = Color(0.6901568, 0.7951685, 0.9569923, 1)
-sky_horizon_color = Color(0.7540421, 0.6193795, 0.47398692, 1)
-sky_energy_multiplier = 1.2
-sun_curve = 0.87845117
-energy_multiplier = 1.2
-
-[sub_resource type="Sky" id="Sky_etips"]
-sky_material = SubResource("ProceduralSkyMaterial_g64kt")
-
-[sub_resource type="Environment" id="Environment_5lv6x"]
-background_mode = 2
-sky = SubResource("Sky_etips")
-reflected_light_source = 2
-
-[node name="mapa" type="Node3D"]
->>>>>>> b554c3a (Resolve merge conflict)
 
 [node name="teren" type="Node3D" parent="." unique_id=105891481]
 
@@ -180,21 +161,7 @@ shape = SubResource("BoxShape3D_lrjei")
 [node name="Player" parent="." unique_id=383554686 instance=ExtResource("1_2jh14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457032, 0)
 
-<<<<<<< HEAD
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player" unique_id=1887677303]
 transform = Transform3D(1, 0, 0, 0, 0.0460255, 0.99894, 0, -0.99894, 0.0460255, 0, 136.331, 0)
 
 [node name="CameraReplacer" parent="." unique_id=998944845]
-=======
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 0.046025515, 0.9989403, 0, -0.9989403, 0.04602552, 0, 136.331, 59.296577)
-light_energy = 1.825
-
-[node name="CameraReplacer" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("2_ugfsb")]
-camera = NodePath("../Player/PlayerCamera/SpringArm3D/FakeCamera3D")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_5lv6x")
-
-[node name="TreeGenerator" parent="." instance=ExtResource("3_g64kt")]
->>>>>>> b554c3a (Resolve merge conflict)

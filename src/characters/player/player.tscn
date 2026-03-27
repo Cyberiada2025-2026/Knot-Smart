@@ -24,6 +24,7 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
+border_blend = true
 corner_radius_top_left = 2
 corner_radius_top_right = 2
 corner_radius_bottom_right = 2
@@ -97,7 +98,7 @@ script = ExtResource("12_on558")
 metadata/_custom_type_script = "uid://c0v1x4a4fbhnn"
 
 [node name="Control" type="Control" parent="TooltipManager" unique_id=2085146444]
-modulate = Color(1, 1, 1, 0.6509804)
+modulate = Color(1, 1, 1, 0.7647059)
 layout_mode = 3
 anchors_preset = 0
 

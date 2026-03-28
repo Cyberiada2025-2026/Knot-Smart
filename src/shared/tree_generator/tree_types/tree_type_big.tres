@@ -5,14 +5,15 @@
 [resource]
 script = ExtResource("1_5m6wf")
 diff = 1.4
-levels = 8
+angle = 0.847
+levels = 7
 r = 2.0
 r_low = 0.9
-h = 2.0
-min_count = 6
-max_count = 9
+h = 1.52
+max_count = 3
 rec_level = 3
-levels_branch = 6
-r_branch = 1.2
-r_low_branch = 0.65
+levels_branch = 10
+r_branch = 0.935
+r_low_branch = 0.73
+h_branch = 1.45
 metadata/_custom_type_script = "uid://s0k1bcrvckmc"

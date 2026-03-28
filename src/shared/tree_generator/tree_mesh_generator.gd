@@ -2,6 +2,8 @@
 class_name TreeMeshGenerator
 extends Node
 
+const FULL_ANGLE: float = 2*PI
+
 var tree_generator: TreeGenerator
 
 
@@ -10,7 +12,7 @@ func _enter_tree() -> void:
 	tree_generator.tree_mesh_generator = self
 
 
-func generate_skin(branch: TreeBranch) -> ArrayMesh:
+func generate_array_mesh(branch: TreeBranch) -> ArrayMesh:
 	var vertices = PackedVector3Array()
 	var indices = PackedInt32Array()
 	var tangents = PackedFloat32Array()
@@ -30,15 +32,15 @@ func generate_skin(branch: TreeBranch) -> ArrayMesh:
 func add_stripes(vertices: PackedVector3Array, branch: TreeBranch, sides: int):
 	var r = branch.r
 	for center in branch.pos_array:
-		var angle: float = 2*PI / sides
+		var angle: float = FULL_ANGLE / sides
 		for i in range(sides, 0, -1):
 			var vertex = Vector3(cos(i*angle)*r, 0.0, sin(i*angle)*r) + center
 			vertices.push_back(vertex)
 		r *= branch.r_low
 
 
-func add_indices(indices: PackedInt32Array, levels: int, length: int):
-	for i in range(levels):
+func add_indices(indices: PackedInt32Array, stripes: int, length: int):
+	for i in range(stripes):
 		for j in range(length):
 			indices.push_back(i*length+j)
 			indices.push_back((i+1)*length+j)

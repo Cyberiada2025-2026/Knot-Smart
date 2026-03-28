@@ -5,9 +5,13 @@
 [resource]
 script = ExtResource("1_avkc2")
 diff = 1.2
-r_low = 0.66
+angle = 0.647
+r = 0.93
+r_low = 0.87
 h = 1.5
 max_count = 4
-rec_level = 3
-r_branch = 0.5
+levels_branch = 6
+r_branch = 0.495
+r_low_branch = 0.73
+h_branch = 1.075
 metadata/_custom_type_script = "uid://s0k1bcrvckmc"

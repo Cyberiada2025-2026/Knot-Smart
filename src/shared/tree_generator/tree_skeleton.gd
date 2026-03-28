@@ -19,26 +19,25 @@ func _enter_tree() -> void:
 
 func generate_skeleton(parent_branches: Array[TreeBranch] = []) -> Array[TreeBranch]:
 	branches = []
-	# trunk
 	if rec_level == 0:
 		var trunk = TreeBranch.new()
-		trunk.pos_array = skeleton_branch(params.h, params.levels)
+		trunk.pos_array = branch_skeleton(params.h, params.stripes)
 		set_branch(trunk, params.r, params.r_low, params.sides)
 		branches.push_back(trunk)
 	else:
-		branch_count = randi()%(params.max_count-params.min_count+1)+params.min_count
-		rec_branches(parent_branches)
+		branches_next_level(parent_branches)
 	rec_level+=1
+	set_new_branch_count()
 	return branches
 
-# make recursive levels of branches
-func rec_branches(parent_branches: Array[TreeBranch]):
+
+func branches_next_level(parent_branches: Array[TreeBranch]):
 	for parent_branch in parent_branches:
 		for i in range(branch_count):
 			var branch = TreeBranch.new()
-			var idx: int # where on the branch is located child branch
+			var idx: int # where on the parent branch is located child branch
 			if rec_level>1:
-				idx = randi() % len(parent_branch.pos_array)
+				idx = randi() % (len(parent_branch.pos_array)-1)
 				branch.transform = calculate_rotation(parent_branch.transform, get_angle())
 			else: # first level of branches coming from trunk
 				var angle: float = FULL_ANGLE / branch_count
@@ -46,19 +45,20 @@ func rec_branches(parent_branches: Array[TreeBranch]):
 				branch.transform = calculate_rotation(parent_branch.transform, angle*i)
 			var translated = parent_branch.transform.translated_local(parent_branch.pos_array[idx])
 			branch.transform.origin = translated.origin
-			branch.pos_array = skeleton_branch(params.h_branch, params.levels_branch)
+			branch.pos_array = branch_skeleton(params.h_branch, params.stripes_branch)
 			if rec_level>1:
-				set_branch(branch, get_new_r(parent_branch), parent_branch.r_low, parent_branch.sides)
+				set_branch(branch, get_new_r(parent_branch),
+					parent_branch.r_low, parent_branch.sides)
 			else:
-				set_branch(branch, params.r_branch, params.r_low, params.sides)
+				set_branch(branch, params.r_branch, params.r_low_branch, params.sides)
 			branches.push_back(branch)
 
 
-func skeleton_branch(h: float, levels: int) -> PackedVector3Array:
+func branch_skeleton(h: float, stripes: int) -> PackedVector3Array:
 	var branch_pos = PackedVector3Array()
 	var last = Vector3.ZERO
 	branch_pos.push_back(last)
-	for i in range(levels):
+	for i in range(stripes):
 		var new = last + Vector3(
 			randf()*params.diff-params.diff/2,
 			randf()*params.diff-params.diff/2+h,
@@ -92,6 +92,10 @@ func calculate_rotation(base: Transform3D, angle: float) -> Transform3D:
 ## shrink base radius of branches from the next level
 func get_new_r(branch: TreeBranch) -> float:
 	return branch.r*pow(branch.r_low, 2)
+
+
+func set_new_branch_count():
+	branch_count = randi_range(params.min_count, params.max_count)
 
 
 func get_angle() -> float:

@@ -20,18 +20,17 @@ func _ready() -> void:
 func generate_tree():
 	tree = StaticBody3D.new()
 	add_child(tree)
-	# skeleton - blueprint for mesh
 	tree_skeleton.params = params
-	var level_branches: Array[TreeBranch] = []
-	for i in range(params.rec_level+1):
-		level_branches = tree_skeleton.generate_skeleton(level_branches)
-		for branch in level_branches:
+	var branches_one_level: Array[TreeBranch] = []
+	for i in range(params.rec_level+1): # levels of branches + trunk
+		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
+		for branch in branches_one_level:
 			generate_mesh(branch)
 
 
 func generate_mesh(branch: TreeBranch):
 	var mesh = MeshInstance3D.new()
-	var array_mesh = tree_mesh_generator.generate_skin(branch)
+	var array_mesh = tree_mesh_generator.generate_array_mesh(branch)
 	var material = StandardMaterial3D.new()
 	var texture = load(params.tex_path)
 	material.uv1_triplanar = true

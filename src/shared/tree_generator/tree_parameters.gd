@@ -7,7 +7,7 @@ extends Resource
 @export var angle: float = PI/20
 
 @export_group("Trunk")
-@export var levels = 3 ## number of stripes
+@export var stripes = 3 ## number of stripes trunk consists of
 @export var r = 0.8 ## radius
 @export_range(0.1, 1.0, 0.01) var r_low = 0.85 ## pace of radius shrinking
 @export var sides = 6 ## faces num of one stripe
@@ -16,8 +16,8 @@ extends Resource
 @export_group("Branches")
 @export var min_count = 3
 @export var max_count = 6
-@export var rec_level = 2 ## num of recursive levels of branches
-@export var levels_branch = 5
+@export var rec_level = 2 ## number of levels of branches
+@export var stripes_branch = 5
 @export var r_branch = 0.3
 @export_range(0.1, 1.0, 0.01) var r_low_branch = 0.85
 @export var sides_branch = 4

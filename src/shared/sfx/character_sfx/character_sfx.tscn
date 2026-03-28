@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://fecvumkh4cc"]
 
 [ext_resource type="Script" uid="uid://c7drlobnf6cs5" path="res://shared/sfx/character_sfx/character_sfx.gd" id="1_0i6x3"]
+[ext_resource type="Script" uid="uid://b5l2d8fa4pjw0" path="res://shared/sfx/character_sfx/footsteps_sfx.gd" id="2_ha1ar"]
+[ext_resource type="AudioStream" uid="uid://dic4hb2cnnvh" path="res://shared/sfx/character_sfx/temp_step.wav" id="2_o6f8l"]
 
-[node name="CharacterSfx" type="Node" unique_id=939953424]
+[node name="CharacterSfx" type="Node3D" unique_id=186102840]
 script = ExtResource("1_0i6x3")
+
+[node name="FootstepsSfx" type="AudioStreamPlayer3D" parent="." unique_id=6906456]
+stream = ExtResource("2_o6f8l")
+script = ExtResource("2_ha1ar")

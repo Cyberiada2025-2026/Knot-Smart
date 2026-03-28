@@ -1,11 +1,6 @@
 extends Node3D
 
-var parent = get_parent_node_3d() as CharacterBody3D
+var character: CharacterBody3D
 
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	character = self.get_parent()

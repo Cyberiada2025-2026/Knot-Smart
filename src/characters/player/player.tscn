@@ -98,6 +98,7 @@ script = ExtResource("12_on558")
 metadata/_custom_type_script = "uid://c0v1x4a4fbhnn"
 
 [node name="Control" type="Control" parent="TooltipManager" unique_id=2085146444]
+visible = false
 modulate = Color(1, 1, 1, 0.7647059)
 layout_mode = 3
 anchors_preset = 0

@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://rnx3yu0ofiwg"]
 
-[ext_resource type="Script" path="res://shared/camera/camera_helper.gd" id="1_5jark"]
+[ext_resource type="Script" uid="uid://b2qmm8ipalct6" path="res://shared/camera/camera_helper.gd" id="1_5jark"]
 [ext_resource type="PackedScene" uid="uid://ds23isyj385on" path="res://ui/pause_menu/pause_menu.tscn" id="2_5jark"]
 [ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://shared/post_processing/shaders/dithering.gdshader" id="3_1y1hh"]
 [ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://shared/post_processing/shaders/crt.gdshader" id="4_ka213"]
+[ext_resource type="Script" uid="uid://l1jyrcpmag6w" path="res://shared/post_processing/crt_off.gd" id="5_u1xjy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xylyt"]
 shader = ExtResource("3_1y1hh")
@@ -103,4 +104,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("5_u1xjy")
 metadata/_edit_use_anchors_ = true

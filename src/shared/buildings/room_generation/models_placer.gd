@@ -35,20 +35,12 @@ func place_entrance(c: BorderInfo):
 			)
 
 
-func clear_models():
-	for grid in gridmaps:
-		grid.clear()
-
-
 func place_models(_building_generator: BuildingGenerator):
 	building_generator = _building_generator
 	mesh_library = building_generator.mesh_library
-	gridmaps = building_generator.gridmaps
-	for gridmap in gridmaps:
-		gridmap.mesh_library = mesh_library
+	setup_gridmaps()
 	_create_mesh_dicts()
 
-	clear_models()
 	spawn_walls_between_rooms()
 	spawn_building_border_walls()
 
@@ -56,6 +48,18 @@ func place_models(_building_generator: BuildingGenerator):
 func concat(a: Array, e: Array) -> Array:
 	a += e
 	return a
+
+func setup_gridmaps() -> void:
+	for gridmap in gridmaps:
+		gridmap.queue_free()
+	gridmaps.clear()
+	for i in 3:
+		var gridmap = GridMap.new()
+		gridmap.mesh_library = mesh_library
+		gridmap.cell_size = building_generator.grid_cell_size
+		gridmap.cell_center_y = false
+		gridmaps.push_back(gridmap)
+		building_generator.add_child(gridmap)
 
 
 func get_wall_locations(

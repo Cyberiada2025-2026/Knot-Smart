@@ -29,7 +29,6 @@ func _ready() -> void:
 func generate_building() -> void:
 	clear()
 	seed(room_generation_params.random_seed)
-	get_parent().set_editable_instance(self, true)
 	if building_shape_description == null:
 		push_warning("No building_shape_description provided.")
 		return
@@ -50,6 +49,7 @@ func clear() -> void:
 	cells = []
 	neighbors = []
 
+	models_placer.clear()
 	for obstacle in find_children("", "NavigationObstacle3D"):
 		obstacle.queue_free()
 	for static_body in find_children("", "StaticBody3D"):

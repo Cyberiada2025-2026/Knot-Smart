@@ -49,10 +49,14 @@ func concat(a: Array, e: Array) -> Array:
 	a += e
 	return a
 
-func setup_gridmaps() -> void:
+func clear() -> void:
 	for gridmap in gridmaps:
 		gridmap.queue_free()
 	gridmaps.clear()
+
+
+func setup_gridmaps() -> void:
+	clear()
 	for i in 3:
 		var gridmap = GridMap.new()
 		gridmap.mesh_library = mesh_library

@@ -1,22 +1,22 @@
 [gd_scene format=3 uid="uid://ba2yflgxg8c5s"]
 
-[ext_resource type="PackedScene" uid="uid://bl12nmqdnj8e5" path="res://shared/buildings/assets/building_parts.glb" id="1_w0qta"]
+[ext_resource type="PackedScene" uid="uid://d3iyxsvy6lb3l" path="res://shared/buildings/assets/building_parts_filled.glb" id="1_w0qta"]
 [ext_resource type="Material" uid="uid://p23eoepvxe0s" path="res://shared/buildings/assets/building_floor_material.tres" id="2_04tmi"]
 [ext_resource type="Material" uid="uid://bjkeopeq3ehmb" path="res://shared/buildings/assets/building_base_material.tres" id="3_ukrut"]
 
-[node name="building_parts" unique_id=637981203 instance=ExtResource("1_w0qta")]
+[node name="building_parts_filled" unique_id=802389896 instance=ExtResource("1_w0qta")]
 
-[node name="Floor" parent="." index="0" unique_id=1531325389]
+[node name="Floor" parent="." index="0" unique_id=571545075]
 surface_material_override/0 = ExtResource("2_04tmi")
 
-[node name="Hole" parent="." index="1" unique_id=2097382749]
+[node name="Hole" parent="." index="1" unique_id=792336779]
 surface_material_override/0 = ExtResource("2_04tmi")
 
-[node name="Wall" parent="." index="2" unique_id=1272647949]
+[node name="Wall" parent="." index="2" unique_id=80276725]
 surface_material_override/0 = ExtResource("3_ukrut")
 
-[node name="Window" parent="." index="3" unique_id=1829441863]
+[node name="Window" parent="." index="3" unique_id=226455159]
 surface_material_override/0 = ExtResource("3_ukrut")
 
-[node name="Door" parent="." index="4" unique_id=701875330]
+[node name="Door" parent="." index="4" unique_id=2142757774]
 surface_material_override/0 = ExtResource("3_ukrut")

@@ -2,6 +2,7 @@
 
 [ext_resource type="MeshLibrary" uid="uid://dxdix3oesovgs" path="res://shared/buildings/assets/building_parts_no_collision.tres" id="2_7smn1"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
+[ext_resource type="MeshLibrary" uid="uid://br6yiw7xqd0hw" path="res://shared/buildings/assets/building_parts_collision.tres" id="3_7smn1"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://50058jf30t1n" path="res://shared/buildings/building_generation/building_generator.tscn" id="4_6q06x"]
 [ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="4_b1x3f"]
@@ -41,17 +42,18 @@ outside_door_count = 0
 random_seed = 1
 metadata/_custom_type_script = "uid://uq2ee3iq6x08"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7smn1"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_raeie"]
 size = Vector3(14, 5.6, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_raeie"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxu8e"]
 size = Vector3(10, 11.2, 4)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hxu8e"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_nvumn"]
 size = Vector3(4, 2.8, 6)
 
 [sub_resource type="Resource" id="Resource_b1x3f"]
 script = ExtResource("5_hujxm")
+mesh_library = ExtResource("3_7smn1")
 grid_cell_size = null
 random_seed = 3
 metadata/_custom_type_script = "uid://uq2ee3iq6x08"
@@ -120,37 +122,37 @@ script = ExtResource("6_ow5a4")
 start = Vector3i(5, 0, 2)
 size = Vector3i(2, 1, 3)
 
-[node name="@NavigationObstacle3D@40026" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=258634544]
+[node name="@NavigationObstacle3D@46545" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=79520583]
 height = 30.0
 vertices = PackedVector3Array(-4, 0, 0, -4, 0, 10, 10, 0, 10, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="@NavigationObstacle3D@40027" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=305625463]
+[node name="@NavigationObstacle3D@46546" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=669978579]
 height = 30.0
 vertices = PackedVector3Array(10, 0, 0, 10, 0, 4, 20, 0, 4, 20, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="@NavigationObstacle3D@40028" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=380450816]
+[node name="@NavigationObstacle3D@46547" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=753070934]
 height = 30.0
 vertices = PackedVector3Array(10, 0, 4, 10, 0, 10, 14, 0, 10, 14, 0, 4)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="@StaticBody3D@40029" type="StaticBody3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=373585699]
+[node name="@StaticBody3D@46548" type="StaticBody3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=1187609162]
 
-[node name="@CollisionShape3D@40030" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator/@StaticBody3D@40029" unique_id=1547280115]
+[node name="@CollisionShape3D@46549" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator/@StaticBody3D@46548" unique_id=547581329]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 5)
-shape = SubResource("BoxShape3D_7smn1")
-
-[node name="@CollisionShape3D@40031" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator/@StaticBody3D@40029" unique_id=903412652]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5.6, 2)
 shape = SubResource("BoxShape3D_raeie")
 
-[node name="@CollisionShape3D@40032" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator/@StaticBody3D@40029" unique_id=225963976]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.4, 7)
+[node name="@CollisionShape3D@46550" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator/@StaticBody3D@46548" unique_id=823468890]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5.6, 2)
 shape = SubResource("BoxShape3D_hxu8e")
+
+[node name="@CollisionShape3D@46551" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator/@StaticBody3D@46548" unique_id=708022230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.4, 7)
+shape = SubResource("BoxShape3D_nvumn")
 
 [node name="BuildingGenerator2" parent="NavigationRegion3D" unique_id=918372639 instance=ExtResource("4_6q06x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0.5, 2.5)

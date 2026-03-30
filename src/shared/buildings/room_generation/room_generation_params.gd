@@ -4,6 +4,9 @@ extends Resource
 
 const MAX_RANDOM_SEED = 10000
 
+@export var mesh_library: MeshLibrary
+@export var grid_cell_size: Vector3 = Vector3.ONE
+@export var can_enter: bool = true
 @export var min_room_size: Vector3i = Vector3i(1, 1, 1)
 @export var max_room_size: Vector3i = Vector3i(4, 1, 3)
 @export_range(0, 1) var long_room_tendency: float = 0.2

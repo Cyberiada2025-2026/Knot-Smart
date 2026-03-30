@@ -34,6 +34,8 @@ func generate_building() -> void:
 	models_placer.place_models(self)
 
 	generate_navmesh_obstacles()
+	if not room_generation_params.can_enter:
+		generate_collision_shape()
 
 
 func clear() -> void:
@@ -42,6 +44,8 @@ func clear() -> void:
 	models_placer.clear_models()
 	for obstacle in find_children("", "NavigationObstacle3D"):
 		obstacle.queue_free()
+	for static_body in find_children("", "StaticBody3D"):
+		static_body.queue_free()
 
 
 func generate_navmesh_obstacles() -> void:
@@ -66,3 +70,17 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return [
 		"Child nodes are missing. Instantiate BuildingGenerator through scene or add them manually."
 	]
+
+func generate_collision_shape() -> void:
+	var static_body: StaticBody3D = StaticBody3D.new()
+	add_child(static_body)
+	static_body.owner = get_tree().edited_scene_root
+	for cell in initial_cells:
+		var cell_collision_shape = CollisionShape3D.new()
+		cell_collision_shape.shape = BoxShape3D.new()
+		cell_collision_shape.shape.size = Vector3(cell.size()) * room_generation_params.grid_cell_size
+		cell_collision_shape.position = cell.center() * room_generation_params.grid_cell_size 
+		static_body.add_child(cell_collision_shape)
+		cell_collision_shape.owner = get_tree().edited_scene_root
+
+		

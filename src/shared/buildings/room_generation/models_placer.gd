@@ -42,6 +42,9 @@ func clear_models():
 
 func place_models(_building_generator: BuildingGenerator):
 	building_generator = _building_generator
+	mesh_library = building_generator.room_generation_params.mesh_library
+	for gridmap in gridmaps:
+		gridmap.mesh_library = mesh_library
 
 	clear_models()
 	spawn_walls_between_rooms()

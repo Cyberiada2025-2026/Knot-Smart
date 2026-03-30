@@ -4,6 +4,9 @@ extends Node3D
 
 const NAV_MESH_OBSTACLE_HEIGHT: float = 30.0
 
+@export var mesh_library: MeshLibrary
+@export var grid_cell_size: Vector3 = Vector3.ONE
+@export var can_enter: bool = true
 @export var room_generation_params: RoomGenerationParams
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
@@ -34,7 +37,7 @@ func generate_building() -> void:
 	models_placer.place_models(self)
 
 	generate_navmesh_obstacles()
-	if not room_generation_params.can_enter:
+	if not can_enter:
 		generate_collision_shape()
 
 
@@ -46,6 +49,7 @@ func clear() -> void:
 		obstacle.queue_free()
 	for static_body in find_children("", "StaticBody3D"):
 		static_body.queue_free()
+	cells_generator = CellGenerator.new(self)
 
 
 func generate_navmesh_obstacles() -> void:
@@ -78,8 +82,8 @@ func generate_collision_shape() -> void:
 	for cell in initial_cells:
 		var cell_collision_shape = CollisionShape3D.new()
 		cell_collision_shape.shape = BoxShape3D.new()
-		cell_collision_shape.shape.size = Vector3(cell.size()) * room_generation_params.grid_cell_size
-		cell_collision_shape.position = cell.center() * room_generation_params.grid_cell_size 
+		cell_collision_shape.shape.size = Vector3(cell.size()) * grid_cell_size
+		cell_collision_shape.position = cell.center() * grid_cell_size 
 		static_body.add_child(cell_collision_shape)
 		cell_collision_shape.owner = get_tree().edited_scene_root
 

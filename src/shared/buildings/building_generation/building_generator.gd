@@ -11,14 +11,15 @@ const NAV_MESH_OBSTACLE_HEIGHT: float = 30.0
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
 
+var gridmaps: Array[GridMap]
 var initial_cells: Array[Cell] = []
 var cells: Array[Cell] = []
 var neighbors: Array[BorderInfo] = []
 
 var building_shape_description: BuildingShapeDescription
-var neighbors_generator: NeighborGenerator
-var cells_generator: CellGenerator
-var models_placer: ModelsPlacer
+var neighbors_generator: NeighborGenerator = NeighborGenerator.new()
+var cells_generator: CellGenerator = CellGenerator.new()
+var models_placer: ModelsPlacer = ModelsPlacer.new()
 
 
 func generate_building() -> void:
@@ -44,12 +45,21 @@ func generate_building() -> void:
 func clear() -> void:
 	cells = []
 	neighbors = []
-	models_placer.clear_models()
+	for gridmap in gridmaps:
+		gridmap.queue_free()
+	gridmaps.clear()
+	for i in 3:
+		var gridmap = GridMap.new()
+		gridmap.mesh_library = mesh_library
+		gridmap.cell_size = grid_cell_size
+		gridmap.cell_center_y = false
+		gridmaps.push_back(gridmap)
+		add_child(gridmap)
+
 	for obstacle in find_children("", "NavigationObstacle3D"):
 		obstacle.queue_free()
 	for static_body in find_children("", "StaticBody3D"):
 		static_body.queue_free()
-	cells_generator = CellGenerator.new(self)
 
 
 func generate_navmesh_obstacles() -> void:
@@ -63,17 +73,15 @@ func generate_navmesh_obstacles() -> void:
 		obstacle.avoidance_enabled = false
 		obstacle.height = NAV_MESH_OBSTACLE_HEIGHT
 		obstacle.vertices = outline
+		obstacle.visible = false
 
 		add_child(obstacle)
-		obstacle.owner = get_tree().edited_scene_root
 
 
 func _get_configuration_warnings() -> PackedStringArray:
-	if neighbors_generator and cells_generator and models_placer:
-		return []
-	return [
-		"Child nodes are missing. Instantiate BuildingGenerator through scene or add them manually."
-	]
+	if building_shape_description == null:
+		return [ "No building shape description provided." ]
+	return []
 
 func generate_collision_shape() -> void:
 	var static_body: StaticBody3D = StaticBody3D.new()
@@ -87,4 +95,3 @@ func generate_collision_shape() -> void:
 		static_body.add_child(cell_collision_shape)
 		cell_collision_shape.owner = get_tree().edited_scene_root
 
-		

@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params.gd" id="5_hujxm"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
+[ext_resource type="Script" uid="uid://c8acika7wo4ks" path="res://shared/buildings/building_generation/building_generator.gd" id="7_hxu8e"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_a8run"]
 [ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="10_th5th"]
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
@@ -39,15 +40,6 @@ outside_door_count = 0
 random_seed = 1
 metadata/_custom_type_script = "uid://uq2ee3iq6x08"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7smn1"]
-size = Vector3(0, 0, 0)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_raeie"]
-size = Vector3(0, 0, 0)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hxu8e"]
-size = Vector3(0, 0, 0)
-
 [sub_resource type="Resource" id="Resource_b1x3f"]
 script = ExtResource("5_hujxm")
 random_seed = 3
@@ -76,30 +68,7 @@ shape = SubResource("BoxShape3D_hyk8p")
 [node name="BuildingGenerator" parent="NavigationRegion3D" unique_id=664969815 instance=ExtResource("4_6q06x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, 9)
 mesh_library = ExtResource("2_7smn1")
-grid_cell_size = Vector3(2, 2.8, 2)
-can_enter = null
 room_generation_params = SubResource("Resource_yyfjg")
-
-[node name="ModelsPlacer" parent="NavigationRegion3D/BuildingGenerator" index="0" unique_id=443638704]
-mesh_library = null
-
-[node name="FloorGridMap" parent="NavigationRegion3D/BuildingGenerator" index="3"]
-mesh_library = null
-data = {
-"cells": PackedInt32Array(65534, 0, 0, 65534, 1, 0, 65534, 2, 0, 65534, 3, 0, 65534, 4, 0, 65535, 0, 0, 65535, 1, 0, 65535, 2, 0, 65535, 3, 0, 65535, 4, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 196606, 0, 0, 196606, 1, 0, 196606, 2, 0, 196606, 3, 0, 196606, 4, 0, 196607, 0, 0, 196607, 1, 0, 196607, 2, 0, 196607, 3, 0, 196607, 4, 0, 131072, 0, 0, 131072, 1, 0, 131072, 2, 0, 131072, 3, 0, 131072, 4, 0, 131073, 0, 0, 131073, 1, 0, 131073, 2, 0, 131073, 3, 0, 131073, 4, 0, 131074, 0, 0, 131074, 1, 0, 131074, 2, 0, 131074, 3, 0, 131074, 4, 0, 131075, 0, 0, 131075, 1, 0, 131075, 2, 0, 131075, 3, 0, 131075, 4, 0, 131076, 0, 0, 131076, 1, 0, 131076, 2, 0, 131076, 3, 0, 131076, 4, 0, 5, 0, 0, 5, 1, 0, 6, 0, 0, 6, 1, 0, 7, 0, 0, 7, 1, 0, 8, 0, 0, 8, 1, 0, 9, 0, 0, 9, 1, 0, 262149, 0, 0, 262149, 1, 0, 262150, 0, 0, 262150, 1, 0, 262151, 0, 0, 262151, 1, 0, 262152, 0, 0, 262152, 1, 0, 262153, 0, 0, 262153, 1, 0, 5, 2, 0, 5, 3, 0, 5, 4, 0, 6, 2, 0, 6, 3, 0, 6, 4, 0, 65541, 2, 0, 65541, 3, 0, 65541, 4, 0, 65542, 2, 0, 65542, 3, 0, 65542, 4, 0)
-}
-
-[node name="WallXGrid" parent="NavigationRegion3D/BuildingGenerator" index="4"]
-mesh_library = null
-data = {
-"cells": PackedInt32Array(5, 2, 1048580, 65534, 0, 1048578, 65534, 1, 1048578, 65534, 2, 1048578, 65534, 3, 1048578, 65534, 4, 1048578, 131070, 0, 1048578, 131070, 1, 1048578, 131070, 2, 1048578, 131070, 3, 1048578, 131070, 4, 1048578, 5, 0, 1048578, 5, 1, 1048578, 5, 3, 1048578, 5, 4, 1048578, 65541, 0, 1048578, 65541, 1, 1048578, 65541, 2, 1048578, 65541, 3, 1048578, 65541, 4, 1048578, 131077, 0, 1048578, 131077, 1, 1048578, 196613, 0, 1048578, 196613, 1, 1048578, 10, 0, 1048578, 10, 1, 1048578, 65546, 0, 1048578, 65546, 1, 1048578, 131082, 0, 1048578, 131082, 1, 1048578, 196618, 0, 1048578, 196618, 1, 1048578, 7, 2, 1048578, 7, 3, 1048578, 7, 4, 1048578)
-}
-
-[node name="WallZGrid" parent="NavigationRegion3D/BuildingGenerator" index="5"]
-mesh_library = null
-data = {
-"cells": PackedInt32Array(5, 2, 4, 65534, 0, 2, 131070, 0, 2, 65535, 0, 2, 131071, 0, 2, 0, 0, 2, 65536, 0, 2, 1, 0, 2, 65537, 0, 2, 2, 0, 2, 65538, 0, 2, 3, 0, 2, 65539, 0, 2, 4, 0, 2, 65540, 0, 2, 65534, 5, 2, 131070, 5, 2, 65535, 5, 2, 131071, 5, 2, 0, 5, 2, 65536, 5, 2, 1, 5, 2, 65537, 5, 2, 2, 5, 2, 65538, 5, 2, 3, 5, 2, 65539, 5, 2, 4, 5, 2, 65540, 5, 2, 5, 0, 2, 65541, 0, 2, 131077, 0, 2, 196613, 0, 2, 6, 0, 2, 65542, 0, 2, 131078, 0, 2, 196614, 0, 2, 7, 0, 2, 65543, 0, 2, 131079, 0, 2, 196615, 0, 2, 8, 0, 2, 65544, 0, 2, 131080, 0, 2, 196616, 0, 2, 9, 0, 2, 65545, 0, 2, 131081, 0, 2, 196617, 0, 2, 65541, 2, 2, 131077, 2, 2, 196613, 2, 2, 6, 2, 2, 65542, 2, 2, 131078, 2, 2, 196614, 2, 2, 7, 2, 2, 65543, 2, 2, 131079, 2, 2, 196615, 2, 2, 8, 2, 2, 65544, 2, 2, 131080, 2, 2, 196616, 2, 2, 9, 2, 2, 65545, 2, 2, 131081, 2, 2, 196617, 2, 2, 5, 5, 2, 6, 5, 2)
-}
 
 [node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/BuildingGenerator" unique_id=1714193956]
 script = ExtResource("6_hujxm")
@@ -120,55 +89,10 @@ script = ExtResource("6_ow5a4")
 start = Vector3i(5, 0, 2)
 size = Vector3i(2, 1, 3)
 
-[node name="@NavigationObstacle3D@49188" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=1386774926]
-height = 30.0
-vertices = PackedVector3Array(-4, 0, 0, -4, 0, 10, 10, 0, 10, 10, 0, 0)
-affect_navigation_mesh = true
-avoidance_enabled = false
-
-[node name="@NavigationObstacle3D@49189" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=348033770]
-height = 30.0
-vertices = PackedVector3Array(10, 0, 0, 10, 0, 4, 20, 0, 4, 20, 0, 0)
-affect_navigation_mesh = true
-avoidance_enabled = false
-
-[node name="@NavigationObstacle3D@49190" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=694288141]
-height = 30.0
-vertices = PackedVector3Array(10, 0, 4, 10, 0, 10, 14, 0, 10, 14, 0, 4)
-affect_navigation_mesh = true
-avoidance_enabled = false
-
-[node name="@StaticBody3D@49191" type="StaticBody3D" parent="NavigationRegion3D/BuildingGenerator" unique_id=1894615887]
-
-[node name="@CollisionShape3D@49192" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator/@StaticBody3D@49191" unique_id=243031111]
-shape = SubResource("BoxShape3D_7smn1")
-
-[node name="@CollisionShape3D@49193" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator/@StaticBody3D@49191" unique_id=44502681]
-shape = SubResource("BoxShape3D_raeie")
-
-[node name="@CollisionShape3D@49194" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator/@StaticBody3D@49191" unique_id=333813000]
-shape = SubResource("BoxShape3D_hxu8e")
-
 [node name="BuildingGenerator2" parent="NavigationRegion3D" unique_id=918372639 instance=ExtResource("4_6q06x")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0.5, 2.5)
 mesh_library = ExtResource("3_7smn1")
-grid_cell_size = null
 room_generation_params = SubResource("Resource_b1x3f")
-
-[node name="FloorGridMap" parent="NavigationRegion3D/BuildingGenerator2" index="3"]
-data = {
-"cells": PackedInt32Array(196613, 1, 1, 131077, 0, 1, 65541, 0, 1, 0, 0, 0, 1, 0, 0, 2, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 0, 2, 0, 0, 3, 0, 1, 2, 0, 1, 3, 0, 2, 2, 0, 2, 3, 0, 65536, 2, 0, 65536, 3, 0, 65537, 2, 0, 65537, 3, 0, 65538, 2, 0, 65538, 3, 0, 131072, 2, 0, 131072, 3, 0, 131073, 2, 0, 131073, 3, 0, 131074, 2, 0, 131074, 3, 0, 5, 0, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, 196613, 0, 0, 262149, 0, 0, 262149, 1, 0, 196611, 0, 0, 262147, 0, 0, 196612, 0, 0, 262148, 0, 0, 196611, 1, 0, 262147, 1, 0, 4, 1, 0, 65540, 1, 0, 131075, 0, 0, 4, 0, 0, 65540, 0, 0, 3, 1, 0, 65539, 1, 0, 131076, 1, 0, 3, 0, 0, 65539, 0, 0, 131076, 0, 0, 131075, 1, 0, 196612, 1, 0, 262148, 1, 0)
-}
-
-[node name="WallXGrid" parent="NavigationRegion3D/BuildingGenerator2" index="4"]
-data = {
-"cells": PackedInt32Array(196613, 1, 1048580, 196613, 0, 1048580, 131077, 1, 1048580, 131077, 0, 1048580, 65541, 0, 1048580, 65541, 1, 1048580, 5, 0, 1048580, 5, 1, 1048580, 3, 0, 1048580, 65539, 0, 1048580, 3, 1, 1048580, 65539, 1, 1048580, 4, 0, 1048580, 131076, 0, 1048580, 65540, 1, 1048580, 196612, 0, 1048580, 0, 0, 1048578, 65536, 0, 1048579, 0, 1, 1048578, 65536, 1, 1048578, 0, 2, 1048579, 0, 3, 1048579, 3, 2, 1048578, 3, 3, 1048578, 65536, 2, 1048578, 65536, 3, 1048579, 65539, 2, 1048579, 65539, 3, 1048578, 6, 0, 1048578, 6, 1, 1048578, 65542, 0, 1048578, 65542, 1, 1048578, 131078, 0, 1048579, 131078, 1, 1048578, 196614, 0, 1048578, 196614, 1, 1048579, 196611, 0, 1048578, 196611, 1, 1048578, 196612, 1, 1048578, 4, 1, 1048578, 131075, 0, 1048578, 65540, 0, 1048578, 131075, 1, 1048578, 131076, 1, 1048578)
-}
-
-[node name="WallZGrid" parent="NavigationRegion3D/BuildingGenerator2" index="5"]
-data = {
-"cells": PackedInt32Array(0, 1, 4, 65538, 1, 4, 2, 2, 4, 65536, 2, 4, 131075, 1, 4, 196611, 1, 4, 0, 0, 2, 1, 0, 2, 2, 0, 4, 1, 1, 2, 2, 1, 2, 65536, 0, 2, 65537, 0, 2, 65538, 0, 3, 65536, 1, 2, 65537, 1, 2, 0, 2, 2, 1, 2, 2, 65537, 2, 2, 65538, 2, 2, 0, 4, 2, 1, 4, 2, 2, 4, 3, 65536, 4, 2, 65537, 4, 3, 65538, 4, 2, 5, 0, 2, 5, 2, 2, 65541, 0, 2, 65541, 2, 2, 131077, 0, 2, 131077, 2, 3, 196613, 0, 2, 196613, 2, 3, 196611, 0, 3, 196612, 0, 3, 196612, 1, 2, 196611, 2, 2, 4, 1, 2, 4, 2, 2, 131075, 0, 2, 4, 0, 2, 3, 1, 2, 3, 2, 2, 65540, 1, 2, 65540, 2, 2, 3, 0, 3, 65539, 0, 3, 65539, 1, 2, 65540, 0, 2, 131076, 0, 3, 131076, 1, 2, 65539, 2, 3, 131075, 2, 2, 131076, 2, 2, 196612, 2, 2)
-}
 
 [node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/BuildingGenerator2" unique_id=2053967310]
 script = ExtResource("6_hujxm")
@@ -183,17 +107,20 @@ script = ExtResource("6_ow5a4")
 start = Vector3i(3, 0, 0)
 size = Vector3i(3, 4, 2)
 
-[node name="@NavigationObstacle3D@46869" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator2" unique_id=1031860994]
-height = 30.0
-vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 6, 0, 8, 6, 0, 0)
-affect_navigation_mesh = true
-avoidance_enabled = false
+[node name="BuildingGenerator3" type="Node3D" parent="NavigationRegion3D" unique_id=796797017]
+script = ExtResource("7_hxu8e")
+grid_cell_size = Vector3(2, 2.8, 2)
+metadata/_custom_type_script = "uid://c8acika7wo4ks"
 
-[node name="@NavigationObstacle3D@46870" type="NavigationObstacle3D" parent="NavigationRegion3D/BuildingGenerator2" unique_id=1515038979]
-height = 30.0
-vertices = PackedVector3Array(6, 0, 0, 6, 0, 4, 12, 0, 4, 12, 0, 0)
-affect_navigation_mesh = true
-avoidance_enabled = false
+[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/BuildingGenerator3" unique_id=111069504]
+script = ExtResource("6_hujxm")
+is_visible = true
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="NavigationRegion3D/BuildingGenerator3/BuildingShapeDescription" unique_id=168720697]
+script = ExtResource("6_ow5a4")
+size = Vector3i(2, 2, 2)
+metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
 [node name="Enemy" parent="." unique_id=124557404 instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)

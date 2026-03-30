@@ -1,6 +1,6 @@
 @tool
 class_name ModelsPlacer
-extends Node
+extends RefCounted
 
 # this is retarded
 enum Orientation {
@@ -10,8 +10,8 @@ enum Orientation {
 	R270 = 16,  # 270
 }
 
-@export var mesh_library: MeshLibrary
-@export var gridmaps: Array[GridMap]
+var mesh_library: MeshLibrary
+var gridmaps: Array[GridMap]
 
 var open_mesh_dict: Dictionary[Utils.Axis, int]
 var closed_mesh_dict: Dictionary[Utils.Axis, int]
@@ -43,8 +43,10 @@ func clear_models():
 func place_models(_building_generator: BuildingGenerator):
 	building_generator = _building_generator
 	mesh_library = building_generator.mesh_library
+	gridmaps = building_generator.gridmaps
 	for gridmap in gridmaps:
 		gridmap.mesh_library = mesh_library
+	_create_mesh_dicts()
 
 	clear_models()
 	spawn_walls_between_rooms()
@@ -128,7 +130,7 @@ func place_entrance_doors(outside_door_locations: Array):
 	)
 
 
-func _ready() -> void:
+func _create_mesh_dicts() -> void:
 	open_mesh_dict = {
 		Utils.Axis.X: mesh_library.find_item_by_name("Door"),
 		Utils.Axis.Y: mesh_library.find_item_by_name("Hole"),
@@ -153,7 +155,3 @@ func spawn_walls_between_rooms():
 					if n.cell.size()[axis] == 0 and gridmaps[axis].get_cell_item(l) == -1:
 						gridmaps[axis].set_cell_item(l, closed_mesh_dict[axis], orientations[axis])
 
-
-func _enter_tree() -> void:
-	building_generator = get_parent()
-	building_generator.models_placer = self

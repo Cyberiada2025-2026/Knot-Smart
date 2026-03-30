@@ -1,6 +1,6 @@
 @tool
 class_name NeighborGenerator
-extends Node
+extends RefCounted
 
 var building_generator: BuildingGenerator
 
@@ -46,7 +46,3 @@ func choose_door_positions():
 		if n.is_open:
 			n.set_door_position()
 
-
-func _enter_tree() -> void:
-	building_generator = get_parent()
-	building_generator.neighbors_generator = self

@@ -4,9 +4,6 @@ extends RefCounted
 
 var building_generator: BuildingGenerator
 
-func _init(_building_generator: BuildingGenerator) -> void:
-	building_generator = _building_generator
-
 
 func generate_cells(_building_generator: BuildingGenerator) -> void:
 	building_generator = _building_generator

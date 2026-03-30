@@ -1,7 +1,0 @@
-[gd_scene format=3 uid="uid://50058jf30t1n"]
-
-[ext_resource type="Script" uid="uid://c8acika7wo4ks" path="res://shared/buildings/building_generation/building_generator.gd" id="1_4i3p1"]
-
-[node name="BuildingGenerator" type="Node3D" unique_id=1490340568]
-script = ExtResource("1_4i3p1")
-grid_cell_size = Vector3(2, 2.8, 2)

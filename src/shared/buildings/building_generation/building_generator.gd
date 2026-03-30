@@ -2,8 +2,6 @@
 class_name BuildingGenerator
 extends Node3D
 
-const NAV_MESH_OBSTACLE_HEIGHT: float = 30.0
-
 @export var mesh_library: MeshLibrary
 @export var grid_cell_size: Vector3 = Vector3.ONE
 @export var can_enter: bool = true
@@ -20,6 +18,7 @@ var building_shape_description: BuildingShapeDescription
 var neighbors_generator: NeighborGenerator = NeighborGenerator.new()
 var cells_generator: CellGenerator = CellGenerator.new()
 var models_placer: ModelsPlacer = ModelsPlacer.new()
+var nav_obstacle_generator: BuildingNavObstacleGenerator = BuildingNavObstacleGenerator.new()
 
 
 func _ready() -> void:
@@ -40,7 +39,7 @@ func generate_building() -> void:
 	neighbors_generator.generate_neighbors(self)
 	models_placer.place_models(self)
 
-	generate_navmesh_obstacles()
+	nav_obstacle_generator.generate_navmesh_obstacles(self)
 	if not can_enter:
 		generate_collision_shape()
 
@@ -50,26 +49,10 @@ func clear() -> void:
 	neighbors = []
 
 	models_placer.clear()
-	for obstacle in find_children("", "NavigationObstacle3D"):
-		obstacle.queue_free()
+	nav_obstacle_generator.clear()
 	for static_body in find_children("", "StaticBody3D"):
 		static_body.queue_free()
 
-
-func generate_navmesh_obstacles() -> void:
-	var scaling: Vector3 = models_placer.gridmaps[0].cell_size
-
-	for cell in initial_cells:
-		var outline = cell.get_base_vertices(scaling)
-
-		var obstacle = NavigationObstacle3D.new()
-		obstacle.affect_navigation_mesh = true
-		obstacle.avoidance_enabled = false
-		obstacle.height = NAV_MESH_OBSTACLE_HEIGHT
-		obstacle.vertices = outline
-		obstacle.visible = false
-
-		add_child(obstacle)
 
 
 func _get_configuration_warnings() -> PackedStringArray:

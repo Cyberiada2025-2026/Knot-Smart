@@ -54,11 +54,11 @@ func clear() -> void:
 		static_body.queue_free()
 
 
-
 func _get_configuration_warnings() -> PackedStringArray:
 	if building_shape_description == null:
-		return [ "No building shape description provided." ]
+		return ["No building shape description provided."]
 	return []
+
 
 func generate_collision_shape() -> void:
 	var static_body: StaticBody3D = StaticBody3D.new()
@@ -68,7 +68,6 @@ func generate_collision_shape() -> void:
 		var cell_collision_shape = CollisionShape3D.new()
 		cell_collision_shape.shape = BoxShape3D.new()
 		cell_collision_shape.shape.size = Vector3(cell.size()) * grid_cell_size
-		cell_collision_shape.position = cell.center() * grid_cell_size 
+		cell_collision_shape.position = cell.center() * grid_cell_size
 		static_body.add_child(cell_collision_shape)
 		cell_collision_shape.owner = get_tree().edited_scene_root
-

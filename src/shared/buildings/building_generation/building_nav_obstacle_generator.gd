@@ -6,6 +6,7 @@ const NAV_MESH_OBSTACLE_HEIGHT: float = 100.0
 
 var buidling_generator: BuildingGenerator
 
+
 func generate_navmesh_obstacles(_buidling_generator: BuildingGenerator) -> void:
 	buidling_generator = _buidling_generator
 	var scaling: Vector3 = buidling_generator.grid_cell_size
@@ -21,6 +22,7 @@ func generate_navmesh_obstacles(_buidling_generator: BuildingGenerator) -> void:
 		obstacle.visible = false
 
 		buidling_generator.add_child(obstacle)
+
 
 func clear() -> void:
 	for obstacle in buidling_generator.find_children("", "NavigationObstacle3D"):

@@ -45,4 +45,3 @@ func choose_door_positions():
 	for n in building_generator.neighbors:
 		if n.is_open:
 			n.set_door_position()
-

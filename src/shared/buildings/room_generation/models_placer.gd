@@ -49,6 +49,7 @@ func concat(a: Array, e: Array) -> Array:
 	a += e
 	return a
 
+
 func clear() -> void:
 	for gridmap in gridmaps:
 		gridmap.queue_free()
@@ -162,4 +163,3 @@ func spawn_walls_between_rooms():
 				for axis in Utils.Axis.values():
 					if n.cell.size()[axis] == 0 and gridmaps[axis].get_cell_item(l) == -1:
 						gridmaps[axis].set_cell_item(l, closed_mesh_dict[axis], orientations[axis])
-

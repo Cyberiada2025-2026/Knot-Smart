@@ -79,4 +79,3 @@ func get_split_direction(cell: Cell) -> Utils.Axis:
 	var randomized_diff = diff + randomizer
 
 	return Utils.Axis.Z if randomized_diff <= 0 else Utils.Axis.X
-

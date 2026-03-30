@@ -22,6 +22,10 @@ var cells_generator: CellGenerator = CellGenerator.new()
 var models_placer: ModelsPlacer = ModelsPlacer.new()
 
 
+func _ready() -> void:
+	generate_building()
+
+
 func generate_building() -> void:
 	clear()
 	seed(room_generation_params.random_seed)
@@ -45,16 +49,6 @@ func generate_building() -> void:
 func clear() -> void:
 	cells = []
 	neighbors = []
-	for gridmap in gridmaps:
-		gridmap.queue_free()
-	gridmaps.clear()
-	for i in 3:
-		var gridmap = GridMap.new()
-		gridmap.mesh_library = mesh_library
-		gridmap.cell_size = grid_cell_size
-		gridmap.cell_center_y = false
-		gridmaps.push_back(gridmap)
-		add_child(gridmap)
 
 	for obstacle in find_children("", "NavigationObstacle3D"):
 		obstacle.queue_free()

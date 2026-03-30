@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params.gd" id="5_hujxm"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
-[ext_resource type="Script" uid="uid://c8acika7wo4ks" path="res://shared/buildings/building_generation/building_generator.gd" id="7_hxu8e"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_a8run"]
 [ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="10_th5th"]
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
@@ -106,21 +105,6 @@ size = Vector3i(3, 2, 4)
 script = ExtResource("6_ow5a4")
 start = Vector3i(3, 0, 0)
 size = Vector3i(3, 4, 2)
-
-[node name="BuildingGenerator3" type="Node3D" parent="NavigationRegion3D" unique_id=796797017]
-script = ExtResource("7_hxu8e")
-grid_cell_size = Vector3(2, 2.8, 2)
-metadata/_custom_type_script = "uid://c8acika7wo4ks"
-
-[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/BuildingGenerator3" unique_id=111069504]
-script = ExtResource("6_hujxm")
-is_visible = true
-metadata/_custom_type_script = "uid://o0oessya87xf"
-
-[node name="BoxDescription" type="Node" parent="NavigationRegion3D/BuildingGenerator3/BuildingShapeDescription" unique_id=168720697]
-script = ExtResource("6_ow5a4")
-size = Vector3i(2, 2, 2)
-metadata/_custom_type_script = "uid://cp8ed61leg0wl"
 
 [node name="Enemy" parent="." unique_id=124557404 instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)

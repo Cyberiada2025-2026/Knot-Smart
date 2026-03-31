@@ -22,7 +22,7 @@ func generate_tree():
 	add_child(tree)
 	tree_skeleton.params = params
 	var branches_one_level: Array[TreeBranch] = []
-	for i in range(params.rec_level+1): # levels of branches + trunk
+	for i in range(params.branch_recursion_level+1): # levels of branches + trunk
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
 			generate_mesh(branch)
@@ -55,8 +55,7 @@ func generate_mesh(branch: TreeBranch):
 
 func on_generate():
 	tree_skeleton.rec_level = 0
-	var children = get_children(false)
-	for child in children:
+	for child in get_children():
 		if child is StaticBody3D:
 			child.queue_free()
 	generate_tree()

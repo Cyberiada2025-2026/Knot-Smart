@@ -14,6 +14,10 @@ var tree: StaticBody3D
 
 
 func _ready() -> void:
+	tree_skeleton = TreeSkeleton.new()
+	tree_skeleton.tree_generator = self
+	tree_mesh_generator = TreeMeshGenerator.new()
+	tree_mesh_generator.tree_generator = self
 	on_generate()
 
 
@@ -25,18 +29,16 @@ func generate_tree():
 	for i in range(params.branch_recursion_level+1): # levels of branches + trunk
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
-			generate_mesh(branch)
+			generate_mesh(branch, params.material)
 
 
-func generate_mesh(branch: TreeBranch):
+func generate_mesh(branch: TreeBranch, material: StandardMaterial3D):
 	var mesh = MeshInstance3D.new()
 	var array_mesh = tree_mesh_generator.generate_array_mesh(branch)
-	var material = StandardMaterial3D.new()
-	var texture = load(params.tex_path)
-	material.uv1_triplanar = true
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.albedo_texture = texture
-	material.albedo_color *= TEX_DARKEN
+	#material.uv1_triplanar = true
+	#material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	#material.albedo_texture = texture
+	#material.albedo_color *= TEX_DARKEN
 	array_mesh.surface_set_material(0, material)
 	mesh.mesh = array_mesh
 	mesh.transform = branch.transform

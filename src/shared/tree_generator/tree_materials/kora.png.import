@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jtgb3oas16dr"
-path.s3tc="res://.godot/imported/kora.png-87575328913efe422ba875a9700faa03.s3tc.ctex"
+path.s3tc="res://.godot/imported/kora.png-ce2989fd9d182f99ab4ca7bb30ec2972.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://shared/tree_generator/kora.png"
-dest_files=["res://.godot/imported/kora.png-87575328913efe422ba875a9700faa03.s3tc.ctex"]
+source_file="res://shared/tree_generator/tree_materials/kora.png"
+dest_files=["res://.godot/imported/kora.png-ce2989fd9d182f99ab4ca7bb30ec2972.s3tc.ctex"]
 
 [params]
 

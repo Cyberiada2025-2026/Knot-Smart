@@ -6,11 +6,6 @@ extends Node
 var tree_generator: TreeGenerator
 
 
-func _enter_tree() -> void:
-	tree_generator = get_parent()
-	tree_generator.tree_mesh_generator = self
-
-
 func generate_array_mesh(branch: TreeBranch) -> ArrayMesh:
 	var vertices = PackedVector3Array()
 	var indices = PackedInt32Array()

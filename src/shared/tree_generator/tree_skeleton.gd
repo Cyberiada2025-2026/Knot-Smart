@@ -10,11 +10,6 @@ var branches: Array[TreeBranch] = []
 var rec_level: int = 0
 
 
-func _enter_tree() -> void:
-	tree_generator = get_parent()
-	tree_generator.tree_skeleton = self
-
-
 func generate_skeleton(parent_branches: Array[TreeBranch] = []) -> Array[TreeBranch]:
 	branches = []
 	if rec_level == 0:

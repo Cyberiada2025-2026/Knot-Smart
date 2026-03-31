@@ -2,15 +2,15 @@ class_name TreeParameters
 extends Resource
 
 @export var segment_displacement: float = 0.8
-@export var tex_path: String = "res://shared/tree_generator/kora.png"
+@export var material: StandardMaterial3D
 ## how much first branches (every branch for SIDE tree) are snatched towards the ground
 @export var branch_spread_angle: float = PI/20
 
 @export_group("Trunk")
 @export_range(1, 20, 1) var trunk_segment_count = 3
-@export_range(0.1, 5.0, 0.05) var trunk_radius = 0.8 ## radius
+@export_range(0.1, 5.0, 0.05) var trunk_radius = 0.8
 @export_range(0.1, 1.0, 0.01) var trunk_rate_of_shrinking = 0.85
-@export_range(3, 10, 1) var trunk_sides = 6 ## faces num of one stripe
+@export_range(3, 10, 1) var trunk_sides = 6
 @export_range(0.1, 10.0, 0.02) var trunk_segment_length: float = 1.0
 
 @export_group("Branches")

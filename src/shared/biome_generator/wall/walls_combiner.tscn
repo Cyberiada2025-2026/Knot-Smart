@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://uf8x52y1jmqp"]
+
+[ext_resource type="Script" uid="uid://ccn212sobnkhi" path="res://shared/biome_generator/wall/walls_combiner.gd" id="1_u0mm6"]
+
+[node name="wallsCombiner" type="CSGCombiner3D" unique_id=1862858620]
+use_collision = true
+script = ExtResource("1_u0mm6")

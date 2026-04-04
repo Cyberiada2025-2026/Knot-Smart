@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dom1b3k6o3fv2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlqe6"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="wall_entrance" type="CSGSphere3D" unique_id=1904701978]
+operation = 2
+radius = 3.0
+material = SubResource("StandardMaterial3D_tlqe6")

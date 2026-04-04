@@ -10,15 +10,10 @@ const RADIUS = 0.1
 var state = State.SELECT_FIRST
 var selected_objects: Array[Node] = []
 var markers: Array[MeshInstance3D] = []
-var sphere: MeshInstance3D
+var sphere: MeshInstance3D = preload("uid://ymb8m1pspwfy").instantiate()
 
 
 func _ready() -> void:
-	sphere = MeshInstance3D.new()
-	var mesh = SphereMesh.new()
-	mesh.set_radius(RADIUS)
-	mesh.set_height(2 * RADIUS)
-	sphere.set_mesh(mesh)
 	add_child(sphere)
 
 

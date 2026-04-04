@@ -3,22 +3,15 @@ extends Node3D
 
 enum State { SELECT_FIRST, SELECT_SECOND }
 
-const RADIUS = 0.1
-
 @export var rope_params = RopeParams.new()
 
 var state = State.SELECT_FIRST
 var selected_objects: Array[Node] = []
 var markers: Array[MeshInstance3D] = []
-var sphere: MeshInstance3D
+var sphere: MeshInstance3D = preload("uid://ymb8m1pspwfy").instantiate()
 
 
 func _ready() -> void:
-	sphere = MeshInstance3D.new()
-	var mesh = SphereMesh.new()
-	mesh.set_radius(RADIUS)
-	mesh.set_height(2 * RADIUS)
-	sphere.set_mesh(mesh)
 	add_child(sphere)
 
 
@@ -63,15 +56,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func create_rope():
-	var positions: Array[Vector3] = []
-	for marker in markers:
-		positions.append(marker.global_position)
-	var rope = Rope.new(rope_params, selected_objects, positions)
+	var rope = Rope.new(rope_params, selected_objects, markers)
 	add_child(rope)
 
 	selected_objects = []
-	for marker in markers:
-		marker.queue_free()
 	markers = []
 
 

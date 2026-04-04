@@ -17,8 +17,6 @@ const ANIM_OFF: String = "break"
 @export var splash: CPUParticles3D
 @export var break1: CPUParticles3D
 @export var break2: CPUParticles3D
-@export var first_ball: Node3D
-@export var second_ball: Node3D
 
 var length_curr: float = 10.0
 
@@ -38,8 +36,6 @@ func set_length(length: float):
 	splash.position.y = length * 0.4
 	break1.emission_box_extents.y = length / 2
 	break2.emission_box_extents.y = length / 2
-	first_ball.position.y = length / 2
-	second_ball.position.y = -length
 
 
 func end() -> void:

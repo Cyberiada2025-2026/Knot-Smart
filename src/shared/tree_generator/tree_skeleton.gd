@@ -47,18 +47,11 @@ func branches_next_level(parent_branches: Array[TreeBranch]):
 			branch.pos_array = branch_skeleton(
 				params.branch_segment_length,
 				params.branch_segment_count)
-			if rec_level>1:
-				set_branch(
-					branch,
-					get_new_r(parent_branch),
-					parent_branch.rate_of_shrinking,
-					parent_branch.sides)
-			else:
-				set_branch(
-					branch,
-					params.branch_radius,
-					params.branch_rate_of_shrinking,
-					params.branch_sides)
+			set_branch(
+				branch,
+				get_radius(parent_branch),
+				params.branch_rate_of_shrinking,
+				params.branch_sides)
 			branches.push_back(branch)
 
 
@@ -68,9 +61,9 @@ func branch_skeleton(h: float, stripes: int) -> PackedVector3Array:
 	branch_pos.push_back(last)
 	for i in range(stripes):
 		var new = last + Vector3(
-			randf()*params.segment_displacement-params.segment_displacement/2,
-			randf()*params.segment_displacement-params.segment_displacement/2+h,
-			randf()*params.segment_displacement-params.segment_displacement/2)
+			get_random_segment_displacement(),
+			get_random_segment_displacement()+h,
+			get_random_segment_displacement())
 		branch_pos.push_back(new)
 		last = new
 	return branch_pos
@@ -97,9 +90,10 @@ func calculate_rotation(base: Transform3D, angle: float) -> Transform3D:
 	rot_matrix = rot_matrix.rotated(Vector3.UP, angle)
 	return rot_matrix
 
-## shrink base radius of branches from the next level
-func get_new_r(branch: TreeBranch) -> float:
-	return branch.radius*pow(branch.rate_of_shrinking, 2)
+
+func get_radius(branch: TreeBranch):
+	var base_radius = params.branch_radius if rec_level == 1 else branch.radius
+	return base_radius*pow(params.branch_rate_of_shrinking, rec_level-1)
 
 
 func set_new_branch_count():
@@ -108,3 +102,7 @@ func set_new_branch_count():
 
 func get_angle() -> float:
 	return randf()*TAU
+
+
+func get_random_segment_displacement():
+	return (randf() - 0.5) * params.segment_displacement

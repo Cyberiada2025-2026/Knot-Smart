@@ -46,9 +46,8 @@ func generate_mesh(branch: TreeBranch, material: StandardMaterial3D):
 	collision.shape = shape
 	collision.transform = branch.transform
 	tree.add_child(collision)
-	if Engine.is_editor_hint():
-		mesh.owner = tree
-		collision.owner = tree
+	mesh.owner = tree
+	collision.owner = tree
 
 
 func on_generate():

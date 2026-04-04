@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://djqe8wkjmmn8n"]
 
-[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/rope/vfx/rope.gdshader" id="1_jo2uc"]
-[ext_resource type="Script" uid="uid://l0fhfdnlggk" path="res://shared/rope/vfx/rope_vfx.gd" id="1_mc67o"]
+[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://characters/player/rope/vfx/rope.gdshader" id="1_jo2uc"]
+[ext_resource type="Script" uid="uid://l0fhfdnlggk" path="res://characters/player/rope/vfx/rope_vfx.gd" id="1_mc67o"]
 [ext_resource type="Shader" uid="uid://1pvk0smpoe86" path="res://shared/shaders/fresnel_additive.gdshader" id="2_jo2uc"]
 [ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="4_lbvd8"]
 
@@ -99,13 +99,6 @@ shader_parameter/tint = Color(1, 1, 1, 1)
 radius = 0.05
 height = 0.4
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gg86f"]
-render_priority = 0
-shader = ExtResource("4_lbvd8")
-shader_parameter/billboard = false
-shader_parameter/use_vertex_color = false
-shader_parameter/tint = Color(0.34509805, 0.60784316, 0.7176471, 1)
-
 [sub_resource type="Animation" id="Animation_mc67o"]
 length = 0.001
 tracks/0/type = "value"
@@ -135,89 +128,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CSGSphere3D:visible")
+tracks/2/path = NodePath("Mesh:material_override")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Mesh:material_override")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [SubResource("ShaderMaterial_mc67o")]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Mesh/Break1:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Mesh/Break2:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_lbvd8"]
-resource_name = "break"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CSGSphere3D:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh/Splash:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Mesh:material_override:shader_parameter/anim_start")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0.0]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -229,7 +147,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -238,6 +156,57 @@ tracks/4/path = NodePath("Mesh/Break2:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_lbvd8"]
+resource_name = "break"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mesh/Splash:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mesh:material_override:shader_parameter/anim_start")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Mesh/Break1:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mesh/Break2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -270,18 +239,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [false, true]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CSGSphere3D:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.06666667),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lbvd8"]
 _data = {
@@ -299,8 +256,8 @@ mat = SubResource("ShaderMaterial_mc67o")
 splash = NodePath("Mesh/Splash")
 break1 = NodePath("Mesh/Break1")
 break2 = NodePath("Mesh/Break2")
-first_ball = NodePath("CSGSphere3D")
-second_ball = NodePath("CSGSphere3D/CSGSphere3D")
+first_ball = NodePath("")
+second_ball = NodePath("")
 
 [node name="Mesh" type="CSGMesh3D" parent="." unique_id=1415216167]
 material_override = SubResource("ShaderMaterial_mc67o")
@@ -376,16 +333,6 @@ angle_min = -90.0
 angle_max = 90.0
 scale_amount_min = 0.8
 scale_amount_curve = SubResource("Curve_xs02k")
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=311434849]
-visible = false
-material_override = SubResource("ShaderMaterial_gg86f")
-radius = 0.12
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGSphere3D" unique_id=1768756739]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
-material_override = SubResource("ShaderMaterial_gg86f")
-radius = 0.12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1417330855]
 libraries/ = SubResource("AnimationLibrary_lbvd8")

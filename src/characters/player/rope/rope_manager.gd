@@ -3,8 +3,6 @@ extends Node3D
 
 enum State { SELECT_FIRST, SELECT_SECOND }
 
-const RADIUS = 0.1
-
 @export var rope_params = RopeParams.new()
 
 var state = State.SELECT_FIRST

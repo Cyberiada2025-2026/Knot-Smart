@@ -12,14 +12,12 @@ var collision_shape: CapsuleShape3D
 var node: Array[Node]
 var links: Array[NodeLink]
 var end: Array[RopeEnd]
-var pos: Array[Vector3]
 
 
-func _init(rope_params: RopeParams, nodes: Array[Node], positions: Array[Vector3]) -> void:
+func _init(rope_params: RopeParams, nodes: Array[Node], markers: Array[MeshInstance3D]) -> void:
 	self.params = rope_params
 	self.node = nodes
 	self.end = []
-	self.pos = positions
 
 	for i in range(2):
 		var link = NodeLink.new(self)
@@ -33,7 +31,7 @@ func _init(rope_params: RopeParams, nodes: Array[Node], positions: Array[Vector3
 				strategy = BasicKinematicStrategy.new()
 			_:
 				strategy = BasicStaticStrategy.new()
-		end.append(RopeEnd.new(self.params, strategy, pos[i]))
+		end.append(RopeEnd.new(self.params, strategy, markers[i]))
 
 		add_child(end[i])
 
@@ -46,7 +44,7 @@ func init_rope_mesh():
 
 
 func init_rope_collider():
-	var direction = pos[1] - pos[0]
+	var direction = end[1].position - end[0].position
 
 	collision_shape = CapsuleShape3D.new()
 	collision_shape.radius = params.rope_collision_radius
@@ -139,8 +137,8 @@ func _ready() -> void:
 	rope = Area3D.new()
 	init_rope_mesh()
 	init_rope_collider()
-	var direction = pos[1] - pos[0]
-	rope.look_at_from_position(pos[0] + direction / 2, pos[0])
+	var direction = end[1].position - end[0].position
+	rope.look_at_from_position(end[0].position + direction / 2, end[0].position)
 	rope.body_entered.connect(_on_area_entered)
 	add_child(rope)
 

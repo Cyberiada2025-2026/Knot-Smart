@@ -7,15 +7,22 @@ var prev_pos: Vector3
 var params: RopeParams
 var other: RopeEnd
 var strategy: Node
+var marker: MeshInstance3D
 
 
-func _init(rope_params, equilibrium_strategy, pos) -> void:
+func _init(rope_params, equilibrium_strategy, mark) -> void:
 	self.strategy = equilibrium_strategy
 	self.add_child(self.strategy)
 	self.freeze = (get_strategy_type() == StrategyType.STATIC)
 	self.params = rope_params
-	self.position = pos
-	self.prev_pos = pos
+	self.position = mark.global_position
+	self.prev_pos = mark.global_position
+	self.marker = mark
+
+
+func _ready():
+	marker.reparent(self)
+	marker.owner = self
 
 
 func get_strategy_type():

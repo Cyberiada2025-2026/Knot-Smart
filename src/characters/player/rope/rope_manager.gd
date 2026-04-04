@@ -58,15 +58,10 @@ func _physics_process(_delta: float) -> void:
 
 
 func create_rope():
-	var positions: Array[Vector3] = []
-	for marker in markers:
-		positions.append(marker.global_position)
-	var rope = Rope.new(rope_params, selected_objects, positions)
+	var rope = Rope.new(rope_params, selected_objects, markers)
 	add_child(rope)
 
 	selected_objects = []
-	for marker in markers:
-		marker.queue_free()
 	markers = []
 
 

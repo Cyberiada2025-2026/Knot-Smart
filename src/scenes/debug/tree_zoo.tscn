@@ -26,3 +26,6 @@ shape = SubResource("BoxShape3D_v77ug")
 [node name="TreeGenerator" parent="." unique_id=321865084 instance=ExtResource("2_c24uh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.225, 0, -3.705)
 params = ExtResource("3_c24uh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1744242977]
+transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 0, 0)

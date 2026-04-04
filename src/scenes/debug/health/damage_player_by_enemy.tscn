@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dxbsfa6f4ooum"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="2_rlwjg"]
+[ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="3_4rvfw"]
+[ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="3_52hlj"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_4rvfw"]
+vertices = PackedVector3Array(-9.5, 0.5, -9.5, -9.5, 0.5, 9.5, 9.5, 0.5, 9.5, 9.5, 0.5, -9.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[node name="HealthDebug" type="Node3D" unique_id=223631406]
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_rlwjg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="HealthComponent" parent="Player" index="3" unique_id=1622957288]
+max_health = 1000.0
+health = 1000.0
+
+[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("3_52hlj")]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1306290851]
+navigation_mesh = SubResource("NavigationMesh_4rvfw")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" unique_id=2121414612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+use_collision = true
+size = Vector3(20, 0.5, 20)
+
+[node name="Enemy" parent="." unique_id=768992349 instance=ExtResource("3_4rvfw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4)
+
+[editable path="Player"]
+[editable path="Player/PlayerPhysics"]

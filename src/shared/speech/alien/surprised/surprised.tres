@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="VoiceBank" format=3 uid="uid://3rlp8gco3lnb"]
+
+[ext_resource type="Script" uid="uid://bfsr7bu0ebxo1" path="res://shared/speech/voice_bank.gd" id="1_5qton"]
+[ext_resource type="AudioStream" uid="uid://dvwrc72kogkjo" path="res://shared/speech/alien/surprised/zip.wav" id="2_nvga2"]
+[ext_resource type="AudioStream" uid="uid://bc3t2wqmkektr" path="res://shared/speech/alien/surprised/ba.wav" id="3_aycx2"]
+[ext_resource type="AudioStream" uid="uid://cjv56812c7alv" path="res://shared/speech/alien/surprised/rim.wav" id="4_mhiiy"]
+[ext_resource type="AudioStream" uid="uid://bmrbdej83x5jd" path="res://shared/speech/alien/surprised/waeb.wav" id="5_0bq3q"]
+[ext_resource type="AudioStream" uid="uid://clnf1eor3ekww" path="res://shared/speech/alien/surprised/ga.wav" id="6_sc8yc"]
+[ext_resource type="AudioStream" uid="uid://u07j5gdfhxfa" path="res://shared/speech/alien/surprised/womp.wav" id="7_c5tsd"]
+[ext_resource type="AudioStream" uid="uid://c5t1x6377dmpq" path="res://shared/speech/alien/surprised/go.wav" id="8_57rbw"]
+[ext_resource type="AudioStream" uid="uid://ngjq2243tbpj" path="res://shared/speech/alien/surprised/lip.wav" id="9_irfsj"]
+[ext_resource type="AudioStream" uid="uid://dhur6au2p5f5u" path="res://shared/speech/alien/surprised/blop.wav" id="10_udo2t"]
+[ext_resource type="AudioStream" uid="uid://baf2pe7poiyu6" path="res://shared/speech/alien/surprised/zop.wav" id="11_vfraf"]
+[ext_resource type="AudioStream" uid="uid://c8bxkd25yqfnj" path="res://shared/speech/alien/surprised/lle.wav" id="12_ytkyc"]
+[ext_resource type="AudioStream" uid="uid://bhqxj15dfr3mh" path="res://shared/speech/alien/surprised/si.wav" id="13_lsewy"]
+
+[resource]
+script = ExtResource("1_5qton")
+syllables = Dictionary[String, AudioStream]({
+"ba": ExtResource("3_aycx2"),
+"blop": ExtResource("10_udo2t"),
+"ga": ExtResource("6_sc8yc"),
+"go": ExtResource("8_57rbw"),
+"lip": ExtResource("9_irfsj"),
+"lle": ExtResource("12_ytkyc"),
+"rim": ExtResource("4_mhiiy"),
+"si": ExtResource("13_lsewy"),
+"waeb": ExtResource("5_0bq3q"),
+"womp": ExtResource("7_c5tsd"),
+"zip": ExtResource("2_nvga2"),
+"zop": ExtResource("11_vfraf")
+})
+metadata/_custom_type_script = "uid://bfsr7bu0ebxo1"

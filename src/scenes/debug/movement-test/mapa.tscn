@@ -158,10 +158,26 @@ mesh = SubResource("BoxMesh_q8ihy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D5" unique_id=1313773814]
 shape = SubResource("BoxShape3D_lrjei")
 
+[node name="StaticBody3D6" type="StaticBody3D" parent="teren" unique_id=1756793409]
+transform = Transform3D(-0.024111008, -0.01260333, 0.99962986, -0.46325, 0.886228, 0, -0.8859, -0.46307853, -0.027206326, -7.52403, 1.65564, 12.361736)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D6" unique_id=1103680341]
+mesh = SubResource("BoxMesh_q8ihy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D6" unique_id=40039423]
+shape = SubResource("BoxShape3D_lrjei")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="teren/StaticBody3D6" unique_id=1562036995]
+transform = Transform3D(0.901523, -0.432731, 0, 0.432731, 0.901523, 0, 0, 0, 1, -9.38629, -2.19047, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="teren/StaticBody3D6/StaticBody3D2" unique_id=1688353165]
+mesh = SubResource("BoxMesh_q8ihy")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="teren/StaticBody3D6/StaticBody3D2" unique_id=1444499237]
+shape = SubResource("BoxShape3D_lrjei")
+
 [node name="Player" parent="." unique_id=383554686 instance=ExtResource("1_2jh14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.457032, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player" unique_id=1887677303]
 transform = Transform3D(1, 0, 0, 0, 0.0460255, 0.99894, 0, -0.99894, 0.0460255, 0, 136.331, 0)
-
-[node name="CameraReplacer" parent="." unique_id=998944845]

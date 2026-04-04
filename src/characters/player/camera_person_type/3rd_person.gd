@@ -27,6 +27,10 @@ func zoom(camera: PlayerCamera, delta: float) -> void:
 
 
 func change_view_to(camera: PlayerCamera) -> void:
-	camera.get_parent().show()
+	camera.player.player_physics.player_model.show()
 	camera.camera.rotation_degrees = default_camera_rotation
 	camera.arm_length = default_arm_length
+
+
+func get_view_type() -> PlayerCamera.ViewType:
+	return PlayerCamera.ViewType.THIRD_PERSON

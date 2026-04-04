@@ -3,6 +3,12 @@ extends Node3D
 
 signal camera_rotated(vector: Vector3, angle: float)
 
+enum ViewType {
+	FIRST_PERSON,
+	THIRD_PERSON,
+}
+
+@export var player: Player
 @export_category("camera locations")
 @export var camera: Node3D
 @export var arm: SpringArm3D
@@ -28,19 +34,18 @@ var mouse_relative: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
-	CameraSingleton.get_instance().reference = camera
+	get_viewport().get_camera_3d().set_reference(camera)
 	rotation_strategy.start()
 	view_strategy.start(self)
 
 
 func _process(delta: float) -> void:
-	self.global_position = get_parent().player_physics.global_position
 	_process_change_person(delta)
 	camera.rotation.y = 0
 	camera.rotation.z = 0
 
 	## CAMERA ROTATION
-	if get_parent().is_rotating == false:
+	if player.get_is_rotating() == false:
 		rotation_strategy.rotate(self, mouse_relative, delta)
 	mouse_relative = Vector2.ZERO
 
@@ -68,7 +73,7 @@ func _input(event: InputEvent) -> void:
 
 func rotate_left_right(vector: Vector3, angle: float) -> void:
 	if view_strategy.should_rotate_left_right:
-		self.rotate(vector, angle)
+		self.rotate(Vector3.UP, angle)
 		camera_rotated.emit(vector, angle)
 
 
@@ -82,4 +87,8 @@ func rotate_up_down(angle: float) -> void:
 
 
 func get_normal() -> Vector3:
-	return get_parent().ground_normal
+	return player.get_normal()
+
+
+func get_view_type() -> ViewType:
+	return view_strategy.get_view_type()

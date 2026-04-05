@@ -40,7 +40,7 @@ func _init(rope_params: RopeParams, nodes: Array[Node], positions: Array[Vector3
 
 func init_rope_mesh():
 	vfx = rope_vfx.instantiate()
-	vfx.start(params.min_rope_length)
+	vfx.start()
 	vfx.rotate_x(-PI / 2)
 	rope.add_child(vfx)
 

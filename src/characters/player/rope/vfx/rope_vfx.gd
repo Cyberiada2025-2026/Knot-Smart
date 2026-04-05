@@ -10,6 +10,7 @@ const LENGTH_PARAM: String = "length_curr"
 const ANIM_ON: String = "rope_on"
 const ANIM_OFF: String = "break"
 
+@export var default_length: float = 1.5;
 @export var player: AnimationPlayer
 @export var mesh: CylinderMesh
 @export var mesh_node: Node3D
@@ -24,9 +25,9 @@ var length_curr: float = 10.0
 
 
 ## Call when creating rope
-func start(start_length: float):
-	mat.set_shader_parameter(START_LENGTH_PARAM, start_length)
-	set_length(start_length)
+func start():
+	mat.set_shader_parameter(START_LENGTH_PARAM, default_length)
+	set_length(default_length)
 	player.play(ANIM_ON)
 
 

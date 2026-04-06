@@ -10,7 +10,7 @@ var rope: Area3D
 var collision_shape: CapsuleShape3D
 
 var node: Array[Node]
-var links: Array[NodeLink]
+var link: Array[NodeLink]
 var end: Array[RopeEnd]
 
 
@@ -20,9 +20,9 @@ func _init(rope_params: RopeParams, nodes: Array[Node], markers: Array[MeshInsta
 	self.end = []
 
 	for i in range(2):
-		var link = NodeLink.new(self)
-		links.append(link)
-		node[i].add_child(link)
+		var l = NodeLink.new(self)
+		link.append(l)
+		node[i].add_child(l)
 		var strategy
 		match node[i].get_class():
 			"RigidBody3D":
@@ -66,8 +66,8 @@ func _on_area_entered(body: Node3D):
 func finish():
 	vfx.end()
 	apply_forces()
-	for link in links:
-		link.queue_free()
+	for l in link:
+		l.queue_free()
 	queue_free()
 
 

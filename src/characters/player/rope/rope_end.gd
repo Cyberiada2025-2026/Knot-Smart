@@ -38,7 +38,7 @@ func pin(obj, other_node) -> void:
 
 
 ## [param k]: Spring constant
-## [param v]: Spring damping
+## [param b]: Spring damping
 func integrate_accel(k, b) -> Vector3:
 	var v = linear_velocity
 	var equilibrium = strategy.get_equilibrium(other)

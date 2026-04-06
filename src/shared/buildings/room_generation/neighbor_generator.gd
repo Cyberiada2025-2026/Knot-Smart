@@ -4,10 +4,10 @@ extends RefCounted
 
 var building_generator: BuildingGenerator
 
-
-func generate_neighbors(_building_generator: BuildingGenerator) -> void:
+func _init(_building_generator: BuildingGenerator) -> void:
 	building_generator = _building_generator
 
+func generate_neighbors() -> void:
 	create_neighbor_graph()
 	create_msp_kruskal()
 

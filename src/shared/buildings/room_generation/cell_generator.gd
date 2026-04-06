@@ -5,8 +5,10 @@ extends RefCounted
 var building_generator: BuildingGenerator
 
 
-func generate_cells(_building_generator: BuildingGenerator) -> void:
+func _init(_building_generator: BuildingGenerator) -> void:
 	building_generator = _building_generator
+
+func generate_cells() -> void:
 	building_generator.cells = building_generator.initial_cells.duplicate_deep()
 
 	split_cells()

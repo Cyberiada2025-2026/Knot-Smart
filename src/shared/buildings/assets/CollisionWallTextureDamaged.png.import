@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl27lgeh6mfrj"
-path.s3tc="res://.godot/imported/building_parts_filled_FloorTextureMain.png-d1c9b6e65b35856419d134ba48cf49c6.s3tc.ctex"
+uid="uid://bygftuydagis7"
+path.s3tc="res://.godot/imported/CollisionWallTextureDamaged.png-f62c48ba8bcf1cfa049ab7c4e0d7b0e6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "011b0a4ff3c93e7226423312ae901d40"
-}
 
 [deps]
 
-source_file="res://shared/buildings/assets/building_parts_filled_FloorTextureMain.png"
-dest_files=["res://.godot/imported/building_parts_filled_FloorTextureMain.png-d1c9b6e65b35856419d134ba48cf49c6.s3tc.ctex"]
+source_file="res://shared/buildings/assets/CollisionWallTextureDamaged.png"
+dest_files=["res://.godot/imported/CollisionWallTextureDamaged.png-f62c48ba8bcf1cfa049ab7c4e0d7b0e6.s3tc.ctex"]
 
 [params]
 

@@ -15,10 +15,10 @@ var cells: Array[Cell] = []
 var neighbors: Array[BorderInfo] = []
 
 var building_shape_description: BuildingShapeDescription
-var neighbors_generator: NeighborGenerator = NeighborGenerator.new()
-var cells_generator: CellGenerator = CellGenerator.new()
-var models_placer: ModelsPlacer = ModelsPlacer.new()
-var nav_obstacle_generator: BuildingNavObstacleGenerator = BuildingNavObstacleGenerator.new()
+var neighbors_generator: NeighborGenerator = NeighborGenerator.new(self)
+var cells_generator: CellGenerator = CellGenerator.new(self)
+var models_placer: ModelsPlacer = ModelsPlacer.new(self)
+var nav_obstacle_generator: BuildingNavObstacleGenerator = BuildingNavObstacleGenerator.new(self)
 
 
 func _ready() -> void:
@@ -35,11 +35,11 @@ func generate_building() -> void:
 	if initial_cells.size() == 0:
 		push_warning("No initial shape provided.")
 		return
-	cells_generator.generate_cells(self)
-	neighbors_generator.generate_neighbors(self)
-	models_placer.place_models(self)
+	cells_generator.generate_cells()
+	neighbors_generator.generate_neighbors()
+	models_placer.place_models()
 
-	nav_obstacle_generator.generate_navmesh_obstacles(self)
+	nav_obstacle_generator.generate_navmesh_obstacles()
 	if not can_enter:
 		generate_collision_shape()
 

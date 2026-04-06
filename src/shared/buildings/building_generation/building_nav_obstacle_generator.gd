@@ -4,14 +4,17 @@ extends RefCounted
 
 const NAV_MESH_OBSTACLE_HEIGHT: float = 100.0
 
-var buidling_generator: BuildingGenerator
+var building_generator: BuildingGenerator
 
 
-func generate_navmesh_obstacles(_buidling_generator: BuildingGenerator) -> void:
-	buidling_generator = _buidling_generator
-	var scaling: Vector3 = buidling_generator.grid_cell_size
+func _init(_building_generator: BuildingGenerator) -> void:
+	building_generator = _building_generator
 
-	for cell in buidling_generator.initial_cells:
+
+func generate_navmesh_obstacles() -> void:
+	var scaling: Vector3 = building_generator.grid_cell_size
+
+	for cell in building_generator.initial_cells:
 		var outline = cell.get_base_vertices(scaling)
 
 		var obstacle = NavigationObstacle3D.new()
@@ -21,9 +24,9 @@ func generate_navmesh_obstacles(_buidling_generator: BuildingGenerator) -> void:
 		obstacle.vertices = outline
 		obstacle.visible = false
 
-		buidling_generator.add_child(obstacle)
+		building_generator.add_child(obstacle)
 
 
 func clear() -> void:
-	for obstacle in buidling_generator.find_children("", "NavigationObstacle3D"):
+	for obstacle in building_generator.find_children("", "NavigationObstacle3D"):
 		obstacle.queue_free()

@@ -24,6 +24,8 @@ var orientations: Dictionary[Utils.Axis, ModelsPlacer.Orientation] = {
 
 var building_generator: BuildingGenerator
 
+func _init(_building_generator: BuildingGenerator) -> void:
+	building_generator = _building_generator
 
 func place_entrance(c: BorderInfo):
 	var entrance_location = c.door_position
@@ -35,8 +37,7 @@ func place_entrance(c: BorderInfo):
 			)
 
 
-func place_models(_building_generator: BuildingGenerator):
-	building_generator = _building_generator
+func place_models():
 	mesh_library = building_generator.mesh_library
 	setup_gridmaps()
 	_create_mesh_dicts()

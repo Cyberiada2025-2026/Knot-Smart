@@ -28,9 +28,9 @@ size = Vector3(2.1, 0.8, 0.1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_44p1n"]
 size = Vector3(0.5, 2.8, 0.1)
 
-[node name="building_parts_collision" unique_id=1863391307 instance=ExtResource("1_jr2ol")]
+[node name="building_parts_collision" unique_id=83924312 instance=ExtResource("1_jr2ol")]
 
-[node name="Floor" parent="." index="0" unique_id=1531325389]
+[node name="Floor" parent="." index="0" unique_id=1844669359]
 surface_material_override/0 = ExtResource("2_amkko")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor" index="0" unique_id=1941271927]
@@ -38,7 +38,7 @@ surface_material_override/0 = ExtResource("2_amkko")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" index="0" unique_id=1131346699]
 shape = SubResource("BoxShape3D_63c1x")
 
-[node name="Hole" parent="." index="1" unique_id=2097382749]
+[node name="Hole" parent="." index="1" unique_id=37900420]
 surface_material_override/0 = ExtResource("2_amkko")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Hole" index="0" unique_id=1572258210]
@@ -59,7 +59,7 @@ shape = SubResource("BoxShape3D_v68a3")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.675932e-08, 0, -0.85)
 shape = SubResource("BoxShape3D_v68a3")
 
-[node name="Wall" parent="." index="2" unique_id=1272647949]
+[node name="Wall" parent="." index="2" unique_id=1355444783]
 surface_material_override/0 = ExtResource("3_q4qdw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall" index="0" unique_id=1504131767]
@@ -68,7 +68,7 @@ surface_material_override/0 = ExtResource("3_q4qdw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -1)
 shape = SubResource("BoxShape3D_il14n")
 
-[node name="Window" parent="." index="3" unique_id=1829441863]
+[node name="Window" parent="." index="3" unique_id=433353463]
 surface_material_override/0 = ExtResource("3_q4qdw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Window" index="0" unique_id=1387311743]
@@ -89,7 +89,7 @@ shape = SubResource("BoxShape3D_bs4n8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8000002, 1.4, -1)
 shape = SubResource("BoxShape3D_bs4n8")
 
-[node name="Door" parent="." index="4" unique_id=701875330]
+[node name="Door" parent="." index="4" unique_id=859385754]
 surface_material_override/0 = ExtResource("3_q4qdw")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Door" index="0" unique_id=1550767207]

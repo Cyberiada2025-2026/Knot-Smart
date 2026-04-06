@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://biqa045mpb6t3"]
+
+[ext_resource type="Script" uid="uid://g0qjk7chw0sp" path="res://shared/tooltips/tooltip.gd" id="1_6ubu7"]
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="2_dykrd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r707f"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r707f"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_xowle"]
+radius = 0.3
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7feem"]
+radius = 0.3
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_7feem"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nwa4q"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yp54c"]
+radius = 0.3
+height = 1.8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nwa4q"]
+radius = 0.3
+height = 1.8
+
+[node name="Tooltip" type="Node3D" unique_id=1254749057]
+
+[node name="10x10 floor" type="StaticBody3D" parent="." unique_id=1735178394]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="10x10 floor" unique_id=764228622]
+shape = SubResource("BoxShape3D_r707f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="10x10 floor" unique_id=685513414]
+mesh = SubResource("BoxMesh_r707f")
+
+[node name="Trigger2" type="StaticBody3D" parent="." unique_id=391185133]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3404145, 0.9590628, -4.139635)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trigger2" unique_id=1352641290]
+mesh = SubResource("CapsuleMesh_xowle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger2" unique_id=1244845603]
+shape = SubResource("CapsuleShape3D_7feem")
+
+[node name="Tooltip" type="Node" parent="Trigger2" unique_id=729632356]
+script = ExtResource("1_6ubu7")
+message = "piwo"
+metadata/_custom_type_script = "uid://g0qjk7chw0sp"
+
+[node name="Trigger RigidBody3D" type="RigidBody3D" parent="." unique_id=1040917000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20530367, 0.8737354, 4.106735)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trigger RigidBody3D" unique_id=101990183]
+mesh = SubResource("BoxMesh_7feem")
+skeleton = NodePath("../../Trigger1/MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger RigidBody3D" unique_id=571376870]
+shape = SubResource("BoxShape3D_nwa4q")
+
+[node name="Tooltip" type="Node" parent="Trigger RigidBody3D" unique_id=1833649460]
+script = ExtResource("1_6ubu7")
+message = "tooltip 2
+click <button> to add rope"
+offset = Vector2(30, 0)
+metadata/_custom_type_script = "uid://g0qjk7chw0sp"
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_dykrd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90629864, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1457415016]
+transform = Transform3D(0.9350857, 0.2908988, 0.20246622, -0.35442162, 0.76749074, 0.5341753, 0, -0.57125807, 0.8207705, 0.7263887, 1.4881086, 0)
+
+[node name="Trigger1" type="StaticBody3D" parent="." unique_id=1761539799]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.500434, 1.3415823, -3.9903548)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Trigger1" unique_id=471416370]
+mesh = SubResource("CapsuleMesh_yp54c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trigger1" unique_id=1989142259]
+shape = SubResource("CapsuleShape3D_nwa4q")
+
+[node name="Tooltip" type="Node" parent="Trigger1" unique_id=1832860097]
+script = ExtResource("1_6ubu7")
+message = "Very long testing tooltip lorem ipsum dolor. working waebba zip!!!"
+metadata/_custom_type_script = "uid://g0qjk7chw0sp"

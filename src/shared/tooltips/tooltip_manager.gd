@@ -15,23 +15,25 @@ func _physics_process(_delta: float) -> void:
 
 	$Control.hide()
 	if (
-		camera.get_view_type() == PlayerCamera.ViewType.FIRST_PERSON
-		and not get_tree().paused
+		camera.get_view_type() != PlayerCamera.ViewType.FIRST_PERSON
+		or get_tree().paused
 	):
-		var raycast_result = (
-			UnsafeRaycastBuilder.new(self).enable_collisions_with_areas().raycast()
-		)
+		return
 
-		if raycast_result.is_empty():
-			return
+	var raycast_result = (
+		UnsafeRaycastBuilder.new(self).enable_collisions_with_areas().raycast()
+	)
 
-		var collider: Node3D = raycast_result.collider
-		var tooltip: Tooltip = collider.get_node_or_null("Tooltip")
+	if raycast_result.is_empty():
+		return
 
-		if not tooltip:
-			return
+	var collider: Node3D = raycast_result.collider
+	var tooltip: Tooltip = collider.get_node_or_null("Tooltip")
 
-		_vbox.global_position = _vbox.get_viewport_rect().size / 2 + tooltip.offset
-		_vbox.global_position.y -= _vbox.size.y
-		_text_container.text = tooltip.message
-		$Control.show()
+	if not tooltip:
+		return
+
+	_vbox.global_position = _vbox.get_viewport_rect().size / 2 + tooltip.offset
+	_vbox.global_position.y -= _vbox.size.y
+	_text_container.text = tooltip.message
+	$Control.show()

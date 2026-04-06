@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	var camera = get_node("../PlayerPhysics/PlayerCamera")
-	
+
 	$Control.hide()
 	if (
 		camera.get_view_type() == PlayerCamera.ViewType.FIRST_PERSON
@@ -24,15 +24,14 @@ func _physics_process(_delta: float) -> void:
 
 		if raycast_result.is_empty():
 			return
-			
+
 		var collider: Node3D = raycast_result.collider
 		var tooltip: Tooltip = collider.get_node_or_null("Tooltip")
 
 		if not tooltip:
 			return
-			
-		_vbox.global_position = _vbox.get_global_mouse_position() + tooltip.offset
+
+		_vbox.global_position = _vbox.get_viewport_rect().size / 2 + tooltip.offset
 		_vbox.global_position.y -= _vbox.size.y
 		_text_container.text = tooltip.message
 		$Control.show()
-	

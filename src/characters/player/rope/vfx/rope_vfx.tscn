@@ -18,7 +18,7 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_jo2uc")
 shader_parameter/min_radius_mult = 0.2
-shader_parameter/max_radius_mult = 3.0
+shader_parameter/max_radius_mult = 2.0
 shader_parameter/anim_start = 0.0
 shader_parameter/length_start = 10.0
 shader_parameter/length_curr = 10.0
@@ -45,8 +45,8 @@ shader_parameter/tint = Vector4(1, 1, 1, 1)
 shader_parameter/alpha_cutoff = 0.001
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_jsk3o"]
-top_radius = 0.11
-bottom_radius = 0.11
+top_radius = 0.22
+bottom_radius = 0.22
 height = 0.25
 radial_segments = 8
 rings = 1

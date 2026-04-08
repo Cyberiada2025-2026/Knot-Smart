@@ -7,6 +7,8 @@ extends Node3D
 
 const START_LENGTH_PARAM: String = "length_start"
 const LENGTH_PARAM: String = "length_curr"
+const MAX_LENGTH_PARAM: String = " max_length"
+const MIN_LENGTH_PARAM: String = " min_length"
 const ANIM_ON: String = "rope_on"
 const ANIM_OFF: String = "break"
 
@@ -18,19 +20,19 @@ const ANIM_OFF: String = "break"
 @export var break1: CPUParticles3D
 @export var break2: CPUParticles3D
 
-var length_curr: float = 10.0
-
 
 ## Call when creating rope
-func start(start_length: float):
-	mat.set_shader_parameter(START_LENGTH_PARAM, start_length)
-	set_length(start_length)
+func start(params: RopeParams):
+	var neutral_length: float = (params.max_rope_length - params.min_rope_length)/2;
+	mat.set_shader_parameter(MAX_LENGTH_PARAM, params.max_rope_length)
+	mat.set_shader_parameter(MIN_LENGTH_PARAM, params.min_rope_length)
+	mat.set_shader_parameter(START_LENGTH_PARAM, neutral_length)
+	set_length(neutral_length)
 	player.play(ANIM_ON)
 
 
 ## Call when rope changes length
 func set_length(length: float):
-	length_curr = length
 	mat.set_shader_parameter(LENGTH_PARAM, length)
 	splash.emission_box_extents.y = length / 2 * 0.6
 	splash.position.y = length * 0.4

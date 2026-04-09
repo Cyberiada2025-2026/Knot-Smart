@@ -19,14 +19,14 @@ _surfaces = [{
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_55edt"]
 data = PackedVector3Array(0, 80, 0, 8, 72, 0, 8, 80, 8, 0, 80, 0, 8, 80, 8, 0, 80, 8, 0, 80, 8, 8, 80, 8, 8, 80, 16, 0, 80, 8, 8, 80, 16, 0, 80, 16, 0, 80, 16, 8, 80, 16, 8, 80, 24, 0, 80, 16, 8, 80, 24, 0, 88, 24, 0, 88, 24, 8, 80, 24, 8, 88, 32, 0, 88, 24, 8, 88, 32, 0, 88, 32, 8, 72, 0, 16, 64, 0, 16, 72, 8, 8, 72, 0, 16, 72, 8, 8, 80, 8, 8, 80, 8, 16, 72, 8, 16, 80, 16, 8, 80, 8, 16, 80, 16, 8, 80, 16, 8, 80, 16, 16, 80, 16, 16, 80, 24, 8, 80, 16, 16, 80, 24, 8, 80, 24, 8, 80, 24, 16, 80, 24, 16, 88, 32, 8, 80, 24, 16, 88, 32, 8, 88, 32, 16, 64, 0, 24, 64, 0, 24, 72, 8, 16, 64, 0, 24, 72, 8, 16, 72, 8, 16, 72, 8, 24, 72, 8, 24, 80, 16, 16, 72, 8, 24, 80, 16, 16, 80, 16, 16, 80, 16, 24, 80, 16, 24, 80, 24, 16, 80, 16, 24, 80, 24, 16, 80, 24, 16, 80, 24, 24, 80, 24, 24, 88, 32, 16, 80, 24, 24, 88, 32, 16, 88, 32, 24, 64, 0, 32, 64, 0, 32, 72, 8, 24, 64, 0, 32, 72, 8, 24, 72, 8, 24, 72, 8, 32, 72, 8, 32, 80, 16, 24, 72, 8, 32, 80, 16, 24, 80, 16, 24, 80, 16, 32, 80, 16, 32, 88, 24, 24, 80, 16, 32, 88, 24, 24, 80, 24, 24, 80, 24, 32, 88, 24, 32, 88, 32, 24, 80, 24, 32, 88, 32, 24, 88, 32)
 
-[node name="ChunkX6Z4" type="Node3D" unique_id=842197995]
+[node name="ChunkX6Z4" type="Node3D" unique_id=24632493]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 128)
 
-[node name="ChunkMesh" type="MeshInstance3D" parent="." unique_id=262089910]
+[node name="ChunkMesh" type="MeshInstance3D" parent="." unique_id=363440532]
 material_override = SubResource("StandardMaterial3D_k5xeo")
 mesh = SubResource("ArrayMesh_tamqp")
 
-[node name="ChunkMesh_col" type="StaticBody3D" parent="ChunkMesh" unique_id=146300090]
+[node name="ChunkMesh_col" type="StaticBody3D" parent="ChunkMesh" unique_id=978620238]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ChunkMesh/ChunkMesh_col" unique_id=1241213539]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChunkMesh/ChunkMesh_col" unique_id=667118572]
 shape = SubResource("ConcavePolygonShape3D_55edt")

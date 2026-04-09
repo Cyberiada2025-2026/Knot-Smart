@@ -26,6 +26,8 @@ func _init(manager: MapRenderer) -> void:
 	active_chunks_end = -Vector2i.ONE
 	
 	manager.add_child(self)
+	self.owner = get_parent()
+	self.name = "ChunkManager"
 	
 	isRendering = true
 	
@@ -93,7 +95,12 @@ func update_active_chunks() -> void:
 				var CHUNK_PATH = "res://" + SCENE_DIR + "chunks/chunk_%d_%d.tscn" % [x, y]
 				var chunk = ResourceLoader.load(CHUNK_PATH)
 				var chunk_node = chunk.instantiate()
-				self.add_child(chunk_node)
+				add_child(chunk_node)
+	
+				if get_tree().edited_scene_root:
+					chunk_node.owner = get_tree().edited_scene_root
+				chunk_node.global_position = Vector3(x * world_generation_params.get_chunk_unit_size(), 0, y *  world_generation_params.get_chunk_unit_size())
+				
 				active_chunks[coord] = chunk_node
 
 func _process(_delta: float) -> void:

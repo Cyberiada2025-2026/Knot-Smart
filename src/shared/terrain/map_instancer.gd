@@ -2,7 +2,8 @@
 class_name MapInstancer
 extends Resource
 
-var SCENE_DIR: String = "scenes/map/"
+var SCENE_PATH: String = "user://terrain/"
+var CHUNK_PATH = "user://terrain/chunks/"
 var SCENE_NAME: String = "generated_map"
 var ROOT_NAME: String = "Map"
 
@@ -17,8 +18,8 @@ func _init(manager: MapRenderer):
 	world_generation_params = manager.world_generation_params
 	world_display_params = manager.world_display_params
 
-func create_map_instance(MAP_DIR: String = SCENE_DIR) -> void:
-	SCENE_DIR = MAP_DIR
+func create_map_instance(MAP_PATH: String = SCENE_PATH) -> void:
+	SCENE_PATH = MAP_PATH
 	var root_node := Node3D.new()
 	root_node.name = ROOT_NAME
 	
@@ -29,26 +30,28 @@ func create_map_instance(MAP_DIR: String = SCENE_DIR) -> void:
 	
 	for x in world_generation_params.map_size:
 		for z in world_generation_params.map_size:
-			var CHUNK_PATH = "res://" + SCENE_DIR + "chunks/chunk_%d_%d.tscn" % [x, z]
-			create_chunk_scene(Vector2i(x,z), CHUNK_PATH)
+			var chunk_final_path = CHUNK_PATH + "chunk_%d_%d.tscn" % [x, z]
+			create_chunk_scene(Vector2i(x,z), chunk_final_path)
 			
-			var chunk = ResourceLoader.load(CHUNK_PATH)
+			var chunk = ResourceLoader.load(chunk_final_path)
 			var chunk_node = chunk.instantiate()
 			chunks_node.add_child(chunk_node)
 			chunk_node.owner = root_node
 	
 	var scene = PackedScene.new()
-	scene.take_over_path("res://" + SCENE_DIR + SCENE_NAME + ".tscn")
+	if not DirAccess.dir_exists_absolute(SCENE_PATH):
+		DirAccess.make_dir_recursive_absolute(SCENE_PATH)
+	scene.take_over_path(SCENE_PATH + SCENE_NAME + ".tscn")
 
 	# Only `node` and `body` are now packed.
 	var result = scene.pack(root_node)
 	if result == OK:
-		var error = ResourceSaver.save(scene, "res://" + SCENE_DIR + SCENE_NAME + ".tscn")
+		var error = ResourceSaver.save(scene, SCENE_PATH + SCENE_NAME + ".tscn")
 		if error != OK:
 			push_error("An error occurred while saving the map to disk.")
 
 
-func create_chunk_scene(chunk_coord: Vector2i, CHUNK_PATH: String) -> void:
+func create_chunk_scene(chunk_coord: Vector2i, chunk_final_path: String) -> void:
 	var chunk_node = Node3D.new()
 	chunk_node.name = "ChunkX%dZ%d" % [chunk_coord.x, chunk_coord.y]
 	chunk_node.position = Vector3(
@@ -108,5 +111,7 @@ func create_chunk_scene(chunk_coord: Vector2i, CHUNK_PATH: String) -> void:
 			col.owner = chunk_node
 
 	var scene = PackedScene.new()
+	if not DirAccess.dir_exists_absolute(CHUNK_PATH):
+		DirAccess.make_dir_recursive_absolute(CHUNK_PATH)
 	scene.pack(chunk_node)
-	ResourceSaver.save(scene, CHUNK_PATH)
+	ResourceSaver.save(scene, chunk_final_path)

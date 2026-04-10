@@ -1,7 +1,7 @@
 class_name ChunkManager
 extends Node3D
 
-var SCENE_DIR: String = "scenes/map/"
+var SCENE_DIR: String = "terrain/"
 
 var debug_flag: bool = false
 var isRendering: bool = false
@@ -92,7 +92,7 @@ func update_active_chunks() -> void:
 		for y in range(active_chunks_start.y, active_chunks_end.y):
 			var coord = Vector2i(x, y)
 			if not active_chunks.has(coord):
-				var CHUNK_PATH = "res://" + SCENE_DIR + "chunks/chunk_%d_%d.tscn" % [x, y]
+				var CHUNK_PATH = "user://" + SCENE_DIR + "chunks/chunk_%d_%d.tscn" % [x, y]
 				var chunk = ResourceLoader.load(CHUNK_PATH)
 				var chunk_node = chunk.instantiate()
 				add_child(chunk_node)

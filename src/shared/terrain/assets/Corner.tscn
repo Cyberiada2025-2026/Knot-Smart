@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://cvngp4j7bb0ig"]
-
-[node name="Corner" type="Node3D" unique_id=853175603]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=354427004]

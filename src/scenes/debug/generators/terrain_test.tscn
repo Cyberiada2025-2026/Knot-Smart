@@ -7,7 +7,10 @@
 [ext_resource type="Script" uid="uid://bmtv75byrd25q" path="res://shared/terrain/world_display_params.gd" id="3_biq8l"]
 [ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="4_biq8l"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="7_htb35"]
+[ext_resource type="ArrayMesh" uid="uid://brswpl4am3ma7" path="res://shared/terrain/assets/Flat_Plane.res" id="7_jgk0a"]
+[ext_resource type="ArrayMesh" uid="uid://ciyyyy0dgb2x5" path="res://shared/terrain/assets/Slope_Plane.res" id="8_0ips4"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="8_biq8l"]
+[ext_resource type="ArrayMesh" uid="uid://cebhfiypq132b" path="res://shared/terrain/assets/Corner_Plane.res" id="9_fjnk4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_htb35"]
 
@@ -37,6 +40,9 @@ metadata/_custom_type_script = "uid://cn6l7oaf3xw32"
 
 [node name="TerrainGenerator" type="Node" parent="MapRenderer/GridGenerationPipeline" unique_id=1647112656]
 script = ExtResource("1_aojt6")
+mesh_flat = ExtResource("7_jgk0a")
+mesh_slope = ExtResource("8_0ips4")
+mesh_corner = ExtResource("9_fjnk4")
 metadata/_custom_type_script = "uid://0212vvhximbx"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=52888776]

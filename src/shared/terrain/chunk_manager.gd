@@ -96,9 +96,9 @@ func update_active_chunks() -> void:
 				var chunk = ResourceLoader.load(CHUNK_PATH)
 				var chunk_node = chunk.instantiate()
 				add_child(chunk_node)
-	
-				if get_tree().edited_scene_root:
-					chunk_node.owner = get_tree().edited_scene_root
+				if Engine.is_editor_hint() == false:
+					if get_tree().edited_scene_root:
+						chunk_node.owner = get_tree().edited_scene_root
 				chunk_node.global_position = Vector3(x * world_generation_params.get_chunk_unit_size(), 0, y *  world_generation_params.get_chunk_unit_size())
 				
 				active_chunks[coord] = chunk_node

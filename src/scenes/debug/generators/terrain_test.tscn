@@ -16,6 +16,8 @@
 
 [sub_resource type="Resource" id="Resource_k5xeo"]
 script = ExtResource("2_htb35")
+tile_size = 32
+tile_height = 28.0
 noise = SubResource("FastNoiseLite_htb35")
 metadata/_custom_type_script = "uid://no1j1oowuup1"
 

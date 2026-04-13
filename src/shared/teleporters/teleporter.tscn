@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://btvh536mtgd1r"]
+
+[ext_resource type="Script" uid="uid://b8wjx2twngp62" path="res://shared/teleporters/teleporter.gd" id="1_e7ttm"]
+[ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="2_rxnek"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ehr63"]
+render_priority = 0
+shader = ExtResource("2_rxnek")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/tint = Color(0.34509805, 0.60784316, 0.7176471, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qf5ih"]
+material = SubResource("ShaderMaterial_ehr63")
+size = Vector3(0.5, 1, 0.5)
+
+[node name="Teleporter" type="Node3D" unique_id=77218148]
+script = ExtResource("1_e7ttm")
+
+[node name="TeleporterMesh" type="MeshInstance3D" parent="." unique_id=911016039]
+mesh = SubResource("BoxMesh_qf5ih")

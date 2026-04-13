@@ -7,7 +7,7 @@ var area: float = 0
 var triangles: Array[BiomeTriangle] = []
 var lines: Array[BiomeLine] = []
 var walls: Array[BiomeWall] = []
-
+var is_able_to_expand = true
 
 func open_biome() -> void:
 	for wall: BiomeWall in walls:

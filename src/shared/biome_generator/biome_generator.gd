@@ -1,5 +1,5 @@
 @tool
-class_name BiomeGenerator
+#class_name BiomeGenerator
 extends Node3D
 
 @export_category("GeneratorNodes")
@@ -181,6 +181,28 @@ func _create_triangle(line_a: BiomeLine, line_b: BiomeLine, line_c: BiomeLine) -
 	return triangle
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 func _set_biome() -> void:
 	free_triangles = triangles.duplicate(false)
 	var size_proportion: Dictionary[Biome, float]
@@ -261,6 +283,36 @@ func _add_line_to_biome(biome: Biome, line: BiomeLine) -> void:
 			biome.lines.append(line)
 			return
 		biome.lines.erase(line)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 func _set_passages() -> void:

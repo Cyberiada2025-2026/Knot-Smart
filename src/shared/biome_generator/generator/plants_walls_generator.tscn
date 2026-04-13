@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bwsmrxn17dwr2"]
+
+[ext_resource type="Script" uid="uid://jxclon2ygver" path="res://shared/biome_generator/generator/plants_walls_generator.gd" id="1_t8ucm"]
+[ext_resource type="Script" uid="uid://bkroq7y6mcrv6" path="res://shared/biome_generator/generator/points_generator.gd" id="2_pk6b2"]
+[ext_resource type="Script" uid="uid://cdjvn3r142ase" path="res://shared/biome_generator/generator/triangle_generator.gd" id="3_d06r1"]
+[ext_resource type="Script" uid="uid://cle703ysgd1ey" path="res://shared/biome_generator/generator/biome_generator.gd" id="4_pk6b2"]
+[ext_resource type="Script" uid="uid://ccn212sobnkhi" path="res://shared/biome_generator/wall/walls_combiner.gd" id="5_d06r1"]
+[ext_resource type="Script" uid="uid://40evsrc1ymef" path="res://shared/biome_generator/generator/walls_generator.gd" id="5_pjyol"]
+[ext_resource type="Script" uid="uid://8cy5tgafubbm" path="res://shared/biome_generator/generator/passages_generator.gd" id="6_2c18v"]
+
+[node name="Plants Walls Generator" type="Node3D" unique_id=1762565553 node_paths=PackedStringArray("walls_combiner", "points_generator", "triangle_generator")]
+script = ExtResource("1_t8ucm")
+walls_combiner = NodePath("Saved Nodes/WallsCombiner")
+points_generator = NodePath("SubGenerators/Points Generator")
+triangle_generator = NodePath("SubGenerators/Triangle Generator")
+
+[node name="SubGenerators" type="Node3D" parent="." unique_id=386254087]
+
+[node name="Points Generator" type="Node3D" parent="SubGenerators" unique_id=368838986 node_paths=PackedStringArray("generator_main")]
+script = ExtResource("2_pk6b2")
+generator_main = NodePath("../..")
+
+[node name="Triangle Generator" type="Node3D" parent="SubGenerators" unique_id=1061795928 node_paths=PackedStringArray("generator_main")]
+script = ExtResource("3_d06r1")
+generator_main = NodePath("../..")
+
+[node name="Biome Generator" type="Node3D" parent="SubGenerators" unique_id=1275106298 node_paths=PackedStringArray("generator_main", "biomes_parent")]
+script = ExtResource("4_pk6b2")
+generator_main = NodePath("../..")
+biomes_parent = NodePath("../../Saved Nodes/Biomes")
+
+[node name="Walls Generator" type="Node3D" parent="SubGenerators" unique_id=1745822719 node_paths=PackedStringArray("generator_main")]
+script = ExtResource("5_pjyol")
+generator_main = NodePath("../..")
+
+[node name="Passages Generator" type="Node3D" parent="SubGenerators" unique_id=753269181 node_paths=PackedStringArray("generator_main")]
+script = ExtResource("6_2c18v")
+generator_main = NodePath("../..")
+
+[node name="Saved Nodes" type="Node3D" parent="." unique_id=1491228548]
+
+[node name="Biomes" type="Node3D" parent="Saved Nodes" unique_id=480014983]
+
+[node name="WallsCombiner" type="CSGCombiner3D" parent="Saved Nodes" unique_id=608337287]
+script = ExtResource("5_d06r1")
+metadata/_custom_type_script = "uid://ccn212sobnkhi"

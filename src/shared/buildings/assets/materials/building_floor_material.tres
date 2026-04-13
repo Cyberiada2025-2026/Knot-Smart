@@ -1,9 +1,9 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://p23eoepvxe0s"]
 
 [ext_resource type="Shader" uid="uid://kaq856dfkhje" path="res://shared/shaders/shaded_PS1_with_alt.gdshader" id="1_83ji8"]
-[ext_resource type="Texture2D" uid="uid://cnb5jhqv834tc" path="res://shared/buildings/assets/FloorTextureDamaged.png" id="2_83ji8"]
-[ext_resource type="NoiseTexture3D" uid="uid://bfi6y3xtjd6am" path="res://shared/buildings/assets/building_damage_mask.tres" id="2_yume6"]
-[ext_resource type="Texture2D" uid="uid://c40jqoky02oo0" path="res://shared/buildings/assets/FloorTextureMain.png" id="3_yume6"]
+[ext_resource type="Texture2D" uid="uid://cnb5jhqv834tc" path="res://shared/buildings/assets/textures/FloorTextureDamaged.png" id="2_83ji8"]
+[ext_resource type="NoiseTexture3D" uid="uid://bfi6y3xtjd6am" path="res://shared/buildings/assets/textures/building_damage_mask.tres" id="2_yume6"]
+[ext_resource type="Texture2D" uid="uid://c40jqoky02oo0" path="res://shared/buildings/assets/textures/FloorTextureMain.png" id="3_yume6"]
 
 [resource]
 render_priority = 0

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bl12nmqdnj8e5"
-path="res://.godot/imported/building_parts.glb-1a168a1fd31d325dc6aaf6f16fdb3b90.scn"
+uid="uid://d3iyxsvy6lb3l"
+path="res://.godot/imported/building_parts_filled.glb-6384ebad8fbc39b5763e31cddf9d42c2.scn"
 
 [deps]
 
-source_file="res://shared/buildings/assets/building_parts.glb"
-dest_files=["res://.godot/imported/building_parts.glb-1a168a1fd31d325dc6aaf6f16fdb3b90.scn"]
+source_file="res://shared/buildings/assets/models/building_parts_filled.glb"
+dest_files=["res://.godot/imported/building_parts_filled.glb-6384ebad8fbc39b5763e31cddf9d42c2.scn"]
 
 [params]
 
@@ -36,7 +36,7 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 materials/extract=0
 materials/extract_format=0
-materials/extract_path="res://shared/buildings/assets"
+materials/extract_path=""
 _subresources={}
 gltf/naming_version=2
-gltf/embedded_image_handling=2
+gltf/embedded_image_handling=0

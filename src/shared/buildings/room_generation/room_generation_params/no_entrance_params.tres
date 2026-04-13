@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="RoomGenerationParams" format=3 uid="uid://xa2g8etaivxl"]
 
-[ext_resource type="MeshLibrary" uid="uid://dxdix3oesovgs" path="res://shared/buildings/assets/building_parts_no_collision.tres" id="1_64rwb"]
+[ext_resource type="MeshLibrary" uid="uid://dxdix3oesovgs" path="res://shared/buildings/assets/models/building_parts_no_collision.tres" id="1_64rwb"]
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params/room_generation_params.gd" id="2_t4g5y"]
 
 [resource]

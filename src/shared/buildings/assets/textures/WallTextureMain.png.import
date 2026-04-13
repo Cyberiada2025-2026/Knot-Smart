@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e7x2h8suf1y6"
-path.s3tc="res://.godot/imported/FilledWallTextureMain.png-0a97b995a2d7c8a16f392a5c5caab15c.s3tc.ctex"
+uid="uid://cx3twkweb5dan"
+path.s3tc="res://.godot/imported/WallTextureMain.png-f8f05f09f99857ed8944b2534cf0991c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://shared/buildings/assets/FilledWallTextureMain.png"
-dest_files=["res://.godot/imported/FilledWallTextureMain.png-0a97b995a2d7c8a16f392a5c5caab15c.s3tc.ctex"]
+source_file="res://shared/buildings/assets/textures/WallTextureMain.png"
+dest_files=["res://.godot/imported/WallTextureMain.png-f8f05f09f99857ed8944b2534cf0991c.s3tc.ctex"]
 
 [params]
 

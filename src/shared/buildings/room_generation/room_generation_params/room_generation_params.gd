@@ -29,7 +29,7 @@ var randomize_seed_action = func(): self.random_seed = randi_range(0, MAX_RANDOM
 var min_room_size: Vector3i = Vector3i(1, 1, 1):
 	get():
 		return min_room_size if generate_rooms else MAX_BUILDING_SIZE
-		
+
 var max_room_size: Vector3i = Vector3i(4, 1, 3):
 	get():
 		return max_room_size if generate_rooms else MAX_BUILDING_SIZE
@@ -41,23 +41,37 @@ func _get_property_list() -> Array[Dictionary]:
 	var result: Array[Dictionary] = []
 
 	if generate_rooms:
-		result.append({
-			"name": &"min_room_size",
-			"type": TYPE_VECTOR3I,
-			"usage": PROPERTY_USAGE_DEFAULT,
-		})
-		result.append({
-			"name": &"max_room_size",
-			"type": TYPE_VECTOR3I,
-			"usage": PROPERTY_USAGE_DEFAULT,
-		})
-		result.append({
-			"name": &"long_room_tendency",
-			"type": TYPE_FLOAT,
-			"usage": PROPERTY_USAGE_DEFAULT,
-			"hint": PROPERTY_HINT_RANGE,
-			"hint_string": "0,1",
-		})
+		(
+			result
+			. append(
+				{
+					"name": &"min_room_size",
+					"type": TYPE_VECTOR3I,
+					"usage": PROPERTY_USAGE_DEFAULT,
+				}
+			)
+		)
+		(
+			result
+			. append(
+				{
+					"name": &"max_room_size",
+					"type": TYPE_VECTOR3I,
+					"usage": PROPERTY_USAGE_DEFAULT,
+				}
+			)
+		)
+		(
+			result
+			. append(
+				{
+					"name": &"long_room_tendency",
+					"type": TYPE_FLOAT,
+					"usage": PROPERTY_USAGE_DEFAULT,
+					"hint": PROPERTY_HINT_RANGE,
+					"hint_string": "0,1",
+				}
+			)
+		)
 
 	return result
-

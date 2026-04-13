@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://by54s7xnmwcc1" path="res://characters/player/player_main.gd" id="1_4ntmi"]
 [ext_resource type="PackedScene" uid="uid://bd54neo0vnuug" path="res://characters/player/player_physics.tscn" id="1_l8h54"]
+[ext_resource type="Script" uid="uid://ejle6y71jiml" path="res://shared/teleporters/teleporter_manager.gd" id="1_on558"]
 [ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
 [ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_6dc8e"]
@@ -121,6 +122,10 @@ theme_override_font_sizes/normal_font_size = 9
 theme_override_styles/normal = SubResource("StyleBoxFlat_on558")
 text = "Very long testing tooltip lorem ipsum dolor wtf"
 fit_content = true
+
+[node name="TeleporterManager" type="Node3D" parent="." unique_id=704307264]
+script = ExtResource("1_on558")
+metadata/_custom_type_script = "uid://ejle6y71jiml"
 
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]

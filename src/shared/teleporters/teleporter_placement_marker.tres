@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dkjsm0xmuqh6n"]
+
+[ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="1_uxnf1"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_uxnf1")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/tint = Color(0.862726, 0.19443077, 0.9219189, 1)

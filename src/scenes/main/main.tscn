@@ -30,6 +30,12 @@ size = Vector3(20, 1, 20)
 [sub_resource type="BoxShape3D" id="BoxShape3D_hyk8p"]
 size = Vector3(20, 1, 20)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7smn1"]
+size = Vector3(6, 5.6, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_raeie"]
+size = Vector3(6, 11.2, 4)
+
 [node name="Main" type="Node3D" unique_id=959478903]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1969210004]
@@ -91,6 +97,16 @@ size = Vector3i(3, 2, 4)
 script = ExtResource("6_ow5a4")
 start = Vector3i(3, 0, 0)
 size = Vector3i(3, 4, 2)
+
+[node name="@StaticBody3D@35509" type="StaticBody3D" parent="NavigationRegion3D/BuildingGenerator2" unique_id=676784144]
+
+[node name="@CollisionShape3D@35510" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator2/@StaticBody3D@35509" unique_id=852670381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 4)
+shape = SubResource("BoxShape3D_7smn1")
+
+[node name="@CollisionShape3D@35511" type="CollisionShape3D" parent="NavigationRegion3D/BuildingGenerator2/@StaticBody3D@35509" unique_id=1594398057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5.6, 2)
+shape = SubResource("BoxShape3D_raeie")
 
 [node name="Enemy" parent="." unique_id=124557404 instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)

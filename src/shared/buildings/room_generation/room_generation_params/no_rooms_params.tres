@@ -8,4 +8,5 @@ script = ExtResource("2_5yown")
 random_seed = 1
 mesh_library = ExtResource("1_c4on3")
 grid_cell_size = Vector3(2, 2.8, 2)
+generate_rooms = false
 metadata/_custom_type_script = "uid://uq2ee3iq6x08"

@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://nr3chwoulkyq"]
 
+[ext_resource type="Script" uid="uid://dlyfa06yt8f2d" path="res://autoload/subtitle_manager.gd" id="1_sqw0p"]
+
 [node name="SubtitleManager" type="Control" unique_id=2026124280]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_sqw0p")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=148972719]
 layout_mode = 1
@@ -26,7 +29,8 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer" unique_id=1159726977]
+[node name="Text" type="RichTextLabel" parent="VBoxContainer/MarginContainer" unique_id=1159726977]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 12

@@ -3,17 +3,32 @@
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_p6ufp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r707f"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hjmx7"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hjmx7"]
 size = Vector3(25, 1, 25)
 
 [sub_resource type="BoxMesh" id="BoxMesh_r707f"]
 size = Vector3(25, 1, 25)
 
-[node name="Tooltip" type="Node3D" unique_id=1254749057]
+[node name="Teleporters" type="Node3D" unique_id=1254749057]
+
+[node name="PositionMarker" type="StaticBody3D" parent="." unique_id=1329344039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PositionMarker" unique_id=1702159061]
+shape = SubResource("BoxShape3D_r707f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PositionMarker" unique_id=2024998909]
+mesh = SubResource("BoxMesh_hjmx7")
 
 [node name="25x25 floor" type="StaticBody3D" parent="." unique_id=1735178394]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="25x25 floor" unique_id=764228622]
-shape = SubResource("BoxShape3D_r707f")
+shape = SubResource("BoxShape3D_hjmx7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="25x25 floor" unique_id=685513414]
 mesh = SubResource("BoxMesh_r707f")

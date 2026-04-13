@@ -14,8 +14,6 @@ shader_parameter/tint = Color(0.34509805, 0.60784316, 0.7176471, 1)
 material = SubResource("ShaderMaterial_ehr63")
 size = Vector3(0.5, 1, 0.5)
 
-[node name="Teleporter" type="Node3D" unique_id=77218148]
-script = ExtResource("1_e7ttm")
-
-[node name="TeleporterMesh" type="MeshInstance3D" parent="." unique_id=911016039]
+[node name="TeleporterMesh" type="MeshInstance3D" unique_id=911016039]
 mesh = SubResource("BoxMesh_qf5ih")
+script = ExtResource("1_e7ttm")

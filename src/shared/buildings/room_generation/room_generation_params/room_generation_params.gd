@@ -61,7 +61,3 @@ func _get_property_list() -> Array[Dictionary]:
 
 	return result
 
-func _is_name(p: Dictionary, name: String) -> bool:
-	return p["name"] == name
-
-

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="RoomGenerationParams" format=3 uid="uid://8meucpnis2wb"]
+
+[ext_resource type="MeshLibrary" uid="uid://br6yiw7xqd0hw" path="res://shared/buildings/assets/building_parts_collision.tres" id="1_2qoxb"]
+[ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params/room_generation_params.gd" id="2_amom7"]
+
+[resource]
+script = ExtResource("2_amom7")
+mesh_library = ExtResource("1_2qoxb")
+grid_cell_size = Vector3(2, 2.8, 2)
+generate_full_collision = null
+random_seed = 3
+metadata/_custom_type_script = "uid://uq2ee3iq6x08"

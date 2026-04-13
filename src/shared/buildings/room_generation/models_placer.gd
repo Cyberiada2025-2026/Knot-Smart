@@ -38,7 +38,7 @@ func place_entrance(c: BorderInfo):
 
 
 func place_models():
-	mesh_library = building_generator.mesh_library
+	mesh_library = building_generator.room_generation_params.mesh_library
 	setup_gridmaps()
 	_create_mesh_dicts()
 
@@ -62,7 +62,7 @@ func setup_gridmaps() -> void:
 	for i in 3:
 		var gridmap = GridMap.new()
 		gridmap.mesh_library = mesh_library
-		gridmap.cell_size = building_generator.grid_cell_size
+		gridmap.cell_size = building_generator.room_generation_params.grid_cell_size
 		gridmap.cell_center_y = false
 		gridmaps.push_back(gridmap)
 		building_generator.add_child(gridmap)

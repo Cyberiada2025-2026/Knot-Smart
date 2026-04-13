@@ -2,9 +2,6 @@
 class_name BuildingGenerator
 extends Node3D
 
-@export var mesh_library: MeshLibrary
-@export var grid_cell_size: Vector3 = Vector3.ONE
-@export var can_enter: bool = true
 @export var room_generation_params: RoomGenerationParams
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
@@ -40,7 +37,7 @@ func generate_building() -> void:
 	models_placer.place_models()
 
 	nav_obstacle_generator.generate_navmesh_obstacles()
-	if not can_enter:
+	if room_generation_params.generate_full_collision:
 		generate_collision_shape()
 
 
@@ -67,7 +64,7 @@ func generate_collision_shape() -> void:
 	for cell in initial_cells:
 		var cell_collision_shape = CollisionShape3D.new()
 		cell_collision_shape.shape = BoxShape3D.new()
-		cell_collision_shape.shape.size = Vector3(cell.size()) * grid_cell_size
-		cell_collision_shape.position = cell.center() * grid_cell_size
+		cell_collision_shape.shape.size = Vector3(cell.size()) * room_generation_params.grid_cell_size
+		cell_collision_shape.position = cell.center() * room_generation_params.grid_cell_size
 		static_body.add_child(cell_collision_shape)
 		cell_collision_shape.owner = get_tree().edited_scene_root

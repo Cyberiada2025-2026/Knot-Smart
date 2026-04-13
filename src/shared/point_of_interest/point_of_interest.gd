@@ -45,5 +45,5 @@ func _init():
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.get_parent().is_in_group(trigger_group_name):
-		print(message)
+		await SubtitleManager.display(message, 3.0)
 		self.queue_free()

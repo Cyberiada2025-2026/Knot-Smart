@@ -37,7 +37,7 @@ func generate_building() -> void:
 	models_placer.place_models()
 
 	nav_obstacle_generator.generate_navmesh_obstacles()
-	if room_generation_params.generate_full_collision:
+	if not room_generation_params.generate_rooms:
 		generate_collision_shape()
 
 

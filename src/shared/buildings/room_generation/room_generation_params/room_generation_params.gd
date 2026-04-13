@@ -4,15 +4,56 @@ extends Resource
 
 const MAX_RANDOM_SEED = 10000
 
-@export var mesh_library: MeshLibrary
-@export var grid_cell_size: Vector3 = Vector3.ONE
-## Generates a singular collision object for the entire building. Prevents entering it.
-@export var generate_full_collision: bool = false
-@export var min_room_size: Vector3i = Vector3i(1, 1, 1)
-@export var max_room_size: Vector3i = Vector3i(4, 1, 3)
-@export_range(0, 1) var long_room_tendency: float = 0.2
-@export var outside_door_count: int = 1
-@export_range(0, 1) var window_percentage: float = 0.3
+@export_group("Seed")
 @export var random_seed: int = randi_range(0, MAX_RANDOM_SEED)
 @export_tool_button("Randomize Seed")
 var randomize_seed_action = func(): self.random_seed = randi_range(0, MAX_RANDOM_SEED)
+
+@export_group("Building Models")
+@export var mesh_library: MeshLibrary
+@export var grid_cell_size: Vector3 = Vector3.ONE
+
+@export_group("Bulding Generation")
+@export var outside_door_count: int = 1
+@export_range(0, 1) var window_percentage: float = 0.3
+
+@export_group("Room Generation")
+## Generates a singular collision object for the entire building. Prevents entering it.
+@export var generate_rooms: bool = true:
+	set(value):
+		generate_rooms = value
+		notify_property_list_changed()
+
+var min_room_size: Vector3i = Vector3i(1, 1, 1)
+var max_room_size: Vector3i = Vector3i(4, 1, 3)
+var long_room_tendency: float = 0.2
+
+
+func _get_property_list() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+
+	if generate_rooms:
+		result.append({
+			"name": &"min_room_size",
+			"type": TYPE_VECTOR3I,
+			"usage": PROPERTY_USAGE_DEFAULT,
+		})
+		result.append({
+			"name": &"max_room_size",
+			"type": TYPE_VECTOR3I,
+			"usage": PROPERTY_USAGE_DEFAULT,
+		})
+		result.append({
+			"name": &"long_room_tendency",
+			"type": TYPE_FLOAT,
+			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint": PROPERTY_HINT_RANGE,
+			"hint_string": "0,1",
+		})
+
+	return result
+
+func _is_name(p: Dictionary, name: String) -> bool:
+	return p["name"] == name
+
+

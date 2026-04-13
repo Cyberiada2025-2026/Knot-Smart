@@ -18,7 +18,8 @@ var randomize_seed_action = func(): self.random_seed = randi_range(0, MAX_RANDOM
 @export_range(0, 1) var window_percentage: float = 0.3
 
 @export_group("Room Generation")
-## Generates a singular collision object for the entire building. Prevents entering it.
+## Generating rooms will allow the building to be entered.
+## If unchecked a single static body collision will be generated.
 @export var generate_rooms: bool = true:
 	set(value):
 		generate_rooms = value

@@ -48,7 +48,9 @@ func _physics_process(_delta: float) -> void:
 			var player_position = get_node("../PlayerPhysics/").position
 
 			if player_position.distance_to(raycast_result.position) > placement_range:
+				var y = raycast_result.position.y
 				raycast_result.position = (raycast_result.position - player_position).normalized() * placement_range + player_position
+				raycast_result.position.y = y
 				#raycast_result.position *= placement_range / player_position.distance_to(raycast_result.position)
 				print(player_position.distance_to(raycast_result.position))
 			#print(position)

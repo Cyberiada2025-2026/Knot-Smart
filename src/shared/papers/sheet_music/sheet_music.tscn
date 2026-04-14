@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cwgdxw2n1ey7s"]
+
+[ext_resource type="PackedScene" uid="uid://bafdu8s5mb6qi" path="res://shared/papers/sheet_music/sheet-music.glb" id="1_efiim"]
+[ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="2_2ab5b"]
+[ext_resource type="Texture2D" uid="uid://cl3oeqa6pocee" path="res://shared/papers/sheet_music/sheet-music_music_notebook.png" id="3_vdnaj"]
+[ext_resource type="Texture2D" uid="uid://c0r6rd2khjdt0" path="res://shared/papers/sheet_music/sheet-music_music_notes_transparent_damaged.png" id="4_dnpa7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xy3kx"]
+render_priority = 0
+shader = ExtResource("2_2ab5b")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/main_texture = ExtResource("3_vdnaj")
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y6g1u"]
+render_priority = 0
+shader = ExtResource("2_2ab5b")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/main_texture = ExtResource("4_dnpa7")
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[node name="SheetMusic" unique_id=338401233 instance=ExtResource("1_efiim")]
+transform = Transform3D(1, 0, 0, 0, 0.205, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Middle" parent="." index="0" unique_id=477339449]
+surface_material_override/0 = SubResource("ShaderMaterial_xy3kx")
+
+[node name="Top page" parent="." index="1" unique_id=1739222786]
+surface_material_override/0 = SubResource("ShaderMaterial_y6g1u")
+
+[node name="Bottom page" parent="." index="2" unique_id=1650611623]
+surface_material_override/0 = SubResource("ShaderMaterial_y6g1u")

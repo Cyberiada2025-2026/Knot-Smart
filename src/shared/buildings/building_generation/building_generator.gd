@@ -60,7 +60,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 func generate_collision_shape() -> void:
 	var static_body: StaticBody3D = StaticBody3D.new()
 	add_child(static_body)
-	static_body.owner = get_tree().edited_scene_root
 	for cell in initial_cells:
 		var cell_collision_shape = CollisionShape3D.new()
 		cell_collision_shape.shape = BoxShape3D.new()
@@ -69,4 +68,3 @@ func generate_collision_shape() -> void:
 		)
 		cell_collision_shape.position = cell.center() * room_generation_params.grid_cell_size
 		static_body.add_child(cell_collision_shape)
-		cell_collision_shape.owner = get_tree().edited_scene_root

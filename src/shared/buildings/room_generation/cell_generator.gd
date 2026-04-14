@@ -28,7 +28,8 @@ func split_cells():
 
 func pop_next_cell() -> Cell:
 	var cell_idx = building_generator.cells.find_custom(
-		func(c): return c.is_larger_than(building_generator.building_generation_params.max_room_size)
+		func(c):
+			return c.is_larger_than(building_generator.building_generation_params.max_room_size)
 	)
 	return building_generator.cells.pop_at(cell_idx) if cell_idx != -1 else null
 
@@ -41,7 +42,10 @@ func split(cell: Cell) -> void:
 
 	var split_point = randi_range(
 		building_generator.building_generation_params.min_room_size[direction],
-		cell.size()[direction] - building_generator.building_generation_params.min_room_size[direction]
+		(
+			cell.size()[direction]
+			- building_generator.building_generation_params.min_room_size[direction]
+		)
 	)
 	e1[direction] = cell.start[direction] + split_point
 	s2[direction] = cell.start[direction] + split_point

@@ -128,7 +128,10 @@ func place_model_count_in_locations(locations: Array, model_id: int, count: int)
 
 func place_windows(outside_wall_locations: Array):
 	var window_count = floor(
-		outside_wall_locations.size() * building_generator.building_generation_params.window_percentage
+		(
+			outside_wall_locations.size()
+			* building_generator.building_generation_params.window_percentage
+		)
 	)
 	place_model_count_in_locations(
 		outside_wall_locations, mesh_library.find_item_by_name("Window"), window_count

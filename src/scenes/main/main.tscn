@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://3rax0onuo76f"]
 
-[ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/building_generation_params.gd" id="2_7smn1"]
+[ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/building_generation/building_generation_params.gd" id="2_7smn1"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="Resource" uid="uid://dm1eub1sdan0k" path="res://shared/buildings/model_management/basic_building_tileset.tres" id="3_raeie"]

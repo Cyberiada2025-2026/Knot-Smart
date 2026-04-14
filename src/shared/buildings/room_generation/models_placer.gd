@@ -84,7 +84,7 @@ func get_wall_locations(
 
 func spawn_building_border_walls():
 	var all_borders = (
-		building_generator.cells.map(func(c): return c.get_all_borders()).reduce(concat, [])
+		building_generator.initial_cells.map(func(c): return c.get_all_borders()).reduce(concat, [])
 	)
 	var all_wall_locations_x = get_wall_locations(
 		all_borders, Utils.Axis.Z, orientations[Utils.Axis.Z]
@@ -109,6 +109,7 @@ func spawn_building_border_walls():
 	)
 	var outside_door_locations: Array = outside_wall_locations.filter(func(l): return l[0].y == 0)
 
+	seed(building_generator.room_generation_params.random_seed)
 	place_windows(outside_wall_locations)
 	place_entrance_doors(outside_door_locations)
 

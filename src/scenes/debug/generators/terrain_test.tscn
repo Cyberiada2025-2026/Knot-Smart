@@ -44,7 +44,8 @@ metadata/_custom_type_script = "uid://cn6l7oaf3xw32"
 script = ExtResource("1_aojt6")
 mesh_flat = ExtResource("7_jgk0a")
 mesh_slope = ExtResource("8_0ips4")
-mesh_corner = ExtResource("9_fjnk4")
+mesh_corner_outer = ExtResource("9_fjnk4")
+mesh_corner_inner = ExtResource("9_fjnk4")
 metadata/_custom_type_script = "uid://0212vvhximbx"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=52888776]

@@ -7,7 +7,8 @@ var blueprint: MapTileData
 
 @export var mesh_flat: Mesh
 @export var mesh_slope: Mesh
-@export var mesh_corner: Mesh
+@export var mesh_corner_outer: Mesh
+@export var mesh_corner_inner: Mesh
 
 func run_generation(manager: GridGenerationPipeline) -> void:
 	blueprint = manager.blueprint
@@ -18,55 +19,37 @@ func run_generation(manager: GridGenerationPipeline) -> void:
 		var norm = (raw + 1) / 2.0
 		return floor((norm + world_generation_params.height_displacement) * world_generation_params.map_height)
 
-	for x in blueprint.world_size:
-		for z in blueprint.world_size:
+	const R_SLOPE = {"N": 0.0, "E": PI/2.0, "S": PI, "W": 1.5*PI}
+	const R_INNER = {"NE": 0.0, "SE": PI/2.0, "SW": PI, "NW": 1.5*PI}
+	const R_OUTER = {"NE": 0.0, "SE": PI/2.0, "SW": PI, "NW": 1.5*PI}
+
+	for z in blueprint.world_size:
+	
+		var is_transformation_strip = (z % 2 != 0) 
+		
+		var current_step = floor(z / 2.0)
+		var final_height = current_step * world_generation_params.tile_height
+
+		for x in blueprint.world_size:
 			var coord = Vector2i(x, z)
-			var current_step = get_step.call(x, z)
 			
-			var final_height = current_step * world_generation_params.tile_height
+			var selected_mesh : Mesh
+			var rotation_y : float
+			var rule : TileInfo.PlacementRule
 			
-			var h_n = get_step.call(x, z - 1)
-			var h_s = get_step.call(x, z + 1)
-			var h_e = get_step.call(x + 1, z)
-			var h_w = get_step.call(x - 1, z)
-
-			var up_n = h_n > current_step
-			var up_s = h_s > current_step
-			var up_e = h_e > current_step
-			var up_w = h_w > current_step
-
-			var selected_mesh : Mesh = mesh_flat
-			var rotation_y : float = 0.0
-			var rule = TileInfo.PlacementRule.FLAT
-
-			var is_horizontal = up_e or up_w
-			var is_vertical = up_n or up_s
-
-			if is_horizontal and is_vertical:
-				selected_mesh = mesh_corner
-				rule = TileInfo.PlacementRule.BLOCKED
-			elif is_horizontal or is_vertical:
+			if is_transformation_strip:
 				selected_mesh = mesh_slope
-				rule = TileInfo.PlacementRule.SLOPE_X if is_horizontal else TileInfo.PlacementRule.SLOPE_Z
+				rotation_y = 0.0 
+				rule = TileInfo.PlacementRule.SLOPE_Z
 			else:
 				selected_mesh = mesh_flat
+				rotation_y = 0.0
 				rule = TileInfo.PlacementRule.FLAT
 
-			if selected_mesh == mesh_corner:
-				if up_n and up_e:   rotation_y = PI / 2     # NE
-				elif up_e and up_s: rotation_y = PI          # SE
-				elif up_s and up_w: rotation_y = 1.5 * PI    # SW
-				else:               rotation_y = 0.0         # NW
-			elif selected_mesh == mesh_slope:
-				if up_e:    rotation_y = PI / 2
-				elif up_s:  rotation_y = PI
-				elif up_w:  rotation_y = 1.5 * PI
-				else:       rotation_y = 0.0
-			
 			var mi = MeshInstance3D.new()
 			mi.mesh = selected_mesh
 			mi.rotation.y = rotation_y
-			mi.position = Vector3.ZERO 
+			mi.position = Vector3(0, final_height, 0) 
 
 			var tile = blueprint.data[coord]
 			tile.height = final_height

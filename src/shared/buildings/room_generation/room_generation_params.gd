@@ -11,8 +11,7 @@ const MAX_BUILDING_SIZE = Vector3i.ONE * 100
 var randomize_seed_action = func(): self.random_seed = randi_range(0, MAX_RANDOM_SEED)
 
 @export_group("Building Models")
-@export var mesh_library: MeshLibrary
-@export var grid_cell_size: Vector3 = Vector3.ONE
+@export var tileset_manager: BuildingTilesetManager
 
 @export_group("Bulding Generation")
 @export var outside_door_count: int = 1
@@ -35,6 +34,12 @@ var max_room_size: Vector3i = Vector3i(4, 1, 3):
 		return max_room_size if generate_rooms else MAX_BUILDING_SIZE
 
 var long_room_tendency: float = 0.2
+
+func get_mesh_library() -> MeshLibrary:
+	return tileset_manager.get_tileset(generate_rooms)
+
+func get_grid_size() -> Vector3:
+	return tileset_manager.grid_size
 
 
 func _get_property_list() -> Array[Dictionary]:

@@ -64,7 +64,7 @@ func generate_collision_shape() -> void:
 		var cell_collision_shape = CollisionShape3D.new()
 		cell_collision_shape.shape = BoxShape3D.new()
 		cell_collision_shape.shape.size = (
-			Vector3(cell.size()) * room_generation_params.grid_cell_size
+			Vector3(cell.size()) * room_generation_params.get_grid_size()
 		)
-		cell_collision_shape.position = cell.center() * room_generation_params.grid_cell_size
+		cell_collision_shape.position = cell.center() * room_generation_params.get_grid_size()
 		static_body.add_child(cell_collision_shape)

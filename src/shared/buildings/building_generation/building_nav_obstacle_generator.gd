@@ -12,7 +12,7 @@ func _init(_building_generator: BuildingGenerator) -> void:
 
 
 func generate_navmesh_obstacles() -> void:
-	var scaling: Vector3 = building_generator.room_generation_params.get_grid_size()
+	var scaling: Vector3 = building_generator.building_generation_params.get_grid_size()
 
 	for cell in building_generator.initial_cells:
 		var outline = cell.get_base_vertices(scaling)

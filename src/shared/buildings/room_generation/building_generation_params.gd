@@ -1,5 +1,5 @@
 @tool
-class_name RoomGenerationParams
+class_name BuildingGenerationParams
 extends Resource
 
 const MAX_RANDOM_SEED = 10000

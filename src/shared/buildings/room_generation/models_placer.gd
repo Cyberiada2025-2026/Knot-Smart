@@ -40,7 +40,7 @@ func place_entrance(c: BorderInfo):
 
 
 func place_models():
-	mesh_library = building_generator.room_generation_params.get_mesh_library()
+	mesh_library = building_generator.building_generation_params.get_mesh_library()
 	setup_gridmaps()
 	_create_mesh_dicts()
 
@@ -64,7 +64,7 @@ func setup_gridmaps() -> void:
 	for i in 3:
 		var gridmap = GridMap.new()
 		gridmap.mesh_library = mesh_library
-		gridmap.cell_size = building_generator.room_generation_params.get_grid_size()
+		gridmap.cell_size = building_generator.building_generation_params.get_grid_size()
 		gridmap.cell_center_y = false
 		gridmaps.push_back(gridmap)
 		building_generator.add_child(gridmap)
@@ -109,7 +109,7 @@ func spawn_building_border_walls():
 	)
 	var outside_door_locations: Array = outside_wall_locations.filter(func(l): return l[0].y == 0)
 
-	seed(building_generator.room_generation_params.random_seed)
+	seed(building_generator.building_generation_params.random_seed)
 	place_windows(outside_wall_locations)
 	place_entrance_doors(outside_door_locations)
 
@@ -128,7 +128,7 @@ func place_model_count_in_locations(locations: Array, model_id: int, count: int)
 
 func place_windows(outside_wall_locations: Array):
 	var window_count = floor(
-		outside_wall_locations.size() * building_generator.room_generation_params.window_percentage
+		outside_wall_locations.size() * building_generator.building_generation_params.window_percentage
 	)
 	place_model_count_in_locations(
 		outside_wall_locations, mesh_library.find_item_by_name("Window"), window_count
@@ -139,7 +139,7 @@ func place_entrance_doors(outside_door_locations: Array):
 	place_model_count_in_locations(
 		outside_door_locations,
 		mesh_library.find_item_by_name("Door"),
-		building_generator.room_generation_params.outside_door_count
+		building_generator.building_generation_params.outside_door_count
 	)
 
 

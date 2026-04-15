@@ -12,35 +12,34 @@
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="8_biq8l"]
 [ext_resource type="ArrayMesh" uid="uid://cebhfiypq132b" path="res://shared/terrain/assets/Corner_Plane.res" id="9_fjnk4"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_htb35"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jgk0a"]
 
-[sub_resource type="Resource" id="Resource_k5xeo"]
+[sub_resource type="Resource" id="Resource_0ips4"]
 script = ExtResource("2_htb35")
-tile_size = 32
-tile_height = 28.0
-noise = SubResource("FastNoiseLite_htb35")
+noise = SubResource("FastNoiseLite_jgk0a")
 metadata/_custom_type_script = "uid://no1j1oowuup1"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k5xeo"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3uku"]
 albedo_texture = ExtResource("4_biq8l")
 
-[sub_resource type="Resource" id="Resource_xedym"]
+[sub_resource type="Resource" id="Resource_fjnk4"]
 script = ExtResource("3_biq8l")
-terrain_material = SubResource("StandardMaterial3D_k5xeo")
+terrain_material = SubResource("StandardMaterial3D_r3uku")
 metadata/_custom_type_script = "uid://bmtv75byrd25q"
 
 [node name="TerrainTest" type="Node3D" unique_id=1551696206]
 
-[node name="MapRenderer" type="Node3D" parent="." unique_id=2108384034]
+[node name="MapRenderer" type="Node3D" parent="." unique_id=918119466]
 script = ExtResource("1_dka5w")
-world_generation_params = SubResource("Resource_k5xeo")
-world_display_params = SubResource("Resource_xedym")
+world_generation_params = SubResource("Resource_0ips4")
+world_display_params = SubResource("Resource_fjnk4")
+metadata/_custom_type_script = "uid://u5hpdit2bo4g"
 
-[node name="GridGenerationPipeline" type="Node" parent="MapRenderer" unique_id=1756213863]
+[node name="GridGenerationPipeline" type="Node" parent="MapRenderer" unique_id=1576894728]
 script = ExtResource("1_nm6oi")
 metadata/_custom_type_script = "uid://cn6l7oaf3xw32"
 
-[node name="TerrainGenerator" type="Node" parent="MapRenderer/GridGenerationPipeline" unique_id=1647112656]
+[node name="TerrainGenerator" type="Node" parent="MapRenderer/GridGenerationPipeline" unique_id=450828786]
 script = ExtResource("1_aojt6")
 mesh_flat = ExtResource("7_jgk0a")
 mesh_slope = ExtResource("8_0ips4")

@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
 [ext_resource type="Script" uid="uid://o84y6fkjp82d" path="res://shared/point_of_interest/components/poi_speech.gd" id="7_7smn1"]
+[ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="8_hxu8e"]
+[ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="9_nvumn"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_a8run"]
 [ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="10_th5th"]
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
@@ -39,6 +41,21 @@ metadata/_custom_type_script = "uid://uq2ee3iq6x08"
 script = ExtResource("5_hujxm")
 random_seed = 3
 metadata/_custom_type_script = "uid://uq2ee3iq6x08"
+
+[sub_resource type="Resource" id="Resource_ou6is"]
+script = ExtResource("9_nvumn")
+text = "This guy seems like trouble"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_necax"]
+script = ExtResource("9_nvumn")
+text = "I'm gonna die fast"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_r4lks"]
+script = ExtResource("8_hxu8e")
+sentences = Array[ExtResource("9_nvumn")]([SubResource("Resource_ou6is"), SubResource("Resource_necax")])
+metadata/_custom_type_script = "uid://dhpmrqniojeb4"
 
 [node name="Main" type="Node3D" unique_id=959478903]
 
@@ -170,7 +187,7 @@ metadata/_custom_type_script = "uid://bm0wrygl0ikje"
 
 [node name="POI_Speech" type="Node" parent="Enemy/PointOfInterest" unique_id=1376135009]
 script = ExtResource("7_7smn1")
-subtitle = "This guy will punch me harder than my dad ever did"
+dialogue = SubResource("Resource_r4lks")
 metadata/_custom_type_script = "uid://o84y6fkjp82d"
 
 [node name="Player" parent="." unique_id=1226528489 instance=ExtResource("3_k2fmo")]

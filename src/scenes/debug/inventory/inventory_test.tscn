@@ -48,15 +48,14 @@ size = Vector3(5, 3, 3)
 [sub_resource type="BoxShape3D" id="BoxShape3D_x045t"]
 size = Vector3(5, 3, 3)
 
-[sub_resource type="Resource" id="Resource_ai6ms"]
-script = ExtResource("3_eqodw")
-item_name = "kostka"
-quantity = 1
-metadata/_custom_type_script = "uid://dvy1b1v48ym8a"
-
 [sub_resource type="Resource" id="Resource_x045t"]
 script = ExtResource("3_eqodw")
-quantity = 2
+item_name = "kostka"
+metadata/_custom_type_script = "uid://dvy1b1v48ym8a"
+
+[sub_resource type="Resource" id="Resource_klff6"]
+script = ExtResource("3_eqodw")
+item_name = "kostka2"
 metadata/_custom_type_script = "uid://dvy1b1v48ym8a"
 
 [node name="InventoryTest" type="Node3D" unique_id=2014510867]
@@ -145,4 +144,7 @@ mesh = SubResource("BoxMesh_eqodw")
 shape = SubResource("BoxShape3D_x045t")
 
 [node name="PutItemZone" parent="StaticBody3D3" unique_id=866369089 instance=ExtResource("4_klff6")]
-items = Array[ExtResource("3_eqodw")]([SubResource("Resource_ai6ms"), SubResource("Resource_x045t")])
+items = Dictionary[ExtResource("3_eqodw"), int]({
+SubResource("Resource_x045t"): 1,
+SubResource("Resource_klff6"): 2
+})

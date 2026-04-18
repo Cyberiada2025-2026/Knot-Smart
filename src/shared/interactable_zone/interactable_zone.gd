@@ -6,7 +6,7 @@ extends Area3D
 const COLLISION_MASK = 2
 
 var interact_type: String
-var items: Array[ItemDescription] = []
+var items: Dictionary[ItemDescription, int] = {}
 var collider_scale = Vector3(1.5, 1.5, 1.5)
 var inventory_manager: InventoryManager
 
@@ -16,10 +16,13 @@ func set_zone() -> void:
 		inventory_manager = get_tree().root.find_child("InventoryManager", true, false)
 		body_entered.connect(_on_area_3d_body_entered)
 		body_exited.connect(_on_area_3d_body_exited)
-		for i in range(len(items)):
-			var item = items[i].get_copy()
-			item.main_node = get_parent().get_parent()
-			items[i] = item
+		for item in items.keys():
+			var item_copy = item.duplicate()
+			var quantity = items[item]
+			item_copy.main_node = get_parent().get_parent()
+			items.erase(item)
+			items.set(item_copy, quantity)
+			
 		for sibling in get_parent().get_parent().find_children("", "CollisionShape3D"):
 			add_child(sibling.duplicate())
 			break

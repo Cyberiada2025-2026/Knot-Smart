@@ -11,7 +11,7 @@ const GRID_SIZE = Vector2(320.0, 70.0)
 
 var interaction = {"NONE": 0, "TAKE": 1, "PUT": 2}
 var grid: GridContainer
-var items: Array[ItemDescription] = []
+var items: Dictionary[ItemDescription, int] = {}
 var interaction_type: int = interaction["NONE"]
 var inventory_cell: PackedScene
 
@@ -53,7 +53,7 @@ func interact():
 		for cell in grid.get_children():
 			if interaction_type == interaction["PUT"]:
 				if cell.get_type()==item.item_name:
-					cell.remove_item(item)
+					items[item] = cell.remove_item(item, items[item])
 					break
 			elif interaction_type == interaction["TAKE"]:
 				if cell.get_type()==item.item_name or cell.is_empty():
@@ -61,7 +61,7 @@ func interact():
 					break
 
 
-func set_items(can_interact: bool, items: Array[ItemDescription], type: String):
+func set_items(can_interact: bool, items: Dictionary[ItemDescription, int], type: String):
 	if can_interact:
 		self.items = items
 		interaction_type = interaction[type]
@@ -69,6 +69,6 @@ func set_items(can_interact: bool, items: Array[ItemDescription], type: String):
 		if self.items.is_empty():
 			interaction_type = interaction["NONE"]
 			return
-		if items.front().get_instance_id() == self.items.front().get_instance_id():
+		if items.hash() == self.items.hash():
 			interaction_type = interaction["NONE"]
-			self.items = []
+			self.items = {}

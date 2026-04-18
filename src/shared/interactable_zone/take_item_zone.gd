@@ -8,7 +8,7 @@ extends Node3D
 
 
 func _ready() -> void:
-	zone.items.push_back(item)
+	zone.items[item] = 1
 	zone.collider_scale = collider_scale
 	zone.interact_type = "TAKE"
 	zone.set_zone()

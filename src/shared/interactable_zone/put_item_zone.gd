@@ -3,11 +3,7 @@ class_name PutItemZone
 extends Node3D
 
 
-@export var items: Array[ItemDescription] = []:
-	set(value):
-		items = value
-		for item in items:
-			item.quantity_show = true
+@export var items: Dictionary[ItemDescription, int] = {}
 @export var collider_scale = Vector3(1.5, 1.5, 1.5)
 @export var zone: InteractableZone
 

@@ -3,39 +3,41 @@ extends PanelContainer
 
 
 @export var subviewport: SubViewport
-@export var text_label: RichTextLabel
-var items: Array[ItemDescription]
+@export var count_label: RichTextLabel
+var items: Array[Node3D]
+var type: ItemDescription
 
 
 func add_item(item: ItemDescription):
 	if len(items)==0:
 		item.main_node.reparent(subviewport)
 		item.main_node.global_position = Vector3.ZERO
+		type = item
 	else:
 		item.main_node.get_parent().remove_child(item.main_node)
-	items.push_back(item)
-	on_item_num_changed()
+	items.push_back(item.main_node)
+	update_count_label()
 
 
-func remove_item(item: ItemDescription):
-	var diff = len(items)-item.quantity
-	for i in clampi(item.quantity, 0, len(items)):
+func remove_item(item: ItemDescription, quantity: int) -> int:
+	var diff = len(items)-quantity
+	for i in clampi(quantity, 0, len(items)):
 		var popped_item = items.pop_back()
-		popped_item.main_node.queue_free()
-	item.quantity = max(0, -diff)
-	on_item_num_changed()
+		popped_item.queue_free()
+	update_count_label()
+	return max(0, -diff)
 
 
 func get_type() -> String:
 	if is_empty():
 		return ""
-	return items.front().item_name
+	return type.item_name
 
 
 func is_empty() -> bool:
 	return items.is_empty()
 
 
-func on_item_num_changed():
-	text_label.text = str(len(items))
-	text_label.visible = len(items)>0
+func update_count_label():
+	count_label.text = str(len(items))
+	count_label.visible = len(items)>0

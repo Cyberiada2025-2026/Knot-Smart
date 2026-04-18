@@ -5,7 +5,8 @@ extends Node
 var submitted: bool = false
 
 var prev_mouse_mode
-@onready var submit_field: TextEdit = $Control/VBoxContainer/TextEdit
+@onready var submit_field: LineEdit = $Control/VBoxContainer/LineEdit
+@onready var submit_button: Button  = $Control/VBoxContainer/SubmitButton
 
 func unpause_game() -> void:
 	get_tree().paused = false
@@ -23,10 +24,12 @@ func pause_game() -> void:
 func get_input() -> String:
 	pause_game()
 
-	#get_tree().create_timer(2.0).timeout.connect(func(): submit_button_pressed.emit())
+	submit_field.text = ""
+	while true:
+		#get_tree().create_timer(INF).timeout.connect(func(): submit_button.button_down.emit())
+		await submit_button.button_down
+		if not submit_field.text.is_empty():
+			break
+
 	unpause_game()
 	return submit_field.text
-
-
-func _on_submit_button_button_down() -> void:
-	pass # Replace with function body.

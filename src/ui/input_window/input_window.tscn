@@ -6,6 +6,7 @@
 script = ExtResource("1_kb00d")
 
 [node name="Control" type="Control" parent="." unique_id=1296785190]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,9 +36,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -75.0
-offset_top = -40.0
+offset_top = -46.0
 offset_right = 75.0
-offset_bottom = 40.0
+offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -48,14 +49,15 @@ theme_override_colors/default_color = Color(0.4, 0.4117647, 1, 1)
 text = "Input text"
 horizontal_alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="Control/VBoxContainer" unique_id=886676067]
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer" unique_id=196599647]
+process_mode = 3
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_font_sizes/font_size = 14
+max_length = 15
 
 [node name="SubmitButton" type="Button" parent="Control/VBoxContainer" unique_id=1941459966]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 4
 text = "submit"
-
-[connection signal="button_down" from="Control/VBoxContainer/SubmitButton" to="." method="_on_submit_button_button_down"]

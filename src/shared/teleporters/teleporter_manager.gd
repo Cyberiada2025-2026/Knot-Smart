@@ -102,6 +102,8 @@ func _physics_process(_delta: float) -> void:
 
 				# add teleporter name
 				teleporter_instance.teleporter_name = await input_window.get_input()
+				print("T name:")
+				print(teleporter_instance.teleporter_name)
 
 				#teleporter_instance.global_position.y += 0.5
 

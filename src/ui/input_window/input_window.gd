@@ -21,7 +21,8 @@ func pause_game() -> void:
 	prev_mouse_mode = Input.get_mouse_mode()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-## async function to get input text from keyboard!!!
+## async function to get input text from keyboard [br]
+## message is limited by textbox size and may not be shown fully
 func get_input(message: String = "") -> String:
 	pause_game()
 

@@ -1,9 +1,12 @@
 
-placed objects rotation
+<!-- placed objects rotation -->
+add "enter" support to input window
 - placement system
     - 2D distance to placenment range
-- teleporter name window
-- teleporter list 
+<!-- - teleporter name window -->
+- teleporter list:
+    - probably as UI part
+    - used in teleporter interaction
 - button for teleporter interaction
     - button with collider
     - tooltip to button

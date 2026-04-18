@@ -16,6 +16,7 @@
 [ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="12_7smn1"]
 [ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="12_th5th"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="15_hxu8e"]
+[ext_resource type="PackedScene" uid="uid://cwgdxw2n1ey7s" path="res://shared/papers/sheet_music/sheet_music.tscn" id="17_nvumn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -223,6 +224,9 @@ is_night = true
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]
+
+[node name="SheetMusic" parent="." unique_id=1780103802 instance=ExtResource("17_nvumn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116556)
 
 [connection signal="triggered" from="Enemy/PointOfInterest" to="NavigationRegion3D/BuildingGenerator" method="_on_point_of_interest_triggered"]
 

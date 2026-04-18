@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cl3oeqa6pocee" path="res://shared/papers/sheet_music/sheet-music_music_notebook.png" id="3_vdnaj"]
 [ext_resource type="Texture2D" uid="uid://c0r6rd2khjdt0" path="res://shared/papers/sheet_music/sheet-music_music_notes_transparent_damaged.png" id="4_dnpa7"]
 [ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="4_efiim"]
-[ext_resource type="Script" uid="uid://o84y6fkjp82d" path="res://shared/point_of_interest/components/poi_speech.gd" id="5_dnpa7"]
+[ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="5_dnpa7"]
 [ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="6_o7i42"]
 [ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="7_0mdhk"]
 
@@ -189,7 +189,7 @@ radius = 2.0
 visualize = false
 metadata/_custom_type_script = "uid://bm0wrygl0ikje"
 
-[node name="POI_Speech" type="Node" parent="PointOfInterest" unique_id=1212759843]
+[node name="SpeechPOI" type="Node" parent="PointOfInterest" unique_id=1212759843]
 script = ExtResource("5_dnpa7")
 dialogue = SubResource("Resource_wjeqt")
 metadata/_custom_type_script = "uid://o84y6fkjp82d"

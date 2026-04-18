@@ -1,4 +1,4 @@
-class_name POI_Speech
+class_name SpeechPOI
 extends Node
 
 @export var dialogue: Dialogue

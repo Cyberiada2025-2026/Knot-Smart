@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params.gd" id="5_hujxm"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
-[ext_resource type="Script" uid="uid://o84y6fkjp82d" path="res://shared/point_of_interest/components/poi_speech.gd" id="7_7smn1"]
+[ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="7_7smn1"]
 [ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="8_hxu8e"]
 [ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="9_nvumn"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_a8run"]
@@ -186,10 +186,9 @@ script = ExtResource("4_b1x3f")
 radius = 4.0
 metadata/_custom_type_script = "uid://bm0wrygl0ikje"
 
-[node name="POI_Speech" type="Node" parent="Enemy/PointOfInterest" unique_id=1376135009]
+[node name="SpeechPOI" type="Node" parent="Enemy/PointOfInterest" unique_id=1376135009]
 script = ExtResource("7_7smn1")
 dialogue = SubResource("Resource_r4lks")
-metadata/_custom_type_script = "uid://o84y6fkjp82d"
 
 [node name="Player" parent="." unique_id=1226528489 instance=ExtResource("3_k2fmo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6612322, 1.435396, 3.9698668)

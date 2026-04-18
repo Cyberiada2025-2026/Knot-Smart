@@ -1,10 +1,64 @@
 [gd_scene format=3 uid="uid://vof8qmvanvac"]
 
 [ext_resource type="Material" uid="uid://dkjsm0xmuqh6n" path="res://shared/teleporters/teleporter_placement_marker.tres" id="1_5exjw"]
+[ext_resource type="Script" uid="uid://blmgp3evwn8u" path="res://shared/teleporters/teleporter_marker.gd" id="1_qf5ih"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_qf5ih"]
 material = ExtResource("1_5exjw")
 size = Vector3(0.5, 1, 0.5)
 
-[node name="TeleporterMarker" type="MeshInstance3D" unique_id=911016039]
+[sub_resource type="Shader" id="Shader_ev08t"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform bool billboard = false;
+uniform bool use_vertex_color = false;
+
+uniform sampler2D main_texture : source_color, filter_nearest, repeat_disable;
+
+uniform vec3 tint : source_color = vec3(1.0);
+
+varying vec4 clip_pos;
+
+void vertex() {
+	#include \"res://shared/shaders/include/vertex_wobble.gdshaderinc\"
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+	#include \"res://shared/shaders/include/affine_texture_mapping.gdshaderinc\"
+	vec3 texture_color = texture(main_texture, uv).rgb;
+	if (use_vertex_color)
+		texture_color *= COLOR.rgb;
+	
+	ALBEDO = texture_color * tint;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qf5ih"]
+render_priority = 0
+shader = SubResource("Shader_ev08t")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/tint = Color(0.98039216, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0s7xm"]
+material = SubResource("ShaderMaterial_qf5ih")
+size = Vector3(0.5, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qf5ih"]
+size = Vector3(0.5, 1, 0.5)
+
+[node name="TeleporterMarker" type="Area3D" unique_id=1708508446]
+script = ExtResource("1_qf5ih")
+
+[node name="MarkerAllowingPlacement" type="MeshInstance3D" parent="." unique_id=911016039]
+visible = false
 mesh = SubResource("BoxMesh_qf5ih")
+
+[node name="MarkerColliding" type="MeshInstance3D" parent="." unique_id=2008203833]
+visible = false
+mesh = SubResource("BoxMesh_0s7xm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1728497591]
+shape = SubResource("BoxShape3D_qf5ih")

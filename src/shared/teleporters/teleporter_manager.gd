@@ -8,7 +8,7 @@ enum State { IDLE, SELECTING_POSITION }
 @export var max_placement_angle = 20
 
 var state = State.IDLE
-var marker: MeshInstance3D = preload("res://shared/teleporters/teleporter_placement_marker.tscn").instantiate()
+var marker: TeleporterMarker = preload("res://shared/teleporters/teleporter_placement_marker.tscn").instantiate()
 const teleporter_scene = preload("res://shared/teleporters/teleporter.tscn")
 
 var prev_mouse_mode
@@ -53,11 +53,11 @@ func _physics_process(_delta: float) -> void:
 
 			var player_position = get_node("../PlayerPhysics/").position
 
-			if player_position.distance_to(raycast_result.position) > placement_range:
+			if _3d_to_2d(player_position).distance_to(_3d_to_2d(raycast_result.position)) > placement_range:
 				#print("too far away")
-				#var y = raycast_result.position.y
+				var y = raycast_result.position.y
 				raycast_result.position = (raycast_result.position - player_position).normalized() * placement_range + player_position
-				#raycast_result.position.y = y
+				raycast_result.position.y = y
 				#print(UnsafeRaycastBuilder.new(self).camera)
 				raycast_result = (
 					UnsafeRaycastBuilder.new(self)
@@ -75,14 +75,17 @@ func _physics_process(_delta: float) -> void:
 			if slope_angle_deg > max_placement_angle:
 				return
 
+			# add half box height instead of 0.5
 			raycast_result.position += 0.5 * raycast_result.normal # fix box height to avoid being in textures
+
 			marker.global_position = raycast_result.position
 			marker.quaternion = Quaternion(Vector3.UP, raycast_result.normal)
 
+			marker.update_state(raycast_result.collider)
 
 			marker.show()
 
-			if(Input.is_action_just_pressed("left_mouse")):
+			if Input.is_action_just_pressed("left_mouse") and marker.allows_teleporter_placement:
 				var teleporter_instance = teleporter_scene.instantiate()
 				#teleporter_instance.global_transform.origin = Vector3(x * 3, 0, z * 3)
 				add_child(teleporter_instance)
@@ -99,3 +102,7 @@ func _physics_process(_delta: float) -> void:
 func set_idle():
 	Input.set_mouse_mode(prev_mouse_mode)
 	state = State.IDLE
+
+
+func _3d_to_2d(vector: Vector3) -> Vector2:
+	return Vector2(vector.x, vector.z)

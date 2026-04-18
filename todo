@@ -1,0 +1,10 @@
+- placement system
+    - 2D distance to placenment range
+- teleporter name window
+- teleporter list 
+- button for teleporter interaction
+    - button with collider
+    - tooltip to button
+    - selection window for teleportation
+    - player teleportation
+    

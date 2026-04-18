@@ -22,9 +22,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -85.0
-offset_top = -50.0
+offset_top = -47.5
 offset_right = 85.0
-offset_bottom = 50.0
+offset_bottom = 47.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -36,18 +36,21 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -75.0
-offset_top = -46.0
+offset_top = -42.0
 offset_right = 75.0
-offset_bottom = 46.0
+offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer" unique_id=799906450]
-custom_minimum_size = Vector2(0, 25)
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme_override_colors/default_color = Color(0.4, 0.4117647, 1, 1)
+theme_override_font_sizes/normal_font_size = 12
 text = "Input text"
+scroll_active = false
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer" unique_id=196599647]
 process_mode = 3
@@ -60,4 +63,5 @@ max_length = 15
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
 text = "submit"

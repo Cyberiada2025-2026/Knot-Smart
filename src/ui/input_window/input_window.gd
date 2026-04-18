@@ -7,6 +7,7 @@ var submitted: bool = false
 var prev_mouse_mode
 @onready var submit_field: LineEdit = $Control/VBoxContainer/LineEdit
 @onready var submit_button: Button  = $Control/VBoxContainer/SubmitButton
+@onready var label: RichTextLabel = $Control/VBoxContainer/RichTextLabel
 
 func unpause_game() -> void:
 	get_tree().paused = false
@@ -21,10 +22,12 @@ func pause_game() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 ## async function to get input text from keyboard!!!
-func get_input() -> String:
+func get_input(message: String = "") -> String:
 	pause_game()
 
 	submit_field.text = ""
+	label.text = message
+
 	while true:
 		#get_tree().create_timer(INF).timeout.connect(func(): submit_button.button_down.emit())
 		await submit_button.button_down

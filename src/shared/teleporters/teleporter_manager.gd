@@ -101,7 +101,7 @@ func _physics_process(_delta: float) -> void:
 				teleporter_instance.quaternion = marker.quaternion
 
 				# add teleporter name
-				teleporter_instance.teleporter_name = await input_window.get_input()
+				teleporter_instance.teleporter_name = await input_window.get_input("enter teleporter name")
 				print("T name:")
 				print(teleporter_instance.teleporter_name)
 

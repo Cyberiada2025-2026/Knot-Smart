@@ -2,13 +2,11 @@
 class_name PointOfInterest
 extends Node3D
 
+signal triggered(entity: Node3D)
+
 const VISUALIZATION_MATERIAL = preload(
 	"res://shared/point_of_interest/point_of_interest_visualization_material.tres"
 )
-
-
-signal triggered(entity: Node3D)
-
 
 @export var radius: float = 0.5:
 	set(value):
@@ -27,6 +25,7 @@ signal triggered(entity: Node3D)
 var area
 var collider
 var visualization_mesh
+
 
 func _init():
 	area = Area3D.new()

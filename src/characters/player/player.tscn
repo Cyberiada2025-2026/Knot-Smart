@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
 [ext_resource type="Script" uid="uid://bkffe8kvogeke" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
 [ext_resource type="Script" uid="uid://c0v1x4a4fbhnn" path="res://shared/tooltips/tooltip_manager.gd" id="12_on558"]
+[ext_resource type="Script" uid="uid://d0x6a5ec5mlei" path="res://shared/speech/speech_manager.gd" id="13_icpky"]
+[ext_resource type="Resource" uid="uid://cgkx63vdu5tas" path="res://shared/speech/alien/neutral/neutral.tres" id="14_58jvb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hysn5"]
 radius = 0.25
@@ -121,6 +123,11 @@ theme_override_font_sizes/normal_font_size = 9
 theme_override_styles/normal = SubResource("StyleBoxFlat_on558")
 text = "Very long testing tooltip lorem ipsum dolor wtf"
 fit_content = true
+
+[node name="SpeechManager" type="Node" parent="." unique_id=830717814]
+script = ExtResource("13_icpky")
+voice_bank = ExtResource("14_58jvb")
+metadata/_custom_type_script = "uid://d0x6a5ec5mlei"
 
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]

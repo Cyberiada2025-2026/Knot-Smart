@@ -3,7 +3,7 @@ extends Camera3D
 
 @export var camera: Node3D
 @export var scene: Control
-@export var radiation_post: ColorRect 
+@export var radiation_post: ColorRect
 
 var reference: Node3D
 

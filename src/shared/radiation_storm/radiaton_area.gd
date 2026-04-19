@@ -29,8 +29,8 @@ func _process(delta: float) -> void:
 	rad_mat.set_shader_parameter(anim_param, radiation)
 
 
-func _on_area_3d_area_entered(area: Area3D) -> void:
+func _on_area_3d_area_entered(_area: Area3D) -> void:
 	killing = false
 
-func _on_area_exited(area: Area3D) -> void:
+func _on_area_exited(_area: Area3D) -> void:
 	killing = true

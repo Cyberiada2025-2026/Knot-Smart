@@ -2,6 +2,7 @@
 class_name BuildingGenerationParams
 extends Resource
 
+## Used for @export_range and generating random seed when BuildingGenerator is added to scene.
 const MAX_RANDOM_SEED = 10000
 const MAX_BUILDING_SIZE = Vector3i.ONE * 100
 

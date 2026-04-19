@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://l0fhfdnlggk" path="res://characters/player/rope/vfx/rope_vfx.gd" id="1_mc67o"]
 [ext_resource type="Shader" uid="uid://1pvk0smpoe86" path="res://shared/shaders/fresnel_additive.gdshader" id="2_jo2uc"]
 [ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="4_lbvd8"]
+[ext_resource type="Shader" uid="uid://dca8vn42psgvs" path="res://characters/player/rope/vfx/fuse/fuse_stencil.gdshader" id="5_r4opj"]
+[ext_resource type="Shader" uid="uid://bhd7qpyhwtrt8" path="res://characters/player/rope/vfx/fuse/fuse.gdshader" id="6_xkqvk"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_i5arm"]
 resource_local_to_scene = true
@@ -250,7 +252,45 @@ _data = {
 &"rope_on": SubResource("Animation_jo2uc")
 }
 
-[node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "mesh_node", "splash", "break1", "break2", "first_ball", "second_ball")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkqvk"]
+render_priority = 1
+shader = ExtResource("5_r4opj")
+
+[sub_resource type="Curve" id="Curve_jsors"]
+_data = [Vector2(0, 0.2611227), 0.0, 2.4381776, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_r4opj"]
+curve = SubResource("Curve_jsors")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xkqvk"]
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5999999
+scale_max = 1.5999999
+scale_curve = SubResource("CurveTexture_r4opj")
+
+[sub_resource type="SphereMesh" id="SphereMesh_3ywe0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ywe0"]
+render_priority = 2
+shader = ExtResource("6_xkqvk")
+
+[sub_resource type="Curve" id="Curve_xkqvk"]
+_data = [Vector2(0, 0.79471993), 0.0, 0.0, 0, 0, Vector2(0.5032051, 0.7883049), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.27319, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_3ywe0"]
+curve = SubResource("Curve_xkqvk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jsors"]
+gravity = Vector3(0, 0, 0)
+scale_min = 1.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_r4opj")
+color = Color(0, 0.9000001, 1, 1)
+alpha_curve = SubResource("CurveTexture_3ywe0")
+
+[node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "mesh_node", "splash", "break1", "break2", "fuse_vfx1", "fuse_vfx2")]
 script = ExtResource("1_mc67o")
 player = NodePath("AnimationPlayer")
 mesh = SubResource("CylinderMesh_i5arm")
@@ -259,8 +299,8 @@ mat = SubResource("ShaderMaterial_mc67o")
 splash = NodePath("Mesh/Splash")
 break1 = NodePath("Mesh/Break1")
 break2 = NodePath("Mesh/Break2")
-first_ball = NodePath("")
-second_ball = NodePath("")
+fuse_vfx1 = NodePath("FuseVFX")
+fuse_vfx2 = NodePath("FuseVFX/FuseVFX2")
 
 [node name="Mesh" type="CSGMesh3D" parent="." unique_id=1415216167]
 material_override = SubResource("ShaderMaterial_mc67o")
@@ -341,3 +381,23 @@ scale_amount_curve = SubResource("Curve_xs02k")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1417330855]
 libraries/ = SubResource("AnimationLibrary_lbvd8")
+
+[node name="FuseVFX" type="GPUParticles3D" parent="." unique_id=1885435520]
+material_override = SubResource("ShaderMaterial_xkqvk")
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xkqvk")
+draw_pass_1 = SubResource("SphereMesh_3ywe0")
+
+[node name="FuseVFX2" type="GPUParticles3D" parent="FuseVFX" unique_id=1020471342]
+material_override = SubResource("ShaderMaterial_3ywe0")
+emitting = false
+amount = 1
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_jsors")
+draw_pass_1 = SubResource("SphereMesh_3ywe0")

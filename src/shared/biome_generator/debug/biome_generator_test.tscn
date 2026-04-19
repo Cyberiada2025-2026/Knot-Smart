@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://biny0qvby0aeb"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="2_qrj8t"]
+[ext_resource type="PackedScene" uid="uid://bwsmrxn17dwr2" path="res://shared/biome_generator/generator/plants_walls_generator.tscn" id="2_rosry"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qp4h5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qp4h5"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qrj8t"]
+material = SubResource("StandardMaterial3D_qp4h5")
+size = Vector3(1000, 0.2, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rosry"]
+size = Vector3(1000, 1, 1000)
+
+[node name="BiomeGeneratorTest" type="Node3D" unique_id=486918440]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=836375888]
+transform = Transform3D(1, 0, 0, 0, 0.013333956, 0.9999111, 0, -0.9999111, 0.013333956, 0, 134.36926, 0)
+light_energy = 16.0
+
+[node name="lag tester" type="MeshInstance3D" parent="." unique_id=2025567971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 127.430084, 0)
+visible = false
+mesh = SubResource("BoxMesh_qp4h5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1888133780]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=159240642]
+mesh = SubResource("BoxMesh_qrj8t")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=619690297]
+shape = SubResource("BoxShape3D_rosry")
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_qrj8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6472224, 5.529564)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player" unique_id=549211329]
+
+[node name="Plants Walls Generator" parent="." unique_id=1762565553 node_paths=PackedStringArray("walls_combiner") instance=ExtResource("2_rosry")]
+walls_combiner = NodePath("Saved Nodes/@CSGCombiner3D@42231")
+custom_seed = 347460306

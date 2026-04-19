@@ -11,7 +11,7 @@ const MAX_BUILDING_SIZE = Vector3i.ONE * 100
 var randomize_seed_action = func(): self.random_seed = randi_range(0, MAX_RANDOM_SEED)
 
 @export_group("Building Models")
-@export var tileset_manager: BuildingTilesetManager
+@export var tileset_manager: BuildingTileset
 
 @export_group("Bulding Generation")
 @export var outside_door_count: int = 1

@@ -1,5 +1,5 @@
 @tool
-class_name BuildingTilesetManager
+class_name BuildingTileset
 extends Resource
 
 @export var enterable_tileset: MeshLibrary

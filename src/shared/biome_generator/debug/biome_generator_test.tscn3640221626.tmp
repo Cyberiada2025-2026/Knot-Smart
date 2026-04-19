@@ -38,5 +38,4 @@ shape = SubResource("BoxShape3D_rosry")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6472224, 5.529564)
 
 [node name="Plants Walls Generator" parent="." unique_id=1762565553 node_paths=PackedStringArray("walls_combiner") instance=ExtResource("2_rosry")]
-walls_combiner = NodePath("Saved Nodes/@CSGCombiner3D@34524")
-custom_seed = 353155011
+walls_combiner = NodePath("SubGenerators/Walls Generator/@CSGCombiner3D@52907")

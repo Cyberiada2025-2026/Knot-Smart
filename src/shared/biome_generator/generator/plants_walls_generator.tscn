@@ -4,15 +4,18 @@
 [ext_resource type="Script" uid="uid://bkroq7y6mcrv6" path="res://shared/biome_generator/generator/points_generator.gd" id="2_pk6b2"]
 [ext_resource type="Script" uid="uid://cdjvn3r142ase" path="res://shared/biome_generator/generator/triangle_generator.gd" id="3_d06r1"]
 [ext_resource type="Script" uid="uid://cle703ysgd1ey" path="res://shared/biome_generator/generator/biome_generator.gd" id="4_pk6b2"]
-[ext_resource type="Script" uid="uid://ccn212sobnkhi" path="res://shared/biome_generator/wall/walls_combiner.gd" id="5_d06r1"]
 [ext_resource type="Script" uid="uid://40evsrc1ymef" path="res://shared/biome_generator/generator/walls_generator.gd" id="5_pjyol"]
 [ext_resource type="Script" uid="uid://8cy5tgafubbm" path="res://shared/biome_generator/generator/passages_generator.gd" id="6_2c18v"]
 
-[node name="Plants Walls Generator" type="Node3D" unique_id=1762565553 node_paths=PackedStringArray("walls_combiner", "points_generator", "triangle_generator")]
+[node name="Plants Walls Generator" type="Node3D" unique_id=1762565553 node_paths=PackedStringArray("saved_nodes_node", "walls_combiner", "points_generator", "triangle_generator", "biome_generator", "walls_generator", "passage_generator")]
 script = ExtResource("1_t8ucm")
-walls_combiner = NodePath("Saved Nodes/WallsCombiner")
+saved_nodes_node = NodePath("Saved Nodes")
+walls_combiner = NodePath("")
 points_generator = NodePath("SubGenerators/Points Generator")
 triangle_generator = NodePath("SubGenerators/Triangle Generator")
+biome_generator = NodePath("SubGenerators/Biome Generator")
+walls_generator = NodePath("SubGenerators/Walls Generator")
+passage_generator = NodePath("SubGenerators/Passages Generator")
 
 [node name="SubGenerators" type="Node3D" parent="." unique_id=386254087]
 
@@ -40,7 +43,3 @@ generator_main = NodePath("../..")
 [node name="Saved Nodes" type="Node3D" parent="." unique_id=1491228548]
 
 [node name="Biomes" type="Node3D" parent="Saved Nodes" unique_id=480014983]
-
-[node name="WallsCombiner" type="CSGCombiner3D" parent="Saved Nodes" unique_id=608337287]
-script = ExtResource("5_d06r1")
-metadata/_custom_type_script = "uid://ccn212sobnkhi"

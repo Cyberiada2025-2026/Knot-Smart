@@ -1,6 +1,6 @@
 @tool
 class_name BiomeWall
-extends Node3D
+extends CSGCombiner3D
 
 @export_category("scenes")
 @export

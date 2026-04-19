@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://cw6sphrmgpqyd"]
-
-[ext_resource type="Script" uid="uid://cjw1sebemop24" path="res://shared/biome_generator/biome_generator.gd" id="1_uqoj5"]
-
-[node name="BiomeGenerator" type="Node3D" unique_id=301086409]
-script = ExtResource("1_uqoj5")

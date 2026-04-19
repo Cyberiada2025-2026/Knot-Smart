@@ -4,9 +4,11 @@ extends Node
 
 var biome_name: String = ""
 var area: float = 0
+var adjustent_biomes: Array[Biome] = []
 var triangles: Array[BiomeTriangle] = []
 var lines: Array[BiomeLine] = []
 var walls: Array[BiomeWall] = []
+var passage: Array[Node3D] = []
 var is_able_to_expand = true
 
 func open_biome() -> void:

@@ -21,7 +21,7 @@ func reset() -> void:
 	lines.clear()
 	triangles.clear()
 
-func generate_lines_and_triangles() -> void:
+func generate() -> void:
 	_set_lines_and_triangles(generator_main.points_generator.points)
 
 func _set_lines_and_triangles(points: Dictionary[Vector2, Vector2]) -> void:

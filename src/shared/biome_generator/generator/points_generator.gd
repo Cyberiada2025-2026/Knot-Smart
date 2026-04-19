@@ -13,7 +13,7 @@ extends Node3D
 
 var points: Dictionary[Vector2, Vector2] = {}
 
-func generate_points() -> void:
+func generate() -> void:
 	_create_point_grid()
 	_randomize_points()
 

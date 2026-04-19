@@ -21,9 +21,11 @@ var _free_triangles: Array[BiomeTriangle]
 var _size_proportion: Dictionary[Biome, float]
 
 func reset() -> void:
-	pass
+	biomes.clear()
+	_free_triangles.clear()
+	_size_proportion.clear()
 
-func generate_biomes() -> void:
+func generate() -> void:
 	_free_triangles = generator_main.triangle_generator.triangles.duplicate(false)
 	_init_biomes()
 	while _free_triangles.size() > 0:
@@ -36,6 +38,9 @@ func generate_biomes() -> void:
 			_size_proportion[biome] = biome.area / biomes_desired_minimum_area[biome.biome_name]
 	for biome in biomes:
 		for line in biome.lines:
+			for l_biome in line.biomes:
+				if not l_biome in biome.adjustent_biomes:
+					biome.adjustent_biomes.append(l_biome)
 			line.biomes.append(biome)
 		for triangle in biome.triangles:
 			triangle.biome = biome

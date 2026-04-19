@@ -103,6 +103,7 @@ cull_mask = 524287
 layer = -1
 
 [node name="Radiation" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera/CanvasLayer2" unique_id=1109211409]
+visible = false
 visibility_layer = 1048575
 z_index = 4096
 z_as_relative = false

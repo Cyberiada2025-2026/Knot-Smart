@@ -13,6 +13,7 @@ var rad_mat: ShaderMaterial
 func _ready() -> void:
 	rad_rect = CameraSetup.get_radiation()
 	rad_mat = rad_rect.material
+	rad_rect. visible = false
 
 func _process(delta: float) -> void:
 	if killing:

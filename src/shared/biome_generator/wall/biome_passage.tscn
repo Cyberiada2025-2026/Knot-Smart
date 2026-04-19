@@ -1,12 +1,12 @@
-[gd_scene format=3 uid="uid://dom1b3k6o3fv2"]
+[gd_scene format=3 uid="uid://b66tnl8clprem"]
 
 [ext_resource type="Script" uid="uid://e3gcoopho4a1" path="res://shared/biome_generator/wall/biome_passage.gd" id="1_66na4"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlqe6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66na4"]
 albedo_color = Color(1, 0, 0, 1)
 
-[node name="BiomePassage" type="CSGSphere3D" unique_id=1904701978]
-operation = 2
+[node name="BiomePassage" type="CSGSphere3D" unique_id=1780077377]
 radius = 3.0
-material = SubResource("StandardMaterial3D_tlqe6")
+material = SubResource("StandardMaterial3D_66na4")
 script = ExtResource("1_66na4")
+metadata/_custom_type_script = "uid://e3gcoopho4a1"

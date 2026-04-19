@@ -37,6 +37,8 @@ shape = SubResource("BoxShape3D_rosry")
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_qrj8t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6472224, 5.529564)
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player" unique_id=549211329]
+
 [node name="Plants Walls Generator" parent="." unique_id=1762565553 node_paths=PackedStringArray("walls_combiner") instance=ExtResource("2_rosry")]
-walls_combiner = NodePath("Saved Nodes/@CSGCombiner3D@34524")
-custom_seed = 353155011
+walls_combiner = NodePath("Saved Nodes/@CSGCombiner3D@42231")
+custom_seed = 347460306

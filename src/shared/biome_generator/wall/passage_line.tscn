@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://bms6pxexnu2xc"]
-
-[ext_resource type="Script" uid="uid://rd5ibb702lcp" path="res://shared/biome_generator/wall/passage_line.gd" id="1_kc8ul"]
-
-[node name="PassageLine" type="CSGCombiner3D" unique_id=161378667]
-script = ExtResource("1_kc8ul")

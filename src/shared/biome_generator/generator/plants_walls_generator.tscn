@@ -6,16 +6,30 @@
 [ext_resource type="Script" uid="uid://cle703ysgd1ey" path="res://shared/biome_generator/generator/biome_generator.gd" id="4_pk6b2"]
 [ext_resource type="Script" uid="uid://40evsrc1ymef" path="res://shared/biome_generator/generator/walls_generator.gd" id="5_pjyol"]
 [ext_resource type="Script" uid="uid://8cy5tgafubbm" path="res://shared/biome_generator/generator/passages_generator.gd" id="6_2c18v"]
+[ext_resource type="Script" uid="uid://ccn212sobnkhi" path="res://shared/biome_generator/wall/walls_combiner.gd" id="7_2c18v"]
+[ext_resource type="Script" uid="uid://bc6sdwcbq3i2l" path="res://shared/biome_generator/biome.gd" id="7_n8y37"]
+[ext_resource type="Script" uid="uid://rd5ibb702lcp" path="res://shared/biome_generator/wall/passage_line.gd" id="9_bqtct"]
+[ext_resource type="Script" uid="uid://bks3clvov8dgh" path="res://shared/biome_generator/wall/biome_wall.gd" id="9_yvdxd"]
+[ext_resource type="PackedScene" uid="uid://diqs35d18iqxr" path="res://shared/biome_generator/wall/wall_simple.tscn" id="10_hxs8k"]
+[ext_resource type="Script" uid="uid://e3gcoopho4a1" path="res://shared/biome_generator/wall/biome_passage.gd" id="10_rvrui"]
+[ext_resource type="PackedScene" uid="uid://b66tnl8clprem" path="res://shared/biome_generator/wall/biome_passage.tscn" id="12_hxs8k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15o0u"]
+albedo_color = Color(0, 0.64705884, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_66na4"]
+albedo_color = Color(1, 0, 0, 1)
 
 [node name="Plants Walls Generator" type="Node3D" unique_id=1762565553 node_paths=PackedStringArray("saved_nodes_node", "walls_combiner", "points_generator", "triangle_generator", "biome_generator", "walls_generator", "passage_generator")]
 script = ExtResource("1_t8ucm")
 saved_nodes_node = NodePath("Saved Nodes")
-walls_combiner = NodePath("")
+walls_combiner = NodePath("Saved Nodes/@CSGCombiner3D@39385")
 points_generator = NodePath("SubGenerators/Points Generator")
 triangle_generator = NodePath("SubGenerators/Triangle Generator")
 biome_generator = NodePath("SubGenerators/Biome Generator")
 walls_generator = NodePath("SubGenerators/Walls Generator")
 passage_generator = NodePath("SubGenerators/Passages Generator")
+custom_seed = 1511473747
 
 [node name="SubGenerators" type="Node3D" parent="." unique_id=386254087]
 
@@ -43,3 +57,2787 @@ generator_main = NodePath("../..")
 [node name="Saved Nodes" type="Node3D" parent="." unique_id=1491228548]
 
 [node name="Biomes" type="Node3D" parent="Saved Nodes" unique_id=480014983]
+
+[node name="biome1" type="Node" parent="Saved Nodes/Biomes" unique_id=1573481067]
+script = ExtResource("7_n8y37")
+
+[node name="biome2" type="Node" parent="Saved Nodes/Biomes" unique_id=302591944]
+script = ExtResource("7_n8y37")
+
+[node name="biome3" type="Node" parent="Saved Nodes/Biomes" unique_id=895478510]
+script = ExtResource("7_n8y37")
+
+[node name="@CSGCombiner3D@39385" type="CSGCombiner3D" parent="Saved Nodes" unique_id=1700804900]
+use_collision = true
+script = ExtResource("7_2c18v")
+
+[node name="@CSGCombiner3D@39389" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2055561756]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39389" unique_id=514626851 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.66184497, 0, 0.74964076, 0, 1, 0, -0.74964076, 0, 0.66184497, -96.79521, 0, -100.522415)
+size = Vector3(3.9476612, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39390" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=673012315]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39390" unique_id=1966810998 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9973983, 0, -0.07208768, 0, 1, 0, 0.07208768, 0, 0.9973983, -94.2293, 0, -101.91104)
+size = Vector3(2.5256445, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39391" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1096422567]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39391" unique_id=1573811884 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.93709713, 0, -0.34906864, 0, 1, 0, 0.34906864, 0, 0.93709713, -89.69646, 0, -100.6007)
+size = Vector3(6.9860587, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39392" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1669068595]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39392" unique_id=1357444586 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9206218, 0, 0.39045542, 0, 1, 0, -0.39045542, 0, 0.9206218, -84.99133, 0, -99.98866)
+size = Vector3(3.1105494, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39393" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=986242205]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39393" unique_id=1798633338 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9987792, 0, 0.04939803, 0, 1, 0, -0.04939803, 0, 0.9987792, -80.757935, 0, -100.73448)
+size = Vector3(5.6099906, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39394" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=953047518]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39394" unique_id=1294389655 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.98197484, 0, 0.18901156, 0, 1, 0, -0.18901156, 0, 0.98197484, -76.330536, 0, -101.18599)
+size = Vector3(3.3113585, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39395" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1669040007]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39395" unique_id=634551148 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.60477436, 0, -0.79639685, 0, 1, 0, 0.79639685, 0, 0.60477436, -73.731415, 0, -100.21727)
+size = Vector3(3.218661, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39396" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=708186637]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39396" unique_id=39623110 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.88831884, 0, 0.45922726, 0, 1, 0, -0.45922726, 0, 0.88831884, -71.026566, 0, -99.83076)
+size = Vector3(3.8985353, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39397" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=785357976]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39397" unique_id=102978083 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9991207, 0, -0.04192652, 0, 1, 0, 0.04192652, 0, 0.9991207, -66.69083, 0, -100.61664)
+size = Vector3(5.212912, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39398" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1539478878]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39398" unique_id=462632534 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.996769, 0, 0.080321275, 0, 1, 0, -0.080321275, 0, 0.996769, -60.759876, 0, -100.77544)
+size = Vector3(6.6751394, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39399" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1357899511]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39399" unique_id=607423038 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9988109, 0, -0.048752274, 0, 1, 0, 0.048752274, 0, 0.9988109, -57.14924, 0, -101.029655)
+size = Vector3(0.5683829, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39400" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=160955667]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39400" unique_id=1755795586 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99229395, 0, 0.123905934, 0, 1, 0, -0.123905934, 0, 0.99229395, -53.50692, 0, -101.435165)
+size = Vector3(6.7690854, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39401" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1560372930]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39401" unique_id=1490311565 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9834392, 0, -0.18123846, 0, 1, 0, 0.18123846, 0, 0.9834392, -47.62314, 0, -101.38914)
+size = Vector3(5.1356993, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39402" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1429312191]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39402" unique_id=2058940368 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.21656115, 0, -0.97626907, 0, 1, 0, 0.97626907, 0, 0.21656115, -44.93722, 0, -100.19979)
+size = Vector3(1.4831018, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39403" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1448911054]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39403" unique_id=837260616 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9480533, 0, 0.31811148, 0, 1, 0, -0.31811148, 0, 0.9480533, -42.580307, 0, -100.2128)
+size = Vector3(4.6333294, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39404" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=919849340]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39404" unique_id=1920108783 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99810207, 0, 0.061581276, 0, 1, 0, -0.061581276, 0, 0.99810207, -37.750786, 0, -101.11221)
+size = Vector3(5.2764134, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39405" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2136156742]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39405" unique_id=2101850248 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99969476, 0, -0.024705376, 0, 1, 0, 0.024705376, 0, 0.99969476, -33.158447, 0, -101.226265)
+size = Vector3(3.9194818, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39406" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=127584263]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39406" unique_id=854699986 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99996376, 0, 0.008514509, 0, 1, 0, -0.008514509, 0, 0.99996376, -29.159975, 0, -101.19521)
+size = Vector3(4.078803, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39407" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=737467753]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39407" unique_id=1252693259 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9997578, 0, 0.022006804, 0, 1, 0, -0.022006804, 0, 0.9997578, -24.04371, 0, -101.280304)
+size = Vector3(6.155364, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39408" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=408396993]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39408" unique_id=1072216608 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7114214, 0, -0.7027657, 0, 1, 0, 0.7027657, 0, 0.7114214, -19.460629, 0, -99.860214)
+size = Vector3(4.234184, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39409" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=151123356]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39409" unique_id=1658138485 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9010759, 0, 0.43366143, 0, 1, 0, -0.43366143, 0, 0.9010759, -16.585787, 0, -99.03111)
+size = Vector3(3.0379198, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39410" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=983968385]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39410" unique_id=394778448 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99585515, 0, -0.09095359, 0, 1, 0, 0.09095359, 0, 0.99585515, -12.286444, 0, -99.422165)
+size = Vector3(5.8856845, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39411" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1193777072]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39411" unique_id=1822952340 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9978353, 0, 0.06576285, 0, 1, 0, -0.06576285, 0, 0.9978353, -6.9186497, 0, -99.315125)
+size = Vector3(4.884875, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39412" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=95231585]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39412" unique_id=239802116 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7074855, 0, -0.70672786, 0, 1, 0, 0.70672786, 0, 0.7074855, -3.842093, 0, -98.83702)
+size = Vector3(1.8075458, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39413" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1530779787]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39413" unique_id=220303944 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9149821, 0, 0.40349445, 0, 1, 0, -0.40349445, 0, 0.9149821, -0.13674188, 0, -99.55034)
+size = Vector3(6.70165, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39414" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=656527201]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39414" unique_id=1426154569 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.93458897, 0, -0.35572955, 0, 1, 0, 0.35572955, 0, 0.93458897, 5.2286143, 0, -100.02716)
+size = Vector3(4.92069, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39415" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=172544565]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39415" unique_id=1490971308 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.92228836, 0, 0.3865025, 0, 1, 0, -0.3865025, 0, 0.92228836, 9.125528, 0, -99.82141)
+size = Vector3(3.4642162, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39416" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1813859341]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39416" unique_id=35364420 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9526738, 0, -0.30399445, 0, 1, 0, 0.30399445, 0, 0.9526738, 12.0884495, 0, -100.055176)
+size = Vector3(2.8664963, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39417" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1174009537]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39417" unique_id=621016906 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9909751, 0, -0.134046, 0, 1, 0, 0.134046, 0, 0.9909751, 16.689232, 0, -99.18184)
+size = Vector3(6.5296583, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39418" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1527096742]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39418" unique_id=550062881 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.96720666, 0, 0.25399083, 0, 1, 0, -0.25399083, 0, 0.96720666, 21.357346, 0, -99.120445)
+size = Vector3(2.962655, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39419" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1849877805]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39419" unique_id=1333345866 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9989849, 0, -0.04504627, 0, 1, 0, 0.04504627, 0, 0.9989849, 25.665075, 0, -99.36705)
+size = Vector3(5.755801, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39420" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=468552268]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39420" unique_id=1668851823 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.3092496, 0, 0.9509809, 0, 1, 0, -0.9509809, 0, 0.3092496, 28.946484, 0, -100.48723)
+size = Vector3(2.6284873, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39421" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=732589842]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39421" unique_id=47693074 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99638265, 0, -0.08497992, 0, 1, 0, 0.08497992, 0, 0.99638265, 32.54271, 0, -101.465)
+size = Vector3(6.402754, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39422" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=894297266]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39422" unique_id=28319869 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8715842, 0, -0.49024594, 0, 1, 0, 0.49024594, 0, 0.8715842, 37.831688, 0, -100.01221)
+size = Vector3(4.816931, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39423" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=210460806]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39423" unique_id=832882289 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.64049435, 0, 0.7679629, 0, 1, 0, -0.7679629, 0, 0.64049435, 40.740982, 0, -99.80281)
+size = Vector3(2.5296638, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39424" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1043250106]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39424" unique_id=1747857463 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99537426, 0, -0.096073575, 0, 1, 0, 0.096073575, 0, 0.99537426, 44.294662, 0, -100.509346)
+size = Vector3(5.512622, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39425" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=242206946]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39425" unique_id=368431723 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9720017, 0, -0.23497398, 0, 1, 0, 0.23497398, 0, 0.9720017, 49.620293, 0, -99.620346)
+size = Vector3(5.3128867, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39426" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1351190492]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39426" unique_id=900194005 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9999985, 0, -0.0017164185, 0, 1, 0, 0.0017164185, 0, 0.9999985, 53.97811, 0, -98.9931)
+size = Vector3(3.551515, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39427" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=283079458]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39427" unique_id=628887950 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.87968975, 0, 0.4755481, 0, 1, 0, -0.4755481, 0, 0.87968975, 58.313408, 0, -100.3737)
+size = Vector3(5.8191876, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39428" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=409895542]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39428" unique_id=173578296 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7800502, 0, -0.6257169, 0, 1, 0, 0.6257169, 0, 0.7800502, 62.94329, 0, -100.096634)
+size = Vector3(5.30823, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39429" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2005435668]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39429" unique_id=862726052 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.79719937, 0, 0.60371614, 0, 1, 0, -0.60371614, 0, 0.79719937, 66.246735, 0, -99.36973)
+size = Vector3(3.0935822, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39430" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=822491385]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39430" unique_id=16979119 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9990472, 0, -0.04364199, 0, 1, 0, 0.04364199, 0, 0.9990472, 70.26072, 0, -100.18207)
+size = Vector3(5.5670714, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39431" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=936825955]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39431" unique_id=637625586 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8227507, 0, 0.5684024, 0, 1, 0, -0.5684024, 0, 0.8227507, 74.18903, 0, -100.8533)
+size = Vector3(2.7892542, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39432" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1552948106]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39432" unique_id=1044712235 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9206054, 0, -0.39049408, 0, 1, 0, 0.39049408, 0, 0.9206054, 76.7371, 0, -101.0519)
+size = Vector3(3.0428555, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39433" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1569360818]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39433" unique_id=32330933 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9499859, 0, -0.31229278, 0, 1, 0, 0.31229278, 0, 0.9499859, 81.48836, 0, -99.35633)
+size = Vector3(7.0540423, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39434" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=366080497]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39434" unique_id=1683552158 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.70624995, 0, 0.7079626, 0, 1, 0, -0.7079626, 0, 0.70624995, 85.743515, 0, -99.1616)
+size = Vector3(2.5615213, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39435" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=479620311]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39435" unique_id=1017771902 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9839372, 0, -0.17851476, 0, 1, 0, 0.17851476, 0, 0.9839372, 90.04321, 0, -99.45235)
+size = Vector3(6.901189, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39436" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=517297472]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39436" unique_id=275122491 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9955874, 0, 0.09383844, 0, 1, 0, -0.09383844, 0, 0.9955874, 94.736496, 0, -98.95872)
+size = Vector3(2.6077287, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39437" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=131862369]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39437" unique_id=1841023419 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.98736453, 0, -0.15846525, 0, 1, 0, 0.15846525, 0, 0.98736453, 98.981125, 0, -98.60817)
+size = Vector3(5.9684577, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39438" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=263671267]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39438" unique_id=1404376960 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8769822, 0, -0.48052284, 0, 1, 0, 0.48052284, 0, 0.8769822, -17.59272, 0, -64.01073)
+size = Vector3(3.89603, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39439" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1231393734]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39439" unique_id=285416379 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.81547296, 0, -0.57879514, 0, 1, 0, 0.57879514, 0, 0.81547296, -37.38452, 0, -58.510284)
+size = Vector3(2.4833965, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39440" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1814435082]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39440" unique_id=637483923 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.95342934, 0, 0.30161652, 0, 1, 0, -0.30161652, 0, 0.95342934, -32.62419, 0, -58.977196)
+size = Vector3(7.8616395, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39441" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2131368010]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39441" unique_id=782512157 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9799145, 0, 0.19941816, 0, 1, 0, -0.19941816, 0, 0.9799145, -8.399271, 0, -58.57448)
+size = Vector3(7.0513825, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39442" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=309437132]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39442" unique_id=38034051 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9973069, 0, -0.073341146, 0, 1, 0, 0.073341146, 0, 0.9973069, -89.490974, 0, -54.00113)
+size = Vector3(6.397034, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39443" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1197045643]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39443" unique_id=196935920 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9348745, 0, 0.35497847, 0, 1, 0, -0.35497847, 0, 0.9348745, -56.1314, 0, -55.647137)
+size = Vector3(2.3895206, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39444" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=261792844]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39444" unique_id=235548914 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9987518, 0, 0.049948473, 0, 1, 0, -0.049948473, 0, 0.9987518, -53.044777, 0, -56.169754)
+size = Vector3(3.9442656, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39445" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1925508345]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39445" unique_id=222935166 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.97035456, 0, -0.24168585, 0, 1, 0, 0.24168585, 0, 0.97035456, -48.137802, 0, -55.536667)
+size = Vector3(6.054091, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39446" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1755430905]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39446" unique_id=727656592 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.89888495, 0, 0.43818468, 0, 1, 0, -0.43818468, 0, 0.89888495, -43.502808, 0, -55.632652)
+size = Vector3(3.7773178, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39447" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=979972253]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39447" unique_id=1022936130 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8725213, 0, -0.4885761, 0, 1, 0, 0.4885761, 0, 0.8725213, -82.29102, 0, -49.882675)
+size = Vector3(1.8887734, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39448" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=945736525]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39448" unique_id=1461210751 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99140364, 0, 0.1308389, 0, 1, 0, -0.1308389, 0, 0.99140364, -69.30955, 0, -50.29566)
+size = Vector3(3.016855, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39449" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1650106378]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39449" unique_id=1698878305 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9604614, 0, -0.27841318, 0, 1, 0, 0.27841318, 0, 0.9604614, -65.61127, 0, -49.854477)
+size = Vector3(4.5870113, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39450" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=933003979]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39450" unique_id=1143065609 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.94157493, 0, 0.3368035, 0, 1, 0, -0.3368035, 0, 0.94157493, 0.37713736, 0, -50.864975)
+size = Vector3(4.9712076, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39451" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1617756099]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39451" unique_id=163691758 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8638469, 0, -0.50375444, 0, 1, 0, 0.50375444, 0, 0.8638469, 4.240597, 0, -46.07792)
+size = Vector3(1.8921641, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39452" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=980336289]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39452" unique_id=1021945000 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.85441244, 0, 0.5195954, 0, 1, 0, -0.5195954, 0, 0.85441244, 7.6175137, 0, -47.15793)
+size = Vector3(5.9915953, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39453" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1499026267]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39453" unique_id=2125888378 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.95433104, 0, 0.29875126, 0, 1, 0, -0.29875126, 0, 0.95433104, -92.37756, 0, -37.418594)
+size = Vector3(3.820657, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39454" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1314974027]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39454" unique_id=1026306273 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9814041, 0, -0.19195294, 0, 1, 0, 0.19195294, 0, 0.9814041, -93.46242, 0, -35.16951)
+size = Vector3(6.7451835, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39455" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1380368932]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39455" unique_id=783573413 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9825757, 0, 0.18586276, 0, 1, 0, -0.18586276, 0, 0.9825757, 20.164577, 0, -33.493187)
+size = Vector3(1.9079975, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39456" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=923626414]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39456" unique_id=1327825575 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.996594, 0, -0.082464695, 0, 1, 0, 0.082464695, 0, 0.996594, 23.756449, 0, -33.45085)
+size = Vector3(5.3271346, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39457" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1508341060]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39457" unique_id=511023279 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.96254313, 0, 0.27112862, 0, 1, 0, -0.27112862, 0, 0.96254313, 32.62394, 0, -27.234207)
+size = Vector3(7.4571433, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39458" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=601644406]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39458" unique_id=1602315965 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9495164, 0, -0.31371734, 0, 1, 0, 0.31371734, 0, 0.9495164, 37.47516, 0, -27.828066)
+size = Vector3(2.6588442, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39459" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1202158527]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39459" unique_id=1825620222 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99345195, 0, -0.11425063, 0, 1, 0, 0.11425063, 0, 0.99345195, 49.169594, 0, -16.866425)
+size = Vector3(2.552945, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39460" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1182265914]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39460" unique_id=1428780211 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99664533, 0, 0.08184215, 0, 1, 0, -0.08184215, 0, 0.99664533, 53.669155, 0, -16.985947)
+size = Vector3(6.4846525, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39461" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1507287988]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39461" unique_id=607543996 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9990758, 0, -0.04298359, 0, 1, 0, 0.04298359, 0, 0.9990758, 51.824722, 0, -11.819793)
+size = Vector3(4.5819135, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39462" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=967701877]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39462" unique_id=2117516977 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7165572, 0, -0.69752836, 0, 1, 0, 0.69752836, 0, 0.7165572, -93.888596, 0, -6.9414544)
+size = Vector3(1.1654739, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39463" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1255823012]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39463" unique_id=1147306047 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99996454, 0, 0.008420067, 0, 1, 0, -0.008420067, 0, 0.99996454, -88.86572, 0, 4.4673023)
+size = Vector3(5.755583, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39464" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=511363376]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39464" unique_id=10719123 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.83762145, 0, 0.5462511, 0, 1, 0, -0.5462511, 0, 0.83762145, -84.84013, 0, 11.160248)
+size = Vector3(2.9209104, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39465" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=236933232]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39465" unique_id=2044063353 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.93644476, 0, -0.3508151, 0, 1, 0, 0.3508151, 0, 0.93644476, -82.06738, 0, 14.771368)
+size = Vector3(6.4619284, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39466" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1435601304]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39466" unique_id=2137006322 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.703585, 0, 0.7106111, 0, 1, 0, -0.7106111, 0, 0.703585, -77.575874, 0, 14.424311)
+size = Vector3(4.1669135, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39467" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=713494367]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39467" unique_id=280953585 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9991323, 0, 0.041649535, 0, 1, 0, -0.041649535, 0, 0.9991323, -70.223724, 0, 19.53645)
+size = Vector3(5.1296115, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39468" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=881686382]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39468" unique_id=617604883 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9995116, 0, -0.031249829, 0, 1, 0, 0.031249829, 0, 0.9995116, -62.77311, 0, 21.867788)
+size = Vector3(3.5075877, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39469" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=244919658]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39469" unique_id=159404135 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.83071536, 0, -0.5566974, 0, 1, 0, 0.5566974, 0, 0.83071536, 88.71039, 0, 22.611908)
+size = Vector3(5.615974, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39470" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1136810402]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39470" unique_id=773999366 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.38019463, 0, 0.9249065, 0, 1, 0, -0.9249065, 0, 0.38019463, -52.549904, 0, 26.778795)
+size = Vector3(2.8451197, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39471" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=99231883]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39471" unique_id=1308793190 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9466421, 0, -0.32228673, 0, 1, 0, 0.32228673, 0, 0.9466421, 76.08423, 0, 27.308825)
+size = Vector3(4.7614784, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39472" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1484783843]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39472" unique_id=948694548 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.97998, 0, -0.19909598, 0, 1, 0, 0.19909598, 0, 0.97998, 65.868484, 0, 29.880518)
+size = Vector3(6.3597517, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39473" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1890181385]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39473" unique_id=519039678 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.96652186, 0, 0.25658432, 0, 1, 0, -0.25658432, 0, 0.96652186, 70.44494, 0, 30.125967)
+size = Vector3(3.0216298, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39474" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1017429063]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39474" unique_id=452072298 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9784745, 0, 0.20636791, 0, 1, 0, -0.20636791, 0, 0.9784745, -43.68434, 0, 34.622543)
+size = Vector3(3.4181788, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39475" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1409559821]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39475" unique_id=854793139 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9995573, 0, -0.029751208, 0, 1, 0, 0.029751208, 0, 0.9995573, 57.36567, 0, 35.345146)
+size = Vector3(2.6758213, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39476" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=184712813]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39476" unique_id=1329049259 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9733904, 0, 0.22915308, 0, 1, 0, -0.22915308, 0, 0.9733904, -32.179962, 0, 39.85696)
+size = Vector3(5.9181533, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39477" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2045829018]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39477" unique_id=646520157 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9969544, 0, -0.077986814, 0, 1, 0, 0.077986814, 0, 0.9969544, -28.170982, 0, 43.590332)
+size = Vector3(4.525534, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39478" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1065826833]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39478" unique_id=2011359305 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7747156, 0, 0.63230985, 0, 1, 0, -0.63230985, 0, 0.7747156, 48.335228, 0, 43.175613)
+size = Vector3(2.3738835, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39479" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=198716260]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39479" unique_id=922604263 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7880916, 0, 0.61555797, 0, 1, 0, -0.61555797, 0, 0.7880916, -24.443607, 0, 47.15979)
+size = Vector3(5.4133916, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39480" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1547767567]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39480" unique_id=1357622368 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99529994, 0, -0.09683997, 0, 1, 0, 0.09683997, 0, 0.99529994, 42.657375, 0, 46.885754)
+size = Vector3(3.9439824, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39481" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2143686727]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39481" unique_id=157997885 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9248819, 0, 0.38025448, 0, 1, 0, -0.38025448, 0, 0.9248819, -5.1735053, 0, 54.87358)
+size = Vector3(3.0006592, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39482" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1046447832]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39482" unique_id=549769603 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8611914, 0, -0.5082808, 0, 1, 0, 0.5082808, 0, 0.8611914, 27.437752, 0, 55.84648)
+size = Vector3(4.75228, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39483" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2041845265]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39483" unique_id=2053869093 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.85170823, 0, -0.5240163, 0, 1, 0, 0.5240163, 0, 0.85170823, 16.478777, 0, 58.663734)
+size = Vector3(4.800604, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39484" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=445896407]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39484" unique_id=1519349120 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9051884, 0, 0.4250106, 0, 1, 0, -0.4250106, 0, 0.9051884, 20.828861, 0, 58.83893)
+size = Vector3(5.094469, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39485" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=954617155]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39485" unique_id=97307573 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9999995, 0, -0.0009593401, 0, 1, 0, 0.0009593401, 0, 0.9999995, -98.829445, 0, 100.61986)
+size = Vector3(6.0679502, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39486" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=573970794]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39486" unique_id=1232350588 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9736416, 0, -0.22808346, 0, 1, 0, 0.22808346, 0, 0.9736416, -93.33839, 0, 101.198364)
+size = Vector3(5.0472054, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39487" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=356045824]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39487" unique_id=500533149 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7814906, 0, 0.62391704, 0, 1, 0, -0.62391704, 0, 0.7814906, -89.29195, 0, 100.505066)
+size = Vector3(4.0674973, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39488" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1508540968]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39488" unique_id=453622770 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9026693, 0, -0.43033484, 0, 1, 0, 0.43033484, 0, 0.9026693, -86.22035, 0, 99.94281)
+size = Vector3(3.284115, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39489" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1063907401]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39489" unique_id=549359452 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99681276, 0, -0.07977703, 0, 1, 0, 0.07977703, 0, 0.99681276, -81.20766, 0, 100.93199)
+size = Vector3(7.083513, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39490" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=746577745]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39490" unique_id=972011697 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8901332, 0, 0.4557004, 0, 1, 0, -0.4557004, 0, 0.8901332, -75.795105, 0, 100.25102)
+size = Vector3(4.2287602, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39491" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=205612108]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39491" unique_id=1969756265 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.98896676, 0, 0.14813744, 0, 1, 0, -0.14813744, 0, 0.98896676, -73.08156, 0, 99.16295)
+size = Vector3(1.6814933, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39492" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1511455924]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39492" unique_id=754045035 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99608034, 0, -0.088453084, 0, 1, 0, 0.088453084, 0, 0.99608034, -70.16681, 0, 99.223404)
+size = Vector3(4.182953, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39493" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=369645864]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39493" unique_id=453701597 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.94116735, 0, -0.3379408, 0, 1, 0, 0.3379408, 0, 0.94116735, -66.53461, 0, 99.96457)
+size = Vector3(3.2914863, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39494" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1924982836]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39494" unique_id=40956404 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.88508266, 0, 0.46543384, 0, 1, 0, -0.46543384, 0, 0.88508266, -63.094475, 0, 99.52621)
+size = Vector3(4.273527, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39495" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1067310958]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39495" unique_id=1964699034 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8442494, 0, -0.5359504, 0, 1, 0, 0.5359504, 0, 0.8442494, -59.032467, 0, 99.90976)
+size = Vector3(5.142545, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39496" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=916385838]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39496" unique_id=2102976819 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8912721, 0, 0.4534689, 0, 1, 0, -0.4534689, 0, 0.8912721, -54.03007, 0, 99.84715)
+size = Vector3(6.3540645, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39497" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=405029197]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39497" unique_id=1196518234 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8960709, 0, -0.44391093, 0, 1, 0, 0.44391093, 0, 0.8960709, -48.357883, 0, 99.81368)
+size = Vector3(6.340096, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39498" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1365839438]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39498" unique_id=640995223 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9727078, 0, -0.23203342, 0, 1, 0, 0.23203342, 0, 0.9727078, -44.169556, 0, 101.5424)
+size = Vector3(2.77111, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39499" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1526773821]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39499" unique_id=980541770 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9751449, 0, 0.22156793, 0, 1, 0, -0.22156793, 0, 0.9751449, -40.90778, 0, 101.42899)
+size = Vector3(3.9256437, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39500" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=78265238]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39500" unique_id=451234561 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9724624, 0, 0.23305972, 0, 1, 0, -0.23305972, 0, 0.9724624, -35.959373, 0, 100.26688)
+size = Vector3(6.2405877, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39501" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=745653774]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39501" unique_id=1231072350 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.28331962, 0, -0.95902556, 0, 1, 0, 0.95902556, 0, 0.28331962, -32.58841, 0, 100.67903)
+size = Vector3(2.3760834, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39502" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1630398415]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39502" unique_id=1891455130 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8929366, 0, 0.4501824, 0, 1, 0, -0.4501824, 0, 0.8929366, -29.13521, 0, 100.24712)
+size = Vector3(6.980575, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39503" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1410783388]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39503" unique_id=593414087 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7400136, 0, -0.67259187, 0, 1, 0, 0.67259187, 0, 0.7400136, -24.229826, 0, 100.30167)
+size = Vector3(4.834447, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39504" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2123455623]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39504" unique_id=406966826 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.64178634, 0, 0.7668835, 0, 1, 0, -0.7668835, 0, 0.64178634, -21.324968, 0, 100.59384)
+size = Vector3(3.4780402, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39505" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1677052218]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39505" unique_id=1340892470 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.92368495, 0, -0.38315284, 0, 1, 0, 0.38315284, 0, 0.92368495, -18.101122, 0, 100.13454)
+size = Vector3(4.5638237, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39506" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=544348593]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39506" unique_id=780875325 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.98827827, 0, -0.15266317, 0, 1, 0, 0.15266317, 0, 0.98827827, -12.721914, 0, 101.514206)
+size = Vector3(6.6204834, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39507" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=347192820]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39507" unique_id=912866174 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.98593587, 0, 0.16712423, 0, 1, 0, -0.16712423, 0, 0.98593587, -7.571168, 0, 101.701004)
+size = Vector3(3.812227, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39508" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=897992879]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39508" unique_id=423321924 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8702865, 0, 0.49254584, 0, 1, 0, -0.49254584, 0, 0.8702865, -3.1434503, 0, 99.940155)
+size = Vector3(5.8564906, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39509" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1042134528]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39509" unique_id=1487779780 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.55456316, 0, -0.83214164, 0, 1, 0, 0.83214164, 0, 0.55456316, 0.29135185, 0, 99.82791)
+size = Vector3(3.1967132, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39510" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1283302225]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39510" unique_id=186956481 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.996607, 0, 0.08230722, 0, 1, 0, -0.08230722, 0, 0.996607, 3.93167, 0, 100.930534)
+size = Vector3(5.5266085, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39511" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=20506085]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39511" unique_id=451767037 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99533075, 0, 0.0965228, 0, 1, 0, -0.0965228, 0, 0.99533075, 8.392574, 0, 100.53756)
+size = Vector3(3.4299662, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39512" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1335787182]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39512" unique_id=241223001 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.950466, 0, 0.3108286, 0, 1, 0, -0.3108286, 0, 0.950466, 12.928265, 0, 99.44696)
+size = Vector3(5.952271, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39513" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=725673204]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39513" unique_id=185046709 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.97057086, 0, -0.24081573, 0, 1, 0, 0.24081573, 0, 0.97057086, 18.048803, 0, 99.09053)
+size = Vector3(4.7226286, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39514" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1716445137]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39514" unique_id=1221788579 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9872351, 0, -0.15926957, 0, 1, 0, 0.15926957, 0, 0.9872351, 21.738121, 0, 99.88463)
+size = Vector3(2.8311276, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39515" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1795358663]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39515" unique_id=340143241 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.96686137, 0, 0.25530204, 0, 1, 0, -0.25530204, 0, 0.96686137, 24.945387, 0, 99.63221)
+size = Vector3(3.743603, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39516" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1987829510]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39516" unique_id=34157391 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9975955, 0, 0.06930526, 0, 1, 0, -0.06930526, 0, 0.9975955, 28.585682, 0, 99.02716)
+size = Vector3(3.6698675, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39517" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1492054349]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39517" unique_id=805461029 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9822083, 0, -0.18779455, 0, 1, 0, 0.18779455, 0, 0.9822083, 32.977768, 0, 99.389755)
+size = Vector3(5.215927, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39518" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=70027555]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39518" unique_id=139536918 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.770251, 0, -0.6377409, 0, 1, 0, 0.6377409, 0, 0.770251, 36.763466, 0, 100.89306)
+size = Vector3(3.1785388, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39519" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=338110618]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39519" unique_id=1479034538 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9496785, 0, 0.3132265, 0, 1, 0, -0.3132265, 0, 0.9496785, 40.194984, 0, 101.17856)
+size = Vector3(4.6486897, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39520" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2127575297]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39520" unique_id=1120856879 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.95410895, 0, -0.29945973, 0, 1, 0, 0.29945973, 0, 0.95410895, 44.025154, 0, 100.95984)
+size = Vector3(3.4016898, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39521" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=268062527]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39521" unique_id=1048519209 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99790937, 0, -0.06462877, 0, 1, 0, 0.06462877, 0, 0.99790937, 48.690083, 0, 101.6662)
+size = Vector3(6.097021, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39522" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=521483989]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39522" unique_id=353282326 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.5675136, 0, 0.823364, 0, 1, 0, -0.823364, 0, 0.5675136, 52.8888, 0, 100.18523)
+size = Vector3(4.0759554, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39523" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2040033893]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39523" unique_id=1537887030 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8757847, 0, -0.4827019, 0, 1, 0, 0.4827019, 0, 0.8757847, 57.195217, 0, 100.2433)
+size = Vector3(7.1931777, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39524" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1087602792]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39524" unique_id=519035159 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.39007136, 0, 0.92078465, 0, 1, 0, -0.92078465, 0, 0.39007136, 61.097427, 0, 100.20337)
+size = Vector3(3.8576066, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39525" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=62373111]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39525" unique_id=2138417025 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9993356, 0, -0.036446694, 0, 1, 0, 0.036446694, 0, 0.9993356, 64.16868, 0, 98.51193)
+size = Vector3(4.640851, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39526" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2030186360]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39526" unique_id=1312775001 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.82432914, 0, -0.56611085, 0, 1, 0, 0.56611085, 0, 0.82432914, 68.51486, 0, 99.988754)
+size = Vector3(4.9186616, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39527" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1502872622]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39527" unique_id=1667487562 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.93261915, 0, 0.36086226, 0, 1, 0, -0.36086226, 0, 0.93261915, 73.60115, 0, 100.19739)
+size = Vector3(6.5599995, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39528" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=869750403]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39528" unique_id=1719473348 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.97346336, 0, 0.22884303, 0, 1, 0, -0.22884303, 0, 0.97346336, 78.67729, 0, 98.539566)
+size = Vector3(4.1442695, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39529" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=692380214]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39529" unique_id=1423044428 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.59199864, 0, -0.80593896, 0, 1, 0, 0.80593896, 0, 0.59199864, 81.95883, 0, 99.7867)
+size = Vector3(4.2716203, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39530" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1709221758]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39530" unique_id=1066223908 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99710757, 0, -0.07600353, 0, 1, 0, 0.07600353, 0, 0.99710757, 86.336136, 0, 101.745316)
+size = Vector3(6.2438674, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39531" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=594069552]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39531" unique_id=1063986797 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.94381666, 0, 0.3304696, 0, 1, 0, -0.3304696, 0, 0.94381666, 90.11249, 0, 101.75029)
+size = Vector3(1.4059001, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39532" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1600773640]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39532" unique_id=1255968973 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.99386746, 0, -0.11057768, 0, 1, 0, 0.11057768, 0, 0.99386746, 92.85723, 0, 101.74954)
+size = Vector3(4.1882515, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39533" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=149229206]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39533" unique_id=401719289 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9202973, 0, 0.39121962, 0, 1, 0, -0.39121962, 0, 0.9202973, 97.057976, 0, 101.080124)
+size = Vector3(4.606035, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39534" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1337530742]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39534" unique_id=233457023 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.518932, 0, -0.85481554, 0, 1, 0, 0.85481554, 0, -0.518932, -99.26358, 0, -97.12863)
+size = Vector3(4.4784393, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39535" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1097345765]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39535" unique_id=1581873849 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.43161303, 0, -0.90205884, 0, 1, 0, 0.90205884, 0, -0.43161303, 100.97528, 0, -96.14485)
+size = Vector3(4.4130716, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39536" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=666356791]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39536" unique_id=10935128 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.07474899, 0, -0.9972024, 0, 1, 0, 0.9972024, 0, -0.07474899, -100.524, 0, -93.90158)
+size = Vector3(2.6332214, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39537" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=644569231]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39537" unique_id=1152244973 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.18782887, 0, -0.98220176, 0, 1, 0, 0.98220176, 0, 0.18782887, 100.142944, 0, -93.526764)
+size = Vector3(1.2780727, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39538" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1426262220]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39538" unique_id=86040850 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.08176515, 0, -0.99665165, 0, 1, 0, 0.99665165, 0, -0.08176515, -100.79859, 0, -90.441185)
+size = Vector3(4.3093667, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39539" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1124522042]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39539" unique_id=323125140 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.114734694, 0, -0.99339616, 0, 1, 0, 0.99339616, 0, 0.114734694, 100.6605, 0, -89.457214)
+size = Vector3(6.929543, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39540" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1915559002]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39540" unique_id=1757759276 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.19109716, 0, -0.98157114, 0, 1, 0, 0.98157114, 0, 0.19109716, -100.45025, 0, -85.59952)
+size = Vector3(5.4895716, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39541" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1355086600]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39541" unique_id=1545567918 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.44186285, 0, -0.8970826, 0, 1, 0, 0.8970826, 0, -0.44186285, 100.5366, 0, -84.956696)
+size = Vector3(2.360149, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39542" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=877333644]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39542" unique_id=986127747 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.10032406, 0, -0.9949548, 0, 1, 0, 0.9949548, 0, -0.10032406, -100.01668, 0, -82.00333)
+size = Vector3(1.8131256, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39543" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1976831397]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39543" unique_id=1362696878 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.42113936, 0, -0.90699595, 0, 1, 0, 0.90699595, 0, -0.42113936, 99.03297, 0, -81.78273)
+size = Vector3(4.6644917, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39544" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=109495651]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39544" unique_id=1273299885 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.22967046, 0, -0.97326845, 0, 1, 0, 0.97326845, 0, -0.22967046, -100.987335, 0, -77.373405)
+size = Vector3(7.660637, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39545" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2117264775]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39545" unique_id=1654667868 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.20336536, 0, -0.9791029, 0, 1, 0, 0.9791029, 0, 0.20336536, 98.670715, 0, -76.68266)
+size = Vector3(6.0968666, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39546" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=574245044]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39546" unique_id=1215608316 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.3800663, 0, -0.92495924, 0, 1, 0, 0.92495924, 0, 0.3800663, -101.1097, 0, -71.80234)
+size = Vector3(3.9853423, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39547" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1893275238]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39547" unique_id=58541606 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.28675395, 0, -0.95800424, 0, 1, 0, 0.95800424, 0, 0.28675395, -94.7456, 0, -73.079346)
+size = Vector3(3.7104814, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39548" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=218868804]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39548" unique_id=2009006922 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.62127817, 0, -0.7835901, 0, 1, 0, 0.7835901, 0, 0.62127817, 100.448044, 0, -72.23818)
+size = Vector3(3.7258127, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39549" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=670479405]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39549" unique_id=1710639648 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.4064826, 0, -0.9136585, 0, 1, 0, 0.9136585, 0, -0.4064826, -100.849815, 0, -68.84105)
+size = Vector3(2.4476295, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39550" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=667114708]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39550" unique_id=1398228036 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.120039254, 0, -0.9927691, 0, 1, 0, 0.9927691, 0, -0.120039254, -94.43146, 0, -69.50023)
+size = Vector3(3.629831, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39551" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1073661486]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39551" unique_id=675036969 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.06892129, 0, -0.9976221, 0, 1, 0, 0.9976221, 0, -0.06892129, 101.51871, 0, -69.523285)
+size = Vector3(2.5162601, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39552" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=460837595]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39552" unique_id=319281959 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.11225754, 0, -0.99367917, 0, 1, 0, 0.99367917, 0, 0.11225754, -101.07619, 0, -65.323326)
+size = Vector3(4.829676, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39553" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1306119419]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39553" unique_id=2017783266 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.17569746, 0, -0.9844442, 0, 1, 0, 0.9844442, 0, -0.17569746, -95.09246, 0, -65.2155)
+size = Vector3(5.044331, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39554" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=289031500]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39554" unique_id=1893222592 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.12323199, 0, -0.9923779, 0, 1, 0, 0.9923779, 0, -0.12323199, -23.4482, 0, -65.3725)
+size = Vector3(2.6658347, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39555" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1049155771]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39555" unique_id=589039517 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.29463267, 0, -0.9556106, 0, 1, 0, 0.9556106, 0, -0.29463267, 100.60849, 0, -65.59718)
+size = Vector3(5.590074, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39556" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1157389773]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39556" unique_id=1739996547 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.4400819, 0, -0.8979576, 0, 1, 0, 0.8979576, 0, 0.4400819, -99.82089, 0, -60.915527)
+size = Vector3(4.4728713, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39557" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1681711315]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39557" unique_id=432997748 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.6473654, 0, -0.7621798, 0, 1, 0, 0.7621798, 0, 0.6473654, -30.422348, 0, -61.982895)
+size = Vector3(4.7760305, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39558" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=885608453]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39558" unique_id=310070782 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.09119499, 0, -0.99583304, 0, 1, 0, 0.99583304, 0, -0.09119499, 99.65007, 0, -61.452972)
+size = Vector3(2.9588127, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39559" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1960951315]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39559" unique_id=1202796092 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.23566432, 0, -0.97183454, 0, 1, 0, 0.97183454, 0, -0.23566432, -99.14114, 0, -57.651756)
+size = Vector3(2.5838652, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39560" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1783515341]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39560" unique_id=1425228074 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.3259885, 0, -0.9453737, 0, 1, 0, 0.9453737, 0, -0.3259885, -91.89748, 0, -56.507595)
+size = Vector3(4.806313, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39561" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=660436322]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39561" unique_id=1060834253 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.23172577, 0, -0.9727812, 0, 1, 0, 0.9727812, 0, -0.23172577, 99.043144, 0, -57.998253)
+size = Vector3(4.0738482, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39562" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1965410379]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39562" unique_id=973047092 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.22259057, 0, -0.974912, 0, 1, 0, 0.974912, 0, -0.22259057, -99.925705, 0, -54.293423)
+size = Vector3(4.3138065, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39563" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=747090850]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39563" unique_id=984437885 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.027529532, 0, -0.999621, 0, 1, 0, 0.999621, 0, 0.027529532, -2.046221, 0, -53.04074)
+size = Vector3(6.0281367, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39564" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1125446251]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39564" unique_id=296432461 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.13689332, 0, -0.9905858, 0, 1, 0, 0.9905858, 0, 0.13689332, 98.787445, 0, -54.451546)
+size = Vector3(3.1601942, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39565" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=318254417]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39565" unique_id=488822710 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.30713555, 0, -0.95166576, 0, 1, 0, 0.95166576, 0, -0.30713555, -101.19423, 0, -49.747715)
+size = Vector3(5.1339808, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39566" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=307767737]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39566" unique_id=1662567394 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.13584216, 0, -0.99073046, 0, 1, 0, 0.99073046, 0, 0.13584216, 3.0704231, 0, -49.128323)
+size = Vector3(5.1957836, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39567" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1586683281]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39567" unique_id=1579719091 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.30647445, 0, -0.9518789, 0, 1, 0, 0.9518789, 0, 0.30647445, 99.750885, 0, -50.565773)
+size = Vector3(4.875727, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39568" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=190427349]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39568" unique_id=1489982636 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.6551662, 0, -0.7554848, 0, 1, 0, 0.7554848, 0, 0.6551662, -100.081436, 0, -45.112484)
+size = Vector3(5.803728, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39569" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=267430655]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39569" unique_id=1551432576 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.40609613, 0, -0.91383034, 0, 1, 0, 0.91383034, 0, -0.40609613, -96.883995, 0, -46.696083)
+size = Vector3(4.2769732, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39570" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1364706050]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39570" unique_id=194742406 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.3638747, 0, -0.9314479, 0, 1, 0, 0.9314479, 0, -0.3638747, 99.26439, 0, -45.08735)
+size = Vector3(6.7805686, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39571" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1734106905]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39571" unique_id=1080825937 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.20349067, 0, -0.97907686, 0, 1, 0, 0.97907686, 0, -0.20349067, -98.79138, 0, -39.979683)
+size = Vector3(6.006652, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39572" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1169934206]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39572" unique_id=515880569 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.41031542, 0, -0.9119437, 0, 1, 0, 0.9119437, 0, 0.41031542, -95.97653, 0, -40.794876)
+size = Vector3(8.65622, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39573" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1582132773]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39573" unique_id=1971726926 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.3412341, 0, -0.93997836, 0, 1, 0, 0.93997836, 0, 0.3412341, 98.94696, 0, -39.405647)
+size = Vector3(5.36998, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39574" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1949253404]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39574" unique_id=495136051 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.42227408, 0, -0.9064682, 0, 1, 0, 0.9064682, 0, -0.42227408, -100.338455, 0, -35.030106)
+size = Vector3(4.432783, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39575" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=733631403]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39575" unique_id=2053996783 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.08193116, 0, -0.996638, 0, 1, 0, 0.996638, 0, 0.08193116, 19.047457, 0, -35.50235)
+size = Vector3(4.387703, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39576" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=805011424]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39576" unique_id=549494282 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.047500417, 0, -0.9988712, 0, 1, 0, 0.9988712, 0, -0.047500417, 99.80734, 0, -35.70766)
+size = Vector3(2.3509586, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39577" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1512591401]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39577" unique_id=1542456358 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.34662968, 0, -0.93800205, 0, 1, 0, 0.93800205, 0, 0.34662968, -100.76777, 0, -31.650087)
+size = Vector3(2.9230888, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39578" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=465337159]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39578" unique_id=1649929105 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.050074175, 0, -0.9987455, 0, 1, 0, 0.9987455, 0, -0.050074175, -90.21826, 0, -33.211334)
+size = Vector3(2.6248882, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39579" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=305149242]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39579" unique_id=1577863677 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.033535823, 0, -0.9994375, 0, 1, 0, 0.9994375, 0, 0.033535823, 99.84769, 0, -31.667034)
+size = Vector3(5.736177, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39580" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1387429890]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39580" unique_id=650006552 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.041956577, 0, -0.99911946, 0, 1, 0, 0.99911946, 0, 0.041956577, -100.21147, 0, -29.096056)
+size = Vector3(2.368285, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39581" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=31836168]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39581" unique_id=2127366543 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.44449317, 0, -0.89578223, 0, 1, 0, 0.89578223, 0, -0.44449317, -91.61075, 0, -29.226711)
+size = Vector3(5.9698133, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39582" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=160342383]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39582" unique_id=573873977 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.044381417, 0, -0.9990147, 0, 1, 0, 0.9990147, 0, 0.044381417, 28.943558, 0, -28.28231)
+size = Vector3(4.122115, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39583" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=863805085]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39583" unique_id=150508167 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.014456559, 0, -0.9998955, 0, 1, 0, 0.9998955, 0, 0.014456559, 99.95227, 0, -28.219568)
+size = Vector3(1.1621011, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39584" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=597644201]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39584" unique_id=369402699 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.1261606, 0, -0.9920098, 0, 1, 0, 0.9920098, 0, 0.1261606, -99.701706, 0, -24.29526)
+size = Vector3(7.293671, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39585" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1489078318]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39585" unique_id=1595434308 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.011205721, 0, -0.99993724, 0, 1, 0, 0.99993724, 0, -0.011205721, -92.96162, 0, -24.402893)
+size = Vector3(4.300254, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39586" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1938247888]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39586" unique_id=295344895 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.0016049895, 0, -0.9999987, 0, 1, 0, 0.9999987, 0, 0.0016049895, 99.965454, 0, -24.658018)
+size = Vector3(5.961128, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39587" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=117507150]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39587" unique_id=1108912824 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.39495042, 0, -0.9187024, 0, 1, 0, 0.9187024, 0, -0.39495042, -99.93616, 0, -19.061983)
+size = Vector3(3.51709, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39588" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1854043328]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39588" unique_id=686162206 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.6560412, 0, -0.75472504, 0, 1, 0, 0.75472504, 0, 0.6560412, -92.005875, 0, -21.125679)
+size = Vector3(2.987104, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39589" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1082300283]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39589" unique_id=553325831 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.11877323, 0, -0.9929214, 0, 1, 0, 0.9929214, 0, 0.11877323, 100.20345, 0, -19.727823)
+size = Vector3(3.9270673, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39590" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2087946634]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39590" unique_id=161711569 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.1987498, 0, -0.98005027, 0, 1, 0, 0.98005027, 0, -0.1987498, -100.91895, 0, -16.024965)
+size = Vector3(2.9007466, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39591" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1588065557]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39591" unique_id=1330127879 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.11474757, 0, -0.9933947, 0, 1, 0, 0.9933947, 0, -0.11474757, -91.33294, 0, -17.341623)
+size = Vector3(5.349003, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39592" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1751981416]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39592" unique_id=1034178053 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.30226797, 0, -0.953223, 0, 1, 0, 0.953223, 0, -0.30226797, 56.159546, 0, -14.914326)
+size = Vector3(4.903321, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39593" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=672465856]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39593" unique_id=895141235 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.11253126, 0, -0.9936482, 0, 1, 0, 0.9936482, 0, -0.11253126, 100.3044, 0, -16.610207)
+size = Vector3(2.3508956, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39594" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1653534814]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39594" unique_id=914505556 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.17180265, 0, -0.9851314, 0, 1, 0, 0.9851314, 0, 0.17180265, -100.67178, 0, -11.533297)
+size = Vector3(6.233137, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39595" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=984560461]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39595" unique_id=1903843992 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.03680264, 0, -0.99932253, 0, 1, 0, 0.99932253, 0, 0.03680264, 100.25838, 0, -13.099909)
+size = Vector3(4.68781, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39596" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2004782651]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39596" unique_id=1853643430 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.9778231, 0, -0.20943257, 0, 1, 0, 0.20943257, 0, -0.9778231, -101.07361, 0, -8.262322)
+size = Vector3(1.9170332, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39597" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2111066498]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39597" unique_id=230724417 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.086646535, 0, -0.9962391, 0, 1, 0, 0.9962391, 0, -0.086646535, 53.80635, 0, -8.189045)
+size = Vector3(7.091218, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39598" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=582402590]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39598" unique_id=1841329707 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.22416936, 0, -0.9745502, 0, 1, 0, 0.9745502, 0, 0.22416936, 100.9456, 0, -8.144989)
+size = Vector3(5.3616586, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39599" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=980786216]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39599" unique_id=198049802 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.19742829, 0, -0.98031735, 0, 1, 0, 0.98031735, 0, 0.19742829, -101.569115, 0, -5.8680983)
+size = Vector3(4.4750395, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39600" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1695714149]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39600" unique_id=1588293621 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.5442371, 0, -0.8389315, 0, 1, 0, 0.8389315, 0, -0.5442371, 100.70604, 0, -4.2367296)
+size = Vector3(3.0888255, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39601" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1730891437]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39601" unique_id=287599931 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.5150847, 0, -0.8571393, 0, 1, 0, 0.8571393, 0, 0.5150847, -99.711105, 0, -1.3178573)
+size = Vector3(5.4991336, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39602" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1226216086]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39602" unique_id=2045612775 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.10514415, 0, -0.994457, 0, 1, 0, 0.994457, 0, -0.10514415, -91.088326, 0, 0.5883476)
+size = Vector3(2.9782038, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39603" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=821807224]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39603" unique_id=1759130420 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.20660745, 0, -0.9784239, 0, 1, 0, 0.9784239, 0, -0.20660745, 99.19, 0, 0.2579013)
+size = Vector3(6.539035, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39604" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1373448447]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39604" unique_id=1760938321 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.12645514, 0, -0.9919723, 0, 1, 0, 0.9919723, 0, -0.12645514, -98.638916, 0, 3.7379513)
+size = Vector3(5.441779, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39605" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1749321531]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39605" unique_id=1225687930 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.20157371, 0, -0.97947335, 0, 1, 0, 0.97947335, 0, -0.20157371, -91.494156, 0, 3.2803645)
+size = Vector3(2.4731023, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39606" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=900764104]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39606" unique_id=2088589591 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.09081419, 0, -0.99586785, 0, 1, 0, 0.99586785, 0, 0.09081419, 98.59126, 0, 4.298702)
+size = Vector3(1.6906387, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39607" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1217201165]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39607" unique_id=167395844 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.28878185, 0, -0.9573949, 0, 1, 0, 0.9573949, 0, -0.28878185, -99.7601, 0, 9.013357)
+size = Vector3(5.38202, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39608" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1750225066]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39608" unique_id=1676796358 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.0100339595, 0, -0.99994963, 0, 1, 0, 0.99994963, 0, -0.0100339595, -86.025734, 0, 8.200547)
+size = Vector3(7.515331, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39609" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=500616785]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39609" unique_id=1618823180 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.06285094, 0, -0.9980229, 0, 1, 0, 0.9980229, 0, 0.06285094, 58.86704, 0, 6.506157)
+size = Vector3(3.5338693, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39610" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1437740866]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39610" unique_id=449813701 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.598475, 0, -0.8011415, 0, 1, 0, 0.8011415, 0, 0.598475, 100.222626, 0, 7.2215643)
+size = Vector3(5.195178, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39611" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1624280168]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39611" unique_id=744752538 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.12733643, 0, -0.99185956, 0, 1, 0, 0.99185956, 0, -0.12733643, -100.67894, 0, 12.693613)
+size = Vector3(2.2259111, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39612" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=275877494]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39612" unique_id=36182492 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.4108831, 0, -0.911688, 0, 1, 0, 0.911688, 0, -0.4108831, -84.35491, 0, 12.000185)
+size = Vector3(3.5927026, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39613" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=659127522]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39613" unique_id=921448767 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.22626068, 0, -0.9740668, 0, 1, 0, 0.9740668, 0, -0.22626068, 58.363194, 0, 10.916777)
+size = Vector3(5.435313, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39614" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=409282811]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39614" unique_id=713610024 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.41693798, 0, -0.90893495, 0, 1, 0, 0.90893495, 0, -0.41693798, 100.27522, 0, 12.576969)
+size = Vector3(7.2048473, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39615" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=466207193]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39615" unique_id=1698437722 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.12372686, 0, -0.9923163, 0, 1, 0, 0.9923163, 0, 0.12372686, -100.63609, 0, 15.2777405)
+size = Vector3(2.983388, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39616" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1334980025]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39616" unique_id=1475085682 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8240234, 0, -0.56655574, 0, 1, 0, 0.56655574, 0, 0.8240234, 99.58668, 0, 16.410616)
+size = Vector3(1.974309, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39617" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1816664026]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39617" unique_id=169378320 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.2057053, 0, -0.978614, 0, 1, 0, 0.978614, 0, -0.2057053, -101.07104, 0, 19.705189)
+size = Vector3(6.0232453, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39618" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1704053076]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39618" unique_id=914567133 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.3605844, 0, -0.93272656, 0, 1, 0, 0.93272656, 0, -0.3605844, 92.44989, 0, 20.53598)
+size = Vector3(7.8032017, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39619" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2022435718]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39619" unique_id=2025187324 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.04803997, 0, -0.9988454, 0, 1, 0, 0.9988454, 0, 0.04803997, 95.22268, 0, 20.691216)
+size = Vector3(3.4815073, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39620" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1105199947]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39620" unique_id=1671160665 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.18114682, 0, -0.9834561, 0, 1, 0, 0.9834561, 0, -0.18114682, 99.90103, 0, 19.679472)
+size = Vector3(5.510318, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39621" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1332641880]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39621" unique_id=2106233201 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.04282873, 0, -0.99908245, 0, 1, 0, 0.99908245, 0, -0.04282873, -101.77589, 0, 24.64322)
+size = Vector3(3.985289, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39622" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1620797921]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39622" unique_id=1542899402 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.026893904, 0, -0.9996383, 0, 1, 0, 0.9996383, 0, 0.026893904, 59.16487, 0, 25.457127)
+size = Vector3(5.5744042, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39623" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1085058335]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39623" unique_id=1638214181 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.37119803, 0, -0.9285537, 0, 1, 0, 0.9285537, 0, -0.37119803, 79.55675, 0, 25.027252)
+size = Vector3(6.566883, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39624" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1074927643]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39624" unique_id=1748384086 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.46728903, 0, -0.8841046, 0, 1, 0, 0.8841046, 0, -0.46728903, 82.579544, 0, 25.566322)
+size = Vector3(3.9235237, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39625" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1082404127]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39625" unique_id=857011319 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.033484798, 0, -0.99943924, 0, 1, 0, 0.99943924, 0, -0.033484798, 86.30682, 0, 23.165924)
+size = Vector3(4.236808, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39626" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=884274626]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39626" unique_id=23592262 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.45297056, 0, -0.8915255, 0, 1, 0, 0.8915255, 0, 0.45297056, 100.641304, 0, 24.828337)
+size = Vector3(5.4721646, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39627" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=131021261]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39627" unique_id=2047450401 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.10758158, 0, -0.99419624, 0, 1, 0, 0.99419624, 0, 0.10758158, -101.74843, 0, 27.67643)
+size = Vector3(2.0969536, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39628" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=701617739]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39628" unique_id=1912512247 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.2237941, 0, -0.97463644, 0, 1, 0, 0.97463644, 0, 0.2237941, 59.392933, 0, 28.910091)
+size = Vector3(1.3682474, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39629" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=44884118]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39629" unique_id=1008147106 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.8705663, 0, -0.49205112, 0, 1, 0, 0.49205112, 0, -0.8705663, 100.47177, 0, 28.063942)
+size = Vector3(3.236729, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39630" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1835805931]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39630" unique_id=983218844 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.15368567, 0, -0.9881198, 0, 1, 0, 0.9881198, 0, 0.15368567, -101.21188, 0, 31.443325)
+size = Vector3(5.5145245, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39631" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=71148688]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39631" unique_id=1165668222 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.09509351, 0, -0.9954683, 0, 1, 0, 0.9954683, 0, -0.09509351, -45.16337, 0, 32.952034)
+size = Vector3(4.0648336, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39632" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=118113858]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39632" unique_id=1229195253 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.14364547, 0, -0.9896292, 0, 1, 0, 0.9896292, 0, -0.14364547, 59.12451, 0, 32.480907)
+size = Vector3(5.8689504, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39633" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=641915444]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39633" unique_id=56813650 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.38877246, 0, -0.9213338, 0, 1, 0, 0.9213338, 0, 0.38877246, 100.058586, 0, 31.219934)
+size = Vector3(5.122301, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39634" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=694359903]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39634" unique_id=1494443177 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.5268827, 0, -0.849938, 0, 1, 0, 0.849938, 0, 0.5268827, -99.89468, 0, 35.609104)
+size = Vector3(3.3914773, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39635" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2054438379]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39635" unique_id=1398459015 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.2668476, 0, -0.96373874, 0, 1, 0, 0.96373874, 0, -0.2668476, -33.97735, 0, 36.62389)
+size = Vector3(8.116623, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39636" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1614653000]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39636" unique_id=1909618540 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.4422773, 0, -0.89687836, 0, 1, 0, 0.89687836, 0, -0.4422773, 100.08292, 0, 35.549423)
+size = Vector3(4.392605, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39637" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1670768131]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39637" unique_id=1943386311 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.11857094, 0, -0.9929456, 0, 1, 0, 0.9929456, 0, 0.11857094, -98.67478, 0, 39.784065)
+size = Vector3(5.5062237, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39638" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=585594878]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39638" unique_id=1026068484 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.25721595, 0, -0.96635395, 0, 1, 0, 0.96635395, 0, -0.25721595, -29.863243, 0, 41.29637)
+size = Vector3(4.382441, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39639" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1712958010]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39639" unique_id=217697132 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.6854986, 0, -0.72807395, 0, 1, 0, 0.72807395, 0, -0.6854986, 50.62213, 0, 40.97281)
+size = Vector3(3.9893963, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39640" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1140157265]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39640" unique_id=1552611960 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.15430194, 0, -0.98802376, 0, 1, 0, 0.98802376, 0, 0.15430194, 99.513794, 0, 40.09491)
+size = Vector3(5.213782, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39641" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=198617149]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39641" unique_id=406368376 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.46713474, 0, -0.88418615, 0, 1, 0, 0.88418615, 0, -0.46713474, -99.21678, 0, 44.161533)
+size = Vector3(3.718167, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39642" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1195654587]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39642" unique_id=421651374 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.1296745, 0, -0.99155664, 0, 1, 0, 0.99155664, 0, -0.1296745, -26.24592, 0, 46.29636)
+size = Vector3(5.1022, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39643" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1329545123]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39643" unique_id=151321748 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.32202256, 0, -0.946732, 0, 1, 0, 0.946732, 0, 0.32202256, 100.536896, 0, 44.495865)
+size = Vector3(3.8559618, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39644" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=986111338]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39644" unique_id=27021329 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.23131336, 0, -0.9728793, 0, 1, 0, 0.9728793, 0, -0.23131336, -100.493256, 0, 47.521446)
+size = Vector3(3.5279543, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39645" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1062492736]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39645" unique_id=1261567363 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.076475345, 0, -0.99707144, 0, 1, 0, 0.99707144, 0, 0.076475345, -22.06215, 0, 48.731407)
+size = Vector3(6.4945064, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39646" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=88165669]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39646" unique_id=1573580676 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.19366758, 0, -0.98106724, 0, 1, 0, 0.98106724, 0, -0.19366758, 100.8492, 0, 47.884186)
+size = Vector3(3.186407, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39647" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1258362080]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39647" unique_id=1738807261 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.034549676, 0, -0.999403, 0, 1, 0, 0.999403, 0, -0.034549676, -101.015945, 0, 52.554253)
+size = Vector3(6.6373053, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39648" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=326023745]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39648" unique_id=2041626068 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.37146455, 0, -0.9284471, 0, 1, 0, 0.9284471, 0, -0.37146455, 99.42002, 0, 52.24813)
+size = Vector3(6.0335264, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39649" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=377341012]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39649" unique_id=1194130433 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.20802219, 0, -0.9781241, 0, 1, 0, 0.9781241, 0, 0.20802219, -100.6525, 0, 58.119034)
+size = Vector3(4.5967703, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39650" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=304834631]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39650" unique_id=409838600 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.43381637, 0, -0.9010013, 0, 1, 0, 0.9010013, 0, -0.43381637, -9.073587, 0, 57.804646)
+size = Vector3(3.3940425, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39651" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=340288267]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39651" unique_id=628954433 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.49542877, 0, -0.8686486, 0, 1, 0, 0.8686486, 0, -0.49542877, 6.6955266, 0, 55.69339)
+size = Vector3(4.028699, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39652" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=836852683]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39652" unique_id=1391459988 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.71874875, 0, -0.6952699, 0, 1, 0, 0.6952699, 0, 0.71874875, 99.64696, 0, 56.35257)
+size = Vector3(3.7497306, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39653" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=390588078]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39653" unique_id=508619922 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.39460763, 0, -0.9188497, 0, 1, 0, 0.9188497, 0, 0.39460763, -99.244835, 0, 62.531593)
+size = Vector3(4.711224, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39654" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1570884203]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39654" unique_id=120371604 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.09959558, 0, -0.995028, 0, 1, 0, 0.995028, 0, 0.09959558, 101.189964, 0, 59.608788)
+size = Vector3(3.9248679, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39655" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1870091782]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39655" unique_id=1764379490 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.38045403, 0, -0.92479986, 0, 1, 0, 0.92479986, 0, -0.38045403, -98.86258, 0, 66.02638)
+size = Vector3(2.87702, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39656" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1304640021]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39656" unique_id=25225702 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.18586807, 0, -0.9825747, 0, 1, 0, 0.9825747, 0, -0.18586807, 100.72607, 0, 65.04704)
+size = Vector3(7.0947895, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39657" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=935666012]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39657" unique_id=341808374 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.22705382, 0, -0.9738822, 0, 1, 0, 0.9738822, 0, 0.22705382, -99.0195, 0, 69.03109)
+size = Vector3(3.4385626, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39658" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1293173461]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39658" unique_id=1803363830 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.13803688, 0, -0.9904271, 0, 1, 0, 0.9904271, 0, -0.13803688, 99.737885, 0, 70.89201)
+size = Vector3(4.7643895, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39659" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2137302749]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39659" unique_id=539415141 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.23205613, 0, -0.9727024, 0, 1, 0, 0.9727024, 0, -0.23205613, -99.415054, 0, 73.99983)
+size = Vector3(6.7736263, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39660" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1504889743]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39660" unique_id=2047089607 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9288401, 0, -0.37048087, 0, 1, 0, 0.37048087, 0, 0.9288401, 100.487656, 0, 73.68162)
+size = Vector3(2.3224623, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39661" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1052570958]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39661" unique_id=118943570 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.070571914, 0, -0.9975067, 0, 1, 0, 0.9975067, 0, 0.070571914, -100.11348, 0, 78.53115)
+size = Vector3(2.4801064, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39662" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=115730045]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39662" unique_id=1614204602 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.1627197, 0, -0.98667234, 0, 1, 0, 0.98667234, 0, -0.1627197, 101.038376, 0, 77.31267)
+size = Vector3(6.488137, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39663" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1759884204]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39663" unique_id=995193086 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.16310501, 0, -0.9866087, 0, 1, 0, 0.9866087, 0, -0.16310501, -100.29883, 0, 81.418655)
+size = Vector3(3.3458846, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39664" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=737044915]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39664" unique_id=1413252940 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.4512768, 0, -0.89238405, 0, 1, 0, 0.89238405, 0, -0.4512768, 99.89399, 0, 81.732635)
+size = Vector3(2.7323194, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39665" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=591272980]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39665" unique_id=880813250 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.047036972, 0, -0.99889314, 0, 1, 0, 0.99889314, 0, -0.047036972, -100.689804, 0, 85.57743)
+size = Vector3(5.022038, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39666" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1743274642]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39666" unique_id=1987094779 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.049917255, 0, -0.99875337, 0, 1, 0, 0.99875337, 0, -0.049917255, 99.12166, 0, 86.069275)
+size = Vector3(6.2427907, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39667" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1418556606]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39667" unique_id=212280747 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.030975914, 0, -0.9995201, 0, 1, 0, 0.9995201, 0, -0.030975914, -100.86406, 0, 89.89732)
+size = Vector3(3.6250534, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39668" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=788832412]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39668" unique_id=1258214748 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.111981265, 0, -0.99371034, 0, 1, 0, 0.99371034, 0, -0.111981265, 98.880005, 0, 89.94861)
+size = Vector3(1.5332874, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39669" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=659168026]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39669" unique_id=234707749 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.40321517, 0, -0.9151052, 0, 1, 0, 0.9151052, 0, 0.40321517, -99.90961, 0, 94.002556)
+size = Vector3(5.0126944, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39670" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2007103586]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39670" unique_id=673720512 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.5264508, 0, -0.8502056, 0, 1, 0, 0.8502056, 0, 0.5264508, 100.06908, 0, 92.769394)
+size = Vector3(4.843458, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39671" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=7772660]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39671" unique_id=1673856156 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.5657306, 0, -0.82459015, 0, 1, 0, 0.82459015, 0, -0.5657306, -100.38121, 0, 98.45654)
+size = Vector3(5.2399654, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39672" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=870031338]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39672" unique_id=1220562937 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.37530693, 0, -0.9269006, 0, 1, 0, 0.9269006, 0, -0.37530693, 100.26071, 0, 97.50375)
+size = Vector3(5.7727623, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39673" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1604580407]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39673" unique_id=10821151 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.61181337, 0, -0.79100215, 0, 1, 0, 0.79100215, 0, 0.61181337, -97.69261, 0, -77.979004)
+size = Vector3(7.894617, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39674" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=40942061]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39674" unique_id=1815354672 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.71818125, 0, -0.6958561, 0, 1, 0, 0.6958561, 0, -0.71818125, -30.101753, 0, -65.61148)
+size = Vector3(5.197892, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39675" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1496934577]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39675" unique_id=1975591160 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.808053, 0, -0.5891097, 0, 1, 0, 0.5891097, 0, 0.808053, -25.923847, 0, -65.73486)
+size = Vector3(5.720889, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39676" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1825098363]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39676" unique_id=206956120 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.9156525, 0, -0.40197068, 0, 1, 0, 0.40197068, 0, 0.9156525, -21.292519, 0, -65.82103)
+size = Vector3(4.3497367, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39677" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1968025695]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39677" unique_id=192161193 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7454931, 0, -0.6665133, 0, 1, 0, 0.6665133, 0, 0.7454931, -93.32484, 0, -60.756023)
+size = Vector3(5.931006, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39678" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=966291946]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39678" unique_id=366316932 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.61234987, 0, -0.7905869, 0, 1, 0, 0.7905869, 0, 0.61234987, -13.869246, 0, -60.473026)
+size = Vector3(6.581528, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39679" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1165234988]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39679" unique_id=1396683884 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.77614576, 0, -0.6305535, 0, 1, 0, 0.6305535, 0, -0.77614576, -40.101105, 0, -57.844604)
+size = Vector3(4.3909636, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39680" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1297637233]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39680" unique_id=727338412 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.6577481, 0, -0.75323796, 0, 1, 0, 0.75323796, 0, 0.6577481, -3.536796, 0, -57.665615)
+size = Vector3(4.280055, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39681" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=198854418]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39681" unique_id=1752585458 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.68137455, 0, -0.7319349, 0, 1, 0, 0.7319349, 0, 0.68137455, -84.708046, 0, -52.055313)
+size = Vector3(4.675916, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39682" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=698170307]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39682" unique_id=705113069 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.60111415, 0, -0.79916316, 0, 1, 0, 0.79916316, 0, -0.60111415, -78.9736, 0, -52.7362)
+size = Vector3(8.295994, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39683" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=312788544]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39683" unique_id=1982738684 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.6900261, 0, -0.7237845, 0, 1, 0, 0.7237845, 0, 0.6900261, -73.64259, 0, -53.07471)
+size = Vector3(8.224586, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39684" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1941304005]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39684" unique_id=238556584 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.71594197, 0, -0.6981598, 0, 1, 0, 0.6981598, 0, -0.71594197, -60.328396, 0, -52.21948)
+size = Vector3(8.604173, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39685" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1073710566]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39685" unique_id=1974154393 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7784294, 0, -0.6277322, 0, 1, 0, 0.6277322, 0, 0.7784294, -98.21069, 0, -50.420464)
+size = Vector3(5.6398835, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39686" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=319020523]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39686" unique_id=1953079479 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.6938501, 0, -0.7201194, 0, 1, 0, 0.7201194, 0, 0.6938501, 13.162554, 0, -45.61611)
+size = Vector3(8.605298, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39687" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=488876933]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39687" unique_id=956869827 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.49074507, 0, -0.8713032, 0, 1, 0, 0.8713032, 0, 0.49074507, 17.50783, 0, -40.103256)
+size = Vector3(5.5421133, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39688" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=566872889]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39688" unique_id=365066203 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.94403905, 0, -0.32983372, 0, 1, 0, 0.32983372, 0, -0.94403905, -93.66338, 0, -36.9031)
+size = Vector3(6.5864005, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39689" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=320988650]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39689" unique_id=1376394840 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.64530605, 0, -0.7639241, 0, 1, 0, 0.7639241, 0, 0.64530605, 27.631516, 0, -31.78627)
+size = Vector3(3.7829201, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39690" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=138040728]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39690" unique_id=1355328864 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.82068425, 0, -0.571382, 0, 1, 0, 0.571382, 0, 0.82068425, 41.338364, 0, -25.60019)
+size = Vector3(6.3383617, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39691" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=242004821]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39691" unique_id=1067127756 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.5047165, 0, -0.8632852, 0, 1, 0, 0.8632852, 0, 0.5047165, 45.920372, 0, -20.40082)
+size = Vector3(7.850378, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39692" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1176698344]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39692" unique_id=2144375349 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.6398081, 0, -0.76853466, 0, 1, 0, 0.76853466, 0, -0.6398081, -93.52545, 0, -12.419789)
+size = Vector3(5.89433, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39693" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1339780111]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39693" unique_id=1311239048 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.9937821, 0, -0.11134226, 0, 1, 0, 0.11134226, 0, -0.9937821, 52.47719, 0, -12.247807)
+size = Vector3(5.919409, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39694" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=873117471]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39694" unique_id=1033259501 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.47238326, 0, -0.88139325, 0, 1, 0, 0.88139325, 0, 0.47238326, -94.441055, 0, -8.344885)
+size = Vector3(4.1069207, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39695" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=630124987]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39695" unique_id=1821403916 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.46325156, 0, -0.88622683, 0, 1, 0, 0.88622683, 0, 0.46325156, -92.61896, 0, -4.120215)
+size = Vector3(7.284173, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39696" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1648423617]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39696" unique_id=957065774 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8227375, 0, -0.56842154, 0, 1, 0, 0.56842154, 0, 0.8227375, 55.509727, 0, -3.267672)
+size = Vector3(4.887565, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39697" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=249242060]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39697" unique_id=1010620396 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.46700236, 0, -0.88425606, 0, 1, 0, 0.88425606, 0, -0.46700236, 56.982414, 0, -0.86006564)
+size = Vector3(2.3036492, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39698" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1749463996]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39698" unique_id=1118223561 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.45022485, 0, -0.89291525, 0, 1, 0, 0.89291525, 0, 0.45022485, 57.600246, 0, 2.450579)
+size = Vector3(5.134052, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39699" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1555212938]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39699" unique_id=1580957873 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.44442296, 0, -0.8958171, 0, 1, 0, 0.8958171, 0, 0.44442296, -74.44815, 0, 16.293528)
+size = Vector3(7.478635, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39700" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2097887883]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39700" unique_id=1505976458 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8741555, 0, -0.48564604, 0, 1, 0, 0.48564604, 0, 0.8741555, 60.42502, 0, 15.051037)
+size = Vector3(6.124131, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39701" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1760947200]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39701" unique_id=1480838371 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7960791, 0, -0.60519254, 0, 1, 0, 0.60519254, 0, 0.7960791, -66.0936, 0, 20.621304)
+size = Vector3(3.938178, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39702" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1500835179]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39702" unique_id=880148202 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.5474316, 0, -0.83685046, 0, 1, 0, 0.83685046, 0, -0.5474316, 61.095825, 0, 19.604525)
+size = Vector3(7.3284497, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39703" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=503507830]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39703" unique_id=961443547 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.25342733, 0, -0.9673544, 0, 1, 0, 0.9673544, 0, 0.25342733, 94.58153, 0, 19.663406)
+size = Vector3(5.7198334, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39704" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=147686655]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39704" unique_id=898471661 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.778523, 0, -0.62761605, 0, 1, 0, 0.62761605, 0, 0.778523, 97.27049, 0, 20.670761)
+size = Vector3(5.475607, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39705" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2024427772]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39705" unique_id=1317213868 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7891299, 0, -0.61422634, 0, 1, 0, 0.61422634, 0, 0.7891299, -57.05546, 0, 25.008562)
+size = Vector3(10.048308, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39706" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=264707640]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39706" unique_id=854452246 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.1644404, 0, -0.986387, 0, 1, 0, 0.986387, 0, 0.1644404, 81.21919, 0, 24.639563)
+size = Vector3(5.3957753, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39707" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=403120753]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39707" unique_id=280300422 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.8836774, 0, -0.46809638, 0, 1, 0, 0.46809638, 0, 0.8836774, 84.86607, 0, 24.55753)
+size = Vector3(3.1002622, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39708" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1271959409]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39708" unique_id=1958253179 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.78983986, 0, -0.61331314, 0, 1, 0, 0.61331314, 0, 0.78983986, -48.48958, 0, 28.195946)
+size = Vector3(8.911873, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39709" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1442078192]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39709" unique_id=1348247673 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.51593024, 0, -0.8566306, 0, 1, 0, 0.8566306, 0, -0.51593024, 72.86784, 0, 28.13993)
+size = Vector3(3.7317967, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39710" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=542055042]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39710" unique_id=982578344 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.5507015, 0, -0.83470225, 0, 1, 0, 0.83470225, 0, -0.5507015, 60.72763, 0, 32.316185)
+size = Vector3(7.352959, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39711" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1390032191]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39711" unique_id=475875104 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.46953917, 0, -0.8829116, 0, 1, 0, 0.8829116, 0, 0.46953917, -40.49335, 0, 37.12555)
+size = Vector3(6.4688444, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39712" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1393239917]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39712" unique_id=2001848164 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.6416259, 0, -0.7670178, 0, 1, 0, 0.7670178, 0, -0.6416259, -35.934532, 0, 36.347)
+size = Vector3(9.476339, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39713" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1825854801]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39713" unique_id=556810741 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.6918434, 0, -0.72204757, 0, 1, 0, 0.72204757, 0, -0.6918434, 54.008923, 0, 37.412933)
+size = Vector3(5.837819, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39714" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1187377419]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39714" unique_id=818630136 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.6637083, 0, -0.7479915, 0, 1, 0, 0.7479915, 0, -0.6637083, 46.01789, 0, 45.501427)
+size = Vector3(4.21207, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39715" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2058533742]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39715" unique_id=671566728 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.8033235, 0, -0.5955429, 0, 1, 0, 0.5955429, 0, -0.8033235, 37.07377, 0, 49.379128)
+size = Vector3(9.014764, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39716" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1858896486]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39716" unique_id=204891767 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7631152, 0, -0.6462624, 0, 1, 0, 0.6462624, 0, 0.7631152, -19.39154, 0, 54.02051)
+size = Vector3(6.3483844, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39717" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1687817686]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39717" unique_id=186002223 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.6224174, 0, -0.7826855, 0, 1, 0, 0.7826855, 0, -0.6224174, 31.468472, 0, 54.558846)
+size = Vector3(6.376458, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39718" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1105271148]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39718" unique_id=1680027883 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.66449064, 0, -0.7472966, 0, 1, 0, 0.7472966, 0, 0.66449064, -15.93752, 0, 57.23219)
+size = Vector3(3.1053708, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39719" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1791593323]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39719" unique_id=2022835408 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.95179135, 0, -0.30674616, 0, 1, 0, 0.30674616, 0, -0.95179135, -11.621584, 0, 57.33407)
+size = Vector3(6.901075, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39720" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2094090675]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39720" unique_id=261637937 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.6410385, 0, -0.76750875, 0, 1, 0, 0.76750875, 0, -0.6410385, -8.185458, 0, 57.388878)
+size = Vector3(5.0677934, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39721" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1656416270]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39721" unique_id=1360837117 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.60902107, 0, -0.79315406, 0, 1, 0, 0.79315406, 0, 0.60902107, -1.5232513, 0, 57.249786)
+size = Vector3(7.430371, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39722" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=2139194973]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39722" unique_id=213966510 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.74360424, 0, -0.66862005, 0, 1, 0, 0.66862005, 0, -0.74360424, 4.216434, 0, 57.07007)
+size = Vector3(9.351908, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39723" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1915391586]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39723" unique_id=1501196272 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.58638746, 0, -0.8100307, 0, 1, 0, 0.8100307, 0, -0.58638746, 24.263014, 0, 56.197533)
+size = Vector3(3.8487375, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39724" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=780191186]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39724" unique_id=119589836 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(0.7343433, 0, -0.6787783, 0, 1, 0, 0.6787783, 0, 0.7343433, 8.870326, 0, 60.375847)
+size = Vector3(8.641099, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39725" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=825746895]
+script = ExtResource("9_yvdxd")
+
+[node name="WallSimple" type="CSGBox3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39725" unique_id=717373461 instance=ExtResource("10_hxs8k")]
+transform = Transform3D(-0.37548646, 0, -0.92682785, 0, 1, 0, 0.92682785, 0, -0.37548646, 13.238756, 0, 60.35724)
+size = Vector3(6.368612, 30, 0.5)
+material = SubResource("StandardMaterial3D_15o0u")
+
+[node name="@CSGCombiner3D@39726" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1225772840]
+operation = 2
+script = ExtResource("9_bqtct")
+
+[node name="BiomePassage" type="CSGSphere3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39726" unique_id=1780077377 instance=ExtResource("12_hxs8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.06215, 1.5, 48.731407)
+radius = 3.0
+material = SubResource("StandardMaterial3D_66na4")
+script = ExtResource("10_rvrui")
+metadata/_custom_type_script = "uid://e3gcoopho4a1"
+
+[node name="@CSGSphere3D@39729" type="CSGSphere3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39726" unique_id=1158529168 instance=ExtResource("12_hxs8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.549904, 1.5, 26.778795)
+radius = 3.0
+material = SubResource("StandardMaterial3D_66na4")
+script = ExtResource("10_rvrui")
+metadata/_custom_type_script = "uid://e3gcoopho4a1"
+
+[node name="@CSGSphere3D@39730" type="CSGSphere3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39726" unique_id=980729351 instance=ExtResource("12_hxs8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -57.05546, 1.5, 25.008562)
+radius = 3.0
+material = SubResource("StandardMaterial3D_66na4")
+script = ExtResource("10_rvrui")
+metadata/_custom_type_script = "uid://e3gcoopho4a1"
+
+[node name="@CSGCombiner3D@39727" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=977999400]
+operation = 2
+script = ExtResource("9_bqtct")
+
+[node name="BiomePassage" type="CSGSphere3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39727" unique_id=1736847058 instance=ExtResource("12_hxs8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.756449, 1.5, -33.45085)
+radius = 3.0
+material = SubResource("StandardMaterial3D_66na4")
+script = ExtResource("10_rvrui")
+metadata/_custom_type_script = "uid://e3gcoopho4a1"
+
+[node name="@CSGSphere3D@39731" type="CSGSphere3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39727" unique_id=390702463 instance=ExtResource("12_hxs8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -94.43146, 1.5, -69.50023)
+radius = 3.0
+material = SubResource("StandardMaterial3D_66na4")
+script = ExtResource("10_rvrui")
+metadata/_custom_type_script = "uid://e3gcoopho4a1"
+
+[node name="@CSGSphere3D@39732" type="CSGSphere3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39727" unique_id=1050325094 instance=ExtResource("12_hxs8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.47719, 1.5, -12.247807)
+radius = 3.0
+material = SubResource("StandardMaterial3D_66na4")
+script = ExtResource("10_rvrui")
+metadata/_custom_type_script = "uid://e3gcoopho4a1"
+
+[node name="@CSGCombiner3D@39728" type="CSGCombiner3D" parent="Saved Nodes/@CSGCombiner3D@39385" unique_id=1245096668]
+operation = 2
+script = ExtResource("9_bqtct")
+
+[node name="BiomePassage" type="CSGSphere3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39728" unique_id=849622830 instance=ExtResource("12_hxs8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.579544, 1.5, 25.566322)
+radius = 3.0
+material = SubResource("StandardMaterial3D_66na4")
+script = ExtResource("10_rvrui")
+metadata/_custom_type_script = "uid://e3gcoopho4a1"
+
+[node name="@CSGSphere3D@39733" type="CSGSphere3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39728" unique_id=772639105 instance=ExtResource("12_hxs8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.55675, 1.5, 25.027252)
+radius = 3.0
+material = SubResource("StandardMaterial3D_66na4")
+script = ExtResource("10_rvrui")
+metadata/_custom_type_script = "uid://e3gcoopho4a1"
+
+[node name="@CSGSphere3D@39734" type="CSGSphere3D" parent="Saved Nodes/@CSGCombiner3D@39385/@CSGCombiner3D@39728" unique_id=451825423 instance=ExtResource("12_hxs8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.72763, 1.5, 32.316185)
+radius = 3.0
+material = SubResource("StandardMaterial3D_66na4")
+script = ExtResource("10_rvrui")
+metadata/_custom_type_script = "uid://e3gcoopho4a1"

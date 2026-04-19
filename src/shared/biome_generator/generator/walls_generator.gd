@@ -17,6 +17,7 @@ func generate() -> void:
 		if not line.biomes.is_empty():
 			var wall: BiomeWall = BiomeWall.new()
 			generator_main.walls_combiner.add_child(wall)
+			wall.owner = generator_main
 			wall.create_wall(line.start_point, line.end_point)
 			for biome in line.biomes:
 				wall.add_biome(biome)

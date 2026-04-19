@@ -32,12 +32,12 @@ var biomes: Array[Biome]
 
 
 #func debug_reset() -> void:
-	#for x in saved_nodes_node.get_children(false):
-		#print(x)
+	#for x in biome_generator.biomes_parent.get_children(false):
+		#print(x.get_parent())
 
 
-func _ready() -> void:
-	regenerate()
+#func _ready() -> void:
+	#regenerate()
 
 func regenerate() -> void:
 	reset()

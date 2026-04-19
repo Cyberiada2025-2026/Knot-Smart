@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dvtuotksnd2hb"]
 
-[ext_resource type="PackedScene" uid="uid://djqe8wkjmmn8n" path="res://shared/rope_vfx/rope_vfx.tscn" id="2_cl5ih"]
-[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://shared/rope_vfx/rope.gdshader" id="3_agnij"]
+[ext_resource type="PackedScene" uid="uid://djqe8wkjmmn8n" path="res://characters/player/rope/vfx/rope_vfx.tscn" id="2_cl5ih"]
+[ext_resource type="Shader" uid="uid://b5b3i0xpignlr" path="res://characters/player/rope/vfx/rope.gdshader" id="3_agnij"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="4_epstj"]
 [ext_resource type="Script" uid="uid://cfqche3hcpffv" path="res://scenes/debug/vfx/blood&rope/blood_test.gd" id="5_em06k"]
 [ext_resource type="Script" uid="uid://d30f8fqqw8m22" path="res://scenes/debug/vfx/blood&rope/rope_vfx_test.gd" id="6_4k4jr"]
@@ -11,7 +11,7 @@ albedo_color = Color(0.16924527, 0.1692453, 0.16924527, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jka67"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_r2vhj"]
+[sub_resource type="CylinderMesh" id="CylinderMesh_anbpr"]
 resource_local_to_scene = true
 top_radius = 0.05
 bottom_radius = 0.05
@@ -19,7 +19,7 @@ height = 1.0
 radial_segments = 8
 rings = 10
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cl5ih"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r2vhj"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_agnij")
@@ -127,8 +127,8 @@ mesh = SubResource("PlaneMesh_jka67")
 
 [node name="RopeVFX" parent="." unique_id=917934477 instance=ExtResource("2_cl5ih")]
 transform = Transform3D(0.92935824, -0.036583424, 0.36736202, 0, 0.9950781, 0.09909397, -0.3691791, -0.0920938, 0.924784, 0, 4.832723, 8.939024)
-mesh = SubResource("CylinderMesh_r2vhj")
-mat = SubResource("ShaderMaterial_cl5ih")
+mesh = SubResource("CylinderMesh_anbpr")
+mat = SubResource("ShaderMaterial_r2vhj")
 
 [node name="Blood VFX" parent="." unique_id=11854146 instance=ExtResource("4_epstj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.30764604, 6.96047, 6.618123)

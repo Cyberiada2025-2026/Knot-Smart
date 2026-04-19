@@ -17,6 +17,9 @@ void vertex() {
 void fragment() {
 	// Called for every pixel the material is visible on.
 	#include "res://shared/shaders/include/affine_texture_mapping.gdshaderinc"
+	if (texture(main_texture, uv).a < 1.0)
+		discard;
+	
 	vec3 texture_color = texture(main_texture, uv).rgb;
 	if (use_vertex_color)
 		texture_color *= COLOR.rgb;

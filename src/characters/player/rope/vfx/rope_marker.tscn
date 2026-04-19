@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ymb8m1pspwfy"]
+
+[ext_resource type="Material" uid="uid://b7kderclyntkm" path="res://characters/player/rope/vfx/rope_marker.tres" id="1_tds5a"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_gsux6"]
+material = ExtResource("1_tds5a")
+radius = 0.12
+height = 0.24
+radial_segments = 8
+rings = 3
+
+[node name="RopeMarker" type="MeshInstance3D" unique_id=911016039]
+mesh = SubResource("SphereMesh_gsux6")

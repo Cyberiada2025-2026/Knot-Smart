@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://bopd2svf1i85m"]
+
+[ext_resource type="Shader" uid="uid://bjlcusf3ucmer" path="res://scenes/respawn/respawn.gdshader" id="1_hdj4x"]
+[ext_resource type="Script" uid="uid://c8lga2gghwau5" path="res://scenes/respawn/respawn.gd" id="2_pbthc"]
+
+[sub_resource type="Gradient" id="Gradient_hdj4x"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.025)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pbthc"]
+gradient = SubResource("Gradient_hdj4x")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pbthc"]
+shader = ExtResource("1_hdj4x")
+shader_parameter/color_ramp = SubResource("GradientTexture1D_pbthc")
+shader_parameter/points = PackedVector2Array(0.5, 0.375, 1, 0, 0, 0.75, 1, 0.75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="Respawn" type="Control" unique_id=328929917]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1578996848]
+material = SubResource("ShaderMaterial_pbthc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_pbthc")

@@ -24,7 +24,20 @@ size = Vector3(0.5, 6, 4)
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_hudno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
 
-[node name="HealthComponent" parent="Player" index="3" unique_id=1622957288]
+[node name="gravityController" parent="Player/PlayerPhysics" parent_id_path=PackedInt32Array(1889026106, 1615832908) index="3" unique_id=1906056142 node_paths=PackedStringArray("sensors")]
+sensors = {
+"falling_ui_down": NodePath("FallingSensors/back_sensor"),
+"falling_ui_left": NodePath("FallingSensors/left_sensor"),
+"falling_ui_right": NodePath("FallingSensors/right_sensor"),
+"falling_ui_up": NodePath("FallingSensors/front_sensor"),
+"floor": NodePath("floor_sensor"),
+"ui_down": NodePath("MoveingSensors/back_sensor"),
+"ui_left": NodePath("MoveingSensors/left_sensor"),
+"ui_right": NodePath("MoveingSensors/right_sensor"),
+"ui_up": NodePath("MoveingSensors/front_sensor")
+}
+
+[node name="HealthComponent" parent="Player" index="2" unique_id=1622957288]
 debug_log = false
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("2_qqkcj")]

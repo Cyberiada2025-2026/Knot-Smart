@@ -168,19 +168,16 @@ transform = Transform3D(1, 0, 0, 0, 0.205, 0, 0, 0, 1, 0, 0, 0)
 [node name="Middle" type="MeshInstance3D" parent="Model" unique_id=477339449]
 transform = Transform3D(0.20267618, 0, 0.07042813, 0, 0.21456409, 0, -0.070428126, 0, 0.20267618, -0.028785229, -0.0029413104, 0.15237129)
 mesh = SubResource("ArrayMesh_4os2j")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_xy3kx")
 
 [node name="Top page" type="MeshInstance3D" parent="Model" unique_id=1739222786]
 transform = Transform3D(0.14539309, 0.005989499, 0.15767919, -0.009140093, 0.21436913, 0.00028502537, -0.15752795, -0.0069100237, 0.14551613, 0.13379622, 0.0913392, -0.55383503)
 mesh = SubResource("ArrayMesh_u4nm2")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_y6g1u")
 
 [node name="Bottom page" type="MeshInstance3D" parent="Model" unique_id=1650611623]
 transform = Transform3D(-0.19641118, -0.001257067, 0.08636443, -0.012880619, 0.21256867, -0.02619927, -0.08540775, -0.029167308, -0.19466005, -0.74972534, -0.06822014, -0.08762327)
 mesh = SubResource("ArrayMesh_u8pga")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("ShaderMaterial_y6g1u")
 
 [node name="PointOfInterest" type="Node3D" parent="." unique_id=1639892580]
@@ -192,4 +189,3 @@ metadata/_custom_type_script = "uid://bm0wrygl0ikje"
 [node name="SpeechPOI" type="Node" parent="PointOfInterest" unique_id=1212759843]
 script = ExtResource("5_dnpa7")
 dialogue = SubResource("Resource_wjeqt")
-metadata/_custom_type_script = "uid://o84y6fkjp82d"

@@ -2,7 +2,7 @@
 class_name BuildingGenerator
 extends Node3D
 
-const NAV_MESH_OBSTACLE_HEIGHT: float = 30.0
+const NAV_MESH_OBSTACLE_HEIGHT: float = 100.0
 
 @export var room_generation_params: RoomGenerationParams
 @export_tool_button("Generate Building") var generate_building_action = generate_building

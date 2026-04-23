@@ -1,19 +1,27 @@
-class_name TeleporterMarker
+class_name Marker
 extends Area3D
 
-var allows_teleporter_placement = false
+var allows_placement = false
 
 @onready var marker_allowing_placement = $MarkerAllowingPlacement
 @onready var marker_colliding = $MarkerColliding
+@onready var collision_shape = $CollisionShape3D
+
+
+func resize(size: Vector3) -> void:
+	marker_allowing_placement.size = size
+	marker_colliding.size = size
+	collision_shape.shape.size = size
+
 
 func update_state(raycasted_body: Node3D) -> void:
 	var bodies = get_overlapping_bodies()
 	for body in bodies:
 		if body != raycasted_body:
-			allows_teleporter_placement = false
+			allows_placement = false
 			marker_allowing_placement.hide()
 			marker_colliding.show()
 			return
-	allows_teleporter_placement = true
+	allows_placement = true
 	marker_allowing_placement.show()
 	marker_colliding.hide()

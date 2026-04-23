@@ -1,26 +1,17 @@
 class_name TeleporterManager
 extends Node3D
 
-enum State { IDLE, SELECTING_POSITION }
+## remove when inventory will be added
+@onready var placer = $ItemPlacer
 
-@export var placement_range: float = 3
-## maximum surface angle in degrees which allows teleporter placement
-@export var max_placement_angle = 20
 
-var state = State.IDLE
-var marker: TeleporterMarker = preload("res://shared/teleporters/teleporter_placement_marker.tscn").instantiate()
+#var marker: Marker = preload("res://shared/placer/marker.gd").instantiate()
 const teleporter_scene = preload("res://shared/teleporters/teleporter.tscn")
-
-var prev_mouse_mode
-var prev_camera_mode
 
 @onready var teleporters = $Teleporters
 @onready var input_window = $InputWindow
 
 var camera: PlayerCamera
-
-func _ready() -> void:
-	add_child(marker)
 
 
 func _physics_process(_delta: float) -> void:
@@ -28,17 +19,6 @@ func _physics_process(_delta: float) -> void:
 	if not camera:
 		camera = get_node("../PlayerPhysics/PlayerCamera")
 
-	match state:
-		State.IDLE:
-			if (
-				Input.is_action_just_pressed("teleporter_place_mode")
-				and camera.get_view_type() == PlayerCamera.ViewType.THIRD_PERSON
-			):
-				state = State.SELECTING_POSITION
-				prev_mouse_mode = Input.get_mouse_mode()
-				prev_camera_mode = camera.rotation_strategy
-				camera.rotation_strategy = get_node("CameraMode")
-				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 				#PlayerCamera.
 				#print("toggled")
 		State.SELECTING_POSITION:
@@ -111,12 +91,6 @@ func _physics_process(_delta: float) -> void:
 				#get_tree().root.add_child(teleporter_instance)
 
 				set_idle()
-
-
-func set_idle():
-	Input.set_mouse_mode(prev_mouse_mode)
-	camera.rotation_strategy = prev_camera_mode
-	state = State.IDLE
 
 
 func _3d_to_2d(vector: Vector3) -> Vector2:

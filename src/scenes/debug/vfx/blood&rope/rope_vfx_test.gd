@@ -9,7 +9,8 @@ func _input(event):
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_T:
 			length = 2.0
-			rope.start(length)
+			var param = RopeParams
+			rope.start(param)
 		elif event.keycode == KEY_E:
 			length += .2
 			rope.set_length(length)

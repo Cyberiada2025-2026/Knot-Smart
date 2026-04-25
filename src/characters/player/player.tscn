@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
 [ext_resource type="Script" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
 [ext_resource type="Script" uid="uid://c0v1x4a4fbhnn" path="res://shared/tooltips/tooltip_manager.gd" id="12_on558"]
+[ext_resource type="PackedScene" uid="uid://vof8qmvanvac" path="res://shared/placer/placement_marker.tscn" id="14_aqrcq"]
 [ext_resource type="Script" uid="uid://2pbcecv8ynln" path="res://characters/player/camera_rotation_type/qe_keyboard.gd" id="14_icpky"]
 [ext_resource type="PackedScene" uid="uid://bnculq0wcru8a" path="res://ui/input_window/input_window.tscn" id="15_58jvb"]
 [ext_resource type="Script" uid="uid://ckn31258hj17y" path="res://shared/placer/item_placer.gd" id="16_8l73k"]
@@ -125,18 +126,17 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_on558")
 text = "Very long testing tooltip lorem ipsum dolor wtf"
 fit_content = true
 
-[node name="ItemPlacer" type="Node" parent="." unique_id=1426939755]
+[node name="ItemPlacer" type="Node3D" parent="." unique_id=741573797]
 script = ExtResource("16_8l73k")
+marker_scene = ExtResource("14_aqrcq")
 metadata/_custom_type_script = "uid://ckn31258hj17y"
+
+[node name="CameraMode" type="Node" parent="ItemPlacer" unique_id=261280100]
+script = ExtResource("14_icpky")
 
 [node name="TeleporterManager" type="Node3D" parent="." unique_id=704307264]
 script = ExtResource("1_on558")
-placement_range = null
-max_placement_angle = null
 metadata/_custom_type_script = "uid://ejle6y71jiml"
-
-[node name="CameraMode" type="Node" parent="TeleporterManager" unique_id=261280100]
-script = ExtResource("14_icpky")
 
 [node name="Teleporters" type="Node" parent="TeleporterManager" unique_id=620020159]
 

@@ -19,7 +19,7 @@ func add_item(item: ItemDescription):
 	update_count_label()
 
 
-func remove_item(item: ItemDescription, quantity: int) -> int:
+func remove_item(quantity: int) -> int:
 	var diff = len(items)-quantity
 	for i in clampi(quantity, 0, len(items)):
 		var popped_item = items.pop_back()

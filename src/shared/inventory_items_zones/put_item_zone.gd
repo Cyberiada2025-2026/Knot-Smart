@@ -13,7 +13,6 @@ func _ready() -> void:
 		item_copy.main_node = get_parent()
 		items.erase(item)
 		items.set(item_copy, quantity)
-		
 	for sibling in get_parent().find_children("", "CollisionShape3D"):
 		add_child(sibling.duplicate())
 		break

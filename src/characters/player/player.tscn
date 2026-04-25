@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://by54s7xnmwcc1" path="res://characters/player/player_main.gd" id="1_4ntmi"]
 [ext_resource type="PackedScene" uid="uid://bd54neo0vnuug" path="res://characters/player/player_physics.tscn" id="1_l8h54"]
 [ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
-
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
 [ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_6dc8e"]
 [ext_resource type="PackedScene" uid="uid://b0gb5qnl30ap5" path="res://characters/player/gravity_controller.tscn" id="4_ixbpm"]
@@ -18,16 +17,18 @@
 radius = 0.25
 height = 0.8
 
-[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_gravity_controller", "inventory_manager") groups=["Player"]]
+[sub_resource type="SphereShape3D" id="SphereShape3D_on558"]
+radius = 1.0
+
+[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_gravity_controller") groups=["Player"]]
 script = ExtResource("1_4ntmi")
 player_physics = NodePath("PlayerPhysics")
 player_camera = NodePath("PlayerPhysics/PlayerCamera")
 player_gravity_controller = NodePath("PlayerPhysics/gravityController")
-inventory_manager = NodePath("InventoryManager")
 
 [node name="PlayerPhysics" parent="." unique_id=1615832908 node_paths=PackedStringArray("player") instance=ExtResource("1_l8h54")]
-player = NodePath("..")
 collision_layer = 3
+player = NodePath("..")
 
 [node name="PlayerCamera" parent="PlayerPhysics" unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
 player = NodePath("../..")
@@ -69,12 +70,18 @@ metadata/_custom_type_script = "uid://bwbgvbw8rs0aa"
 
 [node name="BloodVfx" parent="PlayerPhysics/VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("7_on558")]
 
+[node name="CheckZonesNearby" type="Area3D" parent="PlayerPhysics" unique_id=1733871244]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPhysics/CheckZonesNearby" unique_id=1854980343]
+shape = SubResource("SphereShape3D_on558")
+
 [node name="RopeManager" type="Node3D" parent="." unique_id=1597735802]
 top_level = true
 script = ExtResource("7_rpf03")
 metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 
-[node name="InventoryManager" parent="." unique_id=1515545349 instance=ExtResource("5_ixbpm")]
+[node name="InventoryManager" parent="." unique_id=1515545349 node_paths=PackedStringArray("area") instance=ExtResource("5_ixbpm")]
+area = NodePath("../PlayerPhysics/CheckZonesNearby")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1622957288]
 script = ExtResource("6_c6leb")

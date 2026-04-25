@@ -8,11 +8,10 @@ const GRID_SIZE = Vector2(320.0, 70.0)
 
 @export var column_num = 7
 @export var row_num = 2
+@export var area: Area3D
 
-var interaction = {"NONE": 0, "TAKE": 1, "PUT": 2}
 var grid: GridContainer
-var items: Dictionary[ItemDescription, int] = {}
-var interaction_type: int = interaction["NONE"]
+var items_node: Node3D = null
 var inventory_cell: PackedScene
 
 
@@ -49,26 +48,27 @@ func set_cells():
 
 
 func interact():
+	get_items_node()
+	if items_node == null:
+		return
+	var items = items_node.get_items()
 	for item in items:
 		for cell in grid.get_children():
-			if interaction_type == interaction["PUT"]:
+			if items_node is PutItemZone:
 				if cell.get_type()==item.item_name:
 					items[item] = cell.remove_item(item, items[item])
 					break
-			elif interaction_type == interaction["TAKE"]:
+			elif items_node is TakeItemZone:
 				if cell.get_type()==item.item_name or cell.is_empty():
 					cell.add_item(item)
+					items_node = null
 					break
 
 
-func set_items(can_interact: bool, items: Dictionary[ItemDescription, int], type: String):
-	if can_interact:
-		self.items = items
-		interaction_type = interaction[type]
-	else:
-		if self.items.is_empty():
-			interaction_type = interaction["NONE"]
-			return
-		if items.hash() == self.items.hash():
-			interaction_type = interaction["NONE"]
-			self.items = {}
+func get_items_node():
+	for body in area.get_overlapping_bodies():
+		print(body.name)
+		for child in body.get_children():
+			if child is TakeItemZone or child is PutItemZone:
+				items_node = child
+				return

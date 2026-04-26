@@ -256,18 +256,28 @@ _data = {
 render_priority = 1
 shader = ExtResource("5_r4opj")
 
-[sub_resource type="Curve" id="Curve_jsors"]
-_data = [Vector2(0, 0.2611227), 0.0, 2.4381776, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_3ywe0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_r4opj"]
-curve = SubResource("Curve_jsors")
+[sub_resource type="Curve" id="Curve_twqtl"]
+_data = [Vector2(0, 0.4971999), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_roen0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_aidfc"]
+curve_x = SubResource("Curve_3ywe0")
+curve_y = SubResource("Curve_twqtl")
+curve_z = SubResource("Curve_roen0")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xkqvk"]
 gravity = Vector3(0, 0, 0)
 scale_min = 1.5999999
 scale_max = 1.5999999
-scale_curve = SubResource("CurveTexture_r4opj")
+scale_curve = SubResource("CurveXYZTexture_aidfc")
 
 [sub_resource type="SphereMesh" id="SphereMesh_3ywe0"]
 
@@ -275,20 +285,34 @@ scale_curve = SubResource("CurveTexture_r4opj")
 render_priority = 2
 shader = ExtResource("6_xkqvk")
 
-[sub_resource type="Curve" id="Curve_xkqvk"]
-_data = [Vector2(0, 0.79471993), 0.0, 0.0, 0, 0, Vector2(0.5032051, 0.7883049), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.27319, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Gradient" id="Gradient_xkqvk"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.65460527, 1)
+colors = PackedColorArray(1.1460991, 2.454227, 2.432425, 1, 0.5657006, 1.1694933, 1.353256, 0.78431374, 0.162, 0.2787999, 0.6, 0)
 
-[sub_resource type="CurveTexture" id="CurveTexture_3ywe0"]
-curve = SubResource("Curve_xkqvk")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3ywe0"]
+gradient = SubResource("Gradient_xkqvk")
+use_hdr = true
+
+[sub_resource type="Curve" id="Curve_83ifv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_acawx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_mimjo"]
+curve_x = SubResource("Curve_83ifv")
+curve_y = SubResource("Curve_twqtl")
+curve_z = SubResource("Curve_acawx")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jsors"]
 gravity = Vector3(0, 0, 0)
 scale_min = 1.5
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_r4opj")
-color = Color(0, 0.9000001, 1, 1)
-alpha_curve = SubResource("CurveTexture_3ywe0")
+scale_curve = SubResource("CurveXYZTexture_mimjo")
+color_ramp = SubResource("GradientTexture1D_3ywe0")
 
 [node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "mesh_node", "splash", "break1", "break2", "fuse_vfx1", "fuse_vfx2")]
 script = ExtResource("1_mc67o")

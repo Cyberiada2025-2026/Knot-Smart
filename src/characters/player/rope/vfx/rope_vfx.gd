@@ -49,7 +49,5 @@ func end() -> void:
 	queue_free()
 
 func on_fuse() -> void:
-	break1.visible = false
-	break2.visible = false
 	fuse_vfx1.emitting = true
 	fuse_vfx2.emitting = true

@@ -18,19 +18,19 @@ var spawned_cells = 1
 func _ready() -> void:
 	points.resize(points_amount)
 	points.fill(Vector2.ONE * 10000)
-	
+
 	speeds.resize(points_amount)
 	speeds.fill(Vector2.ZERO)
-	
+
 	points[0] = Vector2.ONE * 0.5
 
 	material.set_shader_parameter(points_param, points)
 	var tween = get_tree().create_tween()
 	tween.tween_method(
-  	func(value): material.set_shader_parameter("tint", value),  
-  	Color.BLACK,  # Start value
-  	Color.WHITE,  # End value
-  	sequence[0]     # Duration
+		func(value): material.set_shader_parameter("tint", value),  
+		Color.BLACK,  # Start value
+		Color.WHITE,  # End value
+		sequence[0]     # Duration
 	)
 
 func _process(delta: float) -> void:
@@ -53,9 +53,9 @@ func _process(delta: float) -> void:
 
 	material.set_shader_parameter(points_param, points)
 
-func Spawn() -> void:
+func spawn() -> void:
 	if spawned_cells > points_amount - 1:
-		RespawnPlayer()
+		respawn_player()
 		return
 
 	var p: int = randi_range(0, spawned_cells - 1)
@@ -63,5 +63,5 @@ func Spawn() -> void:
 	spawned_cells += 1
 
 #TODO
-func RespawnPlayer() -> void:
+func respawn_player() -> void:
 	pass

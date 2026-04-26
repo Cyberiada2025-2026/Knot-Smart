@@ -18,8 +18,8 @@ shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/points = PackedVector2Array(0.5, 0.375, 1, 0, 0, 0.75, 1, 0.75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="Curve" id="Curve_pbthc"]
-_limits = [-1.0, 0.5, 0.0, 1.0]
-_data = [Vector2(0, -1), 0.0, 0.0, 0, 1, Vector2(0.08, -1), 0.0, 25.0, 0, 1, Vector2(0.12, 0), 25.0, 0.0, 1, 0, Vector2(0.3, 0.002), 0.011111111, -0.010000002, 1, 1, Vector2(0.5, 0), 0.0, nan, 0, 1]
+_limits = [-2.0, 0.5, 0.0, 1.0]
+_data = [Vector2(0, -2), 0.0, 12.5, 0, 1, Vector2(0.08, -1), 12.5, 25.0, 1, 1, Vector2(0.12, 0), 25.0, 0.0, 1, 0, Vector2(0.3, 0.002), 0.011111111, -0.010000002, 1, 1, Vector2(0.5, 0), 0.0, nan, 0, 1]
 point_count = 5
 
 [node name="Respawn" type="Control" unique_id=328929917]
@@ -40,6 +40,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_pbthc")
 points_amount = 150
+points_param = null
+tint_param = null
+acceleration = null
+drag = null
 center_pull = 0.0
 force = SubResource("Curve_pbthc")
 sequence = Array[float]([2.0, 2.0, 1.6, 1.2, 0.8, 0.6, 0.4, 0.3, 0.2, 0.1, 0.06])

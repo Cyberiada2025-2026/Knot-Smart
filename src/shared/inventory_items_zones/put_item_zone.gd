@@ -12,10 +12,7 @@ func _ready() -> void:
 		var quantity = items[item]
 		item_copy.main_node = get_parent()
 		items.erase(item)
-		items.set(item_copy, quantity)
-	for sibling in get_parent().find_children("", "CollisionShape3D"):
-		add_child(sibling.duplicate())
-		break
+		items[item_copy] = quantity
 
 
 func get_items() -> Dictionary[ItemDescription, int]:

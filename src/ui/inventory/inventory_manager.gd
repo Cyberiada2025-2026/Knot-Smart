@@ -2,13 +2,10 @@ class_name InventoryManager
 extends Control
 
 
-const SIZE = Vector2(320.0, 240.0)
-const POSITION = Vector2(0.0, 170.0)
-const GRID_SIZE = Vector2(320.0, 70.0)
-
+@export var grid_size = Vector2(320.0, 70.0)
 @export var column_num = 7
 @export var row_num = 2
-@export var area: Area3D
+@export var interaction_area: Area3D
 
 var grid: GridContainer
 var items_node: Node3D = null
@@ -30,10 +27,8 @@ func _input(event: InputEvent) -> void:
 
 func set_grid():
 	set_anchors_preset(Control.PRESET_FULL_RECT)
-	size = SIZE
-	position = POSITION
 	grid = GridContainer.new()
-	grid.size = GRID_SIZE
+	grid.size = grid_size
 	grid.visible = false
 	add_child(grid)
 
@@ -56,7 +51,7 @@ func interact():
 		for cell in grid.get_children():
 			if items_node is PutItemZone:
 				if cell.get_type()==item.item_name:
-					items[item] = cell.remove_item(item, items[item])
+					items[item] = cell.remove_item(items[item])
 					break
 			elif items_node is TakeItemZone:
 				if cell.get_type()==item.item_name or cell.is_empty():
@@ -66,8 +61,7 @@ func interact():
 
 
 func get_items_node():
-	for body in area.get_overlapping_bodies():
-		print(body.name)
+	for body in interaction_area.get_overlapping_bodies():
 		for child in body.get_children():
 			if child is TakeItemZone or child is PutItemZone:
 				items_node = child

@@ -62,3 +62,4 @@ mesh = SubResource("BoxMesh_0s7xm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1728497591]
 shape = SubResource("BoxShape3D_qf5ih")
+disabled = true

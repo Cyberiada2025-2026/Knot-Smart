@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b8wjx2twngp62" path="res://shared/teleporters/teleporter.gd" id="1_e7ttm"]
 [ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="2_rxnek"]
+[ext_resource type="Script" uid="uid://g0qjk7chw0sp" path="res://shared/tooltips/tooltip.gd" id="3_ehr63"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehr63"]
 render_priority = 0
@@ -10,12 +11,51 @@ shader_parameter/billboard = false
 shader_parameter/use_vertex_color = false
 shader_parameter/tint = Color(0.34509805, 0.60784316, 0.7176471, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_fmxqo"]
+material = SubResource("ShaderMaterial_ehr63")
+size = Vector3(0.1, 1, 0.1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_qf5ih"]
 material = SubResource("ShaderMaterial_ehr63")
-size = Vector3(0.5, 1, 0.5)
+size = Vector3(0.5, 0.2, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h6k7k"]
+size = Vector3(0.1, 0.2, 0.3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_flu31"]
+render_priority = 0
+shader = ExtResource("2_rxnek")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/tint = Color(0.6051229, 0.58887154, 0.02677841, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gkcne"]
+material = SubResource("ShaderMaterial_flu31")
+size = Vector3(0.1, 0.2, 0.3)
 
 [node name="Teleporter" type="Node3D" unique_id=1622436731]
 script = ExtResource("1_e7ttm")
 
+[node name="Patyk" type="MeshInstance3D" parent="." unique_id=445761726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0.2)
+mesh = SubResource("BoxMesh_fmxqo")
+skeleton = NodePath("../TeleporterMesh")
+
 [node name="TeleporterMesh" type="MeshInstance3D" parent="." unique_id=911016039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
 mesh = SubResource("BoxMesh_qf5ih")
+
+[node name="ControlPanel" type="StaticBody3D" parent="." unique_id=1816457983]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.2, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ControlPanel" unique_id=895206254]
+shape = SubResource("BoxShape3D_h6k7k")
+
+[node name="ControlPanel" type="MeshInstance3D" parent="ControlPanel" unique_id=1146228555]
+mesh = SubResource("BoxMesh_gkcne")
+skeleton = NodePath("../../TeleporterMesh")
+
+[node name="Tooltip" type="Node" parent="ControlPanel" unique_id=79554690]
+script = ExtResource("3_ehr63")
+message = "Press E to use Teleporter"
+metadata/_custom_type_script = "uid://g0qjk7chw0sp"

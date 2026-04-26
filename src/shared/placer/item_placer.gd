@@ -37,10 +37,14 @@ func start_placing_next(item: PackedScene, size: Vector3 = Vector3.ZERO) -> bool
 
 	if _camera.get_view_type() == PlayerCamera.ViewType.THIRD_PERSON:
 		_state = State.SELECTING_POSITION
+
+		_marker.collision_shape.disabled = false
+
 		_prev_mouse_mode = Input.get_mouse_mode()
 		_prev_camera_mode = _camera.rotation_strategy
 		_camera.rotation_strategy = get_node("CameraMode")
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 		_item_to_be_placed = item
 		return true
 
@@ -55,10 +59,12 @@ func _set_idle():
 	Input.set_mouse_mode(_prev_mouse_mode)
 	_camera.rotation_strategy = _prev_camera_mode
 	_state = State.IDLE
+	_marker.collision_shape.disabled = true
 
 
 func _physics_process(_delta: float) -> void:
 	_marker.hide()
+
 
 	if _state != State.SELECTING_POSITION:
 		return

@@ -28,15 +28,15 @@ func _ready() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_method(
 		func(value): material.set_shader_parameter("tint", value),  
-		Color.BLACK,  # Start value
-		Color.WHITE,  # End value
-		sequence[0]     # Duration
+		Color.BLACK,		# Start value
+		Color.WHITE,		# End value
+		sequence[0]		# Duration
 	)
 
 func _process(delta: float) -> void:
 	timer += delta
 	if timer >= sequence[min(spawned_cells, sequence.size() - 1)]:
-		Spawn()
+		spawn()
 		timer = 0.0
 
 	var r: Vector2

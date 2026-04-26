@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="TreeParameters" format=3 uid="uid://c4cjyeqqa3ian"]
+
+[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/tree_generator/tree_parameters.gd" id="1_avkc2"]
+[ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/tree_generator/tree_materials/bark.tres" id="1_n04d3"]
+
+[resource]
+script = ExtResource("1_avkc2")
+segment_displacement = 0.98
+material = ExtResource("1_n04d3")
+trunk_segment_count = 4
+trunk_radius = 1.6
+trunk_rate_of_shrinking = 0.7999999999999999
+max_count = 4
+branch_radius = 0.7999999999999999
+branch_rate_of_shrinking = 0.6699999999999999
+metadata/_custom_type_script = "uid://s0k1bcrvckmc"

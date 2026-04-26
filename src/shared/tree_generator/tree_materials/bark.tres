@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://wu6m01tfoh1q"]
+
+[ext_resource type="Texture2D" uid="uid://jtgb3oas16dr" path="res://shared/tree_generator/tree_materials/kora.png" id="1_cvlcd"]
+
+[resource]
+shading_mode = 0
+albedo_color = Color(0.47007585, 0.47007585, 0.47007585, 1)
+albedo_texture = ExtResource("1_cvlcd")
+uv1_triplanar = true

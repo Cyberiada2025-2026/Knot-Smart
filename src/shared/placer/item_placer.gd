@@ -7,24 +7,18 @@ enum State { IDLE, SELECTING_POSITION }
 @export var placement_range: float = 3
 ## maximum surface angle in degrees which allows teleporter placement
 @export var max_placement_angle = 20
-@export var marker_scene: PackedScene
 
 ## returned object don't have parent
 signal placement_finished(placed_object: Node3D)
 
 var _state = State.IDLE
-var _marker: Marker
+@onready var _marker: Marker = $Marker
 
 var _prev_mouse_mode
 var _prev_camera_mode
 var _camera: PlayerCamera
 
 var _item_to_be_placed
-
-func _ready() -> void:
-	_marker = marker_scene.instantiate()
-	add_child(_marker)
-
 
 ## enter item placement mode [BR]
 ## marker is resized automatically based on provided sprite size [BR]
@@ -117,7 +111,7 @@ func _physics_process(_delta: float) -> void:
 
 	_marker.show()
 
-	if Input.is_action_just_pressed("left_mouse") and _marker.allows_teleporter_placement:
+	if Input.is_action_just_pressed("left_mouse") and _marker.allows_placement:
 		_place()
 
 
@@ -127,7 +121,6 @@ func _place():
 	placed_item.quaternion = _marker.quaternion
 	_set_idle()
 	########## TO DELETE
-	print(placed_item.global_position)
 
 	placement_finished.emit(placed_item)
 

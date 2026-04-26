@@ -2,7 +2,7 @@ class_name TeleporterManager
 extends Node3D
 
 ## remove when inventory will be added
-@onready var placer: ItemPlacer = $ItemPlacer
+@onready var placer: ItemPlacer = $"../ItemPlacer"
 
 #var marker: Marker = preload("res://shared/placer/marker.gd").instantiate()
 const teleporter_scene = preload("res://shared/teleporters/teleporter.tscn")
@@ -21,5 +21,6 @@ func _process(_delta: float) -> void:
 
 func create_teleporter(teleporter_instance):
 	teleporters.add_child(teleporter_instance)
+	print(teleporter_instance.global_position)
 	teleporter_instance.teleporter_name = await input_window.get_input("enter teleporter name")
 	print("T name:")

@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="6_c6leb"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="7_on558"]
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
-[ext_resource type="Script" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
+[ext_resource type="Script" uid="uid://bkffe8kvogeke" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
 [ext_resource type="Script" uid="uid://c0v1x4a4fbhnn" path="res://shared/tooltips/tooltip_manager.gd" id="12_on558"]
 [ext_resource type="PackedScene" uid="uid://vof8qmvanvac" path="res://shared/placer/placement_marker.tscn" id="14_aqrcq"]
 [ext_resource type="Script" uid="uid://2pbcecv8ynln" path="res://characters/player/camera_rotation_type/qe_keyboard.gd" id="14_icpky"]
@@ -128,11 +128,12 @@ fit_content = true
 
 [node name="ItemPlacer" type="Node3D" parent="." unique_id=741573797]
 script = ExtResource("16_8l73k")
-marker_scene = ExtResource("14_aqrcq")
 metadata/_custom_type_script = "uid://ckn31258hj17y"
 
 [node name="CameraMode" type="Node" parent="ItemPlacer" unique_id=261280100]
 script = ExtResource("14_icpky")
+
+[node name="Marker" parent="ItemPlacer" unique_id=1708508446 instance=ExtResource("14_aqrcq")]
 
 [node name="TeleporterManager" type="Node3D" parent="." unique_id=704307264]
 script = ExtResource("1_on558")
@@ -145,5 +146,6 @@ metadata/_custom_type_script = "uid://ejle6y71jiml"
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]
 [connection signal="health_decreased" from="HealthComponent" to="PlayerPhysics/VfxPlayerSequence" method="play"]
+[connection signal="placement_finished" from="ItemPlacer" to="TeleporterManager" method="create_teleporter"]
 
 [editable path="PlayerPhysics"]

@@ -250,7 +250,7 @@ _data = {
 &"rope_on": SubResource("Animation_jo2uc")
 }
 
-[node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "mesh_node", "splash", "break1", "break2", "first_ball", "second_ball")]
+[node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "mesh_node", "splash", "break1", "break2")]
 script = ExtResource("1_mc67o")
 player = NodePath("AnimationPlayer")
 mesh = SubResource("CylinderMesh_i5arm")
@@ -259,8 +259,6 @@ mat = SubResource("ShaderMaterial_mc67o")
 splash = NodePath("Mesh/Splash")
 break1 = NodePath("Mesh/Break1")
 break2 = NodePath("Mesh/Break2")
-first_ball = NodePath("")
-second_ball = NodePath("")
 
 [node name="Mesh" type="CSGMesh3D" parent="." unique_id=1415216167]
 material_override = SubResource("ShaderMaterial_mc67o")

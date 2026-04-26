@@ -6,30 +6,61 @@
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="4_5dc8e"]
 [ext_resource type="PackedScene" uid="uid://cjjffdo72xk1u" path="res://shared/journal/journal.tscn" id="5_ixbpm"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
-[ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_5dc8e"]
-[ext_resource type="Script" uid="uid://byo26dev45wl4" path="res://characters/player/player_detection/footstapes_maker.gd" id="4_ixbpm"]
+[ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_6dc8e"]
+[ext_resource type="PackedScene" uid="uid://b0gb5qnl30ap5" path="res://characters/player/gravity_controller.tscn" id="4_ixbpm"]
 [ext_resource type="Script" uid="uid://bwbgvbw8rs0aa" path="res://shared/vfx/player/vfx_player_sequence.gd" id="6_3t07l"]
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="6_c6leb"]
-[ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="7_dirf7"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="7_on558"]
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
+[ext_resource type="Script" uid="uid://bkffe8kvogeke" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
+[ext_resource type="Script" uid="uid://c0v1x4a4fbhnn" path="res://shared/tooltips/tooltip_manager.gd" id="12_on558"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hysn5"]
 radius = 0.25
 height = 0.8
 
-[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_floor_sensor") groups=["Player"]]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_on558"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_gravity_controller") groups=["Player"]]
 script = ExtResource("1_4ntmi")
 player_physics = NodePath("PlayerPhysics")
-player_camera = NodePath("PlayerCamera")
-player_floor_sensor = NodePath("PlayerPhysics/PlayerFloorSensor")
+player_camera = NodePath("PlayerPhysics/PlayerCamera")
+player_gravity_controller = NodePath("PlayerPhysics/gravityController")
 
-[node name="PlayerPhysics" parent="." unique_id=1615832908 instance=ExtResource("1_l8h54")]
+[node name="PlayerPhysics" parent="." unique_id=1615832908 node_paths=PackedStringArray("player") instance=ExtResource("1_l8h54")]
+player = NodePath("..")
 
-[node name="PlayerDecoy" parent="PlayerPhysics" unique_id=2037856166 instance=ExtResource("4_5dc8e")]
+[node name="PlayerCamera" parent="PlayerPhysics" unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
+player = NodePath("../..")
+
+[node name="gravityController" parent="PlayerPhysics" unique_id=1906056142 node_paths=PackedStringArray("player", "sensors") instance=ExtResource("4_ixbpm")]
+player = NodePath("../..")
+sensors = {
+"falling_ui_down": NodePath("FallingSensors/back_sensor"),
+"falling_ui_left": NodePath("FallingSensors/left_sensor"),
+"falling_ui_right": NodePath("FallingSensors/right_sensor"),
+"falling_ui_up": NodePath("FallingSensors/front_sensor"),
+"floor": NodePath("floor_sensor"),
+"ui_down": NodePath("MoveingSensors/back_sensor"),
+"ui_left": NodePath("MoveingSensors/left_sensor"),
+"ui_right": NodePath("MoveingSensors/right_sensor"),
+"ui_up": NodePath("MoveingSensors/front_sensor")
+}
+
+[node name="PlayerDecoy" parent="PlayerPhysics" unique_id=2037856166 instance=ExtResource("4_6dc8e")]
 
 [node name="FootstepsMaker" type="Node3D" parent="PlayerPhysics" unique_id=324333915]
-script = ExtResource("4_ixbpm")
 
 [node name="Timer" type="Timer" parent="PlayerPhysics/FootstepsMaker" unique_id=2075759140]
 wait_time = 0.3
@@ -50,8 +81,6 @@ metadata/_custom_type_script = "uid://bwbgvbw8rs0aa"
 
 [node name="BloodVfx" parent="PlayerPhysics/VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("7_on558")]
 
-[node name="PlayerCamera" parent="." unique_id=693967780 instance=ExtResource("3_btcbx")]
-
 [node name="RopeManager" type="Node3D" parent="." unique_id=1597735802]
 top_level = true
 script = ExtResource("7_rpf03")
@@ -62,13 +91,42 @@ metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 script = ExtResource("6_c6leb")
 debug_log = true
 
-[node name="DeathComponent" type="Node" parent="." unique_id=1137866372]
-script = ExtResource("7_dirf7")
-metadata/_custom_type_script = "uid://dy0ohauxfd8go"
+[node name="PlayerRespawnComponent" type="Node" parent="." unique_id=15480088 node_paths=PackedStringArray("health_component")]
+script = ExtResource("11_3t07l")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://bkffe8kvogeke"
 
+[node name="TooltipManager" type="Node3D" parent="." unique_id=1596368387]
+script = ExtResource("12_on558")
+metadata/_custom_type_script = "uid://c0v1x4a4fbhnn"
+
+[node name="Control" type="Control" parent="TooltipManager" unique_id=2085146444]
+visible = false
+modulate = Color(1, 1, 1, 0.7647059)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TooltipManager/Control" unique_id=573052081]
+use_parent_material = true
+custom_minimum_size = Vector2(80, 65)
+layout_mode = 0
+offset_left = 160.0
+offset_top = 120.0
+offset_right = 240.0
+offset_bottom = 185.0
+
+[node name="TooltipText" type="RichTextLabel" parent="TooltipManager/Control/VBoxContainer" unique_id=487937702]
+clip_contents = false
+custom_minimum_size = Vector2(65, 0)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/normal_font_size = 9
+theme_override_styles/normal = SubResource("StyleBoxFlat_on558")
+text = "Very long testing tooltip lorem ipsum dolor wtf"
+fit_content = true
+
+[connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]
-[connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="health_decreased" from="HealthComponent" to="PlayerPhysics/VfxPlayerSequence" method="play"]
-[connection signal="health_depleted" from="HealthComponent" to="DeathComponent" method="_on_death"]
 
 [editable path="PlayerPhysics"]

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://jo47eplae3mw"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_crhmp"]
+[ext_resource type="PackedScene" uid="uid://cg0xq5ci3aupl" path="res://shared/tree_generator/tree_generator.tscn" id="2_c24uh"]
+[ext_resource type="Resource" uid="uid://c4cjyeqqa3ian" path="res://shared/tree_generator/tree_types/tree_type_default.tres" id="3_c24uh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_crhmp"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v77ug"]
+size = Vector3(50, 1, 50)
+
+[node name="TreeZoo" type="Node3D" unique_id=1622868612]
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_crhmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90232563, 0)
+
+[node name="10x10_floor" type="StaticBody3D" parent="." unique_id=1849336423]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="10x10_floor" unique_id=273112914]
+mesh = SubResource("BoxMesh_crhmp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="10x10_floor" unique_id=1967992972]
+shape = SubResource("BoxShape3D_v77ug")
+
+[node name="TreeGenerator" parent="." unique_id=321865084 instance=ExtResource("2_c24uh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.225, 0, -3.705)
+params = ExtResource("3_c24uh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1744242977]
+transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 0, 0)

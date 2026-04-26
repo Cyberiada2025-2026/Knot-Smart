@@ -13,7 +13,7 @@ var page_dict: Dictionary[int, Node]
 
 
 func add_object(obj_des: ObjectDescription):
-	var entry_scene = load("uid://dktjlwqp00lcr")
+	var entry_scene = preload("uid://dktjlwqp00lcr")
 	var page = page_dict[obj_des.page]
 	var entry = entry_scene.instantiate()
 	entry.add_entry(obj_des)
@@ -30,21 +30,11 @@ func add_object(obj_des: ObjectDescription):
 	page.add_child(entry)
 
 
-#Right now, we don't need to add text entries after certain triggers
-#(like, seeing something or discovering something) so the only way
-#to trigger this is through this scripts' code, but in future, I
-#will add class like ObjectDescription but for adding text entries
-#instead of journal entries
-func add_text_entry(text: String, add_number: bool):
-	var page = $"Page container/Page1/ScrollContainer/VBoxContainer"
-	var entry: RichTextLabel = RichTextLabel.new()
-	entry.set_custom_minimum_size(Vector2(200, 0))
-	entry.fit_content = true
-	entry.push_color(Color.MAGENTA)
-	entry.set_horizontal_alignment(HORIZONTAL_ALIGNMENT_CENTER)
+func add_text_entry(text: String):
+	var page = text_page_last_container
+	var entry_scene = preload("uid://y7wfem0trjrv")
+	var entry = entry_scene.instantiate()
 	page.add_child(entry)
-	if add_number:
-		entry.add_text("Entry " + str(entry.get_index()) + ": ")
 	entry.add_text(text)
 
 
@@ -62,8 +52,7 @@ func _ready() -> void:
 			"This is journal, on this page you have aliens thoughts as"
 			+ " entries meanwhile on others you will have object"
 			+ " descriptions as entries"
-		),
-		0
+		)
 	)
 	page_visible_index = 0
 
@@ -92,6 +81,6 @@ func _on_button_pressed(number: int) -> void:
 	if page_visible_index != number:
 		pages.get_child(page_visible_index).set_visible(false)
 		buttons.get_child(page_visible_index).add_theme_stylebox_override("normal", button_normal)
-		get_node("Page container").get_child(number).set_visible(true)
+		pages.get_child(number).set_visible(true)
 		button.add_theme_stylebox_override("normal", button.get_theme_stylebox("pressed", "Button"))
 		page_visible_index = number

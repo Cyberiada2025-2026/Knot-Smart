@@ -68,6 +68,7 @@ func setup_gridmaps() -> void:
 		gridmap.cell_center_y = false
 		gridmaps.push_back(gridmap)
 		building_generator.add_child(gridmap)
+		gridmap.owner = building_generator.get_tree().edited_scene_root
 
 
 func get_wall_locations(

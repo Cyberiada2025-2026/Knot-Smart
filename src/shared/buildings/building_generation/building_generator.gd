@@ -18,10 +18,6 @@ var models_placer: ModelsPlacer = ModelsPlacer.new(self)
 var nav_obstacle_generator: BuildingNavObstacleGenerator = BuildingNavObstacleGenerator.new(self)
 
 
-func _ready() -> void:
-	generate_building()
-
-
 func generate_building() -> void:
 	clear()
 	seed(building_generation_params.random_seed)

@@ -8,7 +8,9 @@ enum State { IDLE, SELECTING_POSITION }
 ## maximum surface angle in degrees which allows teleporter placement
 @export var max_placement_angle = 20
 
-## returned object don't have parent
+## Returns placed object[br]
+## Object is Placer's child, all position transforms were applied
+## Use reparent to change object's parent if needed (recommended)
 signal placement_finished(placed_object: Node3D)
 
 var _state = State.IDLE
@@ -117,10 +119,10 @@ func _physics_process(_delta: float) -> void:
 
 func _place():
 	var placed_item = _item_to_be_placed.instantiate()
+	add_child(placed_item)
 	placed_item.global_position = _marker.global_position
 	placed_item.quaternion = _marker.quaternion
 	_set_idle()
-	########## TO DELETE
 
 	placement_finished.emit(placed_item)
 

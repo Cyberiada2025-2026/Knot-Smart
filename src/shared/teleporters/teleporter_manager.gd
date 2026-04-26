@@ -20,7 +20,10 @@ func _process(_delta: float) -> void:
 
 
 func create_teleporter(teleporter_instance):
-	teleporters.add_child(teleporter_instance)
+	if not teleporter_instance is Teleporter:
+		return
+	teleporter_instance.reparent(teleporters)
+
 	print(teleporter_instance.global_position)
 	teleporter_instance.teleporter_name = await input_window.get_input("enter teleporter name")
-	print("T name:")
+	print("T name: " + teleporter_instance.teleporter_name)

@@ -30,7 +30,6 @@ func get_input(message: String = "") -> String:
 	label.text = message
 
 	while true:
-		#get_tree().create_timer(INF).timeout.connect(func(): submit_button.button_down.emit())
 		await submit_button.button_down
 		if not submit_field.text.is_empty():
 			break

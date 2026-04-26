@@ -17,6 +17,7 @@ var cells_generator: CellGenerator = CellGenerator.new(self)
 var models_placer: ModelsPlacer = ModelsPlacer.new(self)
 var nav_obstacle_generator: BuildingNavObstacleGenerator = BuildingNavObstacleGenerator.new(self)
 
+
 func generate_building() -> void:
 	clear()
 

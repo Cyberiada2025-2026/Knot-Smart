@@ -96,6 +96,7 @@ building_generation_params = SubResource("Resource_raeie")
 
 [node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/BuildingGenerator2" unique_id=2053967310]
 script = ExtResource("6_hujxm")
+is_visible = true
 metadata/_custom_type_script = "uid://o0oessya87xf"
 
 [node name="BoxDescription" type="Node" parent="NavigationRegion3D/BuildingGenerator2/BuildingShapeDescription" unique_id=2082069173]

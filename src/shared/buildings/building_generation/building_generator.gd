@@ -17,9 +17,9 @@ var cells_generator: CellGenerator = CellGenerator.new(self)
 var models_placer: ModelsPlacer = ModelsPlacer.new(self)
 var nav_obstacle_generator: BuildingNavObstacleGenerator = BuildingNavObstacleGenerator.new(self)
 
-
 func generate_building() -> void:
 	clear()
+
 	seed(building_generation_params.random_seed)
 	if building_shape_description == null:
 		push_warning("No building_shape_description provided.")

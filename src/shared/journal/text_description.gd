@@ -1,3 +1,4 @@
+class_name TextDescription
 extends Node3D
 
 ##Insert text that will be added when player will enter this area
@@ -7,12 +8,14 @@ extends Node3D
 ##Should the point of interest be visible?
 @export var poi_visible: bool = false
 
+
 func _init() -> void:
 	var poi: PointOfInterest = PointOfInterest.new()
 	poi.noticed.connect(on_object_notice)
 	poi.radius = radius
 	poi.visualize = poi_visible
 	add_child(poi)
+
 
 func on_object_notice() -> void:
 	var player = get_tree().get_first_node_in_group("Player")

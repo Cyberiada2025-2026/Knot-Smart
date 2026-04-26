@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_3ypmc"]
 [ext_resource type="Script" uid="uid://cfbfg51ucp1a2" path="res://shared/journal/object_description.gd" id="2_40cw0"]
 [ext_resource type="PackedScene" uid="uid://bi7hkhprp31go" path="res://characters/player/player_model.glb" id="3_cht0e"]
+[ext_resource type="Script" uid="uid://cae3du8tra5sv" path="res://shared/journal/text_description.gd" id="4_waspc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e74q2"]
 
@@ -156,3 +157,16 @@ description = "This is sphere item"
 page = 1
 object_scale = 0.3
 metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
+
+[node name="TextDescription" type="Node3D" parent="." unique_id=1839964998]
+script = ExtResource("4_waspc")
+text = "entry 1"
+poi_visible = true
+metadata/_custom_type_script = "uid://cae3du8tra5sv"
+
+[node name="TextDescription2" type="Node3D" parent="." unique_id=735905374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6413903, 0.28351974, -5.612297)
+script = ExtResource("4_waspc")
+text = "entry 2"
+poi_visible = true
+metadata/_custom_type_script = "uid://cae3du8tra5sv"

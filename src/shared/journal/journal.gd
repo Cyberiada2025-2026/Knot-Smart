@@ -9,11 +9,12 @@ var prev_mouse_mode
 var buttons: Control
 var page_visible_index: int
 var page_dict: Dictionary[int, Node]
+var entry_scene = preload("uid://dktjlwqp00lcr")
+var entry_text = preload("uid://y7wfem0trjrv")
 @onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
 
 
 func add_object(obj_des: ObjectDescription):
-	var entry_scene = preload("uid://dktjlwqp00lcr")
 	var page = page_dict[obj_des.page]
 	var entry = entry_scene.instantiate()
 	entry.add_entry(obj_des)
@@ -32,8 +33,7 @@ func add_object(obj_des: ObjectDescription):
 
 func add_text_entry(text: String):
 	var page = text_page_last_container
-	var entry_scene = preload("uid://y7wfem0trjrv")
-	var entry = entry_scene.instantiate()
+	var entry = entry_text.instantiate()
 	page.add_child(entry)
 	entry.add_text(text)
 

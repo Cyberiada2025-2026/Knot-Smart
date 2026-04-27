@@ -23,7 +23,6 @@ var orientations: Dictionary[Utils.Axis, ModelsPlacer.Orientation] = {
 }
 
 var building_generator: BuildingGenerator
-var gridmap_node: Node3D
 
 
 func _init(_building_generator: BuildingGenerator) -> void:
@@ -55,28 +54,18 @@ func concat(a: Array, e: Array) -> Array:
 
 
 func clear() -> void:
-	for gridmap in gridmaps:
-		gridmap.queue_free()
-	if is_instance_valid(gridmap_node):
-		gridmap_node.queue_free()
 	gridmaps.clear()
 
 
 func setup_gridmaps() -> void:
 	clear()
-	if gridmap_node == null or !is_instance_valid(gridmap_node):
-		gridmap_node = Node3D.new()
-		gridmap_node.name = "Gridmaps"
-		building_generator.add_child(gridmap_node)
-		gridmap_node.owner = building_generator.get_tree().edited_scene_root
-
 	for i in 3:
 		var gridmap = GridMap.new()
 		gridmap.mesh_library = mesh_library
 		gridmap.cell_size = building_generator.building_generation_params.get_grid_size()
 		gridmap.cell_center_y = false
 		gridmaps.push_back(gridmap)
-		gridmap_node.add_child(gridmap)
+		building_generator.generated_building_node.add_child(gridmap)
 		gridmap.owner = building_generator.get_tree().edited_scene_root
 
 

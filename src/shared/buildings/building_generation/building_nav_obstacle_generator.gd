@@ -24,9 +24,5 @@ func generate_navmesh_obstacles() -> void:
 		obstacle.vertices = outline
 		obstacle.visible = false
 
-		building_generator.add_child(obstacle)
-
-
-func clear() -> void:
-	for obstacle in building_generator.find_children("", "NavigationObstacle3D"):
-		obstacle.queue_free()
+		building_generator.generated_building_node.add_child(obstacle)
+		obstacle.owner = building_generator.get_tree().edited_scene_root

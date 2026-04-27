@@ -6,6 +6,7 @@ extends Node3D
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
 
+var generated_building_node: Node3D
 var gridmaps: Array[GridMap]
 var initial_cells: Array[Cell] = []
 var cells: Array[Cell] = []
@@ -17,9 +18,16 @@ var cells_generator: CellGenerator = CellGenerator.new(self)
 var models_placer: ModelsPlacer = ModelsPlacer.new(self)
 var nav_obstacle_generator: BuildingNavObstacleGenerator = BuildingNavObstacleGenerator.new(self)
 
+func setup_generated_building_node() -> void:
+	generated_building_node = Node3D.new()
+	generated_building_node.name = "GeneratedBuilding"
+	add_child(generated_building_node)
+	generated_building_node.owner = get_tree().edited_scene_root
+
 
 func generate_building() -> void:
 	clear()
+	setup_generated_building_node()
 
 	seed(building_generation_params.random_seed)
 	if building_shape_description == null:
@@ -43,9 +51,13 @@ func clear() -> void:
 	neighbors = []
 
 	models_placer.clear()
-	nav_obstacle_generator.clear()
 	for static_body in find_children("", "StaticBody3D"):
 		static_body.queue_free()
+
+	if is_instance_valid(generated_building_node):
+		generated_building_node.queue_free()
+		generated_building_node = null
+
 
 
 func _get_configuration_warnings() -> PackedStringArray:
@@ -56,7 +68,8 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func generate_collision_shape() -> void:
 	var static_body: StaticBody3D = StaticBody3D.new()
-	add_child(static_body)
+	generated_building_node.add_child(static_body)
+	static_body.owner = get_tree().edited_scene_root
 	for cell in initial_cells:
 		var cell_collision_shape = CollisionShape3D.new()
 		cell_collision_shape.shape = BoxShape3D.new()
@@ -65,3 +78,4 @@ func generate_collision_shape() -> void:
 		)
 		cell_collision_shape.position = cell.center() * building_generation_params.get_grid_size()
 		static_body.add_child(cell_collision_shape)
+		cell_collision_shape.owner = get_tree().edited_scene_root

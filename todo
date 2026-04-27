@@ -8,6 +8,7 @@ add "enter" support to input window
     - probably as UI part
     - used in teleporter interaction -->
 move pause game into utils
+one less letter to t name
 <!-- - button for teleporter interaction
     - button with collider
     - tooltip to button

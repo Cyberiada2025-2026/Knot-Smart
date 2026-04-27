@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c676d8iuf4vy0"]
+
+[node name="Button" type="Button" unique_id=1991705010]
+process_mode = 3
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "T3"

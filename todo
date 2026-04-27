@@ -4,12 +4,13 @@ add "enter" support to input window
 - placement system
     - 2D distance to placenment range
 <!-- - teleporter name window -->
-- teleporter list:
+<!-- - teleporter list:
     - probably as UI part
-    - used in teleporter interaction
-- button for teleporter interaction
+    - used in teleporter interaction -->
+move pause game into utils
+<!-- - button for teleporter interaction
     - button with collider
     - tooltip to button
     - selection window for teleportation
-    - player teleportation
+    - player teleportation -->
     

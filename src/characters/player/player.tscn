@@ -11,12 +11,13 @@
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="6_c6leb"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="7_on558"]
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
-[ext_resource type="Script" uid="uid://bkffe8kvogeke" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
+[ext_resource type="Script" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
 [ext_resource type="Script" uid="uid://c0v1x4a4fbhnn" path="res://shared/tooltips/tooltip_manager.gd" id="12_on558"]
 [ext_resource type="PackedScene" uid="uid://vof8qmvanvac" path="res://shared/placer/placement_marker.tscn" id="14_aqrcq"]
 [ext_resource type="Script" uid="uid://2pbcecv8ynln" path="res://characters/player/camera_rotation_type/qe_keyboard.gd" id="14_icpky"]
 [ext_resource type="PackedScene" uid="uid://bnculq0wcru8a" path="res://ui/input_window/input_window.tscn" id="15_58jvb"]
 [ext_resource type="Script" uid="uid://ckn31258hj17y" path="res://shared/placer/item_placer.gd" id="16_8l73k"]
+[ext_resource type="PackedScene" uid="uid://17qprvlcd6dk" path="res://shared/teleporters/teleporter_selection_window.tscn" id="18_d2agh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hysn5"]
 radius = 0.25
@@ -142,6 +143,8 @@ metadata/_custom_type_script = "uid://ejle6y71jiml"
 [node name="Teleporters" type="Node" parent="TeleporterManager" unique_id=620020159]
 
 [node name="InputWindow" parent="TeleporterManager" unique_id=1449974532 instance=ExtResource("15_58jvb")]
+
+[node name="TeleporterSelectionWindow" parent="TeleporterManager" unique_id=819912045 instance=ExtResource("18_d2agh")]
 
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]

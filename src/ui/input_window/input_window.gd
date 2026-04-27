@@ -1,3 +1,4 @@
+class_name InputWindow
 extends Node
 
 
@@ -9,6 +10,7 @@ var prev_mouse_mode
 @onready var submit_button: Button  = $Control/VBoxContainer/SubmitButton
 @onready var label: RichTextLabel = $Control/VBoxContainer/RichTextLabel
 
+# move to utils!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 func unpause_game() -> void:
 	get_tree().paused = false
 	get_child(0).hide()

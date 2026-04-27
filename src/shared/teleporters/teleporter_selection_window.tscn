@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://17qprvlcd6dk"]
 
-[node name="TeleporterSelectionWindow" type="Node" unique_id=819912045]
+[node name="TeleporterSelectionWindow" type="Node" unique_id=307891589]
 
 [node name="Control" type="Control" parent="." unique_id=951493701]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,24 +61,3 @@ horizontal_scroll_mode = 0
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer2/ScrollContainer" unique_id=605683241]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Button2" type="Button" parent="Control/VBoxContainer2/ScrollContainer/VBoxContainer" unique_id=477096913]
-process_mode = 3
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 14
-text = "T1"
-
-[node name="Button3" type="Button" parent="Control/VBoxContainer2/ScrollContainer/VBoxContainer" unique_id=652149811]
-process_mode = 3
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 14
-text = "T2"
-
-[node name="Button" type="Button" parent="Control/VBoxContainer2/ScrollContainer/VBoxContainer" unique_id=130562536]
-process_mode = 3
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 14
-text = "T3"

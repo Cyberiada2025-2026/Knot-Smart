@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://50058jf30t1n" path="res://shared/buildings/building_generation/building_generator.tscn" id="4_6q06x"]
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params.gd" id="5_hujxm"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
+[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="6_nvumn"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
 [ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="7_7smn1"]
 [ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="8_hxu8e"]
@@ -181,9 +182,8 @@ avoidance_enabled = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
 
 [node name="PointOfInterest" type="Node3D" parent="Enemy" unique_id=1132202533]
-script = ExtResource("4_b1x3f")
+script = ExtResource("6_nvumn")
 radius = 4.0
-metadata/_custom_type_script = "uid://bm0wrygl0ikje"
 
 [node name="SpeechPOI" type="Node" parent="Enemy/PointOfInterest" unique_id=1376135009]
 script = ExtResource("7_7smn1")
@@ -225,8 +225,6 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="SheetMusic" parent="." unique_id=1780103802 instance=ExtResource("17_nvumn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116556)
-
-[connection signal="triggered" from="Enemy/PointOfInterest" to="NavigationRegion3D/BuildingGenerator" method="_on_point_of_interest_triggered"]
 
 [editable path="NavigationRegion3D/BuildingGenerator"]
 [editable path="NavigationRegion3D/BuildingGenerator2"]

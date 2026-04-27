@@ -23,7 +23,7 @@ const ANIM_OFF: String = "break"
 
 ## Call when creating rope
 func start(params: RopeParams):
-	var neutral_length: float = (params.max_rope_length - params.min_rope_length)/2;
+	var neutral_length: float = (params.max_rope_length - params.min_rope_length) / 2
 	mat.set_shader_parameter(MAX_LENGTH_PARAM, params.max_rope_length)
 	mat.set_shader_parameter(MIN_LENGTH_PARAM, params.min_rope_length)
 	mat.set_shader_parameter(START_LENGTH_PARAM, neutral_length)

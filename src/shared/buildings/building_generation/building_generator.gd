@@ -18,6 +18,7 @@ var cells_generator: CellGenerator = CellGenerator.new(self)
 var models_placer: ModelsPlacer = ModelsPlacer.new(self)
 var nav_obstacle_generator: BuildingNavObstacleGenerator = BuildingNavObstacleGenerator.new(self)
 
+
 func setup_generated_building_node() -> void:
 	generated_building_node = Node3D.new()
 	generated_building_node.name = "GeneratedBuilding"
@@ -57,7 +58,6 @@ func clear() -> void:
 	if is_instance_valid(generated_building_node):
 		generated_building_node.queue_free()
 		generated_building_node = null
-
 
 
 func _get_configuration_warnings() -> PackedStringArray:

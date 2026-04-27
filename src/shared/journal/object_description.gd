@@ -24,13 +24,13 @@ extends Node3D
 
 func _init() -> void:
 	var poi: PointOfInterest = PointOfInterest.new()
-	poi.noticed.connect(on_object_notice)
+	poi.triggered.connect(on_object_notice)
 	poi.radius = radius
 	poi.visualize = poi_visible
 	add_child(poi)
 
 
-func on_object_notice() -> void:
+func on_object_notice(_entity: Node3D) -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	var journal: Node = player.get_node("Journal")
 	model = model.duplicate(0)

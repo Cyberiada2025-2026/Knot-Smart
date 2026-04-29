@@ -26,6 +26,7 @@ BeehaveGlobalMetrics="*uid://c3ktl6ontsdt7"
 BeehaveGlobalDebugger="*uid://bl3ma400hpvsh"
 CameraSetup="*uid://rnx3yu0ofiwg"
 ProgressionManager="*uid://cd73b37cwjmj1"
+SubtitleManager="*uid://nr3chwoulkyq"
 
 [debug_draw_3d]
 

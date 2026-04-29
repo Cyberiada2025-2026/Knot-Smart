@@ -50,11 +50,11 @@ func interact():
 	for item in items:
 		for cell in grid.get_children():
 			if items_node is PutItemZone:
-				if cell.get_type()==item.item_name:
+				if cell.get_item_name()==item.item_name:
 					items[item] = cell.remove_item(items[item])
 					break
 			elif items_node is TakeItemZone:
-				if cell.get_type()==item.item_name or cell.is_empty():
+				if cell.get_item_name()==item.item_name or cell.is_empty():
 					cell.add_item(item)
 					items_node = null
 					break

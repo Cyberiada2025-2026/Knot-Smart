@@ -28,7 +28,7 @@ func remove_item(quantity: int) -> int:
 	return max(0, -diff)
 
 
-func get_type() -> String:
+func get_item_name() -> String:
 	if is_empty():
 		return ""
 	return type.item_name

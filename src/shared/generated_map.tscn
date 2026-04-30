@@ -1,0 +1,69 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_0.tscn" id="1_vaqd0"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_1.tscn" id="2_km0v0"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_2.tscn" id="3_auasb"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_3.tscn" id="4_8rixx"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_0.tscn" id="5_foc81"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_1.tscn" id="6_5rcqu"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_2.tscn" id="7_hlo14"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_3.tscn" id="8_48njg"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_0.tscn" id="9_ev08s"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_1.tscn" id="10_icnb7"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_2.tscn" id="11_evtcx"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_3.tscn" id="12_hdmgr"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_0.tscn" id="13_00ltn"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_1.tscn" id="14_8cbt2"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_2.tscn" id="15_86yek"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_3.tscn" id="16_of2f7"]
+
+[node name="Map" type="Node3D" unique_id=1961980483]
+
+[node name="Chunks" type="Node3D" parent="." unique_id=1103716327]
+
+[node name="ChunkX0Z0" type="Node3D" parent="Chunks" unique_id=1689674175 instance=ExtResource("1_vaqd0")]
+
+[node name="ChunkX0Z1" type="Node3D" parent="Chunks" unique_id=1387966903 instance=ExtResource("2_km0v0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 32)
+
+[node name="ChunkX0Z2" type="Node3D" parent="Chunks" unique_id=2116009396 instance=ExtResource("3_auasb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
+
+[node name="ChunkX0Z3" type="Node3D" parent="Chunks" unique_id=1430001573 instance=ExtResource("4_8rixx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 96)
+
+[node name="ChunkX1Z0" type="Node3D" parent="Chunks" unique_id=155120255 instance=ExtResource("5_foc81")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 0)
+
+[node name="ChunkX1Z1" type="Node3D" parent="Chunks" unique_id=868021509 instance=ExtResource("6_5rcqu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 32)
+
+[node name="ChunkX1Z2" type="Node3D" parent="Chunks" unique_id=1150907312 instance=ExtResource("7_hlo14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 64)
+
+[node name="ChunkX1Z3" type="Node3D" parent="Chunks" unique_id=940660272 instance=ExtResource("8_48njg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 96)
+
+[node name="ChunkX2Z0" type="Node3D" parent="Chunks" unique_id=987140274 instance=ExtResource("9_ev08s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
+
+[node name="ChunkX2Z1" type="Node3D" parent="Chunks" unique_id=606471917 instance=ExtResource("10_icnb7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 32)
+
+[node name="ChunkX2Z2" type="Node3D" parent="Chunks" unique_id=2089793245 instance=ExtResource("11_evtcx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 64)
+
+[node name="ChunkX2Z3" type="Node3D" parent="Chunks" unique_id=1930700938 instance=ExtResource("12_hdmgr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 96)
+
+[node name="ChunkX3Z0" type="Node3D" parent="Chunks" unique_id=1669645380 instance=ExtResource("13_00ltn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 0)
+
+[node name="ChunkX3Z1" type="Node3D" parent="Chunks" unique_id=455321962 instance=ExtResource("14_8cbt2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 32)
+
+[node name="ChunkX3Z2" type="Node3D" parent="Chunks" unique_id=2008095650 instance=ExtResource("15_86yek")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 64)
+
+[node name="ChunkX3Z3" type="Node3D" parent="Chunks" unique_id=660562147 instance=ExtResource("16_of2f7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96, 0, 96)

@@ -52,66 +52,73 @@ func create_map_instance(MAP_PATH: String = SCENE_PATH) -> void:
 
 
 func create_chunk_scene(chunk_coord: Vector2i, chunk_final_path: String) -> void:
+	if FileAccess.file_exists(chunk_final_path):
+		var dir = DirAccess.open(chunk_final_path.get_base_dir())
+		if dir:
+			var file_name = chunk_final_path.get_file()
+			dir.remove(file_name) 
+
 	var chunk_node = Node3D.new()
 	chunk_node.name = "ChunkX%dZ%d" % [chunk_coord.x, chunk_coord.y]
+	
 	chunk_node.position = Vector3(
 		chunk_coord.x * world_generation_params.get_chunk_unit_size(),
 		0,
 		chunk_coord.y * world_generation_params.get_chunk_unit_size()
 	)
 
-	var mesh_groups: Dictionary = {}
-	
 	var chunk_start = chunk_coord * world_generation_params.chunk_size
+	
+	# --- 3. POPULATE MESHES ---
 	for x in world_generation_params.chunk_size:
 		for z in world_generation_params.chunk_size:
 			var world_coord = chunk_start + Vector2i(x, z)
-			if not blueprint.data.has(world_coord): continue
+			if not blueprint.data.has(world_coord): 
+				continue
 			
 			var tile_info = blueprint.data[world_coord]
+			
 			for data_node in tile_info.objects:
-				var m = data_node.mesh
-				if not mesh_groups.has(m):
-					mesh_groups[m] = []
+				var mi = MeshInstance3D.new()
+				mi.mesh = data_node.mesh
+				mi.name = "Tile_%d_%d" % [x, z]
 				
-				var pos = Vector3(x * world_generation_params.tile_size, tile_info.height, z * world_generation_params.tile_size)
-				var t = Transform3D(data_node.basis, pos)
-				mesh_groups[m].append(t)
-
-	for mesh_key in mesh_groups.keys():
-		var transforms = mesh_groups[mesh_key]
-		
-		var mmi = MultiMeshInstance3D.new()
-		mmi.multimesh = MultiMesh.new()
-		mmi.multimesh.transform_format = MultiMesh.TRANSFORM_3D
-		mmi.multimesh.mesh = mesh_key
-		mmi.multimesh.instance_count = transforms.size()
-		
-		for i in range(transforms.size()):
-			mmi.multimesh.set_instance_transform(i, transforms[i])
+				if world_display_params.terrain_material:
+					mi.material_override = world_display_params.terrain_material
 			
-		chunk_node.add_child(mmi)
-		mmi.owner = chunk_node
-		
-		if world_display_params.terrain_material:
-			mmi.material_override = world_display_params.terrain_material
-		
-		if not shape_cache.has(mesh_key):
-			shape_cache[mesh_key] = mesh_key.create_trimesh_shape()
-		for t in transforms:
-			var sb = StaticBody3D.new()
-			var col = CollisionShape3D.new()
-			col.shape = shape_cache[mesh_key]
-			
-			sb.add_child(col)
-			mmi.add_child(sb)
-			
-			sb.transform = t
-			sb.owner = chunk_node
-			col.owner = chunk_node
+				var local_pos = Vector3(
+					x * world_generation_params.tile_size, 
+					0, 
+					z * world_generation_params.tile_size
+				)
+				mi.transform = Transform3D(data_node.basis, local_pos)
+				
+				chunk_node.add_child(mi)
+				mi.owner = chunk_node 
+				
+				var sb = StaticBody3D.new()
+				var col = CollisionShape3D.new()
+				
+				if not shape_cache.has(mi.mesh):
+					shape_cache[mi.mesh] = mi.mesh.create_trimesh_shape()
+				
+				col.shape = shape_cache[mi.mesh]
+				
+				sb.add_child(col)
+				mi.add_child(sb)
+				
+				sb.owner = chunk_node
+				col.owner = chunk_node
 
 	var scene = PackedScene.new()
-	if not DirAccess.dir_exists_absolute(CHUNK_PATH):
-		DirAccess.make_dir_recursive_absolute(CHUNK_PATH)
-	scene.pack(chunk_node)
-	ResourceSaver.save(scene, chunk_final_path)
+	var directory_path = chunk_final_path.get_base_dir()
+	if not DirAccess.dir_exists_absolute(directory_path):
+		DirAccess.make_dir_recursive_absolute(directory_path)
+	
+	var error = scene.pack(chunk_node)
+	if error == OK:
+		ResourceSaver.save(scene, chunk_final_path)
+	else:
+		push_error("Failed to pack chunk scene: ", error)
+	
+	chunk_node.queue_free()

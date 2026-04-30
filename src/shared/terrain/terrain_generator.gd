@@ -14,91 +14,60 @@ func run_generation(manager: GridGenerationPipeline) -> void:
 	blueprint = manager.blueprint
 	world_generation_params = manager.world_generation_params
 
-	var get_step_index = func(tx: int, tz: int) -> int:
-		if tx < 0 or tx >= blueprint.world_size or tz < 0 or tz >= blueprint.world_size:
-			return 0
-		
-		var raw_val = world_generation_params.noise.get_noise_2d(tx, tz)
-		var normalized = (raw_val + 1) / 2.0
-		var step_index = floor(
-			(
-				(normalized + world_generation_params.height_displacement) 
-				* world_generation_params.map_height
-			)
-		)
-		return int(step_index)
+	for x in blueprint.world_size:
+		for z in blueprint.world_size:
+			var coord = Vector2i(x, z)
 
-	for z in blueprint.world_size:
-		for x in blueprint.world_size:
+			var raw_val = world_generation_params.noise.get_noise_2d(x, z)
+			var normalized = (raw_val + 1) / 2.0
+			var level = floor((normalized + world_generation_params.height_displacement) * world_generation_params.map_height)
+
+			var final_height = level * world_generation_params.tile_height
+
+			blueprint.data[coord].height = final_height
+
+	for x in blueprint.world_size:
+		for z in blueprint.world_size:
 			var coord = Vector2i(x, z)
 			
-			var s_curr = get_step_index.call(x, z)
-			var s_n = get_step_index.call(x, z - 1)
-			var s_s = get_step_index.call(x, z + 1)
-			var s_e = get_step_index.call(x + 1, z)
-			var s_w = get_step_index.call(x - 1, z)
-
-			var final_height = s_curr * world_generation_params.tile_height
-			
-			var up_n = s_n > s_curr
-			var up_s = s_s > s_curr
-			var up_e = s_e > s_curr
-			var up_w = s_w > s_curr
-			
-			var dn_n = s_n < s_curr
-			var dn_s = s_s < s_curr
-			var dn_e = s_e < s_curr
-			var dn_w = s_w < s_curr
-
-			var selected_mesh: Mesh = mesh_flat
-			var rotation_y: float = 0.0
-
-			if up_n and up_e:
-				selected_mesh = mesh_corner_inner
-				rotation_y = 0.0
-			elif up_e and up_s:
-				selected_mesh = mesh_corner_inner
-				rotation_y = -PI/2.0
-			elif up_s and up_w:
-				selected_mesh = mesh_corner_inner
-				rotation_y = PI
-			elif up_w and up_n:
-				selected_mesh = mesh_corner_inner
-				rotation_y = PI/2.0
-			
-			elif dn_n and dn_e:
-				selected_mesh = mesh_corner_outer
-				rotation_y = PI
-			elif dn_e and dn_s:
-				selected_mesh = mesh_corner_outer
-				rotation_y = PI/2.0
-			elif dn_s and dn_w:
-				selected_mesh = mesh_corner_outer
-				rotation_y = 0.0
-			elif dn_w and dn_n:
-				selected_mesh = mesh_corner_outer
-				rotation_y = -PI/2.0
-			elif up_n:
-				selected_mesh = mesh_slope
-				rotation_y = 0.0
-			elif up_s:
-				selected_mesh = mesh_slope
-				rotation_y = PI
-			elif up_e:
-				selected_mesh = mesh_slope
-				rotation_y = -PI/2.0
-			elif up_w:
-				selected_mesh = mesh_slope
-				rotation_y = PI/2.0
-			else:
-				selected_mesh = mesh_flat
-
 			var mi = MeshInstance3D.new()
-			mi.mesh = selected_mesh
-			mi.rotation.y = rotation_y
-			mi.position = Vector3(0, final_height, 0) 
+			mi.mesh = generate_tile_mesh(coord)
+			mi.position = Vector3(x*world_generation_params.tile_size, 0, z*world_generation_params.tile_size)
 
 			var tile = blueprint.data[coord]
-			tile.height = final_height
+			tile.height = blueprint.get_height(coord)
 			tile.objects.clear()
 			tile.objects.append(mi)
+			
+func generate_tile_mesh(coord: Vector2i) -> Mesh:
+	var st = SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	
+	var x = coord.x
+	var z = coord.y
+	var ts = world_generation_params.tile_size
+
+	var h0 = blueprint.get_height(Vector2i(x, z))         # Current (Top-Left)
+	var h1 = blueprint.get_height(Vector2i(x + 1, z))     # Neighbor X (Top-Right)
+	var h2 = blueprint.get_height(Vector2i(x, z + 1))     # Neighbor Z (Bottom-Left)
+	var h3 = blueprint.get_height(Vector2i(x + 1, z + 1)) # Neighbor Diag (Bottom-Right)
+
+	var v0 = Vector3(0,  h0, 0)
+	var v1 = Vector3(ts, h1, 0)
+	var v2 = Vector3(0,  h2, ts)
+	var v3 = Vector3(ts, h3, ts)
+
+	add_triangle(st, [v0,v1,v2])
+	add_triangle(st, [v1,v3,v2])
+	
+	st.generate_tangents()
+	return st.commit()
+
+func add_triangle(st: SurfaceTool, vertices: Array):
+	var normal = ((vertices[2] - vertices[0]).cross(vertices[1] - vertices[0])).normalized()
+	for v in vertices:
+		var uv = Vector2(v.x, v.z) / float(world_generation_params.tile_size)
+
+		st.set_normal(normal)
+		st.set_uv(uv)
+		st.add_vertex(v)

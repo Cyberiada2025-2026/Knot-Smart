@@ -2,10 +2,10 @@
 class_name MapInstancer
 extends Resource
 
-var SCENE_PATH: String = "user://terrain/"
-var CHUNK_PATH = "user://terrain/chunks/"
-var SCENE_NAME: String = "generated_map"
-var ROOT_NAME: String = "Map"
+var scene_path: String = "user://terrain/"
+var chunk_path = "user://terrain/chunks/"
+var scene_name: String = "generated_map"
+var root_name: String = "Map"
 
 var world_generation_params: WorldGenerationParams
 var world_display_params: WorldDisplayParams
@@ -20,10 +20,10 @@ func _init(manager: MapRenderer):
 	world_display_params = manager.world_display_params
 
 
-func create_map_instance(MAP_PATH: String = SCENE_PATH) -> void:
-	SCENE_PATH = MAP_PATH
+func create_map_instance(map_path: String = scene_path) -> void:
+	scene_path = map_path
 	var root_node := Node3D.new()
-	root_node.name = ROOT_NAME
+	root_node.name = root_name
 
 	var chunks_node := Node3D.new()
 	chunks_node.name = "Chunks"
@@ -32,7 +32,7 @@ func create_map_instance(MAP_PATH: String = SCENE_PATH) -> void:
 
 	for x in world_generation_params.map_size:
 		for z in world_generation_params.map_size:
-			var chunk_final_path = CHUNK_PATH + "chunk_%d_%d.tscn" % [x, z]
+			var chunk_final_path = chunk_path + "chunk_%d_%d.tscn" % [x, z]
 			create_chunk_scene(Vector2i(x, z), chunk_final_path)
 
 			var chunk = ResourceLoader.load(chunk_final_path)
@@ -41,14 +41,14 @@ func create_map_instance(MAP_PATH: String = SCENE_PATH) -> void:
 			chunk_node.owner = root_node
 
 	var scene = PackedScene.new()
-	if not DirAccess.dir_exists_absolute(SCENE_PATH):
-		DirAccess.make_dir_recursive_absolute(SCENE_PATH)
-	scene.take_over_path(SCENE_PATH + SCENE_NAME + ".tscn")
+	if not DirAccess.dir_exists_absolute(scene_path):
+		DirAccess.make_dir_recursive_absolute(scene_path)
+	scene.take_over_path(scene_path + scene_name + ".tscn")
 
 	# Only `node` and `body` are now packed.
 	var result = scene.pack(root_node)
 	if result == OK:
-		var error = ResourceSaver.save(scene, SCENE_PATH + SCENE_NAME + ".tscn")
+		var error = ResourceSaver.save(scene, scene_path + scene_name + ".tscn")
 		if error != OK:
 			push_error("An error occurred while saving the map to disk.")
 

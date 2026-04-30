@@ -5,12 +5,6 @@ extends Node
 var world_generation_params: WorldGenerationParams
 var blueprint: MapTileData
 
-@export var mesh_flat: Mesh
-@export var mesh_slope: Mesh
-@export var mesh_corner_outer: Mesh
-@export var mesh_corner_inner: Mesh
-
-
 func run_generation(manager: GridGenerationPipeline) -> void:
 	blueprint = manager.blueprint
 	world_generation_params = manager.world_generation_params

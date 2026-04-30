@@ -1,10 +1,10 @@
 class_name ChunkManager
 extends Node3D
 
-var SCENE_DIR: String = "terrain/"
+var scene_dir: String = "terrain/"
 
 var debug_flag: bool = false
-var isRendering: bool = false
+var is_rendering: bool = false
 
 var blueprint: MapTileData
 var world_generation_params: WorldGenerationParams
@@ -30,7 +30,7 @@ func _init(manager: MapRenderer) -> void:
 	self.owner = get_tree().edited_scene_root
 	self.name = "ChunkManager"
 
-	isRendering = true
+	is_rendering = true
 
 	print(self.name + ": Is active")
 
@@ -95,8 +95,8 @@ func update_active_chunks() -> void:
 		for y in range(active_chunks_start.y, active_chunks_end.y):
 			var coord = Vector2i(x, y)
 			if not active_chunks.has(coord):
-				var CHUNK_PATH = "user://" + SCENE_DIR + "chunks/chunk_%d_%d.tscn" % [x, y]
-				var chunk = ResourceLoader.load(CHUNK_PATH)
+				var chunk_path = "user://" + scene_dir + "chunks/chunk_%d_%d.tscn" % [x, y]
+				var chunk = ResourceLoader.load(chunk_path)
 				var chunk_node = chunk.instantiate()
 				add_child(chunk_node)
 				#if Engine.is_editor_hint() == false:
@@ -112,5 +112,5 @@ func update_active_chunks() -> void:
 
 
 func _process(_delta: float) -> void:
-	if isRendering == true:
+	if is_rendering == true:
 		update_active_chunks_borders()

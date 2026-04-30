@@ -1,17 +1,16 @@
+class_name Journal
 extends Node
 
 @export var pages: Node
-@export var text_page_last_container: Node
-@export var items_page_last_container: Node
-@export var objects_page_last_container: Node
-@export var mobs_page_last_container: Node
+@export var page_dict: Dictionary[PageType, Node]
 var prev_mouse_mode
 var buttons: Control
 var page_visible_index: int
-var page_dict: Dictionary[int, Node]
 var entry_scene = preload("uid://dktjlwqp00lcr")
 var entry_text = preload("uid://y7wfem0trjrv")
 @onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
+
+enum PageType {Text, Items, Objects, Mobs}
 
 
 func add_object(obj_des: JournalEntryPOI):
@@ -32,7 +31,7 @@ func add_object(obj_des: JournalEntryPOI):
 
 
 func add_text_entry(text: String):
-	var page = text_page_last_container
+	var page = page_dict[PageType.Text]
 	var entry = entry_text.instantiate()
 	page.add_child(entry)
 	entry.add_text(text)
@@ -40,12 +39,6 @@ func add_text_entry(text: String):
 
 func _ready() -> void:
 	buttons = $"Button container"
-	page_dict = {
-		0: text_page_last_container,
-		1: items_page_last_container,
-		2: objects_page_last_container,
-		3: mobs_page_last_container
-	}
 
 	add_text_entry(
 		(

@@ -7,7 +7,7 @@ extends Node
 ## Description of the object
 @export_multiline() var description: String
 ## What page the object should be at
-@export_enum("Items:1", "Objects:2", "Mobs:3") var page
+@export var page: Journal.PageType = Journal.PageType.Items
 
 @export_category("Model information")
 ## Model of visible in an entry

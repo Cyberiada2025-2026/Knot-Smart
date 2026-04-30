@@ -17,7 +17,7 @@ func _init() -> void:
 	add_child(poi)
 
 
-func on_object_notice(entity: Node3D) -> void:
+func on_object_notice(_entity: Node3D) -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	var journal: Node = player.get_node("Journal")
 	journal.add_text_entry(text)

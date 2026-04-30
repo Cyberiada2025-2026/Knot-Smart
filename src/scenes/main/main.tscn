@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="8_hxu8e"]
 [ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="9_nvumn"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_a8run"]
+[ext_resource type="Script" uid="uid://cfbfg51ucp1a2" path="res://shared/journal/object_description.gd" id="10_ou6is"]
 [ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="10_th5th"]
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
 [ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="12_7smn1"]
@@ -181,6 +182,9 @@ avoidance_enabled = false
 [node name="Enemy" parent="." unique_id=124557404 instance=ExtResource("2_iuonh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
 
+[node name="BeehaveTree" parent="Enemy" index="2" unique_id=1892085315 node_paths=PackedStringArray("blackboard")]
+blackboard = NodePath("@Node@20600")
+
 [node name="PointOfInterest" type="Node3D" parent="Enemy" unique_id=1132202533]
 script = ExtResource("6_nvumn")
 radius = 4.0
@@ -188,6 +192,15 @@ radius = 4.0
 [node name="SpeechPOI" type="Node" parent="Enemy/PointOfInterest" unique_id=1376135009]
 script = ExtResource("7_7smn1")
 dialogue = SubResource("Resource_r4lks")
+
+[node name="ObjectDescription" type="Node3D" parent="Enemy/PointOfInterest" unique_id=1395166103 node_paths=PackedStringArray("model")]
+script = ExtResource("10_ou6is")
+model = NodePath("../../MeshInstance3D")
+object_name = "Enemy"
+description = "This is an enemy"
+page = 3
+object_scale = 0.3
+metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
 
 [node name="Player" parent="." unique_id=1226528489 instance=ExtResource("3_k2fmo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6612322, 1.435396, 3.9698668)
@@ -228,3 +241,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116
 
 [editable path="NavigationRegion3D/BuildingGenerator"]
 [editable path="NavigationRegion3D/BuildingGenerator2"]
+[editable path="Enemy"]

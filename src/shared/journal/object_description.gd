@@ -22,12 +22,13 @@ extends Node3D
 @export var rotation_angle: float = 0.1
 
 
-func _init() -> void:
-	var poi: PointOfInterest = PointOfInterest.new()
+func _ready() -> void:
+	var poi: PointOfInterest = get_parent() as PointOfInterest
+	if poi == null:
+		push_warning("ObjectDescriptionPOI will not work without a PointOfInterest as a parent.")
+		return
+
 	poi.triggered.connect(on_object_notice)
-	poi.radius = radius
-	poi.visualize = poi_visible
-	add_child(poi)
 
 
 func on_object_notice(_entity: Node3D) -> void:

@@ -17,32 +17,34 @@ var active_chunks_end: Vector2i
 
 var player: Player
 
+
 func _init(manager: MapRenderer) -> void:
 	blueprint = manager.blueprint
 	world_generation_params = manager.world_generation_params
 	world_display_params = manager.world_display_params
-	
+
 	active_chunks_start = Vector2i.ZERO
 	active_chunks_end = -Vector2i.ONE
-	
+
 	manager.add_child(self)
 	self.owner = get_tree().edited_scene_root
 	self.name = "ChunkManager"
-	
+
 	isRendering = true
-	
+
 	print(self.name + ": Is active")
-	
-	
+
+
 func clear_inactive_chunks() -> void:
 	active_chunks.clear()
 	for child in get_children():
 		child.queue_free()
 
+
 func get_player() -> Node3D:
 	var players = get_tree().get_nodes_in_group("Player")
 	return players[0]
-	
+
 
 func update_active_chunks_borders() -> void:
 	var render_position: Vector2i = Vector2i.ZERO
@@ -77,6 +79,7 @@ func update_active_chunks_borders() -> void:
 
 		update_active_chunks()
 
+
 func update_active_chunks() -> void:
 	if debug_flag == true:
 		print(self.name + ": Updating visible chunks")
@@ -99,9 +102,14 @@ func update_active_chunks() -> void:
 				#if Engine.is_editor_hint() == false:
 				if get_tree().edited_scene_root:
 					chunk_node.owner = get_tree().edited_scene_root
-				chunk_node.global_position = Vector3(x * world_generation_params.get_chunk_unit_size(), 0, y *  world_generation_params.get_chunk_unit_size())
-				
+				chunk_node.global_position = Vector3(
+					x * world_generation_params.get_chunk_unit_size(),
+					0,
+					y * world_generation_params.get_chunk_unit_size()
+				)
+
 				active_chunks[coord] = chunk_node
+
 
 func _process(_delta: float) -> void:
 	if isRendering == true:

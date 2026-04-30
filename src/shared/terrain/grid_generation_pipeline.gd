@@ -8,10 +8,11 @@ extends Node
 var world_generation_params
 var blueprint: MapTileData
 
+
 func run_pipeline(manager: MapRenderer) -> void:
 	world_generation_params = manager.world_generation_params
 	blueprint = manager.blueprint
-	
+
 	var generators = get_children().filter(func(c): return c.has_method("run_generation"))
 
 	for generator in generators:
@@ -23,5 +24,3 @@ func run_pipeline(manager: MapRenderer) -> void:
 
 	if debug_flag == true:
 		print(self.name + ": Generation completed")
-		
-	

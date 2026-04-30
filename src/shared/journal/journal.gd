@@ -1,14 +1,15 @@
 class_name Journal
 extends Node
 
-@export var pages: Node
 @export var page_dict: Dictionary[PageType, Node]
 var prev_mouse_mode
-var buttons: Control
 var page_visible_index: int
 var entry_scene = preload("uid://dktjlwqp00lcr")
 var entry_text = preload("uid://y7wfem0trjrv")
+
+@onready var pages: Control = $"Page container"
 @onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
+@onready var buttons: Control = $"Button container"
 
 enum PageType {Text, Items, Objects, Mobs}
 
@@ -38,8 +39,6 @@ func add_text_entry(text: String):
 
 
 func _ready() -> void:
-	buttons = $"Button container"
-
 	add_text_entry(
 		(
 			"This is journal, on this page you have aliens thoughts as"

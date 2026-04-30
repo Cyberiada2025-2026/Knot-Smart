@@ -6,13 +6,14 @@ var rotate_angle
 var model: Node3D = null
 
 
-func add_entry(obj_des: JournalEntryPOI) -> void:
-	model = obj_des.model
-	model.set_scale(Vector3(obj_des.model_scale, obj_des.model_scale, obj_des.model_scale))
-	model.set_position(Vector3.ZERO)  #to ensure model is at the right place
+func add_entry(entry_poi: JournalEntryPOI) -> void:
+	if model != null:
+		model = entry_poi.model
+		model.set_scale(Vector3(entry_poi.model_scale, entry_poi.model_scale, entry_poi.model_scale))
+		model.set_position(Vector3.ZERO)  #to ensure model is at the right place
 	subview.add_child(model)
-	text.text += ("[b]" + obj_des.object_name + "[/b]\n" + obj_des.description)
-	rotate_angle = obj_des.rotation_angle
+	text.text += ("[b]" + entry_poi.object_name + "[/b]\n" + entry_poi.description)
+	rotate_angle = entry_poi.rotation_angle
 
 
 func _process(delta: float) -> void:

@@ -30,6 +30,7 @@ func _ready() -> void:
 func on_object_notice(_entity: Node3D) -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	var journal: Node = player.get_node("Journal")
-	model = model.duplicate(0)
+	if model != null:
+		model = model.duplicate(0)
 	journal.add_object(self)
 	self.queue_free()

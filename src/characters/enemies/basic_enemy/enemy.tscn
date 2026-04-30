@@ -28,6 +28,11 @@
 [ext_resource type="Script" uid="uid://dsf3a8vlolhx8" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="20_mpfi1"]
 [ext_resource type="Script" uid="uid://bwbgvbw8rs0aa" path="res://shared/vfx/player/vfx_player_sequence.gd" id="27_eykdo"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="27_mpfi1"]
+[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="29_mjaka"]
+[ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="30_qd6q6"]
+[ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="31_y1krv"]
+[ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="32_yedos"]
+[ext_resource type="Script" uid="uid://cfbfg51ucp1a2" path="res://shared/journal/journal_entry_poi.gd" id="33_o1m3g"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ntsgn"]
 radius = 0.4
@@ -53,6 +58,21 @@ height = 12.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vyja"]
 radius = 1.5
+
+[sub_resource type="Resource" id="Resource_ou6is"]
+script = ExtResource("32_yedos")
+text = "This guy seems like trouble"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_necax"]
+script = ExtResource("32_yedos")
+text = "I'm gonna die fast"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_wjvgd"]
+script = ExtResource("31_y1krv")
+sentences = Array[ExtResource("32_yedos")]([SubResource("Resource_ou6is"), SubResource("Resource_necax")])
+metadata/_custom_type_script = "uid://dhpmrqniojeb4"
 
 [node name="Enemy" type="CharacterBody3D" unique_id=768992349]
 script = ExtResource("1_2cllp")
@@ -436,6 +456,23 @@ metadata/_custom_type_script = "uid://djg0m48s04bny"
 script = ExtResource("27_eykdo")
 
 [node name="BloodVfx" parent="VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("27_mpfi1")]
+
+[node name="PointOfInterest" type="Node3D" parent="." unique_id=1072260532]
+script = ExtResource("29_mjaka")
+radius = 4.0
+
+[node name="SpeechPOI" type="Node" parent="PointOfInterest" unique_id=1702120644]
+script = ExtResource("30_qd6q6")
+dialogue = SubResource("Resource_wjvgd")
+
+[node name="JournalEntryPOI" type="Node" parent="PointOfInterest" unique_id=1237039963 node_paths=PackedStringArray("model")]
+script = ExtResource("33_o1m3g")
+object_name = "Enemy"
+description = "This is an enemy"
+page = 3
+model = NodePath("")
+model_scale = 0.3
+rotation_angle = 0.2
 
 [connection signal="health_decreased" from="HealthComponent" to="VfxPlayerSequence" method="play"]
 [connection signal="health_depleted" from="HealthComponent" to="DeathComponent" method="_on_death"]

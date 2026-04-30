@@ -14,7 +14,7 @@ var entry_text = preload("uid://y7wfem0trjrv")
 @onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
 
 
-func add_object(obj_des: ObjectDescription):
+func add_object(obj_des: JournalEntryPOI):
 	var page = page_dict[obj_des.page]
 	var entry = entry_scene.instantiate()
 	entry.add_entry(obj_des)

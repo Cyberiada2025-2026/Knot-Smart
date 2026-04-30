@@ -470,7 +470,7 @@ script = ExtResource("33_o1m3g")
 object_name = "Enemy"
 description = "This is an enemy"
 page = 3
-model = NodePath("")
+model = NodePath("../../MeshInstance3D")
 model_scale = 0.3
 rotation_angle = 0.2
 

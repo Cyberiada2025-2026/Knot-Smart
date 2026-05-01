@@ -11,8 +11,7 @@
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="6_c6leb"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="7_on558"]
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
-[ext_resource type="Script" uid="uid://bkffe8kvogeke" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
-[ext_resource type="Script" uid="uid://gfr35mbc1ij6" path="res://shared/journal/journal_entry_description.gd" id="11_8l73k"]
+[ext_resource type="Script" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
 [ext_resource type="Script" uid="uid://c0v1x4a4fbhnn" path="res://shared/tooltips/tooltip_manager.gd" id="12_on558"]
 [ext_resource type="Script" uid="uid://sf6x58peklug" path="res://ui/inventory/inventory_manager.gd" id="13_gqopd"]
 [ext_resource type="Script" uid="uid://d0x6a5ec5mlei" path="res://shared/speech/speech_manager.gd" id="13_icpky"]
@@ -24,19 +23,6 @@ height = 0.8
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_on558"]
 radius = 1.0
-
-[sub_resource type="Resource" id="Resource_aqrcq"]
-script = ExtResource("11_8l73k")
-object_name = "Journal"
-description = "This is a journal, on this page you have aliens thoughts as  entries meanwhile on others you will have object descriptions as entries"
-page = 0
-metadata/_custom_type_script = "uid://gfr35mbc1ij6"
-
-[sub_resource type="Resource" id="Resource_8l73k"]
-script = ExtResource("11_8l73k")
-object_name = "Second Initial Description"
-description = "Some items can also have a description without a model present."
-metadata/_custom_type_script = "uid://gfr35mbc1ij6"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_on558"]
 bg_color = Color(0, 0, 0, 1)
@@ -118,7 +104,6 @@ page_dict = {
 2: NodePath("Page container/Page3/ScrollContainer/VBoxContainer"),
 3: NodePath("Page container/Page4/ScrollContainer/VBoxContainer")
 }
-initial_entries = Array[ExtResource("11_8l73k")]([SubResource("Resource_aqrcq"), SubResource("Resource_8l73k")])
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1622957288]
 script = ExtResource("6_c6leb")
@@ -127,7 +112,6 @@ debug_log = true
 [node name="PlayerRespawnComponent" type="Node" parent="." unique_id=15480088 node_paths=PackedStringArray("health_component")]
 script = ExtResource("11_3t07l")
 health_component = NodePath("../HealthComponent")
-metadata/_custom_type_script = "uid://bkffe8kvogeke"
 
 [node name="TooltipManager" type="Node3D" parent="." unique_id=1596368387]
 script = ExtResource("12_on558")

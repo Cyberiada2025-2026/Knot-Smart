@@ -2,11 +2,14 @@ extends HBoxContainer
 
 @export var text: RichTextLabel
 @export var subview: Node
+
 var rotate_angle
 var model: Node3D = null
+var journal_entry: JournalEntry
 
 
 func add_entry(entry: JournalEntry) -> void:
+	journal_entry = entry
 	var entry_model = null
 	if not entry.model_scene.is_empty():
 		entry_model = load(entry.model_scene)

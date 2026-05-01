@@ -19,7 +19,14 @@ func add_object(journal_entry: JournalEntry):
 	var page = page_dict[journal_entry.page]
 	var entry = entry_scene.instantiate()
 	entry.add_entry(journal_entry)
-	var entry_text = entry.text
+
+	var journal_entries = get_tree().get_nodes_in_group("journal_entries")
+
+	for j_entry in journal_entries:
+		if j_entry.journal_entry == entry.journal_entry:
+			print("entry" + entry.journal_entry.object_name + "already exists")
+			entry.free()
+			return
 
 	page.add_child(entry)
 	page.move_child(entry, 0)

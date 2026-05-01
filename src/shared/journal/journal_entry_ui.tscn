@@ -6,7 +6,7 @@
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 
-[node name="JournalEntryUI" type="HBoxContainer" unique_id=351905527 node_paths=PackedStringArray("text", "subview")]
+[node name="JournalEntryUI" type="HBoxContainer" unique_id=351905527 node_paths=PackedStringArray("text", "subview") groups=["journal_entries"]]
 custom_minimum_size = Vector2(220, 100)
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 0.814227, 0.5805466, 0, -0.5805466, 0.814227
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=989688942]
 environment = SubResource("Environment_hawqf")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1558799605 groups=["journal_text"]]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1558799605]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 size_flags_horizontal = 3

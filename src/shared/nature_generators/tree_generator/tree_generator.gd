@@ -60,13 +60,4 @@ func on_generate():
 
 
 func serialize():
-	var result = tree_scene.pack(tree)
-	if result == OK:
-		if not DirAccess.dir_exists_absolute(DIR_PATH):
-			DirAccess.make_dir_absolute(DIR_PATH)
-		var error = ResourceSaver.save(
-			tree_scene,
-			DIR_PATH + "/tree%d.tscn" % tree.get_rid().get_id())
-		if error != OK:
-			push_error("An error occurred while saving the scene to disk.")
-		add_child(tree_scene.instantiate())
+	add_child(Serialize.serialize(tree_scene, tree, DIR_PATH))

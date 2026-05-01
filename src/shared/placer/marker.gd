@@ -1,17 +1,17 @@
 class_name Marker
 extends Area3D
 
-var allows_placement = false
-
 @onready var marker_allowing_placement = $MarkerAllowingPlacement
 @onready var marker_colliding = $MarkerColliding
 @onready var collision_shape = $CollisionShape3D
 
+var allows_placement = false
 
 func resize(size: Vector3) -> void:
 	marker_allowing_placement.mesh.size = size
 	marker_colliding.mesh.size = size
 	collision_shape.shape.size = size
+
 
 func get_half_height() -> float:
 	return marker_allowing_placement.mesh.size.y / 2

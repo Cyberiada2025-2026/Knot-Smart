@@ -1,7 +1,7 @@
 class_name TeleporterManager
 extends Node3D
 
-## remove this one when inventory will be added
+## remove this one when placer will be connected to inventory
 @onready var placer: ItemPlacer = $"../ItemPlacer"
 
 @onready var teleporters = $Teleporters
@@ -11,7 +11,6 @@ extends Node3D
 
 const teleporter_scene = preload("res://shared/teleporters/teleporter.tscn")
 const teleporter_button_scene = preload("res://shared/teleporters/teleporter_button.tscn")
-
 
 var camera: PlayerCamera
 
@@ -29,11 +28,12 @@ func create_teleporter(teleporter_instance):
 	teleporter_instance.reparent(teleporters)
 
 	teleporter_instance.teleporter_name = await input_window.get_input("enter teleporter name")
+
 	var button: Button = teleporter_button_scene.instantiate()
 	teleporter_buttons.add_child(button)
 	button.text = teleporter_instance.teleporter_name
 
-	button.button_down.connect(teleport.bind(teleporters.get_child_count() - 1))
+	button.button_down.connect(teleport.bind(teleporter_instance))
 
 
 func _physics_process(_delta: float) -> void:
@@ -43,6 +43,7 @@ func _physics_process(_delta: float) -> void:
 	if (
 		camera.get_view_type() != PlayerCamera.ViewType.FIRST_PERSON
 		or get_tree().paused
+		or not Input.is_action_just_pressed("interact")
 	):
 		return
 
@@ -59,14 +60,12 @@ func _physics_process(_delta: float) -> void:
 	if not teleporter is Teleporter:
 		return
 
-	if Input.is_action_just_pressed("interact"):
-		PauseController.pause_game()
-		teleporter_selection_window.show()
+	PauseController.pause_game()
+	teleporter_selection_window.show()
 
 
-func teleport(teleporter_id: int):
+func teleport(destination_teleporter: Teleporter):
 	teleporter_selection_window.hide()
-	var destination_teleporter = teleporters.get_child(teleporter_id)
 	var player = get_node("../")
 	player.player_physics.global_position = destination_teleporter.global_position
 	# await to avoid input read from other classes

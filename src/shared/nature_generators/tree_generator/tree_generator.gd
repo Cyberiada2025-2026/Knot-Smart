@@ -3,6 +3,7 @@ class_name TreeGenerator
 extends Node3D
 
 const DIR_PATH = "user://trees"
+const BRANCH_SPAWN_PERCENTAGE = 0.6
 
 @export_tool_button("Generate", "Callable") var generate_button = on_generate
 @export var params: TreeParameters
@@ -33,7 +34,8 @@ func generate_tree():
 	if params.flat_branches_parameters != null:
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
-			add_flat_branches(branch)
+			if randf()<BRANCH_SPAWN_PERCENTAGE:
+				add_flat_branches(branch)
 	serialize()
 
 

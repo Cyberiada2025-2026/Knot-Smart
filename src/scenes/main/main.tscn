@@ -17,6 +17,7 @@
 [ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="12_th5th"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="15_hxu8e"]
 [ext_resource type="PackedScene" uid="uid://cwgdxw2n1ey7s" path="res://shared/papers/sheet_music/sheet_music.tscn" id="17_nvumn"]
+[ext_resource type="Material" uid="uid://cs6kr88umcnbn" path="res://shared/water/water.tres" id="18_ou6is"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -57,6 +58,13 @@ metadata/_custom_type_script = "uid://kpru7f8vmtp5"
 script = ExtResource("8_hxu8e")
 sentences = Array[ExtResource("9_nvumn")]([SubResource("Resource_ou6is"), SubResource("Resource_necax")])
 metadata/_custom_type_script = "uid://dhpmrqniojeb4"
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nvumn"]
+top_radius = 2.0
+height = 0.001
+radial_segments = 10
+rings = 0
+cap_bottom = false
 
 [node name="Main" type="Node3D" unique_id=959478903]
 
@@ -226,6 +234,16 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="SheetMusic" parent="." unique_id=1780103802 instance=ExtResource("17_nvumn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116556)
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=1911253994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.74, 0.51, -7.78)
+material_override = ExtResource("18_ou6is")
+mesh = SubResource("CylinderMesh_nvumn")
+
+[node name="Water" type="MeshInstance3D" parent="Water" unique_id=1747726043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36, 0, 0)
+material_override = ExtResource("18_ou6is")
+mesh = SubResource("CylinderMesh_nvumn")
 
 [connection signal="triggered" from="Enemy/PointOfInterest" to="NavigationRegion3D/BuildingGenerator" method="_on_point_of_interest_triggered"]
 

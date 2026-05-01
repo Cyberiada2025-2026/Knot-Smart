@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bya3wi20a0bnj"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_wrjcs"]
+[ext_resource type="PackedScene" uid="uid://c3581kcpnvx4f" path="res://shared/ship/ship.tscn" id="2_m5h8t"]
+[ext_resource type="PackedScene" uid="uid://c8uvhpoaogyqt" path="res://shared/ship/ship_parts/sprocket.tscn" id="3_5bqjc"]
+[ext_resource type="PackedScene" uid="uid://ckl5pfstkaitv" path="res://shared/ship/ship_parts/screws.tscn" id="4_olt7n"]
+[ext_resource type="PackedScene" uid="uid://blrhgw85c4fk1" path="res://shared/ship/ship_parts/pipe_fitting.tscn" id="5_unlvc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tch0"]
+albedo_color = Color(0.10103265, 0.16858053, 0.1756905, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s4eep"]
+material = SubResource("StandardMaterial3D_5tch0")
+size = Vector3(40, 0.3, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s64dg"]
+size = Vector3(40, 0.3, 40)
+
+[node name="WinCheck" type="Node3D" unique_id=580304384]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=528763128]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1990634554]
+mesh = SubResource("BoxMesh_s4eep")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1019632341]
+shape = SubResource("BoxShape3D_s64dg")
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_wrjcs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61221504, 0)
+
+[node name="Ship" parent="." unique_id=1709628034 instance=ExtResource("2_m5h8t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4.3114867)
+
+[node name="Sprocket" parent="." unique_id=1744369305 instance=ExtResource("3_5bqjc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2134385, 0.30740786, 11.684737)
+
+[node name="Screws" parent="." unique_id=547478558 instance=ExtResource("4_olt7n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.382515, 0.23473954, 0)
+
+[node name="PipeFitting" parent="." unique_id=822480282 instance=ExtResource("5_unlvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.722275, 0.29638577, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1971203375]
+transform = Transform3D(0.9350857, 0.2908988, 0.20246622, -0.35442162, 0.76749074, 0.5341753, 0, -0.57125807, 0.8207705, -5.656126, 0.23473954, 0)

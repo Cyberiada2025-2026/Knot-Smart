@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://blrhgw85c4fk1"]
+
+[ext_resource type="Script" uid="uid://dles3x4ape0fk" path="res://shared/inventory_items_zones/take_item_zone.gd" id="1_dwgth"]
+[ext_resource type="Script" uid="uid://dvy1b1v48ym8a" path="res://ui/inventory/item_description.gd" id="2_kmac5"]
+
+[sub_resource type="Resource" id="Resource_kem2r"]
+script = ExtResource("2_kmac5")
+item_name = "Pipe fitting"
+description = "Used to connect sections of pipe"
+metadata/_custom_type_script = "uid://dvy1b1v48ym8a"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ivsb"]
+shading_mode = 0
+albedo_color = Color(0.27749684, 0.24119037, 0.1564745, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_06j7b"]
+material = SubResource("StandardMaterial3D_3ivsb")
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_b0j6u"]
+data = PackedVector3Array(-0.14999999, 0.14999999, 0.14999999, 0.14999999, 0.14999999, 0.14999999, -0.14999999, -0.14999999, 0.14999999, 0.14999999, 0.14999999, 0.14999999, 0.14999999, -0.14999999, 0.14999999, -0.14999999, -0.14999999, 0.14999999, 0.14999999, 0.14999999, -0.14999999, -0.14999999, 0.14999999, -0.14999999, 0.14999999, -0.14999999, -0.14999999, -0.14999999, 0.14999999, -0.14999999, -0.14999999, -0.14999999, -0.14999999, 0.14999999, -0.14999999, -0.14999999, 0.14999999, 0.14999999, 0.14999999, 0.14999999, 0.14999999, -0.14999999, 0.14999999, -0.14999999, 0.14999999, 0.14999999, 0.14999999, -0.14999999, 0.14999999, -0.14999999, -0.14999999, 0.14999999, -0.14999999, 0.14999999, -0.14999999, 0.14999999, -0.14999999, -0.14999999, 0.14999999, 0.14999999, -0.14999999, -0.14999999, -0.14999999, -0.14999999, 0.14999999, 0.14999999, -0.14999999, -0.14999999, 0.14999999, -0.14999999, -0.14999999, -0.14999999, 0.14999999, 0.14999999, 0.14999999, -0.14999999, 0.14999999, 0.14999999, 0.14999999, 0.14999999, -0.14999999, -0.14999999, 0.14999999, 0.14999999, -0.14999999, 0.14999999, -0.14999999, 0.14999999, 0.14999999, -0.14999999, -0.14999999, -0.14999999, 0.14999999, 0.14999999, -0.14999999, 0.14999999, -0.14999999, -0.14999999, -0.14999999, 0.14999999, -0.14999999, 0.14999999, 0.14999999, -0.14999999, -0.14999999, -0.14999999, -0.14999999, -0.14999999)
+
+[node name="PipeFitting" type="StaticBody3D" unique_id=180752249]
+
+[node name="TakeItemZone" type="Node3D" parent="." unique_id=152769260]
+script = ExtResource("1_dwgth")
+item = SubResource("Resource_kem2r")
+metadata/_custom_type_script = "uid://dles3x4ape0fk"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1680644031]
+mesh = SubResource("BoxMesh_06j7b")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=193398982]
+shape = SubResource("ConcavePolygonShape3D_b0j6u")

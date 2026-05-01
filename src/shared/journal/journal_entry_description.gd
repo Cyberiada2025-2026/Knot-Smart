@@ -11,7 +11,7 @@ extends Resource
 
 @export_category("Model information")
 ## Model of visible in an entry. If null no preview will be visible
-@export_file var model_scene: String 
+@export_file var model_scene: String
 ## Scale of the model
 @export var model_scale: float = 0.5
 ## Angle in radians that object should rotate by per second.

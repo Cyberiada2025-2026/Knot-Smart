@@ -15,7 +15,7 @@ func add_entry(entry: JournalEntryDescription) -> void:
 	if entry_model != null:
 		model = entry_model.instantiate()
 		model.scale = Vector3.ONE * entry.model_scale
-		model.position = Vector3.ZERO #to ensure model is at the right place
+		model.position = Vector3.ZERO  #to ensure model is at the right place
 		subview.add_child(model)
 
 	text.text += ("[b]" + entry.object_name + "[/b]\n" + entry.description)

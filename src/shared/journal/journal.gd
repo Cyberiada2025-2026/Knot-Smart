@@ -33,9 +33,6 @@ func add_object(journal_entry: JournalEntryDescription):
 
 
 func _ready() -> void:
-	#		"This is journal, on this page you have aliens thoughts as"
-	#		+ " entries meanwhile on others you will have object"
-	#		+ " descriptions as entries"
 	for entry in initial_entries:
 		add_object(entry)
 	page_visible_index = 0

@@ -9,9 +9,12 @@ var allows_placement = false
 
 
 func resize(size: Vector3) -> void:
-	marker_allowing_placement.size = size
-	marker_colliding.size = size
+	marker_allowing_placement.mesh.size = size
+	marker_colliding.mesh.size = size
 	collision_shape.shape.size = size
+
+func get_half_height() -> float:
+	return marker_allowing_placement.mesh.size.y / 2
 
 
 func update_state(raycasted_body: Node3D) -> void:

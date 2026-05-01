@@ -1,24 +1,24 @@
 class_name TeleporterManager
 extends Node3D
 
-## remove when inventory will be added
+## remove this one when inventory will be added
 @onready var placer: ItemPlacer = $"../ItemPlacer"
-
-const teleporter_scene = preload("res://shared/teleporters/teleporter.tscn")
-const teleporter_button_scene = preload("res://shared/teleporters/teleporter_button.tscn")
 
 @onready var teleporters = $Teleporters
 @onready var input_window: InputWindow = $InputWindow
 @onready var teleporter_buttons = $TeleporterSelectionWindow/Control/VBoxContainer2/ScrollContainer/VBoxContainer
 @onready var teleporter_selection_window = $TeleporterSelectionWindow/Control
 
-# onready runs before camera load
+const teleporter_scene = preload("res://shared/teleporters/teleporter.tscn")
+const teleporter_button_scene = preload("res://shared/teleporters/teleporter_button.tscn")
+
+
 var camera: PlayerCamera
 
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("teleporter_place_mode"):
-		placer.start_placing_next(teleporter_scene)
+		placer.start_placing_next(teleporter_scene, Vector3(0.5, 1, 0.5))
 	if Input.is_action_just_pressed("pause_button"):
 		teleporter_selection_window.hide()
 

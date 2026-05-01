@@ -16,6 +16,7 @@ signal placement_finished(placed_object: Node3D)
 var _state = State.IDLE
 @onready var _marker: Marker = $Marker
 
+var _marker_rotation
 var _prev_mouse_mode
 var _prev_camera_mode
 var _camera: PlayerCamera
@@ -39,6 +40,7 @@ func start_placing_next(item: PackedScene, size: Vector3 = Vector3.ZERO) -> bool
 		_state = State.SELECTING_POSITION
 
 		_marker.collision_shape.disabled = false
+		_marker_rotation = 0
 
 		_prev_mouse_mode = Input.get_mouse_mode()
 		_prev_camera_mode = _camera.rotation_strategy
@@ -61,10 +63,11 @@ func _set_idle():
 	_state = State.IDLE
 	_marker.collision_shape.disabled = true
 
+	SubtitleManager.hide()
 
-func _physics_process(_delta: float) -> void:
+
+func _physics_process(delta: float) -> void:
 	_marker.hide()
-
 
 	if _state != State.SELECTING_POSITION:
 		return
@@ -75,6 +78,8 @@ func _physics_process(_delta: float) -> void:
 	):
 		_set_idle()
 		return
+
+	SubtitleManager.display("Press " + Utils.get_input_action_as_text("rotate") + " to rotate")
 
 	var raycast_result = (
 		UnsafeRaycastBuilder.new(self)
@@ -110,16 +115,21 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	# add half box height instead of 0.5
-	raycast_result.position += 0.5 * raycast_result.normal # fix box height to avoid being in textures
+	raycast_result.position += _marker.get_half_height() * raycast_result.normal # fix box height to avoid being in textures
 
 	_marker.global_position = raycast_result.position
 	_marker.quaternion = Quaternion(Vector3.UP, raycast_result.normal)
 
 	_marker.update_state(raycast_result.collider)
 
+	if Input.is_action_pressed("rotate"):
+		_marker_rotation = _marker_rotation + PI * delta
+	_marker.rotate_object_local(Vector3.UP, _marker_rotation)
+
 	_marker.show()
 
 	if Input.is_action_just_pressed("left_mouse") and _marker.allows_placement:
+		SubtitleManager.hide()
 		_place()
 
 

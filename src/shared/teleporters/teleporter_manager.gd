@@ -67,8 +67,8 @@ func _physics_process(_delta: float) -> void:
 func teleport(teleporter_id: int):
 	teleporter_selection_window.hide()
 	var destination_teleporter = teleporters.get_child(teleporter_id)
-	var player_physics = get_node("../PlayerPhysics/")
-	player_physics.global_position = destination_teleporter.global_position
+	var player = get_node("../")
+	player.player_physics.global_position = destination_teleporter.global_position
 	# await to avoid input read from other classes
 	await get_tree().process_frame
 	PauseController.unpause_game()

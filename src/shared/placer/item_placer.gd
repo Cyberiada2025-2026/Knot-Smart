@@ -10,8 +10,8 @@ enum State { IDLE, SELECTING_POSITION }
 ## rotation speed in degrees per second
 @export var rotation_speed: int = 90
 
-## Returns placed object[br]
-## Object is Placer's child, all position transforms were applied
+## Returns placed object [br]
+## Object is Placer's child, all position transforms were applied [br]
 ## Use reparent to change object's parent if needed (recommended)
 signal placement_finished(placed_object: Node3D)
 
@@ -96,7 +96,7 @@ func _physics_process(delta: float) -> void:
 	if raycast_result.is_empty():
 		return
 
-	var player_position = get_node("../PlayerPhysics/").position
+	var player_position = get_node("../").player_physics.position
 
 	if _3d_to_2d(player_position).distance_to(_3d_to_2d(raycast_result.position)) > placement_range:
 		raycast_result.position = (raycast_result.position - player_position).normalized() * placement_range + player_position
@@ -127,13 +127,10 @@ func _physics_process(delta: float) -> void:
 		if raycast_result.is_empty():
 			return
 
+	# avoiding too big terrain angles
 	var hit_normal = raycast_result.normal
-
-	# avoiding too big angles
 	var slope_angle_rad = hit_normal.angle_to(Vector3.UP)
-	var slope_angle_deg = rad_to_deg(slope_angle_rad)
-	if slope_angle_deg > max_placement_angle:
-		print("slope!")
+	if rad_to_deg(slope_angle_rad) > max_placement_angle:
 		return
 
 	# fix box height to avoid being in textures
@@ -144,6 +141,9 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("rotate"):
 		_marker_rotation = _marker_rotation + rotation_speed * delta
+	if _marker_rotation > 360:
+		_marker_rotation -= 360
+
 	_marker.rotate_object_local(Vector3.UP, deg_to_rad(_marker_rotation))
 
 	_marker.update_state(raycast_result.collider)

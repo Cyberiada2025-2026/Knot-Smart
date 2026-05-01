@@ -1,7 +1,7 @@
 class_name InputWindow
 extends Node
 
-signal _text_submitted()
+signal text_submitted()
 
 @onready var submit_field: LineEdit = $Control/VBoxContainer/LineEdit
 @onready var submit_button: Button  = $Control/VBoxContainer/SubmitButton
@@ -19,7 +19,7 @@ func pause_game() -> void:
 
 # _text is used to properly handle lext_submitted signal from LineEdit without errors
 func _submitted(_text = ""):
-	_text_submitted.emit()
+	text_submitted.emit()
 
 
 ## async function to get input text from keyboard [br]
@@ -32,7 +32,7 @@ func get_input(message: String = "") -> String:
 	label.text = message
 
 	while true:
-		await _text_submitted
+		await text_submitted
 		if not submit_field.text.is_empty():
 			break
 

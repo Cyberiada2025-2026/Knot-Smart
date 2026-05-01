@@ -1,23 +1,24 @@
 class_name TeleporterManager
 extends Node3D
 
+const TELEPORTER_SCENE = preload("res://shared/teleporters/teleporter.tscn")
+const TELEPORTER_BUTTON_SCENE = preload("res://shared/teleporters/teleporter_button.tscn")
+
+var camera: PlayerCamera
+
 ## remove this one when placer will be connected to inventory
 @onready var placer: ObjectPlacer = $"../ObjectPlacer"
 
 @onready var teleporters = $Teleporters
 @onready var input_window: InputWindow = $InputWindow
-@onready var teleporter_buttons = $TeleporterSelectionWindow/Control/VBoxContainer2/ScrollContainer/VBoxContainer
+@onready var teleporter_buttons = (
+	$TeleporterSelectionWindow/Control/VBoxContainer2/ScrollContainer/VBoxContainer
+	)
 @onready var teleporter_selection_window = $TeleporterSelectionWindow/Control
-
-const teleporter_scene = preload("res://shared/teleporters/teleporter.tscn")
-const teleporter_button_scene = preload("res://shared/teleporters/teleporter_button.tscn")
-
-var camera: PlayerCamera
-
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("teleporter_place_mode"):
-		placer.start_placing_next(teleporter_scene, Vector3(0.5, 1, 0.5))
+		placer.start_placing_next(TELEPORTER_SCENE, Vector3(0.5, 1, 0.5))
 	if Input.is_action_just_pressed("pause_button"):
 		teleporter_selection_window.hide()
 
@@ -29,7 +30,7 @@ func create_teleporter(teleporter_instance):
 
 	teleporter_instance.teleporter_name = await input_window.get_input("enter teleporter name")
 
-	var button: Button = teleporter_button_scene.instantiate()
+	var button: Button = TELEPORTER_BUTTON_SCENE.instantiate()
 	teleporter_buttons.add_child(button)
 	button.text = teleporter_instance.teleporter_name
 

@@ -1,6 +1,11 @@
 class_name ObjectPlacer
 extends Node3D
 
+## Returns placed object [br]
+## Object is Placer's child, all position transforms were applied [br]
+## Use reparent to change object's parent if needed (recommended)
+signal placement_finished(placed_object: Node3D)
+
 enum State { IDLE, SELECTING_POSITION }
 
 ## maximun radius around player where placement is allowed
@@ -10,14 +15,7 @@ enum State { IDLE, SELECTING_POSITION }
 ## rotation speed in degrees per second
 @export var rotation_speed: int = 90
 
-## Returns placed object [br]
-## Object is Placer's child, all position transforms were applied [br]
-## Use reparent to change object's parent if needed (recommended)
-signal placement_finished(placed_object: Node3D)
-
 var _state = State.IDLE
-@onready var _marker: Marker = $Marker
-@onready var _camera_mode = $CameraMode
 
 var _marker_rotation
 var _prev_mouse_mode
@@ -26,13 +24,15 @@ var _camera: PlayerCamera
 
 var _item_to_be_placed
 
+@onready var _marker: Marker = $Marker
+@onready var _camera_mode = $CameraMode
+
 ## enter item placement mode [BR]
 ## marker is resized automatically based on provided sprite size [BR]
 ## returns false if enabling placement mode was impossible
 func start_placing_next(item: PackedScene, size: Vector3 = Vector3.ZERO) -> bool:
 	if _state != State.IDLE:
-		print("PLACER: placing next item when previous placement is still active, previous placement terminated")
-
+		print("PLACER: previous placement terminated")
 	if size != Vector3.ZERO:
 		_marker.resize(size)
 
@@ -98,7 +98,7 @@ func _physics_process(delta: float) -> void:
 
 	var player_position = get_node("../").player_physics.position
 
-	if _3d_to_2d(player_position).distance_to(_3d_to_2d(raycast_result.position)) > placement_range:
+	if _v3_to_v2(player_position).distance_to(_v3_to_v2(raycast_result.position)) > placement_range:
 		raycast_result.position = (
 			(raycast_result.position - player_position).normalized() * placement_range
 			+ player_position
@@ -173,5 +173,5 @@ func _place():
 	placement_finished.emit(placed_item)
 
 
-func _3d_to_2d(vector: Vector3) -> Vector2:
+func _v3_to_v2(vector: Vector3) -> Vector2:
 	return Vector2(vector.x, vector.z)

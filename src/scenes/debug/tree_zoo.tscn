@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark.tres" id="3_rrlkt"]
 [ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/nature_generators/tree_generator/tree_parameters.gd" id="4_u5v14"]
 [ext_resource type="Script" uid="uid://bxobj8lbccu64" path="res://shared/nature_generators/foliage_generator/foliage_generator.gd" id="5_f225a"]
-[ext_resource type="Material" uid="uid://cpfk116xcolca" path="res://shared/nature_generators/foliage_generator/foliage_materials/plant.tres" id="6_ca55m"]
+[ext_resource type="Material" uid="uid://cpfk116xcolca" path="res://shared/nature_generators/foliage_generator/foliage_materials/bush.tres" id="6_ca55m"]
 [ext_resource type="Script" uid="uid://cs824opuvcx8k" path="res://shared/nature_generators/foliage_generator/foliage_parameters.gd" id="7_itme7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_crhmp"]

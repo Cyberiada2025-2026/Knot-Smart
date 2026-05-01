@@ -49,9 +49,10 @@ func interact():
 	var items = items_node.get_items()
 	for item in items:
 		for cell in grid.get_children():
-			if items_node is PutItemZone:
+			if items_node is ShipParts:
 				if cell.get_item_name()==item.item_name:
 					items[item] = cell.remove_item(items[item])
+					items_node.on_changed()
 					break
 			elif items_node is TakeItemZone:
 				if cell.get_item_name()==item.item_name or cell.is_empty():
@@ -63,6 +64,6 @@ func interact():
 func get_items_node():
 	for body in interaction_area.get_overlapping_bodies():
 		for child in body.get_children():
-			if child is TakeItemZone or child is PutItemZone:
+			if child is TakeItemZone or child is ShipParts:
 				items_node = child
 				return

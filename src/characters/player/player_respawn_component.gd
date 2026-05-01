@@ -10,7 +10,7 @@ func _ready():
 	ProgressionManager.respawn_pos = get_node("../PlayerPhysics").global_position
 	health_component.health_depleted.connect(_die)
 	animator = CameraSetup.get_respawn_animator()
-	animator._on_anim_finished.connect(_respawn)
+	animator.on_anim_finished.connect(_respawn)
 
 
 func _die():

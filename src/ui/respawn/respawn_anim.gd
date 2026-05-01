@@ -1,7 +1,7 @@
 class_name RespawnAnimator
 extends Node
 
-signal _on_anim_finished
+signal on_anim_finished
 
 @export var rect: ColorRect
 @export var points_amount: int = 100
@@ -26,7 +26,7 @@ var active = false
 func _start() -> void:
 	active = true
 	rect.visible = true
-	
+
 	points.resize(points_amount)
 	points.fill(Vector2.ONE * 10000)
 
@@ -51,12 +51,12 @@ func _start() -> void:
 func _process(delta: float) -> void:
 	if (!active):
 		return
-	
+
 	timer += delta
 	if timer >= sequence[min(spawned_cells, sequence.size() - 1)]:
 		spawn()
 		timer = 0.0
-	
+
 	if (spawned_cells > start_white):
 		white_mix += (points_amount - start_white) * sequence[sequence.size() - 1] * delta
 
@@ -88,4 +88,4 @@ func spawn() -> void:
 func respawn_player() -> void:
 	active = false
 	rect.visible = false
-	_on_anim_finished.emit()
+	on_anim_finished.emit()

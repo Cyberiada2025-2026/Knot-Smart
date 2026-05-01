@@ -1,4 +1,4 @@
-class_name JournalEntryDescription
+class_name JournalEntry
 extends Resource
 
 @export_category("Journal entry information")

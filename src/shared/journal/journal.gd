@@ -4,7 +4,7 @@ extends Node
 enum PageType { TEXT, ITEMS, OBJECTS, MOBS }
 
 @export var page_dict: Dictionary[PageType, Node]
-@export var initial_entries: Array[JournalEntryDescription]
+@export var initial_entries: Array[JournalEntry]
 
 var prev_mouse_mode
 var page_visible_index: int
@@ -15,7 +15,7 @@ var entry_scene = preload("uid://dktjlwqp00lcr")
 @onready var buttons: Control = $"Button container"
 
 
-func add_object(journal_entry: JournalEntryDescription):
+func add_object(journal_entry: JournalEntry):
 	var page = page_dict[journal_entry.page]
 	var entry = entry_scene.instantiate()
 	entry.add_entry(journal_entry)

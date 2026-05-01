@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cfbfg51ucp1a2" path="res://shared/journal/journal_entry_poi.gd" id="2_40cw0"]
 [ext_resource type="PackedScene" uid="uid://bi7hkhprp31go" path="res://characters/player/player_model.glb" id="3_cht0e"]
 [ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="4_1ur2l"]
-[ext_resource type="Script" uid="uid://gfr35mbc1ij6" path="res://shared/journal/journal_entry_description.gd" id="5_unaqc"]
+[ext_resource type="Script" uid="uid://gfr35mbc1ij6" path="res://shared/journal/journal_entry.gd" id="5_unaqc"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e74q2"]
 

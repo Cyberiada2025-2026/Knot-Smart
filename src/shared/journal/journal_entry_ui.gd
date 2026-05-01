@@ -6,7 +6,7 @@ var rotate_angle
 var model: Node3D = null
 
 
-func add_entry(entry: JournalEntryDescription) -> void:
+func add_entry(entry: JournalEntry) -> void:
 	var entry_model = null
 	if not entry.model_scene.is_empty():
 		entry_model = load(entry.model_scene)

@@ -3,9 +3,9 @@ extends Node
 
 enum PageType { TEXT, ITEMS, OBJECTS, MOBS }
 
-@export var page_dict: Dictionary[PageType, Node]
 @export var initial_entries: Array[JournalEntry]
 
+var page_dict: Dictionary[PageType, Node]
 var prev_mouse_mode
 var page_visible_index: int
 var entry_scene = preload("uid://dktjlwqp00lcr")
@@ -36,6 +36,9 @@ func _ready() -> void:
 	for entry in initial_entries:
 		add_object(entry)
 	page_visible_index = 0
+	page_dict = pages.page_dict
+
+
 
 
 func _process(_delta: float) -> void:

@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://cjjffdo72xk1u"]
 
 [ext_resource type="Script" uid="uid://bh62yi751w8jp" path="res://shared/journal/journal.gd" id="1_ohc7l"]
+[ext_resource type="Script" uid="uid://dekv6o1btvok5" path="res://shared/journal/page_container.gd" id="2_erk7u"]
 
 [sub_resource type="Theme" id="Theme_ohc7l"]
 
 [sub_resource type="Theme" id="Theme_erk7u"]
 
-[node name="Journal menu" type="Control" unique_id=883052313 node_paths=PackedStringArray("page_dict") groups=["unpausable"]]
+[node name="Journal menu" type="Control" unique_id=883052313 groups=["unpausable"]]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -22,12 +23,6 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ohc7l")
-page_dict = {
-0: NodePath("Page container/Page1/ScrollContainer/VBoxContainer"),
-1: NodePath("Page container/Page2/ScrollContainer/VBoxContainer"),
-2: NodePath("Page container/Page3/ScrollContainer/VBoxContainer"),
-3: NodePath("Page container/Page4/ScrollContainer/VBoxContainer")
-}
 
 [node name="Button container" type="VBoxContainer" parent="." unique_id=1593425837]
 layout_mode = 1
@@ -69,7 +64,7 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 text = "Mobs"
 
-[node name="Page container" type="Control" parent="." unique_id=290103834]
+[node name="Page container" type="Control" parent="." unique_id=290103834 node_paths=PackedStringArray("page_dict")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -82,6 +77,13 @@ offset_bottom = 100.0
 grow_horizontal = 0
 grow_vertical = 2
 theme = SubResource("Theme_erk7u")
+script = ExtResource("2_erk7u")
+page_dict = {
+0: NodePath("Page1/ScrollContainer/VBoxContainer"),
+1: NodePath("Page2/ScrollContainer/VBoxContainer"),
+2: NodePath("Page3/ScrollContainer/VBoxContainer"),
+3: NodePath("Page4/ScrollContainer/VBoxContainer")
+}
 
 [node name="Page1" type="Control" parent="Page container" unique_id=783195239]
 layout_mode = 1

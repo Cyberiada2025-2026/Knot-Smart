@@ -1,0 +1,129 @@
+[gd_scene format=4 uid="uid://cjfwyjhh3373u"]
+
+[ext_resource type="Shader" uid="uid://duj41vfs2gl0h" path="res://shared/water/water_splash.gdshader" id="1_muroy"]
+[ext_resource type="Texture2D" uid="uid://byqhl4p86hfec" path="res://shared/water/water.png" id="2_43lt8"]
+[ext_resource type="Script" uid="uid://fehy200ge5ug" path="res://shared/utils/free_after_anim.gd" id="3_eumgo"]
+
+[sub_resource type="Gradient" id="Gradient_r4lks"]
+offsets = PackedFloat32Array(0.30751175, 0.5657277)
+colors = PackedColorArray(0.37, 0.2686817, 0.17390001, 1, 0.45, 0.429525, 0.3555, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pg34l"]
+gradient = SubResource("Gradient_r4lks")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4lks"]
+render_priority = 0
+shader = ExtResource("1_muroy")
+shader_parameter/main_tex = ExtResource("2_43lt8")
+shader_parameter/water_col = SubResource("GradientTexture1D_pg34l")
+shader_parameter/speed1 = Vector2(0, -0.5)
+shader_parameter/speed2 = Vector2(0, 0.1)
+shader_parameter/speed3 = Vector2(0, -0.1)
+shader_parameter/scales = Vector3(1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4kl5"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_q8c3g"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIAAwAFAAEABAACAAYAAwAHAAUACAAEAAYABwAJAAUACAAGAAoABwALAAkADAAIAAoACwANAAkADAAKAA4ACwAPAA0AEAAMAA4ADwARAA0AEAAOABIADwATABEAFAAQABIAEwAVABEAFAASABYAEwAXABUAFwAUABYAFwAWABUA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/38AAAAAAAD/v///JhEAAP9///8AAAAA/78AACYRAAD/PwAAJhEAANju////PwAA/z///yYRAADY7gAA/z8AACYRAAD/PwAA//////9/AAAmEf///z8AAP//AAD/fwAAAAAAAP9/AADY7v///78AAAAA////fwAA2O4AAP+/AAAmEQAA/78AAP+////Y7gAAJhH///+/AAD/vwAA2O4AAP8/AADY7gAA/3//////AAD/P///2O4AAP9/AAD//wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hwuia"]
+resource_name = "splash_Cylinder"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("/////6nqAAD//wAAqer//6nq//9U1QAAqeoAAFTV//9U1f///78AAFTVAAD/v////7///6qqAAD/vwAAqqr//6qq//9UlQAAqqoAAFSV//9Ulf///38AAFSVAAD/f////3///6pqAAD/fwAAqmr//6pq//9VVQAAqmoAAFVV//9VVf///z8AAFVVAAD/P////z///6oqAAD/PwAAqir//6oq//9VFQAAqioAAFUV//9VFf//AAAAAFUVAAAAAP//"),
+"format": 34896613399,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0A"),
+"material": SubResource("StandardMaterial3D_x4kl5"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("/38AAAAAVPX/v///JhFU9f9///8AAFT1/78AACYRVPX/vwAAJhH/39ju////P//f/7///yYR/9/Y7gAA/z//39juAAD/P6nK//////9/qcrY7v///z+pyv//AAD/f6nK//8AAP9/VLXY7v///79Utf//////f1S12O4AAP+/VLXY7gAA/7//n/+////Y7v+f2O7///+//5//vwAA2O7/n/+/AADY7qqK/3//////qor/v///2O6qiv9/AAD//6qK/38AAP//qor/P///2O6qiv9//////6qK/z8AANjuqor/PwAA2O7/nyYR////v/+f/z///9ju/58mEQAA/7//nyYRAAD/v1S1AAD///9/VLUmEf///79UtQAAAAD/f1S1AAAAAP9/qcomEf///z+pygAA////f6nKJhEAAP8/qcomEQAA/z//3/8///8mEf/fJhH///8//9//PwAAJhH/3/8/AAAmEVT1/3///wAAVPX/P///JhFU9f9/AAAAAFT1/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_q8c3g")
+
+[sub_resource type="Animation" id="Animation_r4lks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, 0.5, 0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pg34l"]
+resource_name = "splash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(0.2, 1, 5),
+"update": 0,
+"values": [Vector3(0.2, 0, 0.2), Vector3(0.2, 1, 0.2), Vector3(0.75, 1, 0.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5),
+"transitions": PackedFloat32Array(1, 5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1.5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m4h2d"]
+_data = {
+&"RESET": SubResource("Animation_r4lks"),
+&"splash": SubResource("Animation_pg34l")
+}
+
+[node name="Splash" type="MeshInstance3D" unique_id=1903135244]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_r4lks")
+mesh = SubResource("ArrayMesh_hwuia")
+skeleton = NodePath("")
+script = ExtResource("3_eumgo")
+anim = &"splash"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1641033367]
+libraries/ = SubResource("AnimationLibrary_m4h2d")
+autoplay = &"splash"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="on_end"]

@@ -1,7 +1,7 @@
 class_name Journal
 extends Node
 
-enum PageType { TEXT, ITEMS, OBJECTS, MOBS }
+enum PageType { LOG, ITEMS, OBJECTS, MOBS }
 
 @export var initial_entries: Array[JournalEntry]
 
@@ -33,10 +33,10 @@ func add_object(journal_entry: JournalEntry):
 
 
 func _ready() -> void:
+	page_dict = pages.page_dict
 	for entry in initial_entries:
 		add_object(entry)
 	page_visible_index = 0
-	page_dict = pages.page_dict
 
 
 

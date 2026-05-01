@@ -38,9 +38,10 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-[sub_resource type="Resource" id="Resource_d2agh"]
+[sub_resource type="Resource" id="Resource_aqrcq"]
 script = ExtResource("17_aqrcq")
-object_name = "Travel Journal"
+object_name = "Fix the ship"
+description = "I need to find all the remaining ship parts."
 page = 0
 metadata/_custom_type_script = "uid://gfr35mbc1ij6"
 
@@ -156,14 +157,8 @@ script = ExtResource("13_icpky")
 voice_bank = ExtResource("14_58jvb")
 metadata/_custom_type_script = "uid://d0x6a5ec5mlei"
 
-[node name="Journal menu" parent="." unique_id=883052313 node_paths=PackedStringArray("page_dict") instance=ExtResource("5_ixbpm")]
-page_dict = {
-0: NodePath("Page container/Page1/ScrollContainer/VBoxContainer"),
-1: NodePath("Page container/Page2/ScrollContainer/VBoxContainer"),
-2: NodePath("Page container/Page3/ScrollContainer/VBoxContainer"),
-3: NodePath("Page container/Page4/ScrollContainer/VBoxContainer")
-}
-initial_entries = Array[ExtResource("17_aqrcq")]([SubResource("Resource_d2agh")])
+[node name="Journal menu" parent="." unique_id=883052313 instance=ExtResource("5_ixbpm")]
+initial_entries = Array[ExtResource("17_aqrcq")]([SubResource("Resource_aqrcq")])
 
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]

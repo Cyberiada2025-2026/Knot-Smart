@@ -68,8 +68,6 @@ func _set_idle():
 	_state = State.IDLE
 	_marker.collision_shape.disabled = true
 
-	SubtitleManager.hide()
-
 
 func _physics_process(delta: float) -> void:
 	_marker.hide()
@@ -84,8 +82,6 @@ func _physics_process(delta: float) -> void:
 	):
 		_set_idle()
 		return
-
-	SubtitleManager.display("Press " + Utils.get_input_action_as_text("rotate") + " to rotate")
 
 	var raycast_result = (
 		UnsafeRaycastBuilder.new(self)
@@ -156,7 +152,6 @@ func _physics_process(delta: float) -> void:
 	_marker.show()
 
 	if Input.is_action_just_pressed("left_mouse") and _marker.allows_placement:
-		SubtitleManager.hide()
 		_place()
 
 

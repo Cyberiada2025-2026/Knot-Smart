@@ -5,25 +5,19 @@ extends Node
 @export var submit_button_pressed: Signal
 var submitted: bool = false
 
-var prev_mouse_mode
 @onready var submit_field: LineEdit = $Control/VBoxContainer/LineEdit
 @onready var submit_button: Button  = $Control/VBoxContainer/SubmitButton
 @onready var label: RichTextLabel = $Control/VBoxContainer/RichTextLabel
 
-# try moving to utils
-# move to utils!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-# failed, try again later
 func unpause_game() -> void:
-	get_tree().paused = false
+	PauseController.unpause_game()
 	get_child(0).hide()
-	Input.set_mouse_mode(prev_mouse_mode)
 
 
 func pause_game() -> void:
-	get_tree().paused = true
+	PauseController.pause_game()
 	get_child(0).show()
-	prev_mouse_mode = Input.get_mouse_mode()
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 
 ## async function to get input text from keyboard [br]
 ## message is limited by textbox size and may not be shown fully

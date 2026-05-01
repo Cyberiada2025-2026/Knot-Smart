@@ -4,16 +4,13 @@ var prev_mouse_mode
 
 
 func unpause_game() -> void:
-	get_tree().paused = false
+	PauseController.unpause_game()
 	get_child(0).hide()
-	Input.set_mouse_mode(prev_mouse_mode)
 
 
 func pause_game() -> void:
-	get_tree().paused = true
+	PauseController.pause_game()
 	get_child(0).show()
-	prev_mouse_mode = Input.get_mouse_mode()
-	Input.set_mouse_mode(0)
 
 
 func _process(_delta: float) -> void:

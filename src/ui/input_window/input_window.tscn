@@ -5,7 +5,7 @@
 [node name="InputWindow" type="Node" unique_id=1449974532]
 script = ExtResource("1_kb00d")
 
-[node name="Control" type="Control" parent="." unique_id=1296785190]
+[node name="Control" type="Control" parent="." unique_id=1296785190 groups=["unpausable"]]
 visible = false
 layout_mode = 3
 anchors_preset = 15

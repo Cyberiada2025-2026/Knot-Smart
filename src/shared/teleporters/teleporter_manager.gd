@@ -66,7 +66,7 @@ func _physics_process(_delta: float) -> void:
 
 	if Input.is_action_just_pressed("interact"):
 		print("tak")
-		input_window.pause_game() # NO, USE STH DIFF
+		PauseController.pause_game() # NO, USE STH DIFF
 		teleporter_selection_window.show()
 		 #show teleporter selection window
 		# wait for selection
@@ -83,4 +83,4 @@ func teleport(teleporter_id: int):
 	player_physics.global_position = destination_teleporter.global_position
 	# await to avoid input read from other classes
 	await get_tree().process_frame
-	input_window.unpause_game() # NO, USE STH DIFF
+	PauseController.unpause_game() # NO, USE STH DIFF

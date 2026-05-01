@@ -21,15 +21,8 @@ func add_object(journal_entry: JournalEntry):
 	entry.add_entry(journal_entry)
 	var entry_text = entry.text
 
-	var journal_entries = get_tree().get_nodes_in_group("journal_text")
-
-	for journal_text in journal_entries:
-		if journal_text.get_text() == entry_text.get_text():
-			print("entry" + entry_text.get_text() + "already exists")
-			entry.free()
-			return
-
 	page.add_child(entry)
+	page.move_child(entry, 0)
 
 
 func _ready() -> void:

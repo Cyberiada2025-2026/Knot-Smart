@@ -106,7 +106,7 @@ func _physics_process(delta: float) -> void:
 		var roof = (
 			UnsafeRaycastBuilder.new(self)
 				.set_ray_length(50)
-				.set_raycast_origin(player_position)
+				.set_raycast_origin(raycast_result.position)
 				.set_direction(Vector3.UP)
 				.set_collision_mask(1)
 				.raycast()
@@ -115,8 +115,6 @@ func _physics_process(delta: float) -> void:
 		var raycast_origin = raycast_result.position + Vector3(0, 50, 0)
 
 		if not roof.is_empty():
-			print(roof)
-			#print(roof.position)
 			raycast_origin.y = roof.position.y
 
 		raycast_result = (

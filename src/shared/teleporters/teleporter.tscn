@@ -57,5 +57,5 @@ skeleton = NodePath("../../TeleporterMesh")
 
 [node name="Tooltip" type="Node" parent="ControlPanel" unique_id=79554690]
 script = ExtResource("3_ehr63")
-message = "Press E to use Teleporter"
+message = "Press F to use Teleporter"
 metadata/_custom_type_script = "uid://g0qjk7chw0sp"

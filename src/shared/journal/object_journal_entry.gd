@@ -7,6 +7,7 @@ var model: Node3D = null
 
 
 func add_entry(entry_poi: JournalEntryPOI) -> void:
+	subview.get_parent().visible = entry_poi.model != null
 	if entry_poi.model != null:
 		model = entry_poi.model
 		model.set_scale(

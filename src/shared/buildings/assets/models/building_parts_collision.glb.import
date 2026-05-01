@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bl12nmqdnj8e5"
-path="res://.godot/imported/building_parts.glb-1a168a1fd31d325dc6aaf6f16fdb3b90.scn"
+path="res://.godot/imported/building_parts_collision.glb-d0e4672b44b39c8185367438e6760fed.scn"
 
 [deps]
 
-source_file="res://shared/buildings/assets/building_parts.glb"
-dest_files=["res://.godot/imported/building_parts.glb-1a168a1fd31d325dc6aaf6f16fdb3b90.scn"]
+source_file="res://shared/buildings/assets/models/building_parts_collision.glb"
+dest_files=["res://.godot/imported/building_parts_collision.glb-d0e4672b44b39c8185367438e6760fed.scn"]
 
 [params]
 

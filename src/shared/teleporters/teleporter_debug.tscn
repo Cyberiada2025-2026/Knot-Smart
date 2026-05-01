@@ -50,6 +50,24 @@ shape = SubResource("BoxShape3D_p6ufp")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Slope" unique_id=1129865404]
 mesh = SubResource("BoxMesh_dapys")
 
+[node name="roof" type="StaticBody3D" parent="." unique_id=908018762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.720299, 7.3441525, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="roof" unique_id=229763152]
+shape = SubResource("BoxShape3D_hjmx7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="roof" unique_id=638673803]
+mesh = SubResource("BoxMesh_r707f")
+
+[node name="floor2" type="StaticBody3D" parent="." unique_id=1191261556]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.17492, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor2" unique_id=460067803]
+shape = SubResource("BoxShape3D_hjmx7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor2" unique_id=1897628289]
+mesh = SubResource("BoxMesh_r707f")
+
 [node name="25x25 floor" type="StaticBody3D" parent="." unique_id=1735178394]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="25x25 floor" unique_id=764228622]
@@ -62,4 +80,4 @@ mesh = SubResource("BoxMesh_r707f")
 transform = Transform3D(0.9350857, 0.2908988, 0.20246622, -0.35442162, 0.76749074, 0.5341753, 0, -0.57125807, 0.8207705, 0.7263887, 1.4881086, 0)
 
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_p6ufp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90629864, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)

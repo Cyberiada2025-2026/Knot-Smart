@@ -1,0 +1,195 @@
+[gd_scene format=4 uid="uid://cwgdxw2n1ey7s"]
+
+[ext_resource type="Shader" uid="uid://ch5gxawacrxg" path="res://shared/shaders/PS1_object/unshaded_PS1.gdshader" id="2_2ab5b"]
+[ext_resource type="Texture2D" uid="uid://cl3oeqa6pocee" path="res://shared/papers/sheet_music/sheet-music_music_notebook.png" id="3_vdnaj"]
+[ext_resource type="Texture2D" uid="uid://c0r6rd2khjdt0" path="res://shared/papers/sheet_music/sheet-music_music_notes_transparent_damaged.png" id="4_dnpa7"]
+[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="4_efiim"]
+[ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="5_dnpa7"]
+[ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="6_o7i42"]
+[ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="7_0mdhk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_en6d6"]
+resource_name = "Cover"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("3_vdnaj")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5nxgm"]
+_surfaces = [{
+"aabb": AABB(-2.5147321, -0.30373862, -1.5568862, 5.0147324, 0.7975466, 3.1137724),
+"format": 34896613377,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAACAAQABQAEAAMAAAAEAAUABQADAAYAAQAGAAMAAAAHAAEAAQAHAAYADAAHAAAADAAAAAUADQAFAAYADAAFAA0ADQAGAA4ABwAOAAYADAAPAAcABwAPAA4ADwALAA4ACAAPAAwACAAMAA0ADwAKAAsACAAKAA8ACQAOAAsACQANAA4ACgAJAAsACAANAAkACgAIAAkA"),
+"lods": [0.4961498, PackedByteArray("AAABAAIAAgABAAMAAgADAAQAAAACAAQABQAEAAMAAAAEAAUAAQAGAAMABQADAAYAAAAHAAEAAQAHAAYACAAAAAUACAAFAAkACAAKAAAAAAAKAAcACgAIAAkABwALAAYABwAKAAsABQAGAAsACgAJAAsACQAFAAsA")],
+"name": "Cover",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("18L/////AAD//35hAAAAAP//fmH//wAAPv8AAAAAAAA+/wAA//8AABfCgJ7//wAAF8KAngAAAADXwv//AAAAAMAAfmH//wAAAAAAAP//AADAAH5hAAAAAAAAAAAAAAAAaGb/////AACnZYCe//8AAKdlgJ4AAAAAaGb//wAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_4os2j"]
+resource_name = "sheet-music_Empty"
+_surfaces = [{
+"aabb": AABB(-2.5147321, -0.30373862, -1.5568862, 5.0147324, 0.7975466, 3.1137724),
+"attribute_data": PackedByteArray("hN9Q2Kf//4Cn/1DYhN//gLh/UNi4f/+AhN9Q2ITf/4ClnGyP5n/bIAWg8CBufPyO//9OeKWcbI/v/9sgBaDwILh/2u7yzGH3uH9h9/LM2u64fz/my53r4BWAxO5unWbYGPzE7rv7P+adncKXbnz8jqWcbI/XfreWf/nVidX5h4HyzP7/uH939/LMd/e4f///m7L/gJuyUNibslDYm7L/gPnM5iC2yS6Ptskuj/nM5iBgyXyXtskuj1fKZti0yuvg"),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAkACUABAAFACQAJgAHAAYAJgAnAAcACAAJAAoACAALAAkADAAoAA4ADAApACgAKgAPACsAKgANAA8AEAARABIAEAATABEALAAcAC0AHgAsAC0AHgAtAB8ALAAaABwAGgAbABwAGgAdABsALgAYAC8ALgAZABgAFwAuAC8AFwAvABUAFAAXABUAFAAVABYAIAAhACIAIAAjACEA"),
+"lods": [0.4961498, PackedByteArray("AAABAAIAAAADAAEABAAFAAYABgAFAAcACAAJAAoACAALAAkADAANAA4ADQAPAA4AEAARABIAEAATABEAFAAVABYAFAAXABUAFwAYABUAFwAZABgAGgAbABwAGgAdABsAHgAaABwAHgAcAB8AIAAhACIAIAAjACEA")],
+"material": SubResource("StandardMaterial3D_en6d6"),
+"name": "Cover",
+"primitive": 3,
+"uv_scale": Vector4(2.0091448, 2.8533888, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("18L/////iMH//35hAACIwf//fmH//4jB18L//wAAiMHAAH5h//+YwMAAfmEAAJjA18L//////7/Xwv//AAD/vxfCgJ7///z0Pv8AAAAA4PQXwoCeAADR9D7/AAD//wr1AAAAAP//if4XwoCe///j/wAAAAAAAAb5F8KAngAA8v/AAH5hAAAFwAAAAAD//wXAAAAAAAAABcDAAH5h//8FwP//fmEAAP//F8KAngAA//8+/wAAAAD//9fC//8AAP//AAAAAAAA///AAH5hAAD//9fC/////wj5Pv8AAP//K/EXwoCe//+D9///fmH//0vxwAB+Yf//4v8AAAAA///i////fmH//5n+Pv8AAAAAmf4+/wAA//+Z/v//fmEAAJn+aGb//wAAmMBoZv////+YwGhm//////+/aGb//wAA/7+nZYCeAABC/KdlgJ7//zb+p2WAnv//6v+nZYCeAAD5/2hm/////9X/p2WAnv//2P9oZv//AAD//6dlgJ4AAP//rtvXba7b122u29dtrtvXbW7zIJlu8yCZ////f////3/oxUP01cVd9MzFavTxxTb0nIz8RvA/4P9jh7JD+D/x//SCFfr0ghX69IIV+vSCFfr/f/7//3////9//v//f////3/+//9//v////////////////////////////////+HAcPAhwHDwIcBw8CHAcPAbvMgmW7zIJn///9//v//f4GKqEUvN3vw9D/o//0/+v////////////9//v//f/7/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_5nxgm")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xy3kx"]
+render_priority = 0
+shader = ExtResource("2_2ab5b")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/main_texture = ExtResource("3_vdnaj")
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rh1yu"]
+resource_name = "Sheet music"
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("4_dnpa7")
+texture_filter = 2
+texture_repeat = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_766p3"]
+_surfaces = [{
+"aabb": AABB(-6.4012775, -1.2646165, -1.6476628, 4.974998, 1.5270894, 3.1148646),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIABAACAAUABgAAAAQABwADAAAABgAHAAAABwAIAAMACQAHAAYACgAIAAcACQAKAAcACwAKAAkACgAMAAgACwANAAoADQAMAAoADQAOAAwA"),
+"name": "Sheet music",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 15,
+"vertex_data": PackedByteArray("YL///w6AAAD//3lQFgAAAP//eIoKgAAArL85rxYAAACsvzfp//8AAP//eIr//wAAWn836f//AACnf0/SB4AAAO6AzDYCAAAAVz9FrPv/AABXP0WsB4AAAIQA/jno/wAAVz9GchMAAAAAAGZh+n8AAIQAAAAAAAAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_u4nm2"]
+resource_name = "sheet-music_Empty_003"
+_surfaces = [{
+"aabb": AABB(-6.4012775, -1.2646165, -1.6476628, 4.974998, 1.5270894, 3.1148646),
+"attribute_data": PackedByteArray("/7//f///AAD///9//78AAAAA/3//PwAA/z//fwAAAAD/P/9//38AAP9//3//PwAA/3//f/+/AAD/v/9//38AAP9/////v/9//7////9//3//P////3//f/9/////P/9/AAD///8//3//P///AAD/f/+///////9///////+//38="),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0A"),
+"material": SubResource("StandardMaterial3D_rh1yu"),
+"name": "Sheet music",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("YL///w6AMcv//3lQFgA0y///eIoKgCDLrL85rxYARcsAAGZh+n9BzFc/RnITADjMVz9FrAeAYsyEAAAAAAAbzFc/RawHgNDP7oDMNgIAys+nf0/SB4Dpz1c/RnITAMrPp39P0geAWdGsvzmvFgA+0WC///8OgKjR7oDMNgIABdFafzfp//8hwGC///8OgCHArL836f//IcCnf0/SB4AhwFc/Raz7/0bCp39P0geAR8Jafzfp//9Ewlc/RawHgErChAD+Oej/Jb9XP0WsB4Ajv1c/Raz7/zG/AABmYfp/F7+svzfp//+3wP//eIoKgLfA//94iv//s8Bgv///DoC7wLLZlmq32alqnNkvas3ZEWvg66Wjo+u0o8PscaPO6uWjM/sdfpv6Pnwh+ESC8PeNdrPtDp+17F2fU/A/nm3qEaCv+ZmMr/mZjLL5mYyt+ZmMz/PRl9fz0Je089KX8/PPl7Ts96eo7Pen7uz2p2vs+Kcj1nZrJNZ4ayPWZWsk1ohr")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_766p3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y6g1u"]
+render_priority = 0
+shader = ExtResource("2_2ab5b")
+shader_parameter/billboard = false
+shader_parameter/use_vertex_color = false
+shader_parameter/main_texture = ExtResource("4_dnpa7")
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_8k22d"]
+_surfaces = [{
+"aabb": AABB(-6.4301896, -0.7845683, -1.7055242, 5.00391, 1.059624, 3.1727262),
+"format": 34896613377,
+"index_count": 48,
+"index_data": PackedByteArray("DAABAAIADAAAAAEAAwAMAAIAAwACAAQABQAMAAMADQAAAAwABQANAAwADQAJAAAABgANAAUADgAJAA0ABgAOAA0ACAAOAAYADgAKAAkACAAHAA4ABwAKAA4ABwALAAoA"),
+"lods": [0.87808514, PackedByteArray("AAABAAIAAwACAAQAAwAAAAIABQAAAAMABgAAAAUABgAHAAAACAAHAAYABwAJAAAABwAKAAkABwALAAoA")],
+"name": "Sheet music",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 15,
+"vertex_data": PackedByteArray("DMCMiMEEAAD//wAAwQQAAP//lFNgggAADMAh3P//AAD//5RT//8AABmAIdz//wAAJkAPpv//AAAzAA+mYIIAAAAAprVa/wAAGYCMiMEEAACqPgnGAAAAADMAelLBBAAADMAh3GCCAACjf///5oAAACZAD6ZgggAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_u8pga"]
+resource_name = "sheet-music_Empty_002"
+_surfaces = [{
+"aabb": AABB(-6.4301896, -0.7845683, -1.7055242, 5.00391, 1.059624, 3.1727262),
+"attribute_data": PackedByteArray("/78AAP//AAD///9//7////////8AAP9/AAAAAP8/AAD/fwAA/78AAP8///8AAP///3////+/////v/9/AAD/f/8/AAD/P/9//z//f/9/AAD/f/9//3//f/+//3//v/9//3//f/8/////f/9//3////8//3//P/9/////f/+//38="),
+"format": 34896613399,
+"index_count": 48,
+"index_data": PackedByteArray("DgABAAIADgAAAAEADwAQABEADwAGABAAEgATABQAEgAHABMAFQAJABYAFQAIAAkADAAXAA0ADAAYABcAGQAaABsAGQAcABoACwAdAAoACwAFAB0AAwAeAAQAAwAfAB4A"),
+"lods": [0.87808514, PackedByteArray("AAABAAIAAwAAAAIAAwACAAQABQAGAAcABQAHAAgABQAIAAkACgAFAAkACwAFAAoACgAJAAwADAAJAA0A")],
+"material": SubResource("StandardMaterial3D_rh1yu"),
+"name": "Sheet music",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 32,
+"vertex_data": PackedByteArray("DMCMiMEEnsn//wAAwQSeyf//lFNggp7JDMAh3P//zsH//5RT///OwTMAD6ZggtjAMwB6UsEEGsOqPgnGAACkxBmAjIjBBNHKDMCMiMEEz8omQA+m///ZwAAAprVa/9nAGYAh3P//H74MwCHc//8cvgzAIdxggp7JMwAPpmCCDcOqPgnGAAAQwyZAD6ZgggPDJkAPpmCCpMQZgIyIwQSkxKN////mgKTEo3///+aAzsoMwCHcYILNygzAIdxggiC+o3///+aAI74mQA+m//+0vqN////mgLi+GYAh3P//qr4mQA+mYILDviZAD6ZggtnA//+UU2CCzsEMwCHcYILOwfXbLGz12yxs9dssbG/Zt2xv2bdsz/xrfmj3EJQf/FKFqvlBfZH503zQ/L9+z/ybfrX4zny7+Ed89dssbMD2G5Tr9hiUQfYklEX8ToU7/E+FYfxLhYj5q3xw+T18s/j5fK34fH0n9OCYSPTgmLXz3pi69OKYz/yQfm/Zt2xv2bds")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_8k22d")
+
+[sub_resource type="Resource" id="Resource_jl70d"]
+script = ExtResource("7_0mdhk")
+text = "This is some real angst right there"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_7lqfy"]
+script = ExtResource("7_0mdhk")
+text = "The girl who wrote this must be fun at parties"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_mifae"]
+script = ExtResource("7_0mdhk")
+text = "I guess she has her reasons"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_wjeqt"]
+script = ExtResource("6_o7i42")
+sentences = Array[ExtResource("7_0mdhk")]([SubResource("Resource_jl70d"), SubResource("Resource_7lqfy"), SubResource("Resource_mifae")])
+metadata/_custom_type_script = "uid://dhpmrqniojeb4"
+
+[node name="SheetMusic" type="Node3D" unique_id=1780103802]
+
+[node name="Model" type="Node3D" parent="." unique_id=338401233]
+transform = Transform3D(1, 0, 0, 0, 0.205, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Middle" type="MeshInstance3D" parent="Model" unique_id=477339449]
+transform = Transform3D(0.20267618, 0, 0.07042813, 0, 0.21456409, 0, -0.070428126, 0, 0.20267618, -0.028785229, -0.0029413104, 0.15237129)
+mesh = SubResource("ArrayMesh_4os2j")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_xy3kx")
+
+[node name="Top page" type="MeshInstance3D" parent="Model" unique_id=1739222786]
+transform = Transform3D(0.14539309, 0.005989499, 0.15767919, -0.009140093, 0.21436913, 0.00028502537, -0.15752795, -0.0069100237, 0.14551613, 0.13379622, 0.0913392, -0.55383503)
+mesh = SubResource("ArrayMesh_u4nm2")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_y6g1u")
+
+[node name="Bottom page" type="MeshInstance3D" parent="Model" unique_id=1650611623]
+transform = Transform3D(-0.19641118, -0.001257067, 0.08636443, -0.012880619, 0.21256867, -0.02619927, -0.08540775, -0.029167308, -0.19466005, -0.74972534, -0.06822014, -0.08762327)
+mesh = SubResource("ArrayMesh_u8pga")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ShaderMaterial_y6g1u")
+
+[node name="PointOfInterest" type="Node3D" parent="." unique_id=1639892580]
+script = ExtResource("4_efiim")
+radius = 2.0
+visualize = false
+metadata/_custom_type_script = "uid://bm0wrygl0ikje"
+
+[node name="SpeechPOI" type="Node" parent="PointOfInterest" unique_id=1212759843]
+script = ExtResource("5_dnpa7")
+dialogue = SubResource("Resource_wjeqt")
+metadata/_custom_type_script = "uid://o84y6fkjp82d"

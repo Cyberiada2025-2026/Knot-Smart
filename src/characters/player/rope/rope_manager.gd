@@ -37,6 +37,9 @@ func _physics_process(_delta: float) -> void:
 				elif Input.is_action_just_pressed("fuse"):
 					raycast_result.collider.get_parent().fuse()
 
+				else:
+					return
+
 	match state:
 		State.SELECT_FIRST:
 			if Input.is_action_just_pressed("left_mouse") and sphere.visible:

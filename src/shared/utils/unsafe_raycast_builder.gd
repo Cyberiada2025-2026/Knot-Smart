@@ -9,6 +9,10 @@ var screen_pos: Vector2
 var ray_length = 1000.0
 var collide_with_areas = false
 
+var from: Vector3
+var normal: Vector3
+var collision_mask: int
+
 
 ## Unsafe: Can only be created during physics_process.
 ## [param context]: A Node3D whose camera will be used for raycasting
@@ -34,14 +38,34 @@ func enable_collisions_with_areas() -> UnsafeRaycastBuilder:
 	return self
 
 
+## overrides raycast start position to global world position instead of cursor position
+func set_raycast_origin(origin: Vector3):
+	from = origin
+	return self
+
+
+## overrides original direction from "camera to cursor" to given normal
+func set_direction(_normal: Vector3) -> UnsafeRaycastBuilder:
+	normal = _normal
+	return self
+
+func set_collision_mask(value: int) -> UnsafeRaycastBuilder:
+	collision_mask = value
+	return self
+
+
 ## Unsafe: Has to be called from within _physics_process.
 ## Builds a raycast query and performs it, then destroys the builder
 func raycast() -> Dictionary:
-	var from = camera.project_ray_origin(screen_pos)
-	var normal = camera.project_ray_normal(screen_pos)
+	if not from:
+		from = camera.project_ray_origin(screen_pos)
+	if not normal:
+		normal = camera.project_ray_normal(screen_pos)
 	var to = from + normal * ray_length
 	var query = PhysicsRayQueryParameters3D.create(from, to)
 	query.collide_with_areas = collide_with_areas
+	if collision_mask:
+		query.collision_mask = collision_mask
 
 	var result = space_state.intersect_ray(query)
 

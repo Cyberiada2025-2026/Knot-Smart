@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://17qprvlcd6dk"]
+
+[node name="TeleporterSelectionWindow" type="Node" unique_id=307891589]
+
+[node name="Control" type="Control" parent="." unique_id=951493701]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=29539632]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -47.5
+offset_right = 100.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control" unique_id=1192752554]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -42.0
+offset_right = 90.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer2" unique_id=1545571941]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer2/VBoxContainer" unique_id=1847079307]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.4, 0.4117647, 1, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Select destination
+"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/VBoxContainer2" unique_id=155344010]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/VBoxContainer2/ScrollContainer" unique_id=605683241]
+layout_mode = 2
+size_flags_horizontal = 3

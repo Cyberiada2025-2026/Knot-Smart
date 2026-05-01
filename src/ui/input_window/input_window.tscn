@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bnculq0wcru8a"]
+
+[ext_resource type="Script" uid="uid://d0eirppyjloo6" path="res://ui/input_window/input_window.gd" id="1_kb00d"]
+
+[node name="InputWindow" type="Node" unique_id=1449974532]
+script = ExtResource("1_kb00d")
+
+[node name="Control" type="Control" parent="." unique_id=1296785190 groups=["unpausable"]]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1976077404]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -47.5
+offset_right = 95.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=188863244]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -42.0
+offset_right = 85.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/VBoxContainer" unique_id=799906450]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.4, 0.4117647, 1, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Input text"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Control/VBoxContainer" unique_id=196599647]
+process_mode = 3
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 14
+max_length = 14
+
+[node name="SubmitButton" type="Button" parent="Control/VBoxContainer" unique_id=1941459966]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 14
+text = "submit"
+
+[connection signal="text_submitted" from="Control/VBoxContainer/LineEdit" to="." method="_submitted"]
+[connection signal="pressed" from="Control/VBoxContainer/SubmitButton" to="." method="_submitted"]

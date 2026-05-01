@@ -12,7 +12,7 @@ const MAX_BUILDING_SIZE = Vector3i.ONE * 100
 var randomize_seed_action = func(): self.random_seed = randi_range(0, MAX_RANDOM_SEED)
 
 @export_group("Building Models")
-@export var building_tileset: BuildingTileset
+@export var building_tileset: BuildingTileset = preload("uid://dm1eub1sdan0k")
 
 @export_group("Bulding Generation")
 @export var outside_door_count: int = 1
@@ -21,7 +21,7 @@ var randomize_seed_action = func(): self.random_seed = randi_range(0, MAX_RANDOM
 @export_group("Room Generation")
 ## Generating rooms will allow the building to be entered.
 ## If unchecked a single static body collision will be generated.
-@export var generate_rooms: bool = true:
+@export var generate_rooms: bool = false:
 	set(value):
 		generate_rooms = value
 		notify_property_list_changed()

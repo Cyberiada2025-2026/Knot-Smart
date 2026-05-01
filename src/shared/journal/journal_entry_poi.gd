@@ -1,7 +1,7 @@
 class_name JournalEntryPOI
 extends Node
 
-@export var journal_entry: JournalEntry
+@export var journal_entry: JournalEntryDescription
 
 
 func _ready() -> void:
@@ -15,5 +15,5 @@ func _ready() -> void:
 
 func on_object_notice(_entity: Node3D) -> void:
 	var journal = get_tree().get_first_node_in_group("Player").get_node("Journal")
-	journal.add_object(self)
+	journal.add_object(self.journal_entry)
 	self.queue_free()

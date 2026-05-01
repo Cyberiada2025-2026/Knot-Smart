@@ -6,7 +6,7 @@
 
 [sub_resource type="Theme" id="Theme_erk7u"]
 
-[node name="Journal menu" type="Control" unique_id=883052313 node_paths=PackedStringArray("pages", "page_dict") groups=["unpausable"]]
+[node name="Journal menu" type="Control" unique_id=883052313 node_paths=PackedStringArray("page_dict") groups=["unpausable"]]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -22,7 +22,6 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ohc7l")
-pages = NodePath("Page container")
 page_dict = {
 0: NodePath("Page container/Page1/ScrollContainer/VBoxContainer"),
 1: NodePath("Page container/Page2/ScrollContainer/VBoxContainer"),

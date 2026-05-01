@@ -4,20 +4,21 @@ extends Node
 enum PageType { TEXT, ITEMS, OBJECTS, MOBS }
 
 @export var page_dict: Dictionary[PageType, Node]
+@export var initial_entries: Array[JournalEntryDescription]
+
 var prev_mouse_mode
 var page_visible_index: int
 var entry_scene = preload("uid://dktjlwqp00lcr")
-var entry_text = preload("uid://y7wfem0trjrv")
 
 @onready var pages: Control = $"Page container"
 @onready var button_normal = $"Button container/Button".get_theme_stylebox("normal", "Button")
 @onready var buttons: Control = $"Button container"
 
 
-func add_object(entry_poi: JournalEntryPOI):
-	var page = page_dict[entry_poi.journal_entry.page]
+func add_object(journal_entry: JournalEntryDescription):
+	var page = page_dict[journal_entry.page]
 	var entry = entry_scene.instantiate()
-	entry.add_entry(entry_poi)
+	entry.add_entry(journal_entry)
 	var entry_text = entry.text
 
 	var journal_entries = get_tree().get_nodes_in_group("journal_text")
@@ -31,21 +32,12 @@ func add_object(entry_poi: JournalEntryPOI):
 	page.add_child(entry)
 
 
-func add_text_entry(text: String):
-	var page = page_dict[PageType.TEXT]
-	var entry = entry_text.instantiate()
-	page.add_child(entry)
-	entry.add_text(text)
-
-
 func _ready() -> void:
-	add_text_entry(
-		(
-			"This is journal, on this page you have aliens thoughts as"
-			+ " entries meanwhile on others you will have object"
-			+ " descriptions as entries"
-		)
-	)
+	#		"This is journal, on this page you have aliens thoughts as"
+	#		+ " entries meanwhile on others you will have object"
+	#		+ " descriptions as entries"
+	for entry in initial_entries:
+		add_object(entry)
 	page_visible_index = 0
 
 

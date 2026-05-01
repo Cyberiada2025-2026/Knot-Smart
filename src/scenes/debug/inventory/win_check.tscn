@@ -38,8 +38,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2134385, 0.30740786, 11.68
 [node name="Screws" parent="." unique_id=547478558 instance=ExtResource("4_olt7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.382515, 0.23473954, 0)
 
+[node name="Screws2" parent="." unique_id=1591583659 instance=ExtResource("4_olt7n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6974721, 0.23473954, 6.1973066)
+
 [node name="PipeFitting" parent="." unique_id=822480282 instance=ExtResource("5_unlvc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.722275, 0.29638577, 0)
+
+[node name="PipeFitting2" parent="." unique_id=180752249 instance=ExtResource("5_unlvc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8085523, 0.29638577, -8.977486)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1971203375]
 transform = Transform3D(0.9350857, 0.2908988, 0.20246622, -0.35442162, 0.76749074, 0.5341753, 0, -0.57125807, 0.8207705, -5.656126, 0.23473954, 0)

@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://wu6m01tfoh1q"]
 
-[ext_resource type="Texture2D" uid="uid://jtgb3oas16dr" path="res://shared/tree_generator/tree_materials/kora.png" id="1_cvlcd"]
+[ext_resource type="Texture2D" uid="uid://jtgb3oas16dr" path="res://shared/nature_generators/tree_generator/tree_materials/textures/kora.png" id="1_cvlcd"]
 
 [resource]
 shading_mode = 0

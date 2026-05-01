@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="TreeParameters" format=3 uid="uid://hif2ao4f4l5f"]
+
+[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/nature_generators/tree_generator/tree_parameters.gd" id="1_5m6wf"]
+[ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark.tres" id="1_o11sq"]
+
+[resource]
+script = ExtResource("1_5m6wf")
+material = ExtResource("1_o11sq")
+max_count = 3
+metadata/_custom_type_script = "uid://s0k1bcrvckmc"

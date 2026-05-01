@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y3vsdc8r7git"
-path.s3tc="res://.godot/imported/WallTextureDamaged.png-4156e588fb1bae6a1fbdebc905098711.s3tc.ctex"
+uid="uid://bygftuydagis7"
+path.s3tc="res://.godot/imported/CollisionWallTextureDamaged.png-c2b7cf23f04a9bea93a331f16399933a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://shared/buildings/assets/WallTextureDamaged.png"
-dest_files=["res://.godot/imported/WallTextureDamaged.png-4156e588fb1bae6a1fbdebc905098711.s3tc.ctex"]
+source_file="res://shared/buildings/assets/textures/CollisionWallTextureDamaged.png"
+dest_files=["res://.godot/imported/CollisionWallTextureDamaged.png-c2b7cf23f04a9bea93a331f16399933a.s3tc.ctex"]
 
 [params]
 

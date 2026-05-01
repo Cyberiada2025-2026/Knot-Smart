@@ -26,10 +26,24 @@ func generate_tree():
 	tree.name = "tree"
 	tree_skeleton.params = params
 	var branches_one_level: Array[TreeBranch] = []
-	for i in range(params.branch_recursion_level+1): # levels of branches + trunk
+	for i in range(params.branch_recursion_level+1):
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
 			generate_mesh(branch, params.material)
+	if params.flat_branches_material != null:
+		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
+		for branch in branches_one_level:
+			var foliage_generator = FoliageGenerator.new()
+			foliage_generator.standalone = false
+			foliage_generator.params = FoliageParameters.new()
+			foliage_generator.params.material = params.flat_branches_material
+			foliage_generator.generate_foliage()
+			var foliage = foliage_generator.foliage
+			foliage.transform = branch.transform
+			tree.add_child(foliage)
+			foliage.owner = tree
+			for child in foliage.get_children():
+				child.owner = tree
 	serialize()
 
 

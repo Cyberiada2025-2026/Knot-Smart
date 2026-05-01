@@ -9,10 +9,12 @@ const DIR_PATH = "user://foliage"
 
 var foliage: StaticBody3D
 var foliage_scene: PackedScene
+var standalone: bool = true
 
 
 func _ready() -> void:
-	on_generate()
+	if standalone:
+		on_generate()
 
 
 func generate_foliage():
@@ -27,7 +29,8 @@ func generate_foliage():
 		mesh.mesh.surface_set_material(0, params.material)
 		foliage.add_child(mesh)
 		mesh.owner = foliage
-	serialize()
+	if standalone:
+		serialize()
 
 
 func on_generate():

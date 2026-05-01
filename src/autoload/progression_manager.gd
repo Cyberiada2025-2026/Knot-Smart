@@ -1,6 +1,6 @@
 extends Node
 
-@export var max_death_count: int = 2
+@export var max_death_count: int = 3
 
 var respawn_pos: Vector3
 var _death_count: int = 0
@@ -14,3 +14,6 @@ func record_death():
 
 func game_over():
 	SceneManager.goto_scene("uid://d0kdyvkq8gmfg")
+
+func is_game_over() -> bool:
+	return _death_count >= max_death_count

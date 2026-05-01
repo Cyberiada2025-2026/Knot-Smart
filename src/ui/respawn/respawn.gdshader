@@ -4,6 +4,7 @@ const int points_amount = 150;
 
 uniform sampler2D color_ramp;
 uniform vec4 tint: source_color;
+uniform float white_mix: hint_range(0.0, 1.0);
 uniform vec2 points[points_amount];
 
 void fragment() {
@@ -13,4 +14,5 @@ void fragment() {
 		min_dist = min(min_dist, distance(SCREEN_UV * vec2(1.0, 0.75), points[i] * vec2(1.0, 0.75)));
 	}
 	COLOR = texture(color_ramp, vec2(min_dist, 1.0)) * tint;
+	COLOR = mix(COLOR, vec4(1.0), white_mix);
 }

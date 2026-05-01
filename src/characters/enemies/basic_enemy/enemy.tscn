@@ -33,6 +33,7 @@
 [ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="31_y1krv"]
 [ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="32_yedos"]
 [ext_resource type="Script" uid="uid://cfbfg51ucp1a2" path="res://shared/journal/journal_entry_poi.gd" id="33_o1m3g"]
+[ext_resource type="Script" uid="uid://gfr35mbc1ij6" path="res://shared/journal/journal_entry.gd" id="34_qd6q6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ntsgn"]
 radius = 0.4
@@ -73,6 +74,16 @@ metadata/_custom_type_script = "uid://kpru7f8vmtp5"
 script = ExtResource("31_y1krv")
 sentences = Array[ExtResource("32_yedos")]([SubResource("Resource_ou6is"), SubResource("Resource_necax")])
 metadata/_custom_type_script = "uid://dhpmrqniojeb4"
+
+[sub_resource type="Resource" id="Resource_y1krv"]
+script = ExtResource("34_qd6q6")
+object_name = "Enemy"
+description = "This is an enemy"
+page = 3
+model_path = NodePath("../../MeshInstance3D")
+model_scale = 0.3
+rotation_angle = 0.2
+metadata/_custom_type_script = "uid://gfr35mbc1ij6"
 
 [node name="Enemy" type="CharacterBody3D" unique_id=768992349]
 script = ExtResource("1_2cllp")
@@ -465,14 +476,9 @@ radius = 4.0
 script = ExtResource("30_qd6q6")
 dialogue = SubResource("Resource_wjvgd")
 
-[node name="JournalEntryPOI" type="Node" parent="PointOfInterest" unique_id=1237039963 node_paths=PackedStringArray("model")]
+[node name="JournalEntryPOI" type="Node" parent="PointOfInterest" unique_id=1237039963]
 script = ExtResource("33_o1m3g")
-object_name = "Enemy"
-description = "This is an enemy"
-page = 3
-model = NodePath("../../MeshInstance3D")
-model_scale = 0.3
-rotation_angle = 0.2
+journal_entry = SubResource("Resource_y1krv")
 
 [connection signal="health_decreased" from="HealthComponent" to="VfxPlayerSequence" method="play"]
 [connection signal="health_depleted" from="HealthComponent" to="DeathComponent" method="_on_death"]

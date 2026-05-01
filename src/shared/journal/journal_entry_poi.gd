@@ -1,21 +1,7 @@
 class_name JournalEntryPOI
 extends Node
 
-@export_category("Journal entry information")
-## Name of an object
-@export var object_name: String
-## Description of the object
-@export_multiline() var description: String
-## What page the object should be at
-@export var page: Journal.PageType = Journal.PageType.ITEMS
-
-@export_category("Model information")
-## Model of visible in an entry
-@export var model: Node3D
-## Scale of the model
-@export var model_scale: float = 0.5
-## Angle in radians that object should rotate by per second.
-@export var rotation_angle: float = 0.1
+@export var journal_entry: JournalEntry
 
 
 func _ready() -> void:
@@ -28,9 +14,6 @@ func _ready() -> void:
 
 
 func on_object_notice(_entity: Node3D) -> void:
-	var player = get_tree().get_first_node_in_group("Player")
-	var journal: Node = player.get_node("Journal")
-	if model != null:
-		model = model.duplicate(0)
+	var journal = get_tree().get_first_node_in_group("Player").get_node("Journal")
 	journal.add_object(self)
 	self.queue_free()

@@ -14,10 +14,10 @@ var entry_text = preload("uid://y7wfem0trjrv")
 @onready var buttons: Control = $"Button container"
 
 
-func add_object(obj_des: JournalEntryPOI):
-	var page = page_dict[obj_des.page]
+func add_object(entry_poi: JournalEntryPOI):
+	var page = page_dict[entry_poi.journal_entry.page]
 	var entry = entry_scene.instantiate()
-	entry.add_entry(obj_des)
+	entry.add_entry(entry_poi)
 	var entry_text = entry.text
 
 	var journal_entries = get_tree().get_nodes_in_group("journal_text")

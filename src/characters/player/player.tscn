@@ -28,6 +28,12 @@ description = "This is a journal, on this page you have aliens thoughts as  entr
 page = 0
 metadata/_custom_type_script = "uid://gfr35mbc1ij6"
 
+[sub_resource type="Resource" id="Resource_8l73k"]
+script = ExtResource("11_8l73k")
+object_name = "Second Initial Description"
+description = "Some items can also have a description without a model present."
+metadata/_custom_type_script = "uid://gfr35mbc1ij6"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_on558"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 2
@@ -102,7 +108,7 @@ page_dict = {
 2: NodePath("Page container/Page3/ScrollContainer/VBoxContainer"),
 3: NodePath("Page container/Page4/ScrollContainer/VBoxContainer")
 }
-initial_entries = Array[ExtResource("11_8l73k")]([SubResource("Resource_aqrcq")])
+initial_entries = Array[ExtResource("11_8l73k")]([SubResource("Resource_aqrcq"), SubResource("Resource_8l73k")])
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1622957288]
 script = ExtResource("6_c6leb")

@@ -60,7 +60,7 @@ far = 0.1
 script = ExtResource("1_5jark")
 camera = NodePath("Control/SubViewportContainer/SubViewport/MainCamera")
 scene = NodePath("Control/SubViewportContainer/SubViewport/MainCamera/MainScene")
-radiation_post = NodePath("Control/SubViewportContainer/SubViewport/MainCamera/CanvasLayer2/Radiation")
+radiation_post = NodePath("Control/SubViewportContainer/SubViewport/MainCamera/RadiationLayer/Radiation")
 
 [node name="Control" type="Control" parent="." unique_id=1065790436]
 light_mask = 0
@@ -97,10 +97,10 @@ render_target_update_mode = 4
 transform = Transform3D(0.9914175, -2.231977e-08, -0.1307338, 0.053353444, 0.91293395, 0.40460476, 0.11935132, -0.40810734, 0.90509874, -3.765843, 8.939763, 12.39052)
 cull_mask = 524287
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=289687839]
+[node name="RadiationLayer" type="CanvasLayer" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=289687839]
 layer = -1
 
-[node name="Radiation" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera/CanvasLayer2" unique_id=1109211409]
+[node name="Radiation" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera/RadiationLayer" unique_id=1109211409]
 visible = false
 visibility_layer = 1048575
 z_index = 4096
@@ -126,9 +126,9 @@ grow_vertical = 2
 
 [node name="PauseMenu" parent="Control/SubViewportContainer/SubViewport/MainCamera/MainScene" unique_id=473504245 instance=ExtResource("2_5jark")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=696670275]
+[node name="DitherLayer" type="CanvasLayer" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=696670275]
 
-[node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera/CanvasLayer" unique_id=2005476111]
+[node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera/DitherLayer" unique_id=2005476111]
 visibility_layer = 1048575
 z_index = 4096
 z_as_relative = false

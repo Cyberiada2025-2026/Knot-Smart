@@ -17,14 +17,13 @@ func get_half_height() -> float:
 	return marker_allowing_placement.mesh.size.y / 2
 
 
-func update_state(raycasted_body: Node3D) -> void:
+func update_state() -> void:
 	var bodies = get_overlapping_bodies()
-	for body in bodies:
-		if body != raycasted_body:
-			allows_placement = false
-			marker_allowing_placement.hide()
-			marker_colliding.show()
-			return
+	if not bodies.is_empty():
+		allows_placement = false
+		marker_allowing_placement.hide()
+		marker_colliding.show()
+		return
 	allows_placement = true
 	marker_allowing_placement.show()
 	marker_colliding.hide()

@@ -1,4 +1,4 @@
-class_name ItemPlacer
+class_name ObjectPlacer
 extends Node3D
 
 enum State { IDLE, SELECTING_POSITION }
@@ -99,9 +99,11 @@ func _physics_process(delta: float) -> void:
 	var player_position = get_node("../").player_physics.position
 
 	if _3d_to_2d(player_position).distance_to(_3d_to_2d(raycast_result.position)) > placement_range:
-		raycast_result.position = (raycast_result.position - player_position).normalized() * placement_range + player_position
+		raycast_result.position = (
+			(raycast_result.position - player_position).normalized() * placement_range
+			+ player_position
+		)
 		raycast_result.position.y = player_position.y
-		print(_3d_to_2d(player_position).distance_to(_3d_to_2d(raycast_result.position)))
 
 		var roof = (
 			UnsafeRaycastBuilder.new(self)
@@ -136,8 +138,11 @@ func _physics_process(delta: float) -> void:
 	# fix box height to avoid being in textures
 	raycast_result.position += _marker.get_half_height() * raycast_result.normal
 
-	_marker.global_position = raycast_result.position
 	_marker.quaternion = Quaternion(Vector3.UP, raycast_result.normal)
+	_marker.global_position = raycast_result.position
+	# fix collision with floor due to low float precision
+	_marker.global_position += Vector3(0, 0.000001, 0)
+
 
 	if Input.is_action_pressed("rotate"):
 		_marker_rotation = _marker_rotation + rotation_speed * delta
@@ -146,7 +151,7 @@ func _physics_process(delta: float) -> void:
 
 	_marker.rotate_object_local(Vector3.UP, deg_to_rad(_marker_rotation))
 
-	_marker.update_state(raycast_result.collider)
+	_marker.update_state()
 
 	_marker.show()
 

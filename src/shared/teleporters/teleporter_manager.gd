@@ -2,7 +2,7 @@ class_name TeleporterManager
 extends Node3D
 
 ## remove this one when placer will be connected to inventory
-@onready var placer: ItemPlacer = $"../ItemPlacer"
+@onready var placer: ObjectPlacer = $"../ObjectPlacer"
 
 @onready var teleporters = $Teleporters
 @onready var input_window: InputWindow = $InputWindow

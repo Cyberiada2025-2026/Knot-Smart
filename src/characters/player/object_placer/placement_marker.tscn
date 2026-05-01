@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://vof8qmvanvac"]
 
-[ext_resource type="Script" uid="uid://blmgp3evwn8u" path="res://shared/placer/marker.gd" id="1_oswoi"]
-[ext_resource type="Material" uid="uid://dkjsm0xmuqh6n" path="res://shared/placer/placement_marker.tres" id="2_ci48v"]
+[ext_resource type="Script" uid="uid://blmgp3evwn8u" path="res://characters/player/object_placer/marker.gd" id="1_oswoi"]
+[ext_resource type="Material" uid="uid://dkjsm0xmuqh6n" path="res://characters/player/object_placer/placement_marker.tres" id="2_ci48v"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_qf5ih"]
 material = ExtResource("2_ci48v")

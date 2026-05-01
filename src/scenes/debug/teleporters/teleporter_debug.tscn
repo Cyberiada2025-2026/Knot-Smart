@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://g6ssytpmels8"]
 
-[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_p6ufp"]
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_dbjob"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r707f"]
 size = Vector3(0.2, 0.2, 0.2)
@@ -79,5 +79,5 @@ mesh = SubResource("BoxMesh_r707f")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1457415016]
 transform = Transform3D(0.9350857, 0.2908988, 0.20246622, -0.35442162, 0.76749074, 0.5341753, 0, -0.57125807, 0.8207705, 0.7263887, 1.4881086, 0)
 
-[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_p6ufp")]
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_dbjob")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)

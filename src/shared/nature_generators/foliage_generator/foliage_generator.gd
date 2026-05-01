@@ -32,7 +32,7 @@ func generate_foliage():
 		mesh.mesh.surface_set_material(0, params.material)
 		foliage.add_child(mesh)
 		mesh.owner = foliage
-	
+
 	if standalone:
 		serialize()
 

@@ -34,7 +34,6 @@ func generate_tree():
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
 			add_flat_branches(branch)
-			
 	serialize()
 
 

@@ -19,8 +19,8 @@ size = Vector3(50, 1, 50)
 script = ExtResource("7_itme7")
 material = ExtResource("3_ca55m")
 count = 1
-scale = Vector3(3.846, 2.308, 2)
-offset = Vector3(-2.308, 0, 0)
+plane_scale = Vector3(3.333, 2, 2)
+plane_offset = Vector3(-2, 0, 0)
 metadata/_custom_type_script = "uid://cs824opuvcx8k"
 
 [sub_resource type="Resource" id="Resource_f225a"]
@@ -34,7 +34,6 @@ metadata/_custom_type_script = "uid://s0k1bcrvckmc"
 script = ExtResource("7_itme7")
 material = ExtResource("6_ca55m")
 count = 3
-scale = Vector3(2, 2, 2)
 metadata/_custom_type_script = "uid://cs824opuvcx8k"
 
 [node name="TreeZoo" type="Node3D" unique_id=1622868612]

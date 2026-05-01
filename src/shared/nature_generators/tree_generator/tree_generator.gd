@@ -33,15 +33,8 @@ func generate_tree():
 	if params.flat_branches_parameters != null:
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
-			var foliage_generator = FoliageGenerator.new()
-			foliage_generator.standalone = false
-			foliage_generator.params = params.flat_branches_parameters
-			foliage_generator.generate_foliage()
-			foliage_generator.transform = branch.transform
-			tree.add_child(foliage_generator)
-			foliage_generator.owner = tree
-			for child in foliage_generator.get_children(true):
-				child.owner = tree
+			add_flat_branches(branch)
+			
 	serialize()
 
 
@@ -60,6 +53,18 @@ func generate_mesh(branch: TreeBranch, material: StandardMaterial3D):
 	tree.add_child(collision)
 	mesh.owner = tree
 	collision.owner = tree
+
+
+func add_flat_branches(branch: TreeBranch):
+	var foliage_generator = FoliageGenerator.new()
+	foliage_generator.standalone = false
+	foliage_generator.params = params.flat_branches_parameters
+	foliage_generator.generate_foliage()
+	foliage_generator.transform = branch.transform
+	tree.add_child(foliage_generator)
+	foliage_generator.owner = tree
+	for child in foliage_generator.get_children(true):
+		child.owner = tree
 
 
 func on_generate():

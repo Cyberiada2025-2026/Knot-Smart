@@ -24,9 +24,9 @@ func generate_foliage():
 	for i in range(params.count):
 		var mesh = MeshInstance3D.new()
 		mesh.mesh = PlaneMesh.new()
-		mesh.scale = params.scale
-		mesh.position = params.offset
-		mesh.position.y += params.scale.y
+		mesh.scale = params.plane_scale
+		mesh.position = params.plane_offset
+		mesh.position.y += params.plane_scale.y
 		mesh.rotate_z(angle*i)
 		mesh.rotate_x(PI/2)
 		mesh.mesh.surface_set_material(0, params.material)

@@ -4,7 +4,6 @@ extends Node3D
 ## remove when inventory will be added
 @onready var placer: ItemPlacer = $"../ItemPlacer"
 
-#var marker: Marker = preload("res://shared/placer/marker.gd").instantiate()
 const teleporter_scene = preload("res://shared/teleporters/teleporter.tscn")
 const teleporter_button_scene = preload("res://shared/teleporters/teleporter_button.tscn")
 
@@ -15,13 +14,11 @@ const teleporter_button_scene = preload("res://shared/teleporters/teleporter_but
 
 # onready runs before camera load
 var camera: PlayerCamera
-var player: Player
 
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("teleporter_place_mode"):
 		placer.start_placing_next(teleporter_scene)
-		print("placement started")
 	if Input.is_action_just_pressed("pause_button"):
 		teleporter_selection_window.hide()
 
@@ -31,9 +28,7 @@ func create_teleporter(teleporter_instance):
 		return
 	teleporter_instance.reparent(teleporters)
 
-	print(teleporter_instance.global_position)
 	teleporter_instance.teleporter_name = await input_window.get_input("enter teleporter name")
-	print("T name: " + teleporter_instance.teleporter_name)
 	var button: Button = teleporter_button_scene.instantiate()
 	teleporter_buttons.add_child(button)
 	button.text = teleporter_instance.teleporter_name
@@ -65,22 +60,15 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	if Input.is_action_just_pressed("interact"):
-		print("tak")
-		PauseController.pause_game() # NO, USE STH DIFF
+		PauseController.pause_game()
 		teleporter_selection_window.show()
-		 #show teleporter selection window
-		# wait for selection
-		# teleport
 
 
 func teleport(teleporter_id: int):
 	teleporter_selection_window.hide()
-	print("teleporting to")
-	print(teleporter_id)
-	print(teleporters.get_child(teleporter_id).teleporter_name)
 	var destination_teleporter = teleporters.get_child(teleporter_id)
 	var player_physics = get_node("../PlayerPhysics/")
 	player_physics.global_position = destination_teleporter.global_position
 	# await to avoid input read from other classes
 	await get_tree().process_frame
-	PauseController.unpause_game() # NO, USE STH DIFF
+	PauseController.unpause_game()

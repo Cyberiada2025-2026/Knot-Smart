@@ -65,3 +65,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 14
 text = "submit"
+
+[connection signal="text_submitted" from="Control/VBoxContainer/LineEdit" to="." method="_submitted"]
+[connection signal="pressed" from="Control/VBoxContainer/SubmitButton" to="." method="_submitted"]

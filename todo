@@ -7,12 +7,11 @@ add "enter" support to input window
 <!-- - teleporter list:
     - probably as UI part
     - used in teleporter interaction -->
-move pause game into utils
+<!-- move pause game into utils -->
 <!-- one less letter to t name -->
-fix rope placement on teleporter control
+<!-- fix rope placement on teleporter control -->
 <!-- - button for teleporter interaction
     - button with collider
     - tooltip to button
     - selection window for teleportation
     - player teleportation -->
-    

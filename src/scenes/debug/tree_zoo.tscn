@@ -15,16 +15,26 @@ size = Vector3(50, 1, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_v77ug"]
 size = Vector3(50, 1, 50)
 
+[sub_resource type="Resource" id="Resource_ca55m"]
+script = ExtResource("7_itme7")
+material = ExtResource("3_ca55m")
+count = 1
+scale = Vector3(3.846, 2.308, 2)
+offset = Vector3(-2.308, 0, 0)
+metadata/_custom_type_script = "uid://cs824opuvcx8k"
+
 [sub_resource type="Resource" id="Resource_f225a"]
 script = ExtResource("4_u5v14")
 material = ExtResource("3_rrlkt")
-flat_branches_material = ExtResource("3_ca55m")
+max_count = 4
+flat_branches_parameters = SubResource("Resource_ca55m")
 metadata/_custom_type_script = "uid://s0k1bcrvckmc"
 
 [sub_resource type="Resource" id="Resource_28rss"]
 script = ExtResource("7_itme7")
 material = ExtResource("6_ca55m")
-count = 4
+count = 3
+scale = Vector3(2, 2, 2)
 metadata/_custom_type_script = "uid://cs824opuvcx8k"
 
 [node name="TreeZoo" type="Node3D" unique_id=1622868612]
@@ -50,7 +60,7 @@ params = SubResource("Resource_f225a")
 metadata/_custom_type_script = "uid://d3priws45vp1i"
 
 [node name="FoliageGenerator" type="Node3D" parent="." unique_id=686754679]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.149858, 1.4844818, 4.7422423)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9)
 script = ExtResource("5_f225a")
 params = SubResource("Resource_28rss")
 metadata/_custom_type_script = "uid://bxobj8lbccu64"

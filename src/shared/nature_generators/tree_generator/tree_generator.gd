@@ -30,19 +30,17 @@ func generate_tree():
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
 			generate_mesh(branch, params.material)
-	if params.flat_branches_material != null:
+	if params.flat_branches_parameters != null:
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
 			var foliage_generator = FoliageGenerator.new()
 			foliage_generator.standalone = false
-			foliage_generator.params = FoliageParameters.new()
-			foliage_generator.params.material = params.flat_branches_material
+			foliage_generator.params = params.flat_branches_parameters
 			foliage_generator.generate_foliage()
-			var foliage = foliage_generator.foliage
-			foliage.transform = branch.transform
-			tree.add_child(foliage)
-			foliage.owner = tree
-			for child in foliage.get_children():
+			foliage_generator.transform = branch.transform
+			tree.add_child(foliage_generator)
+			foliage_generator.owner = tree
+			for child in foliage_generator.get_children(true):
 				child.owner = tree
 	serialize()
 

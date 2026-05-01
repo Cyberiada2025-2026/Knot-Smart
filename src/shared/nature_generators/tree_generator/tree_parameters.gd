@@ -23,7 +23,7 @@ extends Resource
 @export_range(3, 10, 1) var branch_sides = 4
 @export_range(0.1, 10.0, 0.02) var branch_segment_length: float = 1.0
 ## left empty == no flat branches
-@export var flat_branches_material: StandardMaterial3D
+@export var flat_branches_parameters: FoliageParameters
 
 @export_group("Type")
 @export_enum("NORMAL", "SIDE") var subtype: String = "NORMAL"

@@ -43,7 +43,7 @@ visible = false
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 focus_mode = 3
-text = "Text"
+text = "Log"
 
 [node name="Button2" type="Button" parent="Button container" unique_id=689343871]
 visible = false

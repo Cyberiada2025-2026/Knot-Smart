@@ -20,7 +20,9 @@ func _process(delta: float) -> void:
 		rad_rect.visible = true
 		radiation += delta / kill_time
 		if radiation >= 1.0:
-			radiation = 1.0
+			radiation = 0.0
+			rad_mat.set_shader_parameter(anim_param, radiation)
+			rad_rect.visible = false
 			get_tree().get_first_node_in_group("Player").get_node("HealthComponent").health = 0.0
 	elif radiation > 0.0:
 		radiation -= delta / heal_time

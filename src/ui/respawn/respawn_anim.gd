@@ -12,6 +12,7 @@ signal on_anim_finished
 @export var drag = 5
 @export var center_pull = 0.01
 @export var start_white: int = 120
+@export var start_points: int = 20
 @export var force: Curve
 @export var sequence: Array[float]
 
@@ -38,6 +39,12 @@ func _start() -> void:
 	white_mix = 0.0
 	timer = 0.0
 	spawned_cells = 1
+	
+	var r: Vector2
+	for i in range(1, start_points):
+		r = Vector2(randf(), randf())
+		points[spawned_cells] = r
+		spawned_cells += 1
 
 	rect.material.set_shader_parameter(points_param, points)
 	var tween = get_tree().create_tween()
@@ -53,7 +60,7 @@ func _process(delta: float) -> void:
 		return
 
 	timer += delta
-	if timer >= sequence[min(spawned_cells, sequence.size() - 1)]:
+	if timer >= sequence[min(spawned_cells - start_points, sequence.size() - 1)]:
 		spawn()
 		timer = 0.0
 

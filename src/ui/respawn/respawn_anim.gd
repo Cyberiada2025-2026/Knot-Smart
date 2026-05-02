@@ -39,7 +39,7 @@ func _start() -> void:
 	white_mix = 0.0
 	timer = 0.0
 	spawned_cells = 1
-	
+
 	var r: Vector2
 	for i in range(1, start_points):
 		r = Vector2(randf(), randf())

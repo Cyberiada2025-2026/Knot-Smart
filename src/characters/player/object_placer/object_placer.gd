@@ -92,7 +92,7 @@ func _physics_process(delta: float) -> void:
 	if raycast_result.is_empty():
 		return
 
-	var player_position = get_node("../").player_physics.position
+	var player_position = get_node("../").player_physics.global_position
 
 	if _v3_to_v2(player_position).distance_to(_v3_to_v2(raycast_result.position)) > placement_range:
 		raycast_result.position = (

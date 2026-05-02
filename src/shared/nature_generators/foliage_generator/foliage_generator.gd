@@ -21,12 +21,13 @@ func generate_foliage():
 	foliage = StaticBody3D.new()
 	foliage.name = "foliage"
 	var angle = PI/params.count
+	var new_scale = params.scale + (randf() - 0.5) * params.scale_randomization
 	for i in range(params.count):
 		var mesh = MeshInstance3D.new()
 		mesh.mesh = PlaneMesh.new()
-		mesh.scale = params.plane_scale * params.scale
-		mesh.position = params.plane_offset * params.scale
-		mesh.position.y += params.plane_scale.y * params.scale
+		mesh.scale = params.plane_scale * new_scale
+		mesh.position = params.plane_offset * new_scale
+		mesh.position.y += params.plane_scale.y * new_scale
 		mesh.rotate_z(angle*i)
 		mesh.rotate_x(PI/2)
 		mesh.mesh.surface_set_material(0, params.material)

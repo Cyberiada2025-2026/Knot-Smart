@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="FoliageParameters" format=3 uid="uid://dn787thv04i6j"]
+
+[ext_resource type="Script" uid="uid://cs824opuvcx8k" path="res://shared/nature_generators/foliage_generator/foliage_parameters.gd" id="1_88d8s"]
+[ext_resource type="Texture2D" uid="uid://bi7jmmhdsb0fu" path="res://shared/nature_generators/foliage_generator/foliage_materials/bush/bush.png" id="1_hghwo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e8bcv"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_hghwo")
+texture_filter = 2
+
+[resource]
+script = ExtResource("1_88d8s")
+material = SubResource("StandardMaterial3D_e8bcv")
+count = 3
+scale = 2.0
+metadata/_custom_type_script = "uid://cs824opuvcx8k"

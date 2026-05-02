@@ -6,8 +6,7 @@
 [ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark/bark.tres" id="3_rrlkt"]
 [ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/nature_generators/tree_generator/tree_parameters.gd" id="4_u5v14"]
 [ext_resource type="Script" uid="uid://bxobj8lbccu64" path="res://shared/nature_generators/foliage_generator/foliage_generator.gd" id="5_f225a"]
-[ext_resource type="Material" uid="uid://cpfk116xcolca" path="res://shared/nature_generators/foliage_generator/foliage_materials/bush.tres" id="6_ca55m"]
-[ext_resource type="Script" uid="uid://cs824opuvcx8k" path="res://shared/nature_generators/foliage_generator/foliage_parameters.gd" id="7_itme7"]
+[ext_resource type="Resource" uid="uid://dn787thv04i6j" path="res://shared/nature_generators/foliage_generator/foliage_materials/bush/bush.tres" id="6_ca55m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_crhmp"]
 size = Vector3(50, 1, 50)
@@ -22,12 +21,6 @@ max_count = 4
 branch_rate_of_shrinking = 0.76
 flat_branches_parameters = ExtResource("3_ca55m")
 metadata/_custom_type_script = "uid://s0k1bcrvckmc"
-
-[sub_resource type="Resource" id="Resource_28rss"]
-script = ExtResource("7_itme7")
-material = ExtResource("6_ca55m")
-count = 3
-metadata/_custom_type_script = "uid://cs824opuvcx8k"
 
 [node name="TreeZoo" type="Node3D" unique_id=1622868612]
 
@@ -54,7 +47,7 @@ metadata/_custom_type_script = "uid://d3priws45vp1i"
 [node name="FoliageGenerator" type="Node3D" parent="." unique_id=686754679]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9)
 script = ExtResource("5_f225a")
-params = SubResource("Resource_28rss")
+params = ExtResource("6_ca55m")
 metadata/_custom_type_script = "uid://bxobj8lbccu64"
 
 [node name="FoliageGenerator2" type="Node3D" parent="." unique_id=20660903]

@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dktjlwqp00lcr"]
+
+[ext_resource type="Script" uid="uid://br4ibu8huxipr" path="res://shared/journal/journal_entry_ui.gd" id="1_1cmml"]
+
+[sub_resource type="Environment" id="Environment_hawqf"]
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="JournalEntryUI" type="HBoxContainer" unique_id=351905527 node_paths=PackedStringArray("text", "subview") groups=["journal_entries"]]
+custom_minimum_size = Vector2(220, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("1_1cmml")
+text = NodePath("RichTextLabel")
+subview = NodePath("SubViewportContainer/SubViewport")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=680437381]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=186864902]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(100, 100)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=1408827181]
+transform = Transform3D(1, 0, 0, 0, 0.814227, 0.5805466, 0, -0.5805466, 0.814227, 0, 0.3, 0.45)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport" unique_id=989688942]
+environment = SubResource("Environment_hawqf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1558799605]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(1, 0, 1, 1)
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1

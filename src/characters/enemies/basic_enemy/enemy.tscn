@@ -2,39 +2,39 @@
 
 [ext_resource type="Script" uid="uid://claql84jotoud" path="res://characters/enemies/basic_enemy/enemy_actor.gd" id="1_2cllp"]
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="2_r2ijf"]
+[ext_resource type="PackedScene" uid="uid://ds0lm2shdnd07" path="res://characters/enemies/basic_enemy/enemy_model.tscn" id="2_y1krv"]
 [ext_resource type="Script" uid="uid://cw22yurt5l74k" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="3_r2ijf"]
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="4_1x7vy"]
 [ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="4_r2ijf"]
 [ext_resource type="Script" uid="uid://cvqd374qwurts" path="res://shared/beehave/condition/is_target_nearby.gd" id="5_r2ijf"]
-[ext_resource type="Script" path="res://shared/beehave/action/set_random_nav_target.gd" id="6_lxbhr"]
-[ext_resource type="Script" path="res://shared/beehave/action/update_target_position.gd" id="6_nr11u"]
+[ext_resource type="Script" uid="uid://cjpvy7npubmpa" path="res://shared/beehave/action/set_random_nav_target.gd" id="6_lxbhr"]
+[ext_resource type="Script" uid="uid://8or73xedlaqi" path="res://shared/beehave/action/update_target_position.gd" id="6_nr11u"]
 [ext_resource type="Script" uid="uid://d3hunwyfk54p2" path="res://shared/beehave/action/set_target.gd" id="6_r2ijf"]
-[ext_resource type="Script" path="res://shared/beehave/condition/has_target.gd" id="7_3ad5t"]
+[ext_resource type="Script" uid="uid://c30td6ukrmguq" path="res://shared/beehave/condition/has_target.gd" id="7_3ad5t"]
 [ext_resource type="Script" uid="uid://qxwvejkcr6c" path="res://shared/beehave/condition/has_reached_target.gd" id="8_ejf3g"]
-[ext_resource type="Script" path="res://shared/beehave/action/set_movement.gd" id="9_2cllp"]
+[ext_resource type="Script" uid="uid://nbj8xk6nqyb6" path="res://shared/beehave/action/set_movement.gd" id="9_2cllp"]
 [ext_resource type="Script" uid="uid://dvnmhlldp23hg" path="res://addons/beehave/nodes/composites/selector_random.gd" id="10_fcxfv"]
 [ext_resource type="Script" uid="uid://dcojdhvj8qcw0" path="res://addons/beehave/nodes/composites/sequence_reactive.gd" id="11_3myrp"]
 [ext_resource type="Script" uid="uid://crjqmr7expgtl" path="res://addons/beehave/nodes/decorators/limiter.gd" id="15_eykdo"]
-[ext_resource type="Script" path="res://shared/beehave/action/set_tracking.gd" id="16_2vyja"]
+[ext_resource type="Script" uid="uid://ch6b2rcr58t23" path="res://shared/beehave/action/set_tracking.gd" id="16_2vyja"]
 [ext_resource type="Script" uid="uid://we22430vcb44" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="16_nr11u"]
-[ext_resource type="Script" path="res://characters/enemies/basic_enemy/set_speed.gd" id="17_id0xw"]
+[ext_resource type="Script" uid="uid://stdko1cvpgmi" path="res://characters/enemies/basic_enemy/set_speed.gd" id="17_id0xw"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="18_3myrp"]
 [ext_resource type="Script" uid="uid://bgknqprqq0468" path="res://shared/beehave/action/set_nav_target_in_direction.gd" id="18_eykdo"]
-[ext_resource type="Script" path="res://characters/enemies/basic_enemy/set_attack_area.gd" id="19_ect5e"]
+[ext_resource type="Script" uid="uid://0jgj5q1d0fkh" path="res://characters/enemies/basic_enemy/set_attack_area.gd" id="19_ect5e"]
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="19_fcxfv"]
-[ext_resource type="Script" path="res://shared/health/toggleable_area.gd" id="20_16ot4"]
+[ext_resource type="Script" uid="uid://c24bwn0043vhi" path="res://shared/health/toggleable_area.gd" id="20_16ot4"]
 [ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="20_fcxfv"]
 [ext_resource type="Script" uid="uid://djg0m48s04bny" path="res://shared/health/base_damage_component.gd" id="20_id0xw"]
 [ext_resource type="Script" uid="uid://dsf3a8vlolhx8" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="20_mpfi1"]
 [ext_resource type="Script" uid="uid://bwbgvbw8rs0aa" path="res://shared/vfx/player/vfx_player_sequence.gd" id="27_eykdo"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="27_mpfi1"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ntsgn"]
-radius = 0.4
-height = 1.6
-
-[sub_resource type="BoxMesh" id="BoxMesh_ect5e"]
-size = Vector3(0.2, 0.2, 0.5)
+[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="29_mjaka"]
+[ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="30_qd6q6"]
+[ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="31_y1krv"]
+[ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="32_yedos"]
+[ext_resource type="Script" uid="uid://cfbfg51ucp1a2" path="res://shared/journal/journal_entry_poi.gd" id="33_o1m3g"]
+[ext_resource type="Script" uid="uid://gfr35mbc1ij6" path="res://shared/journal/journal_entry.gd" id="34_qd6q6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uwcne"]
 size = Vector3(1, 1.6, 1)
@@ -54,16 +54,36 @@ height = 12.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_2vyja"]
 radius = 1.5
 
+[sub_resource type="Resource" id="Resource_ou6is"]
+script = ExtResource("32_yedos")
+text = "This guy seems like trouble"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_necax"]
+script = ExtResource("32_yedos")
+text = "I'm gonna die fast"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_wjvgd"]
+script = ExtResource("31_y1krv")
+sentences = Array[ExtResource("32_yedos")]([SubResource("Resource_ou6is"), SubResource("Resource_necax")])
+metadata/_custom_type_script = "uid://dhpmrqniojeb4"
+
+[sub_resource type="Resource" id="Resource_y1krv"]
+script = ExtResource("34_qd6q6")
+object_name = "Enemy"
+description = "This is an enemy"
+page = 3
+model_scene = "uid://ds0lm2shdnd07"
+model_scale = 0.3
+rotation_angle = 0.2
+metadata/_custom_type_script = "uid://gfr35mbc1ij6"
+
 [node name="Enemy" type="CharacterBody3D" unique_id=768992349]
 script = ExtResource("1_2cllp")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=340564969]
+[node name="MeshInstance3D" parent="." unique_id=1502119920 instance=ExtResource("2_y1krv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-mesh = SubResource("CapsuleMesh_ntsgn")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=1367237865]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49999994, -0.5)
-mesh = SubResource("BoxMesh_ect5e")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1344185253]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -71,7 +91,7 @@ shape = SubResource("BoxShape3D_uwcne")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1892085315 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_r2ijf")
-blackboard = NodePath("@Node@18817")
+blackboard = NodePath("@Node@18847")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
@@ -436,6 +456,18 @@ metadata/_custom_type_script = "uid://djg0m48s04bny"
 script = ExtResource("27_eykdo")
 
 [node name="BloodVfx" parent="VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("27_mpfi1")]
+
+[node name="PointOfInterest" type="Node3D" parent="." unique_id=1072260532]
+script = ExtResource("29_mjaka")
+radius = 4.0
+
+[node name="SpeechPOI" type="Node" parent="PointOfInterest" unique_id=1702120644]
+script = ExtResource("30_qd6q6")
+dialogue = SubResource("Resource_wjvgd")
+
+[node name="JournalEntryPOI" type="Node" parent="PointOfInterest" unique_id=1237039963]
+script = ExtResource("33_o1m3g")
+journal_entry = SubResource("Resource_y1krv")
 
 [connection signal="health_decreased" from="HealthComponent" to="VfxPlayerSequence" method="play"]
 [connection signal="health_depleted" from="HealthComponent" to="DeathComponent" method="_on_death"]

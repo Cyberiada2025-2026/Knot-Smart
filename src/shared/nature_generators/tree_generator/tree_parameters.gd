@@ -4,7 +4,7 @@ extends Resource
 @export var segment_displacement: float = 0.8
 @export var material: StandardMaterial3D
 ## how much first branches (every branch for SIDE tree) are snatched towards the ground
-@export var branch_spread_angle: float = PI/20
+@export var branch_spread_angle: float = PI / 20
 
 @export_group("Trunk")
 @export_range(1, 20, 1) var trunk_segment_count = 3

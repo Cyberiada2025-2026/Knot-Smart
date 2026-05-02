@@ -9,3 +9,4 @@ alpha_antialiasing_mode = 0
 cull_mode = 2
 shading_mode = 0
 albedo_texture = ExtResource("1_joewd")
+texture_filter = 2

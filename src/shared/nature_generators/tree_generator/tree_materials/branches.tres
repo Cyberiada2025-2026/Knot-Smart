@@ -8,5 +8,6 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
 shading_mode = 0
-albedo_color = Color(0.82640404, 0.70935374, 0.6060934, 1)
+albedo_color = Color(0.8670693, 0.7682465, 0.68324316, 1)
 albedo_texture = ExtResource("1_lipbi")
+texture_filter = 2

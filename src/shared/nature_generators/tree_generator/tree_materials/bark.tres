@@ -4,6 +4,6 @@
 
 [resource]
 shading_mode = 0
-albedo_color = Color(0.47007585, 0.47007585, 0.47007585, 1)
+albedo_color = Color(0.39688924, 0.39688927, 0.3968891, 1)
 albedo_texture = ExtResource("1_vcolh")
 uv1_triplanar = true

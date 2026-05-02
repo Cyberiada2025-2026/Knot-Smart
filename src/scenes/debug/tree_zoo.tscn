@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_crhmp"]
 [ext_resource type="Script" uid="uid://d3priws45vp1i" path="res://shared/nature_generators/tree_generator/tree_generator.gd" id="2_7cgt4"]
-[ext_resource type="Material" uid="uid://c107q10f3ug64" path="res://shared/nature_generators/tree_generator/tree_materials/branches.tres" id="3_ca55m"]
-[ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark.tres" id="3_rrlkt"]
+[ext_resource type="Resource" uid="uid://cu3velky86qgt" path="res://shared/nature_generators/tree_generator/tree_materials/branches/branches.tres" id="3_ca55m"]
+[ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark/bark.tres" id="3_rrlkt"]
 [ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/nature_generators/tree_generator/tree_parameters.gd" id="4_u5v14"]
 [ext_resource type="Script" uid="uid://bxobj8lbccu64" path="res://shared/nature_generators/foliage_generator/foliage_generator.gd" id="5_f225a"]
 [ext_resource type="Material" uid="uid://cpfk116xcolca" path="res://shared/nature_generators/foliage_generator/foliage_materials/bush.tres" id="6_ca55m"]
@@ -15,19 +15,12 @@ size = Vector3(50, 1, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_v77ug"]
 size = Vector3(50, 1, 50)
 
-[sub_resource type="Resource" id="Resource_ca55m"]
-script = ExtResource("7_itme7")
-material = ExtResource("3_ca55m")
-count = 1
-plane_scale = Vector3(3.333, 2, 2)
-plane_offset = Vector3(-2, 0, 0)
-metadata/_custom_type_script = "uid://cs824opuvcx8k"
-
 [sub_resource type="Resource" id="Resource_f225a"]
 script = ExtResource("4_u5v14")
 material = ExtResource("3_rrlkt")
 max_count = 4
-flat_branches_parameters = SubResource("Resource_ca55m")
+branch_rate_of_shrinking = 0.76
+flat_branches_parameters = ExtResource("3_ca55m")
 metadata/_custom_type_script = "uid://s0k1bcrvckmc"
 
 [sub_resource type="Resource" id="Resource_28rss"]
@@ -62,4 +55,10 @@ metadata/_custom_type_script = "uid://d3priws45vp1i"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -9)
 script = ExtResource("5_f225a")
 params = SubResource("Resource_28rss")
+metadata/_custom_type_script = "uid://bxobj8lbccu64"
+
+[node name="FoliageGenerator2" type="Node3D" parent="." unique_id=20660903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4723964, 0.52106667, 0)
+script = ExtResource("5_f225a")
+params = ExtResource("3_ca55m")
 metadata/_custom_type_script = "uid://bxobj8lbccu64"

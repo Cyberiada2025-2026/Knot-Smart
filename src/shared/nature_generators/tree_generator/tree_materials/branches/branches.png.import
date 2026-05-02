@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jtgb3oas16dr"
-path.s3tc="res://.godot/imported/bark.png-a06f3c7186644bc61c7b61648f677d8f.s3tc.ctex"
+uid="uid://dfjn08bwopvnb"
+path.s3tc="res://.godot/imported/branches.png-56a989d8d8d9859668a89a3a22ca5e2a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://shared/nature_generators/tree_generator/tree_materials/textures/bark.png"
-dest_files=["res://.godot/imported/bark.png-a06f3c7186644bc61c7b61648f677d8f.s3tc.ctex"]
+source_file="res://shared/nature_generators/tree_generator/tree_materials/branches/branches.png"
+dest_files=["res://.godot/imported/branches.png-56a989d8d8d9859668a89a3a22ca5e2a.s3tc.ctex"]
 
 [params]
 
@@ -24,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

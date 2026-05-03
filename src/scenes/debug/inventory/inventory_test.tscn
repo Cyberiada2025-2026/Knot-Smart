@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_r4630"]
 [ext_resource type="Script" uid="uid://dles3x4ape0fk" path="res://shared/inventory_items_zones/take_item_zone.gd" id="2_x045t"]
 [ext_resource type="Script" uid="uid://dvy1b1v48ym8a" path="res://ui/inventory/item_description.gd" id="3_eqodw"]
-[ext_resource type="Script" uid="uid://c1f5qye5q0r47" path="res://shared/inventory_items_zones/put_item_zone.gd" id="4_klff6"]
+[ext_resource type="Script" uid="uid://c1f5qye5q0r47" path="res://shared/ship/ship_parts.gd" id="4_x045t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tch0"]
 albedo_color = Color(0.10103265, 0.16858053, 0.1756905, 1)
@@ -168,8 +168,8 @@ mesh = SubResource("BoxMesh_eqodw")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=41238405]
 shape = SubResource("BoxShape3D_x045t")
 
-[node name="PutItemZone" type="Node3D" parent="StaticBody3D3" unique_id=1137001261]
-script = ExtResource("4_klff6")
+[node name="ShipParts" type="Node3D" parent="StaticBody3D3" unique_id=649363046]
+script = ExtResource("4_x045t")
 items = Dictionary[ExtResource("3_eqodw"), int]({
 SubResource("Resource_mqmae"): 1,
 SubResource("Resource_b5pft"): 2

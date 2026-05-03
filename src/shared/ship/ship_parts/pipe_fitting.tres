@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemDescription" format=3 uid="uid://tvfenvguotp6"]
+
+[ext_resource type="Script" uid="uid://dvy1b1v48ym8a" path="res://ui/inventory/item_description.gd" id="1_ihri3"]
+
+[resource]
+script = ExtResource("1_ihri3")
+item_name = "Pipe fitting"
+description = "Used to connect sections of pipe"
+metadata/_custom_type_script = "uid://dvy1b1v48ym8a"

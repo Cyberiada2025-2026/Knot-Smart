@@ -4,11 +4,18 @@ extends Node3D
 
 @export_tool_button("Generate")var generate_func: Callable = regenerate
 @export_tool_button("Randomize seed")var seed_func: Callable = regenerate_seed
+@export_tool_button("Save")var save_func: Callable = save
 #@export_tool_button("DEBUG RESET")var debugfun: Callable = debug_reset
-@export var path: String = "res://biomegenerator.tscn"
 
+@export_category("Path")
+@export var path_location: String = "user://" #"res://"
+@export var path_folder: String = "biomegenerator/"
+@export var path_file_name: String = "generated_biome"
+@export var path_file_extension: String = ".tscn"
+#@export var path: String = "res://biomegenerator/generated_biome.tscn"
 @export_category("Nodes")
 @export var saved_nodes_node: Node3D
+@export var subgenerators_node: Node3D
 @export var walls_combiner: WallsCombiner
 @export_subgroup("SubGenerators")
 @export var points_generator: PointsGenerator
@@ -31,20 +38,9 @@ var rng: RandomNumberGeneratorUpgraded
 var biomes: Array[Biome]
 
 
-#func debug_reset() -> void:
-	#for x in biome_generator.biomes_parent.get_children(false):
-		#print(x.get_parent())
-
-
-#func _ready() -> void:
-	#regenerate()
-
 func regenerate() -> void:
 	reset()
 	generate()
-	#var scene: PackedScene = PackedScene.new()
-	#scene.pack(generator)
-	#ResourceSaver.save(scene, path)
 
 func regenerate_seed() -> void:
 	custom_seed = rng.randi()
@@ -63,6 +59,7 @@ func generate() -> void:
 	walls_generator.generate()
 	passage_generator.generate()
 	
+	saved_nodes_node.owner = self
 
 func reset() -> void:
 	_set_rng()
@@ -71,3 +68,24 @@ func reset() -> void:
 	biome_generator.reset()
 	walls_generator.reset()
 	passage_generator.reset()
+
+
+func save() -> void:
+	var path: String = path_location + path_folder + path_file_name + path_file_extension
+	if FileAccess.file_exists(path):
+		var error = DirAccess.remove_absolute(path)
+		if error != OK:
+			print("BIOME GENERATOR SAVING ERROR: ", error)
+	else:
+		var error = DirAccess.make_dir_recursive_absolute(path_location + path_folder)
+		if error != OK:
+			print("BIOME GENERATOR SAVING DIRECTORY ERROR: ", error)
+	
+	var scene: PackedScene = PackedScene.new()
+	scene.pack(self)
+	ResourceSaver.save(scene, path)
+
+func load() -> PlantsWallsGenerator:
+	var path: String = path_location + path_folder + path_file_name + path_file_extension
+	var loded_generator = load(path)
+	return loded_generator

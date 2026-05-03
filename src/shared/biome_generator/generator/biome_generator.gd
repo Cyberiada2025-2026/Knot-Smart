@@ -25,6 +25,7 @@ func reset() -> void:
 	_free_triangles.clear()
 	_size_proportion.clear()
 	for child in biomes_parent.get_children():
+		child.reparent(self)
 		child.queue_free()
 
 func generate() -> void:
@@ -43,7 +44,6 @@ func generate() -> void:
 			for l_biome in line.biomes:
 				if not l_biome in biome.adjustent_biomes:
 					biome.adjustent_biomes.append(l_biome)
-					print(biome, biome.adjustent_biomes)
 				if not biome in l_biome.adjustent_biomes:
 					l_biome.adjustent_biomes.append(biome)
 			line.biomes.append(biome)

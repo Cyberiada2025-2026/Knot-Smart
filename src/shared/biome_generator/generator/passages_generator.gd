@@ -19,10 +19,8 @@ func generate() -> void:
 
 func _generate_passage_lines() -> void:
 	var biomes_copy = generator_main.biome_generator.biomes.duplicate(false)
-	print("dsfaifiub")
 	for biome in generator_main.biome_generator.biomes:
 		biomes_copy.erase(biome)
-		print(biome, biome.adjustent_biomes)
 		for biome2 in biomes_copy:
 			if biome2 in biome.adjustent_biomes:
 				var passage_line = PassageLine.new()

@@ -6,6 +6,8 @@ extends Node3D
 
 func reset() -> void:
 	if generator_main.walls_combiner != null:
+		generator_main.walls_combiner.reparent(self)
+		generator_main.walls_combiner.owner = self
 		generator_main.walls_combiner.queue_free()
 	generator_main.walls_combiner = WallsCombiner.new()
 	generator_main.saved_nodes_node.add_child(generator_main.walls_combiner)

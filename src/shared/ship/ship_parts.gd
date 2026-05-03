@@ -14,7 +14,8 @@ func _ready() -> void:
 		item_copy.main_node = get_parent()
 		items.erase(item)
 		items[item_copy] = quantity
-	win.connect(ProgressionManager.win)
+	if Engine.is_editor_hint():
+		win.connect(ProgressionManager.win)
 
 
 func get_items() -> Dictionary[ItemDescription, int]:

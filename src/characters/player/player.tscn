@@ -6,16 +6,24 @@
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
 [ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_6dc8e"]
 [ext_resource type="PackedScene" uid="uid://b0gb5qnl30ap5" path="res://characters/player/gravity_controller.tscn" id="4_ixbpm"]
+[ext_resource type="PackedScene" uid="uid://cjjffdo72xk1u" path="res://shared/journal/journal.tscn" id="5_ixbpm"]
 [ext_resource type="Script" uid="uid://bwbgvbw8rs0aa" path="res://shared/vfx/player/vfx_player_sequence.gd" id="6_3t07l"]
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="6_c6leb"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="7_on558"]
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
-[ext_resource type="Script" uid="uid://bkffe8kvogeke" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
+[ext_resource type="Script" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
 [ext_resource type="Script" uid="uid://c0v1x4a4fbhnn" path="res://shared/tooltips/tooltip_manager.gd" id="12_on558"]
+[ext_resource type="Script" uid="uid://sf6x58peklug" path="res://ui/inventory/inventory_manager.gd" id="13_gqopd"]
+[ext_resource type="Script" uid="uid://d0x6a5ec5mlei" path="res://shared/speech/speech_manager.gd" id="13_icpky"]
+[ext_resource type="Resource" uid="uid://cgkx63vdu5tas" path="res://shared/speech/alien/neutral/neutral.tres" id="14_58jvb"]
+[ext_resource type="Script" uid="uid://gfr35mbc1ij6" path="res://shared/journal/journal_entry.gd" id="17_aqrcq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hysn5"]
 radius = 0.25
 height = 0.8
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_on558"]
+radius = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_on558"]
 bg_color = Color(0, 0, 0, 1)
@@ -30,6 +38,13 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+[sub_resource type="Resource" id="Resource_aqrcq"]
+script = ExtResource("17_aqrcq")
+object_name = "Fix the ship"
+description = "I need to find all the remaining ship parts."
+page = 0
+metadata/_custom_type_script = "uid://gfr35mbc1ij6"
+
 [node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_gravity_controller") groups=["Player"]]
 script = ExtResource("1_4ntmi")
 player_physics = NodePath("PlayerPhysics")
@@ -37,6 +52,7 @@ player_camera = NodePath("PlayerPhysics/PlayerCamera")
 player_gravity_controller = NodePath("PlayerPhysics/gravityController")
 
 [node name="PlayerPhysics" parent="." unique_id=1615832908 node_paths=PackedStringArray("player") instance=ExtResource("1_l8h54")]
+collision_layer = 3
 player = NodePath("..")
 
 [node name="PlayerCamera" parent="PlayerPhysics" unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
@@ -79,6 +95,11 @@ metadata/_custom_type_script = "uid://bwbgvbw8rs0aa"
 
 [node name="BloodVfx" parent="PlayerPhysics/VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("7_on558")]
 
+[node name="InteractionArea" type="Area3D" parent="PlayerPhysics" unique_id=1733871244]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPhysics/InteractionArea" unique_id=1854980343]
+shape = SubResource("SphereShape3D_on558")
+
 [node name="RopeManager" type="Node3D" parent="." unique_id=1597735802]
 top_level = true
 script = ExtResource("7_rpf03")
@@ -91,7 +112,6 @@ debug_log = true
 [node name="PlayerRespawnComponent" type="Node" parent="." unique_id=15480088 node_paths=PackedStringArray("health_component")]
 script = ExtResource("11_3t07l")
 health_component = NodePath("../HealthComponent")
-metadata/_custom_type_script = "uid://bkffe8kvogeke"
 
 [node name="TooltipManager" type="Node3D" parent="." unique_id=1596368387]
 script = ExtResource("12_on558")
@@ -121,6 +141,24 @@ theme_override_font_sizes/normal_font_size = 9
 theme_override_styles/normal = SubResource("StyleBoxFlat_on558")
 text = "Very long testing tooltip lorem ipsum dolor wtf"
 fit_content = true
+
+[node name="InventoryManager" type="Control" parent="." unique_id=189910731 node_paths=PackedStringArray("interaction_area")]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 170.0
+offset_right = 320.0
+offset_bottom = 410.0
+script = ExtResource("13_gqopd")
+interaction_area = NodePath("../PlayerPhysics/InteractionArea")
+metadata/_custom_type_script = "uid://sf6x58peklug"
+
+[node name="SpeechManager" type="Node" parent="." unique_id=830717814]
+script = ExtResource("13_icpky")
+voice_bank = ExtResource("14_58jvb")
+metadata/_custom_type_script = "uid://d0x6a5ec5mlei"
+
+[node name="Journal menu" parent="." unique_id=883052313 instance=ExtResource("5_ixbpm")]
+initial_entries = Array[ExtResource("17_aqrcq")]([SubResource("Resource_aqrcq")])
 
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]

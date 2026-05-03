@@ -1,13 +1,15 @@
 @tool
 class_name NeighborGenerator
-extends Node
+extends RefCounted
 
 var building_generator: BuildingGenerator
 
 
-func generate_neighbors(_building_generator: BuildingGenerator) -> void:
+func _init(_building_generator: BuildingGenerator) -> void:
 	building_generator = _building_generator
 
+
+func generate_neighbors() -> void:
 	create_neighbor_graph()
 	create_msp_kruskal()
 
@@ -45,8 +47,3 @@ func choose_door_positions():
 	for n in building_generator.neighbors:
 		if n.is_open:
 			n.set_door_position()
-
-
-func _enter_tree() -> void:
-	building_generator = get_parent()
-	building_generator.neighbors_generator = self

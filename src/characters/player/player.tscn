@@ -22,6 +22,7 @@
 radius = 0.25
 height = 0.8
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_on558"]
 [sub_resource type="SphereShape3D" id="SphereShape3D_on558"]
 radius = 1.0
 
@@ -80,7 +81,7 @@ sensors = {
 wait_time = 0.3
 
 [node name="HitBox" type="Area3D" parent="PlayerPhysics" unique_id=1516471157 node_paths=PackedStringArray("health_component")]
-collision_layer = 0
+collision_layer = 8
 collision_mask = 32
 script = ExtResource("3_ixbpm")
 health_component = NodePath("../../HealthComponent")
@@ -95,6 +96,12 @@ metadata/_custom_type_script = "uid://bwbgvbw8rs0aa"
 
 [node name="BloodVfx" parent="PlayerPhysics/VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("7_on558")]
 
+[node name="PlayerMarker" type="Area3D" parent="PlayerPhysics" unique_id=864801771]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPhysics/PlayerMarker" unique_id=208028236]
+shape = SubResource("BoxShape3D_on558")
 [node name="InteractionArea" type="Area3D" parent="PlayerPhysics" unique_id=1733871244]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPhysics/InteractionArea" unique_id=1854980343]

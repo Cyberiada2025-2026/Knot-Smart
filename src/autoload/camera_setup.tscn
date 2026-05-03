@@ -3,8 +3,40 @@
 [ext_resource type="Script" uid="uid://b2qmm8ipalct6" path="res://shared/camera/camera_helper.gd" id="1_5jark"]
 [ext_resource type="PackedScene" uid="uid://ds23isyj385on" path="res://ui/pause_menu/pause_menu.tscn" id="2_5jark"]
 [ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://shared/post_processing/shaders/dithering.gdshader" id="3_1y1hh"]
+[ext_resource type="Texture2D" uid="uid://csyj8k3wnbqha" path="res://shared/radiation_storm/white_noise.png" id="3_ka213"]
+[ext_resource type="Shader" uid="uid://d2xbvk8qshls7" path="res://shared/radiation_storm/radiation.gdshader" id="4_1y1hh"]
 [ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://shared/post_processing/shaders/crt.gdshader" id="4_ka213"]
 [ext_resource type="Script" uid="uid://l1jyrcpmag6w" path="res://shared/post_processing/toggle_crt.gd" id="5_u1xjy"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1y1hh"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ka213"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_1y1hh")
+seamless = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_us3k4"]
+noise_type = 0
+seed = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uofoc"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_us3k4")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ka213"]
+shader = ExtResource("4_1y1hh")
+shader_parameter/noise1 = SubResource("NoiseTexture2D_ka213")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_uofoc")
+shader_parameter/white = ExtResource("3_ka213")
+shader_parameter/speed1 = 0.01000023797500038
+shader_parameter/speed2 = -0.00999976297500016
+shader_parameter/min_white = 0.400000019
+shader_parameter/max_white = 0.4800000228
+shader_parameter/anim = 0.0
+shader_parameter/smoothness = 0.2000000095
+shader_parameter/black_delay = 0.3330000158175
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xylyt"]
 shader = ExtResource("3_1y1hh")
@@ -18,7 +50,7 @@ shader_parameter/warp_y = 0.041667
 shader_parameter/mask_dark = 0.75
 shader_parameter/mask_light = 1.75
 
-[node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera", "scene")]
+[node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera", "scene", "radiation_post")]
 process_mode = 3
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 524288
@@ -28,6 +60,7 @@ far = 0.1
 script = ExtResource("1_5jark")
 camera = NodePath("Control/SubViewportContainer/SubViewport/MainCamera")
 scene = NodePath("Control/SubViewportContainer/SubViewport/MainCamera/MainScene")
+radiation_post = NodePath("Control/SubViewportContainer/SubViewport/MainCamera/RadiationLayer/Radiation")
 
 [node name="Control" type="Control" parent="." unique_id=1065790436]
 light_mask = 0
@@ -64,6 +97,24 @@ render_target_update_mode = 4
 transform = Transform3D(0.9914175, -2.231977e-08, -0.1307338, 0.053353444, 0.91293395, 0.40460476, 0.11935132, -0.40810734, 0.90509874, -3.765843, 8.939763, 12.39052)
 cull_mask = 524287
 
+[node name="RadiationLayer" type="CanvasLayer" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=289687839]
+layer = -1
+
+[node name="Radiation" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera/RadiationLayer" unique_id=1109211409]
+visible = false
+visibility_layer = 1048575
+z_index = 4096
+z_as_relative = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_ka213")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
 [node name="MainScene" type="Control" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=1610041003]
 process_mode = 1
 layout_mode = 3
@@ -75,7 +126,9 @@ grow_vertical = 2
 
 [node name="PauseMenu" parent="Control/SubViewportContainer/SubViewport/MainCamera/MainScene" unique_id=473504245 instance=ExtResource("2_5jark")]
 
-[node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=2005476111]
+[node name="DitherLayer" type="CanvasLayer" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=696670275]
+
+[node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera/DitherLayer" unique_id=2005476111]
 visibility_layer = 1048575
 z_index = 4096
 z_as_relative = false

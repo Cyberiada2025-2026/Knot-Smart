@@ -1,7 +1,7 @@
 [gd_resource type="MeshLibrary" format=4 uid="uid://dxdix3oesovgs"]
 
 [ext_resource type="Material" uid="uid://p23eoepvxe0s" path="res://shared/buildings/assets/materials/building_floor_material.tres" id="1_s23i5"]
-[ext_resource type="Shader" uid="uid://kaq856dfkhje" path="res://shared/shaders/shaded_PS1_with_alt.gdshader" id="2_nrbgc"]
+[ext_resource type="Shader" path="res://shared/shaders/shaded_PS1_with_alt.gdshader" id="2_nrbgc"]
 [ext_resource type="NoiseTexture3D" uid="uid://bfi6y3xtjd6am" path="res://shared/buildings/assets/textures/building_damage_mask.tres" id="3_co64b"]
 [ext_resource type="Texture2D" uid="uid://dtiumsbnhc5kv" path="res://shared/buildings/assets/textures/FilledWallTextureDamaged.png" id="4_gh6bf"]
 [ext_resource type="Texture2D" uid="uid://e7x2h8suf1y6" path="res://shared/buildings/assets/textures/FilledWallTextureMain.png" id="5_05wgy"]

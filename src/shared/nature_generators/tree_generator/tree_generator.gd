@@ -30,6 +30,11 @@ func generate_tree():
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
 			generate_mesh(branch, params.material)
+	if params.foliage_parameters != null:
+		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
+		for branch in branches_one_level:
+			if randf()<params.branch_spawn_percentage:
+				add_foliage(branch)
 	serialize()
 
 
@@ -48,6 +53,16 @@ func generate_mesh(branch: TreeBranch, material: StandardMaterial3D):
 	tree.add_child(collision)
 	mesh.owner = tree
 	collision.owner = tree
+
+
+func add_foliage(branch: TreeBranch):
+	var foliage_generator = FoliageGenerator.new()
+	foliage_generator.params = params.foliage_parameters
+	foliage_generator.transform = branch.transform
+	tree.add_child(foliage_generator)
+	foliage_generator.owner = tree
+	for child in foliage_generator.get_children(true):
+		child.owner = tree
 
 
 func on_generate():

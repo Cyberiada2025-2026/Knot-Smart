@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="TreeParameters" format=3 uid="uid://c4cjyeqqa3ian"]
 
-[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/tree_generator/tree_parameters.gd" id="1_avkc2"]
-[ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/tree_generator/tree_materials/bark.tres" id="1_n04d3"]
+[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/nature_generators/tree_generator/tree_parameters.gd" id="1_avkc2"]
+[ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark/bark.tres" id="1_n04d3"]
 
 [resource]
 script = ExtResource("1_avkc2")

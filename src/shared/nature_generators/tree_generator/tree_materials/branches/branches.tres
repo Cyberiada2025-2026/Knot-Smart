@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="FoliageParameters" format=3 uid="uid://cu3velky86qgt"]
+
+[ext_resource type="Script" uid="uid://cs824opuvcx8k" path="res://shared/nature_generators/foliage_generator/foliage_parameters.gd" id="1_ab5jj"]
+[ext_resource type="PackedScene" uid="uid://bkme4aeaosurh" path="res://shared/nature_generators/tree_generator/tree_materials/branches/branch.tscn" id="1_v0xsc"]
+
+[resource]
+script = ExtResource("1_ab5jj")
+mesh = ExtResource("1_v0xsc")
+scale = 2.0
+scale_randomization = 2.0
+metadata/_custom_type_script = "uid://cs824opuvcx8k"

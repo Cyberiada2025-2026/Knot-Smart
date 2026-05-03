@@ -15,3 +15,10 @@ func get_items() -> Dictionary[ItemDescription, int]:
 	var items: Dictionary[ItemDescription, int] = {}
 	items[item] = 1
 	return items
+
+
+func change_items(cell, _item) -> bool:
+	if cell.get_item_name()==item.item_name or cell.is_empty():
+		cell.add_item(item)
+		return true
+	return false

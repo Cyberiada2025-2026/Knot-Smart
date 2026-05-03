@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c1f5qye5q0r47" path="res://shared/ship/ship_parts.gd" id="1_kfd3q"]
 [ext_resource type="Script" uid="uid://dvy1b1v48ym8a" path="res://ui/inventory/item_description.gd" id="2_5m1rr"]
-[ext_resource type="Resource" uid="uid://tvfenvguotp6" path="res://shared/inventory_items_zones/item_descriptions/pipe_fitting.tres" id="3_75l04"]
-[ext_resource type="Resource" uid="uid://c1olmhw44ojmn" path="res://shared/inventory_items_zones/item_descriptions/screws.tres" id="4_cjjtv"]
-[ext_resource type="Resource" uid="uid://bw55udm61j6kl" path="res://shared/inventory_items_zones/item_descriptions/sprocket.tres" id="5_coqfo"]
+[ext_resource type="Resource" uid="uid://tvfenvguotp6" path="res://shared/ship/ship_parts/pipe_fitting.tres" id="3_75l04"]
+[ext_resource type="Resource" uid="uid://c1olmhw44ojmn" path="res://shared/ship/ship_parts/screws.tres" id="4_cjjtv"]
+[ext_resource type="Resource" uid="uid://bw55udm61j6kl" path="res://shared/ship/ship_parts/sprocket.tres" id="5_coqfo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muobp"]
 shading_mode = 0

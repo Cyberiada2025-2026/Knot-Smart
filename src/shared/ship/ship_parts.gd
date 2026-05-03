@@ -21,6 +21,14 @@ func get_items() -> Dictionary[ItemDescription, int]:
 	return items
 
 
+func change_items(cell, item) -> bool:
+	if cell.get_item_name()==item.item_name:
+		items[item] = cell.remove_item(items[item])
+		on_changed()
+		return true
+	return false
+
+
 func on_changed():
 	for item in items:
 		if items[item] != 0:

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ckl5pfstkaitv"]
 
 [ext_resource type="Script" uid="uid://dles3x4ape0fk" path="res://shared/inventory_items_zones/take_item_zone.gd" id="1_wogls"]
-[ext_resource type="Resource" uid="uid://c1olmhw44ojmn" path="res://shared/inventory_items_zones/item_descriptions/screws.tres" id="2_wogls"]
+[ext_resource type="Resource" uid="uid://c1olmhw44ojmn" path="res://shared/ship/ship_parts/screws.tres" id="2_wogls"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x6qr1"]
 shading_mode = 0

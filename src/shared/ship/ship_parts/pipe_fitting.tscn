@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://blrhgw85c4fk1"]
 
 [ext_resource type="Script" uid="uid://dles3x4ape0fk" path="res://shared/inventory_items_zones/take_item_zone.gd" id="1_dwgth"]
-[ext_resource type="Resource" uid="uid://tvfenvguotp6" path="res://shared/inventory_items_zones/item_descriptions/pipe_fitting.tres" id="2_dwgth"]
+[ext_resource type="Resource" uid="uid://tvfenvguotp6" path="res://shared/ship/ship_parts/pipe_fitting.tres" id="2_dwgth"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ivsb"]
 shading_mode = 0

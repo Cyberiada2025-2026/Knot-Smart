@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8uvhpoaogyqt"]
 
 [ext_resource type="Script" uid="uid://dles3x4ape0fk" path="res://shared/inventory_items_zones/take_item_zone.gd" id="1_2oska"]
-[ext_resource type="Resource" uid="uid://bw55udm61j6kl" path="res://shared/inventory_items_zones/item_descriptions/sprocket.tres" id="2_2oska"]
+[ext_resource type="Resource" uid="uid://bw55udm61j6kl" path="res://shared/ship/ship_parts/sprocket.tres" id="2_2oska"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sk4f2"]
 shading_mode = 0

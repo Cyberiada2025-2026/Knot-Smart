@@ -8,7 +8,6 @@ extends Control
 @export var interaction_area: Area3D
 
 var grid: GridContainer
-var items_node: Node3D = null
 var inventory_cell: PackedScene
 
 
@@ -43,27 +42,19 @@ func set_cells():
 
 
 func interact():
-	get_items_node()
+	var items_node = get_items_node()
 	if items_node == null:
 		return
 	var items = items_node.get_items()
 	for item in items:
 		for cell in grid.get_children():
-			if items_node is ShipParts:
-				if cell.get_item_name()==item.item_name:
-					items[item] = cell.remove_item(items[item])
-					items_node.on_changed()
-					break
-			elif items_node is TakeItemZone:
-				if cell.get_item_name()==item.item_name or cell.is_empty():
-					cell.add_item(item)
-					items_node = null
-					break
+			if items_node.change_items(cell, item):
+				break
 
 
-func get_items_node():
+func get_items_node() -> Node3D:
 	for body in interaction_area.get_overlapping_bodies():
 		for child in body.get_children():
 			if child is TakeItemZone or child is ShipParts:
-				items_node = child
-				return
+				return child
+	return null

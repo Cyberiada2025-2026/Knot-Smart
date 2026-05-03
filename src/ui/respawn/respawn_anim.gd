@@ -8,10 +8,12 @@ signal on_anim_finished
 @export var points_param: String = "points"
 @export var tint_param: String = "tint"
 @export var white_mix_param: String = "white_mix"
+@export var scale_mix_param: String = "scale_mix"
 @export var acceleration: float = 0.1
 @export var drag = 5
 @export var center_pull = 0.01
 @export var start_white: int = 120
+@export var start_scale: int = 120
 @export var start_points: int = 20
 @export var force: Curve
 @export var sequence: Array[float]
@@ -22,6 +24,7 @@ var speeds: Array[Vector2]
 
 var spawned_cells = 1
 var white_mix = 0.0
+var scale_mix = 0.0
 var active = false
 
 func _start() -> void:
@@ -37,6 +40,7 @@ func _start() -> void:
 	points[0] = Vector2.ONE * 0.5
 
 	white_mix = 0.0
+	scale_mix = 0.0
 	timer = 0.0
 	spawned_cells = 1
 
@@ -67,6 +71,10 @@ func _process(delta: float) -> void:
 	if (spawned_cells > start_white):
 		white_mix += (points_amount - start_white) * sequence[sequence.size() - 1] * delta
 
+	if (spawned_cells > start_scale):
+		scale_mix += (points_amount - start_scale) * sequence[sequence.size() - 1] * delta
+
+
 	var r: Vector2
 
 	for i in range(points_amount):
@@ -81,6 +89,7 @@ func _process(delta: float) -> void:
 
 	rect.material.set_shader_parameter(points_param, points)
 	rect.material.set_shader_parameter(white_mix_param, white_mix)
+	rect.material.set_shader_parameter(scale_mix_param, scale_mix)
 
 func spawn() -> void:
 	if spawned_cells > points_amount - 1:

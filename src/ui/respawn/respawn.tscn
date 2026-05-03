@@ -21,7 +21,9 @@ shader = ExtResource("1_hdj4x")
 shader_parameter/color_ramp = SubResource("GradientTexture1D_pbthc")
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/white_mix = 0.0
+shader_parameter/scale_mix = 0.0
 shader_parameter/points = PackedVector2Array(0.5, 0.375, 1, 0, 0, 0.75, 1, 0.75, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/max_scale = 1.1
 
 [node name="Respawn" type="Control" unique_id=328929917 node_paths=PackedStringArray("rect")]
 layout_mode = 3
@@ -33,10 +35,11 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("2_pbthc")
 rect = NodePath("ColorRect")
-points_amount = 120
+points_amount = 150
 center_pull = 0.0
-start_white = 105
-start_points = 30
+start_white = 125
+start_scale = 100
+start_points = 10
 force = SubResource("Curve_pbthc")
 sequence = Array[float]([1.2, 1.0, 0.5, 0.5, 0.1, 0.1, 0.1, 0.1, 0.02])
 

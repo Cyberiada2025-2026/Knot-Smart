@@ -1,24 +1,11 @@
 [gd_resource type="Resource" script_class="FoliageParameters" format=3 uid="uid://cu3velky86qgt"]
 
 [ext_resource type="Script" uid="uid://cs824opuvcx8k" path="res://shared/nature_generators/foliage_generator/foliage_parameters.gd" id="1_ab5jj"]
-[ext_resource type="Texture2D" uid="uid://dfjn08bwopvnb" path="res://shared/nature_generators/tree_generator/tree_materials/branches/branches.png" id="1_v0xsc"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tnix1"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-cull_mode = 2
-shading_mode = 0
-albedo_color = Color(0.8670693, 0.7682465, 0.68324316, 1)
-albedo_texture = ExtResource("1_v0xsc")
-texture_filter = 2
+[ext_resource type="PackedScene" uid="uid://bkme4aeaosurh" path="res://shared/nature_generators/tree_generator/tree_materials/branches/branch.tscn" id="1_v0xsc"]
 
 [resource]
 script = ExtResource("1_ab5jj")
-material = SubResource("StandardMaterial3D_tnix1")
-count = 1
+mesh = ExtResource("1_v0xsc")
 scale = 2.0
-scale_randomization = 3.0
-plane_scale = Vector3(1.667, 1, 1)
-plane_offset = Vector3(-1.267, 0, 0)
+scale_randomization = 2.0
 metadata/_custom_type_script = "uid://cs824opuvcx8k"

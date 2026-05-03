@@ -20,6 +20,9 @@
 [ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="12_th5th"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="15_hxu8e"]
 [ext_resource type="PackedScene" uid="uid://cwgdxw2n1ey7s" path="res://shared/papers/sheet_music/sheet_music.tscn" id="17_nvumn"]
+[ext_resource type="Material" uid="uid://cs6kr88umcnbn" path="res://shared/water/water.tres" id="18_ou6is"]
+[ext_resource type="Script" uid="uid://cwakd5bfssywv" path="res://shared/utils/spawn_timer.gd" id="19_necax"]
+[ext_resource type="PackedScene" uid="uid://cjfwyjhh3373u" path="res://shared/water/splash.tscn" id="20_r4lks"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -58,6 +61,8 @@ building_tileset = ExtResource("3_raeie")
 min_room_size = Vector3i(1, 1, 1)
 max_room_size = Vector3i(4, 1, 3)
 long_room_tendency = 0.2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_r4lks"]
 
 [node name="Main" type="Node3D" unique_id=959478903]
 
@@ -223,7 +228,7 @@ affect_navigation_mesh = true
 avoidance_enabled = false
 
 [node name="Enemy" parent="." unique_id=124557404 instance=ExtResource("2_iuonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0859199, 0.46004307, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.086, 0.46, 0)
 
 [node name="Player" parent="." unique_id=1226528489 instance=ExtResource("3_k2fmo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6612322, 1.435396, 3.9698668)
@@ -261,6 +266,20 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="SheetMusic" parent="." unique_id=1780103802 instance=ExtResource("17_nvumn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116556)
+
+[node name="Water2" type="MeshInstance3D" parent="." unique_id=690720678]
+transform = Transform3D(3.625, 0, 0, 0, 1, 0, 0, 0, 5.845, -13.195, 0.3, -2.805)
+material_override = ExtResource("18_ou6is")
+mesh = SubResource("PlaneMesh_r4lks")
+skeleton = NodePath("")
+
+[node name="SplashSpawner" type="Node3D" parent="." unique_id=1331165981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.195, 0, 0)
+script = ExtResource("19_necax")
+interval = 5.0
+object = ExtResource("20_r4lks")
+
+[connection signal="triggered" from="Enemy/PointOfInterest" to="NavigationRegion3D/BuildingGenerator" method="_on_point_of_interest_triggered"]
 
 [editable path="NavigationRegion3D/BuildingGenerator"]
 [editable path="NavigationRegion3D/BuildingGenerator2"]

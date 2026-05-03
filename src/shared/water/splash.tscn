@@ -1,0 +1,215 @@
+[gd_scene format=4 uid="uid://cjfwyjhh3373u"]
+
+[ext_resource type="Shader" uid="uid://duj41vfs2gl0h" path="res://shared/water/water_splash.gdshader" id="1_muroy"]
+[ext_resource type="Texture2D" uid="uid://lmsm8232yht3" path="res://shared/water/water.png" id="2_43lt8"]
+[ext_resource type="Script" path="res://shared/utils/free_after_anim.gd" id="3_eumgo"]
+
+[sub_resource type="Gradient" id="Gradient_muroy"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.12126866, 0.15485075)
+colors = PackedColorArray(0.63640004, 0.80410004, 0.86, 1, 0.6636, 0.66781336, 0.79, 1, 0.4, 0.30640003, 0.19200002, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pg34l"]
+gradient = SubResource("Gradient_muroy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r4lks"]
+render_priority = 0
+shader = ExtResource("1_muroy")
+shader_parameter/scale_bot = 0.5
+shader_parameter/scale_top = 0.785
+shader_parameter/height = 1.13
+shader_parameter/main_tex = ExtResource("2_43lt8")
+shader_parameter/water_col = SubResource("GradientTexture1D_pg34l")
+shader_parameter/white_height = 0.31
+shader_parameter/speed1 = Vector2(-0.1, 0)
+shader_parameter/speed2 = Vector2(0.1, 0)
+shader_parameter/speed3 = Vector2(0, -0.2)
+shader_parameter/scales = Vector3(0.5, 0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x4kl5"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_q8c3g"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIAAwAFAAEABAACAAYAAwAHAAUACAAEAAYABwAJAAUACAAGAAoABwALAAkADAAIAAoACwANAAkADAAKAA4ACwAPAA0AEAAMAA4ADwARAA0AEAAOABIADwATABEAFAAQABIAEwAVABEAFAASABYAEwAXABUAFwAUABYAFwAWABUA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("/38AAAAAAAD/v///JhEAAP9///8AAAAA/78AACYRAAD/PwAAJhEAANju////PwAA/z///yYRAADY7gAA/z8AACYRAAD/PwAA//////9/AAAmEf///z8AAP//AAD/fwAAAAAAAP9/AADY7v///78AAAAA////fwAA2O4AAP+/AAAmEQAA/78AAP+////Y7gAAJhH///+/AAD/vwAA2O4AAP8/AADY7gAA/3//////AAD/P///2O4AAP9/AAD//wAA")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_hwuia"]
+resource_name = "splash_Cylinder"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("/////6nqAAD//wAAqer//6nq//9U1QAAqeoAAFTV//9U1f///78AAFTVAAD/v////7///6qqAAD/vwAAqqr//6qq//9UlQAAqqoAAFSV//9Ulf///38AAFSVAAD/f////3///6pqAAD/fwAAqmr//6pq//9VVQAAqmoAAFVV//9VVf///z8AAFVVAAD/P////z///6oqAAD/PwAAqir//6oq//9VFQAAqioAAFUV//9VFf//AAAAAFUVAAAAAP//"),
+"format": 34896613399,
+"index_count": 72,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUAGAAZABoAGAAbABkAHAAdAB4AHAAfAB0AIAAhACIAIAAjACEAJAAlACYAJAAnACUAKAApACoAKAArACkALAAtAC4ALAAvAC0A"),
+"material": SubResource("StandardMaterial3D_x4kl5"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("/38AAAAAVPX/v///JhFU9f9///8AAFT1/78AACYRVPX/vwAAJhH/39ju////P//f/7///yYR/9/Y7gAA/z//39juAAD/P6nK//////9/qcrY7v///z+pyv//AAD/f6nK//8AAP9/VLXY7v///79Utf//////f1S12O4AAP+/VLXY7gAA/7//n/+////Y7v+f2O7///+//5//vwAA2O7/n/+/AADY7qqK/3//////qor/v///2O6qiv9/AAD//6qK/38AAP//qor/P///2O6qiv9//////6qK/z8AANjuqor/PwAA2O7/nyYR////v/+f/z///9ju/58mEQAA/7//nyYRAAD/v1S1AAD///9/VLUmEf///79UtQAAAAD/f1S1AAAAAP9/qcomEf///z+pygAA////f6nKJhEAAP8/qcomEQAA/z//3/8///8mEf/fJhH///8//9//PwAAJhH/3/8/AAAmEVT1/3///wAAVPX/P///JhFU9f9/AAAAAFT1/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/38AAP9/AAD/fwAA/3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_q8c3g")
+
+[sub_resource type="Animation" id="Animation_r4lks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/scale_bot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override:shader_parameter/scale_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.785]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material_override:shader_parameter/height")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.13]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CPUParticles3D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_pg34l"]
+resource_name = "splash"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material_override:shader_parameter/scale_bot")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material_override:shader_parameter/scale_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.75),
+"transitions": PackedFloat32Array(1, 3, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:material_override:shader_parameter/height")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.75),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [0.0, 1.0, -0.01]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CPUParticles3D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m4h2d"]
+_data = {
+&"RESET": SubResource("Animation_r4lks"),
+&"splash": SubResource("Animation_pg34l")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_muroy"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_muroy"]
+radius = 0.1
+height = 0.2
+radial_segments = 6
+rings = 4
+
+[sub_resource type="Curve" id="Curve_muroy"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.1350138, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_43lt8"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.757732, 0.86426115)
+colors = PackedColorArray(0.63640004, 0.80410004, 0.86, 1, 0.4, 0.30640003, 0.19200002, 1)
+
+[node name="Splash" type="MeshInstance3D" unique_id=1903135244]
+material_override = SubResource("ShaderMaterial_r4lks")
+mesh = SubResource("ArrayMesh_hwuia")
+skeleton = NodePath("")
+script = ExtResource("3_eumgo")
+anim = &"splash"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1641033367]
+libraries/ = SubResource("AnimationLibrary_m4h2d")
+autoplay = &"splash"
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="." unique_id=1811520195]
+material_override = SubResource("StandardMaterial3D_muroy")
+emitting = false
+amount = 12
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+mesh = SubResource("SphereMesh_muroy")
+direction = Vector3(0, 1, 0)
+spread = 30.0
+gravity = Vector3(0, -8, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
+scale_amount_curve = SubResource("Curve_muroy")
+color_initial_ramp = SubResource("Gradient_43lt8")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="on_end"]

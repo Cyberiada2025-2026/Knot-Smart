@@ -19,7 +19,7 @@ script = ExtResource("4_u5v14")
 material = ExtResource("3_rrlkt")
 max_count = 4
 branch_rate_of_shrinking = 0.76
-flat_branches_parameters = ExtResource("3_ca55m")
+foliage_parameters = ExtResource("3_ca55m")
 metadata/_custom_type_script = "uid://s0k1bcrvckmc"
 
 [node name="TreeZoo" type="Node3D" unique_id=1622868612]

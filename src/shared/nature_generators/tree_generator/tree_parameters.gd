@@ -22,8 +22,8 @@ extends Resource
 @export_range(0.1, 1.0, 0.01) var branch_rate_of_shrinking = 0.85
 @export_range(3, 10, 1) var branch_sides = 4
 @export_range(0.1, 10.0, 0.02) var branch_segment_length: float = 1.0
-## left empty == no flat branches
-@export var flat_branches_parameters: FoliageParameters
+@export var foliage_parameters: FoliageParameters
+@export_range(0.0 ,1.0 ,0.05) var branch_spawn_percentage = 0.6
 
 @export_group("Type")
 @export_enum("NORMAL", "SIDE") var subtype: String = "NORMAL"

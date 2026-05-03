@@ -7,7 +7,7 @@ const DIR_PATH = "user://foliage"
 @export_tool_button("Generate", "Callable") var generate_button = on_generate
 @export var params: FoliageParameters
 
-var foliage: StaticBody3D
+var foliage: Node3D
 var foliage_scene: PackedScene
 var standalone: bool = true
 
@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 func generate_foliage():
-	foliage = StaticBody3D.new()
+	foliage = Node3D.new()
 	foliage.name = "foliage"
 	var angle = PI/params.count
 	var new_scale = params.scale + (randf() - 0.5) * params.scale_randomization
@@ -41,8 +41,7 @@ func generate_foliage():
 func on_generate():
 	foliage_scene = PackedScene.new()
 	for child in get_children():
-		if child is StaticBody3D:
-			child.queue_free()
+		child.queue_free()
 	generate_foliage()
 
 

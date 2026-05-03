@@ -3,7 +3,6 @@ class_name TreeGenerator
 extends Node3D
 
 const DIR_PATH = "user://trees"
-const BRANCH_SPAWN_PERCENTAGE = 0.6
 
 @export_tool_button("Generate", "Callable") var generate_button = on_generate
 @export var params: TreeParameters
@@ -31,11 +30,11 @@ func generate_tree():
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
 			generate_mesh(branch, params.material)
-	if params.flat_branches_parameters != null:
+	if params.foliage_parameters != null:
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
-			if randf()<BRANCH_SPAWN_PERCENTAGE:
-				add_flat_branches(branch)
+			if randf()<params.branch_spawn_percentage:
+				add_foliage(branch)
 	serialize()
 
 
@@ -56,10 +55,10 @@ func generate_mesh(branch: TreeBranch, material: StandardMaterial3D):
 	collision.owner = tree
 
 
-func add_flat_branches(branch: TreeBranch):
+func add_foliage(branch: TreeBranch):
 	var foliage_generator = FoliageGenerator.new()
 	foliage_generator.standalone = false
-	foliage_generator.params = params.flat_branches_parameters
+	foliage_generator.params = params.foliage_parameters
 	foliage_generator.generate_foliage()
 	foliage_generator.transform = branch.transform
 	tree.add_child(foliage_generator)

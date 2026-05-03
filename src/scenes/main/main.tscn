@@ -184,7 +184,7 @@ affect_navigation_mesh = true
 avoidance_enabled = false
 
 [node name="Enemy" parent="." unique_id=124557404 instance=ExtResource("2_iuonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33, 0.46, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.086, 0.46, 0)
 
 [node name="PointOfInterest" type="Node3D" parent="Enemy" unique_id=1132202533]
 script = ExtResource("4_b1x3f")
@@ -211,8 +211,8 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Day" type="Node" parent="DayNightCycle" unique_id=150412593]
 script = ExtResource("10_th5th")
+duration = 20.0
 color_lut = ExtResource("11_7smn1")
-is_night = true
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Sunset" type="Node" parent="DayNightCycle" unique_id=291254206]
@@ -222,8 +222,9 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Night" type="Node" parent="DayNightCycle" unique_id=481852965]
 script = ExtResource("10_th5th")
-duration = 20.0
+duration = 30.0
 color_lut = ExtResource("12_th5th")
+is_night = true
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]

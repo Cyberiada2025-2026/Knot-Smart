@@ -12,9 +12,12 @@ var foliage_scene: PackedScene
 var standalone: bool = true
 
 
+func _init() -> void:
+	standalone = false
+
+
 func _ready() -> void:
-	if standalone:
-		on_generate()
+	on_generate()
 
 
 func generate_foliage():
@@ -33,6 +36,7 @@ func generate_foliage():
 		mesh.mesh.surface_set_material(0, params.material)
 		foliage.add_child(mesh)
 		mesh.owner = foliage
+	add_child(foliage)
 
 	if standalone:
 		serialize()

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://50058jf30t1n" path="res://shared/buildings/building_generation/building_generator.tscn" id="4_6q06x"]
 [ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="4_b1x3f"]
-[ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/room_generation/room_generation_params.gd" id="5_hujxm"]
+[ext_resource type="Script" path="res://shared/buildings/room_generation/room_generation_params.gd" id="5_hujxm"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
 [ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="7_7smn1"]
@@ -44,8 +44,6 @@ script = ExtResource("5_hujxm")
 random_seed = 3
 metadata/_custom_type_script = "uid://uq2ee3iq6x08"
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_raeie"]
-size = Vector3(30, 100, 30)
 [sub_resource type="Resource" id="Resource_ou6is"]
 script = ExtResource("9_nvumn")
 text = "This guy seems like trouble"
@@ -60,6 +58,9 @@ metadata/_custom_type_script = "uid://kpru7f8vmtp5"
 script = ExtResource("8_hxu8e")
 sentences = Array[ExtResource("9_nvumn")]([SubResource("Resource_ou6is"), SubResource("Resource_necax")])
 metadata/_custom_type_script = "uid://dhpmrqniojeb4"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_raeie"]
+size = Vector3(30, 100, 30)
 
 [node name="Main" type="Node3D" unique_id=959478903]
 
@@ -228,9 +229,11 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]
 
 [node name="Radiation" parent="." unique_id=1228216098 instance=ExtResource("14_7smn1")]
+heal_time = 8.0
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="Radiation" unique_id=971726157]
 shape = SubResource("BoxShape3D_raeie")
+
 [node name="SheetMusic" parent="." unique_id=1780103802 instance=ExtResource("17_nvumn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116556)
 

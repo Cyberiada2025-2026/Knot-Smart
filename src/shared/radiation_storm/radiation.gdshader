@@ -11,7 +11,7 @@ uniform float speed1: hint_range(-5.0, 5.0);
 uniform float speed2: hint_range(-5.0, 5.0);
 uniform float min_white: hint_range(0.0, 1.0);
 uniform float max_white: hint_range(0.0, 1.0);
-uniform float anim = 0.0;
+uniform float anim: hint_range(0.0, 1.0) = 0.0;
 uniform float smoothness: hint_range(0.0, 1.0);
 uniform float black_delay: hint_range(0.0, 1.0);
 

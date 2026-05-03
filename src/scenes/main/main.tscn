@@ -61,19 +61,7 @@ script = ExtResource("8_hxu8e")
 sentences = Array[ExtResource("9_nvumn")]([SubResource("Resource_ou6is"), SubResource("Resource_necax")])
 metadata/_custom_type_script = "uid://dhpmrqniojeb4"
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_nvumn"]
-top_radius = 2.0
-height = 0.001
-radial_segments = 10
-rings = 0
-cap_bottom = false
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_ou6is"]
-top_radius = 2.0
-height = 0.001
-radial_segments = 10
-rings = 0
-cap_bottom = false
+[sub_resource type="PlaneMesh" id="PlaneMesh_r4lks"]
 
 [node name="Main" type="Node3D" unique_id=959478903]
 
@@ -196,7 +184,7 @@ affect_navigation_mesh = true
 avoidance_enabled = false
 
 [node name="Enemy" parent="." unique_id=124557404 instance=ExtResource("2_iuonh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1000, 0.46, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33, 0.46, 0)
 
 [node name="PointOfInterest" type="Node3D" parent="Enemy" unique_id=1132202533]
 script = ExtResource("4_b1x3f")
@@ -223,7 +211,6 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Day" type="Node" parent="DayNightCycle" unique_id=150412593]
 script = ExtResource("10_th5th")
-duration = 20.0
 color_lut = ExtResource("11_7smn1")
 is_night = true
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
@@ -235,7 +222,7 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Night" type="Node" parent="DayNightCycle" unique_id=481852965]
 script = ExtResource("10_th5th")
-duration = 30.0
+duration = 20.0
 color_lut = ExtResource("12_th5th")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
@@ -244,17 +231,14 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 [node name="SheetMusic" parent="." unique_id=1780103802 instance=ExtResource("17_nvumn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116556)
 
-[node name="Water" type="MeshInstance3D" parent="." unique_id=1911253994]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.74, 0.51, -7.78)
+[node name="Water2" type="MeshInstance3D" parent="." unique_id=690720678]
+transform = Transform3D(3.625, 0, 0, 0, 1, 0, 0, 0, 5.845, -13.195, 0.3, -2.805)
 material_override = ExtResource("18_ou6is")
-mesh = SubResource("CylinderMesh_nvumn")
+mesh = SubResource("PlaneMesh_r4lks")
+skeleton = NodePath("")
 
-[node name="Water" type="MeshInstance3D" parent="Water" unique_id=73228584]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36, 0, 0)
-material_override = ExtResource("18_ou6is")
-mesh = SubResource("CylinderMesh_ou6is")
-
-[node name="SplashSpawner" type="Node3D" parent="Water" unique_id=1331165981]
+[node name="SplashSpawner" type="Node3D" parent="." unique_id=1331165981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.195, 0, 0)
 script = ExtResource("19_necax")
 interval = 5.0
 object = ExtResource("20_r4lks")

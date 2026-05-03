@@ -10,5 +10,5 @@ func _process(delta: float) -> void:
 	if timer >= interval:
 		timer = 0.0
 		var instance = object.instantiate()
-		instance.global_position = global_position
 		add_child(instance)
+		instance.position = Vector3.ZERO

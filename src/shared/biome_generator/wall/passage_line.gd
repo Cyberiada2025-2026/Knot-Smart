@@ -1,5 +1,5 @@
-extends CSGCombiner3D
 class_name PassageLine
+extends CSGCombiner3D
 
 var biomes: Array[Biome] = []
 var lines: Array[BiomeLine] = []

@@ -58,7 +58,6 @@ func generate() -> void:
 	biome_generator.generate()
 	walls_generator.generate()
 	passage_generator.generate()
-	
 	saved_nodes_node.owner = self
 
 func reset() -> void:
@@ -80,7 +79,6 @@ func save() -> void:
 		var error = DirAccess.make_dir_recursive_absolute(path_location + path_folder)
 		if error != OK:
 			print("BIOME GENERATOR SAVING DIRECTORY ERROR: ", error)
-	
 	var scene: PackedScene = PackedScene.new()
 	scene.pack(self)
 	ResourceSaver.save(scene, path)

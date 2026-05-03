@@ -4,7 +4,7 @@ extends Node3D
 
 
 @export var generator_main: PlantsWallsGenerator
-@export var passage_prefab: PackedScene = preload("res://shared/biome_generator/wall/biome_passage.tscn")
+@export var passage_prefab: PackedScene
 @export_category("VARIABLES")
 @export var number_of_passages_per_biomes_border: int = 3
 

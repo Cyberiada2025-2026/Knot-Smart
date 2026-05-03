@@ -26,7 +26,7 @@ func generate_tree():
 	tree.name = "tree"
 	tree_skeleton.params = params
 	var branches_one_level: Array[TreeBranch] = []
-	for i in range(params.branch_recursion_level+1): # levels of branches + trunk
+	for i in range(params.branch_recursion_level + 1):  # levels of branches + trunk
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
 			generate_mesh(branch, params.material)
@@ -65,8 +65,8 @@ func serialize():
 		if not DirAccess.dir_exists_absolute(DIR_PATH):
 			DirAccess.make_dir_absolute(DIR_PATH)
 		var error = ResourceSaver.save(
-			tree_scene,
-			DIR_PATH + "/tree%d.tscn" % tree.get_rid().get_id())
+			tree_scene, DIR_PATH + "/tree%d.tscn" % tree.get_rid().get_id()
+		)
 		if error != OK:
 			push_error("An error occurred while saving the scene to disk.")
 		add_child(tree_scene.instantiate())

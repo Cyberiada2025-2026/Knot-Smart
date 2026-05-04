@@ -5,8 +5,11 @@ extends Node
 @export var gravity_controller: GravityController 
 
 func _on_hit_box_entered(node: Node) -> void:
-	var stun_component = node.find_children("", "StunComponent").get(0) as StunComponent
+	var children = node.find_children("", "StunComponent")
+	if children.size() == 0:
+		return 
 
+	var stun_component = children[0]
 	if stun_component == null:
 		return
 

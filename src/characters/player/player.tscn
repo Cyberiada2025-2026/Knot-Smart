@@ -106,6 +106,11 @@ top_level = true
 script = ExtResource("7_rpf03")
 metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 
+[node name="StunnableComponent" type="Node" parent="." unique_id=1480949016 node_paths=PackedStringArray("player_physics", "gravity_controller")]
+script = ExtResource("18_d2agh")
+player_physics = NodePath("../PlayerPhysics")
+gravity_controller = NodePath("../PlayerPhysics/gravityController")
+
 [node name="HealthComponent" type="Node" parent="." unique_id=1622957288]
 script = ExtResource("6_c6leb")
 debug_log = true
@@ -160,11 +165,6 @@ metadata/_custom_type_script = "uid://d0x6a5ec5mlei"
 
 [node name="Journal menu" parent="." unique_id=883052313 instance=ExtResource("5_ixbpm")]
 initial_entries = Array[ExtResource("17_aqrcq")]([SubResource("Resource_aqrcq")])
-
-[node name="StunnableComponent" type="Node" parent="." unique_id=1480949016 node_paths=PackedStringArray("player_physics", "gravity_controller")]
-script = ExtResource("18_d2agh")
-player_physics = NodePath("../PlayerPhysics")
-gravity_controller = NodePath("../PlayerPhysics/gravityController")
 
 [connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]

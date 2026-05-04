@@ -518,6 +518,8 @@ metadata/_custom_type_script = "uid://djg0m48s04bny"
 
 [node name="StunComponent" type="Node" parent="StompAttack" unique_id=2009880518]
 script = ExtResource("28_yedos")
+stun_duration = 10.0
+speed_multiplier = 0.5
 
 [node name="VfxPlayerSequence" type="Node3D" parent="." unique_id=988250431]
 script = ExtResource("27_eykdo")

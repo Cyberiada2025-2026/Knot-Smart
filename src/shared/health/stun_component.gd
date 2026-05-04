@@ -4,6 +4,3 @@ extends Node
 
 @export var stun_duration: float
 @export_range(0,1) var speed_multiplier: float
-
-func apply() -> void:
-	print("stomped")

@@ -6,7 +6,7 @@ extends Node3D
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
 
-var generated_building_node: Node3D
+@export_storage var generated_building_node: Node3D
 var gridmaps: Array[GridMap]
 var initial_cells: Array[Cell] = []
 var cells: Array[Cell] = []

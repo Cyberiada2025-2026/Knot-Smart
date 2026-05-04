@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://dolgkwq2bgl7i"]
 
 [ext_resource type="Script" uid="uid://c8acika7wo4ks" path="res://shared/buildings/building_generation/building_generator.gd" id="1_860pf"]
+[ext_resource type="PackedScene" uid="uid://b03v0egbwunei" path="res://shared/radiation_storm/radiation.tscn" id="1_t44fe"]
 [ext_resource type="Resource" uid="uid://dm1eub1sdan0k" path="res://shared/buildings/model_management/basic_building_tileset.tres" id="2_t44fe"]
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/building_generation/building_generation_params.gd" id="3_00as0"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="4_j0kea"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="5_c5110"]
 [ext_resource type="MeshLibrary" uid="uid://dxdix3oesovgs" path="res://shared/buildings/assets/models/building_parts_no_collision.tres" id="6_4b7v2"]
+[ext_resource type="MeshLibrary" uid="uid://br6yiw7xqd0hw" path="res://shared/buildings/assets/models/building_parts_collision.tres" id="7_t44fe"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="8_dq2wt"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="9_j53l1"]
 [ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="10_ka4ke"]
@@ -13,6 +15,9 @@
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="12_ogsgd"]
 [ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="13_oye0k"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="14_kiit6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_glo72"]
+size = Vector3(203, 100, 39)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_vhccn"]
 vertices = PackedVector3Array(8, 0.20000002, 7, 8, 0.20000002, 4, 4, 0.20000002, 3, -15, 0.20000002, 7, -99, 0.20000002, 14, 4, 0.20000002, -10, 8, 0.20000002, -99, -99, 0.20000002, -99, -16, 0.20000002, 14, 8, 0.20000002, -11, 12, 0.20000002, -10, 12, 0.20000002, -5, 15, 0.20000002, -5, 16, 0.20000002, -1, 99, 0.20000002, -1, 99, 0.20000002, -99, 12, 0.20000002, 8, 15, 0.20000002, 4, 12, 0.20000002, 14, -5, 0.20000002, 99, 99, 0.20000002, 99, 6, 0.20000002, 15, 5, 0.20000002, 21, -5, 0.20000002, 21, -15, 0.20000002, 21, -99, 0.20000002, 99)
@@ -23,6 +28,20 @@ cell_height = 0.1
 [sub_resource type="Resource" id="Resource_ncu13"]
 script = ExtResource("3_00as0")
 random_seed = 722
+generate_rooms = true
+min_room_size = Vector3i(1, 1, 1)
+max_room_size = Vector3i(4, 1, 3)
+long_room_tendency = 0.2
+
+[sub_resource type="Resource" id="Resource_col47"]
+script = ExtResource("3_00as0")
+random_seed = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_00as0"]
+size = Vector3(6, 5.6, 8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j0kea"]
+size = Vector3(6, 11.2, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f6dl4"]
 size = Vector3(14, 5.6, 10)
@@ -33,26 +52,34 @@ size = Vector3(10, 11.2, 4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_t44fe"]
 size = Vector3(4, 2.8, 6)
 
-[sub_resource type="Resource" id="Resource_col47"]
-script = ExtResource("3_00as0")
-random_seed = 2
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_c5110"]
 size = Vector3(6, 8.4, 12)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4b7v2"]
 size = Vector3(8, 11.2, 8)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_00as0"]
-size = Vector3(6, 5.6, 8)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_j0kea"]
-size = Vector3(6, 11.2, 4)
-
 [node name="BetaLevel" type="Node3D" unique_id=2019813707]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=906208046]
 transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
+
+[node name="Radiation" parent="." unique_id=1228216098 instance=ExtResource("1_t44fe")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Radiation" unique_id=1231037146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 82.5)
+shape = SubResource("BoxShape3D_glo72")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Radiation" unique_id=1885911292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 5, -79)
+shape = SubResource("BoxShape3D_glo72")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Radiation" unique_id=1967275529]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -77.5, 2.5, 0.5)
+shape = SubResource("BoxShape3D_glo72")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Radiation" unique_id=706419464]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 83.5, 5, 1)
+shape = SubResource("BoxShape3D_glo72")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1299889927]
 navigation_mesh = SubResource("NavigationMesh_vhccn")
@@ -66,7 +93,7 @@ size = Vector3(200, 0.5, 200)
 [node name="Buildings" type="Node3D" parent="NavigationRegion3D" unique_id=1879428835]
 
 [node name="BuildingGenerator" type="Node3D" parent="NavigationRegion3D/Buildings" unique_id=654395754]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.5, 9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 9)
 script = ExtResource("1_860pf")
 building_generation_params = SubResource("Resource_ncu13")
 
@@ -89,137 +116,55 @@ script = ExtResource("5_c5110")
 start = Vector3i(5, 0, 2)
 size = Vector3i(2, 1, 3)
 
-[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/BuildingGenerator" unique_id=339133800]
+[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/BuildingGenerator" unique_id=435950329]
 
-[node name="@GridMap@38247" type="GridMap" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=550997387]
-mesh_library = ExtResource("6_4b7v2")
+[node name="@GridMap@35066" type="GridMap" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=759660802]
+mesh_library = ExtResource("7_t44fe")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(5, 2, 1048580, 65534, 0, 1048579, 65534, 1, 1048578, 65534, 2, 1048578, 65534, 3, 1048579, 65534, 4, 1048578, 131070, 0, 1048579, 131070, 1, 1048578, 131070, 2, 1048578, 131070, 3, 1048578, 131070, 4, 1048578, 5, 0, 1048578, 5, 1, 1048578, 5, 3, 1048578, 5, 4, 1048578, 65541, 0, 1048578, 65541, 1, 1048578, 65541, 2, 1048578, 65541, 3, 1048579, 65541, 4, 1048578, 131077, 0, 1048578, 131077, 1, 1048579, 196613, 0, 1048578, 196613, 1, 1048578, 10, 0, 1048579, 10, 1, 1048578, 65546, 0, 1048578, 65546, 1, 1048578, 131082, 0, 1048578, 131082, 1, 1048578, 196618, 0, 1048578, 196618, 1, 1048578, 7, 2, 1048578, 7, 3, 1048579, 7, 4, 1048578)
+"cells": PackedInt32Array(1, 0, 1048580, 65536, 2, 1048580, 65536, 0, 1048580, 196617, 1, 1048580, 196617, 0, 1048580, 131081, 1, 1048580, 131081, 0, 1048580, 196615, 0, 1048580, 131079, 0, 1048580, 65541, 1, 1048580, 65543, 0, 1048580, 5, 0, 1048580, 8, 0, 1048580, 65536, 4, 1048580, 0, 0, 1048580, 5, 4, 1048580, 131078, 1, 1048580, 0, 3, 1048580, 196614, 0, 1048580, 5, 2, 1048578, 5, 3, 1048578, 7, 2, 1048578, 7, 3, 1048579, 7, 4, 1048578, 65534, 0, 1048579, 131070, 4, 1048578, 5, 1, 1048578, 8, 1, 1048578, 10, 0, 1048579, 10, 1, 1048578, 65541, 0, 1048578, 65543, 1, 1048578, 65546, 0, 1048578, 65546, 1, 1048578, 131077, 0, 1048578, 131077, 1, 1048579, 131078, 0, 1048578, 196613, 0, 1048578, 196613, 1, 1048578, 196614, 1, 1048578, 65534, 1, 1048578, 65534, 2, 1048578, 0, 1, 1048578, 0, 2, 1048578, 65534, 3, 1048579, 65534, 4, 1048578, 0, 4, 1048578, 131070, 0, 1048579, 131070, 1, 1048578, 65536, 1, 1048578, 131070, 2, 1048578, 131070, 3, 1048578, 65536, 3, 1048578, 1, 1, 1048578, 3, 2, 1048578, 3, 3, 1048578, 3, 4, 1048578, 65538, 4, 1048578, 65541, 4, 1048578, 131079, 1, 1048578, 196615, 1, 1048578, 2, 0, 1048578, 2, 1, 1048578, 65538, 0, 1048578, 65538, 1, 1048578, 65539, 2, 1048578, 65539, 3, 1048578, 65541, 2, 1048578, 65541, 3, 1048579, 131082, 0, 1048578, 196618, 0, 1048578, 131082, 1, 1048578, 196618, 1, 1048578)
 }
 
-[node name="@GridMap@38248" type="GridMap" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=1189227214]
-mesh_library = ExtResource("6_4b7v2")
+[node name="@GridMap@35067" type="GridMap" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=1945896859]
+mesh_library = ExtResource("7_t44fe")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(65534, 0, 0, 65534, 1, 0, 65534, 2, 0, 65534, 3, 0, 65534, 4, 0, 65535, 0, 0, 65535, 1, 0, 65535, 2, 0, 65535, 3, 0, 65535, 4, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 196606, 0, 0, 196606, 1, 0, 196606, 2, 0, 196606, 3, 0, 196606, 4, 0, 196607, 0, 0, 196607, 1, 0, 196607, 2, 0, 196607, 3, 0, 196607, 4, 0, 131072, 0, 0, 131072, 1, 0, 131072, 2, 0, 131072, 3, 0, 131072, 4, 0, 131073, 0, 0, 131073, 1, 0, 131073, 2, 0, 131073, 3, 0, 131073, 4, 0, 131074, 0, 0, 131074, 1, 0, 131074, 2, 0, 131074, 3, 0, 131074, 4, 0, 131075, 0, 0, 131075, 1, 0, 131075, 2, 0, 131075, 3, 0, 131075, 4, 0, 131076, 0, 0, 131076, 1, 0, 131076, 2, 0, 131076, 3, 0, 131076, 4, 0, 5, 0, 0, 5, 1, 0, 6, 0, 0, 6, 1, 0, 7, 0, 0, 7, 1, 0, 8, 0, 0, 8, 1, 0, 9, 0, 0, 9, 1, 0, 262149, 0, 0, 262149, 1, 0, 262150, 0, 0, 262150, 1, 0, 262151, 0, 0, 262151, 1, 0, 262152, 0, 0, 262152, 1, 0, 262153, 0, 0, 262153, 1, 0, 5, 2, 0, 5, 3, 0, 5, 4, 0, 6, 2, 0, 6, 3, 0, 6, 4, 0, 65541, 2, 0, 65541, 3, 0, 65541, 4, 0, 65542, 2, 0, 65542, 3, 0, 65542, 4, 0)
+"cells": PackedInt32Array(196613, 0, 1, 65540, 2, 1, 131081, 1, 1, 5, 2, 0, 5, 3, 0, 5, 4, 0, 6, 2, 0, 6, 3, 0, 6, 4, 0, 65541, 2, 0, 65541, 3, 0, 65541, 4, 0, 65542, 2, 0, 65542, 3, 0, 65542, 4, 0, 65534, 0, 0, 65535, 0, 0, 131070, 0, 0, 131071, 0, 0, 131070, 4, 0, 131071, 4, 0, 196606, 4, 0, 196607, 4, 0, 5, 0, 0, 5, 1, 0, 6, 0, 0, 6, 1, 0, 7, 0, 0, 7, 1, 0, 65541, 0, 0, 65541, 1, 0, 65542, 0, 0, 65542, 1, 0, 65543, 0, 0, 65543, 1, 0, 8, 0, 0, 8, 1, 0, 9, 0, 0, 9, 1, 0, 65544, 0, 0, 65544, 1, 0, 65545, 0, 0, 65545, 1, 0, 131077, 0, 0, 131077, 1, 0, 131078, 0, 0, 131078, 1, 0, 131079, 0, 0, 131079, 1, 0, 131080, 0, 0, 131080, 1, 0, 131081, 0, 0, 196613, 1, 0, 262149, 0, 0, 262149, 1, 0, 65534, 1, 0, 65534, 2, 0, 65535, 1, 0, 65535, 2, 0, 131070, 1, 0, 131070, 2, 0, 131071, 1, 0, 131071, 2, 0, 65534, 3, 0, 65534, 4, 0, 65535, 3, 0, 65535, 4, 0, 131070, 3, 0, 131071, 3, 0, 196606, 0, 0, 196606, 1, 0, 196607, 0, 0, 196607, 1, 0, 196606, 2, 0, 196606, 3, 0, 196607, 2, 0, 196607, 3, 0, 0, 0, 0, 0, 1, 0, 65536, 0, 0, 65536, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 65536, 2, 0, 65536, 3, 0, 65536, 4, 0, 65537, 2, 0, 65537, 3, 0, 65537, 4, 0, 65538, 2, 0, 65538, 3, 0, 65538, 4, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 65539, 2, 0, 65539, 3, 0, 65539, 4, 0, 65540, 3, 0, 65540, 4, 0, 131072, 4, 0, 131073, 4, 0, 131074, 4, 0, 131075, 4, 0, 131076, 4, 0, 196614, 0, 0, 196614, 1, 0, 262150, 0, 0, 262150, 1, 0, 1, 0, 0, 1, 1, 0, 65537, 0, 0, 65537, 1, 0, 2, 0, 0, 2, 1, 0, 3, 0, 0, 3, 1, 0, 4, 0, 0, 4, 1, 0, 65538, 0, 0, 65538, 1, 0, 65539, 0, 0, 65539, 1, 0, 65540, 0, 0, 65540, 1, 0, 131072, 0, 0, 131072, 1, 0, 131073, 0, 0, 131073, 1, 0, 131074, 0, 0, 131074, 1, 0, 131075, 0, 0, 131075, 1, 0, 131076, 0, 0, 131076, 1, 0, 131072, 2, 0, 131072, 3, 0, 131073, 2, 0, 131073, 3, 0, 131074, 2, 0, 131074, 3, 0, 131075, 2, 0, 131075, 3, 0, 131076, 2, 0, 131076, 3, 0, 196615, 0, 0, 196615, 1, 0, 196616, 0, 0, 196616, 1, 0, 262151, 0, 0, 262151, 1, 0, 262152, 0, 0, 262152, 1, 0, 196617, 0, 0, 262153, 0, 0, 196617, 1, 0, 262153, 1, 0)
 }
 
-[node name="@GridMap@38249" type="GridMap" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=1775086592]
-mesh_library = ExtResource("6_4b7v2")
+[node name="@GridMap@35068" type="GridMap" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=257282251]
+mesh_library = ExtResource("7_t44fe")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(6, 2, 4, 65534, 0, 2, 131070, 0, 2, 65535, 0, 2, 131071, 0, 2, 0, 0, 2, 65536, 0, 2, 1, 0, 2, 65537, 0, 2, 2, 0, 2, 65538, 0, 2, 3, 0, 4, 65539, 0, 2, 4, 0, 3, 65540, 0, 2, 65534, 5, 2, 131070, 5, 3, 65535, 5, 2, 131071, 5, 2, 0, 5, 3, 65536, 5, 3, 1, 5, 3, 65537, 5, 3, 2, 5, 2, 65538, 5, 3, 3, 5, 2, 65539, 5, 3, 4, 5, 2, 65540, 5, 2, 5, 0, 3, 65541, 0, 2, 131077, 0, 3, 196613, 0, 2, 6, 0, 2, 65542, 0, 3, 131078, 0, 2, 196614, 0, 2, 7, 0, 2, 65543, 0, 2, 131079, 0, 2, 196615, 0, 3, 8, 0, 3, 65544, 0, 3, 131080, 0, 3, 196616, 0, 2, 9, 0, 2, 65545, 0, 2, 131081, 0, 3, 196617, 0, 2, 5, 2, 2, 65541, 2, 3, 131077, 2, 2, 196613, 2, 2, 65542, 2, 2, 131078, 2, 2, 196614, 2, 3, 7, 2, 2, 65543, 2, 2, 131079, 2, 3, 196615, 2, 2, 8, 2, 2, 65544, 2, 3, 131080, 2, 2, 196616, 2, 2, 9, 2, 2, 65545, 2, 2, 131081, 2, 3, 196617, 2, 2, 5, 5, 2, 6, 5, 2)
+"cells": PackedInt32Array(65540, 4, 4, 65538, 4, 4, 65536, 4, 4, 4, 2, 4, 2, 2, 4, 1, 2, 4, 131071, 2, 4, 65539, 2, 4, 65535, 1, 4, 5, 2, 2, 6, 2, 2, 5, 5, 2, 6, 5, 2, 65534, 0, 2, 65535, 0, 2, 65534, 1, 2, 131070, 4, 2, 131071, 4, 2, 131070, 5, 3, 131071, 5, 2, 5, 0, 3, 6, 0, 2, 7, 0, 2, 7, 2, 2, 8, 0, 3, 9, 0, 2, 8, 2, 2, 9, 2, 2, 65541, 0, 2, 65542, 0, 3, 65541, 2, 3, 65542, 2, 2, 65543, 0, 2, 65544, 0, 3, 65545, 0, 2, 65543, 2, 2, 65544, 2, 3, 65545, 2, 2, 131077, 0, 3, 131077, 2, 2, 196613, 0, 2, 196613, 2, 2, 65534, 3, 2, 65535, 3, 2, 65534, 5, 2, 65535, 5, 2, 131070, 0, 2, 131071, 0, 2, 131070, 2, 2, 0, 0, 2, 0, 2, 2, 0, 5, 3, 1, 5, 3, 2, 5, 2, 3, 2, 2, 3, 5, 2, 4, 5, 2, 65537, 4, 2, 65536, 5, 3, 65537, 5, 3, 65539, 4, 2, 65538, 5, 3, 65539, 5, 3, 65540, 5, 2, 131078, 0, 2, 131078, 2, 2, 196614, 0, 2, 196614, 2, 3, 1, 0, 2, 2, 0, 2, 3, 0, 4, 4, 0, 3, 65536, 0, 2, 65537, 0, 2, 65536, 2, 2, 65537, 2, 2, 65538, 0, 2, 65539, 0, 2, 65540, 0, 2, 65538, 2, 2, 65540, 2, 2, 131079, 0, 2, 131080, 0, 3, 131079, 2, 3, 131080, 2, 2, 196615, 0, 3, 196616, 0, 2, 196615, 2, 2, 196616, 2, 2, 131081, 0, 3, 131081, 1, 2, 196617, 0, 2, 196617, 1, 2, 131081, 2, 3, 196617, 2, 2)
 }
 
-[node name="@NavigationObstacle3D@38250" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=1878561417]
+[node name="@NavigationObstacle3D@35069" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=890091975]
 visible = false
 height = 100.0
 vertices = PackedVector3Array(-4, 0, 0, -4, 0, 10, 10, 0, 10, 10, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="@NavigationObstacle3D@38251" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=1663649976]
+[node name="@NavigationObstacle3D@35070" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=1814125488]
 visible = false
 height = 100.0
 vertices = PackedVector3Array(10, 0, 0, 10, 0, 4, 20, 0, 4, 20, 0, 0)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="@NavigationObstacle3D@38252" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=489322633]
+[node name="@NavigationObstacle3D@35071" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=1362945234]
 visible = false
 height = 100.0
 vertices = PackedVector3Array(10, 0, 4, 10, 0, 10, 14, 0, 10, 14, 0, 4)
 affect_navigation_mesh = true
 avoidance_enabled = false
 
-[node name="@StaticBody3D@38253" type="StaticBody3D" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding" unique_id=1653837801]
-
-[node name="@CollisionShape3D@38254" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding/@StaticBody3D@38253" unique_id=1127352552]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 5)
-shape = SubResource("BoxShape3D_f6dl4")
-
-[node name="@CollisionShape3D@38255" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding/@StaticBody3D@38253" unique_id=1743977858]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5.6, 2)
-shape = SubResource("BoxShape3D_860pf")
-
-[node name="@CollisionShape3D@38256" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/BuildingGenerator/GeneratedBuilding/@StaticBody3D@38253" unique_id=330739469]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.4, 7)
-shape = SubResource("BoxShape3D_t44fe")
-
-[node name="BuildingGenerator3" type="Node3D" parent="NavigationRegion3D/Buildings" unique_id=2035535065]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5, 1, 2.5)
-script = ExtResource("1_860pf")
-building_generation_params = SubResource("Resource_col47")
-
-[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/Buildings/BuildingGenerator3" unique_id=466421865]
-script = ExtResource("4_j0kea")
-metadata/_custom_type_script = "uid://o0oessya87xf"
-
-[node name="BoxDescription" type="Node" parent="NavigationRegion3D/Buildings/BuildingGenerator3/BuildingShapeDescription" unique_id=307270031]
-script = ExtResource("5_c5110")
-size = Vector3i(3, 3, 6)
-
-[node name="BoxDescription2" type="Node" parent="NavigationRegion3D/Buildings/BuildingGenerator3/BuildingShapeDescription" unique_id=1996454182]
-script = ExtResource("5_c5110")
-start = Vector3i(3, 0, 0)
-size = Vector3i(4, 4, 4)
-
-[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/BuildingGenerator3" unique_id=1127564483]
-
-[node name="@GridMap@43805" type="GridMap" parent="NavigationRegion3D/Buildings/BuildingGenerator3/GeneratedBuilding" unique_id=449332518]
-mesh_library = ExtResource("6_4b7v2")
-cell_size = Vector3(2, 2.8, 2)
-cell_center_y = false
-data = {
-"cells": PackedInt32Array(3, 2, 1048580, 0, 0, 1048578, 0, 1, 1048579, 0, 2, 1048579, 0, 3, 1048578, 0, 4, 1048578, 0, 5, 1048579, 65536, 0, 1048578, 65536, 1, 1048578, 65536, 2, 1048578, 65536, 3, 1048579, 65536, 4, 1048579, 65536, 5, 1048578, 131072, 0, 1048579, 131072, 1, 1048578, 131072, 2, 1048578, 131072, 3, 1048578, 131072, 4, 1048579, 131072, 5, 1048578, 3, 0, 1048578, 3, 1, 1048578, 3, 3, 1048578, 3, 4, 1048578, 3, 5, 1048579, 65539, 0, 1048578, 65539, 1, 1048578, 65539, 2, 1048578, 65539, 3, 1048578, 65539, 4, 1048579, 65539, 5, 1048578, 131075, 0, 1048578, 131075, 1, 1048578, 131075, 2, 1048578, 131075, 3, 1048578, 131075, 4, 1048579, 131075, 5, 1048578, 196611, 0, 1048578, 196611, 1, 1048578, 196611, 2, 1048578, 196611, 3, 1048579, 7, 0, 1048578, 7, 1, 1048579, 7, 2, 1048578, 7, 3, 1048578, 65543, 0, 1048578, 65543, 1, 1048578, 65543, 2, 1048578, 65543, 3, 1048578, 131079, 0, 1048579, 131079, 1, 1048578, 131079, 2, 1048578, 131079, 3, 1048578, 196615, 0, 1048579, 196615, 1, 1048578, 196615, 2, 1048578, 196615, 3, 1048578)
-}
-
-[node name="@GridMap@43806" type="GridMap" parent="NavigationRegion3D/Buildings/BuildingGenerator3/GeneratedBuilding" unique_id=1920051284]
-mesh_library = ExtResource("6_4b7v2")
-cell_size = Vector3(2, 2.8, 2)
-cell_center_y = false
-data = {
-"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 196608, 0, 0, 196608, 1, 0, 196608, 2, 0, 196608, 3, 0, 196608, 4, 0, 196608, 5, 0, 196609, 0, 0, 196609, 1, 0, 196609, 2, 0, 196609, 3, 0, 196609, 4, 0, 196609, 5, 0, 196610, 0, 0, 196610, 1, 0, 196610, 2, 0, 196610, 3, 0, 196610, 4, 0, 196610, 5, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 5, 0, 0, 5, 1, 0, 5, 2, 0, 5, 3, 0, 6, 0, 0, 6, 1, 0, 6, 2, 0, 6, 3, 0, 262147, 0, 0, 262147, 1, 0, 262147, 2, 0, 262147, 3, 0, 262148, 0, 0, 262148, 1, 0, 262148, 2, 0, 262148, 3, 0, 262149, 0, 0, 262149, 1, 0, 262149, 2, 0, 262149, 3, 0, 262150, 0, 0, 262150, 1, 0, 262150, 2, 0, 262150, 3, 0)
-}
-
-[node name="@GridMap@43807" type="GridMap" parent="NavigationRegion3D/Buildings/BuildingGenerator3/GeneratedBuilding" unique_id=408282414]
-mesh_library = ExtResource("6_4b7v2")
-cell_size = Vector3(2, 2.8, 2)
-cell_center_y = false
-data = {
-"cells": PackedInt32Array(0, 0, 3, 65536, 0, 2, 131072, 0, 3, 1, 0, 2, 65537, 0, 2, 131073, 0, 2, 2, 0, 2, 65538, 0, 2, 131074, 0, 3, 0, 6, 3, 65536, 6, 2, 131072, 6, 2, 1, 6, 2, 65537, 6, 2, 131073, 6, 3, 2, 6, 2, 65538, 6, 2, 131074, 6, 2, 3, 0, 2, 65539, 0, 2, 131075, 0, 2, 196611, 0, 2, 4, 0, 3, 65540, 0, 2, 131076, 0, 3, 196612, 0, 2, 5, 0, 3, 65541, 0, 2, 131077, 0, 2, 196613, 0, 2, 6, 0, 2, 65542, 0, 2, 131078, 0, 3, 196614, 0, 2, 3, 4, 2, 65539, 4, 2, 131075, 4, 3, 196611, 4, 3, 4, 4, 2, 65540, 4, 2, 131076, 4, 3, 196612, 4, 2, 5, 4, 3, 65541, 4, 3, 131077, 4, 2, 196613, 4, 2, 6, 4, 4, 65542, 4, 2, 131078, 4, 2, 196614, 4, 2)
-}
-
-[node name="@NavigationObstacle3D@43808" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/BuildingGenerator3/GeneratedBuilding" unique_id=1044930833]
-visible = false
-height = 100.0
-vertices = PackedVector3Array(0, 0, 0, 0, 0, 12, 6, 0, 12, 6, 0, 0)
-affect_navigation_mesh = true
-avoidance_enabled = false
-
-[node name="@NavigationObstacle3D@43809" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/BuildingGenerator3/GeneratedBuilding" unique_id=949347061]
-visible = false
-height = 100.0
-vertices = PackedVector3Array(6, 0, 0, 6, 0, 8, 14, 0, 8, 14, 0, 0)
-affect_navigation_mesh = true
-avoidance_enabled = false
-
-[node name="@StaticBody3D@43810" type="StaticBody3D" parent="NavigationRegion3D/Buildings/BuildingGenerator3/GeneratedBuilding" unique_id=1400376989]
-
-[node name="@CollisionShape3D@43811" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/BuildingGenerator3/GeneratedBuilding/@StaticBody3D@43810" unique_id=859472324]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.2, 6)
-shape = SubResource("BoxShape3D_c5110")
-
-[node name="@CollisionShape3D@43812" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/BuildingGenerator3/GeneratedBuilding/@StaticBody3D@43810" unique_id=1308288127]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5.6, 4)
-shape = SubResource("BoxShape3D_4b7v2")
-
 [node name="BuildingGenerator2" type="Node3D" parent="NavigationRegion3D/Buildings" unique_id=1034742946]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0.5, 2.5)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6, 0, 2.5)
 script = ExtResource("1_860pf")
 building_generation_params = SubResource("Resource_col47")
 
@@ -283,6 +228,677 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 4)
 shape = SubResource("BoxShape3D_00as0")
 
 [node name="@CollisionShape3D@38924" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/BuildingGenerator2/GeneratedBuilding/@StaticBody3D@38922" unique_id=455394824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5.6, 2)
+shape = SubResource("BoxShape3D_j0kea")
+
+[node name="Node3D" type="Node3D" parent="NavigationRegion3D/Buildings" unique_id=831499284]
+
+[node name="BuildingGenerator5" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D" unique_id=219530536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, -23.5)
+script = ExtResource("1_860pf")
+building_generation_params = SubResource("Resource_ncu13")
+
+[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5" unique_id=38038475]
+script = ExtResource("4_j0kea")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/BuildingShapeDescription" unique_id=1095430901]
+script = ExtResource("5_c5110")
+start = Vector3i(-2, 0, 0)
+size = Vector3i(7, 2, 5)
+
+[node name="BoxDescription2" type="Node" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/BuildingShapeDescription" unique_id=1313401935]
+script = ExtResource("5_c5110")
+start = Vector3i(5, 0, 0)
+size = Vector3i(5, 4, 2)
+
+[node name="BoxDescription3" type="Node" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/BuildingShapeDescription" unique_id=796669264]
+script = ExtResource("5_c5110")
+start = Vector3i(5, 0, 2)
+size = Vector3i(2, 1, 3)
+
+[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5" unique_id=2103749771]
+
+[node name="_GridMap_38247" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/GeneratedBuilding" unique_id=594401761]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(5, 2, 1048580, 65534, 0, 1048579, 65534, 1, 1048578, 65534, 2, 1048578, 65534, 3, 1048579, 65534, 4, 1048578, 131070, 0, 1048579, 131070, 1, 1048578, 131070, 2, 1048578, 131070, 3, 1048578, 131070, 4, 1048578, 5, 0, 1048578, 5, 1, 1048578, 5, 3, 1048578, 5, 4, 1048578, 65541, 0, 1048578, 65541, 1, 1048578, 65541, 2, 1048578, 65541, 3, 1048579, 65541, 4, 1048578, 131077, 0, 1048578, 131077, 1, 1048579, 196613, 0, 1048578, 196613, 1, 1048578, 10, 0, 1048579, 10, 1, 1048578, 65546, 0, 1048578, 65546, 1, 1048578, 131082, 0, 1048578, 131082, 1, 1048578, 196618, 0, 1048578, 196618, 1, 1048578, 7, 2, 1048578, 7, 3, 1048579, 7, 4, 1048578)
+}
+
+[node name="_GridMap_38248" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/GeneratedBuilding" unique_id=911851291]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65534, 0, 0, 65534, 1, 0, 65534, 2, 0, 65534, 3, 0, 65534, 4, 0, 65535, 0, 0, 65535, 1, 0, 65535, 2, 0, 65535, 3, 0, 65535, 4, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 196606, 0, 0, 196606, 1, 0, 196606, 2, 0, 196606, 3, 0, 196606, 4, 0, 196607, 0, 0, 196607, 1, 0, 196607, 2, 0, 196607, 3, 0, 196607, 4, 0, 131072, 0, 0, 131072, 1, 0, 131072, 2, 0, 131072, 3, 0, 131072, 4, 0, 131073, 0, 0, 131073, 1, 0, 131073, 2, 0, 131073, 3, 0, 131073, 4, 0, 131074, 0, 0, 131074, 1, 0, 131074, 2, 0, 131074, 3, 0, 131074, 4, 0, 131075, 0, 0, 131075, 1, 0, 131075, 2, 0, 131075, 3, 0, 131075, 4, 0, 131076, 0, 0, 131076, 1, 0, 131076, 2, 0, 131076, 3, 0, 131076, 4, 0, 5, 0, 0, 5, 1, 0, 6, 0, 0, 6, 1, 0, 7, 0, 0, 7, 1, 0, 8, 0, 0, 8, 1, 0, 9, 0, 0, 9, 1, 0, 262149, 0, 0, 262149, 1, 0, 262150, 0, 0, 262150, 1, 0, 262151, 0, 0, 262151, 1, 0, 262152, 0, 0, 262152, 1, 0, 262153, 0, 0, 262153, 1, 0, 5, 2, 0, 5, 3, 0, 5, 4, 0, 6, 2, 0, 6, 3, 0, 6, 4, 0, 65541, 2, 0, 65541, 3, 0, 65541, 4, 0, 65542, 2, 0, 65542, 3, 0, 65542, 4, 0)
+}
+
+[node name="_GridMap_38249" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/GeneratedBuilding" unique_id=2111065020]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(6, 2, 4, 65534, 0, 2, 131070, 0, 2, 65535, 0, 2, 131071, 0, 2, 0, 0, 2, 65536, 0, 2, 1, 0, 2, 65537, 0, 2, 2, 0, 2, 65538, 0, 2, 3, 0, 4, 65539, 0, 2, 4, 0, 3, 65540, 0, 2, 65534, 5, 2, 131070, 5, 3, 65535, 5, 2, 131071, 5, 2, 0, 5, 3, 65536, 5, 3, 1, 5, 3, 65537, 5, 3, 2, 5, 2, 65538, 5, 3, 3, 5, 2, 65539, 5, 3, 4, 5, 2, 65540, 5, 2, 5, 0, 3, 65541, 0, 2, 131077, 0, 3, 196613, 0, 2, 6, 0, 2, 65542, 0, 3, 131078, 0, 2, 196614, 0, 2, 7, 0, 2, 65543, 0, 2, 131079, 0, 2, 196615, 0, 3, 8, 0, 3, 65544, 0, 3, 131080, 0, 3, 196616, 0, 2, 9, 0, 2, 65545, 0, 2, 131081, 0, 3, 196617, 0, 2, 5, 2, 2, 65541, 2, 3, 131077, 2, 2, 196613, 2, 2, 65542, 2, 2, 131078, 2, 2, 196614, 2, 3, 7, 2, 2, 65543, 2, 2, 131079, 2, 3, 196615, 2, 2, 8, 2, 2, 65544, 2, 3, 131080, 2, 2, 196616, 2, 2, 9, 2, 2, 65545, 2, 2, 131081, 2, 3, 196617, 2, 2, 5, 5, 2, 6, 5, 2)
+}
+
+[node name="_NavigationObstacle3D_38250" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/GeneratedBuilding" unique_id=135443440]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(-4, 0, 0, -4, 0, 10, 10, 0, 10, 10, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_38251" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/GeneratedBuilding" unique_id=1116412503]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(10, 0, 0, 10, 0, 4, 20, 0, 4, 20, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_38252" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/GeneratedBuilding" unique_id=1958420638]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(10, 0, 4, 10, 0, 10, 14, 0, 10, 14, 0, 4)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_StaticBody3D_38253" type="StaticBody3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/GeneratedBuilding" unique_id=1807475597]
+
+[node name="_CollisionShape3D_38254" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/GeneratedBuilding/_StaticBody3D_38253" unique_id=1720461314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 5)
+shape = SubResource("BoxShape3D_f6dl4")
+
+[node name="_CollisionShape3D_38255" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/GeneratedBuilding/_StaticBody3D_38253" unique_id=922438037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5.6, 2)
+shape = SubResource("BoxShape3D_860pf")
+
+[node name="_CollisionShape3D_38256" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator5/GeneratedBuilding/_StaticBody3D_38253" unique_id=601158395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.4, 7)
+shape = SubResource("BoxShape3D_t44fe")
+
+[node name="BuildingGenerator3" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D" unique_id=209022154]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5, 0, 2.5)
+script = ExtResource("1_860pf")
+building_generation_params = SubResource("Resource_col47")
+
+[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3" unique_id=997472476]
+script = ExtResource("4_j0kea")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3/BuildingShapeDescription" unique_id=2091252309]
+script = ExtResource("5_c5110")
+size = Vector3i(3, 3, 6)
+
+[node name="BoxDescription2" type="Node" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3/BuildingShapeDescription" unique_id=489624988]
+script = ExtResource("5_c5110")
+start = Vector3i(3, 0, 0)
+size = Vector3i(4, 4, 4)
+
+[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3" unique_id=961164596]
+
+[node name="_GridMap_43805" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3/GeneratedBuilding" unique_id=2006563140]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(3, 2, 1048580, 0, 0, 1048578, 0, 1, 1048579, 0, 2, 1048579, 0, 3, 1048578, 0, 4, 1048578, 0, 5, 1048579, 65536, 0, 1048578, 65536, 1, 1048578, 65536, 2, 1048578, 65536, 3, 1048579, 65536, 4, 1048579, 65536, 5, 1048578, 131072, 0, 1048579, 131072, 1, 1048578, 131072, 2, 1048578, 131072, 3, 1048578, 131072, 4, 1048579, 131072, 5, 1048578, 3, 0, 1048578, 3, 1, 1048578, 3, 3, 1048578, 3, 4, 1048578, 3, 5, 1048579, 65539, 0, 1048578, 65539, 1, 1048578, 65539, 2, 1048578, 65539, 3, 1048578, 65539, 4, 1048579, 65539, 5, 1048578, 131075, 0, 1048578, 131075, 1, 1048578, 131075, 2, 1048578, 131075, 3, 1048578, 131075, 4, 1048579, 131075, 5, 1048578, 196611, 0, 1048578, 196611, 1, 1048578, 196611, 2, 1048578, 196611, 3, 1048579, 7, 0, 1048578, 7, 1, 1048579, 7, 2, 1048578, 7, 3, 1048578, 65543, 0, 1048578, 65543, 1, 1048578, 65543, 2, 1048578, 65543, 3, 1048578, 131079, 0, 1048579, 131079, 1, 1048578, 131079, 2, 1048578, 131079, 3, 1048578, 196615, 0, 1048579, 196615, 1, 1048578, 196615, 2, 1048578, 196615, 3, 1048578)
+}
+
+[node name="_GridMap_43806" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3/GeneratedBuilding" unique_id=1016045518]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 196608, 0, 0, 196608, 1, 0, 196608, 2, 0, 196608, 3, 0, 196608, 4, 0, 196608, 5, 0, 196609, 0, 0, 196609, 1, 0, 196609, 2, 0, 196609, 3, 0, 196609, 4, 0, 196609, 5, 0, 196610, 0, 0, 196610, 1, 0, 196610, 2, 0, 196610, 3, 0, 196610, 4, 0, 196610, 5, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 5, 0, 0, 5, 1, 0, 5, 2, 0, 5, 3, 0, 6, 0, 0, 6, 1, 0, 6, 2, 0, 6, 3, 0, 262147, 0, 0, 262147, 1, 0, 262147, 2, 0, 262147, 3, 0, 262148, 0, 0, 262148, 1, 0, 262148, 2, 0, 262148, 3, 0, 262149, 0, 0, 262149, 1, 0, 262149, 2, 0, 262149, 3, 0, 262150, 0, 0, 262150, 1, 0, 262150, 2, 0, 262150, 3, 0)
+}
+
+[node name="_GridMap_43807" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3/GeneratedBuilding" unique_id=1242785482]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 3, 65536, 0, 2, 131072, 0, 3, 1, 0, 2, 65537, 0, 2, 131073, 0, 2, 2, 0, 2, 65538, 0, 2, 131074, 0, 3, 0, 6, 3, 65536, 6, 2, 131072, 6, 2, 1, 6, 2, 65537, 6, 2, 131073, 6, 3, 2, 6, 2, 65538, 6, 2, 131074, 6, 2, 3, 0, 2, 65539, 0, 2, 131075, 0, 2, 196611, 0, 2, 4, 0, 3, 65540, 0, 2, 131076, 0, 3, 196612, 0, 2, 5, 0, 3, 65541, 0, 2, 131077, 0, 2, 196613, 0, 2, 6, 0, 2, 65542, 0, 2, 131078, 0, 3, 196614, 0, 2, 3, 4, 2, 65539, 4, 2, 131075, 4, 3, 196611, 4, 3, 4, 4, 2, 65540, 4, 2, 131076, 4, 3, 196612, 4, 2, 5, 4, 3, 65541, 4, 3, 131077, 4, 2, 196613, 4, 2, 6, 4, 4, 65542, 4, 2, 131078, 4, 2, 196614, 4, 2)
+}
+
+[node name="_NavigationObstacle3D_43808" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3/GeneratedBuilding" unique_id=118942672]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(0, 0, 0, 0, 0, 12, 6, 0, 12, 6, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_43809" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3/GeneratedBuilding" unique_id=1990968291]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(6, 0, 0, 6, 0, 8, 14, 0, 8, 14, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_StaticBody3D_43810" type="StaticBody3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3/GeneratedBuilding" unique_id=418312115]
+
+[node name="_CollisionShape3D_43811" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3/GeneratedBuilding/_StaticBody3D_43810" unique_id=665667137]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.2, 6)
+shape = SubResource("BoxShape3D_c5110")
+
+[node name="_CollisionShape3D_43812" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator3/GeneratedBuilding/_StaticBody3D_43810" unique_id=1417096753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5.6, 4)
+shape = SubResource("BoxShape3D_4b7v2")
+
+[node name="BuildingGenerator4" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D" unique_id=371682333]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -26.5, 0, 2.5000014)
+script = ExtResource("1_860pf")
+building_generation_params = SubResource("Resource_col47")
+
+[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4" unique_id=1530732609]
+script = ExtResource("4_j0kea")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4/BuildingShapeDescription" unique_id=652391857]
+script = ExtResource("5_c5110")
+size = Vector3i(3, 2, 4)
+
+[node name="BoxDescription2" type="Node" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4/BuildingShapeDescription" unique_id=172988455]
+script = ExtResource("5_c5110")
+start = Vector3i(3, 0, 0)
+size = Vector3i(3, 4, 2)
+
+[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4" unique_id=618220092]
+
+[node name="_GridMap_38917" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4/GeneratedBuilding" unique_id=596503330]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(3, 0, 1048580, 0, 0, 1048578, 0, 1, 1048578, 0, 2, 1048578, 0, 3, 1048578, 65536, 0, 1048579, 65536, 1, 1048578, 65536, 2, 1048578, 65536, 3, 1048578, 3, 1, 1048578, 3, 2, 1048578, 3, 3, 1048578, 65539, 0, 1048578, 65539, 1, 1048578, 65539, 2, 1048579, 65539, 3, 1048578, 131075, 0, 1048578, 131075, 1, 1048578, 196611, 0, 1048578, 196611, 1, 1048579, 6, 0, 1048578, 6, 1, 1048578, 65542, 0, 1048579, 65542, 1, 1048578, 131078, 0, 1048579, 131078, 1, 1048578, 196614, 0, 1048579, 196614, 1, 1048579)
+}
+
+[node name="_GridMap_38918" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4/GeneratedBuilding" unique_id=729838032]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 131072, 0, 0, 131072, 1, 0, 131072, 2, 0, 131072, 3, 0, 131073, 0, 0, 131073, 1, 0, 131073, 2, 0, 131073, 3, 0, 131074, 0, 0, 131074, 1, 0, 131074, 2, 0, 131074, 3, 0, 3, 0, 0, 3, 1, 0, 4, 0, 0, 4, 1, 0, 5, 0, 0, 5, 1, 0, 262147, 0, 0, 262147, 1, 0, 262148, 0, 0, 262148, 1, 0, 262149, 0, 0, 262149, 1, 0)
+}
+
+[node name="_GridMap_38919" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4/GeneratedBuilding" unique_id=917190349]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 3, 65536, 0, 2, 1, 0, 2, 65537, 0, 3, 2, 0, 2, 65538, 0, 2, 0, 4, 3, 65536, 4, 3, 1, 4, 3, 65537, 4, 2, 2, 4, 3, 65538, 4, 2, 3, 0, 2, 65539, 0, 2, 131075, 0, 2, 196611, 0, 3, 4, 0, 3, 65540, 0, 2, 131076, 0, 3, 196612, 0, 2, 5, 0, 4, 65541, 0, 2, 131077, 0, 2, 196613, 0, 2, 3, 2, 2, 65539, 2, 3, 131075, 2, 2, 196611, 2, 2, 4, 2, 2, 65540, 2, 2, 131076, 2, 2, 196612, 2, 2, 5, 2, 2, 65541, 2, 2, 131077, 2, 3, 196613, 2, 2)
+}
+
+[node name="_NavigationObstacle3D_38920" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4/GeneratedBuilding" unique_id=751985448]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 6, 0, 8, 6, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_38921" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4/GeneratedBuilding" unique_id=1529780689]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(6, 0, 0, 6, 0, 4, 12, 0, 4, 12, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_StaticBody3D_38922" type="StaticBody3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4/GeneratedBuilding" unique_id=383778802]
+
+[node name="_CollisionShape3D_38923" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4/GeneratedBuilding/_StaticBody3D_38922" unique_id=92352398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 4)
+shape = SubResource("BoxShape3D_00as0")
+
+[node name="_CollisionShape3D_38924" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D/BuildingGenerator4/GeneratedBuilding/_StaticBody3D_38922" unique_id=507537206]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5.6, 2)
+shape = SubResource("BoxShape3D_j0kea")
+
+[node name="Node3D2" type="Node3D" parent="NavigationRegion3D/Buildings" unique_id=1118340646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.5, 0, -14.5)
+
+[node name="BuildingGenerator5" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D2" unique_id=1380827394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, -23.5)
+script = ExtResource("1_860pf")
+building_generation_params = SubResource("Resource_ncu13")
+
+[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5" unique_id=50938344]
+script = ExtResource("4_j0kea")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/BuildingShapeDescription" unique_id=957783190]
+script = ExtResource("5_c5110")
+start = Vector3i(-2, 0, 0)
+size = Vector3i(7, 2, 5)
+
+[node name="BoxDescription2" type="Node" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/BuildingShapeDescription" unique_id=1407734057]
+script = ExtResource("5_c5110")
+start = Vector3i(5, 0, 0)
+size = Vector3i(5, 4, 2)
+
+[node name="BoxDescription3" type="Node" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/BuildingShapeDescription" unique_id=1312309112]
+script = ExtResource("5_c5110")
+start = Vector3i(5, 0, 2)
+size = Vector3i(2, 1, 3)
+
+[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5" unique_id=1986701128]
+
+[node name="_GridMap_38247" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/GeneratedBuilding" unique_id=1385215435]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(5, 2, 1048580, 65534, 0, 1048579, 65534, 1, 1048578, 65534, 2, 1048578, 65534, 3, 1048579, 65534, 4, 1048578, 131070, 0, 1048579, 131070, 1, 1048578, 131070, 2, 1048578, 131070, 3, 1048578, 131070, 4, 1048578, 5, 0, 1048578, 5, 1, 1048578, 5, 3, 1048578, 5, 4, 1048578, 65541, 0, 1048578, 65541, 1, 1048578, 65541, 2, 1048578, 65541, 3, 1048579, 65541, 4, 1048578, 131077, 0, 1048578, 131077, 1, 1048579, 196613, 0, 1048578, 196613, 1, 1048578, 10, 0, 1048579, 10, 1, 1048578, 65546, 0, 1048578, 65546, 1, 1048578, 131082, 0, 1048578, 131082, 1, 1048578, 196618, 0, 1048578, 196618, 1, 1048578, 7, 2, 1048578, 7, 3, 1048579, 7, 4, 1048578)
+}
+
+[node name="_GridMap_38248" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/GeneratedBuilding" unique_id=1891734757]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65534, 0, 0, 65534, 1, 0, 65534, 2, 0, 65534, 3, 0, 65534, 4, 0, 65535, 0, 0, 65535, 1, 0, 65535, 2, 0, 65535, 3, 0, 65535, 4, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 196606, 0, 0, 196606, 1, 0, 196606, 2, 0, 196606, 3, 0, 196606, 4, 0, 196607, 0, 0, 196607, 1, 0, 196607, 2, 0, 196607, 3, 0, 196607, 4, 0, 131072, 0, 0, 131072, 1, 0, 131072, 2, 0, 131072, 3, 0, 131072, 4, 0, 131073, 0, 0, 131073, 1, 0, 131073, 2, 0, 131073, 3, 0, 131073, 4, 0, 131074, 0, 0, 131074, 1, 0, 131074, 2, 0, 131074, 3, 0, 131074, 4, 0, 131075, 0, 0, 131075, 1, 0, 131075, 2, 0, 131075, 3, 0, 131075, 4, 0, 131076, 0, 0, 131076, 1, 0, 131076, 2, 0, 131076, 3, 0, 131076, 4, 0, 5, 0, 0, 5, 1, 0, 6, 0, 0, 6, 1, 0, 7, 0, 0, 7, 1, 0, 8, 0, 0, 8, 1, 0, 9, 0, 0, 9, 1, 0, 262149, 0, 0, 262149, 1, 0, 262150, 0, 0, 262150, 1, 0, 262151, 0, 0, 262151, 1, 0, 262152, 0, 0, 262152, 1, 0, 262153, 0, 0, 262153, 1, 0, 5, 2, 0, 5, 3, 0, 5, 4, 0, 6, 2, 0, 6, 3, 0, 6, 4, 0, 65541, 2, 0, 65541, 3, 0, 65541, 4, 0, 65542, 2, 0, 65542, 3, 0, 65542, 4, 0)
+}
+
+[node name="_GridMap_38249" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/GeneratedBuilding" unique_id=742950600]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(6, 2, 4, 65534, 0, 2, 131070, 0, 2, 65535, 0, 2, 131071, 0, 2, 0, 0, 2, 65536, 0, 2, 1, 0, 2, 65537, 0, 2, 2, 0, 2, 65538, 0, 2, 3, 0, 4, 65539, 0, 2, 4, 0, 3, 65540, 0, 2, 65534, 5, 2, 131070, 5, 3, 65535, 5, 2, 131071, 5, 2, 0, 5, 3, 65536, 5, 3, 1, 5, 3, 65537, 5, 3, 2, 5, 2, 65538, 5, 3, 3, 5, 2, 65539, 5, 3, 4, 5, 2, 65540, 5, 2, 5, 0, 3, 65541, 0, 2, 131077, 0, 3, 196613, 0, 2, 6, 0, 2, 65542, 0, 3, 131078, 0, 2, 196614, 0, 2, 7, 0, 2, 65543, 0, 2, 131079, 0, 2, 196615, 0, 3, 8, 0, 3, 65544, 0, 3, 131080, 0, 3, 196616, 0, 2, 9, 0, 2, 65545, 0, 2, 131081, 0, 3, 196617, 0, 2, 5, 2, 2, 65541, 2, 3, 131077, 2, 2, 196613, 2, 2, 65542, 2, 2, 131078, 2, 2, 196614, 2, 3, 7, 2, 2, 65543, 2, 2, 131079, 2, 3, 196615, 2, 2, 8, 2, 2, 65544, 2, 3, 131080, 2, 2, 196616, 2, 2, 9, 2, 2, 65545, 2, 2, 131081, 2, 3, 196617, 2, 2, 5, 5, 2, 6, 5, 2)
+}
+
+[node name="_NavigationObstacle3D_38250" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/GeneratedBuilding" unique_id=338164797]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(-4, 0, 0, -4, 0, 10, 10, 0, 10, 10, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_38251" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/GeneratedBuilding" unique_id=434090671]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(10, 0, 0, 10, 0, 4, 20, 0, 4, 20, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_38252" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/GeneratedBuilding" unique_id=1810168432]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(10, 0, 4, 10, 0, 10, 14, 0, 10, 14, 0, 4)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_StaticBody3D_38253" type="StaticBody3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/GeneratedBuilding" unique_id=1679525757]
+
+[node name="_CollisionShape3D_38254" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/GeneratedBuilding/_StaticBody3D_38253" unique_id=1843951222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 5)
+shape = SubResource("BoxShape3D_f6dl4")
+
+[node name="_CollisionShape3D_38255" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/GeneratedBuilding/_StaticBody3D_38253" unique_id=354435412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5.6, 2)
+shape = SubResource("BoxShape3D_860pf")
+
+[node name="_CollisionShape3D_38256" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator5/GeneratedBuilding/_StaticBody3D_38253" unique_id=261947030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.4, 7)
+shape = SubResource("BoxShape3D_t44fe")
+
+[node name="BuildingGenerator3" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D2" unique_id=842697221]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5, 0, 2.5)
+script = ExtResource("1_860pf")
+building_generation_params = SubResource("Resource_col47")
+
+[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3" unique_id=1035257389]
+script = ExtResource("4_j0kea")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3/BuildingShapeDescription" unique_id=975259945]
+script = ExtResource("5_c5110")
+size = Vector3i(3, 3, 6)
+
+[node name="BoxDescription2" type="Node" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3/BuildingShapeDescription" unique_id=332987115]
+script = ExtResource("5_c5110")
+start = Vector3i(3, 0, 0)
+size = Vector3i(4, 4, 4)
+
+[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3" unique_id=1330406995]
+
+[node name="_GridMap_43805" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3/GeneratedBuilding" unique_id=867445061]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(3, 2, 1048580, 0, 0, 1048578, 0, 1, 1048579, 0, 2, 1048579, 0, 3, 1048578, 0, 4, 1048578, 0, 5, 1048579, 65536, 0, 1048578, 65536, 1, 1048578, 65536, 2, 1048578, 65536, 3, 1048579, 65536, 4, 1048579, 65536, 5, 1048578, 131072, 0, 1048579, 131072, 1, 1048578, 131072, 2, 1048578, 131072, 3, 1048578, 131072, 4, 1048579, 131072, 5, 1048578, 3, 0, 1048578, 3, 1, 1048578, 3, 3, 1048578, 3, 4, 1048578, 3, 5, 1048579, 65539, 0, 1048578, 65539, 1, 1048578, 65539, 2, 1048578, 65539, 3, 1048578, 65539, 4, 1048579, 65539, 5, 1048578, 131075, 0, 1048578, 131075, 1, 1048578, 131075, 2, 1048578, 131075, 3, 1048578, 131075, 4, 1048579, 131075, 5, 1048578, 196611, 0, 1048578, 196611, 1, 1048578, 196611, 2, 1048578, 196611, 3, 1048579, 7, 0, 1048578, 7, 1, 1048579, 7, 2, 1048578, 7, 3, 1048578, 65543, 0, 1048578, 65543, 1, 1048578, 65543, 2, 1048578, 65543, 3, 1048578, 131079, 0, 1048579, 131079, 1, 1048578, 131079, 2, 1048578, 131079, 3, 1048578, 196615, 0, 1048579, 196615, 1, 1048578, 196615, 2, 1048578, 196615, 3, 1048578)
+}
+
+[node name="_GridMap_43806" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3/GeneratedBuilding" unique_id=429279217]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 196608, 0, 0, 196608, 1, 0, 196608, 2, 0, 196608, 3, 0, 196608, 4, 0, 196608, 5, 0, 196609, 0, 0, 196609, 1, 0, 196609, 2, 0, 196609, 3, 0, 196609, 4, 0, 196609, 5, 0, 196610, 0, 0, 196610, 1, 0, 196610, 2, 0, 196610, 3, 0, 196610, 4, 0, 196610, 5, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 5, 0, 0, 5, 1, 0, 5, 2, 0, 5, 3, 0, 6, 0, 0, 6, 1, 0, 6, 2, 0, 6, 3, 0, 262147, 0, 0, 262147, 1, 0, 262147, 2, 0, 262147, 3, 0, 262148, 0, 0, 262148, 1, 0, 262148, 2, 0, 262148, 3, 0, 262149, 0, 0, 262149, 1, 0, 262149, 2, 0, 262149, 3, 0, 262150, 0, 0, 262150, 1, 0, 262150, 2, 0, 262150, 3, 0)
+}
+
+[node name="_GridMap_43807" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3/GeneratedBuilding" unique_id=443750454]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 3, 65536, 0, 2, 131072, 0, 3, 1, 0, 2, 65537, 0, 2, 131073, 0, 2, 2, 0, 2, 65538, 0, 2, 131074, 0, 3, 0, 6, 3, 65536, 6, 2, 131072, 6, 2, 1, 6, 2, 65537, 6, 2, 131073, 6, 3, 2, 6, 2, 65538, 6, 2, 131074, 6, 2, 3, 0, 2, 65539, 0, 2, 131075, 0, 2, 196611, 0, 2, 4, 0, 3, 65540, 0, 2, 131076, 0, 3, 196612, 0, 2, 5, 0, 3, 65541, 0, 2, 131077, 0, 2, 196613, 0, 2, 6, 0, 2, 65542, 0, 2, 131078, 0, 3, 196614, 0, 2, 3, 4, 2, 65539, 4, 2, 131075, 4, 3, 196611, 4, 3, 4, 4, 2, 65540, 4, 2, 131076, 4, 3, 196612, 4, 2, 5, 4, 3, 65541, 4, 3, 131077, 4, 2, 196613, 4, 2, 6, 4, 4, 65542, 4, 2, 131078, 4, 2, 196614, 4, 2)
+}
+
+[node name="_NavigationObstacle3D_43808" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3/GeneratedBuilding" unique_id=291451287]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(0, 0, 0, 0, 0, 12, 6, 0, 12, 6, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_43809" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3/GeneratedBuilding" unique_id=1797612281]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(6, 0, 0, 6, 0, 8, 14, 0, 8, 14, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_StaticBody3D_43810" type="StaticBody3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3/GeneratedBuilding" unique_id=1089645489]
+
+[node name="_CollisionShape3D_43811" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3/GeneratedBuilding/_StaticBody3D_43810" unique_id=1600507224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.2, 6)
+shape = SubResource("BoxShape3D_c5110")
+
+[node name="_CollisionShape3D_43812" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator3/GeneratedBuilding/_StaticBody3D_43810" unique_id=887241284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5.6, 4)
+shape = SubResource("BoxShape3D_4b7v2")
+
+[node name="BuildingGenerator4" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D2" unique_id=1424394424]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -26.5, 0, 2.5000014)
+script = ExtResource("1_860pf")
+building_generation_params = SubResource("Resource_col47")
+
+[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4" unique_id=2136127477]
+script = ExtResource("4_j0kea")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4/BuildingShapeDescription" unique_id=2059780675]
+script = ExtResource("5_c5110")
+size = Vector3i(3, 2, 4)
+
+[node name="BoxDescription2" type="Node" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4/BuildingShapeDescription" unique_id=954953976]
+script = ExtResource("5_c5110")
+start = Vector3i(3, 0, 0)
+size = Vector3i(3, 4, 2)
+
+[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4" unique_id=1539095315]
+
+[node name="_GridMap_38917" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4/GeneratedBuilding" unique_id=2055235372]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(3, 0, 1048580, 0, 0, 1048578, 0, 1, 1048578, 0, 2, 1048578, 0, 3, 1048578, 65536, 0, 1048579, 65536, 1, 1048578, 65536, 2, 1048578, 65536, 3, 1048578, 3, 1, 1048578, 3, 2, 1048578, 3, 3, 1048578, 65539, 0, 1048578, 65539, 1, 1048578, 65539, 2, 1048579, 65539, 3, 1048578, 131075, 0, 1048578, 131075, 1, 1048578, 196611, 0, 1048578, 196611, 1, 1048579, 6, 0, 1048578, 6, 1, 1048578, 65542, 0, 1048579, 65542, 1, 1048578, 131078, 0, 1048579, 131078, 1, 1048578, 196614, 0, 1048579, 196614, 1, 1048579)
+}
+
+[node name="_GridMap_38918" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4/GeneratedBuilding" unique_id=169411723]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 131072, 0, 0, 131072, 1, 0, 131072, 2, 0, 131072, 3, 0, 131073, 0, 0, 131073, 1, 0, 131073, 2, 0, 131073, 3, 0, 131074, 0, 0, 131074, 1, 0, 131074, 2, 0, 131074, 3, 0, 3, 0, 0, 3, 1, 0, 4, 0, 0, 4, 1, 0, 5, 0, 0, 5, 1, 0, 262147, 0, 0, 262147, 1, 0, 262148, 0, 0, 262148, 1, 0, 262149, 0, 0, 262149, 1, 0)
+}
+
+[node name="_GridMap_38919" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4/GeneratedBuilding" unique_id=632641430]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 3, 65536, 0, 2, 1, 0, 2, 65537, 0, 3, 2, 0, 2, 65538, 0, 2, 0, 4, 3, 65536, 4, 3, 1, 4, 3, 65537, 4, 2, 2, 4, 3, 65538, 4, 2, 3, 0, 2, 65539, 0, 2, 131075, 0, 2, 196611, 0, 3, 4, 0, 3, 65540, 0, 2, 131076, 0, 3, 196612, 0, 2, 5, 0, 4, 65541, 0, 2, 131077, 0, 2, 196613, 0, 2, 3, 2, 2, 65539, 2, 3, 131075, 2, 2, 196611, 2, 2, 4, 2, 2, 65540, 2, 2, 131076, 2, 2, 196612, 2, 2, 5, 2, 2, 65541, 2, 2, 131077, 2, 3, 196613, 2, 2)
+}
+
+[node name="_NavigationObstacle3D_38920" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4/GeneratedBuilding" unique_id=1293564696]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 6, 0, 8, 6, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_38921" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4/GeneratedBuilding" unique_id=2112780826]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(6, 0, 0, 6, 0, 4, 12, 0, 4, 12, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_StaticBody3D_38922" type="StaticBody3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4/GeneratedBuilding" unique_id=1337759922]
+
+[node name="_CollisionShape3D_38923" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4/GeneratedBuilding/_StaticBody3D_38922" unique_id=1495061948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 4)
+shape = SubResource("BoxShape3D_00as0")
+
+[node name="_CollisionShape3D_38924" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D2/BuildingGenerator4/GeneratedBuilding/_StaticBody3D_38922" unique_id=189680007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5.6, 2)
+shape = SubResource("BoxShape3D_j0kea")
+
+[node name="Node3D3" type="Node3D" parent="NavigationRegion3D/Buildings" unique_id=1909848991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39, 0, 32.5)
+
+[node name="BuildingGenerator5" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D3" unique_id=705133355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, -23.5)
+script = ExtResource("1_860pf")
+building_generation_params = SubResource("Resource_ncu13")
+
+[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5" unique_id=1154760956]
+script = ExtResource("4_j0kea")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/BuildingShapeDescription" unique_id=1609892060]
+script = ExtResource("5_c5110")
+start = Vector3i(-2, 0, 0)
+size = Vector3i(7, 2, 5)
+
+[node name="BoxDescription2" type="Node" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/BuildingShapeDescription" unique_id=1190152486]
+script = ExtResource("5_c5110")
+start = Vector3i(5, 0, 0)
+size = Vector3i(5, 4, 2)
+
+[node name="BoxDescription3" type="Node" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/BuildingShapeDescription" unique_id=925626671]
+script = ExtResource("5_c5110")
+start = Vector3i(5, 0, 2)
+size = Vector3i(2, 1, 3)
+
+[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5" unique_id=1948977208]
+
+[node name="_GridMap_38247" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/GeneratedBuilding" unique_id=895256507]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(5, 2, 1048580, 65534, 0, 1048579, 65534, 1, 1048578, 65534, 2, 1048578, 65534, 3, 1048579, 65534, 4, 1048578, 131070, 0, 1048579, 131070, 1, 1048578, 131070, 2, 1048578, 131070, 3, 1048578, 131070, 4, 1048578, 5, 0, 1048578, 5, 1, 1048578, 5, 3, 1048578, 5, 4, 1048578, 65541, 0, 1048578, 65541, 1, 1048578, 65541, 2, 1048578, 65541, 3, 1048579, 65541, 4, 1048578, 131077, 0, 1048578, 131077, 1, 1048579, 196613, 0, 1048578, 196613, 1, 1048578, 10, 0, 1048579, 10, 1, 1048578, 65546, 0, 1048578, 65546, 1, 1048578, 131082, 0, 1048578, 131082, 1, 1048578, 196618, 0, 1048578, 196618, 1, 1048578, 7, 2, 1048578, 7, 3, 1048579, 7, 4, 1048578)
+}
+
+[node name="_GridMap_38248" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/GeneratedBuilding" unique_id=1383503077]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65534, 0, 0, 65534, 1, 0, 65534, 2, 0, 65534, 3, 0, 65534, 4, 0, 65535, 0, 0, 65535, 1, 0, 65535, 2, 0, 65535, 3, 0, 65535, 4, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 196606, 0, 0, 196606, 1, 0, 196606, 2, 0, 196606, 3, 0, 196606, 4, 0, 196607, 0, 0, 196607, 1, 0, 196607, 2, 0, 196607, 3, 0, 196607, 4, 0, 131072, 0, 0, 131072, 1, 0, 131072, 2, 0, 131072, 3, 0, 131072, 4, 0, 131073, 0, 0, 131073, 1, 0, 131073, 2, 0, 131073, 3, 0, 131073, 4, 0, 131074, 0, 0, 131074, 1, 0, 131074, 2, 0, 131074, 3, 0, 131074, 4, 0, 131075, 0, 0, 131075, 1, 0, 131075, 2, 0, 131075, 3, 0, 131075, 4, 0, 131076, 0, 0, 131076, 1, 0, 131076, 2, 0, 131076, 3, 0, 131076, 4, 0, 5, 0, 0, 5, 1, 0, 6, 0, 0, 6, 1, 0, 7, 0, 0, 7, 1, 0, 8, 0, 0, 8, 1, 0, 9, 0, 0, 9, 1, 0, 262149, 0, 0, 262149, 1, 0, 262150, 0, 0, 262150, 1, 0, 262151, 0, 0, 262151, 1, 0, 262152, 0, 0, 262152, 1, 0, 262153, 0, 0, 262153, 1, 0, 5, 2, 0, 5, 3, 0, 5, 4, 0, 6, 2, 0, 6, 3, 0, 6, 4, 0, 65541, 2, 0, 65541, 3, 0, 65541, 4, 0, 65542, 2, 0, 65542, 3, 0, 65542, 4, 0)
+}
+
+[node name="_GridMap_38249" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/GeneratedBuilding" unique_id=1101255913]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(6, 2, 4, 65534, 0, 2, 131070, 0, 2, 65535, 0, 2, 131071, 0, 2, 0, 0, 2, 65536, 0, 2, 1, 0, 2, 65537, 0, 2, 2, 0, 2, 65538, 0, 2, 3, 0, 4, 65539, 0, 2, 4, 0, 3, 65540, 0, 2, 65534, 5, 2, 131070, 5, 3, 65535, 5, 2, 131071, 5, 2, 0, 5, 3, 65536, 5, 3, 1, 5, 3, 65537, 5, 3, 2, 5, 2, 65538, 5, 3, 3, 5, 2, 65539, 5, 3, 4, 5, 2, 65540, 5, 2, 5, 0, 3, 65541, 0, 2, 131077, 0, 3, 196613, 0, 2, 6, 0, 2, 65542, 0, 3, 131078, 0, 2, 196614, 0, 2, 7, 0, 2, 65543, 0, 2, 131079, 0, 2, 196615, 0, 3, 8, 0, 3, 65544, 0, 3, 131080, 0, 3, 196616, 0, 2, 9, 0, 2, 65545, 0, 2, 131081, 0, 3, 196617, 0, 2, 5, 2, 2, 65541, 2, 3, 131077, 2, 2, 196613, 2, 2, 65542, 2, 2, 131078, 2, 2, 196614, 2, 3, 7, 2, 2, 65543, 2, 2, 131079, 2, 3, 196615, 2, 2, 8, 2, 2, 65544, 2, 3, 131080, 2, 2, 196616, 2, 2, 9, 2, 2, 65545, 2, 2, 131081, 2, 3, 196617, 2, 2, 5, 5, 2, 6, 5, 2)
+}
+
+[node name="_NavigationObstacle3D_38250" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/GeneratedBuilding" unique_id=1192837480]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(-4, 0, 0, -4, 0, 10, 10, 0, 10, 10, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_38251" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/GeneratedBuilding" unique_id=338352908]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(10, 0, 0, 10, 0, 4, 20, 0, 4, 20, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_38252" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/GeneratedBuilding" unique_id=2127968181]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(10, 0, 4, 10, 0, 10, 14, 0, 10, 14, 0, 4)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_StaticBody3D_38253" type="StaticBody3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/GeneratedBuilding" unique_id=1268471692]
+
+[node name="_CollisionShape3D_38254" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/GeneratedBuilding/_StaticBody3D_38253" unique_id=1635864024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 5)
+shape = SubResource("BoxShape3D_f6dl4")
+
+[node name="_CollisionShape3D_38255" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/GeneratedBuilding/_StaticBody3D_38253" unique_id=457269417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 5.6, 2)
+shape = SubResource("BoxShape3D_860pf")
+
+[node name="_CollisionShape3D_38256" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator5/GeneratedBuilding/_StaticBody3D_38253" unique_id=587721153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 1.4, 7)
+shape = SubResource("BoxShape3D_t44fe")
+
+[node name="BuildingGenerator3" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D3" unique_id=457377722]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5, 0, 2.5)
+script = ExtResource("1_860pf")
+building_generation_params = SubResource("Resource_col47")
+
+[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3" unique_id=1656115932]
+script = ExtResource("4_j0kea")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3/BuildingShapeDescription" unique_id=875878144]
+script = ExtResource("5_c5110")
+size = Vector3i(3, 3, 6)
+
+[node name="BoxDescription2" type="Node" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3/BuildingShapeDescription" unique_id=2092887121]
+script = ExtResource("5_c5110")
+start = Vector3i(3, 0, 0)
+size = Vector3i(4, 4, 4)
+
+[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3" unique_id=120670990]
+
+[node name="_GridMap_43805" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3/GeneratedBuilding" unique_id=1579277782]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(3, 2, 1048580, 0, 0, 1048578, 0, 1, 1048579, 0, 2, 1048579, 0, 3, 1048578, 0, 4, 1048578, 0, 5, 1048579, 65536, 0, 1048578, 65536, 1, 1048578, 65536, 2, 1048578, 65536, 3, 1048579, 65536, 4, 1048579, 65536, 5, 1048578, 131072, 0, 1048579, 131072, 1, 1048578, 131072, 2, 1048578, 131072, 3, 1048578, 131072, 4, 1048579, 131072, 5, 1048578, 3, 0, 1048578, 3, 1, 1048578, 3, 3, 1048578, 3, 4, 1048578, 3, 5, 1048579, 65539, 0, 1048578, 65539, 1, 1048578, 65539, 2, 1048578, 65539, 3, 1048578, 65539, 4, 1048579, 65539, 5, 1048578, 131075, 0, 1048578, 131075, 1, 1048578, 131075, 2, 1048578, 131075, 3, 1048578, 131075, 4, 1048579, 131075, 5, 1048578, 196611, 0, 1048578, 196611, 1, 1048578, 196611, 2, 1048578, 196611, 3, 1048579, 7, 0, 1048578, 7, 1, 1048579, 7, 2, 1048578, 7, 3, 1048578, 65543, 0, 1048578, 65543, 1, 1048578, 65543, 2, 1048578, 65543, 3, 1048578, 131079, 0, 1048579, 131079, 1, 1048578, 131079, 2, 1048578, 131079, 3, 1048578, 196615, 0, 1048579, 196615, 1, 1048578, 196615, 2, 1048578, 196615, 3, 1048578)
+}
+
+[node name="_GridMap_43806" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3/GeneratedBuilding" unique_id=1098604327]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 1, 5, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 2, 5, 0, 196608, 0, 0, 196608, 1, 0, 196608, 2, 0, 196608, 3, 0, 196608, 4, 0, 196608, 5, 0, 196609, 0, 0, 196609, 1, 0, 196609, 2, 0, 196609, 3, 0, 196609, 4, 0, 196609, 5, 0, 196610, 0, 0, 196610, 1, 0, 196610, 2, 0, 196610, 3, 0, 196610, 4, 0, 196610, 5, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 5, 0, 0, 5, 1, 0, 5, 2, 0, 5, 3, 0, 6, 0, 0, 6, 1, 0, 6, 2, 0, 6, 3, 0, 262147, 0, 0, 262147, 1, 0, 262147, 2, 0, 262147, 3, 0, 262148, 0, 0, 262148, 1, 0, 262148, 2, 0, 262148, 3, 0, 262149, 0, 0, 262149, 1, 0, 262149, 2, 0, 262149, 3, 0, 262150, 0, 0, 262150, 1, 0, 262150, 2, 0, 262150, 3, 0)
+}
+
+[node name="_GridMap_43807" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3/GeneratedBuilding" unique_id=900704521]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 3, 65536, 0, 2, 131072, 0, 3, 1, 0, 2, 65537, 0, 2, 131073, 0, 2, 2, 0, 2, 65538, 0, 2, 131074, 0, 3, 0, 6, 3, 65536, 6, 2, 131072, 6, 2, 1, 6, 2, 65537, 6, 2, 131073, 6, 3, 2, 6, 2, 65538, 6, 2, 131074, 6, 2, 3, 0, 2, 65539, 0, 2, 131075, 0, 2, 196611, 0, 2, 4, 0, 3, 65540, 0, 2, 131076, 0, 3, 196612, 0, 2, 5, 0, 3, 65541, 0, 2, 131077, 0, 2, 196613, 0, 2, 6, 0, 2, 65542, 0, 2, 131078, 0, 3, 196614, 0, 2, 3, 4, 2, 65539, 4, 2, 131075, 4, 3, 196611, 4, 3, 4, 4, 2, 65540, 4, 2, 131076, 4, 3, 196612, 4, 2, 5, 4, 3, 65541, 4, 3, 131077, 4, 2, 196613, 4, 2, 6, 4, 4, 65542, 4, 2, 131078, 4, 2, 196614, 4, 2)
+}
+
+[node name="_NavigationObstacle3D_43808" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3/GeneratedBuilding" unique_id=100123291]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(0, 0, 0, 0, 0, 12, 6, 0, 12, 6, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_43809" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3/GeneratedBuilding" unique_id=1318001245]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(6, 0, 0, 6, 0, 8, 14, 0, 8, 14, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_StaticBody3D_43810" type="StaticBody3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3/GeneratedBuilding" unique_id=364252508]
+
+[node name="_CollisionShape3D_43811" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3/GeneratedBuilding/_StaticBody3D_43810" unique_id=372627095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.2, 6)
+shape = SubResource("BoxShape3D_c5110")
+
+[node name="_CollisionShape3D_43812" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator3/GeneratedBuilding/_StaticBody3D_43810" unique_id=944741322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5.6, 4)
+shape = SubResource("BoxShape3D_4b7v2")
+
+[node name="BuildingGenerator4" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D3" unique_id=704198784]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -26.5, 0, 2.5000014)
+script = ExtResource("1_860pf")
+building_generation_params = SubResource("Resource_col47")
+
+[node name="BuildingShapeDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4" unique_id=825831211]
+script = ExtResource("4_j0kea")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4/BuildingShapeDescription" unique_id=1093691510]
+script = ExtResource("5_c5110")
+size = Vector3i(3, 2, 4)
+
+[node name="BoxDescription2" type="Node" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4/BuildingShapeDescription" unique_id=1448385781]
+script = ExtResource("5_c5110")
+start = Vector3i(3, 0, 0)
+size = Vector3i(3, 4, 2)
+
+[node name="GeneratedBuilding" type="Node3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4" unique_id=1075668336]
+
+[node name="_GridMap_38917" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4/GeneratedBuilding" unique_id=1701600308]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(3, 0, 1048580, 0, 0, 1048578, 0, 1, 1048578, 0, 2, 1048578, 0, 3, 1048578, 65536, 0, 1048579, 65536, 1, 1048578, 65536, 2, 1048578, 65536, 3, 1048578, 3, 1, 1048578, 3, 2, 1048578, 3, 3, 1048578, 65539, 0, 1048578, 65539, 1, 1048578, 65539, 2, 1048579, 65539, 3, 1048578, 131075, 0, 1048578, 131075, 1, 1048578, 196611, 0, 1048578, 196611, 1, 1048579, 6, 0, 1048578, 6, 1, 1048578, 65542, 0, 1048579, 65542, 1, 1048578, 131078, 0, 1048579, 131078, 1, 1048578, 196614, 0, 1048579, 196614, 1, 1048579)
+}
+
+[node name="_GridMap_38918" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4/GeneratedBuilding" unique_id=608715676]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 131072, 0, 0, 131072, 1, 0, 131072, 2, 0, 131072, 3, 0, 131073, 0, 0, 131073, 1, 0, 131073, 2, 0, 131073, 3, 0, 131074, 0, 0, 131074, 1, 0, 131074, 2, 0, 131074, 3, 0, 3, 0, 0, 3, 1, 0, 4, 0, 0, 4, 1, 0, 5, 0, 0, 5, 1, 0, 262147, 0, 0, 262147, 1, 0, 262148, 0, 0, 262148, 1, 0, 262149, 0, 0, 262149, 1, 0)
+}
+
+[node name="_GridMap_38919" type="GridMap" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4/GeneratedBuilding" unique_id=371562074]
+mesh_library = ExtResource("6_4b7v2")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 3, 65536, 0, 2, 1, 0, 2, 65537, 0, 3, 2, 0, 2, 65538, 0, 2, 0, 4, 3, 65536, 4, 3, 1, 4, 3, 65537, 4, 2, 2, 4, 3, 65538, 4, 2, 3, 0, 2, 65539, 0, 2, 131075, 0, 2, 196611, 0, 3, 4, 0, 3, 65540, 0, 2, 131076, 0, 3, 196612, 0, 2, 5, 0, 4, 65541, 0, 2, 131077, 0, 2, 196613, 0, 2, 3, 2, 2, 65539, 2, 3, 131075, 2, 2, 196611, 2, 2, 4, 2, 2, 65540, 2, 2, 131076, 2, 2, 196612, 2, 2, 5, 2, 2, 65541, 2, 2, 131077, 2, 3, 196613, 2, 2)
+}
+
+[node name="_NavigationObstacle3D_38920" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4/GeneratedBuilding" unique_id=567050183]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(0, 0, 0, 0, 0, 8, 6, 0, 8, 6, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_NavigationObstacle3D_38921" type="NavigationObstacle3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4/GeneratedBuilding" unique_id=144331021]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(6, 0, 0, 6, 0, 4, 12, 0, 4, 12, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_StaticBody3D_38922" type="StaticBody3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4/GeneratedBuilding" unique_id=1467621963]
+
+[node name="_CollisionShape3D_38923" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4/GeneratedBuilding/_StaticBody3D_38922" unique_id=2109779205]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 4)
+shape = SubResource("BoxShape3D_00as0")
+
+[node name="_CollisionShape3D_38924" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/Node3D3/BuildingGenerator4/GeneratedBuilding/_StaticBody3D_38922" unique_id=1531726362]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 5.6, 2)
 shape = SubResource("BoxShape3D_j0kea")
 

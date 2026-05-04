@@ -19,6 +19,8 @@ const ANIM_OFF: String = "break"
 @export var splash: CPUParticles3D
 @export var break1: CPUParticles3D
 @export var break2: CPUParticles3D
+@export var fuse_vfx1: GPUParticles3D
+@export var fuse_vfx2: GPUParticles3D
 
 
 ## Call when creating rope
@@ -45,3 +47,7 @@ func end() -> void:
 	self.reparent(get_tree().root)
 	await get_tree().create_timer(5.0).timeout
 	queue_free()
+
+func on_fuse() -> void:
+	fuse_vfx1.emitting = true
+	fuse_vfx2.emitting = true

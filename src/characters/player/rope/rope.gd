@@ -94,6 +94,7 @@ func fuse():
 			combined.mass += n.mass
 			n.queue_free()
 
+		vfx.on_fuse()
 		finish()
 
 

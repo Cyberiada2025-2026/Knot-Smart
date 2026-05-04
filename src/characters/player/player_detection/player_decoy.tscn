@@ -33,5 +33,6 @@ mesh = SubResource("SphereMesh_hawlq")
 shape = SubResource("SphereShape3D_hawlq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D" unique_id=480368151]
+visible = false
 mesh = SubResource("SphereMesh_xmuq3")
 skeleton = NodePath("../../MeshInstance3D")

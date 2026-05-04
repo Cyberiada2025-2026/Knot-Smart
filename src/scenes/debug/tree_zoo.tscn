@@ -1,14 +1,27 @@
 [gd_scene format=3 uid="uid://jo47eplae3mw"]
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_crhmp"]
-[ext_resource type="PackedScene" uid="uid://cg0xq5ci3aupl" path="res://shared/tree_generator/tree_generator.tscn" id="2_c24uh"]
-[ext_resource type="Resource" uid="uid://c4cjyeqqa3ian" path="res://shared/tree_generator/tree_types/tree_type_default.tres" id="3_c24uh"]
+[ext_resource type="Script" uid="uid://d3priws45vp1i" path="res://shared/nature_generators/tree_generator/tree_generator.gd" id="2_7cgt4"]
+[ext_resource type="Resource" uid="uid://cu3velky86qgt" path="res://shared/nature_generators/tree_generator/tree_materials/branches/branches.tres" id="3_ca55m"]
+[ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark/bark.tres" id="3_rrlkt"]
+[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/nature_generators/tree_generator/tree_parameters.gd" id="4_u5v14"]
+[ext_resource type="Script" uid="uid://bxobj8lbccu64" path="res://shared/nature_generators/foliage_generator/foliage_generator.gd" id="5_f225a"]
+[ext_resource type="Resource" uid="uid://ced0jemwdds0r" path="res://shared/nature_generators/foliage_generator/foliage_materials/bush/bush.tres" id="6_ca55m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_crhmp"]
 size = Vector3(50, 1, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v77ug"]
 size = Vector3(50, 1, 50)
+
+[sub_resource type="Resource" id="Resource_f225a"]
+script = ExtResource("4_u5v14")
+material = ExtResource("3_rrlkt")
+max_count = 4
+branch_rate_of_shrinking = 0.76
+foliage_parameters = ExtResource("3_ca55m")
+branch_spawn_percentage = 0.35
+metadata/_custom_type_script = "uid://s0k1bcrvckmc"
 
 [node name="TreeZoo" type="Node3D" unique_id=1622868612]
 
@@ -23,9 +36,23 @@ mesh = SubResource("BoxMesh_crhmp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="10x10_floor" unique_id=1967992972]
 shape = SubResource("BoxShape3D_v77ug")
 
-[node name="TreeGenerator" parent="." unique_id=321865084 instance=ExtResource("2_c24uh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.225, 0, -3.705)
-params = ExtResource("3_c24uh")
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1744242977]
 transform = Transform3D(1, 0, 0, 0, 0.90630776, 0.42261827, 0, -0.42261827, 0.90630776, 0, 0, 0)
+
+[node name="TreeGenerator" type="Node3D" parent="." unique_id=365366120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.116348, 0, 0)
+script = ExtResource("2_7cgt4")
+params = SubResource("Resource_f225a")
+metadata/_custom_type_script = "uid://d3priws45vp1i"
+
+[node name="FoliageGenerator" type="Node3D" parent="." unique_id=686754679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.39140916, -9)
+script = ExtResource("5_f225a")
+params = ExtResource("6_ca55m")
+metadata/_custom_type_script = "uid://bxobj8lbccu64"
+
+[node name="FoliageGenerator2" type="Node3D" parent="." unique_id=20660903]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4723964, 0.52106667, 0)
+script = ExtResource("5_f225a")
+params = ExtResource("3_ca55m")
+metadata/_custom_type_script = "uid://bxobj8lbccu64"

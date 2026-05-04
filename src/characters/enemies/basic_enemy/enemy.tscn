@@ -100,7 +100,7 @@ shape = SubResource("CapsuleShape3D_y1krv")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1892085315 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("2_r2ijf")
-blackboard = NodePath("@Node@121393")
+blackboard = NodePath("@Node@74461")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 

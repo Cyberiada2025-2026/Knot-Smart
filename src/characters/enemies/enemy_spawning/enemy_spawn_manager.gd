@@ -113,7 +113,6 @@ func despawn_enemy(enemy: Node3D) -> void:
 	enemy.queue_free()
 	active_entities.erase(enemy)
 	
-
 	if debug_log:
 		print("Despawned enemy: ", enemy)
 
@@ -140,7 +139,6 @@ func _physics_process(_delta: float) -> void:
 func _on_spawn_interval_timeout() -> void:
 	if active_entities.size() >= max_active_enemies:
 		return
-		
 	for i in spawn_attempt_count:
 		var result = spawn_enemy()
 		if debug_log:

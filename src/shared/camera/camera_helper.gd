@@ -16,5 +16,6 @@ func _process(_delta: float) -> void:
 func set_reference(ref: Node3D) -> void:
 	reference = ref
 
+
 func get_respawn_animator() -> RespawnAnimator:
 	return respawn_animator

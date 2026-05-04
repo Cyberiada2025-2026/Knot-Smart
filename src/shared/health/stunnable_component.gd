@@ -1,13 +1,14 @@
 class_name StunnableComponent
 extends Node
 
-@export var player_physics: PlayerPhysics 
-@export var gravity_controller: GravityController 
+@export var player_physics: PlayerPhysics
+@export var gravity_controller: GravityController
+
 
 func _on_hit_box_entered(node: Node) -> void:
 	var children = node.find_children("", "StunComponent")
 	if children.size() == 0:
-		return 
+		return
 
 	var stun_component = children[0]
 	if stun_component == null:

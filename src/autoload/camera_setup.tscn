@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://b2qmm8ipalct6" path="res://shared/camera/camera_helper.gd" id="1_5jark"]
 [ext_resource type="PackedScene" uid="uid://ds23isyj385on" path="res://ui/pause_menu/pause_menu.tscn" id="2_5jark"]
 [ext_resource type="Shader" uid="uid://52ly07y5efea" path="res://shared/post_processing/shaders/dithering.gdshader" id="3_1y1hh"]
+[ext_resource type="PackedScene" uid="uid://bopd2svf1i85m" path="res://ui/respawn/respawn.tscn" id="3_ka213"]
 [ext_resource type="Shader" uid="uid://dyrchmhjjjh7p" path="res://shared/post_processing/shaders/crt.gdshader" id="4_ka213"]
 [ext_resource type="Script" uid="uid://l1jyrcpmag6w" path="res://shared/post_processing/toggle_crt.gd" id="5_u1xjy"]
 
@@ -18,7 +19,7 @@ shader_parameter/warp_y = 0.041667
 shader_parameter/mask_dark = 0.75
 shader_parameter/mask_light = 1.75
 
-[node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera", "scene")]
+[node name="HelperCamera" type="Camera3D" unique_id=1189877287 node_paths=PackedStringArray("camera", "scene", "respawn_animator")]
 process_mode = 3
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 cull_mask = 524288
@@ -28,6 +29,7 @@ far = 0.1
 script = ExtResource("1_5jark")
 camera = NodePath("Control/SubViewportContainer/SubViewport/MainCamera")
 scene = NodePath("Control/SubViewportContainer/SubViewport/MainCamera/MainScene")
+respawn_animator = NodePath("Control/SubViewportContainer/SubViewport/MainCamera/RespawnLayer/Respawn")
 
 [node name="Control" type="Control" parent="." unique_id=1065790436]
 light_mask = 0
@@ -74,6 +76,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PauseMenu" parent="Control/SubViewportContainer/SubViewport/MainCamera/MainScene" unique_id=473504245 instance=ExtResource("2_5jark")]
+
+[node name="RespawnLayer" type="CanvasLayer" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=742471497]
+
+[node name="Respawn" parent="Control/SubViewportContainer/SubViewport/MainCamera/RespawnLayer" unique_id=328929917 instance=ExtResource("3_ka213")]
+mouse_filter = 2
 
 [node name="Dithering" type="ColorRect" parent="Control/SubViewportContainer/SubViewport/MainCamera" unique_id=2005476111]
 visibility_layer = 1048575

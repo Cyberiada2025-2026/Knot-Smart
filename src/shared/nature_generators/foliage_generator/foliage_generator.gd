@@ -19,6 +19,11 @@ func _ready() -> void:
 	on_generate()
 
 
+func set_params(new_params, new_transform):
+	params = new_params
+	transform = new_transform
+
+
 func generate_foliage():
 	var angle = PI/params.count
 	var new_scale = params.scale + (randf() - 0.5) * params.scale_randomization

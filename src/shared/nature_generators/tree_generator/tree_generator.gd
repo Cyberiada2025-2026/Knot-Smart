@@ -57,8 +57,7 @@ func generate_mesh(branch: TreeBranch, material: StandardMaterial3D):
 
 func add_foliage(branch: TreeBranch):
 	var foliage_generator = FoliageGenerator.new()
-	foliage_generator.params = params.foliage_parameters
-	foliage_generator.transform = branch.transform
+	foliage_generator.set_params(params.foliage_parameters, branch.transform)
 	tree.add_child(foliage_generator)
 	foliage_generator.owner = tree
 	for child in foliage_generator.get_children(true):

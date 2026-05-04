@@ -32,6 +32,10 @@
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="30_n4cpq"]
 [ext_resource type="PackedScene" uid="uid://dx21c5ighykbx" path="res://shared/projectiles/rock_placeholder.tscn" id="31_22jgx"]
 [ext_resource type="PackedScene" uid="uid://dlh3vlkqm2slg" path="res://shared/projectiles/car_placeholder.tscn" id="32_n4cpq"]
+[ext_resource type="PackedScene" uid="uid://c3581kcpnvx4f" path="res://shared/ship/ship.tscn" id="33_4ugm6"]
+[ext_resource type="PackedScene" uid="uid://c8uvhpoaogyqt" path="res://shared/ship/ship_parts/sprocket.tscn" id="34_gf26r"]
+[ext_resource type="PackedScene" uid="uid://ckl5pfstkaitv" path="res://shared/ship/ship_parts/screws.tscn" id="35_y5j6m"]
+[ext_resource type="PackedScene" uid="uid://blrhgw85c4fk1" path="res://shared/ship/ship_parts/pipe_fitting.tscn" id="36_r824d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_glo72"]
 size = Vector3(203, 100, 39)
@@ -705,3 +709,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 1, -16.5)
 
 [node name="RigidBody3D9" parent="Projectiles/Cars" unique_id=525469390 instance=ExtResource("32_n4cpq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 1, -16.5)
+
+[node name="Collectables" type="Node3D" parent="." unique_id=6088880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 0.099751115, 20.5)
+
+[node name="Ship" parent="Collectables" unique_id=1273861182 instance=ExtResource("33_4ugm6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, -12.311487)
+
+[node name="Sprocket" parent="Collectables" unique_id=981382587 instance=ExtResource("34_gf26r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2134385, 5.8074074, 19.684738)
+
+[node name="Screws" parent="Collectables" unique_id=1591583659 instance=ExtResource("35_y5j6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.382515, 0.23473954, -15)
+
+[node name="Screws2" parent="Collectables" unique_id=2091892779 instance=ExtResource("35_y5j6m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.802528, 0.23473954, -57.802692)
+
+[node name="PipeFitting" parent="Collectables" unique_id=180752249 instance=ExtResource("36_r824d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.722275, 0.29638577, -25)
+
+[node name="PipeFitting2" parent="Collectables" unique_id=1709250110 instance=ExtResource("36_r824d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.808552, 0.29638577, -27.977486)

@@ -107,7 +107,7 @@ scale_randomization = 0.5
 metadata/_custom_type_script = "uid://cs824opuvcx8k"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_col47"]
-size = Vector3(120, 10, 103.5)
+size = Vector3(120, 59, 103.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tkgqf"]
 size = Vector3(133, 70, 225.5)
@@ -118,6 +118,8 @@ size = Vector3(133, 70, 225.5)
 transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
 
 [node name="Radiation" parent="." unique_id=1228216098 instance=ExtResource("1_t44fe")]
+kill_time = 5.0
+heal_time = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Radiation" unique_id=1231037146]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.5, -9)
@@ -170,6 +172,7 @@ enabled = false
 [node name="TerrainMesh" type="CSGBox3D" parent="NavigationRegion3D" unique_id=1391519699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 use_collision = true
+collision_layer = 257
 size = Vector3(200, 0.5, 200)
 material = SubResource("StandardMaterial3D_j0kea")
 
@@ -205,6 +208,7 @@ size = Vector3i(2, 1, 3)
 mesh_library = ExtResource("7_t44fe")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
+collision_layer = 257
 data = {
 "cells": PackedInt32Array(1, 0, 1048580, 65536, 2, 1048580, 65536, 0, 1048580, 196617, 1, 1048580, 196617, 0, 1048580, 131081, 1, 1048580, 131081, 0, 1048580, 196615, 0, 1048580, 131079, 0, 1048580, 65541, 1, 1048580, 65543, 0, 1048580, 5, 0, 1048580, 8, 0, 1048580, 65536, 4, 1048580, 0, 0, 1048580, 5, 4, 1048580, 131078, 1, 1048580, 0, 3, 1048580, 196614, 0, 1048580, 5, 2, 1048578, 5, 3, 1048578, 7, 2, 1048578, 7, 3, 1048579, 7, 4, 1048578, 65534, 0, 1048579, 131070, 4, 1048578, 5, 1, 1048578, 8, 1, 1048578, 10, 0, 1048579, 10, 1, 1048578, 65541, 0, 1048578, 65543, 1, 1048578, 65546, 0, 1048578, 65546, 1, 1048578, 131077, 0, 1048578, 131077, 1, 1048579, 131078, 0, 1048578, 196613, 0, 1048578, 196613, 1, 1048578, 196614, 1, 1048578, 65534, 1, 1048578, 65534, 2, 1048578, 0, 1, 1048578, 0, 2, 1048578, 65534, 3, 1048579, 65534, 4, 1048578, 0, 4, 1048578, 131070, 0, 1048579, 131070, 1, 1048578, 65536, 1, 1048578, 131070, 2, 1048578, 131070, 3, 1048578, 65536, 3, 1048578, 1, 1, 1048578, 3, 2, 1048578, 3, 3, 1048578, 3, 4, 1048578, 65538, 4, 1048578, 65541, 4, 1048578, 131079, 1, 1048578, 196615, 1, 1048578, 2, 0, 1048578, 2, 1, 1048578, 65538, 0, 1048578, 65538, 1, 1048578, 65539, 2, 1048578, 65539, 3, 1048578, 65541, 2, 1048578, 65541, 3, 1048579, 131082, 0, 1048578, 196618, 0, 1048578, 131082, 1, 1048578, 196618, 1, 1048578)
 }
@@ -213,6 +217,7 @@ data = {
 mesh_library = ExtResource("7_t44fe")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
+collision_layer = 257
 data = {
 "cells": PackedInt32Array(196613, 0, 1, 65540, 2, 1, 131081, 1, 1, 5, 2, 0, 5, 3, 0, 5, 4, 0, 6, 2, 0, 6, 3, 0, 6, 4, 0, 65541, 2, 0, 65541, 3, 0, 65541, 4, 0, 65542, 2, 0, 65542, 3, 0, 65542, 4, 0, 65534, 0, 0, 65535, 0, 0, 131070, 0, 0, 131071, 0, 0, 131070, 4, 0, 131071, 4, 0, 196606, 4, 0, 196607, 4, 0, 5, 0, 0, 5, 1, 0, 6, 0, 0, 6, 1, 0, 7, 0, 0, 7, 1, 0, 65541, 0, 0, 65541, 1, 0, 65542, 0, 0, 65542, 1, 0, 65543, 0, 0, 65543, 1, 0, 8, 0, 0, 8, 1, 0, 9, 0, 0, 9, 1, 0, 65544, 0, 0, 65544, 1, 0, 65545, 0, 0, 65545, 1, 0, 131077, 0, 0, 131077, 1, 0, 131078, 0, 0, 131078, 1, 0, 131079, 0, 0, 131079, 1, 0, 131080, 0, 0, 131080, 1, 0, 131081, 0, 0, 196613, 1, 0, 262149, 0, 0, 262149, 1, 0, 65534, 1, 0, 65534, 2, 0, 65535, 1, 0, 65535, 2, 0, 131070, 1, 0, 131070, 2, 0, 131071, 1, 0, 131071, 2, 0, 65534, 3, 0, 65534, 4, 0, 65535, 3, 0, 65535, 4, 0, 131070, 3, 0, 131071, 3, 0, 196606, 0, 0, 196606, 1, 0, 196607, 0, 0, 196607, 1, 0, 196606, 2, 0, 196606, 3, 0, 196607, 2, 0, 196607, 3, 0, 0, 0, 0, 0, 1, 0, 65536, 0, 0, 65536, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 65536, 2, 0, 65536, 3, 0, 65536, 4, 0, 65537, 2, 0, 65537, 3, 0, 65537, 4, 0, 65538, 2, 0, 65538, 3, 0, 65538, 4, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 65539, 2, 0, 65539, 3, 0, 65539, 4, 0, 65540, 3, 0, 65540, 4, 0, 131072, 4, 0, 131073, 4, 0, 131074, 4, 0, 131075, 4, 0, 131076, 4, 0, 196614, 0, 0, 196614, 1, 0, 262150, 0, 0, 262150, 1, 0, 1, 0, 0, 1, 1, 0, 65537, 0, 0, 65537, 1, 0, 2, 0, 0, 2, 1, 0, 3, 0, 0, 3, 1, 0, 4, 0, 0, 4, 1, 0, 65538, 0, 0, 65538, 1, 0, 65539, 0, 0, 65539, 1, 0, 65540, 0, 0, 65540, 1, 0, 131072, 0, 0, 131072, 1, 0, 131073, 0, 0, 131073, 1, 0, 131074, 0, 0, 131074, 1, 0, 131075, 0, 0, 131075, 1, 0, 131076, 0, 0, 131076, 1, 0, 131072, 2, 0, 131072, 3, 0, 131073, 2, 0, 131073, 3, 0, 131074, 2, 0, 131074, 3, 0, 131075, 2, 0, 131075, 3, 0, 131076, 2, 0, 131076, 3, 0, 196615, 0, 0, 196615, 1, 0, 196616, 0, 0, 196616, 1, 0, 262151, 0, 0, 262151, 1, 0, 262152, 0, 0, 262152, 1, 0, 196617, 0, 0, 262153, 0, 0, 196617, 1, 0, 262153, 1, 0)
 }
@@ -221,6 +226,7 @@ data = {
 mesh_library = ExtResource("7_t44fe")
 cell_size = Vector3(2, 2.8, 2)
 cell_center_y = false
+collision_layer = 257
 data = {
 "cells": PackedInt32Array(65540, 4, 4, 65538, 4, 4, 65536, 4, 4, 4, 2, 4, 2, 2, 4, 1, 2, 4, 131071, 2, 4, 65539, 2, 4, 65535, 1, 4, 5, 2, 2, 6, 2, 2, 5, 5, 2, 6, 5, 2, 65534, 0, 2, 65535, 0, 2, 65534, 1, 2, 131070, 4, 2, 131071, 4, 2, 131070, 5, 3, 131071, 5, 2, 5, 0, 3, 6, 0, 2, 7, 0, 2, 7, 2, 2, 8, 0, 3, 9, 0, 2, 8, 2, 2, 9, 2, 2, 65541, 0, 2, 65542, 0, 3, 65541, 2, 3, 65542, 2, 2, 65543, 0, 2, 65544, 0, 3, 65545, 0, 2, 65543, 2, 2, 65544, 2, 3, 65545, 2, 2, 131077, 0, 3, 131077, 2, 2, 196613, 0, 2, 196613, 2, 2, 65534, 3, 2, 65535, 3, 2, 65534, 5, 2, 65535, 5, 2, 131070, 0, 2, 131071, 0, 2, 131070, 2, 2, 0, 0, 2, 0, 2, 2, 0, 5, 3, 1, 5, 3, 2, 5, 2, 3, 2, 2, 3, 5, 2, 4, 5, 2, 65537, 4, 2, 65536, 5, 3, 65537, 5, 3, 65539, 4, 2, 65538, 5, 3, 65539, 5, 3, 65540, 5, 2, 131078, 0, 2, 131078, 2, 2, 196614, 0, 2, 196614, 2, 3, 1, 0, 2, 2, 0, 2, 3, 0, 4, 4, 0, 3, 65536, 0, 2, 65537, 0, 2, 65536, 2, 2, 65537, 2, 2, 65538, 0, 2, 65539, 0, 2, 65540, 0, 2, 65538, 2, 2, 65540, 2, 2, 131079, 0, 2, 131080, 0, 3, 131079, 2, 3, 131080, 2, 2, 196615, 0, 3, 196616, 0, 2, 196615, 2, 2, 196616, 2, 2, 131081, 0, 3, 131081, 1, 2, 196617, 0, 2, 196617, 1, 2, 131081, 2, 3, 196617, 2, 2)
 }
@@ -305,6 +311,7 @@ affect_navigation_mesh = true
 avoidance_enabled = false
 
 [node name="@StaticBody3D@36668" type="StaticBody3D" parent="NavigationRegion3D/Buildings/BuildingGenerator2/GeneratedBuilding" unique_id=2038086340]
+collision_layer = 257
 
 [node name="@CollisionShape3D@36669" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/BuildingGenerator2/GeneratedBuilding/@StaticBody3D@36668" unique_id=635511007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 4)
@@ -398,6 +405,7 @@ affect_navigation_mesh = true
 avoidance_enabled = false
 
 [node name="@StaticBody3D@45556" type="StaticBody3D" parent="NavigationRegion3D/Buildings/BuildingGenerator3/GeneratedBuilding" unique_id=1396417061]
+collision_layer = 257
 
 [node name="@CollisionShape3D@45557" type="CollisionShape3D" parent="NavigationRegion3D/Buildings/BuildingGenerator3/GeneratedBuilding/@StaticBody3D@45556" unique_id=840560641]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 11)
@@ -551,7 +559,7 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Day" type="Node" parent="DayNightCycle" unique_id=745061884]
 script = ExtResource("10_ka4ke")
-duration = 20.0
+duration = 30.0
 color_lut = ExtResource("12_ogsgd")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
@@ -562,7 +570,7 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Night" type="Node" parent="DayNightCycle" unique_id=1848015724]
 script = ExtResource("10_ka4ke")
-duration = 30.0
+duration = 120.0
 color_lut = ExtResource("13_oye0k")
 is_night = true
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
@@ -576,6 +584,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 0.099751115, 20.5)
 
 [node name="EnemySpawnManager2" type="Node3D" parent="." unique_id=71231836]
 script = ExtResource("28_tkgqf")
+debug_log = true
+min_spawn_distance = 5.0
+max_spawn_distance = 15.0
+despawn_distance = 90.0
+max_active_enemies = 3
+spawn_attempt_interval = 3.0
+spawn_attempt_count = 10
 metadata/_custom_type_script = "uid://d3b3ejnxvoa3s"
 
 [node name="EnemySpawnArea3" type="Area3D" parent="EnemySpawnManager2" unique_id=1467942450]
@@ -583,7 +598,7 @@ script = ExtResource("29_22jgx")
 enemy_scene = ExtResource("30_n4cpq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager2/EnemySpawnArea3" unique_id=636043044]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, -46.600002)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 24.5, -46.600002)
 shape = SubResource("BoxShape3D_col47")
 
 [node name="EnemySpawnArea4" type="Area3D" parent="EnemySpawnManager2" unique_id=18630948]

@@ -19,34 +19,43 @@ gravity_no_floor_timer = NodePath("gravity_no_floor_timer")
 
 [node name="floor_sensor" type="RayCast3D" parent="." unique_id=2120322272]
 target_position = Vector3(0, -4, 0)
+collision_mask = 256
 
 [node name="MoveingSensors" type="Node3D" parent="." unique_id=1952313153]
 
 [node name="front_sensor" type="RayCast3D" parent="MoveingSensors" unique_id=550562788]
 target_position = Vector3(0, 0, -0.5)
+collision_mask = 256
 
 [node name="back_sensor" type="RayCast3D" parent="MoveingSensors" unique_id=1184644016]
 target_position = Vector3(0, 0, 0.5)
+collision_mask = 256
 
 [node name="right_sensor" type="RayCast3D" parent="MoveingSensors" unique_id=2031059892]
 target_position = Vector3(0.5, 0, 0)
+collision_mask = 256
 
 [node name="left_sensor" type="RayCast3D" parent="MoveingSensors" unique_id=561812690]
 target_position = Vector3(-0.5, 0, 0)
+collision_mask = 256
 
 [node name="FallingSensors" type="Node3D" parent="." unique_id=423864532]
 
 [node name="front_sensor" type="RayCast3D" parent="FallingSensors" unique_id=716612857]
 target_position = Vector3(0, 0, -5)
+collision_mask = 256
 
 [node name="back_sensor" type="RayCast3D" parent="FallingSensors" unique_id=1575531594]
 target_position = Vector3(0, 0, 5)
+collision_mask = 256
 
 [node name="right_sensor" type="RayCast3D" parent="FallingSensors" unique_id=1263849897]
 target_position = Vector3(5, 0, 0)
+collision_mask = 256
 
 [node name="left_sensor" type="RayCast3D" parent="FallingSensors" unique_id=1777555893]
 target_position = Vector3(-5, 0, 0)
+collision_mask = 256
 
 [node name="gravity_no_floor_timer" type="Timer" parent="." unique_id=1142889003]
 

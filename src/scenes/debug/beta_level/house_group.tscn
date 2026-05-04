@@ -112,6 +112,7 @@ affect_navigation_mesh = true
 avoidance_enabled = false
 
 [node name="@StaticBody3D@108648" type="StaticBody3D" parent="BuildingGenerator5/GeneratedBuilding" unique_id=658399082]
+collision_layer = 257
 
 [node name="@CollisionShape3D@108649" type="CollisionShape3D" parent="BuildingGenerator5/GeneratedBuilding/@StaticBody3D@108648" unique_id=329359468]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 5)
@@ -186,6 +187,7 @@ affect_navigation_mesh = true
 avoidance_enabled = false
 
 [node name="@StaticBody3D@108639" type="StaticBody3D" parent="BuildingGenerator3/GeneratedBuilding" unique_id=1065848157]
+collision_layer = 257
 
 [node name="@CollisionShape3D@108640" type="CollisionShape3D" parent="BuildingGenerator3/GeneratedBuilding/@StaticBody3D@108639" unique_id=710579447]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.2, 6)
@@ -256,6 +258,7 @@ affect_navigation_mesh = true
 avoidance_enabled = false
 
 [node name="@StaticBody3D@108631" type="StaticBody3D" parent="BuildingGenerator4/GeneratedBuilding" unique_id=627493212]
+collision_layer = 257
 
 [node name="@CollisionShape3D@108632" type="CollisionShape3D" parent="BuildingGenerator4/GeneratedBuilding/@StaticBody3D@108631" unique_id=1433334739]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.8, 4)

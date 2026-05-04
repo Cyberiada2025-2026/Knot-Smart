@@ -45,6 +45,7 @@ func generate_mesh(branch: TreeBranch, material: StandardMaterial3D):
 	mesh.mesh = array_mesh
 	mesh.transform = branch.transform
 	tree.add_child(mesh)
+	tree.set_collision_layer_value(9, true)
 	var collision = CollisionShape3D.new()
 	var shape = ConcavePolygonShape3D.new()
 	shape.set_faces(array_mesh.get_faces())

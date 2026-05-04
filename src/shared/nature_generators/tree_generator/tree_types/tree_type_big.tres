@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/nature_generators/tree_generator/tree_parameters.gd" id="1_5m6wf"]
 [ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark/bark.tres" id="1_o11sq"]
+[ext_resource type="Resource" uid="uid://cu3velky86qgt" path="res://shared/nature_generators/tree_generator/tree_materials/branches/branches.tres" id="1_sddq1"]
 
 [resource]
 script = ExtResource("1_5m6wf")
 material = ExtResource("1_o11sq")
 max_count = 3
+foliage_parameters = ExtResource("1_sddq1")
 metadata/_custom_type_script = "uid://s0k1bcrvckmc"

@@ -30,6 +30,8 @@
 [ext_resource type="Script" uid="uid://d3b3ejnxvoa3s" path="res://characters/enemies/enemy_spawning/enemy_spawn_manager.gd" id="28_tkgqf"]
 [ext_resource type="Script" uid="uid://b3g2uvv66tqc1" path="res://characters/enemies/enemy_spawning/enemy_spawn_area.gd" id="29_22jgx"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="30_n4cpq"]
+[ext_resource type="PackedScene" uid="uid://dx21c5ighykbx" path="res://shared/projectiles/rock_placeholder.tscn" id="31_22jgx"]
+[ext_resource type="PackedScene" uid="uid://dlh3vlkqm2slg" path="res://shared/projectiles/car_placeholder.tscn" id="32_n4cpq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_glo72"]
 size = Vector3(203, 100, 39)
@@ -610,3 +612,96 @@ enemy_scene = ExtResource("30_n4cpq")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EnemySpawnManager2/EnemySpawnArea5" unique_id=1838368390]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.5, 0, -2.1499977)
 shape = SubResource("BoxShape3D_tkgqf")
+
+[node name="Projectiles" type="Node3D" parent="." unique_id=686002391]
+
+[node name="Rocks" type="Node3D" parent="Projectiles" unique_id=2115657705]
+
+[node name="RigidBody3D2" parent="Projectiles/Rocks" unique_id=1852927063 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.5, -8.5)
+
+[node name="RigidBody3D3" parent="Projectiles/Rocks" unique_id=2017667967 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0.5, -9)
+
+[node name="RigidBody3D4" parent="Projectiles/Rocks" unique_id=1355625088 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 0.5, -11.5)
+
+[node name="RigidBody3D5" parent="Projectiles/Rocks" unique_id=501636839 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 0.5, 30)
+
+[node name="RigidBody3D6" parent="Projectiles/Rocks" unique_id=656801789 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 0.5, 29.5)
+
+[node name="RigidBody3D7" parent="Projectiles/Rocks" unique_id=464718214 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.5, 27)
+
+[node name="RigidBody3D8" parent="Projectiles/Rocks" unique_id=761540040 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 0.5, 27)
+
+[node name="RigidBody3D9" parent="Projectiles/Rocks" unique_id=1450908247 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.5, 0.5, 26.5)
+
+[node name="RigidBody3D10" parent="Projectiles/Rocks" unique_id=1010293342 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 0.5, 24)
+
+[node name="RigidBody3D11" parent="Projectiles/Rocks" unique_id=1608117370 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 0.5, -5.5)
+
+[node name="RigidBody3D12" parent="Projectiles/Rocks" unique_id=593440666 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0.5, -6)
+
+[node name="RigidBody3D13" parent="Projectiles/Rocks" unique_id=1236743431 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0.5, -8.5)
+
+[node name="RigidBody3D14" parent="Projectiles/Rocks" unique_id=206307537 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 0.5, -51.5)
+
+[node name="RigidBody3D15" parent="Projectiles/Rocks" unique_id=1259619807 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.5, -52)
+
+[node name="RigidBody3D16" parent="Projectiles/Rocks" unique_id=207155492 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0.5, -54.5)
+
+[node name="RigidBody3D17" parent="Projectiles/Rocks" unique_id=319471057 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5, 0.5, -27)
+
+[node name="RigidBody3D18" parent="Projectiles/Rocks" unique_id=1930745175 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.5, 0.5, -27.5)
+
+[node name="RigidBody3D19" parent="Projectiles/Rocks" unique_id=1259119850 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.5, 0.5, -30)
+
+[node name="RigidBody3D20" parent="Projectiles/Rocks" unique_id=1109137988 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 11.5, -6)
+
+[node name="RigidBody3D21" parent="Projectiles/Rocks" unique_id=60433614 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 11.5, -6.5)
+
+[node name="RigidBody3D22" parent="Projectiles/Rocks" unique_id=2093270858 instance=ExtResource("31_22jgx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 11.5, -9)
+
+[node name="Cars" type="Node3D" parent="Projectiles" unique_id=1164824352]
+
+[node name="RigidBody3D2" parent="Projectiles/Cars" unique_id=709747310 instance=ExtResource("32_n4cpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 1, 10.5)
+
+[node name="RigidBody3D3" parent="Projectiles/Cars" unique_id=719754624 instance=ExtResource("32_n4cpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 1, 10.5)
+
+[node name="RigidBody3D4" parent="Projectiles/Cars" unique_id=971471028 instance=ExtResource("32_n4cpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5, 1, 33)
+
+[node name="RigidBody3D5" parent="Projectiles/Cars" unique_id=1487187851 instance=ExtResource("32_n4cpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.5, 1, 33)
+
+[node name="RigidBody3D6" parent="Projectiles/Cars" unique_id=2124154013 instance=ExtResource("32_n4cpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 1, -37.5)
+
+[node name="RigidBody3D7" parent="Projectiles/Cars" unique_id=545588251 instance=ExtResource("32_n4cpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 1, -37.5)
+
+[node name="RigidBody3D8" parent="Projectiles/Cars" unique_id=2088308101 instance=ExtResource("32_n4cpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5, 1, -16.5)
+
+[node name="RigidBody3D9" parent="Projectiles/Cars" unique_id=525469390 instance=ExtResource("32_n4cpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.5, 1, -16.5)

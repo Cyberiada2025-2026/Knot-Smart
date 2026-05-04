@@ -162,7 +162,7 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
 [node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSelector/AttackSequence/TimeLimiterDecorator/GoToAttackDistance" unique_id=440675687]
 script = ExtResource("8_ejf3g")
-desired_distance = 5.0
+desired_distance = 2.0
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
 [node name="StopNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSelector/AttackSequence/TimeLimiterDecorator/GoToAttackDistance" unique_id=1697230331]
@@ -175,7 +175,6 @@ metadata/_custom_type_script = "uid://dvnmhlldp23hg"
 
 [node name="Chase&Attack" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSelector/AttackSequence/SelectorRandomAttack" unique_id=102438972]
 script = ExtResource("4_r2ijf")
-wait_time = 2.0
 metadata/_custom_type_script = "uid://dorri1tul8gfx"
 
 [node name="AttackSequence" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/AttackSelector/AttackSequence/SelectorRandomAttack/Chase&Attack" unique_id=757613482]

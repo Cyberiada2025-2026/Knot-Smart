@@ -18,6 +18,7 @@
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
 [ext_resource type="CompressedTexture3D" uid="uid://bxk4ky7cnaadh" path="res://shared/day_night_cycle/LUTs/LUT_sunset.png" id="12_7smn1"]
 [ext_resource type="CompressedTexture3D" uid="uid://bmqvnf4nb6r6f" path="res://shared/day_night_cycle/LUTs/LUT_night.png" id="12_th5th"]
+[ext_resource type="PackedScene" uid="uid://b03v0egbwunei" path="res://shared/radiation_storm/radiation.tscn" id="14_7smn1"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="15_hxu8e"]
 [ext_resource type="PackedScene" uid="uid://cwgdxw2n1ey7s" path="res://shared/papers/sheet_music/sheet_music.tscn" id="17_nvumn"]
 
@@ -31,10 +32,10 @@ polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Arr
 cell_height = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_vom5j"]
-size = Vector3(20, 1, 20)
+size = Vector3(20, 1, 100)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hyk8p"]
-size = Vector3(20, 1, 20)
+size = Vector3(20, 1, 100)
 
 [sub_resource type="Resource" id="Resource_7smn1"]
 script = ExtResource("2_7smn1")
@@ -58,6 +59,9 @@ building_tileset = ExtResource("3_raeie")
 min_room_size = Vector3i(1, 1, 1)
 max_room_size = Vector3i(4, 1, 3)
 long_room_tendency = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_raeie"]
+size = Vector3(30, 100, 30)
 
 [node name="Main" type="Node3D" unique_id=959478903]
 
@@ -258,6 +262,12 @@ is_night = true
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("15_hxu8e")]
+
+[node name="Radiation" parent="." unique_id=1228216098 instance=ExtResource("14_7smn1")]
+heal_time = 8.0
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Radiation" unique_id=971726157]
+shape = SubResource("BoxShape3D_raeie")
 
 [node name="SheetMusic" parent="." unique_id=1780103802 instance=ExtResource("17_nvumn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116556)

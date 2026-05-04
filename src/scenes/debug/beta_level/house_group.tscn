@@ -40,7 +40,7 @@ size = Vector3(6, 11.2, 4)
 [node name="Node3D" type="Node3D" unique_id=2055277999]
 
 [node name="BuildingGenerator5" type="Node3D" parent="." unique_id=2021194019]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, -23.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, -28.5)
 script = ExtResource("1_17nc4")
 building_generation_params = SubResource("Resource_17nc4")
 generated_building_node = Object(Node3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"script":null)
@@ -260,6 +260,7 @@ start = Vector3i(3, 0, 0)
 size = Vector3i(3, 4, 2)
 
 [node name="GeneratedBuilding" type="Node3D" parent="BuildingGenerator4" unique_id=1717956103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5)
 
 [node name="_GridMap_37894" type="GridMap" parent="BuildingGenerator4/GeneratedBuilding" unique_id=1233910852]
 mesh_library = ExtResource("7_ak8v4")

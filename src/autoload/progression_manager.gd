@@ -13,4 +13,5 @@ func record_death():
 
 
 func game_over():
+	_death_count = 0
 	SceneManager.goto_scene("uid://d0kdyvkq8gmfg")

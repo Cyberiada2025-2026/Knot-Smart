@@ -13,7 +13,7 @@ func pause_game() -> void:
 	get_tree().paused = true
 	get_child(0).show()
 	prev_mouse_mode = Input.get_mouse_mode()
-	Input.set_mouse_mode(0)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _process(_delta: float) -> void:

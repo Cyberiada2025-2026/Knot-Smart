@@ -2,26 +2,35 @@
 class_name BuildingGenerator
 extends Node3D
 
-const NAV_MESH_OBSTACLE_HEIGHT: float = 30.0
-
-@export var room_generation_params: RoomGenerationParams
+@export var building_generation_params: BuildingGenerationParams
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
 
+var generated_building_node: Node3D
+var gridmaps: Array[GridMap]
 var initial_cells: Array[Cell] = []
 var cells: Array[Cell] = []
 var neighbors: Array[BorderInfo] = []
 
 var building_shape_description: BuildingShapeDescription
-var neighbors_generator: NeighborGenerator
-var cells_generator: CellGenerator
-var models_placer: ModelsPlacer
+var neighbors_generator: NeighborGenerator = NeighborGenerator.new(self)
+var cells_generator: CellGenerator = CellGenerator.new(self)
+var models_placer: ModelsPlacer = ModelsPlacer.new(self)
+var nav_obstacle_generator: BuildingNavObstacleGenerator = BuildingNavObstacleGenerator.new(self)
+
+
+func setup_generated_building_node() -> void:
+	generated_building_node = Node3D.new()
+	generated_building_node.name = "GeneratedBuilding"
+	add_child(generated_building_node)
+	generated_building_node.owner = get_tree().edited_scene_root
 
 
 func generate_building() -> void:
 	clear()
-	seed(room_generation_params.random_seed)
-	get_parent().set_editable_instance(self, true)
+	setup_generated_building_node()
+
+	seed(building_generation_params.random_seed)
 	if building_shape_description == null:
 		push_warning("No building_shape_description provided.")
 		return
@@ -29,40 +38,44 @@ func generate_building() -> void:
 	if initial_cells.size() == 0:
 		push_warning("No initial shape provided.")
 		return
-	cells_generator.generate_cells(self)
-	neighbors_generator.generate_neighbors(self)
-	models_placer.place_models(self)
+	cells_generator.generate_cells()
+	neighbors_generator.generate_neighbors()
+	models_placer.place_models()
 
-	generate_navmesh_obstacles()
+	nav_obstacle_generator.generate_navmesh_obstacles()
+	if not building_generation_params.generate_rooms:
+		generate_collision_shape()
 
 
 func clear() -> void:
 	cells = []
 	neighbors = []
-	models_placer.clear_models()
-	for obstacle in find_children("", "NavigationObstacle3D"):
-		obstacle.queue_free()
 
+	models_placer.clear()
+	for static_body in find_children("", "StaticBody3D"):
+		static_body.queue_free()
 
-func generate_navmesh_obstacles() -> void:
-	var scaling: Vector3 = models_placer.gridmaps[0].cell_size
-
-	for cell in initial_cells:
-		var outline = cell.get_base_vertices(scaling)
-
-		var obstacle = NavigationObstacle3D.new()
-		obstacle.affect_navigation_mesh = true
-		obstacle.avoidance_enabled = false
-		obstacle.height = NAV_MESH_OBSTACLE_HEIGHT
-		obstacle.vertices = outline
-
-		add_child(obstacle)
-		obstacle.owner = get_tree().edited_scene_root
+	if is_instance_valid(generated_building_node):
+		generated_building_node.queue_free()
+		generated_building_node = null
 
 
 func _get_configuration_warnings() -> PackedStringArray:
-	if neighbors_generator and cells_generator and models_placer:
-		return []
-	return [
-		"Child nodes are missing. Instantiate BuildingGenerator through scene or add them manually."
-	]
+	if building_shape_description == null:
+		return ["No building shape description provided."]
+	return []
+
+
+func generate_collision_shape() -> void:
+	var static_body: StaticBody3D = StaticBody3D.new()
+	generated_building_node.add_child(static_body)
+	static_body.owner = get_tree().edited_scene_root
+	for cell in initial_cells:
+		var cell_collision_shape = CollisionShape3D.new()
+		cell_collision_shape.shape = BoxShape3D.new()
+		cell_collision_shape.shape.size = (
+			Vector3(cell.size()) * building_generation_params.get_grid_size()
+		)
+		cell_collision_shape.position = cell.center() * building_generation_params.get_grid_size()
+		static_body.add_child(cell_collision_shape)
+		cell_collision_shape.owner = get_tree().edited_scene_root

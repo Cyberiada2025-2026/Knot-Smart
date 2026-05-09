@@ -25,5 +25,5 @@ func _process(_delta: float) -> void:
 			box.draw_visualization(
 				parent.global_position,
 				Quaternion.from_euler(parent.global_rotation),
-				parent.models_placer.gridmaps[0].cell_size
+				parent.building_generation_params.get_grid_size()
 			)

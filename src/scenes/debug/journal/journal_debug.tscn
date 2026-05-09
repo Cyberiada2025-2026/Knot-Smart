@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://choq5o5eyb6ni"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_3ypmc"]
+[ext_resource type="Script" uid="uid://cfbfg51ucp1a2" path="res://shared/journal/journal_entry_poi.gd" id="2_40cw0"]
+[ext_resource type="PackedScene" uid="uid://bi7hkhprp31go" path="res://characters/player/player_model.glb" id="3_cht0e"]
+[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="4_1ur2l"]
+[ext_resource type="Script" uid="uid://gfr35mbc1ij6" path="res://shared/journal/journal_entry.gd" id="5_unaqc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e74q2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_40cw0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cht0e"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cht0e"]
+
+[sub_resource type="Resource" id="Resource_unaqc"]
+script = ExtResource("5_unaqc")
+object_name = "Cube"
+description = "Only one entry for all the cubes"
+page = 2
+metadata/_custom_type_script = "uid://gfr35mbc1ij6"
+
+[sub_resource type="Resource" id="Resource_4bor6"]
+script = ExtResource("5_unaqc")
+object_name = "Le Alien"
+page = 3
+model_scene = "uid://bi7hkhprp31go"
+model_scale = 0.1
+metadata/_custom_type_script = "uid://gfr35mbc1ij6"
+
+[sub_resource type="PrismMesh" id="PrismMesh_1ur2l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unaqc"]
+albedo_color = Color(0.3529412, 1, 1, 1)
+
+[sub_resource type="Resource" id="Resource_ulqqp"]
+script = ExtResource("5_unaqc")
+object_name = "Triangle item"
+metadata/_custom_type_script = "uid://gfr35mbc1ij6"
+
+[sub_resource type="SphereMesh" id="SphereMesh_cht0e"]
+
+[sub_resource type="Resource" id="Resource_e2qbo"]
+script = ExtResource("5_unaqc")
+object_name = "Sphere mob"
+page = 3
+metadata/_custom_type_script = "uid://gfr35mbc1ij6"
+
+[sub_resource type="Resource" id="Resource_1ur2l"]
+script = ExtResource("5_unaqc")
+object_name = "Text entry 1"
+page = 0
+metadata/_custom_type_script = "uid://gfr35mbc1ij6"
+
+[node name="JournalDebug" type="Node3D" unique_id=268236953]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1886577668]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, -0.054117918, 0, 0)
+physics_material_override = SubResource("PhysicsMaterial_e74q2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=123984880]
+transform = Transform3D(5, 0, 0, 0, 1.927, 0, 0, 0, 5, 0, 0.047999993, 0)
+mesh = SubResource("PlaneMesh_40cw0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1187469512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4230811, 0)
+shape = SubResource("BoxShape3D_cht0e")
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_3ypmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8036857, 0.4508834, -2.0040073)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=467138878]
+transform = Transform3D(1, 0, 0, 0, 0.048448857, 0.99882567, 0, -0.99882567, 0.048448857, 0, 7.3644147, 0)
+
+[node name="Cube1" type="MeshInstance3D" parent="." unique_id=1992750285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1544485, 0.8004942, 4)
+mesh = SubResource("BoxMesh_cht0e")
+skeleton = NodePath("")
+
+[node name="PointOfInterest_Cube" type="Node3D" parent="Cube1" unique_id=108322991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3497529, 0)
+script = ExtResource("4_1ur2l")
+radius = 2.0
+metadata/_custom_type_script = "uid://bm0wrygl0ikje"
+
+[node name="JournalEntryPOI" type="Node" parent="Cube1/PointOfInterest_Cube" unique_id=270423925]
+script = ExtResource("2_40cw0")
+journal_entry = SubResource("Resource_unaqc")
+metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
+
+[node name="Cube2" type="MeshInstance3D" parent="." unique_id=1989066506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.077224255, 0.6502471, 4.5)
+mesh = SubResource("BoxMesh_cht0e")
+skeleton = NodePath("")
+
+[node name="PointOfInterest_Cube" type="Node3D" parent="Cube2" unique_id=547077905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3497529, 0)
+script = ExtResource("4_1ur2l")
+radius = 2.0
+metadata/_custom_type_script = "uid://bm0wrygl0ikje"
+
+[node name="JournalEntryPOI" type="Node" parent="Cube2/PointOfInterest_Cube" unique_id=950065045]
+script = ExtResource("2_40cw0")
+journal_entry = SubResource("Resource_unaqc")
+metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
+
+[node name="Alien" type="Node3D" parent="." unique_id=2019099619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3281841, 1.1103249, 0)
+
+[node name="player_model" parent="Alien" unique_id=2129174973 instance=ExtResource("3_cht0e")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="PointOfInterest" type="Node3D" parent="Alien" unique_id=960814263]
+script = ExtResource("4_1ur2l")
+radius = 3.0
+metadata/_custom_type_script = "uid://bm0wrygl0ikje"
+
+[node name="JournalEntryPOI" type="Node" parent="Alien/PointOfInterest" unique_id=1603935538]
+script = ExtResource("2_40cw0")
+journal_entry = SubResource("Resource_4bor6")
+metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
+
+[node name="Triangle" type="MeshInstance3D" parent="." unique_id=1036286945]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5570593, 0.63162374, 5.4745417)
+mesh = SubResource("PrismMesh_1ur2l")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_unaqc")
+
+[node name="PointOfInterest" type="Node3D" parent="Triangle" unique_id=437880212]
+script = ExtResource("4_1ur2l")
+radius = 1.0
+metadata/_custom_type_script = "uid://bm0wrygl0ikje"
+
+[node name="JournalEntryPOI" type="Node" parent="Triangle/PointOfInterest" unique_id=1362584624]
+script = ExtResource("2_40cw0")
+journal_entry = SubResource("Resource_ulqqp")
+metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
+
+[node name="Sphere" type="MeshInstance3D" parent="." unique_id=899439591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2824173, 0.63162374, -3.606511)
+mesh = SubResource("SphereMesh_cht0e")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_unaqc")
+
+[node name="PointOfInterest" type="Node3D" parent="Sphere" unique_id=1724316560]
+script = ExtResource("4_1ur2l")
+radius = 1.0
+metadata/_custom_type_script = "uid://bm0wrygl0ikje"
+
+[node name="JournalEntryPOI" type="Node" parent="Sphere/PointOfInterest" unique_id=377997808]
+script = ExtResource("2_40cw0")
+journal_entry = SubResource("Resource_e2qbo")
+metadata/_custom_type_script = "uid://cfbfg51ucp1a2"
+
+[node name="PointOfInterest" type="Node3D" parent="." unique_id=1790567313]
+script = ExtResource("4_1ur2l")
+radius = 2.0
+metadata/_custom_type_script = "uid://bm0wrygl0ikje"
+
+[node name="JournalEntryPOI" type="Node" parent="PointOfInterest" unique_id=1253479203]
+script = ExtResource("2_40cw0")
+journal_entry = SubResource("Resource_1ur2l")
+metadata/_custom_type_script = "uid://cfbfg51ucp1a2"

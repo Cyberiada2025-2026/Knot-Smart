@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://ba2yflgxg8c5s"]
+
+[ext_resource type="PackedScene" uid="uid://d3iyxsvy6lb3l" path="res://shared/buildings/assets/models/building_parts_filled.glb" id="1_w0qta"]
+[ext_resource type="Material" uid="uid://p23eoepvxe0s" path="res://shared/buildings/assets/materials/building_floor_material.tres" id="2_04tmi"]
+[ext_resource type="Shader" uid="uid://kaq856dfkhje" path="res://shared/shaders/shaded_PS1_with_alt.gdshader" id="3_hcqsa"]
+[ext_resource type="NoiseTexture3D" uid="uid://bfi6y3xtjd6am" path="res://shared/buildings/assets/textures/building_damage_mask.tres" id="4_b2awn"]
+[ext_resource type="Texture2D" uid="uid://dtiumsbnhc5kv" path="res://shared/buildings/assets/textures/FilledWallTextureDamaged.png" id="5_poeii"]
+[ext_resource type="Texture2D" uid="uid://e7x2h8suf1y6" path="res://shared/buildings/assets/textures/FilledWallTextureMain.png" id="6_75onk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xs0o"]
+render_priority = 0
+shader = ExtResource("3_hcqsa")
+shader_parameter/billboard = false
+shader_parameter/main_texture = ExtResource("6_75onk")
+shader_parameter/alt_texture = ExtResource("5_poeii")
+shader_parameter/alt_mask = ExtResource("4_b2awn")
+shader_parameter/alt_transform = Projection(0.125, -0.105, 0, 0, 0.3, 0.47, 0.105, 0, 0, 0.12, 0.125, 0, 0, 0, 0, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[node name="building_parts_filled" unique_id=800160931 instance=ExtResource("1_w0qta")]
+
+[node name="Floor" parent="." index="0" unique_id=561627276]
+surface_material_override/0 = ExtResource("2_04tmi")
+
+[node name="Hole" parent="." index="1" unique_id=1620146053]
+surface_material_override/0 = ExtResource("2_04tmi")
+
+[node name="Wall" parent="." index="2" unique_id=1998955941]
+surface_material_override/0 = SubResource("ShaderMaterial_3xs0o")
+
+[node name="Window" parent="." index="3" unique_id=52419117]
+surface_material_override/0 = SubResource("ShaderMaterial_3xs0o")
+
+[node name="Door" parent="." index="4" unique_id=462366776]
+surface_material_override/0 = SubResource("ShaderMaterial_3xs0o")

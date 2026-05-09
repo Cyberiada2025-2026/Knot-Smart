@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cd73b37cwjmj1"]
+
+[ext_resource type="Script" uid="uid://cilno82u0bqy7" path="res://autoload/progression_manager.gd" id="1_y6188"]
+
+[node name="ProgressionManager" type="Node" unique_id=1490832072]
+script = ExtResource("1_y6188")

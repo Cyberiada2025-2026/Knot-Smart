@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemDescription" format=3 uid="uid://bw55udm61j6kl"]
+
+[ext_resource type="Script" uid="uid://dvy1b1v48ym8a" path="res://ui/inventory/item_description.gd" id="1_2pksw"]
+
+[resource]
+script = ExtResource("1_2pksw")
+item_name = "Sprocket"
+description = "A wheel with teeth"
+metadata/_custom_type_script = "uid://dvy1b1v48ym8a"

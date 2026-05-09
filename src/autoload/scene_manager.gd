@@ -18,10 +18,7 @@ func goto_scene(path):
 func _deferred_goto_scene(path):
 	current_scene.free()
 
-	# Params:
-	# "" - type hint - default value
-	# true - use_sub_threads - enables accelerated loading using multithreading
-	ResourceLoader.load_threaded_request(path, "", true)
+	ResourceLoader.load_threaded_request(path)
 	loading_scene = loading_screen.instantiate()
 	loading_scene.set_path(path)
 

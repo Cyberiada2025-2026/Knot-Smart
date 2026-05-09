@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ds0lm2shdnd07"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ntsgn"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_ect5e"]
+size = Vector3(0.2, 0.2, 0.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1502119920]
+mesh = SubResource("CapsuleMesh_ntsgn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=7831140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49999994, -0.5)
+mesh = SubResource("BoxMesh_ect5e")

@@ -7,7 +7,3 @@ extends Resource
 ## Higher values increase visual range but impact GPU/CPU performance.
 ## Unit: [b]int[/b] (Chunks).
 @export var render_distance: int = 4
-
-## The material applied to the generated mesh surface.
-## Expects a type of Material (e.g., StandardMaterial3D or ShaderMaterial).
-@export var terrain_material: Material

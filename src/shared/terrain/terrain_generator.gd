@@ -46,6 +46,9 @@ func run_generation(manager: GridGenerationPipeline) -> void:
 				x * world_generation_params.tile_size, 0, z * world_generation_params.tile_size
 			)
 
+			if terrain_params.terrain_material:
+					mi.material_override = terrain_params.terrain_material
+			
 			var tile = blueprint.data[coord]
 			tile.height = blueprint.get_height(coord)
 			tile.objects.clear()

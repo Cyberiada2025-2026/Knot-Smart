@@ -34,7 +34,8 @@ func begin_generation():
 
 	map_instancer.create_map_instance()
 
-	chunk_manager = ChunkManager.new(self)
+	chunk_manager = ChunkManager.new()
+	chunk_manager.setup(self)
 	chunk_manager.name = "Chunks"
 
 

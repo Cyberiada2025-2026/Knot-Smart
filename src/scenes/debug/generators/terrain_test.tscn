@@ -18,20 +18,20 @@ chunk_size = 8
 tile_height = 6.0
 metadata/_custom_type_script = "uid://no1j1oowuup1"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3uku"]
-albedo_texture = ExtResource("4_biq8l")
-
 [sub_resource type="Resource" id="Resource_fjnk4"]
 script = ExtResource("3_biq8l")
 render_distance = 1
-terrain_material = SubResource("StandardMaterial3D_r3uku")
 metadata/_custom_type_script = "uid://bmtv75byrd25q"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_xedym"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h00rw"]
+albedo_texture = ExtResource("4_biq8l")
+
 [sub_resource type="Resource" id="Resource_jgk0a"]
 script = ExtResource("7_k5xeo")
 noise = SubResource("FastNoiseLite_xedym")
+terrain_material = SubResource("StandardMaterial3D_h00rw")
 metadata/_custom_type_script = "uid://ur8xw3m874ob"
 
 [node name="TerrainTest" type="Node3D" unique_id=1551696206]

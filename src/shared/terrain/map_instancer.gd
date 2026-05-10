@@ -89,8 +89,7 @@ func create_chunk_scene(chunk_coord: Vector2i, chunk_final_path: String) -> void
 				mi.mesh = data_node.mesh
 				mi.name = "Tile_%d_%d" % [x, z]
 
-				if world_display_params.terrain_material:
-					mi.material_override = world_display_params.terrain_material
+				mi.material_override = data_node.material_override
 
 				var local_pos = Vector3(
 					x * world_generation_params.tile_size, 0, z * world_generation_params.tile_size

@@ -57,7 +57,7 @@ func visualize(scale: int = 1, color: Color = VISUALIZATION_COLOR):
 	DebugDraw3D.draw_box(
 		Vector3(start.x, 0, start.y) * scale,
 		Quaternion.IDENTITY,
-		Vector3(size().x * scale, 1, size().y * scale),
+		Vector3(size().x * scale, 10, size().y * scale),
 		color,
 		false
 	)

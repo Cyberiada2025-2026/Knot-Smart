@@ -33,13 +33,13 @@ const VISUALIZATION_COLOR = Color(0, 0, 1, 1)
 ## Area where spot limits will be applied
 @export var area_limits: Spot = Spot.new()
 
-func visualize():
+func visualize(scale: int):
 	if Engine.is_editor_hint():
 		var selection = EditorInterface.get_selection()
 		var selected_nodes = selection.get_selected_nodes()
 
 		# easier tracking of currently edited area
 		if self in selected_nodes:
-			area_limits.visualize(HIGHLIGHT_VISUALIZATION_COLOR)
+			area_limits.visualize(scale, HIGHLIGHT_VISUALIZATION_COLOR)
 		else:
-			area_limits.visualize(VISUALIZATION_COLOR)
+			area_limits.visualize(scale, VISUALIZATION_COLOR)

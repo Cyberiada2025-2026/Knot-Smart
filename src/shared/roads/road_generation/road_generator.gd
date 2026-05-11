@@ -136,5 +136,9 @@ func _visualize() -> void:
 
 ## visualization for better areas setup
 func _visualize_limiter_areas():
+	var scale = 1
+	if _generation_manager:
+		scale = _generation_manager.world_generation_params.tile_size
+
 	for area in _get_generation_areas():
-		area.visualize()
+		area.visualize(scale)

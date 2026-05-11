@@ -9,6 +9,12 @@ enum Axis {
 }
 
 
+enum Axis2 {
+	X = Vector2i.Axis.AXIS_X,
+	Y = Vector2i.Axis.AXIS_Y,
+}
+
+
 static func normalize(value: float, range_min: float, range_max: float) -> float:
 	return (value - range_min) / (range_max - range_min)
 
@@ -22,3 +28,6 @@ static func get_random_point_in_circular_ring(
 	var theta = randf() * 2 * PI
 	var r = sqrt(pow(max_range, 2) - pow(min_range, 2) * randf() + pow(min_range, 2))
 	return Vector3(center.x + r * cos(theta), 0, center.z + r * sin(theta))
+
+
+

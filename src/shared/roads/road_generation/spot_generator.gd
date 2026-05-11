@@ -75,7 +75,7 @@ func _get_area_positions_array(start: Vector2i, end: Vector2i) -> Array:
 	return coordinates
 
 
-func _is_valid_tile(position: Vector2i, axis: int):
+func _is_valid_tile(position: Vector2i, axis: Utils.Axis2):
 	return (
 			(
 				axis == Utils.Axis2.X
@@ -105,9 +105,8 @@ func _split_spot(spot: Spot, area: LimiterArea, axis: int, spots: Array) -> bool
 	s2[axis] = spot.start[axis] + split_point
 
 	# avoid placing streets on incorrect slopes and terrain corners
-	for position in _get_area_positions_array(s2, e1):
-		if not _is_valid_tile(position, axis):
-			return false
+	if _is_line_containing_blockers(s2, e1, axis):
+		return false
 
 	var new_spot: Spot = Spot.new(s2, spot.end)
 	spot.end = e1
@@ -120,6 +119,13 @@ func _is_spot_correctly_sized(spot: Spot, max_spot_size: Vector2i) -> bool:
 		if spot.size()[axis] > max_spot_size[axis]:
 			return false
 	return true
+
+
+func _is_line_containing_blockers(start: Vector2i, end: Vector2i, axis: Utils.Axis2):
+	for position in _get_area_positions_array(start, end):
+		if not _is_valid_tile(position, axis):
+			return true
+	return false
 
 
 func _is_spot_touching_map_bounds(spot: Spot) -> bool:
@@ -136,5 +142,10 @@ func _is_spot_touching_map_bounds(spot: Spot) -> bool:
 func _move_spot_start(spots: Array[Spot]):
 	for axis in Utils.Axis2.values():
 		for spot in spots:
-			if spot.start[axis] != 0:
+			var end: Vector2i = spot.start
+			end[axis] = spot.end[axis]
+			if (
+				spot.start[axis] != 0
+				and not _is_line_containing_blockers(spot.start, end, axis)
+			):
 				spot.start[axis] += 1

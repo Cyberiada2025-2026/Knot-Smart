@@ -10,23 +10,6 @@
 [ext_resource type="Script" uid="uid://c52c7x4sbxs7o" path="res://shared/roads/road_generation/road_generator.gd" id="8_d58tf"]
 [ext_resource type="Script" uid="uid://dq2orvfvtw68e" path="res://shared/roads/road_generation/road_generation_params.gd" id="9_hrw75"]
 [ext_resource type="Script" uid="uid://clo0d36f066q1" path="res://shared/roads/road_generation/generation_areas.gd" id="10_c10gb"]
-[ext_resource type="Script" uid="uid://dan6slu1xdl8l" path="res://shared/terrain/chunk_manager.gd" id="11_1t0kp"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_0.tscn" id="12_h6yyi"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_1.tscn" id="13_046qc"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_2.tscn" id="14_0j146"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_3.tscn" id="15_w571n"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_0.tscn" id="16_mxuuo"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_1.tscn" id="17_da73e"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_2.tscn" id="18_1xfpv"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_3.tscn" id="19_so0bm"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_0.tscn" id="20_mjpne"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_1.tscn" id="21_quavt"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_2.tscn" id="22_6nn3e"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_3.tscn" id="23_yimex"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_0.tscn" id="24_le7tt"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_1.tscn" id="25_h8lp8"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_2.tscn" id="26_msqns"]
-[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_3.tscn" id="27_cqg1w"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="28_w730l"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="29_kwi1n"]
 
@@ -56,7 +39,7 @@ metadata/_custom_type_script = "uid://ur8xw3m874ob"
 
 [sub_resource type="Resource" id="Resource_tmyod"]
 script = ExtResource("9_hrw75")
-highway_generation_split_count = 99999
+highway_generation_split_count = 10
 map_size = 32
 
 [node name="TerrainTest" type="Node3D" unique_id=1551696206]
@@ -84,56 +67,6 @@ metadata/_custom_type_script = "uid://c52c7x4sbxs7o"
 
 [node name="GenerationAreas" type="Node" parent="MapRenderer/GridGenerationPipeline/RoadGenerator" unique_id=38984117]
 script = ExtResource("10_c10gb")
-
-[node name="Chunks2" type="Node3D" parent="MapRenderer" unique_id=2051882318]
-script = ExtResource("11_1t0kp")
-
-[node name="ChunkX0Z0" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1719291485 instance=ExtResource("12_h6yyi")]
-
-[node name="ChunkX0Z1" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1328610120 instance=ExtResource("13_046qc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
-
-[node name="ChunkX0Z2" type="Node3D" parent="MapRenderer/Chunks2" unique_id=2124488936 instance=ExtResource("14_0j146")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
-
-[node name="ChunkX0Z3" type="Node3D" parent="MapRenderer/Chunks2" unique_id=195877266 instance=ExtResource("15_w571n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 192)
-
-[node name="ChunkX1Z0" type="Node3D" parent="MapRenderer/Chunks2" unique_id=585422299 instance=ExtResource("16_mxuuo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
-
-[node name="ChunkX1Z1" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1832492058 instance=ExtResource("17_da73e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 64)
-
-[node name="ChunkX1Z2" type="Node3D" parent="MapRenderer/Chunks2" unique_id=727931433 instance=ExtResource("18_1xfpv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 128)
-
-[node name="ChunkX1Z3" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1971299651 instance=ExtResource("19_so0bm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 192)
-
-[node name="ChunkX2Z0" type="Node3D" parent="MapRenderer/Chunks2" unique_id=934594031 instance=ExtResource("20_mjpne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 0)
-
-[node name="ChunkX2Z1" type="Node3D" parent="MapRenderer/Chunks2" unique_id=695114787 instance=ExtResource("21_quavt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 64)
-
-[node name="ChunkX2Z2" type="Node3D" parent="MapRenderer/Chunks2" unique_id=970157502 instance=ExtResource("22_6nn3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
-
-[node name="ChunkX2Z3" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1542776532 instance=ExtResource("23_yimex")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 192)
-
-[node name="ChunkX3Z0" type="Node3D" parent="MapRenderer/Chunks2" unique_id=329933596 instance=ExtResource("24_le7tt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 0)
-
-[node name="ChunkX3Z1" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1624659791 instance=ExtResource("25_h8lp8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 64)
-
-[node name="ChunkX3Z2" type="Node3D" parent="MapRenderer/Chunks2" unique_id=91293184 instance=ExtResource("26_msqns")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 128)
-
-[node name="ChunkX3Z3" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1753167825 instance=ExtResource("27_cqg1w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 192)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=52888776]
 transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)

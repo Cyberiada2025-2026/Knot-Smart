@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_hudno"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="2_qqkcj"]
-[ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="3_66nb8"]
 [ext_resource type="PackedScene" uid="uid://dx21c5ighykbx" path="res://shared/projectiles/rock_placeholder.tscn" id="4_56sqr"]
+[ext_resource type="PackedScene" uid="uid://la55oj5btbbq" path="res://characters/idle_mobs/basic_mob/mob.tscn" id="4_ibuoj"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ibuoj"]
 vertices = PackedVector3Array(-9.5, 0.4479983, 0.5, -2.5, 0.4479983, 0.5, -2.5, 0.4479983, -1.75, -1.75, 0.4479983, -2, -1.75, 0.4479983, -9.5, -9.5, 0.4479983, -9.5, -0.75, 0.4479983, -1.75, -0.75, 0.4479983, 1.25, 1, 0.4479983, 1.25, 1, 0.4479983, -1.75, 2, 0.4479983, -2, 2, 0.4479983, -9.5, 2.75, 0.4479983, -1.75, 2.75, 0.4479983, -0.25, 9.5, 0.4479983, -0.5, 9.5, 0.4479983, -9.5, 2.75, 0.4479983, 2.75, 3, 0.4479983, 9.5, 9.5, 0.4479983, 9.5, -2.5, 0.4479983, 2.75, -9.5, 0.4479983, 9.5, -2.75, 0.4479983, 9.5, 1.25, 0.4479983, 3.25, -1, 0.4479983, 3.25, -2.25, 0.4479983, 3.25, 2.5, 0.4479983, 3.25)
@@ -24,13 +24,23 @@ size = Vector3(0.5, 6, 4)
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_hudno")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
 
-[node name="HealthComponent" parent="Player" index="3" unique_id=1622957288]
+[node name="gravityController" parent="Player/PlayerPhysics" parent_id_path=PackedInt32Array(1889026106, 1615832908) index="3" unique_id=1906056142 node_paths=PackedStringArray("sensors")]
+sensors = {
+"falling_ui_down": NodePath("FallingSensors/back_sensor"),
+"falling_ui_left": NodePath("FallingSensors/left_sensor"),
+"falling_ui_right": NodePath("FallingSensors/right_sensor"),
+"falling_ui_up": NodePath("FallingSensors/front_sensor"),
+"floor": NodePath("floor_sensor"),
+"ui_down": NodePath("MoveingSensors/back_sensor"),
+"ui_left": NodePath("MoveingSensors/left_sensor"),
+"ui_right": NodePath("MoveingSensors/right_sensor"),
+"ui_up": NodePath("MoveingSensors/front_sensor")
+}
+
+[node name="HealthComponent" parent="Player" index="2" unique_id=1622957288]
 debug_log = false
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("2_qqkcj")]
-
-[node name="Enemy" parent="." unique_id=768992349 instance=ExtResource("3_66nb8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 
 [node name="RockPlaceholder" parent="." unique_id=1852927063 instance=ExtResource("4_56sqr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0006670058, 5.336998, 4)
@@ -60,7 +70,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7736145, 2.5516033, 0.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Wall2" unique_id=691764702]
 mesh = SubResource("BoxMesh_s7cml")
-skeleton = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall2" unique_id=919376171]
 shape = SubResource("BoxShape3D_2nnky")
@@ -73,6 +82,9 @@ mesh = SubResource("BoxMesh_s7cml")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Wall" unique_id=618632055]
 shape = SubResource("BoxShape3D_2nnky")
+
+[node name="Mob" parent="." unique_id=768992349 instance=ExtResource("4_ibuoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3563044, 0.040162325, 0.7597225)
 
 [editable path="Player"]
 [editable path="Player/PlayerPhysics"]

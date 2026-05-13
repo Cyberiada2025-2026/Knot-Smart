@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://la55oj5btbbq"]
+
+[ext_resource type="Script" uid="uid://claql84jotoud" path="res://characters/enemies/basic_enemy/enemy_actor.gd" id="1_uco7o"]
+[ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_eev44"]
+[ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="4_hn2uf"]
+[ext_resource type="Script" uid="uid://we22430vcb44" path="res://addons/beehave/nodes/decorators/time_limiter.gd" id="5_3xagg"]
+[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="6_jeqp1"]
+[ext_resource type="Script" uid="uid://cjpvy7npubmpa" path="res://shared/beehave/action/set_random_nav_target.gd" id="7_mliko"]
+[ext_resource type="Script" uid="uid://nbj8xk6nqyb6" path="res://shared/beehave/action/set_movement.gd" id="8_ll80s"]
+[ext_resource type="Script" uid="uid://qxwvejkcr6c" path="res://shared/beehave/condition/has_reached_target.gd" id="9_w5rhd"]
+[ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="10_3agmf"]
+[ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="11_gqh8i"]
+[ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="12_epy88"]
+[ext_resource type="Script" uid="uid://c24bwn0043vhi" path="res://shared/health/toggleable_area.gd" id="13_ukok7"]
+[ext_resource type="Script" uid="uid://djg0m48s04bny" path="res://shared/health/base_damage_component.gd" id="14_0bxg1"]
+[ext_resource type="Script" uid="uid://bwbgvbw8rs0aa" path="res://shared/vfx/player/vfx_player_sequence.gd" id="15_yy48u"]
+[ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="16_jcc60"]
+[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="17_v2cox"]
+[ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="18_bwjrb"]
+[ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="19_w1oxc"]
+[ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="20_1wuor"]
+[ext_resource type="Script" uid="uid://cfbfg51ucp1a2" path="res://shared/journal/journal_entry_poi.gd" id="21_d20tb"]
+[ext_resource type="Script" uid="uid://gfr35mbc1ij6" path="res://shared/journal/journal_entry.gd" id="22_riiqj"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ntsgn"]
+radius = 0.4
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ffvs"]
+albedo_color = Color(0, 0.58437884, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ect5e"]
+size = Vector3(0.2, 0.2, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uwcne"]
+size = Vector3(1, 1.6, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r2ijf"]
+radius = 6.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4sp7t"]
+transparency = 1
+albedo_color = Color(0.654902, 0.043137256, 0.26666668, 0.5019608)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ejf3g"]
+material = SubResource("StandardMaterial3D_4sp7t")
+radius = 6.0
+height = 12.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2vyja"]
+radius = 1.5
+
+[sub_resource type="Resource" id="Resource_ou6is"]
+script = ExtResource("20_1wuor")
+text = "This guy seems like trouble"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_necax"]
+script = ExtResource("20_1wuor")
+text = "I'm gonna die fast"
+metadata/_custom_type_script = "uid://kpru7f8vmtp5"
+
+[sub_resource type="Resource" id="Resource_wjvgd"]
+script = ExtResource("19_w1oxc")
+sentences = Array[ExtResource("20_1wuor")]([SubResource("Resource_ou6is"), SubResource("Resource_necax")])
+metadata/_custom_type_script = "uid://dhpmrqniojeb4"
+
+[sub_resource type="Resource" id="Resource_y1krv"]
+script = ExtResource("22_riiqj")
+object_name = "Enemy"
+description = "This is an enemy"
+page = 3
+model_scene = "uid://ds0lm2shdnd07"
+model_scale = 0.3
+rotation_angle = 0.2
+metadata/_custom_type_script = "uid://gfr35mbc1ij6"
+
+[node name="Mob" type="CharacterBody3D" unique_id=768992349]
+script = ExtResource("1_uco7o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1502119920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+mesh = SubResource("CapsuleMesh_ntsgn")
+surface_material_override/0 = SubResource("StandardMaterial3D_4ffvs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D" unique_id=7831140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49999994, -0.5)
+mesh = SubResource("BoxMesh_ect5e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1344185253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_uwcne")
+
+[node name="BeehaveTree" type="Node" parent="." unique_id=1892085315 node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("3_eev44")
+blackboard = NodePath("@Node@19412")
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
+
+[node name="Idle" type="Node" parent="BeehaveTree" unique_id=290039937]
+script = ExtResource("4_hn2uf")
+wait_time = 2.0
+metadata/_custom_type_script = "uid://dorri1tul8gfx"
+
+[node name="TimeLimiterDecorator" type="Node" parent="BeehaveTree/Idle" unique_id=1138802919]
+script = ExtResource("5_3xagg")
+wait_time = 7.0
+metadata/_custom_type_script = "uid://we22430vcb44"
+
+[node name="Idle" type="Node" parent="BeehaveTree/Idle/TimeLimiterDecorator" unique_id=381837027]
+script = ExtResource("6_jeqp1")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="SetRandomDirection" type="Node" parent="BeehaveTree/Idle/TimeLimiterDecorator/Idle" unique_id=1760552864]
+script = ExtResource("7_mliko")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="StartNavigation" type="Node" parent="BeehaveTree/Idle/TimeLimiterDecorator/Idle" unique_id=864631704]
+script = ExtResource("8_ll80s")
+can_move = true
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="HasReachedTarget" type="Node" parent="BeehaveTree/Idle/TimeLimiterDecorator/Idle" unique_id=692924536]
+script = ExtResource("9_w5rhd")
+desired_distance = 1.0
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="StopNavigation" type="Node" parent="BeehaveTree/Idle/TimeLimiterDecorator/Idle" unique_id=1966064262]
+script = ExtResource("8_ll80s")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=452124013]
+avoidance_enabled = true
+height = 2.0
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=1948683026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+shape = SubResource("SphereShape3D_r2ijf")
+target_position = Vector3(0, 0, 0)
+collide_with_areas = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ShapeCast3D" unique_id=1954915395]
+visible = false
+mesh = SubResource("SphereMesh_ejf3g")
+
+[node name="HitBox" type="Area3D" parent="." unique_id=332146229 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("10_3agmf")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://7sxs6ubjcqmo"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=126329277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_uwcne")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1094944780]
+script = ExtResource("11_gqh8i")
+debug_log = true
+metadata/_custom_type_script = "uid://b5oot86kgom7d"
+
+[node name="DeathComponent" type="Node" parent="." unique_id=1828287102]
+script = ExtResource("12_epy88")
+
+[node name="ChargeAttack" type="Area3D" parent="." unique_id=1968422689]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("13_ukok7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeAttack" unique_id=1551284170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_2vyja")
+disabled = true
+
+[node name="DamageComponent" type="Node" parent="ChargeAttack" unique_id=929683814]
+script = ExtResource("14_0bxg1")
+base_damage = 4.0
+metadata/_custom_type_script = "uid://djg0m48s04bny"
+
+[node name="BasicAttack" type="Area3D" parent="." unique_id=847560660]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("13_ukok7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BasicAttack" unique_id=571735578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+shape = SubResource("SphereShape3D_2vyja")
+
+[node name="DamageComponent" type="Node" parent="BasicAttack" unique_id=2110839671]
+script = ExtResource("14_0bxg1")
+metadata/_custom_type_script = "uid://djg0m48s04bny"
+
+[node name="VfxPlayerSequence" type="Node3D" parent="." unique_id=988250431]
+script = ExtResource("15_yy48u")
+
+[node name="BloodVfx" parent="VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("16_jcc60")]
+
+[node name="PointOfInterest" type="Node3D" parent="." unique_id=1072260532]
+visible = false
+script = ExtResource("17_v2cox")
+radius = 4.0
+
+[node name="SpeechPOI" type="Node" parent="PointOfInterest" unique_id=1702120644]
+script = ExtResource("18_bwjrb")
+dialogue = SubResource("Resource_wjvgd")
+
+[node name="JournalEntryPOI" type="Node" parent="PointOfInterest" unique_id=1237039963]
+script = ExtResource("21_d20tb")
+journal_entry = SubResource("Resource_y1krv")
+
+[connection signal="health_decreased" from="HealthComponent" to="VfxPlayerSequence" method="play"]
+[connection signal="health_depleted" from="HealthComponent" to="DeathComponent" method="_on_death"]

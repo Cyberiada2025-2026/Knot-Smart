@@ -22,6 +22,12 @@ enum SpawnResult {
 @export_custom(PROPERTY_HINT_NONE, "suffix:s") var spawn_attempt_interval: float = 5.0
 ## How many times enemy spawn is attempted per interval.
 @export var spawn_attempt_count: int = 2
+@export var allowed_spawn_times = {
+	"Day" : true,
+	"Dusk" : true,
+	"Sunset" : true,
+	"Night" : true
+}
 
 @export_group("References")
 @export var nav_region: NavigationRegion3D
@@ -30,10 +36,12 @@ enum SpawnResult {
 @export var enemy_spawn_node: Node3D
 
 var spawn_areas: Array[EnemySpawnArea]
-var active_enemies: Dictionary[Area3D, Node3D]
+
+var active_entities : Array[Node3D]
 
 var player: Player
 var spawn_attempt_timer: Timer
+
 
 
 func _ready() -> void:
@@ -79,17 +87,17 @@ func spawn_enemy() -> SpawnResult:
 	var picked_spawn_area: EnemySpawnArea = get_spawn_area()
 	if picked_spawn_area == null:
 		return SpawnResult.NO_SPAWN_AREA
-	if active_enemies.has(picked_spawn_area):
-		return SpawnResult.AREA_ENEMY_ALREADY_EXISTS
+	#if active_enemies.has(picked_spawn_area):
+		#return SpawnResult.AREA_ENEMY_ALREADY_EXISTS
 
 	var rand_point_on_mesh = get_spawn_point()
 	if rand_point_on_mesh == null:
 		return SpawnResult.NO_VALID_SPAWNPOINT
 
-	var enemy: Node3D = picked_spawn_area.enemy_scene.instantiate()
+	var enemy: Node3D = picked_spawn_area.entity_scene.instantiate()
 	enemy_spawn_node.add_child(enemy)
 	enemy.position = rand_point_on_mesh
-	active_enemies.set(picked_spawn_area, enemy)
+	active_entities.append(enemy)
 
 	return SpawnResult.SUCCESS
 
@@ -103,23 +111,23 @@ func get_spawn_area() -> EnemySpawnArea:
 
 func despawn_enemy(enemy: Node3D) -> void:
 	enemy.queue_free()
-	active_enemies.erase(active_enemies.find_key(enemy))
-
+	active_entities.erase(enemy)
 	if debug_log:
 		print("Despawned enemy: ", enemy)
 
 
 func _on_time_period_changed(current: TimePeriod) -> void:
-	if current.is_night:
+	if allowed_spawn_times[str(current)]:
 		spawn_attempt_timer.start()
 	else:
 		spawn_attempt_timer.stop()
-		for enemy in active_enemies.values():
-			despawn_enemy(enemy)
+		var size = active_entities.size()
+		for i in range(size):
+			despawn_enemy(active_entities[size-i-1])
 
 
 func _physics_process(_delta: float) -> void:
-	for enemy in active_enemies.values():
+	for enemy in active_entities:
 		if (
 			enemy.global_position.distance_squared_to(player.player_physics.global_position)
 			>= pow(despawn_distance, 2)
@@ -128,9 +136,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_spawn_interval_timeout() -> void:
-	if active_enemies.size() >= max_active_enemies:
+	if active_entities.size() >= max_active_enemies:
 		return
-
 	for i in spawn_attempt_count:
 		var result = spawn_enemy()
 		if debug_log:

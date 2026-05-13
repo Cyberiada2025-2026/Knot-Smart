@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://0fwfv15d2488" path="res://characters/player/player_physics.gd" id="1_267bi"]
 [ext_resource type="PackedScene" uid="uid://bi7hkhprp31go" path="res://characters/player/player_model.glb" id="3_c153i"]
+[ext_resource type="PackedScene" uid="uid://fecvumkh4cc" path="res://shared/sfx/character_sfx/character_sfx.tscn" id="3_rtd8o"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hysn5"]
 radius = 0.25
@@ -16,3 +17,5 @@ shape = SubResource("CapsuleShape3D_hysn5")
 
 [node name="PlayerModel" parent="." unique_id=636085063 instance=ExtResource("3_c153i")]
 transform = Transform3D(-0.13, 0, 0, 0, 0.13, 0, 0, 0, -0.13, 0, 0, 0)
+
+[node name="CharacterSfx" parent="." unique_id=186102840 instance=ExtResource("3_rtd8o")]

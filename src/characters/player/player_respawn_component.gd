@@ -15,7 +15,7 @@ func _ready():
 
 func _die():
 	ProgressionManager.record_death()
-	if (!ProgressionManager.is_game_over()):
+	if !ProgressionManager.is_game_over():
 		animator._start()
 
 

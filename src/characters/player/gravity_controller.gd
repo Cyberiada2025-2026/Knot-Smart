@@ -13,13 +13,14 @@ extends Node3D
 
 var ground_normal: Vector3 = Vector3.UP
 var front: Vector3 = Vector3.FORWARD
+var are_sensors_locked: bool = false
 var are_sensors_active: bool = true
 var is_rotating: bool = false
 var new_ground_normal: Vector3 = Vector3.UP
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("toggle_gravity_controller"):
+	if event.is_action_pressed("toggle_gravity_controller") and not are_sensors_locked:
 		are_sensors_active = not are_sensors_active
 
 

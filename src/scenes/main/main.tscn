@@ -1,18 +1,15 @@
 [gd_scene format=3 uid="uid://3rax0onuo76f"]
 
+[ext_resource type="NavigationMesh" uid="uid://c2k4xq161o4fj" path="res://characters/enemies/basic_enemy/basic_enemy_navmesh_setup.tres" id="1_nvumn"]
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/building_generation/building_generation_params.gd" id="2_7smn1"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="Resource" uid="uid://dm1eub1sdan0k" path="res://shared/buildings/model_management/basic_building_tileset.tres" id="3_raeie"]
-[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="4_b1x3f"]
 [ext_resource type="MeshLibrary" uid="uid://dxdix3oesovgs" path="res://shared/buildings/assets/models/building_parts_no_collision.tres" id="5_hxu8e"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
-[ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="7_7smn1"]
 [ext_resource type="Script" uid="uid://c8acika7wo4ks" path="res://shared/buildings/building_generation/building_generator.gd" id="7_hxu8e"]
 [ext_resource type="MeshLibrary" uid="uid://br6yiw7xqd0hw" path="res://shared/buildings/assets/models/building_parts_collision.tres" id="7_nvumn"]
-[ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="8_hxu8e"]
-[ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="9_nvumn"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_a8run"]
 [ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="10_th5th"]
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
@@ -26,11 +23,6 @@
 radius = 0.3
 height = 1.8
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_iuonh"]
-vertices = PackedVector3Array(9.7, 0.70000005, 8.25, 9.7, 0.70000005, 3.25, 5.45, 0.70000005, 3, -9.55, 0.70000005, 8.25, -9.55, 0.70000005, -9.5, 5.45, 0.70000005, -9.5)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 2, 4), PackedInt32Array(4, 2, 3)]
-cell_height = 0.1
-
 [sub_resource type="BoxMesh" id="BoxMesh_vom5j"]
 size = Vector3(20, 1, 100)
 
@@ -40,8 +32,6 @@ size = Vector3(20, 1, 100)
 [sub_resource type="Resource" id="Resource_7smn1"]
 script = ExtResource("2_7smn1")
 random_seed = 722
-building_tileset = ExtResource("3_raeie")
-generate_rooms = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r4lks"]
 size = Vector3(14, 5.6, 10)
@@ -55,10 +45,6 @@ size = Vector3(4, 2.8, 6)
 [sub_resource type="Resource" id="Resource_raeie"]
 script = ExtResource("2_7smn1")
 random_seed = 2
-building_tileset = ExtResource("3_raeie")
-min_room_size = Vector3i(1, 1, 1)
-max_room_size = Vector3i(4, 1, 3)
-long_room_tendency = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_raeie"]
 size = Vector3(30, 100, 30)
@@ -73,7 +59,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47107148, 1.3952317, 0)
 mesh = SubResource("CapsuleMesh_vom5j")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=212692753]
-navigation_mesh = SubResource("NavigationMesh_iuonh")
+navigation_mesh = ExtResource("1_nvumn")
 
 [node name="10x10_floor" type="StaticBody3D" parent="NavigationRegion3D" unique_id=2097217269]
 
@@ -271,6 +257,3 @@ shape = SubResource("BoxShape3D_raeie")
 
 [node name="SheetMusic" parent="." unique_id=1780103802 instance=ExtResource("17_nvumn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116556)
-
-[editable path="NavigationRegion3D/BuildingGenerator"]
-[editable path="NavigationRegion3D/BuildingGenerator2"]

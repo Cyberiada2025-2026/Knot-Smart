@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3shsleag11v2"
-path.s3tc="res://.godot/imported/waves.png-7b49610a5e685ac3a5b4343de0a5d73c.s3tc.ctex"
+uid="uid://dnq7xins23tew"
+path.s3tc="res://.godot/imported/water_splash.png-997170f62e95d71637c41f26078fa298.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://shared/water/waves.png"
-dest_files=["res://.godot/imported/waves.png-7b49610a5e685ac3a5b4343de0a5d73c.s3tc.ctex"]
+source_file="res://shared/water/water_splash.png"
+dest_files=["res://.godot/imported/water_splash.png-997170f62e95d71637c41f26078fa298.s3tc.ctex"]
 
 [params]
 

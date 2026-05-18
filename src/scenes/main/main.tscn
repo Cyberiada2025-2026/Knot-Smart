@@ -4,15 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
 [ext_resource type="Resource" uid="uid://dm1eub1sdan0k" path="res://shared/buildings/model_management/basic_building_tileset.tres" id="3_raeie"]
-[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="4_b1x3f"]
 [ext_resource type="MeshLibrary" uid="uid://dxdix3oesovgs" path="res://shared/buildings/assets/models/building_parts_no_collision.tres" id="5_hxu8e"]
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="6_hujxm"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="6_ow5a4"]
-[ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="7_7smn1"]
 [ext_resource type="Script" uid="uid://c8acika7wo4ks" path="res://shared/buildings/building_generation/building_generator.gd" id="7_hxu8e"]
 [ext_resource type="MeshLibrary" uid="uid://br6yiw7xqd0hw" path="res://shared/buildings/assets/models/building_parts_collision.tres" id="7_nvumn"]
-[ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="8_hxu8e"]
-[ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="9_nvumn"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="10_a8run"]
 [ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="10_th5th"]
 [ext_resource type="CompressedTexture3D" uid="uid://dr3gvkecm4lp3" path="res://shared/day_night_cycle/LUTs/LUT_day.png" id="11_7smn1"]
@@ -22,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://cwgdxw2n1ey7s" path="res://shared/papers/sheet_music/sheet_music.tscn" id="17_nvumn"]
 [ext_resource type="Material" uid="uid://cs6kr88umcnbn" path="res://shared/water/water.tres" id="18_ou6is"]
 [ext_resource type="Script" uid="uid://cwakd5bfssywv" path="res://shared/utils/spawn_timer.gd" id="19_necax"]
+[ext_resource type="PackedScene" uid="uid://dkptpk7ndyv1r" path="res://shared/water/splash.glb" id="20_pg34l"]
 [ext_resource type="PackedScene" uid="uid://cjfwyjhh3373u" path="res://shared/water/splash.tscn" id="20_r4lks"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
@@ -42,8 +39,6 @@ size = Vector3(20, 1, 20)
 [sub_resource type="Resource" id="Resource_7smn1"]
 script = ExtResource("2_7smn1")
 random_seed = 722
-building_tileset = ExtResource("3_raeie")
-generate_rooms = false
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r4lks"]
 size = Vector3(14, 5.6, 10)
@@ -57,10 +52,6 @@ size = Vector3(4, 2.8, 6)
 [sub_resource type="Resource" id="Resource_raeie"]
 script = ExtResource("2_7smn1")
 random_seed = 2
-building_tileset = ExtResource("3_raeie")
-min_room_size = Vector3i(1, 1, 1)
-max_room_size = Vector3i(4, 1, 3)
-long_room_tendency = 0.2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_r4lks"]
 
@@ -241,6 +232,7 @@ metadata/_custom_type_script = "uid://b0sxpo4x8f11a"
 
 [node name="Dusk" type="Node" parent="DayNightCycle" unique_id=1615816852]
 script = ExtResource("10_th5th")
+duration = 5.0
 color_lut = ExtResource("12_7smn1")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
@@ -252,6 +244,7 @@ metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
 [node name="Sunset" type="Node" parent="DayNightCycle" unique_id=291254206]
 script = ExtResource("10_th5th")
+duration = 5.0
 color_lut = ExtResource("12_7smn1")
 metadata/_custom_type_script = "uid://bspfhf53tg7of"
 
@@ -279,7 +272,4 @@ script = ExtResource("19_necax")
 interval = 5.0
 object = ExtResource("20_r4lks")
 
-[connection signal="triggered" from="Enemy/PointOfInterest" to="NavigationRegion3D/BuildingGenerator" method="_on_point_of_interest_triggered"]
-
-[editable path="NavigationRegion3D/BuildingGenerator"]
-[editable path="NavigationRegion3D/BuildingGenerator2"]
+[node name="splash" parent="." unique_id=377485569 instance=ExtResource("20_pg34l")]

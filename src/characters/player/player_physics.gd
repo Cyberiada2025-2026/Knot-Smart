@@ -9,9 +9,12 @@ extends CharacterBody3D
 
 @export var player_model: Node3D
 
+var animation_player: AnimationPlayer
+
 
 func _ready() -> void:
 	player = self.get_parent()
+	animation_player = player_model.find_child("AnimationPlayer", false)
 
 
 func _physics_process(delta: float) -> void:
@@ -52,11 +55,13 @@ func _handle_flat_movement(delta: float) -> void:
 func _handle_move_input(delta: float):
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	if input_dir:
+		animation_player.play("Walk")
 		velocity.x = -input_dir.x * speed * delta
 		velocity.z = -input_dir.y * speed * delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, slowing_speed * delta)
 		velocity.z = move_toward(velocity.z, 0, slowing_speed * delta)
+		animation_player.play("Idle")
 
 
 func _handle_jump():

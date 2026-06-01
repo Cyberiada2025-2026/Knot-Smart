@@ -48,6 +48,7 @@ func end() -> void:
 	await get_tree().create_timer(5.0).timeout
 	queue_free()
 
+
 func on_fuse() -> void:
 	fuse_vfx1.emitting = true
 	fuse_vfx2.emitting = true

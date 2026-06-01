@@ -2,8 +2,6 @@
 class_name PlantWallGeneratorParams
 extends Resource
 
-
-
 @export var custom_seed: int = 0
 
 @export_group("location")
@@ -25,17 +23,13 @@ extends Resource
 @export_group("biomes")
 ## Minimal area of biomes in m^2
 @export var biomes_desired_minimum_area: Dictionary[String, int] = {
-	"biome1": 10000,
-	"biome2": 10000,
-	"biome3": 10000
+	"biome1": 10000, "biome2": 10000, "biome3": 10000
 }
 
 @export_group("passages")
-@export var passage_prefab: PackedScene = preload(
-	"res://shared/biome_generator/wall/biome_passage.tscn"
-)
+@export
+var passage_prefab: PackedScene = preload("res://shared/biome_generator/wall/biome_passage.tscn")
 @export var number_of_passages_per_biomes_border: int = 3
-
 
 
 func regenerate_seed() -> void:

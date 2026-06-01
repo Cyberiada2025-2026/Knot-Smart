@@ -11,6 +11,7 @@ var walls: Array[BiomeWall] = []
 var passage: Array[Node3D] = []
 var is_able_to_expand = true
 
+
 func open_biome() -> void:
 	for wall: BiomeWall in walls:
 		wall.remove_biome(self)

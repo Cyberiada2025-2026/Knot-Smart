@@ -19,5 +19,6 @@ func get_rotation() -> float:
 func get_vector() -> Vector2:
 	return end_point - start_point
 
+
 func get_middle() -> Vector2:
-	return (start_point + end_point)/2
+	return (start_point + end_point) / 2

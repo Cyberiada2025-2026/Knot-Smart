@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://3rax0onuo76f"]
 
+[ext_resource type="NavigationMesh" uid="uid://c2k4xq161o4fj" path="res://characters/enemies/basic_enemy/basic_enemy_navmesh_setup.tres" id="1_nvumn"]
 [ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/building_generation/building_generation_params.gd" id="2_7smn1"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="2_iuonh"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="3_k2fmo"]
@@ -22,11 +23,6 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
 height = 1.8
-
-[sub_resource type="NavigationMesh" id="NavigationMesh_iuonh"]
-vertices = PackedVector3Array(9.7, 0.70000005, 8.25, 9.7, 0.70000005, 3.25, 5.45, 0.70000005, 3, -9.55, 0.70000005, 8.25, -9.55, 0.70000005, -9.5, 5.45, 0.70000005, -9.5)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 2, 4), PackedInt32Array(4, 2, 3)]
-cell_height = 0.1
 
 [sub_resource type="BoxMesh" id="BoxMesh_vom5j"]
 size = Vector3(20, 1, 100)
@@ -67,7 +63,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47107148, 1.3952317, 0)
 mesh = SubResource("CapsuleMesh_vom5j")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=212692753]
-navigation_mesh = SubResource("NavigationMesh_iuonh")
+navigation_mesh = ExtResource("1_nvumn")
 
 [node name="10x10_floor" type="StaticBody3D" parent="NavigationRegion3D" unique_id=2097217269]
 
@@ -266,7 +262,9 @@ shape = SubResource("BoxShape3D_raeie")
 [node name="SheetMusic" parent="." unique_id=1780103802 instance=ExtResource("17_nvumn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116556)
 
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1959169120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.812538, 0, 0)
 material_override = ExtResource("18_ou6is")
 mesh = SubResource("PlaneMesh_necax")
+

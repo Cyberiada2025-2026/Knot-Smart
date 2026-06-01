@@ -1,7 +1,6 @@
 class_name InventoryManager
 extends Control
 
-
 @export var grid_size = Vector2(320.0, 70.0)
 @export var column_num = 7
 @export var row_num = 2
@@ -36,7 +35,7 @@ func set_cells():
 	for child in grid.get_children():
 		child.queue_free()
 	grid.columns = column_num
-	for i in range(column_num*row_num):
+	for i in range(column_num * row_num):
 		var cell = inventory_cell.instantiate()
 		grid.add_child(cell)
 

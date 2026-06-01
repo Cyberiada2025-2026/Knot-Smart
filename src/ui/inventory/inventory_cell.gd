@@ -1,7 +1,6 @@
 class_name InventoryCell
 extends PanelContainer
 
-
 @export var subviewport: SubViewport
 @export var count_label: RichTextLabel
 var items: Array[Node3D]
@@ -9,7 +8,7 @@ var type: ItemDescription
 
 
 func add_item(item: ItemDescription):
-	if len(items)==0:
+	if len(items) == 0:
 		item.main_node.reparent(subviewport)
 		item.main_node.global_position = Vector3.ZERO
 		type = item
@@ -20,7 +19,7 @@ func add_item(item: ItemDescription):
 
 
 func remove_item(quantity: int) -> int:
-	var diff = len(items)-quantity
+	var diff = len(items) - quantity
 	for i in clampi(quantity, 0, len(items)):
 		var popped_item = items.pop_back()
 		popped_item.queue_free()
@@ -40,4 +39,4 @@ func is_empty() -> bool:
 
 func update_count_label():
 	count_label.text = str(len(items))
-	count_label.visible = len(items)>0
+	count_label.visible = len(items) > 0

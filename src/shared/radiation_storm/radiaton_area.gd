@@ -11,10 +11,12 @@ var radiation: float = 0.0
 var rad_rect: ColorRect
 var rad_mat: ShaderMaterial
 
+
 func _ready() -> void:
 	rad_rect = CameraSetup.get_radiation()
 	rad_mat = rad_rect.material
-	rad_rect. visible = false
+	rad_rect.visible = false
+
 
 func _process(delta: float) -> void:
 	if killing:
@@ -35,6 +37,7 @@ func _process(delta: float) -> void:
 
 func _on_area_3d_area_entered(_area: Area3D) -> void:
 	killing = false
+
 
 func _on_area_exited(_area: Area3D) -> void:
 	killing = true

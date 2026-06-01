@@ -22,3 +22,15 @@ static func get_random_point_in_circular_ring(
 	var theta = randf() * 2 * PI
 	var r = sqrt(pow(max_range, 2) - pow(min_range, 2) * randf() + pow(min_range, 2))
 	return Vector3(center.x + r * cos(theta), 0, center.z + r * sin(theta))
+
+
+static func get_input_action_as_text(action_name: String) -> String:
+	var events = InputMap.action_get_events(action_name)
+	if events.is_empty():
+		return "Not Assigned"
+	var event: InputEvent = events[0]
+	var event_name = event.as_text()
+
+	event_name = event_name.trim_suffix(" - Physical")
+
+	return event_name

@@ -27,6 +27,7 @@ var white_mix = 0.0
 var scale_mix = 0.0
 var active = false
 
+
 func _start() -> void:
 	active = true
 	rect.visible = true
@@ -54,13 +55,14 @@ func _start() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_method(
 		func(value): rect.material.set_shader_parameter("tint", value),
-		Color.BLACK,		# Start value
-		Color.WHITE,		# End value
-		sequence[0]		# Duration
+		Color.BLACK,  # Start value
+		Color.WHITE,  # End value
+		sequence[0]  # Duration
 	)
 
+
 func _process(delta: float) -> void:
-	if (!active):
+	if !active:
 		return
 
 	timer += delta
@@ -68,19 +70,20 @@ func _process(delta: float) -> void:
 		spawn()
 		timer = 0.0
 
-	if (spawned_cells > start_white):
+	if spawned_cells > start_white:
 		white_mix += (points_amount - start_white) * sequence[sequence.size() - 1] * delta
 
-	if (spawned_cells > start_scale):
+	if spawned_cells > start_scale:
 		scale_mix += (points_amount - start_scale) * sequence[sequence.size() - 1] * delta
-
 
 	var r: Vector2
 
 	for i in range(points_amount):
 		for j in range(points_amount):
 			if i != j:
-				speeds[i] += force.sample(points[i].distance_to(points[j])) * (points[j] - points[i])
+				speeds[i] += (
+					force.sample(points[i].distance_to(points[j])) * (points[j] - points[i])
+				)
 		r = Vector2(randf(), randf()) * 2.0 - Vector2.ONE
 		speeds[i] += r * delta * acceleration
 		speeds[i] += (Vector2.ONE * 0.5 - points[i]) * center_pull * delta
@@ -90,6 +93,7 @@ func _process(delta: float) -> void:
 	rect.material.set_shader_parameter(points_param, points)
 	rect.material.set_shader_parameter(white_mix_param, white_mix)
 	rect.material.set_shader_parameter(scale_mix_param, scale_mix)
+
 
 func spawn() -> void:
 	if spawned_cells > points_amount - 1:

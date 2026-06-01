@@ -1,0 +1,417 @@
+[gd_scene format=3 uid="uid://dme4q7clvb5fi"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_s4hfs"]
+[ext_resource type="Script" uid="uid://djg0m48s04bny" path="res://shared/health/base_damage_component.gd" id="3_x8hl5"]
+[ext_resource type="Script" uid="uid://bxjrubfcv84ac" path="res://shared/health/stun_component.gd" id="4_vas5k"]
+[ext_resource type="Script" uid="uid://bh2wj72adhamc" path="res://shared/changing_parts/changing_part.gd" id="5_321mu"]
+[ext_resource type="PackedScene" uid="uid://cwmyt6y2863aq" path="res://shared/antennas/radio_tower/radio_tower.tscn" id="6_f8fwh"]
+[ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="9_rjtpl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2d8t"]
+albedo_color = Color(0.63810116, 0.80370927, 0.39393768, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f8fwh"]
+albedo_color = Color(0.22790968, 0.22790965, 0.22790965, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iftqu"]
+albedo_color = Color(0.27876335, 0.5639823, 0.7337263, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x8hl5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vas5k"]
+albedo_color = Color(0.1218568, 0.49706048, 0.3086675, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_321mu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_321mu"]
+albedo_color = Color(0.7582494, 0.332663, 0.35947967, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmm0v"]
+albedo_color = Color(1, 0, 1, 1)
+
+[node name="MainMap" type="Node3D" unique_id=1480515348]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=310998599]
+transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
+
+[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("9_rjtpl")]
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_s4hfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="Graybox" type="Node3D" parent="." unique_id=1275630456]
+
+[node name="Floor" type="CSGBox3D" parent="Graybox" unique_id=1815111816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5, -5.5, -8.25)
+use_collision = true
+collision_layer = 257
+size = Vector3(300, 10, 141.5)
+material = SubResource("StandardMaterial3D_e2d8t")
+
+[node name="Floor2" type="CSGBox3D" parent="Graybox" unique_id=1157939142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5, -5.5, 155.75)
+use_collision = true
+collision_layer = 257
+size = Vector3(300, 10, 141.5)
+material = SubResource("StandardMaterial3D_e2d8t")
+
+[node name="Roads" type="Node3D" parent="Graybox" unique_id=1895084787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Graybox/Roads" unique_id=1859024586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 0, -42.5)
+size = Vector3(5, 1, 55)
+material = SubResource("StandardMaterial3D_f8fwh")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Graybox/Roads" unique_id=1866861419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -16)
+size = Vector3(89, 1, 5)
+material = SubResource("StandardMaterial3D_f8fwh")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Graybox/Roads" unique_id=1421188391]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9999985, 0, -7.5)
+size = Vector3(20, 1, 5)
+material = SubResource("StandardMaterial3D_f8fwh")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Graybox/Roads" unique_id=215262565]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -21.999996, 0, 43.500004)
+size = Vector3(104, 1, 5)
+material = SubResource("StandardMaterial3D_f8fwh")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Graybox/Roads" unique_id=1910054904]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -23.5, 0, -6.5)
+size = Vector3(151, 1, 10)
+material = SubResource("StandardMaterial3D_f8fwh")
+
+[node name="Areas" type="CSGCombiner3D" parent="Graybox" unique_id=1293147461]
+
+[node name="Spawn" type="CSGBox3D" parent="Graybox/Areas" unique_id=1872987816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+visible = false
+size = Vector3(20, 1, 20)
+
+[node name="Generator" type="CSGBox3D" parent="Graybox/Areas" unique_id=2140883488]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.184538, -0.5, -16.401432)
+visible = false
+size = Vector3(30, 1, 30)
+
+[node name="Part1" type="CSGBox3D" parent="Graybox/Areas" unique_id=1738433571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.215637, -0.5, 37.53161)
+visible = false
+size = Vector3(30, 1, 30)
+
+[node name="EnemyTutorial" type="CSGBox3D" parent="Graybox/Areas" unique_id=31893279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.35119, -0.5, 45.27826)
+visible = false
+size = Vector3(30, 1, 30)
+
+[node name="Part2" type="CSGBox3D" parent="Graybox/Areas" unique_id=1203978280]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.393677, -0.5, 135.59488)
+size = Vector3(30, 1, 30)
+
+[node name="Part3" type="CSGBox3D" parent="Graybox/Areas" unique_id=146170522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.92162, -0.5, 104.59363)
+size = Vector3(30, 1, 30)
+
+[node name="Part4" type="CSGBox3D" parent="Graybox/Areas" unique_id=572498603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 125.92579, -0.5, 192.19885)
+size = Vector3(30, 1, 30)
+
+[node name="Blockades" type="Node3D" parent="Graybox" unique_id=799741741]
+
+[node name="River" type="CSGBox3D" parent="Graybox/Blockades" unique_id=1459380446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.25, -8.5, 73.75)
+size = Vector3(308.5, 1, 22.5)
+material = SubResource("StandardMaterial3D_iftqu")
+
+[node name="CombatTutorialArea" type="Node3D" parent="Graybox" unique_id=312884205]
+
+[node name="Buildings" type="CSGCombiner3D" parent="Graybox/CombatTutorialArea" unique_id=1781205539]
+use_collision = true
+collision_layer = 257
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Buildings" unique_id=881207289]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 6.5, 23.5)
+size = Vector3(12, 14, 8)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Buildings" unique_id=147696832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.25, 10, 17.25)
+size = Vector3(16, 21, 14)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Buildings" unique_id=1285687967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.25, 5, 23)
+size = Vector3(20, 11, 14.5)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Buildings" unique_id=772680514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.25, 7, 43)
+size = Vector3(20, 15, 14.5)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="Fence" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Buildings" unique_id=318606567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.75, 0.25, 61.75)
+size = Vector3(43, 1.8, 1)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Buildings" unique_id=1509423320]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.75, 3.25, 55)
+size = Vector3(20, 7.5, 14.5)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Buildings" unique_id=1898318992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 3.25, 27.25)
+size = Vector3(11.5, 7.5, 20)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="Plants" type="CSGCombiner3D" parent="Graybox/CombatTutorialArea" unique_id=775013810]
+use_collision = true
+collision_layer = 33
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Plants" unique_id=362324514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 63, 2.75, 32.5)
+size = Vector3(6, 6.5, 10)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Plants" unique_id=1363255615]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.5, -3, 39)
+size = Vector3(15, 13, 55)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Plants" unique_id=1469651451]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52, 14.5, 10)
+size = Vector3(16, 48, 16)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Plants" unique_id=14782089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60.75, -3, 13.25)
+size = Vector3(21.5, 13, 13.5)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Graybox/CombatTutorialArea/Plants" unique_id=688359211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.75, 0.5, 14)
+use_collision = true
+collision_layer = 33
+size = Vector3(25.5, 20, 16)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="BaseDamageComponent" type="Node" parent="Graybox/CombatTutorialArea/Plants" unique_id=888718752]
+script = ExtResource("3_x8hl5")
+metadata/_custom_type_script = "uid://djg0m48s04bny"
+
+[node name="StunComponent" type="Node" parent="Graybox/CombatTutorialArea/Plants" unique_id=881413334]
+script = ExtResource("4_vas5k")
+stun_duration = 0.5
+speed_multiplier = 0.8
+metadata/_custom_type_script = "uid://bxjrubfcv84ac"
+
+[node name="ChangePartDebug" type="Area3D" parent="Graybox/CombatTutorialArea" unique_id=1285574594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.5, 0, 47.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Graybox/CombatTutorialArea/ChangePartDebug" unique_id=201986538]
+shape = SubResource("BoxShape3D_321mu")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Graybox/CombatTutorialArea/ChangePartDebug" unique_id=873592550]
+
+[node name="ChangingPart" type="Node3D" parent="Graybox/CombatTutorialArea" unique_id=47721873 node_paths=PackedStringArray("before_change", "after_change")]
+script = ExtResource("5_321mu")
+before_change = NodePath("TowerStanding")
+after_change = NodePath("TowerFallen")
+
+[node name="TowerStanding" type="CSGBox3D" parent="Graybox/CombatTutorialArea/ChangingPart" unique_id=1683246960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66, 11.5, 56.25)
+use_collision = true
+collision_layer = 257
+size = Vector3(11.5, 24, 12)
+material = SubResource("StandardMaterial3D_321mu")
+
+[node name="TowerFallen" type="CSGBox3D" parent="Graybox/CombatTutorialArea/ChangingPart" unique_id=739714956]
+transform = Transform3D(1, 0, 0, 0, 0.087155804, -0.9961947, 0, 0.9961947, 0.087155804, 66, -4.5, 74)
+collision_layer = 257
+size = Vector3(11.5, 24, 10.5)
+material = SubResource("StandardMaterial3D_321mu")
+
+[node name="GeneratorArea" type="Node3D" parent="Graybox" unique_id=1515897305]
+
+[node name="Buildings" type="CSGCombiner3D" parent="Graybox/GeneratorArea" unique_id=2077970911]
+use_collision = true
+collision_layer = 257
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Graybox/GeneratorArea/Buildings" unique_id=392916813]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 8.25, -11)
+size = Vector3(12, 17.5, 26)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Graybox/GeneratorArea/Buildings" unique_id=1745195512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.75, 16.25, -36.25)
+size = Vector3(30, 33.5, 24)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Graybox/GeneratorArea/Buildings" unique_id=1267087160]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 9.5, -33.75)
+size = Vector3(22, 20, 22)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Graybox/GeneratorArea/Buildings" unique_id=1322280279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 2.5, 2.75)
+size = Vector3(8.5, 6, 15)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Graybox/GeneratorArea/Buildings" unique_id=357310780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 5.5, -6.25)
+size = Vector3(8.5, 12, 9)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="Plants" type="CSGCombiner3D" parent="Graybox/GeneratorArea" unique_id=1863165742]
+use_collision = true
+collision_layer = 33
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Graybox/GeneratorArea/Plants" unique_id=1159960838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, -0.75, -49)
+size = Vector3(16, 17.5, 16)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Graybox/GeneratorArea/Plants" unique_id=951346813]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.75, 2, -22.5)
+size = Vector3(32.5, 23, 63)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Graybox/GeneratorArea/Plants" unique_id=1981472708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0.5, -50.75)
+size = Vector3(48, 20, 27.5)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="StunComponent" type="Node" parent="Graybox/GeneratorArea/Plants" unique_id=2130930386]
+script = ExtResource("4_vas5k")
+stun_duration = 0.5
+speed_multiplier = 0.8
+metadata/_custom_type_script = "uid://bxjrubfcv84ac"
+
+[node name="BaseDamageComponent" type="Node" parent="Graybox/GeneratorArea/Plants" unique_id=350268414]
+script = ExtResource("3_x8hl5")
+metadata/_custom_type_script = "uid://djg0m48s04bny"
+
+[node name="SpawnArea" type="Node3D" parent="Graybox" unique_id=125470212]
+
+[node name="Buildings" type="CSGCombiner3D" parent="Graybox/SpawnArea" unique_id=1227748875]
+use_collision = true
+collision_layer = 257
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Graybox/SpawnArea/Buildings" unique_id=1554940834]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11, 6.5, -2.5000002)
+size = Vector3(12, 14, 11)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="Fence" type="CSGBox3D" parent="Graybox/SpawnArea/Buildings" unique_id=359913562]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.25, 0.25, 5)
+size = Vector3(3.5, 1.8, 1)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="Fence2" type="CSGBox3D" parent="Graybox/SpawnArea/Buildings" unique_id=1309396202]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.25, 0.25, 16)
+size = Vector3(13.5, 1.8, 1)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Graybox/SpawnArea/Buildings" unique_id=217302466]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.5, 6.5, 24.5)
+size = Vector3(12, 16, 12)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Graybox/SpawnArea/Buildings" unique_id=1371435263]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.25, 4, 26.5)
+size = Vector3(8, 11, 11.5)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Graybox/SpawnArea/Buildings" unique_id=2054404950]
+transform = Transform3D(-4.371139e-08, 0, 1, -0.13054353, 0.9914427, -5.7062373e-09, -0.9914427, -0.13054353, -4.3337334e-08, 19, 5.7377787, 13.2586355)
+size = Vector3(8.5, 0.25, 1)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="Plants" type="CSGCombiner3D" parent="Graybox/SpawnArea" unique_id=1753470266]
+use_collision = true
+collision_layer = 33
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Graybox/SpawnArea/Plants" unique_id=660983950]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.25, -0.75, 31)
+size = Vector3(16.5, 17.5, 8)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="BaseDamageComponent" type="Node" parent="Graybox/SpawnArea/Plants" unique_id=1987923743]
+script = ExtResource("3_x8hl5")
+metadata/_custom_type_script = "uid://djg0m48s04bny"
+
+[node name="StunComponent" type="Node" parent="Graybox/SpawnArea/Plants" unique_id=1189655218]
+script = ExtResource("4_vas5k")
+stun_duration = 0.5
+speed_multiplier = 0.8
+metadata/_custom_type_script = "uid://bxjrubfcv84ac"
+
+[node name="Part1Area" type="Node3D" parent="Graybox" unique_id=1242172551]
+
+[node name="Part1" type="CSGSphere3D" parent="Graybox/Part1Area" unique_id=629962069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.5, 0, 24.5)
+material = SubResource("StandardMaterial3D_tmm0v")
+
+[node name="Buildings" type="CSGCombiner3D" parent="Graybox/Part1Area" unique_id=1723774338]
+use_collision = true
+collision_layer = 257
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Graybox/Part1Area/Buildings" unique_id=442063163]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -36, 6.5, 13.75)
+size = Vector3(49.5, 14, 11)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Graybox/Part1Area/Buildings" unique_id=1012150244]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -36, 6.5, 54.5)
+size = Vector3(14, 14, 11)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Graybox/Part1Area/Buildings" unique_id=498311533]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -36, 6.5, -28)
+size = Vector3(14, 14, 11)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Graybox/Part1Area/Buildings" unique_id=1481178941]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.5, 4, -29.5)
+size = Vector3(14, 9, 10)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="Fence" type="CSGBox3D" parent="Graybox/Part1Area/Buildings" unique_id=1769716163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.25, 61.75)
+size = Vector3(15.5, 1.8, 1)
+material = SubResource("StandardMaterial3D_x8hl5")
+
+[node name="Plants" type="CSGCombiner3D" parent="Graybox/Part1Area" unique_id=252669456]
+use_collision = true
+collision_layer = 33
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Graybox/Part1Area/Plants" unique_id=1053066061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.75, -2.75, -42.75)
+size = Vector3(44.5, 13.5, 31.5)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Graybox/Part1Area/Plants" unique_id=262547568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.75, 3, 11.25)
+size = Vector3(18.5, 25, 83.5)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Graybox/Part1Area/Plants" unique_id=1206888348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.75, 9.25, 12.5)
+size = Vector3(29.5, 29.5, 15)
+material = SubResource("StandardMaterial3D_vas5k")
+
+[node name="BaseDamageComponent" type="Node" parent="Graybox/Part1Area/Plants" unique_id=1846411361]
+script = ExtResource("3_x8hl5")
+metadata/_custom_type_script = "uid://djg0m48s04bny"
+
+[node name="StunComponent" type="Node" parent="Graybox/Part1Area/Plants" unique_id=1677459953]
+script = ExtResource("4_vas5k")
+stun_duration = 0.5
+speed_multiplier = 0.8
+metadata/_custom_type_script = "uid://bxjrubfcv84ac"
+
+[node name="RadioTower" parent="Graybox" unique_id=336301379 instance=ExtResource("6_f8fwh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5, 39, -16.5)
+
+[connection signal="area_entered" from="Graybox/CombatTutorialArea/ChangePartDebug" to="Graybox/CombatTutorialArea/ChangingPart" method="_on_change_part"]

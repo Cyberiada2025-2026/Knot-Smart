@@ -10,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uhj5c")
+main_scene = "res://scenes/main/main_map.tscn"
 
 [node name="Background" type="ColorRect" parent="." unique_id=183335166]
 layout_mode = 1

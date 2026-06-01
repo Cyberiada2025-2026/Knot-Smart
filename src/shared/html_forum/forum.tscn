@@ -1,0 +1,312 @@
+[gd_scene format=3 uid="uid://do48gef87leci"]
+
+[ext_resource type="Script" uid="uid://bvakjixadlxqa" path="res://shared/html_forum/forum.gd" id="1_x1m8o"]
+[ext_resource type="Texture2D" uid="uid://bfvgws68n4xl4" path="res://shared/html_forum/sky.png" id="2_n2af8"]
+[ext_resource type="Texture2D" uid="uid://b1aua3dvqxr5t" path="res://shared/html_forum/stars.png" id="3_3nbfe"]
+
+[sub_resource type="Gradient" id="Gradient_x1m8o"]
+colors = PackedColorArray(0.011600018, 0.008000001, 0.08, 1, 0.091640025, 0.08119999, 0.29, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n2af8"]
+gradient = SubResource("Gradient_x1m8o")
+fill_from = Vector2(0.5850694, 0.081597224)
+fill_to = Vector2(0.8524306, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_745yc"]
+variation_embolden = 1.4
+spacing_glyph = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ng6kh"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+bg_color = Color(0.6319, 0.76095, 0.89, 0.19215687)
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2af8"]
+bg_color = Color(0.21729998, 0.31364998, 0.41, 0.65882355)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1m8o"]
+bg_color = Color(0.34790003, 0.41895002, 0.49, 0.53333336)
+
+[node name="Forum" type="Control" unique_id=575304200]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x1m8o")
+
+[node name="Computer background" type="ColorRect" parent="." unique_id=1537493964]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -110.0
+offset_right = 150.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6204, 0.62304, 0.66, 1)
+
+[node name="Forum background" type="TextureRect" parent="." unique_id=54756933]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 48.0
+offset_right = 296.0
+offset_bottom = 221.0
+texture = ExtResource("2_n2af8")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Site background" type="ColorRect" parent="." unique_id=1009411078]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 48.0
+offset_right = 264.0
+offset_bottom = 221.0
+pivot_offset = Vector2(454, 102)
+color = Color(0.057, 0.07095001, 0.15, 1)
+
+[node name="Site background2" type="TextureRect" parent="." unique_id=1215518543]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 48.0
+offset_right = 264.0
+offset_bottom = 221.0
+pivot_offset = Vector2(454, 102)
+texture = SubResource("GradientTexture2D_n2af8")
+expand_mode = 1
+
+[node name="Title" type="TextureRect" parent="." unique_id=1627061424]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 18.0
+offset_right = 296.0
+offset_bottom = 48.0
+pivot_offset = Vector2(-199, 94)
+texture = ExtResource("3_3nbfe")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Title" unique_id=888551102]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 245.0
+offset_bottom = 40.0
+pivot_offset = Vector2(160, 37)
+theme_override_fonts/bold_font = SubResource("FontVariation_745yc")
+bbcode_enabled = true
+text = "[b]Fanatycy gwiazd"
+horizontal_alignment = 1
+
+[node name="Button Bar" type="ColorRect" parent="." unique_id=1050725056]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 43.0
+offset_right = 296.0
+offset_bottom = 56.0
+pivot_offset = Vector2(213, 104)
+color = Color(0.10768465, 0.13105029, 0.24122414, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Button Bar" unique_id=1433577908]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Button Bar/HBoxContainer" unique_id=983012442]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng6kh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n2af8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1m8o")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button Bar/HBoxContainer/Button" unique_id=1546199824]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 9
+text = "button0"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Button2" type="Button" parent="Button Bar/HBoxContainer" unique_id=1795715150]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng6kh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n2af8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1m8o")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button Bar/HBoxContainer/Button2" unique_id=1504123576]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 9
+text = "button1"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Button3" type="Button" parent="Button Bar/HBoxContainer" unique_id=8513718]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng6kh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n2af8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1m8o")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button Bar/HBoxContainer/Button3" unique_id=189861583]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 9
+text = "button2"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Button4" type="Button" parent="Button Bar/HBoxContainer" unique_id=1871331191]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_ng6kh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n2af8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x1m8o")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Button Bar/HBoxContainer/Button4" unique_id=404042751]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 9
+text = "button3"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Entries" type="Control" parent="." unique_id=1501151169]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Entry0" type="RichTextLabel" parent="Entries" unique_id=198899489]
+visible = false
+layout_mode = 0
+offset_left = 69.0
+offset_top = 63.0
+offset_right = 257.0
+offset_bottom = 215.0
+pivot_offset = Vector2(287, 94)
+theme_override_colors/default_color = Color(0.532, 0.95, 0.9081999, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "entry po wcisieniu przycisku 0
+
+teskt 10
+tekst 10
+tesfjaodofbanhijdasd
+ctebisfbhaidbfisadf
+adsfbiashdbhifasbdh
+asdhfbsda ihvbidsabf
+ausnbdiabdias
+
+
+asjdbnoasjbdhisabdhia
+koniec wpisu"
+
+[node name="Entry1" type="RichTextLabel" parent="Entries" unique_id=419972978]
+visible = false
+layout_mode = 0
+offset_left = 69.0
+offset_top = 63.0
+offset_right = 257.0
+offset_bottom = 215.0
+pivot_offset = Vector2(287, 94)
+theme_override_colors/default_color = Color(0.532, 0.95, 0.9081999, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "entry po wcisnieciu przycisku 1
+
+teskt 10
+tekst 10
+tesfjaodofbanhijdasd
+ctebisfbhaidbfisadf
+adsfbiashdbhifasbdh
+asdhfbsda ihvbidsabf
+ausnbdiabdias
+
+
+asjdbnoasjbdhisabdhia
+koniec wpisu"
+
+[node name="Entry2" type="RichTextLabel" parent="Entries" unique_id=758430577]
+visible = false
+layout_mode = 0
+offset_left = 69.0
+offset_top = 63.0
+offset_right = 257.0
+offset_bottom = 215.0
+pivot_offset = Vector2(287, 94)
+theme_override_colors/default_color = Color(0.532, 0.95, 0.9081999, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "entry po wcisieniu przycisku 2
+
+teskt 10
+tekst 10
+tesfjaodofbanhijdasd
+ctebisfbhaidbfisadf
+adsfbiashdbhifasbdh
+asdhfbsda ihvbidsabf
+ausnbdiabdias
+
+
+asjdbnoasjbdhisabdhia
+koniec wpisu"
+
+[node name="Entry3" type="RichTextLabel" parent="Entries" unique_id=642384220]
+visible = false
+layout_mode = 0
+offset_left = 69.0
+offset_top = 63.0
+offset_right = 257.0
+offset_bottom = 215.0
+pivot_offset = Vector2(287, 94)
+theme_override_colors/default_color = Color(0.532, 0.95, 0.9081999, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "entry po wcisieniu przycisku 3
+
+teskt 10
+tekst 10
+tesfjaodofbanhijdasd
+ctebisfbhaidbfisadf
+adsfbiashdbhifasbdh
+asdhfbsda ihvbidsabf
+ausnbdiabdias
+
+
+asjdbnoasjbdhisabdhia
+koniec wpisu"
+
+[connection signal="pressed" from="Button Bar/HBoxContainer/Button" to="." method="_on_button_pressed" binds= [0]]
+[connection signal="pressed" from="Button Bar/HBoxContainer/Button2" to="." method="_on_button_pressed" binds= [1]]
+[connection signal="pressed" from="Button Bar/HBoxContainer/Button3" to="." method="_on_button_pressed" binds= [2]]
+[connection signal="pressed" from="Button Bar/HBoxContainer/Button4" to="." method="_on_button_pressed" binds= [3]]

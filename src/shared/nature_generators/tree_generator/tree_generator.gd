@@ -33,7 +33,7 @@ func generate_tree():
 	if params.foliage_parameters != null:
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
-			if randf()<params.branch_spawn_percentage:
+			if randf() < params.branch_spawn_percentage:
 				add_foliage(branch)
 	serialize()
 

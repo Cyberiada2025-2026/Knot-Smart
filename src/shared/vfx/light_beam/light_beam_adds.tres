@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c0fnwo13jlcsg"]
+
+[ext_resource type="Shader" uid="uid://dpl2e3o1gumpd" path="res://shared/vfx/light_beam/light_beam_adds.gdshader" id="1_1ip8k"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1ip8k")

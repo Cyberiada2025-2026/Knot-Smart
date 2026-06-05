@@ -211,7 +211,6 @@ func run_generation(manager: GridGenerationPipeline) -> bool:
 
 	var tile_scale = manager.world_generation_params.tile_size
 	for y in range(map_size):
-		var output: String = ""
 		for x in range(map_size):
 			if blueprint.data[Vector2i(x, y)].tile_type == TileInfo.Type.ROAD:
 				var bitmask_key = _get_tile_connections_bitmask(Vector2i(x, y), blueprint)
@@ -245,14 +244,5 @@ func run_generation(manager: GridGenerationPipeline) -> bool:
 
 				# here add this to new sceneData and give to blueprint
 				tile.objects.append(noad)
-
-				if data["id"] >= 0 and data["id"] < 10:
-					output += " " + str(data["id"])
-				else:
-					output += str(data["id"])
-			else:
-				output += "  "
-		print(output)
-
 
 	return true

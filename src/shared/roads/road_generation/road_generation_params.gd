@@ -13,8 +13,7 @@ enum {
 ## For bigger maps higher value recommended
 @export var highway_generation_split_count = 20
 
-## TODO later use value from world generation params
-@export_range(4, 2048, 4) var map_size: int = 64
+var map_size: int
 
 ## Number of all generation steps(including unsuccessful) [br]
 ## after which generator will stop splitting spots. [br][br]

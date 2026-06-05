@@ -25,12 +25,12 @@ func set_params(new_params, new_transform):
 
 
 func generate_foliage():
-	var angle = PI/params.count
+	var angle = PI / params.count
 	var new_scale = params.scale + (randf() - 0.5) * params.scale_randomization
 	for i in range(params.count):
 		var mesh = params.mesh.instantiate()
 		mesh.scale *= new_scale
-		mesh.rotate_y(angle*i)
+		mesh.rotate_y(angle * i)
 		add_child(mesh)
 
 	if standalone:

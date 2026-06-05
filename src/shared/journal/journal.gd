@@ -39,8 +39,6 @@ func _ready() -> void:
 	page_visible_index = 0
 
 
-
-
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("journal_toggle"):
 		if not (get_tree().paused == true and self.visible == false):

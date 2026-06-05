@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dgn5qf80tvxhu"]
+
+[ext_resource type="Shader" uid="uid://dlfgarx0n4bvn" path="res://shared/vfx/light_beam/light_beam_main.gdshader" id="1_e1x8q"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_e1x8q")
+shader_parameter/main_col = Color(0.38467717, 0.8480157, 1.0627335, 1)
+shader_parameter/stripe_col = Color(1, 1, 1, 1)
+shader_parameter/stripe_width = 0.400000019
+shader_parameter/stripe_frequency = 0.415
+shader_parameter/stripe_speed = 3.0

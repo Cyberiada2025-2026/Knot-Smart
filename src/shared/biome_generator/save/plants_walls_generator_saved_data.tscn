@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cnass80sa0vvf"]
+
+[ext_resource type="Script" uid="uid://b6ekrdheutwbp" path="res://shared/biome_generator/save/plants_walls_generator_saved_data.gd" id="1_8kv3x"]
+
+[node name="Plants Walls Generator Saved Data" type="Node3D" unique_id=848228783]
+script = ExtResource("1_8kv3x")

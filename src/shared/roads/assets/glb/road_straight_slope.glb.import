@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://tcq6mxku5ijc"
-path="res://.godot/imported/empty.glb-77e819f628b5cd726ff092cfbf26d59c.scn"
+uid="uid://j4qjmhrj7gu8"
+path="res://.godot/imported/road_straight_slope.glb-f29afe22f7ae8564bce5a9c555d43462.scn"
 
 [deps]
 
-source_file="res://shared/roads/assets/empty.glb"
-dest_files=["res://.godot/imported/empty.glb-77e819f628b5cd726ff092cfbf26d59c.scn"]
+source_file="res://shared/roads/assets/glb/road_straight_slope.glb"
+dest_files=["res://.godot/imported/road_straight_slope.glb-f29afe22f7ae8564bce5a9c555d43462.scn"]
 
 [params]
 

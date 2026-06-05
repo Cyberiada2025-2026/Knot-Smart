@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cugjnd5r2v62b"]
+
+[ext_resource type="PackedScene" uid="uid://dsfb6xdbcc72s" path="res://shared/roads/assets/glb/road_T.glb" id="1_df3b2"]
+
+[node name="road_T2" unique_id=183470808 instance=ExtResource("1_df3b2")]
+
+[node name="road_T" parent="." index="0" unique_id=578333458]
+transform = Transform3D(-6.244484e-10, 0, 0.014285714, 0, 0.014285714, 0, -0.014285714, 0, -6.244484e-10, 0, 0.022, 0)

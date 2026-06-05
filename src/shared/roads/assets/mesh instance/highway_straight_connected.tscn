@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bod03u1l1qjoy"]
+
+[ext_resource type="PackedScene" uid="uid://b828jftwt8y6a" path="res://shared/roads/assets/glb/highway_straight_connected.glb" id="1_1de52"]
+
+[node name="highway_straight_connected" unique_id=1206140478 instance=ExtResource("1_1de52")]
+
+[node name="highway_connected" parent="." index="0" unique_id=949504041]
+transform = Transform3D(-6.244484e-10, 0, 0.014285714, 0, 0.014285714, 0, -0.014285714, 0, -6.244484e-10, 0, 0.022, 0)

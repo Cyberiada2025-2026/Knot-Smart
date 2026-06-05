@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://j4qjmhrj7gu8"
-path="res://.godot/imported/road_straight_slope.glb-3c87bcbe186a536d5a0983d1bf23e7ea.scn"
+uid="uid://chas3wno8krv6"
+path="res://.godot/imported/highway_corner_connected_mirrored(up).glb-41399049f0411c39ae99b18d9bee3251.scn"
 
 [deps]
 
-source_file="res://shared/roads/assets/road_straight_slope.glb"
-dest_files=["res://.godot/imported/road_straight_slope.glb-3c87bcbe186a536d5a0983d1bf23e7ea.scn"]
+source_file="res://shared/roads/assets/glb/highway_corner_connected_mirrored(up).glb"
+dest_files=["res://.godot/imported/highway_corner_connected_mirrored(up).glb-41399049f0411c39ae99b18d9bee3251.scn"]
 
 [params]
 

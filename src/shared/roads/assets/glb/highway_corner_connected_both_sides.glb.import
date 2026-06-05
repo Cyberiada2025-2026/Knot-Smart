@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c1baxgi1wmay5"
-path="res://.godot/imported/highway_corner_connected_both_sides.glb-216c238f89b31df9b2ecab762ae79154.scn"
+path="res://.godot/imported/highway_corner_connected_both_sides.glb-bc60be99dcbd619764a61655aa185159.scn"
 
 [deps]
 
-source_file="res://shared/roads/assets/highway_corner_connected_both_sides.glb"
-dest_files=["res://.godot/imported/highway_corner_connected_both_sides.glb-216c238f89b31df9b2ecab762ae79154.scn"]
+source_file="res://shared/roads/assets/glb/highway_corner_connected_both_sides.glb"
+dest_files=["res://.godot/imported/highway_corner_connected_both_sides.glb-bc60be99dcbd619764a61655aa185159.scn"]
 
 [params]
 

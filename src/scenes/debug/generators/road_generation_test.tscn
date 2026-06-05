@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://cs541ivi3clm7"]
+
+[ext_resource type="Script" uid="uid://u5hpdit2bo4g" path="res://shared/terrain/map_renderer.gd" id="1_gdrvj"]
+[ext_resource type="Script" uid="uid://no1j1oowuup1" path="res://shared/terrain/params/world_generation_params.gd" id="2_imitx"]
+[ext_resource type="Script" uid="uid://bmtv75byrd25q" path="res://shared/terrain/params/world_display_params.gd" id="3_s8a3y"]
+[ext_resource type="Script" uid="uid://cn6l7oaf3xw32" path="res://shared/terrain/grid_generation_pipeline.gd" id="4_e4dki"]
+[ext_resource type="Script" uid="uid://0212vvhximbx" path="res://shared/terrain/terrain_generator.gd" id="5_e5t12"]
+[ext_resource type="Script" uid="uid://ur8xw3m874ob" path="res://shared/terrain/params/terrain_params.gd" id="6_u22j8"]
+[ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="7_jblrp"]
+[ext_resource type="Script" uid="uid://c52c7x4sbxs7o" path="res://shared/roads/road_generation/road_generator.gd" id="8_d58tf"]
+[ext_resource type="Script" uid="uid://dq2orvfvtw68e" path="res://shared/roads/road_generation/road_generation_params.gd" id="9_hrw75"]
+[ext_resource type="Script" uid="uid://clo0d36f066q1" path="res://shared/roads/road_generation/generation_areas.gd" id="10_c10gb"]
+[ext_resource type="Script" uid="uid://o5exsbtpsbth" path="res://shared/roads/road_generation/limiter_area.gd" id="11_s8a3y"]
+[ext_resource type="Script" uid="uid://1sivp1454oma" path="res://shared/roads/road_generation/spot.gd" id="12_e4dki"]
+[ext_resource type="PackedScene" uid="uid://beo772cow55jo" path="res://shared/roads/road_tiling/road_autotile_usable.tscn" id="13_e4dki"]
+[ext_resource type="Script" uid="uid://dan6slu1xdl8l" path="res://shared/terrain/chunk_manager.gd" id="14_e4dki"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_0.tscn" id="15_e5t12"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_1.tscn" id="16_u22j8"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_2.tscn" id="17_jblrp"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_0_3.tscn" id="18_d58tf"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_0.tscn" id="19_hrw75"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_1.tscn" id="20_c10gb"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_2.tscn" id="21_1t0kp"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_1_3.tscn" id="22_h6yyi"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_0.tscn" id="23_046qc"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_1.tscn" id="24_0j146"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_2.tscn" id="25_w571n"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_2_3.tscn" id="26_mxuuo"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_0.tscn" id="27_da73e"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_1.tscn" id="28_1xfpv"]
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="28_w730l"]
+[ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="29_kwi1n"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_2.tscn" id="29_so0bm"]
+[ext_resource type="PackedScene" path="user://terrain/chunks/chunk_3_3.tscn" id="30_mjpne"]
+
+[sub_resource type="Resource" id="Resource_0ips4"]
+script = ExtResource("2_imitx")
+map_size = 4
+map_height = 8.0
+chunk_size = 8
+tile_height = 3.5
+metadata/_custom_type_script = "uid://no1j1oowuup1"
+
+[sub_resource type="Resource" id="Resource_fjnk4"]
+script = ExtResource("3_s8a3y")
+render_distance = 2
+metadata/_custom_type_script = "uid://bmtv75byrd25q"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xedym"]
+seed = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h00rw"]
+albedo_texture = ExtResource("7_jblrp")
+
+[sub_resource type="Resource" id="Resource_jgk0a"]
+script = ExtResource("6_u22j8")
+noise = SubResource("FastNoiseLite_xedym")
+terrain_material = SubResource("StandardMaterial3D_h00rw")
+metadata/_custom_type_script = "uid://ur8xw3m874ob"
+
+[sub_resource type="Resource" id="Resource_tmyod"]
+script = ExtResource("9_hrw75")
+highway_generation_split_count = 7
+
+[sub_resource type="Resource" id="Resource_e5t12"]
+script = ExtResource("12_e4dki")
+start = Vector2i(5, 5)
+end = Vector2i(27, 27)
+
+[sub_resource type="Resource" id="Resource_u22j8"]
+script = ExtResource("12_e4dki")
+end = Vector2i(32, 32)
+
+[sub_resource type="Resource" id="Resource_e4dki"]
+script = ExtResource("12_e4dki")
+start = Vector2i(12, 12)
+end = Vector2i(20, 14)
+
+[node name="TerrainTest" type="Node3D" unique_id=1551696206]
+
+[node name="MapRenderer" type="Node3D" parent="." unique_id=918119466]
+script = ExtResource("1_gdrvj")
+world_generation_params = SubResource("Resource_0ips4")
+world_display_params = SubResource("Resource_fjnk4")
+metadata/_custom_type_script = "uid://u5hpdit2bo4g"
+
+[node name="GridGenerationPipeline" type="Node" parent="MapRenderer" unique_id=1576894728]
+script = ExtResource("4_e4dki")
+metadata/_custom_type_script = "uid://cn6l7oaf3xw32"
+
+[node name="TerrainGenerator" type="Node" parent="MapRenderer/GridGenerationPipeline" unique_id=652325732]
+script = ExtResource("5_e5t12")
+terrain_params = SubResource("Resource_jgk0a")
+metadata/_custom_type_script = "uid://0212vvhximbx"
+
+[node name="RoadGenerator" type="Node" parent="MapRenderer/GridGenerationPipeline" unique_id=1193446140]
+script = ExtResource("8_d58tf")
+generation_params = SubResource("Resource_tmyod")
+limit_areas_visualization = true
+metadata/_custom_type_script = "uid://c52c7x4sbxs7o"
+
+[node name="GenerationAreas" type="Node" parent="MapRenderer/GridGenerationPipeline/RoadGenerator" unique_id=38984117]
+script = ExtResource("10_c10gb")
+
+[node name="LimiterArea" type="Node" parent="MapRenderer/GridGenerationPipeline/RoadGenerator/GenerationAreas" unique_id=1575303521]
+script = ExtResource("11_s8a3y")
+max_spot_size = Vector2i(6, 6)
+area_limits = SubResource("Resource_e5t12")
+
+[node name="LimiterArea2" type="Node" parent="MapRenderer/GridGenerationPipeline/RoadGenerator/GenerationAreas" unique_id=760133847]
+script = ExtResource("11_s8a3y")
+min_spot_size = Vector2i(2, 2)
+max_spot_size = Vector2i(4, 4)
+area_limits = SubResource("Resource_u22j8")
+
+[node name="LimiterArea3" type="Node" parent="MapRenderer/GridGenerationPipeline/RoadGenerator/GenerationAreas" unique_id=1630804645]
+script = ExtResource("11_s8a3y")
+min_spot_size = Vector2i(2, 3)
+max_spot_size = Vector2i(5, 8)
+area_limits = SubResource("Resource_e4dki")
+
+[node name="RoadAutotileUsable" parent="MapRenderer/GridGenerationPipeline" unique_id=1777804066 instance=ExtResource("13_e4dki")]
+
+[node name="Chunks2" type="Node3D" parent="MapRenderer" unique_id=2102973869]
+script = ExtResource("14_e4dki")
+
+[node name="ChunkX0Z0" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1978069489 instance=ExtResource("15_e5t12")]
+
+[node name="ChunkX0Z1" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1180638693 instance=ExtResource("16_u22j8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 64)
+
+[node name="ChunkX0Z2" type="Node3D" parent="MapRenderer/Chunks2" unique_id=927276172 instance=ExtResource("17_jblrp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
+
+[node name="ChunkX0Z3" type="Node3D" parent="MapRenderer/Chunks2" unique_id=676244267 instance=ExtResource("18_d58tf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 192)
+
+[node name="ChunkX1Z0" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1570888295 instance=ExtResource("19_hrw75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 0)
+
+[node name="ChunkX1Z1" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1242420991 instance=ExtResource("20_c10gb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 64)
+
+[node name="ChunkX1Z2" type="Node3D" parent="MapRenderer/Chunks2" unique_id=39114909 instance=ExtResource("21_1t0kp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 128)
+
+[node name="ChunkX1Z3" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1615612122 instance=ExtResource("22_h6yyi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, 0, 192)
+
+[node name="ChunkX2Z0" type="Node3D" parent="MapRenderer/Chunks2" unique_id=2125933828 instance=ExtResource("23_046qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 0)
+
+[node name="ChunkX2Z1" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1820274664 instance=ExtResource("24_0j146")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 64)
+
+[node name="ChunkX2Z2" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1372660719 instance=ExtResource("25_w571n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
+
+[node name="ChunkX2Z3" type="Node3D" parent="MapRenderer/Chunks2" unique_id=83785635 instance=ExtResource("26_mxuuo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 192)
+
+[node name="ChunkX3Z0" type="Node3D" parent="MapRenderer/Chunks2" unique_id=25785858 instance=ExtResource("27_da73e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 0)
+
+[node name="ChunkX3Z1" type="Node3D" parent="MapRenderer/Chunks2" unique_id=441275635 instance=ExtResource("28_1xfpv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 64)
+
+[node name="ChunkX3Z2" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1852041377 instance=ExtResource("29_so0bm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 128)
+
+[node name="ChunkX3Z3" type="Node3D" parent="MapRenderer/Chunks2" unique_id=1738436803 instance=ExtResource("30_mjpne")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 192, 0, 192)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=52888776]
+transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("28_w730l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 98.42476, 5, 76.553955)
+
+[node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("29_kwi1n")]

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bg628kvl7vxme"]
+
+[ext_resource type="PackedScene" uid="uid://bytmcfhdmch83" path="res://shared/roads/assets/glb/road_turn.glb" id="1_6g88v"]
+
+[node name="road_turn2" unique_id=1186231403 instance=ExtResource("1_6g88v")]
+
+[node name="road_turn" parent="." index="0" unique_id=694601805]
+transform = Transform3D(-6.244484e-10, 0, 0.014285714, 0, 0.014285714, 0, -0.014285714, 0, -6.244484e-10, 0, 0.022, 0)

@@ -5,7 +5,7 @@ extends Node
 @export_group("Debug")
 @export var debug_flag: bool
 
-var world_generation_params
+var world_generation_params: WorldGenerationParams
 var blueprint: MapTileData
 
 

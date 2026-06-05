@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b828jftwt8y6a"
-path="res://.godot/imported/highway_straight_connected.glb-2bae28c1c9a149928875084ae57ab6cd.scn"
+uid="uid://bx8akh3cai021"
+path="res://.godot/imported/highway_straight.glb-f5ff477afbeeec2699d23bc258fb90d0.scn"
 
 [deps]
 
-source_file="res://shared/roads/assets/highway_straight_connected.glb"
-dest_files=["res://.godot/imported/highway_straight_connected.glb-2bae28c1c9a149928875084ae57ab6cd.scn"]
+source_file="res://shared/roads/assets/glb/highway_straight.glb"
+dest_files=["res://.godot/imported/highway_straight.glb-f5ff477afbeeec2699d23bc258fb90d0.scn"]
 
 [params]
 

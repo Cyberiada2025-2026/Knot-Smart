@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bu3coyled2xtg"]
+
+[ext_resource type="PackedScene" uid="uid://tcq6mxku5ijc" path="res://shared/roads/assets/glb/empty.glb" id="1_cwsaa"]
+
+[node name="empty" unique_id=2092357300 instance=ExtResource("1_cwsaa")]
+
+[node name="droga139" parent="." index="0" unique_id=1929306606]
+transform = Transform3D(2.554485e-09, 0, 0.014285714, 0, 0.014285714, 0, -0.014285714, 0, 2.554485e-09, 0, 0, 0)

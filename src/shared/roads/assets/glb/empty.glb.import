@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b20cqdycnwde1"
-path="res://.godot/imported/highway_crossroad.glb-bd73c19d578f7d1108bc3737b6b318ac.scn"
+uid="uid://tcq6mxku5ijc"
+path="res://.godot/imported/empty.glb-7fc248a71a8afd7f1fc0dc9cf1f585f5.scn"
 
 [deps]
 
-source_file="res://shared/roads/assets/highway_crossroad.glb"
-dest_files=["res://.godot/imported/highway_crossroad.glb-bd73c19d578f7d1108bc3737b6b318ac.scn"]
+source_file="res://shared/roads/assets/glb/empty.glb"
+dest_files=["res://.godot/imported/empty.glb-7fc248a71a8afd7f1fc0dc9cf1f585f5.scn"]
 
 [params]
 

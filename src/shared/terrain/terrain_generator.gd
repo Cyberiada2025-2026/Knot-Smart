@@ -69,6 +69,8 @@ func generate_tile_mesh(coord: Vector2i) -> Mesh:
 	var h1 = blueprint.get_height(Vector2i(x + 1, z))  # Neighbor X (Top-Right)
 	var h2 = blueprint.get_height(Vector2i(x, z + 1))  # Neighbor Z (Bottom-Left)
 	var h3 = blueprint.get_height(Vector2i(x + 1, z + 1))  # Neighbor Diag (Bottom-Right)
+	
+	blueprint.data[coord].height = min(h0,h1,h2,h3)
 
 	var v0 = Vector3(0, h0, 0)
 	var v1 = Vector3(ts, h1, 0)

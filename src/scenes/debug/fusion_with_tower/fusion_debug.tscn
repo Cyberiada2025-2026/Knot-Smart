@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://dvngl4oh3c4pi"]
+
+[ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_s3xgq"]
+[ext_resource type="PackedScene" uid="uid://cwmyt6y2863aq" path="res://shared/antennas/radio_tower/radio_tower.tscn" id="2_6q6va"]
+[ext_resource type="Script" uid="uid://dk35hvlh1ahhu" path="res://shared/item_fusion_with_tower/fusable_with_tower.gd" id="2_p65ne"]
+[ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="3_00a80"]
+[ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="4_5wlo3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5tch0"]
+albedo_color = Color(0.10103265, 0.16858053, 0.1756905, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jap1w"]
+material = SubResource("StandardMaterial3D_5tch0")
+size = Vector3(5, 0.3, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2je7d"]
+size = Vector3(5, 0.3, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w01rd"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5tch0"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="Resource" id="Resource_h4jue"]
+script = ExtResource("4_5wlo3")
+text = "not empty dialogue option"
+
+[sub_resource type="Resource" id="Resource_giew5"]
+script = ExtResource("4_5wlo3")
+text = "very very long"
+
+[sub_resource type="Resource" id="Resource_snuw5"]
+script = ExtResource("4_5wlo3")
+text = "really"
+
+[sub_resource type="Resource" id="Resource_3x6oc"]
+script = ExtResource("3_00a80")
+sentences = Array[ExtResource("4_5wlo3")]([SubResource("Resource_h4jue"), SubResource("Resource_giew5"), SubResource("Resource_snuw5")])
+metadata/_custom_type_script = "uid://dhpmrqniojeb4"
+
+[sub_resource type="Resource" id="Resource_00a80"]
+script = ExtResource("4_5wlo3")
+text = "test connection dialogue"
+
+[sub_resource type="Resource" id="Resource_5wlo3"]
+script = ExtResource("3_00a80")
+sentences = Array[ExtResource("4_5wlo3")]([SubResource("Resource_00a80")])
+metadata/_custom_type_script = "uid://dhpmrqniojeb4"
+
+[sub_resource type="Resource" id="Resource_oe6lh"]
+script = ExtResource("4_5wlo3")
+text = "connected, conneced, connected"
+
+[sub_resource type="Resource" id="Resource_rlgdb"]
+script = ExtResource("3_00a80")
+sentences = Array[ExtResource("4_5wlo3")]([SubResource("Resource_oe6lh")])
+metadata/_custom_type_script = "uid://dhpmrqniojeb4"
+
+[node name="Node3D" type="Node3D" unique_id=1206408948]
+
+[node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_s3xgq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8381202, 3.759582)
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=290519616]
+transform = Transform3D(4, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=2069314740]
+mesh = SubResource("BoxMesh_jap1w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=622913684]
+shape = SubResource("BoxShape3D_2je7d")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=385250000]
+transform = Transform3D(0.9350857, 0.2908988, 0.20246622, -0.35442162, 0.76749074, 0.5341753, 0, -0.57125807, 0.8207705, 0.7263887, 0, 0)
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="." unique_id=1933806794]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.83766675, 1.3342495, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D2" unique_id=1800298257]
+mesh = SubResource("BoxMesh_w01rd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2" unique_id=1449158395]
+shape = SubResource("BoxShape3D_5tch0")
+
+[node name="FusableWithTower" type="Node" parent="RigidBody3D2" unique_id=2068172147]
+script = ExtResource("2_p65ne")
+metadata/_custom_type_script = "uid://dk35hvlh1ahhu"
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=702233565]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.66712475, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=241704061]
+mesh = SubResource("BoxMesh_w01rd")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=290209342]
+shape = SubResource("BoxShape3D_5tch0")
+
+[node name="FusableWithTower" type="Node" parent="RigidBody3D" unique_id=278921845]
+script = ExtResource("2_p65ne")
+dialogue = SubResource("Resource_3x6oc")
+metadata/_custom_type_script = "uid://dk35hvlh1ahhu"
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="." unique_id=1407675285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9185122, 0.521386, 2.0622873)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D3" unique_id=617237566]
+mesh = SubResource("BoxMesh_w01rd")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3" unique_id=343134149]
+shape = SubResource("BoxShape3D_5tch0")
+
+[node name="FusableWithTower" type="Node" parent="RigidBody3D3" unique_id=756120185]
+script = ExtResource("2_p65ne")
+dialogue = SubResource("Resource_5wlo3")
+metadata/_custom_type_script = "uid://dk35hvlh1ahhu"
+
+[node name="RigidBody3D4" type="RigidBody3D" parent="." unique_id=1756186780]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9254273, 0.521386, 2.0622873)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D4" unique_id=868174004]
+mesh = SubResource("BoxMesh_w01rd")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D4" unique_id=361279547]
+shape = SubResource("BoxShape3D_5tch0")
+
+[node name="FusableWithTower" type="Node" parent="RigidBody3D4" unique_id=1012535234]
+script = ExtResource("2_p65ne")
+dialogue = SubResource("Resource_rlgdb")
+metadata/_custom_type_script = "uid://dk35hvlh1ahhu"
+
+[node name="RadioTower" parent="." unique_id=336301379 instance=ExtResource("2_6q6va")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1235137, 40.287384, -7.8904266)

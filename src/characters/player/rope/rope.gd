@@ -72,6 +72,25 @@ func finish():
 
 
 func fuse():
+	var fusable: Node3D
+	var tower: RadioTower
+
+	for nod in node:
+		if nod.has_node("FusableWithTower"):
+			fusable = nod
+		if nod is RadioTower:
+			tower = nod
+	if fusable:
+		if not tower:
+			return
+		for child in fusable.get_children():
+			if child is NodeLink and child.linked is Rope:
+				child.linked.finish()
+		fusable.hide() # deletion triggers after dialogue end
+		fusable.get_node("FusableWithTower").trigger_dialogue_and_delete_node()
+		tower.item_fused()
+		finish()
+
 	if node[0] is RigidBody3D and node[1] is RigidBody3D:
 		align_nodes()
 

@@ -7,7 +7,6 @@ extends Node
 var world_generation_params: WorldGenerationParams
 var blueprint: MapTileData
 
-
 func run_generation(manager: GridGenerationPipeline) -> void:
 	blueprint = manager.blueprint
 	world_generation_params = manager.world_generation_params
@@ -39,18 +38,21 @@ func run_generation(manager: GridGenerationPipeline) -> void:
 	for x in blueprint.world_size:
 		for z in blueprint.world_size:
 			var coord = Vector2i(x, z)
+			var tile = blueprint.data[coord]
+			tile.height = blueprint.get_height(coord)
 
 			var mi = MeshInstance3D.new()
 			mi.mesh = generate_tile_mesh(coord)
 			mi.position = Vector3(
-				x * world_generation_params.tile_size, 0, z * world_generation_params.tile_size
+				0, -tile.height , 0
 			)
 
 			if terrain_params.terrain_material:
 				mi.material_override = terrain_params.terrain_material
 
-			var tile = blueprint.data[coord]
-			tile.height = blueprint.get_height(coord)
+			mi.create_trimesh_collision()
+
+
 			tile.objects.clear()
 			tile.objects.append(mi)
 
@@ -67,17 +69,22 @@ func generate_tile_mesh(coord: Vector2i) -> Mesh:
 	var h1 = blueprint.get_height(Vector2i(x + 1, z))  # Neighbor X (Top-Right)
 	var h2 = blueprint.get_height(Vector2i(x, z + 1))  # Neighbor Z (Bottom-Left)
 	var h3 = blueprint.get_height(Vector2i(x + 1, z + 1))  # Neighbor Diag (Bottom-Right)
+	
+	blueprint.data[coord].height = min(h0,h1,h2,h3)
 
 	var v0 = Vector3(0, h0, 0)
 	var v1 = Vector3(ts, h1, 0)
 	var v2 = Vector3(0, h2, ts)
 	var v3 = Vector3(ts, h3, ts)
 
-	add_triangle(st, [v0, v1, v2])
-	add_triangle(st, [v1, v3, v2])
+	var n1 = add_triangle(st, [v0, v1, v2])
+	var n2 = add_triangle(st, [v1, v3, v2])
+
+	slopify(n1,n2, coord)
 
 	st.generate_tangents()
 	return st.commit()
+
 
 
 func add_triangle(st: SurfaceTool, vertices: Array):
@@ -88,3 +95,18 @@ func add_triangle(st: SurfaceTool, vertices: Array):
 		st.set_normal(normal)
 		st.set_uv(uv)
 		st.add_vertex(v)
+
+	return normal
+
+
+func slopify(n1: Vector3, n2: Vector3, coord: Vector2i):
+	var n = abs(n1)
+
+	if n1 != n2 and n1 != Vector3.ZERO:
+		blueprint.data[coord].placement_rule = TileInfo.PlacementRule.BLOCKED
+	elif n.y == 1.0:
+		blueprint.data[coord].placement_rule = TileInfo.PlacementRule.FLAT
+	elif n.x == 0.0:
+		blueprint.data[coord].placement_rule = TileInfo.PlacementRule.SLOPE_X
+	elif n.z == 0.0:
+		blueprint.data[coord].placement_rule = TileInfo.PlacementRule.SLOPE_Z

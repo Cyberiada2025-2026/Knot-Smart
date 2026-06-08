@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://gmwpimefltru"]
+
+[ext_resource type="Material" uid="uid://dgn5qf80tvxhu" path="res://shared/vfx/light_beam/light_beam_main.tres" id="1_oudod"]
+[ext_resource type="Material" uid="uid://c0fnwo13jlcsg" path="res://shared/vfx/light_beam/light_beam_adds.tres" id="2_tdrn7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_necax"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 100.0
+radial_segments = 6
+rings = 0
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ou6is"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 100.0
+radial_segments = 6
+rings = 0
+
+[sub_resource type="Gradient" id="Gradient_necax"]
+offsets = PackedFloat32Array(0, 0.292196, 0.738657, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.5, 0.98333335, 1, 1, 0.5019608, 0.9843137, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_necax"]
+blend_mode = 1
+shading_mode = 0
+disable_fog = true
+vertex_color_use_as_albedo = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_r4lks"]
+radial_segments = 6
+rings = 3
+
+[sub_resource type="Curve" id="Curve_pg34l"]
+_limits = [0.0, 2.5, 0.0, 1.0]
+_data = [Vector2(0, 0.49990058), 0.0, 4.60174, 0, 0, Vector2(1, 1.975101), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_m4h2d"]
+offsets = PackedFloat32Array(0.49183303, 1)
+colors = PackedColorArray(0.39999998, 0.98, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oudod"]
+blend_mode = 1
+shading_mode = 0
+disable_fog = true
+vertex_color_use_as_albedo = true
+
+[sub_resource type="TorusMesh" id="TorusMesh_tdrn7"]
+inner_radius = 0.8
+rings = 12
+ring_segments = 4
+
+[sub_resource type="Curve" id="Curve_7hdvn"]
+_limits = [0.0, 30.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 91.75719, 0, 0, Vector2(1, 30), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_oudod"]
+_limits = [0.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Gradient" id="Gradient_umea5"]
+colors = PackedColorArray(0.5019608, 0.9843137, 1, 1, 0, 0, 0, 1)
+
+[node name="LightBeam" type="Node3D" unique_id=877558558]
+
+[node name="MainBeam" type="MeshInstance3D" parent="." unique_id=944300763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+material_override = ExtResource("1_oudod")
+mesh = SubResource("CylinderMesh_necax")
+
+[node name="BeamAdds" type="CPUParticles3D" parent="." unique_id=2143600398]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+material_override = ExtResource("2_tdrn7")
+amount = 6
+lifetime = 0.6
+mesh = SubResource("CylinderMesh_ou6is")
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 0.5
+emission_ring_inner_radius = 0.2
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.19607843)
+color_ramp = SubResource("Gradient_necax")
+
+[node name="BeamBase" type="CPUParticles3D" parent="." unique_id=1810447777]
+material_override = SubResource("StandardMaterial3D_necax")
+amount = 2
+lifetime = 1.5
+mesh = SubResource("SphereMesh_r4lks")
+gravity = Vector3(0, 0, 0)
+scale_amount_curve = SubResource("Curve_pg34l")
+color_ramp = SubResource("Gradient_m4h2d")
+
+[node name="Rings" type="CPUParticles3D" parent="." unique_id=1926070057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80, 0)
+material_override = SubResource("StandardMaterial3D_oudod")
+amount = 6
+lifetime = 10.0
+mesh = SubResource("TorusMesh_tdrn7")
+gravity = Vector3(0, 0, 0)
+split_scale = true
+scale_curve_x = SubResource("Curve_7hdvn")
+scale_curve_y = SubResource("Curve_oudod")
+scale_curve_z = SubResource("Curve_7hdvn")
+color_ramp = SubResource("Gradient_umea5")

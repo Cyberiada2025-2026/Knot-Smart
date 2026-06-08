@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://3f675anfiwrr"]
+
+[ext_resource type="PackedScene" uid="uid://c0sa3qsels3mj" path="res://shared/roads/assets/glb/highway_diagonal.glb" id="1_nhok2"]
+
+[node name="highway_diagonal" unique_id=121347593 instance=ExtResource("1_nhok2")]
+
+[node name="highway_connection_diagonal" parent="." index="0" unique_id=544612831]
+transform = Transform3D(-6.244484e-10, 0, -0.014285714, 0, 0.014285714, 0, 0.014285714, 0, -6.244484e-10, 0, 0.022, 0)

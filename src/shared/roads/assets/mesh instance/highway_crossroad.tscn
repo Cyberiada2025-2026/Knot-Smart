@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://2ifkoqm5a820"]
+
+[ext_resource type="PackedScene" uid="uid://b20cqdycnwde1" path="res://shared/roads/assets/glb/highway_crossroad.glb" id="1_0o0ty"]
+
+[node name="highway_crossroad2" unique_id=1753732717 instance=ExtResource("1_0o0ty")]
+
+[node name="highway_crossroad" parent="." index="0" unique_id=698985751]
+transform = Transform3D(-6.244484e-10, 0, 0.014285714, 0, 0.014285714, 0, -0.014285714, 0, -6.244484e-10, 0, 0.022, 0)

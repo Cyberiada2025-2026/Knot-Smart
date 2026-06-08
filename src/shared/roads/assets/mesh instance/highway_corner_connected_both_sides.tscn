@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b21p37lm1ws7m"]
+
+[ext_resource type="PackedScene" uid="uid://c1baxgi1wmay5" path="res://shared/roads/assets/glb/highway_corner_connected_both_sides.glb" id="1_6noum"]
+
+[node name="highway_corner_connected_both_sides2" unique_id=886940846 instance=ExtResource("1_6noum")]
+
+[node name="highway_corner_connected_both_sides" parent="." index="0" unique_id=1700455809]
+transform = Transform3D(-6.244484e-10, 0, 0.014285714, 0, 0.014285714, 0, -0.014285714, 0, -6.244484e-10, 0, 0.022, 0)

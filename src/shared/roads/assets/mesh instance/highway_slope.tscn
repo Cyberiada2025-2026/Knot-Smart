@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bnrl0jlmusnw3"]
+
+[ext_resource type="PackedScene" uid="uid://dvpyns0od05v2" path="res://shared/roads/assets/glb/highway_slope.glb" id="1_nrwxa"]
+
+[node name="highway_slope2" unique_id=110596394 instance=ExtResource("1_nrwxa")]
+
+[node name="highway_slope" parent="." index="0" unique_id=857988389]
+transform = Transform3D(-6.119594e-10, 0, 0.014, 0, 0.014, 0, -0.014, 0, -6.119594e-10, 0, 0.241, 0)

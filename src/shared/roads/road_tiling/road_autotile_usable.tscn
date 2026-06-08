@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://beo772cow55jo"]
+
+[ext_resource type="Script" uid="uid://sys3su2nn6fm" path="res://shared/roads/road_tiling/road_autotile.gd" id="1_hsk0y"]
+[ext_resource type="PackedScene" uid="uid://bu3coyled2xtg" path="res://shared/roads/assets/mesh instance/empty.tscn" id="2_5pe8i"]
+[ext_resource type="PackedScene" uid="uid://t1yeltg2l1xt" path="res://shared/roads/assets/mesh instance/road_straight_slope.tscn" id="2_ewl4n"]
+[ext_resource type="PackedScene" uid="uid://cybi2kynvvyxj" path="res://shared/roads/assets/mesh instance/road_straight.tscn" id="3_mmoun"]
+[ext_resource type="PackedScene" uid="uid://cugjnd5r2v62b" path="res://shared/roads/assets/mesh instance/road_t.tscn" id="4_l58at"]
+[ext_resource type="PackedScene" uid="uid://0k7kkmp0mu7h" path="res://shared/roads/assets/mesh instance/road_crossroad.tscn" id="5_bdfnk"]
+[ext_resource type="PackedScene" uid="uid://bg628kvl7vxme" path="res://shared/roads/assets/mesh instance/road_turn.tscn" id="6_j6ugw"]
+[ext_resource type="PackedScene" uid="uid://cos3psatf7jaj" path="res://shared/roads/assets/mesh instance/highway_straight.tscn" id="7_pxs7g"]
+[ext_resource type="PackedScene" uid="uid://bod03u1l1qjoy" path="res://shared/roads/assets/mesh instance/highway_straight_connected.tscn" id="8_nn71r"]
+[ext_resource type="PackedScene" uid="uid://2ifkoqm5a820" path="res://shared/roads/assets/mesh instance/highway_crossroad.tscn" id="9_p0i0a"]
+[ext_resource type="PackedScene" uid="uid://rq568nons35y" path="res://shared/roads/assets/mesh instance/highway_corner.tscn" id="10_y1spg"]
+[ext_resource type="PackedScene" uid="uid://2mf5n2kup26a" path="res://shared/roads/assets/mesh instance/highway_corner_connected(left).tscn" id="11_pnfbq"]
+[ext_resource type="PackedScene" uid="uid://cw20nerqjar2s" path="res://shared/roads/assets/mesh instance/highway_corner_connected_mirrored(up).tscn" id="12_0h1q0"]
+[ext_resource type="PackedScene" uid="uid://b21p37lm1ws7m" path="res://shared/roads/assets/mesh instance/highway_corner_connected_both_sides.tscn" id="13_5d52q"]
+[ext_resource type="PackedScene" uid="uid://3f675anfiwrr" path="res://shared/roads/assets/mesh instance/highway_diagonal.tscn" id="14_b0k5c"]
+
+[node name="RoadAutotileUsable" type="Node" unique_id=1777804066]
+script = ExtResource("1_hsk0y")
+roads = Array[PackedScene]([ExtResource("2_5pe8i"), ExtResource("3_mmoun"), ExtResource("4_l58at"), ExtResource("5_bdfnk"), ExtResource("6_j6ugw"), ExtResource("7_pxs7g"), ExtResource("8_nn71r"), ExtResource("9_p0i0a"), ExtResource("10_y1spg"), ExtResource("11_pnfbq"), ExtResource("12_0h1q0"), ExtResource("13_5d52q"), ExtResource("14_b0k5c")])
+road_slope = ExtResource("2_ewl4n")

@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b03v0egbwunei" path="res://shared/radiation_storm/radiation.tscn" id="14_7smn1"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="15_hxu8e"]
 [ext_resource type="PackedScene" uid="uid://cwgdxw2n1ey7s" path="res://shared/papers/sheet_music/sheet_music.tscn" id="17_nvumn"]
+[ext_resource type="Material" uid="uid://cs6kr88umcnbn" path="res://shared/water/water.tres" id="18_ou6is"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_vom5j"]
 radius = 0.3
@@ -48,6 +49,9 @@ random_seed = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_raeie"]
 size = Vector3(30, 100, 30)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_necax"]
+size = Vector2(10, 10)
 
 [node name="Main" type="Node3D" unique_id=959478903]
 
@@ -257,3 +261,10 @@ shape = SubResource("BoxShape3D_raeie")
 
 [node name="SheetMusic" parent="." unique_id=1780103802 instance=ExtResource("17_nvumn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7768993, 0.56225204, 16.116556)
+
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1959169120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.812538, 0, 0)
+material_override = ExtResource("18_ou6is")
+mesh = SubResource("PlaneMesh_necax")
+

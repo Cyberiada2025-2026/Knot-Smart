@@ -1,7 +1,7 @@
 extends Node
 
 @export var next_strategy: Node
-@export var rotation_speed: float = 0.004
+@export var rotation_speed: float = 0.008
 
 
 func start() -> void:

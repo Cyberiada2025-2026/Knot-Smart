@@ -31,6 +31,7 @@ enum ViewType {
 
 var arm_length: float
 var mouse_relative: Vector2 = Vector2.ZERO
+var rotation_lerp_weight: float = 0.4
 
 
 func _ready() -> void:
@@ -45,9 +46,12 @@ func _process(delta: float) -> void:
 	camera.rotation.z = 0
 
 	## CAMERA ROTATION
-	if player.get_is_rotating() == false:
-		rotation_strategy.rotate(self, mouse_relative, delta)
-	mouse_relative = Vector2.ZERO
+	var lerped_mouse_relative = Vector2(
+		lerp(0.0, mouse_relative.x, rotation_lerp_weight),
+		lerp(0.0, mouse_relative.y, rotation_lerp_weight)
+	)
+	rotation_strategy.rotate(self, lerped_mouse_relative, delta)
+	mouse_relative -= lerped_mouse_relative
 
 	## CAMERA ZOOM
 	view_strategy.zoom(self, delta)
@@ -80,6 +84,7 @@ func rotate_left_right(vector: Vector3, angle: float) -> void:
 func rotate_up_down(angle: float) -> void:
 	if view_strategy.should_rotate_up_down:
 		camera.rotate(Vector3.RIGHT, angle)
+		
 		if camera.rotation.x > deg_to_rad(camera_up_rotation_limit):
 			camera.rotation.x = deg_to_rad(camera_up_rotation_limit)
 		elif camera.rotation.x < deg_to_rad(camera_down_rotation_limit):

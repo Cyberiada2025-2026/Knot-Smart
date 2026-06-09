@@ -61,7 +61,7 @@ player_physics = NodePath("PlayerPhysics")
 player_camera = NodePath("PlayerPhysics/PlayerCamera")
 player_gravity_controller = NodePath("PlayerPhysics/gravityController")
 
-[node name="PlayerPhysics" parent="." unique_id=1615832908 node_paths=PackedStringArray("player") instance=ExtResource("1_l8h54")]
+[node name="PlayerPhysics" parent="." unique_id=655149680 node_paths=PackedStringArray("player") instance=ExtResource("1_l8h54")]
 collision_layer = 2
 player = NodePath("..")
 

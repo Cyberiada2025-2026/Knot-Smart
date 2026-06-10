@@ -14,8 +14,6 @@ enum ViewType {
 @export var arm: SpringArm3D
 @export_category("variables")
 @export var person_change_speed: float = 2.5
-@export var camera_up_rotation_limit: float = 90
-@export var camera_down_rotation_limit: float = -40
 @export_category("dafault strategies")
 @export_subgroup("rotation")
 @export var rotation_strategy: Node
@@ -25,13 +23,14 @@ enum ViewType {
 @export_subgroup("rotation")
 @export var qe_keyboard: Node
 @export var hidden_mouse: Node
+@export var rotation_lerp_weight: float = 0.4
 @export_subgroup("view")
 @export var first_person_camera: Node
 @export var third_person_camera: Node
 
 var arm_length: float
 var mouse_relative: Vector2 = Vector2.ZERO
-var rotation_lerp_weight: float = 0.4
+
 
 
 func _ready() -> void:
@@ -76,19 +75,17 @@ func _input(event: InputEvent) -> void:
 
 
 func rotate_left_right(vector: Vector3, angle: float) -> void:
-	if view_strategy.should_rotate_left_right:
-		self.rotate(Vector3.UP, angle)
-		camera_rotated.emit(vector, angle)
+	self.rotate(Vector3.UP, angle)
+	camera_rotated.emit(vector, angle)
 
 
 func rotate_up_down(angle: float) -> void:
-	if view_strategy.should_rotate_up_down:
-		camera.rotate(Vector3.RIGHT, angle)
-		
-		if camera.rotation.x > deg_to_rad(camera_up_rotation_limit):
-			camera.rotation.x = deg_to_rad(camera_up_rotation_limit)
-		elif camera.rotation.x < deg_to_rad(camera_down_rotation_limit):
-			camera.rotation.x = deg_to_rad(camera_down_rotation_limit)
+	arm.rotate(Vector3.RIGHT, angle)
+	
+	if arm.rotation.x > deg_to_rad(view_strategy.camera_up_rotation_limit):
+		arm.rotation.x = deg_to_rad(view_strategy.camera_up_rotation_limit)
+	elif arm.rotation.x < deg_to_rad(view_strategy.camera_down_rotation_limit):
+		arm.rotation.x = deg_to_rad(view_strategy.camera_down_rotation_limit)
 
 
 func get_normal() -> Vector3:

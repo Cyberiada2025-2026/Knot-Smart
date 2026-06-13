@@ -6,6 +6,7 @@ extends Node
 @export var min_arm_length: float = 2.0
 @export var zoom_speed: float = 100.0
 @export var default_camera_rotation: Vector3 = Vector3(0, 0, 0)
+@export var camera_position: Vector3 = Vector3(0.0, 0.28, 0.0)
 @export var camera_up_rotation_limit: float = 20
 @export var camera_down_rotation_limit: float = -40
 
@@ -30,6 +31,7 @@ func change_view_to(camera: PlayerCamera) -> void:
 	camera.player.player_physics.player_model.show()
 	camera.camera.rotation_degrees = default_camera_rotation
 	camera.arm_length = default_arm_length
+	camera.arm.position = camera_position
 
 
 func get_view_type() -> PlayerCamera.ViewType:

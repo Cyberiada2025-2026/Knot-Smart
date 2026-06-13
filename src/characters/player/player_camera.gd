@@ -13,7 +13,7 @@ enum ViewType {
 @export var camera: Node3D
 @export var arm: SpringArm3D
 @export_category("variables")
-@export var person_change_speed: float = 2.5
+@export var person_change_speed: float = 5.0
 @export_category("dafault strategies")
 @export_subgroup("rotation")
 @export var rotation_strategy: Node
@@ -30,7 +30,6 @@ enum ViewType {
 
 var arm_length: float
 var mouse_relative: Vector2 = Vector2.ZERO
-
 
 
 func _ready() -> void:

@@ -14,7 +14,7 @@ func start(camera: PlayerCamera) -> void:
 
 func change_view_to(camera: PlayerCamera) -> void:
 	camera.arm_length = arm_length
-	camera.arm.position = camera_position
+	camera.arm_position = camera_position
 
 
 func zoom(_camera: PlayerCamera, _delta: float) -> void:

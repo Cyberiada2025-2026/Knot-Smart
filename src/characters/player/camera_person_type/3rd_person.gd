@@ -31,7 +31,7 @@ func change_view_to(camera: PlayerCamera) -> void:
 	camera.player.player_physics.player_model.show()
 	camera.camera.rotation_degrees = default_camera_rotation
 	camera.arm_length = default_arm_length
-	camera.arm.position = camera_position
+	camera.arm_position = camera_position
 
 
 func get_view_type() -> PlayerCamera.ViewType:

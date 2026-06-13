@@ -13,7 +13,7 @@ enum ViewType {
 @export var camera: Node3D
 @export var arm: SpringArm3D
 @export_category("variables")
-@export var person_change_speed: float = 5.0
+@export var person_change_speed: float = 9.0
 @export_category("dafault strategies")
 @export_subgroup("rotation")
 @export var rotation_strategy: Node
@@ -29,6 +29,7 @@ enum ViewType {
 @export var third_person_camera: Node
 
 var arm_length: float
+var arm_position: Vector3
 var mouse_relative: Vector2 = Vector2.ZERO
 
 
@@ -57,6 +58,7 @@ func _process(delta: float) -> void:
 
 func _process_change_person(delta: float) -> void:
 	arm.spring_length = lerp(arm.spring_length, arm_length, person_change_speed * delta)
+	arm.position = lerp(arm.position, arm_position, person_change_speed * delta)
 
 
 func _input(event: InputEvent) -> void:

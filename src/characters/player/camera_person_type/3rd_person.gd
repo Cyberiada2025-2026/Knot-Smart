@@ -12,6 +12,7 @@ extends Node
 
 
 func start(camera: PlayerCamera) -> void:
+	camera.prev_arm_length = default_arm_length
 	change_view_to(camera)
 	camera.arm.spring_length = default_arm_length
 
@@ -28,9 +29,8 @@ func zoom(camera: PlayerCamera, delta: float) -> void:
 
 
 func change_view_to(camera: PlayerCamera) -> void:
-	camera.player.player_physics.player_model.show()
 	camera.camera.rotation_degrees = default_camera_rotation
-	camera.arm_length = default_arm_length
+	camera.arm_length = camera.prev_arm_length
 	camera.arm_position = camera_position
 
 

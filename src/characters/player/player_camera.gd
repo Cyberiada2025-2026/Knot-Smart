@@ -30,6 +30,7 @@ enum ViewType {
 
 var arm_length: float
 var arm_position: Vector3
+var prev_arm_length: float
 var mouse_relative: Vector2 = Vector2.ZERO
 
 

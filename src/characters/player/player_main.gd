@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody3D
 
-enum {IDLE, WALK}
+enum {IDLE, WALK, JUMP}
 
 @export_category("MODULES")
 @export var player_model: Node3D
@@ -84,11 +84,13 @@ func _handle_flat_movement(delta: float) -> void:
 func _handle_move_input(delta: float):
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	if input_dir:
-		animation_tree.set("parameters/Movement/transition_request", "Walk")
+		if is_on_floor():
+			animation_tree.set("parameters/Movement/transition_request", "Walk")
 		velocity.x = -input_dir.x * speed * delta
 		velocity.z = -input_dir.y * speed * delta
 	else:
-		animation_tree.set("parameters/Movement/transition_request", "Idle")
+		if is_on_floor():
+			animation_tree.set("parameters/Movement/transition_request", "Idle")
 		velocity.x = move_toward(velocity.x, 0, slowing_speed * delta)
 		velocity.z = move_toward(velocity.z, 0, slowing_speed * delta)
 
@@ -100,4 +102,5 @@ func _handle_jump():
 
 func _handle_gravity(delta: float):
 	if not is_on_floor():
+		animation_tree.set("parameters/Movement/transition_request", "Jump")
 		velocity += Vector3.DOWN * gravity_strength * delta

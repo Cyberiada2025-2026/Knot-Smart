@@ -5,6 +5,9 @@
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1nf8s"]
 animation = &"Idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01x27"]
+animation = &"Jump"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_my2vs"]
 animation = &"Walk"
 
@@ -18,24 +21,26 @@ input_1/name = "Walk"
 input_1/auto_advance = false
 input_1/break_loop_at_end = false
 input_1/reset = false
-
-[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_01x27"]
+input_2/name = "Jump"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = false
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1nf8s"]
-graph_offset = Vector2(-460.78723, 17.538605)
+graph_offset = Vector2(-550.7462, 215.27664)
 "nodes/Anim Idle/node" = SubResource("AnimationNodeAnimation_1nf8s")
 "nodes/Anim Idle/position" = Vector2(-300, 60)
 "nodes/Anim Walk/node" = SubResource("AnimationNodeAnimation_my2vs")
-"nodes/Anim Walk/position" = Vector2(-300, 260)
-nodes/Walk/node = SubResource("AnimationNodeBlend2_01x27")
-nodes/Walk/position = Vector2(200, 380)
+"nodes/Anim Walk/position" = Vector2(-300, 240)
 nodes/Movement/node = SubResource("AnimationNodeTransition_1nf8s")
 nodes/Movement/position = Vector2(-20, 200)
-node_connections = [&"output", 0, &"Movement", &"Movement", 0, &"Anim Idle", &"Movement", 1, &"Anim Walk"]
+"nodes/Anim Jump/node" = SubResource("AnimationNodeAnimation_01x27")
+"nodes/Anim Jump/position" = Vector2(-300, 440)
+node_connections = [&"output", 0, &"Movement", &"Movement", 0, &"Anim Idle", &"Movement", 1, &"Anim Walk", &"Movement", 2, &"Anim Jump"]
 
 [node name="player_model" unique_id=472242567 instance=ExtResource("1_1nf8s")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(868676170) index="0" unique_id=377897307]
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1550083964) index="0" unique_id=922831591]
 bones/0/position = Vector3(-7.944113e-15, -2.6619513, -5.6687032e-08)
 bones/1/rotation = Quaternion(-0.07182452, -5.1605255e-08, -5.8566583e-09, 0.9974173)
 bones/2/rotation = Quaternion(0.29661953, 2.134582e-08, 1.5469919e-08, 0.95499575)
@@ -67,7 +72,6 @@ bones/27/rotation = Quaternion(0.2865344, -0.6464504, 0.6464504, -0.28653437)
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=474290956]
 tree_root = SubResource("AnimationNodeBlendTree_1nf8s")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Walk/blend_amount = 0.0
 parameters/Movement/current_state = "Idle"
 parameters/Movement/transition_request = ""
 parameters/Movement/current_index = 0

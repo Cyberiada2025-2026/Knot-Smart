@@ -180,5 +180,6 @@ initial_entries = Array[ExtResource("17_aqrcq")]([SubResource("Resource_aqrcq")]
 target_position = Vector3(0, -0.405, 0)
 
 [connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
+[connection signal="view_changed" from="PlayerCamera" to="." method="_on_player_camera_view_changed"]
 [connection signal="timeout" from="FootstepsMaker/Timer" to="FootstepsMaker" method="_on_timer_timeout"]
 [connection signal="health_decreased" from="HealthComponent" to="VfxPlayerSequence" method="play"]

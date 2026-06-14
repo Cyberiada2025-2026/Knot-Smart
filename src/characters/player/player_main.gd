@@ -16,7 +16,7 @@ enum {IDLE, WALK, JUMP}
 
 var animation_tree: AnimationTree
 var walk_blend = 0.0
-var curr_anim = IDLE
+var is_shooting = false
 
 
 func _ready() -> void:
@@ -89,8 +89,10 @@ func _handle_move_input(delta: float):
 		velocity.x = -input_dir.x * speed * delta
 		velocity.z = -input_dir.y * speed * delta
 	else:
-		if is_on_floor_check():
+		if is_on_floor_check() and not is_shooting:
 			animation_tree.set("parameters/Movement/transition_request", "Idle")
+		if is_shooting:
+			animation_tree.set("parameters/Movement/transition_request", "Shoot")
 		velocity.x = move_toward(velocity.x, 0, slowing_speed * delta)
 		velocity.z = move_toward(velocity.z, 0, slowing_speed * delta)
 
@@ -98,6 +100,10 @@ func _handle_move_input(delta: float):
 func _handle_jump():
 	if Input.is_action_just_pressed("jump_button") and is_on_floor_check():
 		velocity.y = jump_strength
+
+
+func _on_player_camera_view_changed() -> void:
+	is_shooting = !is_shooting
 
 
 func _handle_gravity(delta: float):

@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://bpwwtngx87b5u"]
+
+[ext_resource type="PackedScene" uid="uid://bi7hkhprp31go" path="res://characters/player/player_model.glb" id="1_1nf8s"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1nf8s"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_my2vs"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_1nf8s"]
+xfade_time = 0.2
+input_0/name = "Idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = false
+input_1/name = "Walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = false
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_01x27"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1nf8s"]
+graph_offset = Vector2(-460.78723, 17.538605)
+"nodes/Anim Idle/node" = SubResource("AnimationNodeAnimation_1nf8s")
+"nodes/Anim Idle/position" = Vector2(-300, 60)
+"nodes/Anim Walk/node" = SubResource("AnimationNodeAnimation_my2vs")
+"nodes/Anim Walk/position" = Vector2(-300, 260)
+nodes/Walk/node = SubResource("AnimationNodeBlend2_01x27")
+nodes/Walk/position = Vector2(200, 380)
+nodes/Movement/node = SubResource("AnimationNodeTransition_1nf8s")
+nodes/Movement/position = Vector2(-20, 200)
+node_connections = [&"output", 0, &"Movement", &"Movement", 0, &"Anim Idle", &"Movement", 1, &"Anim Walk"]
+
+[node name="player_model" unique_id=1301919891 instance=ExtResource("1_1nf8s")]
+
+[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1549087695) index="0" unique_id=1462978755]
+bones/0/position = Vector3(-7.944113e-15, -2.6619513, -5.6687032e-08)
+bones/1/rotation = Quaternion(-0.07182452, -5.1605255e-08, -5.8566583e-09, 0.9974173)
+bones/2/rotation = Quaternion(0.29661953, 2.134582e-08, 1.5469919e-08, 0.95499575)
+bones/4/rotation = Quaternion(-0.27913728, -4.0471566e-08, -3.5294264e-08, 0.9602513)
+bones/5/rotation = Quaternion(0.03397132, 0.06360944, 0.87978876, -0.4698633)
+bones/6/rotation = Quaternion(0.009872006, -0.0023435114, -0.30880982, 0.9510697)
+bones/7/rotation = Quaternion(0.16993442, 0.01276043, -0.10499618, 0.9797629)
+bones/8/rotation = Quaternion(0.028841654, 0.0029282416, -0.015795322, 0.999455)
+bones/9/rotation = Quaternion(-0.03397138, 0.06360941, 0.87978876, 0.4698633)
+bones/10/rotation = Quaternion(0.009871988, 0.0023435229, 0.30880982, 0.9510697)
+bones/11/rotation = Quaternion(0.16993117, -0.012760459, 0.10499439, 0.9797636)
+bones/12/rotation = Quaternion(0.028849697, -0.0029282465, 0.015799718, 0.9994547)
+bones/13/rotation = Quaternion(0.008674253, -0.29412442, 0.9508047, -0.09688101)
+bones/14/rotation = Quaternion(0.07158939, 0.014363455, -0.065956816, 0.9951474)
+bones/15/rotation = Quaternion(0.75568885, 1.6890509e-08, 3.2741156e-08, 0.6549308)
+bones/16/rotation = Quaternion(-0.00867439, -0.2941248, 0.9508046, 0.09688148)
+bones/17/rotation = Quaternion(0.0715902, -0.014363345, 0.06595762, 0.9951473)
+bones/18/rotation = Quaternion(0.75568885, -2.305676e-08, -3.9589192e-08, 0.65493083)
+bones/19/rotation = Quaternion(0.019251954, 0.7068446, -0.7068447, -0.019251954)
+bones/21/rotation = Quaternion(-0.06692102, 0.70393294, 0.703933, -0.066921026)
+bones/23/position = Vector3(-0.92458606, -2.893601, 0.46108183)
+bones/24/position = Vector3(2.8360816e-06, 2.0777902e-06, -3.4973004e-06)
+bones/24/rotation = Quaternion(0.44942757, 0.19327947, 0.11721989, 0.8642438)
+bones/25/position = Vector3(0.92458606, -2.893601, 0.46108183)
+bones/26/position = Vector3(-2.778086e-06, 1.779767e-06, -2.9606827e-06)
+bones/26/rotation = Quaternion(0.44942757, -0.19327946, -0.1172199, 0.8642438)
+bones/27/rotation = Quaternion(0.2865344, -0.6464504, 0.6464504, -0.28653437)
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=474290956]
+tree_root = SubResource("AnimationNodeBlendTree_1nf8s")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Walk/blend_amount = 0.0
+parameters/Movement/current_state = "Idle"
+parameters/Movement/transition_request = ""
+parameters/Movement/current_index = 0

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c4sgtcvhksqls"]
 
 [ext_resource type="Script" uid="uid://by54s7xnmwcc1" path="res://characters/player/player_main.gd" id="1_4ntmi"]
-[ext_resource type="PackedScene" uid="uid://bi7hkhprp31go" path="res://characters/player/player_model.glb" id="2_aqrcq"]
+[ext_resource type="PackedScene" uid="uid://bpwwtngx87b5u" path="res://characters/player/player_model.tscn" id="2_aqrcq"]
 [ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
 [ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_6dc8e"]
@@ -57,11 +57,11 @@ player_model = NodePath("PlayerModel")
 player_camera = NodePath("PlayerCamera")
 player_gravity_controller = NodePath("gravityController")
 
+[node name="PlayerModel" parent="." unique_id=1301919891 instance=ExtResource("2_aqrcq")]
+transform = Transform3D(-0.123, 0, -1.0753002e-08, 0, 0.123, 0, 1.0753002e-08, 0, -0.123, 0, 0.015, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=674445317]
 shape = SubResource("CapsuleShape3D_d2agh")
-
-[node name="PlayerModel" parent="." unique_id=1115287672 instance=ExtResource("2_aqrcq")]
-transform = Transform3D(-0.13, 0, 0, 0, 0.13, 0, 0, 0, -0.13, 0, 0, 0)
 
 [node name="PlayerCamera" parent="." unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
 player = NodePath("..")

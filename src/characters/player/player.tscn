@@ -176,6 +176,9 @@ metadata/_custom_type_script = "uid://d0x6a5ec5mlei"
 [node name="Journal menu" parent="." unique_id=883052313 instance=ExtResource("5_ixbpm")]
 initial_entries = Array[ExtResource("17_aqrcq")]([SubResource("Resource_aqrcq")])
 
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=317153105]
+target_position = Vector3(0, -0.405, 0)
+
 [connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
 [connection signal="timeout" from="FootstepsMaker/Timer" to="FootstepsMaker" method="_on_timer_timeout"]
 [connection signal="health_decreased" from="HealthComponent" to="VfxPlayerSequence" method="play"]

@@ -84,23 +84,32 @@ func _handle_flat_movement(delta: float) -> void:
 func _handle_move_input(delta: float):
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").normalized()
 	if input_dir:
-		if is_on_floor():
+		if is_on_floor_check():
 			animation_tree.set("parameters/Movement/transition_request", "Walk")
 		velocity.x = -input_dir.x * speed * delta
 		velocity.z = -input_dir.y * speed * delta
 	else:
-		if is_on_floor():
+		if is_on_floor_check():
 			animation_tree.set("parameters/Movement/transition_request", "Idle")
 		velocity.x = move_toward(velocity.x, 0, slowing_speed * delta)
 		velocity.z = move_toward(velocity.z, 0, slowing_speed * delta)
 
 
 func _handle_jump():
-	if Input.is_action_just_pressed("jump_button") and is_on_floor():
+	if Input.is_action_just_pressed("jump_button") and is_on_floor_check():
 		velocity.y = jump_strength
 
 
 func _handle_gravity(delta: float):
-	if not is_on_floor():
+	if not is_on_floor_check():
 		animation_tree.set("parameters/Movement/transition_request", "Jump")
 		velocity += Vector3.DOWN * gravity_strength * delta
+
+
+func is_on_floor_check():
+	if is_on_floor():
+		return true
+	else:
+		$RayCast3D.force_raycast_update()
+		if $RayCast3D.is_colliding():
+			return true

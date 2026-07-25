@@ -14,10 +14,16 @@ var random = RandomNumberGenerator.new()
 
 func _init() -> void:
 	standalone = false
+	
 
 
 func _ready() -> void:
-	on_generate()
+	if standalone:
+		var result = Serialize.load(DIR_PATH, params)
+		if result != null:
+			add_child(result)
+	else:
+		on_generate()
 
 
 func set_params(new_params, new_transform):
@@ -47,4 +53,4 @@ func on_generate():
 
 
 func serialize():
-	add_child(Serialize.serialize(foliage_scene, self, DIR_PATH))
+	add_child(Serialize.serialize(foliage_scene, self, DIR_PATH, params))

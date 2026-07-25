@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("2_is4n4")
+seed = 3265581030
 mesh = ExtResource("1_jgsg3")
 count = 3
 scale = 1.5

@@ -9,6 +9,7 @@ const DIR_PATH = "user://foliage"
 
 var foliage_scene: PackedScene
 var standalone: bool = true
+var random = RandomNumberGenerator.new()
 
 
 func _init() -> void:
@@ -26,7 +27,7 @@ func set_params(new_params, new_transform):
 
 func generate_foliage():
 	var angle = PI / params.count
-	var new_scale = params.scale + (randf() - 0.5) * params.scale_randomization
+	var new_scale = params.scale + (random.randf() - 0.5) * params.scale_randomization
 	for i in range(params.count):
 		var mesh = params.mesh.instantiate()
 		mesh.scale *= new_scale
@@ -38,6 +39,7 @@ func generate_foliage():
 
 
 func on_generate():
+	random.seed = params.seed
 	foliage_scene = PackedScene.new()
 	for child in get_children():
 		child.queue_free()

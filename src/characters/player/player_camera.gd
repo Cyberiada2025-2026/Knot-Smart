@@ -83,7 +83,7 @@ func rotate_left_right(vector: Vector3, angle: float) -> void:
 
 func rotate_up_down(angle: float) -> void:
 	arm.rotate(Vector3.RIGHT, angle)
-	
+
 	if arm.rotation.x > deg_to_rad(view_strategy.camera_up_rotation_limit):
 		arm.rotation.x = deg_to_rad(view_strategy.camera_up_rotation_limit)
 	elif arm.rotation.x < deg_to_rad(view_strategy.camera_down_rotation_limit):

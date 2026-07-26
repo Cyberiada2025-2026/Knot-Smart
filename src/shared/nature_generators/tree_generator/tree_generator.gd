@@ -13,13 +13,14 @@ var tree: StaticBody3D
 var tree_scene: PackedScene
 var random = RandomNumberGenerator.new()
 
+
 func _ready() -> void:
 	tree_skeleton = TreeSkeleton.new()
 	tree_skeleton.tree_generator = self
 	tree_skeleton.random = random
 	tree_mesh_generator = TreeMeshGenerator.new()
 	tree_mesh_generator.tree_generator = self
-	
+
 	var result = Serialize.load(DIR_PATH, params)
 	if result == null:
 		on_generate()
@@ -78,7 +79,7 @@ func on_generate():
 		if child is StaticBody3D:
 			child.queue_free()
 	generate_tree()
-	
+
 
 func serialize():
 	add_child(Serialize.serialize(tree_scene, tree, DIR_PATH, params))

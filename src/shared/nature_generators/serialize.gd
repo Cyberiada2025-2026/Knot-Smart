@@ -24,5 +24,5 @@ static func load(dir: String, params: Resource) -> Node:
 		print("Resource doesn't exist")
 		return null
 	var scene = ResourceLoader.load(dir + "/object%d.tscn" % obj_hash)
-	
+
 	return scene.instantiate()

@@ -14,7 +14,6 @@ var random = RandomNumberGenerator.new()
 
 func _init() -> void:
 	standalone = false
-	
 
 
 func _ready() -> void:

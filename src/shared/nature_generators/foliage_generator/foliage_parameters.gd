@@ -9,5 +9,6 @@ extends Resource
 @export_range(0.5, 5.0, 0.5) var scale: float = 1.0
 @export_range(0.0, 5.0, 0.5) var scale_randomization: float = 1.0
 
+
 func on_random_seed():
 	seed = randi()

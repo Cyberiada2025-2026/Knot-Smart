@@ -31,5 +31,6 @@ extends Resource
 @export_group("Type")
 @export_enum("NORMAL", "SIDE") var subtype: String = "NORMAL"
 
+
 func on_random_seed():
 	seed = randi()

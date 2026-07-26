@@ -8,8 +8,9 @@ var branch_count: int
 var branches: Array[TreeBranch] = []
 var rec_level: int = 0
 var random: RandomNumberGenerator:
-	set(value): random = value
-	
+	set(value):
+		random = value
+
 
 func generate_skeleton(parent_branches: Array[TreeBranch] = []) -> Array[TreeBranch]:
 	branches = []

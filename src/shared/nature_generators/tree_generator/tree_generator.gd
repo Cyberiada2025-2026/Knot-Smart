@@ -21,7 +21,7 @@ func _ready() -> void:
 	tree_mesh_generator = TreeMeshGenerator.new()
 	tree_mesh_generator.tree_generator = self
 
-	var result = Serialize.load(DIR_PATH, params)
+	var result = Serializer.load(DIR_PATH, params)
 	if result == null:
 		on_generate()
 	else:
@@ -82,4 +82,4 @@ func on_generate():
 
 
 func serialize():
-	add_child(Serialize.serialize(tree_scene, tree, DIR_PATH, params))
+	add_child(Serializer.serialize(tree_scene, tree, DIR_PATH, params))

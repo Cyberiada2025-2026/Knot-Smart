@@ -1,4 +1,4 @@
-class_name Serialize
+class_name Serializer
 extends Node
 
 
@@ -7,7 +7,6 @@ static func serialize(scene: PackedScene, object: Node3D, dir: String, params: R
 	if result == OK:
 		if not DirAccess.dir_exists_absolute(dir):
 			DirAccess.make_dir_absolute(dir)
-		#print(JSON.stringify(JSON.from_native(params, true)))
 		var obj_hash = JSON.stringify(JSON.from_native(params, true)).hash()
 		var error = ResourceSaver.save(scene, dir + "/object%d.tscn" % obj_hash)
 		if error != OK:

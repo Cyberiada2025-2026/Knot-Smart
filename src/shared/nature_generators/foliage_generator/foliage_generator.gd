@@ -18,7 +18,7 @@ func _init() -> void:
 
 func _ready() -> void:
 	if standalone:
-		var result = Serialize.load(DIR_PATH, params)
+		var result = Serializer.load(DIR_PATH, params)
 		if result != null:
 			add_child(result)
 	else:
@@ -52,4 +52,4 @@ func on_generate():
 
 
 func serialize():
-	add_child(Serialize.serialize(foliage_scene, self, DIR_PATH, params))
+	add_child(Serializer.serialize(foliage_scene, self, DIR_PATH, params))

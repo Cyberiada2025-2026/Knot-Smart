@@ -63,7 +63,7 @@ func _process_change_person(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot_mode"):
+	if event.is_action_pressed("toggle_camera"):
 		view_strategy = view_strategy.next_strategy
 		view_strategy.change_view_to(self)
 

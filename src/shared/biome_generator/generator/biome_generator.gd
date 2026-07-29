@@ -7,9 +7,9 @@ extends Node3D
 var params: PlantWallGeneratorParams
 var data: PlantWallsSaver
 
-
 var _free_triangles: Array[BiomeTriangle]
 var _size_proportion: Dictionary[Biome, float]
+
 
 func reset() -> void:
 	params = generator_main.params
@@ -17,6 +17,7 @@ func reset() -> void:
 	data.biomes.clear()
 	_free_triangles.clear()
 	_size_proportion.clear()
+
 
 func generate() -> void:
 	params = generator_main.params
@@ -43,13 +44,13 @@ func generate() -> void:
 			triangle.biome = biome
 
 
-
 func _init_biomes() -> void:
 	for biome_name in params.biomes_desired_minimum_area:
 		var biome: Biome = Biome.new()
 		_init_biome(biome, biome_name)
 		_get_biome_random_free_triangle(biome)
 		_size_proportion[biome] = biome.area / params.biomes_desired_minimum_area[biome_name]
+
 
 func _init_biome(biome: Biome, biome_name: String) -> void:
 	data.biomes.append(biome)

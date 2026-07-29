@@ -8,6 +8,7 @@ extends Camera3D
 
 var reference: Node3D
 
+
 func _process(_delta: float) -> void:
 	if reference != null:
 		camera.global_transform = reference.global_transform
@@ -16,7 +17,10 @@ func _process(_delta: float) -> void:
 func set_reference(ref: Node3D) -> void:
 	reference = ref
 
+
 func get_radiation() -> ColorRect:
 	return radiation_post
+
+
 func get_respawn_animator() -> RespawnAnimator:
 	return respawn_animator

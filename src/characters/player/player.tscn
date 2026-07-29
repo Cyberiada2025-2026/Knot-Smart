@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c4sgtcvhksqls"]
 
 [ext_resource type="Script" uid="uid://by54s7xnmwcc1" path="res://characters/player/player_main.gd" id="1_4ntmi"]
-[ext_resource type="PackedScene" uid="uid://bd54neo0vnuug" path="res://characters/player/player_physics.tscn" id="1_l8h54"]
+[ext_resource type="PackedScene" uid="uid://bi7hkhprp31go" path="res://characters/player/player_model.glb" id="2_aqrcq"]
 [ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
 [ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_6dc8e"]
@@ -17,6 +17,10 @@
 [ext_resource type="Script" uid="uid://d0x6a5ec5mlei" path="res://shared/speech/speech_manager.gd" id="13_icpky"]
 [ext_resource type="Resource" uid="uid://cgkx63vdu5tas" path="res://shared/speech/alien/neutral/neutral.tres" id="14_58jvb"]
 [ext_resource type="Script" uid="uid://gfr35mbc1ij6" path="res://shared/journal/journal_entry.gd" id="17_aqrcq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d2agh"]
+radius = 0.25
+height = 0.8
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hysn5"]
 radius = 0.25
@@ -47,24 +51,24 @@ description = "I need to find all the remaining ship parts."
 page = 0
 metadata/_custom_type_script = "uid://gfr35mbc1ij6"
 
-[node name="Player" type="Node3D" unique_id=1889026106 node_paths=PackedStringArray("player_physics", "player_camera", "player_gravity_controller") groups=["Player"]]
+[node name="Player" type="CharacterBody3D" unique_id=982903374 node_paths=PackedStringArray("player_model", "player_camera", "player_gravity_controller") groups=["Player"]]
 script = ExtResource("1_4ntmi")
-player_physics = NodePath("PlayerPhysics")
-player_camera = NodePath("PlayerPhysics/PlayerCamera")
-player_gravity_controller = NodePath("PlayerPhysics/gravityController")
+player_model = NodePath("PlayerModel")
+player_camera = NodePath("PlayerCamera")
+player_gravity_controller = NodePath("gravityController")
 
-[node name="PlayerPhysics" parent="." unique_id=1615832908 node_paths=PackedStringArray("player") instance=ExtResource("1_l8h54")]
-collision_layer = 3
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=674445317]
+shape = SubResource("CapsuleShape3D_d2agh")
+
+[node name="PlayerModel" parent="." unique_id=1115287672 instance=ExtResource("2_aqrcq")]
+transform = Transform3D(-0.13, 0, 0, 0, 0.13, 0, 0, 0, -0.13, 0, 0, 0)
+
+[node name="PlayerCamera" parent="." unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
 player = NodePath("..")
+rotation_lerp_weight = 0.4
 
-[node name="PlayerModel" parent="PlayerPhysics" index="1" unique_id=636085063]
-transform = Transform3D(-0.123, 0, -1.0753002e-08, 0, 0.123, 0, 1.0753002e-08, 0, -0.123, 0, 0.01, 0)
-
-[node name="PlayerCamera" parent="PlayerPhysics" unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
-player = NodePath("../..")
-
-[node name="gravityController" parent="PlayerPhysics" unique_id=1906056142 node_paths=PackedStringArray("player", "sensors") instance=ExtResource("4_ixbpm")]
-player = NodePath("../..")
+[node name="gravityController" parent="." unique_id=1906056142 node_paths=PackedStringArray("player", "sensors") instance=ExtResource("4_ixbpm")]
+player = NodePath("..")
 sensors = {
 "falling_ui_down": NodePath("FallingSensors/back_sensor"),
 "falling_ui_left": NodePath("FallingSensors/left_sensor"),
@@ -77,39 +81,39 @@ sensors = {
 "ui_up": NodePath("MoveingSensors/front_sensor")
 }
 
-[node name="PlayerDecoy" parent="PlayerPhysics" unique_id=2037856166 instance=ExtResource("4_6dc8e")]
+[node name="PlayerDecoy" parent="." unique_id=2037856166 instance=ExtResource("4_6dc8e")]
 
-[node name="FootstepsMaker" type="Node3D" parent="PlayerPhysics" unique_id=324333915]
+[node name="FootstepsMaker" type="Node3D" parent="." unique_id=324333915]
 
-[node name="Timer" type="Timer" parent="PlayerPhysics/FootstepsMaker" unique_id=2075759140]
+[node name="Timer" type="Timer" parent="FootstepsMaker" unique_id=2075759140]
 wait_time = 0.3
 
-[node name="HitBox" type="Area3D" parent="PlayerPhysics" unique_id=1516471157 node_paths=PackedStringArray("health_component")]
+[node name="HitBox" type="Area3D" parent="." unique_id=1516471157 node_paths=PackedStringArray("health_component")]
 collision_layer = 8
 collision_mask = 32
 script = ExtResource("3_ixbpm")
-health_component = NodePath("../../HealthComponent")
+health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://7sxs6ubjcqmo"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPhysics/HitBox" unique_id=1332460509]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=1332460509]
 shape = SubResource("CapsuleShape3D_hysn5")
 
-[node name="VfxPlayerSequence" type="Node3D" parent="PlayerPhysics" unique_id=2032308502]
+[node name="VfxPlayerSequence" type="Node3D" parent="." unique_id=2032308502]
 script = ExtResource("6_3t07l")
 metadata/_custom_type_script = "uid://bwbgvbw8rs0aa"
 
-[node name="BloodVfx" parent="PlayerPhysics/VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("7_on558")]
+[node name="BloodVfx" parent="VfxPlayerSequence" unique_id=1330214445 instance=ExtResource("7_on558")]
 
-[node name="PlayerMarker" type="Area3D" parent="PlayerPhysics" unique_id=864801771]
+[node name="PlayerMarker" type="Area3D" parent="." unique_id=864801771]
 collision_layer = 0
 collision_mask = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPhysics/PlayerMarker" unique_id=208028236]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerMarker" unique_id=208028236]
 shape = SubResource("BoxShape3D_on558")
 
-[node name="InteractionArea" type="Area3D" parent="PlayerPhysics" unique_id=1733871244]
+[node name="InteractionArea" type="Area3D" parent="." unique_id=1733871244]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerPhysics/InteractionArea" unique_id=1854980343]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=1854980343]
 shape = SubResource("SphereShape3D_on558")
 
 [node name="RopeManager" type="Node3D" parent="." unique_id=1597735802]
@@ -161,7 +165,7 @@ offset_top = 170.0
 offset_right = 320.0
 offset_bottom = 410.0
 script = ExtResource("13_gqopd")
-interaction_area = NodePath("../PlayerPhysics/InteractionArea")
+interaction_area = NodePath("../InteractionArea")
 metadata/_custom_type_script = "uid://sf6x58peklug"
 
 [node name="SpeechManager" type="Node" parent="." unique_id=830717814]
@@ -172,8 +176,6 @@ metadata/_custom_type_script = "uid://d0x6a5ec5mlei"
 [node name="Journal menu" parent="." unique_id=883052313 instance=ExtResource("5_ixbpm")]
 initial_entries = Array[ExtResource("17_aqrcq")]([SubResource("Resource_aqrcq")])
 
-[connection signal="camera_rotated" from="PlayerPhysics/PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
-[connection signal="timeout" from="PlayerPhysics/FootstepsMaker/Timer" to="PlayerPhysics/FootstepsMaker" method="_on_timer_timeout"]
-[connection signal="health_decreased" from="HealthComponent" to="PlayerPhysics/VfxPlayerSequence" method="play"]
-
-[editable path="PlayerPhysics"]
+[connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
+[connection signal="timeout" from="FootstepsMaker/Timer" to="FootstepsMaker" method="_on_timer_timeout"]
+[connection signal="health_decreased" from="HealthComponent" to="VfxPlayerSequence" method="play"]

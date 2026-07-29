@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://c8uvhpoaogyqt"]
 
 [ext_resource type="Script" uid="uid://dles3x4ape0fk" path="res://shared/inventory_items_zones/take_item_zone.gd" id="1_2oska"]
-[ext_resource type="Resource" uid="uid://bw55udm61j6kl" path="res://shared/ship/ship_parts/sprocket.tres" id="2_2oska"]
+[ext_resource type="Script" uid="uid://dvy1b1v48ym8a" path="res://ui/inventory/item_description.gd" id="2_2oska"]
+
+[sub_resource type="Resource" id="Resource_p0chv"]
+script = ExtResource("2_2oska")
+item_name = "Sprocket"
+description = "A wheel with teeth"
+metadata/_custom_type_script = "uid://dvy1b1v48ym8a"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sk4f2"]
 shading_mode = 0
@@ -18,12 +24,11 @@ data = PackedVector3Array(0, 0.049999997, 0.5, 0.049, 0.049999997, 0.4976, 0, 0.
 
 [node name="TakeItemZone" type="Node3D" parent="." unique_id=275845639]
 script = ExtResource("1_2oska")
-item = ExtResource("2_2oska")
+item = SubResource("Resource_p0chv")
 metadata/_custom_type_script = "uid://dles3x4ape0fk"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1640243635]
 mesh = SubResource("CylinderMesh_2snf0")
-skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=458874461]
 shape = SubResource("ConcavePolygonShape3D_70h2e")

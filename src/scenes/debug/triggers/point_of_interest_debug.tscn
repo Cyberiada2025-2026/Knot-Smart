@@ -34,7 +34,6 @@ mesh = SubResource("CapsuleMesh_xowle")
 [node name="PointOfInterest" type="Node3D" parent="trigger2" unique_id=1310453744]
 script = ExtResource("2_esi2j")
 radius = 2.0
-message = "point of interest debug 1"
 metadata/_custom_type_script = "uid://bm0wrygl0ikje"
 
 [node name="trigger1" type="MeshInstance3D" parent="." unique_id=471416370]
@@ -44,7 +43,6 @@ mesh = SubResource("CapsuleMesh_yp54c")
 [node name="PointOfInterest" type="Node3D" parent="trigger1" unique_id=1595307592]
 script = ExtResource("2_esi2j")
 radius = 4.0
-message = "point of interest debug 2"
 metadata/_custom_type_script = "uid://bm0wrygl0ikje"
 
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("2_r707f")]

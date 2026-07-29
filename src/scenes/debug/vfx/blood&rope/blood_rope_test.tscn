@@ -23,7 +23,8 @@ rings = 10
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_agnij")
-shader_parameter/mesh_width_change = 2.0
+shader_parameter/min_radius_mult = 0.2
+shader_parameter/max_radius_mult = 3.0
 shader_parameter/anim_start = 0.0
 shader_parameter/length_start = 10.0
 shader_parameter/length_curr = 10.0
@@ -38,6 +39,8 @@ shader_parameter/sec_col_def = Color(1, 1, 1, 1)
 shader_parameter/sec_col_stretch = Color(1, 1, 1, 1)
 shader_parameter/sec_col_squish = Color(1, 1, 1, 1)
 shader_parameter/vibrate_time = 0.3
+shader_parameter/max_length = 32.0
+shader_parameter/min_length = 0.3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5e0b0"]
 albedo_color = Color(0.10880001, 0.64, 0.12650666, 1)

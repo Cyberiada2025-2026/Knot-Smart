@@ -21,5 +21,4 @@ func _die():
 
 func _respawn():
 	get_parent().global_position = ProgressionManager.respawn_pos
-	get_node("../PlayerPhysics").global_position = ProgressionManager.respawn_pos
 	health_component.health = health_component.max_health

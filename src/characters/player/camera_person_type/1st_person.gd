@@ -11,7 +11,7 @@ func start(camera: PlayerCamera) -> void:
 
 
 func change_view_to(camera: PlayerCamera) -> void:
-	camera.player.player_physics.player_model.hide()
+	camera.player.player_model.hide()
 	camera.arm_length = 0.0
 
 

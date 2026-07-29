@@ -82,5 +82,5 @@ shadow_mesh = SubResource("ArrayMesh_l5pk1")
 
 [node name="TrashBinModel" unique_id=1507126590 instance=ExtResource("1_s2wjy")]
 
-[node name="Cylinder" parent="." index="0" unique_id=984332798]
+[node name="Cylinder" parent="." index="0" unique_id=549662367]
 mesh = SubResource("ArrayMesh_vec2f")

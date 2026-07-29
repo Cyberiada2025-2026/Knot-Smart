@@ -65,6 +65,7 @@ transform = Transform3D(-0.13, 0, 0, 0, 0.13, 0, 0, 0, -0.13, 0, 0, 0)
 
 [node name="PlayerCamera" parent="." unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
 player = NodePath("..")
+rotation_lerp_weight = 0.4
 
 [node name="gravityController" parent="." unique_id=1906056142 node_paths=PackedStringArray("player", "sensors") instance=ExtResource("4_ixbpm")]
 player = NodePath("..")

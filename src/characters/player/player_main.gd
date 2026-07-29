@@ -11,6 +11,7 @@ extends CharacterBody3D
 @export var jump_strength = 9.5
 @export var gravity_strength = 19.0
 
+
 func _on_player_camera_camera_rotated(_vector: Vector3, angle: float) -> void:
 	player_gravity_controller.front = get_front().rotated(get_normal(), angle)
 	player_model.rotate(Vector3.UP, angle)
@@ -36,7 +37,8 @@ func get_front() -> Vector3:
 
 func get_is_rotating() -> bool:
 	return player_gravity_controller.is_rotating
-	
+
+
 func _physics_process(delta: float) -> void:
 	_convert_to_flat()
 	_handle_flat_movement(delta)

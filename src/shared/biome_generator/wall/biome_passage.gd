@@ -1,4 +1,4 @@
-class_name  BiomePassage
+class_name BiomePassage
 extends CSGSphere3D
 
 var biomes: Array[Biome] = []

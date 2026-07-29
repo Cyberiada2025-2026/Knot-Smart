@@ -58,11 +58,7 @@ func check_direction_senseors(floor_normal) -> bool:
 			new_ground_normal = sensor_normal
 			return true
 		sensor_normal = get_sensor_normal("falling_" + direction)
-		if (
-			not player.is_on_floor()
-			and sensor_normal != null
-			and floor_normal == null
-		):
+		if not player.is_on_floor() and sensor_normal != null and floor_normal == null:
 			new_ground_normal = sensor_normal
 			return true
 	return false

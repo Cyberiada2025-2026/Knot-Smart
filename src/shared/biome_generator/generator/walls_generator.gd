@@ -7,6 +7,7 @@ extends Node3D
 var params: PlantWallGeneratorParams
 var data: PlantWallsSaver
 
+
 func reset() -> void:
 	params = generator_main.params
 	data = generator_main.data
@@ -17,6 +18,7 @@ func reset() -> void:
 	data.walls_combiner = WallsCombiner.new()
 	data.add_child(data.walls_combiner)
 	data.walls_combiner.owner = data
+
 
 func generate() -> void:
 	params = generator_main.params

@@ -57,6 +57,9 @@ player_gravity_controller = NodePath("PlayerPhysics/gravityController")
 collision_layer = 3
 player = NodePath("..")
 
+[node name="PlayerModel" parent="PlayerPhysics" index="1" unique_id=636085063]
+transform = Transform3D(-0.123, 0, -1.0753002e-08, 0, 0.123, 0, 1.0753002e-08, 0, -0.123, 0, 0.01, 0)
+
 [node name="PlayerCamera" parent="PlayerPhysics" unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
 player = NodePath("../..")
 

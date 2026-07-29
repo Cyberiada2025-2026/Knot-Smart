@@ -13,9 +13,7 @@ enum ViewType {
 @export var camera: Node3D
 @export var arm: SpringArm3D
 @export_category("variables")
-@export var person_change_speed: float = 2.5
-@export var camera_up_rotation_limit: float = 90
-@export var camera_down_rotation_limit: float = -40
+@export var person_change_speed: float = 9.0
 @export_category("dafault strategies")
 @export_subgroup("rotation")
 @export var rotation_strategy: Node
@@ -25,11 +23,14 @@ enum ViewType {
 @export_subgroup("rotation")
 @export var qe_keyboard: Node
 @export var hidden_mouse: Node
+@export var rotation_lerp_weight: float = 0.4
 @export_subgroup("view")
 @export var first_person_camera: Node
 @export var third_person_camera: Node
 
 var arm_length: float
+var arm_position: Vector3
+var prev_arm_length: float
 var mouse_relative: Vector2 = Vector2.ZERO
 
 
@@ -45,9 +46,12 @@ func _process(delta: float) -> void:
 	camera.rotation.z = 0
 
 	## CAMERA ROTATION
-	if player.get_is_rotating() == false:
-		rotation_strategy.rotate(self, mouse_relative, delta)
-	mouse_relative = Vector2.ZERO
+	var lerped_mouse_relative = Vector2(
+		lerp(0.0, mouse_relative.x, rotation_lerp_weight),
+		lerp(0.0, mouse_relative.y, rotation_lerp_weight)
+	)
+	rotation_strategy.rotate(self, lerped_mouse_relative, delta)
+	mouse_relative -= lerped_mouse_relative
 
 	## CAMERA ZOOM
 	view_strategy.zoom(self, delta)
@@ -55,10 +59,11 @@ func _process(delta: float) -> void:
 
 func _process_change_person(delta: float) -> void:
 	arm.spring_length = lerp(arm.spring_length, arm_length, person_change_speed * delta)
+	arm.position = lerp(arm.position, arm_position, person_change_speed * delta)
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("change_camera"):
+	if event.is_action_pressed("toggle_camera"):
 		view_strategy = view_strategy.next_strategy
 		view_strategy.change_view_to(self)
 
@@ -72,18 +77,17 @@ func _input(event: InputEvent) -> void:
 
 
 func rotate_left_right(vector: Vector3, angle: float) -> void:
-	if view_strategy.should_rotate_left_right:
-		self.rotate(Vector3.UP, angle)
-		camera_rotated.emit(vector, angle)
+	self.rotate(Vector3.UP, angle)
+	camera_rotated.emit(vector, angle)
 
 
 func rotate_up_down(angle: float) -> void:
-	if view_strategy.should_rotate_up_down:
-		camera.rotate(Vector3.RIGHT, angle)
-		if camera.rotation.x > deg_to_rad(camera_up_rotation_limit):
-			camera.rotation.x = deg_to_rad(camera_up_rotation_limit)
-		elif camera.rotation.x < deg_to_rad(camera_down_rotation_limit):
-			camera.rotation.x = deg_to_rad(camera_down_rotation_limit)
+	arm.rotate(Vector3.RIGHT, angle)
+
+	if arm.rotation.x > deg_to_rad(view_strategy.camera_up_rotation_limit):
+		arm.rotation.x = deg_to_rad(view_strategy.camera_up_rotation_limit)
+	elif arm.rotation.x < deg_to_rad(view_strategy.camera_down_rotation_limit):
+		arm.rotation.x = deg_to_rad(view_strategy.camera_down_rotation_limit)
 
 
 func get_normal() -> Vector3:

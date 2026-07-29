@@ -14,12 +14,14 @@ rotation_strategy = NodePath("CameraRotationTypes/HiddenMouse")
 view_strategy = NodePath("CameraPersonType/3rd")
 qe_keyboard = NodePath("CameraRotationTypes/QEKeyboard")
 hidden_mouse = NodePath("CameraRotationTypes/HiddenMouse")
+rotation_lerp_weight = 0.35
 first_person_camera = NodePath("CameraPersonType/1st")
 third_person_camera = NodePath("CameraPersonType/3rd")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=378612192]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.86602503, -0.4999998, 0, 0.4999998, 0.86602503, 0, 0.35, -0.2)
 spring_length = 7.0
+margin = 0.85
 
 [node name="FakeCamera3D" type="Node3D" parent="SpringArm3D" unique_id=659579617]
 transform = Transform3D(1, 0, 0, 0, 0.9396931, -0.34202027, 0, 0.34202027, 0.9396931, 0, 0, 0)

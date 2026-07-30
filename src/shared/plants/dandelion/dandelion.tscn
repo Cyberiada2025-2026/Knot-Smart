@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://ba52i38u5elcw"]
+
+[ext_resource type="Texture2D" uid="uid://bfujfma1kvp4q" path="res://shared/plants/dandelion/dandelion.png" id="1_5aiw2"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qqilu"]
+size = Vector2(1, 1.174)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqmve"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_5aiw2")
+texture_filter = 0
+
+[node name="Dandelion" type="Node3D" unique_id=197688663]
+
+[node name="Mesh1" type="MeshInstance3D" parent="." unique_id=1547450720]
+transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, -0.2, 0, 0.2, -8.742278e-09, 0, 0.08604114, 0)
+mesh = SubResource("PlaneMesh_qqilu")
+surface_material_override/0 = SubResource("StandardMaterial3D_aqmve")
+
+[node name="Mesh2" type="MeshInstance3D" parent="." unique_id=538542856]
+transform = Transform3D(0.057108693, -0.19165267, 0.0030677686, 0.01529917, 0.0016438784, -0.21835089, 0.19106157, 0.057153735, 0.016567381, 0, 0.08604114, 0)
+mesh = SubResource("PlaneMesh_qqilu")
+surface_material_override/0 = SubResource("StandardMaterial3D_aqmve")

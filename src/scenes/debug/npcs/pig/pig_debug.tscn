@@ -24,4 +24,4 @@ mesh = SubResource("BoxMesh_cyakr")
 transform = Transform3D(0.06063484, 0.5818243, -0.8110511, -0.043376606, 0.8133145, 0.58020514, 0.99721706, 0, 0.07455276, -11.785224, 6.759593, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=255846734]
-transform = Transform3D(1, 0, 0, 0, 0.38689145, 0.9221253, 0, -0.9221253, 0.38689145, 0, 0, 0)
+transform = Transform3D(0.9695468, 0.094752066, 0.22583407, -0.24490607, 0.37510937, 0.8940436, 0, -0.9221253, 0.38689145, 0, 0, 0)

@@ -49,35 +49,6 @@ node_connections = [&"output", 0, &"Movement", &"Movement", 0, &"Anim Idle", &"M
 
 [node name="player_model" unique_id=76857233 instance=ExtResource("1_1nf8s")]
 
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1757163522) index="0" unique_id=1587655643]
-bones/0/position = Vector3(-7.944113e-15, -2.6619513, -5.6687032e-08)
-bones/1/rotation = Quaternion(-0.07182452, -5.1605255e-08, -5.8566583e-09, 0.9974173)
-bones/2/rotation = Quaternion(0.29661953, 2.134582e-08, 1.5469919e-08, 0.95499575)
-bones/4/rotation = Quaternion(-0.27913728, -4.0471566e-08, -3.5294264e-08, 0.9602513)
-bones/5/rotation = Quaternion(0.03397132, 0.06360944, 0.87978876, -0.4698633)
-bones/6/rotation = Quaternion(0.009872006, -0.0023435114, -0.30880982, 0.9510697)
-bones/7/rotation = Quaternion(0.16993442, 0.01276043, -0.10499618, 0.9797629)
-bones/8/rotation = Quaternion(0.028841654, 0.0029282416, -0.015795322, 0.999455)
-bones/9/rotation = Quaternion(-0.03397138, 0.06360941, 0.87978876, 0.4698633)
-bones/10/rotation = Quaternion(0.009871988, 0.0023435229, 0.30880982, 0.9510697)
-bones/11/rotation = Quaternion(0.16993117, -0.012760459, 0.10499439, 0.9797636)
-bones/12/rotation = Quaternion(0.028849697, -0.0029282465, 0.015799718, 0.9994547)
-bones/13/rotation = Quaternion(0.008674253, -0.29412442, 0.9508047, -0.09688101)
-bones/14/rotation = Quaternion(0.07158939, 0.014363455, -0.065956816, 0.9951474)
-bones/15/rotation = Quaternion(0.75568885, 1.6890509e-08, 3.2741156e-08, 0.6549308)
-bones/16/rotation = Quaternion(-0.00867439, -0.2941248, 0.9508046, 0.09688148)
-bones/17/rotation = Quaternion(0.0715902, -0.014363345, 0.06595762, 0.9951473)
-bones/18/rotation = Quaternion(0.75568885, -2.305676e-08, -3.9589192e-08, 0.65493083)
-bones/19/rotation = Quaternion(0.019251954, 0.7068446, -0.7068447, -0.019251954)
-bones/21/rotation = Quaternion(-0.06692102, 0.70393294, 0.703933, -0.066921026)
-bones/23/position = Vector3(-0.92458606, -2.893601, 0.46108183)
-bones/24/position = Vector3(2.8360816e-06, 2.0777902e-06, -3.4973004e-06)
-bones/24/rotation = Quaternion(0.44942757, 0.19327947, 0.11721989, 0.8642438)
-bones/25/position = Vector3(0.92458606, -2.893601, 0.46108183)
-bones/26/position = Vector3(-2.778086e-06, 1.779767e-06, -2.9606827e-06)
-bones/26/rotation = Quaternion(0.44942757, -0.19327946, -0.1172199, 0.8642438)
-bones/27/rotation = Quaternion(0.2865344, -0.6464504, 0.6464504, -0.28653437)
-
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=474290956]
 tree_root = SubResource("AnimationNodeBlendTree_1nf8s")
 anim_player = NodePath("../AnimationPlayer")

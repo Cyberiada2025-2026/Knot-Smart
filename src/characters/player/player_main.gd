@@ -1,7 +1,6 @@
 class_name Player
 extends CharacterBody3D
 
-enum {IDLE, WALK, JUMP}
 
 @export_category("MODULES")
 @export var player_model: Node3D

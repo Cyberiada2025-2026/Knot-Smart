@@ -67,8 +67,6 @@ func add_foliage(branch: TreeBranch):
 	foliage_generator.set_params(params.foliage_parameters, branch.transform)
 	tree.add_child(foliage_generator)
 	foliage_generator.owner = tree
-	for child in foliage_generator.get_children(true):
-		child.owner = tree
 
 
 func on_generate():

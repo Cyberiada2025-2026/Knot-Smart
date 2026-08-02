@@ -20,8 +20,10 @@ static func load(dir: String, params: Resource) -> Node:
 		return null
 	var obj_hash = JSON.stringify(JSON.from_native(params, true)).hash()
 	if !ResourceLoader.exists(dir + "/object%d.tscn" % obj_hash):
-		print("Resource doesn't exist")
+		push_error("Resource doesn't exist")
 		return null
 	var scene = ResourceLoader.load(dir + "/object%d.tscn" % obj_hash)
-
+	if scene == null:
+		push_error("Resource loader could not load resource")
+		return null
 	return scene.instantiate()

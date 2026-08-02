@@ -2,13 +2,8 @@
 class_name SetRandomNavTarget
 extends ActionLeaf
 
-var random_point_around_player: bool = true
-var random_point_pivot: Vector3
-
+@export var set_random_target_strategy: Node;
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	if random_point_around_player:
-		actor.set_random_nav_target()
-	else:
-		actor.set_random_nav_target_near(random_point_pivot)
+	set_random_target_strategy.set_random_nav_target(actor);
 	return SUCCESS

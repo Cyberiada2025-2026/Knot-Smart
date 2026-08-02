@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="6_c6leb"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="7_on558"]
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
+[ext_resource type="Script" uid="uid://ixybqeglhwl" path="res://characters/player/rope/strategies/control/control_strategy_immediate.gd" id="10_fpo3a"]
 [ext_resource type="Script" uid="uid://bkffe8kvogeke" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
 [ext_resource type="Script" uid="uid://c0v1x4a4fbhnn" path="res://shared/tooltips/tooltip_manager.gd" id="12_on558"]
 [ext_resource type="Script" uid="uid://sf6x58peklug" path="res://ui/inventory/inventory_manager.gd" id="13_gqopd"]
@@ -116,10 +117,14 @@ shape = SubResource("BoxShape3D_on558")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=1854980343]
 shape = SubResource("SphereShape3D_on558")
 
-[node name="RopeManager" type="Node3D" parent="." unique_id=1597735802]
+[node name="RopeManager" type="Node3D" parent="." unique_id=1597735802 node_paths=PackedStringArray("control_strategy")]
 top_level = true
 script = ExtResource("7_rpf03")
+control_strategy = NodePath("ControlStrategyImmediate")
 metadata/_custom_type_script = "uid://bcy4v42bixjvm"
+
+[node name="ControlStrategyImmediate" type="Node3D" parent="RopeManager" unique_id=848248237]
+script = ExtResource("10_fpo3a")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1622957288]
 script = ExtResource("6_c6leb")

@@ -4,6 +4,7 @@ extends ConditionLeaf
 
 @export var desired_distance: float
 
+
 func tick(actor: Node, _blackboard: Blackboard) -> int:
 	var curr_dist = actor.global_position.distance_squared_to(actor.get_target_pos())
 

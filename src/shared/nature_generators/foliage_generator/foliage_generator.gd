@@ -2,7 +2,7 @@
 class_name FoliageGenerator
 extends Node3D
 
-const DIR_PATH = "user://foliagee"
+const DIR_PATH = "user://foliage"
 
 @export_tool_button("Generate", "Callable") var generate_button = on_generate
 @export var params: FoliageParameters

@@ -20,7 +20,7 @@ script = ExtResource("1_txp7e")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1910539303 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_y8yic")
-blackboard = NodePath("@Node@19888")
+blackboard = NodePath("@Node@19887")
 custom_monitor = true
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
@@ -57,8 +57,9 @@ script = ExtResource("5_txp7e")
 desired_distance = 1.0
 metadata/_custom_type_script = "uid://qxwvejkcr6c"
 
-[node name="SetRandomNavTarget" type="Node" parent="BeehaveTree/GoToRandomPoint" unique_id=514134965]
+[node name="SetRandomNavTarget" type="Node" parent="BeehaveTree/GoToRandomPoint" unique_id=514134965 node_paths=PackedStringArray("set_random_target_strategy")]
 script = ExtResource("4_7vdrh")
+set_random_target_strategy = NodePath("SetRandomNavPivotToOrigin")
 metadata/_custom_type_script = "uid://cjpvy7npubmpa"
 
 [node name="SetRandomNavPivotToOrigin" type="Node" parent="BeehaveTree/GoToRandomPoint/SetRandomNavTarget" unique_id=780887245 node_paths=PackedStringArray("transform_node")]

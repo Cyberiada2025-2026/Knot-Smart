@@ -20,18 +20,18 @@ func _init():
 	collider.shape = SphereShape3D.new()
 	collider.shape.radius = radius
 	area.add_child(collider)
-	
+
 	if visualize:
 		var mesh = MeshInstance3D.new()
 		mesh.mesh = SphereMesh.new()
 		mesh.mesh.radius = radius
 		mesh.mesh.height = radius * 2
-		
+
 		var material = StandardMaterial3D.new()
 		material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 		material.albedo_color = Color(0.5, 0.9, 0.9, 0.2)
 		mesh.mesh.material = material
-		
+
 		area.add_child(mesh)
 
 

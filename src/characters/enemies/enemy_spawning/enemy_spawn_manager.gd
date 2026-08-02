@@ -62,13 +62,13 @@ func _ready() -> void:
 
 func get_spawn_point():
 	var rand_point = Utils.get_random_point_in_circular_ring(
-		min_spawn_distance, max_spawn_distance, player.player_physics.global_position
+		min_spawn_distance, max_spawn_distance, player.global_position
 	)
 	var rand_point_on_mesh = NavigationServer3D.region_get_closest_point(
 		nav_region.get_rid(), rand_point
 	)
 	if (
-		rand_point_on_mesh.distance_squared_to(player.player_physics.global_position)
+		rand_point_on_mesh.distance_squared_to(player.global_position)
 		>= pow(min_spawn_distance, 2)
 	):
 		return rand_point_on_mesh
@@ -96,7 +96,7 @@ func spawn_enemy() -> SpawnResult:
 
 func get_spawn_area() -> EnemySpawnArea:
 	var active_spawn_areas: Array[EnemySpawnArea] = spawn_areas.filter(
-		func(a): return a.overlaps_body(player.player_physics)
+		func(a): return a.overlaps_body(player)
 	)
 	return active_spawn_areas.pick_random() if not active_spawn_areas.is_empty() else null
 
@@ -121,7 +121,7 @@ func _on_time_period_changed(current: TimePeriod) -> void:
 func _physics_process(_delta: float) -> void:
 	for enemy in active_enemies.values():
 		if (
-			enemy.global_position.distance_squared_to(player.player_physics.global_position)
+			enemy.global_position.distance_squared_to(player.global_position)
 			>= pow(despawn_distance, 2)
 		):
 			despawn_enemy(enemy)

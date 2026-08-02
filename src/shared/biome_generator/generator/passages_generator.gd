@@ -2,7 +2,6 @@
 class_name PassagesGenerator
 extends Node3D
 
-
 @export var generator_main: PlantsWallsGenerator
 
 var params: PlantWallGeneratorParams
@@ -14,11 +13,13 @@ func reset() -> void:
 	data = generator_main.data
 	data.passage_lines.clear()
 
+
 func generate() -> void:
 	params = generator_main.params
 	data = generator_main.data
 	_generate_passage_lines()
 	_generate_passages()
+
 
 func _generate_passage_lines() -> void:
 	var biomes_copy = data.biomes.duplicate(false)
@@ -34,6 +35,7 @@ func _generate_passage_lines() -> void:
 					if biome2.lines.find(line) >= 0:
 						passage_line.lines.append(line)
 
+
 func _generate_passages() -> void:
 	for passage_line in data.passage_lines:
 		var lines_copy: Array[BiomeLine] = passage_line.lines.duplicate(false)
@@ -43,12 +45,10 @@ func _generate_passages() -> void:
 				lines_copy.erase(line)
 				_create_passage_on_line(line, passage_line)
 
-func _create_passage_on_line(
-	line: BiomeLine,
-	passage_line: PassageLine
-) -> void:
+
+func _create_passage_on_line(line: BiomeLine, passage_line: PassageLine) -> void:
 	var passage := params.passage_prefab.instantiate()
 	passage_line.add_child(passage)
 	passage.owner = data
 	var middle := line.get_middle()
-	passage.position = Vector3(middle.x, passage.radius/2, middle.y)
+	passage.position = Vector3(middle.x, passage.radius / 2, middle.y)

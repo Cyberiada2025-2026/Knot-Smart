@@ -19,17 +19,17 @@ shader_parameter/tint = Color(1, 1, 1, 1)
 
 [node name="building_parts_filled" unique_id=800160931 instance=ExtResource("1_w0qta")]
 
-[node name="Floor" parent="." index="0" unique_id=561627276]
+[node name="Floor" parent="." index="0" unique_id=1204789585]
 surface_material_override/0 = ExtResource("2_04tmi")
 
-[node name="Hole" parent="." index="1" unique_id=1620146053]
+[node name="Hole" parent="." index="1" unique_id=1443190308]
 surface_material_override/0 = ExtResource("2_04tmi")
 
-[node name="Wall" parent="." index="2" unique_id=1998955941]
+[node name="Wall" parent="." index="2" unique_id=1072906709]
 surface_material_override/0 = SubResource("ShaderMaterial_3xs0o")
 
-[node name="Window" parent="." index="3" unique_id=52419117]
+[node name="Window" parent="." index="3" unique_id=1485176565]
 surface_material_override/0 = SubResource("ShaderMaterial_3xs0o")
 
-[node name="Door" parent="." index="4" unique_id=462366776]
+[node name="Door" parent="." index="4" unique_id=1684566889]
 surface_material_override/0 = SubResource("ShaderMaterial_3xs0o")

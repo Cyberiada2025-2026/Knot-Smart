@@ -55,7 +55,7 @@ func update_active_chunks_borders() -> void:
 	if player == null:
 		player = get_player()
 	if player != null:
-		var player_position = player.player_physics.global_position
+		var player_position = player.global_position
 		render_position = Vector2i(player_position.x, player_position.z)
 		render_distance = Vector2i(
 			world_display_params.render_distance, world_display_params.render_distance

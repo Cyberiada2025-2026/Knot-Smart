@@ -13,7 +13,7 @@ const DIAGONAL_LINE = 2
 @export var walls_combiner: WallsCombiner
 
 # PATH
-@export var path_location: String = "user://" #"res://"
+@export var path_location: String = "user://"  #"res://"
 @export var path_folder: String = "biomegenerator/"
 @export var path_file_name: String = "generated_biome"
 @export var path_file_extension: String = ".tscn"
@@ -28,6 +28,7 @@ const DIAGONAL_LINE = 2
 
 var rng: RandomNumberGeneratorUpgraded
 
+
 func save() -> void:
 	var path: String = get_file_path()
 	if FileAccess.file_exists(path):
@@ -41,6 +42,7 @@ func save() -> void:
 	var scene: PackedScene = PackedScene.new()
 	scene.pack(self)
 	ResourceSaver.save(scene, path)
+
 
 func get_file_path() -> String:
 	return path_location + path_folder + path_file_name + path_file_extension

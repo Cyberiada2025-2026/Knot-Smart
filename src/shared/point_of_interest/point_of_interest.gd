@@ -48,9 +48,8 @@ func _ready():
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	var entity = body.get_parent()
-	if entity.is_in_group(trigger_group_name):
-		triggered.emit(entity)
+	if body.is_in_group(trigger_group_name):
+		triggered.emit(body)
 		area.queue_free()
 		_can_queue_free()
 

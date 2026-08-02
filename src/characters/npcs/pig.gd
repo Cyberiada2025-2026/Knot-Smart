@@ -12,6 +12,7 @@ var should_track_target: bool = false
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
+
 func _ready() -> void:
 	world = Engine.get_main_loop().root.get_world_3d()
 
@@ -31,19 +32,24 @@ func get_random_point_near(point_position: Vector3) -> Vector3:
 func set_random_nav_target() -> void:
 	navigation_agent_3d.set_target_position(get_random_point_near(global_position))
 
+
 func set_random_nav_target_near(point_position: Vector3):
 	navigation_agent_3d.set_target_position(get_random_point_near(point_position))
+
 
 func get_target_pos() -> Vector3:
 	return navigation_agent_3d.get_target_position()
 
+
 func rotate_random() -> void:
-	var random := RandomNumberGenerator.new();
-	rotation.y = random.randi() % 360;
+	var random := RandomNumberGenerator.new()
+	rotation.y = random.randi() % 360
+
 
 func rotate_with_velocity() -> void:
 	if velocity.length_squared() > 0:
 		look_at(global_position + velocity)
+
 
 func set_velocity_to_target() -> void:
 	var cur_loc := global_transform.origin
@@ -51,8 +57,9 @@ func set_velocity_to_target() -> void:
 	var next_vel := cur_loc.direction_to(next_loc) * speed
 	velocity = next_vel
 
+
 func _physics_process(_delta: float) -> void:
-	print(can_move);
+	print(can_move)
 	if can_move:
 		set_velocity_to_target()
 		rotate_with_velocity()

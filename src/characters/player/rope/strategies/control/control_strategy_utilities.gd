@@ -1,7 +1,11 @@
 class_name ControlStrategyUtilities
 
-static func create_marker_from_unsafe_raycast(raycast_result: Dictionary, marker_mesh: Node3D) -> MeshInstance3D:
+
+static func create_marker_from_unsafe_raycast(
+	raycast_result: Dictionary, marker_mesh: Node3D
+) -> MeshInstance3D:
 	return create_marker(raycast_result.collider, raycast_result.position, marker_mesh)
+
 
 static func create_marker(collider, pos: Vector3, marker_mesh: Node3D) -> MeshInstance3D:
 	var marker = marker_mesh.duplicate()
@@ -11,9 +15,13 @@ static func create_marker(collider, pos: Vector3, marker_mesh: Node3D) -> MeshIn
 	marker.global_position = pos
 	return marker
 
-static func create_rope(rope_params: RopeParams, selected_objects: Array[Node], markers: Array[MeshInstance3D]) -> Rope:
+
+static func create_rope(
+	rope_params: RopeParams, selected_objects: Array[Node], markers: Array[MeshInstance3D]
+) -> Rope:
 	var rope = Rope.new(rope_params, selected_objects, markers)
 	return rope
+
 
 static func create_marker_on_player(player: Node3D, marker_mesh: Node3D) -> MeshInstance3D:
 	var player_height = player.get_node("CollisionShape3D").shape.height

@@ -5,6 +5,7 @@ extends Node3D
 
 var sphere: MeshInstance3D = preload("uid://ymb8m1pspwfy").instantiate()
 
+
 func _ready() -> void:
 	add_child(sphere)
 
@@ -19,7 +20,7 @@ func _physics_process(_delta: float) -> void:
 	if not raycast_result.is_empty():
 		sphere.position = raycast_result.position
 		sphere.show()
-	
+
 	if Input.is_action_just_pressed("left_mouse"):
 		control_strategy.use_rope(raycast_result)
 	if Input.is_action_just_pressed("break_rope"):

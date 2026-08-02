@@ -115,7 +115,6 @@ func _handle_gravity(delta: float):
 func is_on_floor_check():
 	if is_on_floor():
 		return true
-	else:
-		$RayCast3D.force_raycast_update()
-		if $RayCast3D.is_colliding():
-			return true
+	$RayCast3D.force_raycast_update()
+	if $RayCast3D.is_colliding():
+		return true

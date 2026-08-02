@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://djykcejbxiw1f"]
 
-[ext_resource type="Texture2D" uid="uid://dfjn08bwopvnb" path="res://shared/nature_generators/tree_generator/tree_materials/branches/branches.png" id="1_632jf"]
+[ext_resource type="Texture2D" uid="uid://dfjn08bwopvnb" path="res://shared/nature_generators/tree_generator/tree_materials/branches/normal/branches.png" id="1_632jf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_er58k"]
 transparency = 2

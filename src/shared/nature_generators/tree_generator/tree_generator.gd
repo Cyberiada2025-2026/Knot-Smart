@@ -11,14 +11,21 @@ var tree_skeleton: TreeSkeleton
 var tree_mesh_generator: TreeMeshGenerator
 var tree: StaticBody3D
 var tree_scene: PackedScene
+var random = RandomNumberGenerator.new()
 
 
 func _ready() -> void:
 	tree_skeleton = TreeSkeleton.new()
 	tree_skeleton.tree_generator = self
+	tree_skeleton.random = random
 	tree_mesh_generator = TreeMeshGenerator.new()
 	tree_mesh_generator.tree_generator = self
-	on_generate()
+
+	var result = Serializer.load(DIR_PATH, params)
+	if result == null:
+		on_generate()
+	else:
+		add_child(result)
 
 
 func generate_tree():
@@ -33,7 +40,7 @@ func generate_tree():
 	if params.foliage_parameters != null:
 		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
 		for branch in branches_one_level:
-			if randf() < params.branch_spawn_percentage:
+			if random.randf() < params.branch_spawn_percentage:
 				add_foliage(branch)
 	serialize()
 
@@ -60,11 +67,10 @@ func add_foliage(branch: TreeBranch):
 	foliage_generator.set_params(params.foliage_parameters, branch.transform)
 	tree.add_child(foliage_generator)
 	foliage_generator.owner = tree
-	for child in foliage_generator.get_children(true):
-		child.owner = tree
 
 
 func on_generate():
+	random.seed = params.seed
 	tree_scene = PackedScene.new()
 	tree_skeleton.rec_level = 0
 	for child in get_children():
@@ -74,13 +80,4 @@ func on_generate():
 
 
 func serialize():
-	var result = tree_scene.pack(tree)
-	if result == OK:
-		if not DirAccess.dir_exists_absolute(DIR_PATH):
-			DirAccess.make_dir_absolute(DIR_PATH)
-		var error = ResourceSaver.save(
-			tree_scene, DIR_PATH + "/tree%d.tscn" % tree.get_rid().get_id()
-		)
-		if error != OK:
-			push_error("An error occurred while saving the scene to disk.")
-		add_child(tree_scene.instantiate())
+	add_child(Serializer.serialize(tree_scene, tree, DIR_PATH, params))

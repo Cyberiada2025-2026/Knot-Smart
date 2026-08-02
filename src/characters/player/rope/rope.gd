@@ -68,7 +68,7 @@ func _on_area_entered(body: Node3D):
 ## Break the rope
 func finish():
 	finished.emit()
-	
+
 	vfx.end()
 	apply_forces()
 	for l in link:
@@ -138,7 +138,7 @@ func update_rope():
 
 func _ready() -> void:
 	_pin_rope_ends()
-	
+
 	rope = Area3D.new()
 	init_rope_mesh()
 	init_rope_collider()
@@ -147,9 +147,11 @@ func _ready() -> void:
 	rope.body_entered.connect(_on_area_entered)
 	add_child(rope)
 
+
 func _pin_rope_ends() -> void:
 	end[0].pin(node[0], end[1])
 	end[1].pin(node[1], end[0])
+
 
 func apply_forces() -> void:
 	for i in range(2):
@@ -171,17 +173,17 @@ func _physics_process(_delta: float) -> void:
 
 func change_point(new_node: Node, new_marker: MeshInstance3D, point_index: int = 1):
 	node[point_index] = new_node
-	
+
 	link[point_index].queue_free()
 	link.pop_at(point_index)
-	
+
 	end[point_index].queue_free()
 	end.pop_at(point_index)
-	
+
 	var l = NodeLink.new(self)
 	link.append(l)
 	new_node.add_child(l)
-	
+
 	var strategy
 	match new_node.get_class():
 		"RigidBody3D":
@@ -194,5 +196,5 @@ func change_point(new_node: Node, new_marker: MeshInstance3D, point_index: int =
 
 	end.append(new_end)
 	add_child(new_end)
-	
+
 	_pin_rope_ends()

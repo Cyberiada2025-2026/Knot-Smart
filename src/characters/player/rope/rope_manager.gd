@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	sphere.hide()
-	
+
 	if not get_node("../PlayerCamera").get_view_type() == PlayerCamera.ViewType.FIRST_PERSON:
 		return
 
@@ -35,10 +35,10 @@ func _physics_process(_delta: float) -> void:
 				raycast_result.collider.get_parent().fuse()
 			else:
 				return
-	
+
 	if not sphere.visible:
 		return
-		
+
 	if Input.is_action_just_pressed("left_mouse"):
 		if active_rope:
 			active_rope.change_point(
@@ -46,7 +46,7 @@ func _physics_process(_delta: float) -> void:
 				_create_marker(raycast_result.collider, sphere.global_position)
 			)
 			active_rope = null
-			
+
 		else:
 			place_marker_from_unsafe_raycast(raycast_result)
 			place_marker_on_player()

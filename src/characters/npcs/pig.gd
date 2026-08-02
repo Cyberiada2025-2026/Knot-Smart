@@ -20,19 +20,26 @@ func get_point_on_map(point: Vector3) -> Vector3:
 	return NavigationServer3D.map_get_closest_point(world.get_navigation_map(), point)
 
 
-func get_random_point_near() -> Vector3:
+func get_random_point_near(point_position: Vector3) -> Vector3:
 	var random_point = Utils.get_random_point_in_circular_ring(
-		0.0, idle_wander_distance, global_position
+		0.0, idle_wander_distance, point_position
 	)
 
 	return get_point_on_map(random_point)
 
 
 func set_random_nav_target() -> void:
-	navigation_agent_3d.set_target_position(get_random_point_near())
+	navigation_agent_3d.set_target_position(get_random_point_near(global_position))
+
+func set_random_nav_target_near(point_position: Vector3):
+	navigation_agent_3d.set_target_position(get_random_point_near(point_position))
 
 func get_target_pos() -> Vector3:
 	return navigation_agent_3d.get_target_position()
+
+func rotate_random() -> void:
+	var random := RandomNumberGenerator.new();
+	rotation.y = random.randi() % 360;
 
 func rotate_with_velocity() -> void:
 	if velocity.length_squared() > 0:
@@ -45,6 +52,7 @@ func set_velocity_to_target() -> void:
 	velocity = next_vel
 
 func _physics_process(_delta: float) -> void:
+	print(can_move);
 	if can_move:
 		set_velocity_to_target()
 		rotate_with_velocity()

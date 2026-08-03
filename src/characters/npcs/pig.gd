@@ -15,6 +15,7 @@ var should_track_target: bool = false
 
 func _ready() -> void:
 	world = Engine.get_main_loop().root.get_world_3d()
+	navigation_agent_3d.set_target_position(global_position);
 
 
 func get_point_on_map(point: Vector3) -> Vector3:
@@ -55,7 +56,6 @@ func set_velocity_to_target() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	print(can_move)
 	if can_move:
 		set_velocity_to_target()
 		rotate_with_velocity()

@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://d1rapjwp7jvsx"]
+
+[ext_resource type="Script" uid="uid://cprhwygt8n2ib" path="res://characters/npcs/pig.gd" id="1_txp7e"]
+[ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_y8yic"]
+[ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_7vdrh"]
+[ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="3_qvjyf"]
+[ext_resource type="Script" uid="uid://cjpvy7npubmpa" path="res://shared/beehave/action/set_random_nav_target.gd" id="4_7vdrh"]
+[ext_resource type="Script" uid="uid://bkr7qj44253ue" path="res://addons/beehave/nodes/composites/simple_parallel.gd" id="4_ghy3p"]
+[ext_resource type="Script" uid="uid://nbj8xk6nqyb6" path="res://shared/beehave/action/set_movement.gd" id="4_vugos"]
+[ext_resource type="Script" uid="uid://qxwvejkcr6c" path="res://shared/beehave/condition/has_reached_target.gd" id="5_txp7e"]
+[ext_resource type="Script" uid="uid://bea1noqhfprbs" path="res://shared/beehave/action/rotate_random.gd" id="7_ghy3p"]
+[ext_resource type="PackedScene" uid="uid://ds0lm2shdnd07" path="res://characters/enemies/basic_enemy/enemy_model.tscn" id="8_727wv"]
+[ext_resource type="Script" uid="uid://dxmobycpaufvl" path="res://shared/beehave/strategy/set_random_nav_pivot_to_origin.gd" id="12_ghy3p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vugos"]
+size = Vector3(1, 1.6, 1)
+
+[node name="Pig" type="CharacterBody3D" unique_id=322073780]
+script = ExtResource("1_txp7e")
+
+[node name="BeehaveTree" type="Node" parent="." unique_id=1910539303 node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("1_y8yic")
+blackboard = NodePath("@Node@19930")
+custom_monitor = true
+actor = NodePath("..")
+metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
+
+[node name="GoToRandomPoint" type="Node" parent="BeehaveTree" unique_id=2053111333]
+script = ExtResource("2_7vdrh")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="CanMoveParallel" type="Node" parent="BeehaveTree/GoToRandomPoint" unique_id=524824799]
+script = ExtResource("4_ghy3p")
+metadata/_custom_type_script = "uid://bkr7qj44253ue"
+
+[node name="CanMoveCooldown" type="Node" parent="BeehaveTree/GoToRandomPoint/CanMoveParallel" unique_id=546466870]
+script = ExtResource("3_qvjyf")
+wait_time = 2.0
+metadata/_custom_type_script = "uid://dorri1tul8gfx"
+
+[node name="EnableMovement" type="Node" parent="BeehaveTree/GoToRandomPoint/CanMoveParallel/CanMoveCooldown" unique_id=1095950198]
+script = ExtResource("4_vugos")
+can_move = true
+metadata/_custom_type_script = "uid://nbj8xk6nqyb6"
+
+[node name="RotateCooldown" type="Node" parent="BeehaveTree/GoToRandomPoint/CanMoveParallel" unique_id=813231272]
+script = ExtResource("3_qvjyf")
+wait_time = 1.0
+metadata/_custom_type_script = "uid://dorri1tul8gfx"
+
+[node name="RotateRandom" type="Node" parent="BeehaveTree/GoToRandomPoint/CanMoveParallel/RotateCooldown" unique_id=2017266999]
+script = ExtResource("7_ghy3p")
+metadata/_custom_type_script = "uid://bea1noqhfprbs"
+
+[node name="HasReachedTarget" type="Node" parent="BeehaveTree/GoToRandomPoint" unique_id=1834606830]
+script = ExtResource("5_txp7e")
+desired_distance = 1.0
+metadata/_custom_type_script = "uid://qxwvejkcr6c"
+
+[node name="SetRandomNavTarget" type="Node" parent="BeehaveTree/GoToRandomPoint" unique_id=514134965 node_paths=PackedStringArray("set_random_target_strategy")]
+script = ExtResource("4_7vdrh")
+set_random_target_strategy = NodePath("SetRandomNavPivotToOrigin")
+metadata/_custom_type_script = "uid://cjpvy7npubmpa"
+
+[node name="SetRandomNavPivotToOrigin" type="Node" parent="BeehaveTree/GoToRandomPoint/SetRandomNavTarget" unique_id=780887245 node_paths=PackedStringArray("transform_node")]
+script = ExtResource("12_ghy3p")
+transform_node = NodePath("../../../..")
+metadata/_custom_type_script = "uid://dxmobycpaufvl"
+
+[node name="DisableMovement" type="Node" parent="BeehaveTree/GoToRandomPoint" unique_id=1610356428]
+script = ExtResource("4_vugos")
+metadata/_custom_type_script = "uid://nbj8xk6nqyb6"
+
+[node name="MeshInstance3D" parent="." unique_id=1502119920 instance=ExtResource("8_727wv")]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0.8, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1110825322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_vugos")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1024104416]
+avoidance_enabled = true
+height = 2.0
+debug_enabled = true

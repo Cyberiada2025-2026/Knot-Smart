@@ -9,6 +9,7 @@ var can_move := false
 var world: World3D
 var target: Node3D
 var should_track_target: bool = false
+var animation_player: AnimationPlayer
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var shapecast = $ShapeCast3D
@@ -16,6 +17,8 @@ var should_track_target: bool = false
 
 func _ready() -> void:
 	world = Engine.get_main_loop().root.get_world_3d()
+	animation_player = find_child("AnimationPlayer")
+	animation_player.play("Walk")
 
 
 func get_point_on_map(point: Vector3) -> Vector3:
@@ -67,8 +70,9 @@ func get_target_pos() -> Vector3:
 
 
 func rotate_with_velocity() -> void:
-	if velocity.length_squared() > 0:
-		look_at(global_position + velocity)
+	var vel_2d = Vector3(velocity.x, 0, velocity.z)
+	if vel_2d.length_squared() > 0:
+		look_at(global_position + vel_2d)
 
 
 func _physics_process(_delta: float) -> void:

@@ -2,12 +2,14 @@ extends ControlStrategyInterface
 
 enum State { NO_ROPE, ROPE_EXISTS }
 
-@export var rope_params = RopeParams.new()
-
 var state = State.NO_ROPE
 var sphere: MeshInstance3D = preload("uid://ymb8m1pspwfy").instantiate()
 var active_rope: Rope = null
 
+var rope_params: RopeParams
+
+func _ready() -> void:
+	rope_params = get_parent().rope_params
 
 func use_rope(raycast_result: Dictionary) -> void:
 	if raycast_result.is_empty() or raycast_result.collider.get_parent() is Rope:

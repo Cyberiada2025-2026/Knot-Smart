@@ -2,6 +2,7 @@ class_name RopeManager
 extends Node3D
 
 @export var control_strategy: ControlStrategyInterface
+@export var rope_params: RopeParams = RopeParams.new()
 
 var sphere: MeshInstance3D = preload("uid://ymb8m1pspwfy").instantiate()
 

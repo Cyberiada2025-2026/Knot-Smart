@@ -10,7 +10,7 @@ var active_rope: Rope = null
 
 
 func use_rope(raycast_result: Dictionary) -> void:
-	if raycast_result.is_empty():
+	if raycast_result.is_empty() or raycast_result.collider.get_parent() is Rope:
 		return
 		
 	var player = get_node("../..")

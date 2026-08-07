@@ -9,6 +9,7 @@ var sphere: MeshInstance3D = preload("uid://ymb8m1pspwfy").instantiate()
 
 var rope_params: RopeParams
 
+
 func _ready() -> void:
 	rope_params = get_parent().rope_params
 

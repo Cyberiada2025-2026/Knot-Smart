@@ -173,7 +173,7 @@ func _physics_process(_delta: float) -> void:
 
 func change_attach_node(old_attach_node: Node, new_node: Node, new_marker: MeshInstance3D):
 	var point_index = node.find(old_attach_node)
-	
+
 	node[point_index] = new_node
 
 	link[point_index].queue_free()

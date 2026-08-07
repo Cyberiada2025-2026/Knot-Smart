@@ -8,15 +8,17 @@ var active_rope: Rope = null
 
 var rope_params: RopeParams
 
+
 func _ready() -> void:
 	rope_params = get_parent().rope_params
+
 
 func use_rope(raycast_result: Dictionary) -> void:
 	if raycast_result.is_empty() or raycast_result.collider.get_parent() is Rope:
 		return
-		
+
 	var player = get_node("../..")
-	
+
 	match state:
 		State.NO_ROPE:
 			var target_marker = ControlStrategyUtilities.create_marker_from_unsafe_raycast(
@@ -31,7 +33,7 @@ func use_rope(raycast_result: Dictionary) -> void:
 			active_rope.finished.connect(_on_active_rope_finished)
 			add_child(active_rope)
 			state = State.ROPE_EXISTS
-			
+
 		State.ROPE_EXISTS:
 			print("Yes rope")
 			active_rope.change_attach_node(

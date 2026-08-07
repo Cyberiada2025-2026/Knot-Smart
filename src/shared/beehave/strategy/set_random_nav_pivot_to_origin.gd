@@ -1,5 +1,5 @@
 class_name SetRandomNavPivotToOrigin
-extends Node
+extends SetRandomNavPivotInterface
 
 @export var transform_node: Node3D
 

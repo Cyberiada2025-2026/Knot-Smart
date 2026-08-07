@@ -9,9 +9,12 @@ var active_rope: Rope = null
 func use_rope(raycast_result: Dictionary) -> void:
 	if raycast_result.is_empty():
 		return
+		
+	var player = get_node("../..")
 
 	if active_rope:
-		active_rope.change_point(
+		active_rope.change_attach_node(
+			player,
 			raycast_result.collider,
 			ControlStrategyUtilities.create_marker(
 				raycast_result.collider, raycast_result.position, sphere
@@ -24,7 +27,6 @@ func use_rope(raycast_result: Dictionary) -> void:
 			raycast_result, sphere
 		)
 
-		var player = get_node("../..")
 		var player_marker = ControlStrategyUtilities.create_marker_on_player(player, sphere)
 
 		active_rope = ControlStrategyUtilities.create_rope(

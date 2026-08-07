@@ -1,6 +1,8 @@
 class_name Rope
 extends Node3D
 
+signal finished
+
 var params: RopeParams
 
 var rope_vfx = preload("uid://djqe8wkjmmn8n")
@@ -63,7 +65,10 @@ func _on_area_entered(body: Node3D):
 	finish()
 
 
+## Break the rope
 func finish():
+	finished.emit()
+
 	vfx.end()
 	apply_forces()
 	for l in link:
@@ -82,7 +87,7 @@ func fuse():
 			node[i].global_position = final_pos + diff
 
 		var combined = RigidBody3D.new()
-		get_node("../../../").add_child(combined)
+		get_node("../../../../").add_child(combined)
 		combined.global_position = final_pos
 
 		for n in node:
@@ -132,8 +137,7 @@ func update_rope():
 
 
 func _ready() -> void:
-	end[0].pin(node[0], end[1])
-	end[1].pin(node[1], end[0])
+	_pin_rope_ends()
 
 	rope = Area3D.new()
 	init_rope_mesh()
@@ -142,6 +146,11 @@ func _ready() -> void:
 	rope.look_at_from_position(end[0].position + direction / 2, end[0].position)
 	rope.body_entered.connect(_on_area_entered)
 	add_child(rope)
+
+
+func _pin_rope_ends() -> void:
+	end[0].pin(node[0], end[1])
+	end[1].pin(node[1], end[0])
 
 
 func apply_forces() -> void:
@@ -160,3 +169,34 @@ func _physics_process(_delta: float) -> void:
 		finish()
 
 	update_rope()
+
+
+func change_attach_node(old_attach_node: Node, new_node: Node, new_marker: MeshInstance3D):
+	var point_index = node.find(old_attach_node)
+
+	node[point_index] = new_node
+
+	link[point_index].queue_free()
+	link.pop_at(point_index)
+
+	end[point_index].queue_free()
+	end.pop_at(point_index)
+
+	var l = NodeLink.new(self)
+	link.append(l)
+	new_node.add_child(l)
+
+	var strategy
+	match new_node.get_class():
+		"RigidBody3D":
+			strategy = BasicDynamicStrategy.new(params.min_rope_length)
+		"CharacterBody3D":
+			strategy = BasicKinematicStrategy.new()
+		_:
+			strategy = BasicStaticStrategy.new()
+	var new_end = RopeEnd.new(self.params, strategy, new_marker)
+
+	end.append(new_end)
+	add_child(new_end)
+
+	_pin_rope_ends()

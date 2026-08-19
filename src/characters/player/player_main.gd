@@ -110,7 +110,10 @@ func _handle_gravity(delta: float):
 		animation_tree.set("parameters/Movement/transition_request", "Jump")
 		velocity += Vector3.DOWN * gravity_strength * delta
 
-## More reliable check for colliding with the floor than built-in is_on_floor()
+# gdlint: disable=max-line-length
+## Reliable check for colliding with the floor. Using built-in is_on_floor() results in
+## unwanted periods of constant switching between true and false.
+## https://godotforums.org/d/24311-why-is-the-floor-detection-very-inconsistent-is-on-floor-autorunner
 func is_on_floor_check():
 	if is_on_floor():
 		return true

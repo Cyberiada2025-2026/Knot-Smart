@@ -35,7 +35,6 @@ func use_rope(raycast_result: Dictionary) -> void:
 			state = State.ROPE_EXISTS
 
 		State.ROPE_EXISTS:
-			print("Yes rope")
 			active_rope.change_attach_node(
 				player,
 				raycast_result.collider,

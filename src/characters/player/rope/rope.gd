@@ -168,6 +168,9 @@ func _physics_process(_delta: float) -> void:
 	):
 		finish()
 
+	if node[0] == node[1]:
+		finish()
+
 	update_rope()
 
 

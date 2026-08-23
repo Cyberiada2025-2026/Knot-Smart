@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://bpwwtngx87b5u" path="res://characters/player/player_model.tscn" id="2_aqrcq"]
 [ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
-[ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_6dc8e"]
 [ext_resource type="PackedScene" uid="uid://b0gb5qnl30ap5" path="res://characters/player/gravity_controller.tscn" id="4_ixbpm"]
 [ext_resource type="PackedScene" uid="uid://cjjffdo72xk1u" path="res://shared/journal/journal.tscn" id="5_ixbpm"]
 [ext_resource type="Script" uid="uid://bwbgvbw8rs0aa" path="res://shared/vfx/player/vfx_player_sequence.gd" id="6_3t07l"]
@@ -82,8 +81,6 @@ sensors = {
 "ui_right": NodePath("MoveingSensors/right_sensor"),
 "ui_up": NodePath("MoveingSensors/front_sensor")
 }
-
-[node name="PlayerDecoy" parent="." unique_id=2037856166 instance=ExtResource("4_6dc8e")]
 
 [node name="FootstepsMaker" type="Node3D" parent="." unique_id=324333915]
 

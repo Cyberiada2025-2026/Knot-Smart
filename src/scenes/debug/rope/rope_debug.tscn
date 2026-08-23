@@ -36,6 +36,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8381202, 3.759582)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=385250000]
 transform = Transform3D(0.9350857, 0.2908988, 0.20246622, -0.35442162, 0.76749074, 0.5341753, 0, -0.57125807, 0.8207705, 0.7263887, 0, 0)
 
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1542471958]
+transform = Transform3D(0.93508565, -0.29089883, -0.20246616, -0.3544216, -0.76749074, -0.5341752, 0, 0.571258, -0.82077056, 0.7263887, 0, 0)
+light_color = Color(0.78431374, 0.78431374, 1, 1)
+light_energy = 0.2
+
 [node name="Floor" type="StaticBody3D" parent="." unique_id=290519616]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=2069314740]

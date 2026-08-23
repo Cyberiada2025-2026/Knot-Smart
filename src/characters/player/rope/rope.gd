@@ -87,7 +87,7 @@ func fuse():
 			node[i].global_position = final_pos + diff
 
 		var combined = RigidBody3D.new()
-		get_node("../../../../").add_child(combined)
+		SceneManager.current_scene.add_child(combined)
 		combined.global_position = final_pos
 
 		for n in node:

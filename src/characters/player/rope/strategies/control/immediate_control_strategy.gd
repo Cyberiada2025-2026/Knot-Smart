@@ -17,7 +17,7 @@ func use_rope(raycast_result: Dictionary) -> void:
 	if raycast_result.is_empty() or raycast_result.collider.get_parent() is Rope:
 		return
 
-	var player = get_node("../..")
+	var player = get_tree().get_first_node_in_group("Player")
 
 	match state:
 		State.NO_ROPE:

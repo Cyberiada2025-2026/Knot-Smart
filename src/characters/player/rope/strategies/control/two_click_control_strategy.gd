@@ -55,7 +55,7 @@ func select_player(_raycast_result: Dictionary) -> void:
 	if state != State.SELECT_SECOND:
 		return
 
-	var player = get_node("../..")
+	var player = get_tree().get_first_node_in_group("Player")
 	markers.append(ControlStrategyUtilities.create_marker_on_player(player, sphere))
 	selected_objects.append(player)
 	_create_rope()

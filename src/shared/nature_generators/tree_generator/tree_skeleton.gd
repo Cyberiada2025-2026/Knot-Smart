@@ -7,6 +7,9 @@ var params: TreeParameters
 var branch_count: int
 var branches: Array[TreeBranch] = []
 var rec_level: int = 0
+var random: RandomNumberGenerator:
+	set(value):
+		random = value
 
 
 func generate_skeleton(parent_branches: Array[TreeBranch] = []) -> Array[TreeBranch]:
@@ -29,7 +32,7 @@ func branches_next_level(parent_branches: Array[TreeBranch]):
 			var branch = TreeBranch.new()
 			var idx: int  # where on the parent branch is located child branch
 			if rec_level > 1:
-				idx = randi() % (len(parent_branch.pos_array) - 1)
+				idx = random.randi() % (len(parent_branch.pos_array) - 1)
 				branch.transform = calculate_rotation(parent_branch.transform, get_angle())
 			else:  # first level of branches coming from trunk
 				var angle: float = TAU / branch_count
@@ -81,9 +84,9 @@ func calculate_rotation(base: Transform3D, angle: float) -> Transform3D:
 		rot_matrix = base.rotated(Vector3(1.0, 0.0, 1.0).normalized(), params.branch_spread_angle)
 		rot_matrix = rot_matrix.rotated(Vector3.UP, angle)
 		return rot_matrix
-	var direction = Vector3.BACK if randf() > 0.5 else Vector3.FORWARD
+	var direction = Vector3.BACK if random.randf() > 0.5 else Vector3.FORWARD
 	rot_matrix = base.rotated(direction, angle)
-	direction = Vector3.RIGHT if randf() > 0.5 else Vector3.LEFT
+	direction = Vector3.RIGHT if random.randf() > 0.5 else Vector3.LEFT
 	rot_matrix = rot_matrix.rotated(direction, angle)
 	rot_matrix = rot_matrix.rotated(Vector3.UP, angle)
 	return rot_matrix
@@ -95,12 +98,12 @@ func get_radius(branch: TreeBranch):
 
 
 func set_new_branch_count():
-	branch_count = randi_range(params.min_count, params.max_count)
+	branch_count = random.randi_range(params.min_count, params.max_count)
 
 
 func get_angle() -> float:
-	return randf() * TAU
+	return random.randf() * TAU
 
 
 func get_random_segment_displacement():
-	return (randf() - 0.5) * params.segment_displacement
+	return (random.randf() - 0.5) * params.segment_displacement

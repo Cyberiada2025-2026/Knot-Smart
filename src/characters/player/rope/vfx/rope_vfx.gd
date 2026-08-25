@@ -7,8 +7,8 @@ extends Node3D
 
 const START_LENGTH_PARAM: String = "length_start"
 const LENGTH_PARAM: String = "length_curr"
-const MAX_LENGTH_PARAM: String = " max_length"
-const MIN_LENGTH_PARAM: String = " min_length"
+const MAX_LENGTH_PARAM: String = "max_length"
+const MIN_LENGTH_PARAM: String = "min_length"
 const ANIM_ON: String = "rope_on"
 const ANIM_OFF: String = "break"
 

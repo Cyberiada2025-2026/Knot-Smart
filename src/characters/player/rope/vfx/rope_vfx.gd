@@ -6,7 +6,7 @@ extends Node3D
 # and call start() with starting lengths
 
 const START_LENGTH_PARAM: String = "length_start"
-const LENGTH_PARAM: String = "length_curr"
+const LENGTH_PARAM: String = "length_current"
 const MAX_LENGTH_PARAM: String = "max_length"
 const MIN_LENGTH_PARAM: String = "min_length"
 const ANIM_ON: String = "rope_on"

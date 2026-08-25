@@ -17,9 +17,11 @@ static func create_marker(collider, pos: Vector3, marker_mesh: Node3D) -> MeshIn
 
 
 static func create_rope(
-	rope_params: RopeParams, selected_objects: Array[Node], markers: Array[MeshInstance3D]
+	rope_params: RopeParams,
+	selected_objects: Array[Node], markers: Array[MeshInstance3D],
+	collision_strategy: RopeCollisionStrategyInterface
 ) -> Rope:
-	var rope = Rope.new(rope_params, selected_objects, markers)
+	var rope = Rope.new(rope_params, selected_objects, markers, collision_strategy)
 	return rope
 
 

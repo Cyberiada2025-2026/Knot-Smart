@@ -15,11 +15,21 @@ var node: Array[Node]
 var link: Array[NodeLink]
 var end: Array[RopeEnd]
 
+var collision_strategy: RopeCollisionStrategyInterface
 
-func _init(rope_params: RopeParams, nodes: Array[Node], markers: Array[MeshInstance3D]) -> void:
+
+func _init(
+	rope_params: RopeParams,
+	nodes: Array[Node],
+	markers: Array[MeshInstance3D],
+	collision_strat: RopeCollisionStrategyInterface
+) -> void:
 	self.params = rope_params
 	self.node = nodes
 	self.end = []
+	
+	collision_strategy = collision_strat.duplicate()
+	add_child(collision_strategy)
 
 	for i in range(2):
 		var l = NodeLink.new(self)
@@ -62,8 +72,13 @@ func _on_area_entered(body: Node3D):
 	for n in self.node:
 		if body.get_instance_id() == n.get_instance_id():
 			return
-	finish()
+	collision_strategy.on_collision_entered(self, body)
 
+func _on_area_exited(body: Node3D):
+	for n in self.node:
+		if body.get_instance_id() == n.get_instance_id():
+			return
+	collision_strategy.on_collision_exited(self, body)
 
 ## Break the rope
 func finish():
@@ -145,6 +160,7 @@ func _ready() -> void:
 	var direction = end[1].position - end[0].position
 	rope.look_at_from_position(end[0].position + direction / 2, end[0].position)
 	rope.body_entered.connect(_on_area_entered)
+	rope.body_exited.connect(_on_area_exited)
 	add_child(rope)
 
 

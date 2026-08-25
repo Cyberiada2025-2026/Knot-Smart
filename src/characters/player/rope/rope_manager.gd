@@ -3,6 +3,7 @@ extends Node3D
 
 @export var control_strategy: ControlStrategyInterface
 @export var rope_params: RopeParams = RopeParams.new()
+@export var collision_strategy: RopeCollisionStrategyInterface
 
 var sphere: MeshInstance3D = preload("uid://ymb8m1pspwfy").instantiate()
 

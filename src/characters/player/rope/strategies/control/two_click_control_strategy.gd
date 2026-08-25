@@ -7,12 +7,6 @@ var selected_objects: Array[Node] = []
 var markers: Array[MeshInstance3D] = []
 var sphere: MeshInstance3D = preload("uid://ymb8m1pspwfy").instantiate()
 
-var rope_params: RopeParams
-
-
-func _ready() -> void:
-	rope_params = get_parent().rope_params
-
 
 func use_rope(raycast_result: Dictionary) -> void:
 	if raycast_result.is_empty() or raycast_result.collider.get_parent() is Rope:
@@ -63,7 +57,12 @@ func select_player(_raycast_result: Dictionary) -> void:
 
 
 func _create_rope() -> void:
-	add_child(ControlStrategyUtilities.create_rope(rope_params, selected_objects, markers))
+	add_child(ControlStrategyUtilities.create_rope(
+		get_node("../..").rope_params,
+		selected_objects,
+		markers,
+		get_node("../..").collision_strategy
+	))
 
 	selected_objects = []
 	markers = []

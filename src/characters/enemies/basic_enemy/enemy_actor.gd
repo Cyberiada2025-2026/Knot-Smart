@@ -14,7 +14,6 @@ var animation_player: AnimationPlayer
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var shapecast = $ShapeCast3D
 
-
 func _ready() -> void:
 	world = Engine.get_main_loop().root.get_world_3d()
 	animation_player = find_child("AnimationPlayer")
@@ -87,4 +86,5 @@ func push_rigid_bodies() -> void:
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody3D:
+			print("pushed rigid body: ", c.get_collider().name, " / impulse: ", -c.get_normal() * push_force, " / position: ", c.get_collider().global_position);
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)

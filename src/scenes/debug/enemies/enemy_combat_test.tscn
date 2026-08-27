@@ -22,7 +22,7 @@ size = Vector3(0.5, 6, 4)
 [node name="HealthDebug" type="Node3D" unique_id=223631406]
 
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_hudno")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
+transform = Transform3D(1, 0, -5.9604645e-08, 0, 1, 0, 5.9604645e-08, 0, 1, 0, 0.5, -5)
 
 [node name="gravityController" parent="Player" index="3" unique_id=1906056142 node_paths=PackedStringArray("sensors")]
 sensors = {

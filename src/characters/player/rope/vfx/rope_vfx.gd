@@ -13,8 +13,6 @@ const ANIM_ON: String = "rope_on"
 const ANIM_OFF: String = "break"
 
 @export var player: AnimationPlayer
-@export var mesh: CylinderMesh
-@export var mesh_node: Node3D
 @export var mat: ShaderMaterial
 @export var splash: CPUParticles3D
 @export var break1: CPUParticles3D

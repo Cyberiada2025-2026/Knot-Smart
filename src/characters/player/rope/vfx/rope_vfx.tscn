@@ -314,11 +314,9 @@ scale_max = 1.5
 scale_curve = SubResource("CurveXYZTexture_mimjo")
 color_ramp = SubResource("GradientTexture1D_3ywe0")
 
-[node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "mesh_node", "splash", "break1", "break2", "fuse_vfx1", "fuse_vfx2")]
+[node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "splash", "break1", "break2", "fuse_vfx1", "fuse_vfx2")]
 script = ExtResource("1_mc67o")
 player = NodePath("AnimationPlayer")
-mesh = SubResource("CylinderMesh_i5arm")
-mesh_node = NodePath("Mesh")
 mat = SubResource("ShaderMaterial_mc67o")
 splash = NodePath("Mesh/Splash")
 break1 = NodePath("Mesh/Break1")
@@ -326,7 +324,7 @@ break2 = NodePath("Mesh/Break2")
 fuse_vfx1 = NodePath("FuseVFX")
 fuse_vfx2 = NodePath("FuseVFX/FuseVFX2")
 
-[node name="Mesh" type="CSGMesh3D" parent="." unique_id=1415216167]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1691123720]
 material_override = SubResource("ShaderMaterial_mc67o")
 cast_shadow = 0
 extra_cull_margin = 4.0

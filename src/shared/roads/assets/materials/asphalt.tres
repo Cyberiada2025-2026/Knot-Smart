@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ocqgdyc21bsc"]
+
+[ext_resource type="Texture2D" uid="uid://nehrlmuflo6r" path="res://shared/roads/assets/materials/asphalt_broken.png" id="1_koiih"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_koiih")
+uv1_scale = Vector3(0.05, 0.05, 0.05)
+uv1_triplanar = true
+texture_filter = 2

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://djfrk2uv5ur0b"]
+
+[ext_resource type="PackedScene" uid="uid://bp80rp5ygnnf" path="res://shared/debris/single/debris8.tscn" id="1_axdxh"]
+[ext_resource type="PackedScene" uid="uid://btmd85pvej0kk" path="res://shared/debris/single/debris5.tscn" id="2_dsimv"]
+[ext_resource type="PackedScene" uid="uid://be52lbuvwul4l" path="res://shared/debris/single/debris2.tscn" id="3_t6h5s"]
+
+[node name="DebrisPile2" type="Node3D" unique_id=2065655849]
+
+[node name="Debris8" parent="." unique_id=407552912 instance=ExtResource("1_axdxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31288958, 0, -1.7937148)
+
+[node name="Debris9" parent="." unique_id=1044702896 instance=ExtResource("1_axdxh")]
+transform = Transform3D(0.7266946, 0, -0.6869607, 0, 1, 0, 0.6869607, 0, 0.7266946, 1.5045954, 0, -0.21128988)
+
+[node name="Debris10" parent="." unique_id=25500745 instance=ExtResource("1_axdxh")]
+transform = Transform3D(0.9316912, 0, 0.3632512, 0, 1, 0, -0.3632512, 0, 0.9316912, -0.52498746, 0, -0.3575524)
+
+[node name="Debris11" parent="." unique_id=1048123947 instance=ExtResource("1_axdxh")]
+transform = Transform3D(0.8618594, 0, -0.5071473, 0, 1, 0, 0.5071473, 0, 0.8618594, -1.1547152, 0, -1.3565438)
+
+[node name="Debris5" parent="." unique_id=88912901 instance=ExtResource("2_dsimv")]
+transform = Transform3D(0.57406247, 0, -0.81881154, 0, 1, 0, 0.81881154, 0, 0.57406247, 1.7975523, 0, -1.841301)
+
+[node name="Debris2" parent="." unique_id=36024407 instance=ExtResource("3_t6h5s")]
+transform = Transform3D(1, 0, 0, 0, 0.91308343, 0.40777278, 0, -0.40777278, 0.91308343, -1.2718282, 0.5929445, -2.5435941)

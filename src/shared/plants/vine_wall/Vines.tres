@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bri3ijq7gjupu"]
+
+[ext_resource type="Texture2D" uid="uid://cvlcvrfgfb66e" path="res://shared/plants/vine_wall/vine_wall_vines.png" id="1_eh2l3"]
+
+[resource]
+resource_name = "Vines"
+transparency = 2
+alpha_scissor_threshold = 0.75
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_eh2l3")
+texture_filter = 2

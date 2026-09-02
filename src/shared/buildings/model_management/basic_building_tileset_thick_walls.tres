@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BuildingTileset" format=3 uid="uid://c8xhbj0f06miu"]
+
+[ext_resource type="MeshLibrary" uid="uid://bqqgkcaxkvu0g" path="res://shared/buildings/assets/models/building_parts_collision_thick.tres" id="1_uf0qo"]
+[ext_resource type="Script" uid="uid://c5t31dsfidxi0" path="res://shared/buildings/model_management/building_tileset.gd" id="2_qj261"]
+[ext_resource type="MeshLibrary" uid="uid://dxdix3oesovgs" path="res://shared/buildings/assets/models/building_parts_no_collision.tres" id="3_xvhdi"]
+
+[resource]
+script = ExtResource("2_qj261")
+enterable_tileset = ExtResource("1_uf0qo")
+unenterable_tileset = ExtResource("3_xvhdi")
+grid_size = Vector3(2, 2.8, 2)
+metadata/_custom_type_script = "uid://c5t31dsfidxi0"

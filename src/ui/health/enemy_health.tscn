@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cggbrnvoiqko0"]
+
+[ext_resource type="Texture2D" uid="uid://c8ubpridb1ono" path="res://ui/health/enemy_underpng.png" id="1_84mxs"]
+[ext_resource type="Script" uid="uid://i172k2ht276p" path="res://ui/health/enemy_health.gd" id="1_x7ia6"]
+[ext_resource type="Texture2D" uid="uid://b1rmlc1js8d5p" path="res://ui/health/enemy_progress.png" id="2_k1hqk"]
+
+[node name="enemyHealth" type="TextureProgressBar" unique_id=2117532528]
+visible = false
+offset_right = 150.0
+offset_bottom = 30.0
+value = 100.0
+fill_mode = 6
+texture_under = ExtResource("1_84mxs")
+texture_progress = ExtResource("2_k1hqk")
+texture_progress_offset = Vector2(6, 5)
+script = ExtResource("1_x7ia6")

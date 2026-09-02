@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b4f1df1cha8bn"]
+
+[ext_resource type="Texture2D" uid="uid://bxtdjtrqlfdhg" path="res://shared/roads/assets/materials/podloga_na_mojej_klatce_schodowej.png" id="1_sr7hw"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_sr7hw")
+uv1_scale = Vector3(0.04, 0.04, 0.04)
+uv1_triplanar = true
+texture_filter = 2

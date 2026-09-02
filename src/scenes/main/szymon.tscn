@@ -1,0 +1,369 @@
+[gd_scene format=3 uid="uid://dok2k0qk1a7ta"]
+
+[ext_resource type="Resource" uid="uid://dmcuh0thd0ntg" path="res://shared/buildings/model_management/tenement_house_tileset.tres" id="2_ipu2h"]
+[ext_resource type="PackedScene" uid="uid://djfrk2uv5ur0b" path="res://shared/debris/piles/debris_pile_2.tscn" id="6_2wred"]
+[ext_resource type="MeshLibrary" uid="uid://do0epgoydekpb" path="res://shared/buildings/assets/models/tenement_house_tiles_enterable.tres" id="7_g1faw"]
+[ext_resource type="PackedScene" uid="uid://ctr84bt67oahh" path="res://shared/debris/piles/debris_pile_1.tscn" id="7_xihla"]
+[ext_resource type="PackedScene" uid="uid://defn5yjy78ix4" path="res://shared/nature_generators/tree_generator/prefabs/tree5.tscn" id="8_8nbw3"]
+[ext_resource type="PackedScene" uid="uid://cekls8dq3kd3y" path="res://shared/plants/vines/bent_vines_2_thin.tscn" id="8_d6vdo"]
+[ext_resource type="PackedScene" uid="uid://dtsgxkym0sobe" path="res://shared/plants/vines/bent_vines_1_normal.tscn" id="9_r4dge"]
+[ext_resource type="PackedScene" uid="uid://bn0bjhcj5avki" path="res://shared/nature_generators/tree_generator/prefabs/tree4.tscn" id="9_r8t4o"]
+[ext_resource type="PackedScene" uid="uid://1peooswj26s5" path="res://shared/plants/vines/basic_vines_thick.tscn" id="10_6kg6w"]
+[ext_resource type="PackedScene" uid="uid://dh4aw1k0cdf40" path="res://shared/plants/vines/bent_vines_1_thick.tscn" id="11_u3hxq"]
+[ext_resource type="Script" uid="uid://c8acika7wo4ks" path="res://shared/buildings/building_generation/building_generator.gd" id="12_ipu2h"]
+[ext_resource type="Script" uid="uid://uq2ee3iq6x08" path="res://shared/buildings/building_generation/building_generation_params.gd" id="14_nfrs4"]
+[ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="15_1djfu"]
+[ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="16_d3uka"]
+[ext_resource type="Script" uid="uid://cbn62hjlskw0a" path="res://shared/buildings/decimate_building/decimate_building.gd" id="17_etnvg"]
+[ext_resource type="PackedScene" uid="uid://dpbcjs1dr4vxe" path="res://shared/nature_generators/tree_generator/prefabs/tree1.tscn" id="17_g1faw"]
+[ext_resource type="PackedScene" uid="uid://bo23tv6yguitm" path="res://shared/nature_generators/tree_generator/prefabs/tree2.tscn" id="18_nfrs4"]
+[ext_resource type="PackedScene" uid="uid://nd864u3myomf" path="res://shared/nature_generators/tree_generator/prefabs/tree3.tscn" id="19_1djfu"]
+[ext_resource type="MeshLibrary" uid="uid://d2nblkfe0h2gb" path="res://shared/buildings/assets/models/tenement_house_tiles_flat.tres" id="19_g1faw"]
+[ext_resource type="Material" uid="uid://c4h215ab0dcip" path="res://shared/street-planes/hex.tres" id="20_1djfu"]
+[ext_resource type="Material" uid="uid://co4xfg4l5qibb" path="res://shared/street-planes/whatever.tres" id="21_d3uka"]
+
+[sub_resource type="Resource" id="Resource_joa1j"]
+script = ExtResource("14_nfrs4")
+random_seed = 59
+building_tileset = ExtResource("2_ipu2h")
+outside_door_count = 3
+generate_rooms = true
+min_room_size = Vector3i(5, 1, 5)
+max_room_size = Vector3i(8, 1, 8)
+long_room_tendency = 0.2
+metadata/_custom_type_script = "uid://uq2ee3iq6x08"
+
+[sub_resource type="Resource" id="Resource_g1faw"]
+script = ExtResource("14_nfrs4")
+random_seed = 59
+building_tileset = ExtResource("2_ipu2h")
+outside_door_count = 3
+metadata/_custom_type_script = "uid://uq2ee3iq6x08"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nfrs4"]
+size = Vector3(10, 11.2, 10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_etnvg"]
+material = ExtResource("20_1djfu")
+size = Vector2(40, 20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fk6vh"]
+material = ExtResource("20_1djfu")
+size = Vector2(30, 20)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_joa1j"]
+material = ExtResource("21_d3uka")
+size = Vector2(10, 100)
+
+[node name="Szymon" type="Node3D" unique_id=1444321441]
+
+[node name="BuildingGenerator5" type="Node3D" parent="." unique_id=1280084860 node_paths=PackedStringArray("generated_building_node")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 12, -0.5, 10.5)
+script = ExtResource("12_ipu2h")
+building_generation_params = SubResource("Resource_joa1j")
+generated_building_node = NodePath("GeneratedBuilding")
+metadata/_custom_type_script = "uid://c8acika7wo4ks"
+
+[node name="BuildingShapeDescription" type="Node" parent="BuildingGenerator5" unique_id=1274686223]
+script = ExtResource("15_1djfu")
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="BuildingGenerator5/BuildingShapeDescription" unique_id=1990303861]
+script = ExtResource("16_d3uka")
+size = Vector3i(8, 2, 5)
+metadata/_custom_type_script = "uid://cp8ed61leg0wl"
+
+[node name="DecimateBuilding" type="Node3D" parent="BuildingGenerator5" unique_id=442416368]
+script = ExtResource("17_etnvg")
+strength = 0.234
+iterations = 19
+seed_value = 771696584
+metadata/_custom_type_script = "uid://cbn62hjlskw0a"
+
+[node name="GeneratedBuilding" type="Node3D" parent="BuildingGenerator5" unique_id=1439943565]
+
+[node name="_GridMap_28555" type="GridMap" parent="BuildingGenerator5/GeneratedBuilding" unique_id=1836144791]
+mesh_library = ExtResource("7_g1faw")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(3, 2, 1048580, 65539, 0, 1048580, 0, 0, 1048579, 0, 2, 1048578, 0, 3, 1048578, 0, 4, 1048578, 3, 0, 1048578, 3, 1, 1048578, 3, 3, 1048578, 3, 4, 1048578, 65536, 3, 1048579, 65536, 4, 1048578, 65539, 1, 1048578, 65539, 2, 1048578, 65539, 3, 1048578, 65539, 4, 1048578, 8, 0, 1048580, 8, 1, 1048578, 8, 2, 1048578, 8, 3, 1048580, 8, 4, 1048579, 65544, 0, 1048578, 65544, 1, 1048579, 65544, 2, 1048579, 65544, 3, 1048579, 65544, 4, 1048578)
+}
+
+[node name="_GridMap_28556" type="GridMap" parent="BuildingGenerator5/GeneratedBuilding" unique_id=924182730]
+mesh_library = ExtResource("7_g1faw")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 65536, 3, 0, 65536, 4, 0, 65537, 1, 0, 65537, 2, 0, 65537, 3, 0, 65537, 4, 0, 65538, 0, 0, 65538, 1, 0, 65538, 2, 0, 65538, 3, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 5, 0, 0, 5, 1, 0, 5, 2, 0, 5, 3, 0, 5, 4, 0, 6, 0, 0, 6, 1, 0, 6, 2, 0, 6, 3, 0, 6, 4, 0, 7, 0, 0, 7, 1, 0, 7, 2, 0, 7, 3, 0, 7, 4, 0, 65539, 0, 0, 65539, 1, 0, 65539, 2, 0, 65539, 3, 0, 65539, 4, 0, 65540, 1, 0, 65540, 2, 0, 65540, 3, 0, 65541, 0, 0, 65541, 1, 0, 65541, 2, 0, 65541, 3, 0, 65541, 4, 0, 65542, 0, 0, 65542, 1, 0, 65542, 2, 0, 65542, 3, 0, 65542, 4, 0, 65543, 1, 0, 65543, 2, 0, 65543, 3, 0)
+}
+
+[node name="_GridMap_28557" type="GridMap" parent="BuildingGenerator5/GeneratedBuilding" unique_id=1684493635]
+mesh_library = ExtResource("7_g1faw")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 3, 1, 0, 2, 2, 0, 2, 0, 5, 3, 1, 5, 2, 2, 5, 2, 65538, 0, 2, 65536, 5, 2, 65537, 5, 2, 65538, 5, 2, 3, 0, 3, 5, 0, 3, 6, 0, 2, 7, 0, 2, 3, 5, 2, 4, 5, 2, 5, 5, 3, 6, 5, 2, 7, 5, 2, 65539, 0, 2, 65541, 0, 2, 65542, 0, 2, 65539, 5, 3, 65540, 5, 2, 65541, 5, 2, 65542, 5, 2, 65543, 5, 2)
+}
+
+[node name="_NavigationObstacle3D_28558" type="NavigationObstacle3D" parent="BuildingGenerator5/GeneratedBuilding" unique_id=152748940]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(0, 0, 0, 0, 0, 10, 16, 0, 10, 16, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="TreeGenerator" parent="." unique_id=1093754622 instance=ExtResource("8_8nbw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.159087, -0.5319556, 2.8596125)
+
+[node name="TreeGenerator2" parent="." unique_id=1567449531 instance=ExtResource("9_r8t4o")]
+transform = Transform3D(-0.72176015, 0, -0.6921432, 0, 1, 0, 0.6921432, 0, -0.72176015, -16.2693, -0.5319556, -11.699533)
+
+[node name="DebrisPile3" parent="." unique_id=2065655849 instance=ExtResource("6_2wred")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.054852, -0.22342682, -7.122856)
+
+[node name="DebrisPile4" parent="." unique_id=2069696039 instance=ExtResource("7_xihla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.577469, -0.23560229, -13.975695)
+
+[node name="DebrisPile5" parent="." unique_id=2120439105 instance=ExtResource("6_2wred")]
+transform = Transform3D(-0.9998996, 0, 0.014171541, 0, 1, 0, -0.014171541, 0, -0.9998996, 41.73802, -0.22342682, 125.36626)
+
+[node name="DebrisPile6" parent="." unique_id=1855721587 instance=ExtResource("7_xihla")]
+transform = Transform3D(-0.8660254, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660254, 44.198128, -0.23560134, 130.34824)
+
+[node name="DebrisPile7" parent="." unique_id=792888783 instance=ExtResource("6_2wred")]
+transform = Transform3D(0.46944076, 0, 0.88296396, 0, 1, 0, -0.88296396, 0, 0.46944076, 13.987819, -0.22342682, -17.955887)
+
+[node name="DebrisPile2" parent="." unique_id=235493613 instance=ExtResource("6_2wred")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.546778, 0.029802084, 14.493747)
+
+[node name="DebrisPile1" parent="." unique_id=185150628 instance=ExtResource("7_xihla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.48944, -0.13423002, 123.3667)
+
+[node name="Bent Vines 2 Thin" parent="." unique_id=203890781 instance=ExtResource("8_d6vdo")]
+transform = Transform3D(0.46309707, 0.42997932, 0.7750215, 0.15799814, 0.8203821, -0.54955375, -0.87211084, 0.37694892, 0.31198058, 14.60062, 3.5560255, 5.5316215)
+
+[node name="Bent Vines 1 Normal" parent="." unique_id=1460533781 instance=ExtResource("9_r4dge")]
+transform = Transform3D(0.45867643, 0.19058774, 0.8679239, 0.7781093, 0.38555557, -0.49587592, -0.42914096, 0.9027864, 0.028546974, 13.6862755, 3.4541602, 5.1231575)
+
+[node name="Basic Vines Thick" parent="." unique_id=1120199189 instance=ExtResource("10_6kg6w")]
+transform = Transform3D(1, 0, 0, 0, 0.07765868, -1.4525245, 0, 0.9969801, 0.11314285, 18.044844, 3.70405, 4.6580625)
+
+[node name="Basic Vines Thick2" parent="." unique_id=1487005610 instance=ExtResource("10_6kg6w")]
+transform = Transform3D(-1.0121741, 0, 0, 0, 0.07765868, -1.4525245, 0, 0.9969801, 0.11314285, 18.26076, 3.70405, 4.7623076)
+
+[node name="Bent Vines 1 Thick" parent="." unique_id=1327238883 instance=ExtResource("11_u3hxq")]
+transform = Transform3D(-0.12522615, -0.87854505, -0.46095246, -0.036632914, 0.4683874, -0.88276345, 0.9914517, -0.09365903, -0.090838015, 10.951313, 0.55127287, 7.300574)
+
+[node name="Bent Vines 2 Thin2" parent="." unique_id=1335813694 instance=ExtResource("8_d6vdo")]
+transform = Transform3D(0.8405382, -0.5417522, 0, 0.5417522, 0.8405382, 0, 0, 0, 1, 11.693227, 2.0958886, 7.7728806)
+
+[node name="Bent Vines 2 Thin3" parent="." unique_id=578629266 instance=ExtResource("8_d6vdo")]
+transform = Transform3D(0.8279965, -0.52921045, 4.305608e-09, 0.53358495, 0.8209507, 0.009823786, 0.009453497, 0.0145447375, -0.55448604, 11.693227, 1.8848345, 8.333765)
+
+[node name="Bent Vines 1 Normal2" parent="." unique_id=690814923 instance=ExtResource("9_r4dge")]
+transform = Transform3D(-0.40554038, -0.7017391, 0.58574677, 1.5497097e-08, 0.6408068, 0.7677024, -0.9140773, 0.3113343, -0.25987303, 10.422854, 0.9211472, 10.447767)
+
+[node name="DebrisPile8" parent="." unique_id=19646768 instance=ExtResource("7_xihla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.395778, -0.2849095, 1.230334)
+
+[node name="BuildingGenerator4" type="Node3D" parent="." unique_id=1633391405 node_paths=PackedStringArray("generated_building_node")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, -0.6195488, 0.5)
+script = ExtResource("12_ipu2h")
+building_generation_params = SubResource("Resource_g1faw")
+generated_building_node = NodePath("GeneratedBuilding")
+metadata/_custom_type_script = "uid://c8acika7wo4ks"
+
+[node name="BuildingShapeDescription" type="Node" parent="BuildingGenerator4" unique_id=1132625242]
+script = ExtResource("15_1djfu")
+is_visible = true
+metadata/_custom_type_script = "uid://o0oessya87xf"
+
+[node name="BoxDescription" type="Node" parent="BuildingGenerator4/BuildingShapeDescription" unique_id=715059466]
+script = ExtResource("16_d3uka")
+size = Vector3i(5, 4, 5)
+metadata/_custom_type_script = "uid://cp8ed61leg0wl"
+
+[node name="GeneratedBuilding" type="Node3D" parent="BuildingGenerator4" unique_id=2062361947]
+
+[node name="_GridMap_43356" type="GridMap" parent="BuildingGenerator4/GeneratedBuilding" unique_id=2019085379]
+mesh_library = ExtResource("19_g1faw")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 1048578, 0, 1, 1048579, 0, 2, 1048580, 0, 3, 1048578, 0, 4, 1048578, 65536, 0, 1048578, 65536, 1, 1048579, 65536, 2, 1048579, 65536, 3, 1048579, 65536, 4, 1048578, 131072, 0, 1048579, 131072, 1, 1048578, 131072, 2, 1048578, 131072, 3, 1048578, 131072, 4, 1048578, 196608, 0, 1048579, 196608, 1, 1048578, 196608, 2, 1048578, 196608, 3, 1048578, 196608, 4, 1048578, 5, 0, 1048578, 5, 1, 1048578, 5, 2, 1048578, 5, 3, 1048578, 5, 4, 1048580, 65541, 0, 1048578, 65541, 1, 1048578, 65541, 2, 1048578, 65541, 3, 1048579, 65541, 4, 1048578, 131077, 0, 1048579, 131077, 1, 1048578, 131077, 2, 1048578, 131077, 3, 1048578, 131077, 4, 1048578, 196613, 0, 1048579, 196613, 1, 1048579, 196613, 2, 1048578, 196613, 3, 1048578, 196613, 4, 1048578)
+}
+
+[node name="_GridMap_43357" type="GridMap" parent="BuildingGenerator4/GeneratedBuilding" unique_id=708430416]
+mesh_library = ExtResource("19_g1faw")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 1, 4, 0, 2, 0, 0, 2, 1, 0, 2, 2, 0, 2, 3, 0, 2, 4, 0, 3, 0, 0, 3, 1, 0, 3, 2, 0, 3, 3, 0, 3, 4, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 4, 3, 0, 4, 4, 0, 262144, 0, 0, 262144, 1, 0, 262144, 2, 0, 262144, 3, 0, 262144, 4, 0, 262145, 0, 0, 262145, 1, 0, 262145, 2, 0, 262145, 3, 0, 262145, 4, 0, 262146, 0, 0, 262146, 1, 0, 262146, 2, 0, 262146, 3, 0, 262146, 4, 0, 262147, 0, 0, 262147, 1, 0, 262147, 2, 0, 262147, 3, 0, 262147, 4, 0, 262148, 0, 0, 262148, 1, 0, 262148, 2, 0, 262148, 3, 0, 262148, 4, 0)
+}
+
+[node name="_GridMap_43358" type="GridMap" parent="BuildingGenerator4/GeneratedBuilding" unique_id=531046759]
+mesh_library = ExtResource("19_g1faw")
+cell_size = Vector3(2, 2.8, 2)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 2, 65536, 0, 2, 131072, 0, 2, 196608, 0, 2, 1, 0, 2, 65537, 0, 2, 131073, 0, 3, 196609, 0, 3, 2, 0, 4, 65538, 0, 2, 131074, 0, 3, 196610, 0, 2, 3, 0, 3, 65539, 0, 2, 131075, 0, 3, 196611, 0, 3, 4, 0, 2, 65540, 0, 2, 131076, 0, 3, 196612, 0, 2, 0, 5, 2, 65536, 5, 3, 131072, 5, 3, 196608, 5, 2, 1, 5, 3, 65537, 5, 2, 131073, 5, 2, 196609, 5, 2, 2, 5, 3, 65538, 5, 2, 131074, 5, 3, 196610, 5, 2, 3, 5, 2, 65539, 5, 2, 131075, 5, 2, 196611, 5, 2, 4, 5, 2, 65540, 5, 3, 131076, 5, 2, 196612, 5, 2)
+}
+
+[node name="_NavigationObstacle3D_43359" type="NavigationObstacle3D" parent="BuildingGenerator4/GeneratedBuilding" unique_id=1853223310]
+visible = false
+height = 100.0
+vertices = PackedVector3Array(0, 0, 0, 0, 0, 10, 10, 0, 10, 10, 0, 0)
+affect_navigation_mesh = true
+avoidance_enabled = false
+
+[node name="_StaticBody3D_43360" type="StaticBody3D" parent="BuildingGenerator4/GeneratedBuilding" unique_id=1623585263]
+collision_layer = 257
+
+[node name="_CollisionShape3D_43361" type="CollisionShape3D" parent="BuildingGenerator4/GeneratedBuilding/_StaticBody3D_43360" unique_id=769386219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5.6, 5)
+shape = SubResource("BoxShape3D_nfrs4")
+
+[node name="Trees" type="Node3D" parent="." unique_id=280486273]
+
+[node name="TreeGenerator" parent="Trees" unique_id=202791369 instance=ExtResource("17_g1faw")]
+transform = Transform3D(-0.7451619, 0, 0.6668835, 0, 1, 0, -0.6668835, 0, -0.7451619, 2.636126, -0.695626, -9.706811)
+
+[node name="TreeGenerator2" parent="Trees" unique_id=753742672 instance=ExtResource("17_g1faw")]
+transform = Transform3D(-0.802984, 0, -0.5960006, 0, 1, 0, 0.5960006, 0, -0.802984, -8.46615, -0.3328303, -9.311664)
+
+[node name="TreeGenerator3" parent="Trees" unique_id=814421844 instance=ExtResource("17_g1faw")]
+transform = Transform3D(-0.78043044, 0, -0.6252426, 0, 1, 0, 0.6252426, 0, -0.78043044, -4.232462, -0.68041277, 47.191093)
+
+[node name="TreeGenerator4" parent="Trees" unique_id=1873346664 instance=ExtResource("17_g1faw")]
+transform = Transform3D(0.5325808, 0, -0.84637916, 0, 1, 0, 0.84637916, 0, 0.5325808, 39.86186, -0.69820535, -20.431955)
+
+[node name="TreeGenerator5" parent="Trees" unique_id=1647698678 instance=ExtResource("17_g1faw")]
+transform = Transform3D(-0.91993105, 0, 0.39208022, 0, 1, 0, -0.39208022, 0, -0.91993105, 38.156593, -0.625, 1.029953)
+
+[node name="TreeGenerator6" parent="Trees" unique_id=1093811159 instance=ExtResource("17_g1faw")]
+transform = Transform3D(0.30055597, 0, -0.9537642, 0, 1, 0, 0.9537642, 0, 0.30055597, 11.429772, -0.6249962, 19.179192)
+
+[node name="TreeGenerator7" parent="Trees" unique_id=668579522 instance=ExtResource("18_nfrs4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7403133, 6.3870773)
+
+[node name="TreeGenerator8" parent="Trees" unique_id=1989623808 instance=ExtResource("18_nfrs4")]
+transform = Transform3D(0.4907517, 0, 0.87129945, 0, 1, 0, -0.87129945, 0, 0.4907517, 41.92961, -0.625, -4.112034)
+
+[node name="TreeGenerator9" parent="Trees" unique_id=57638837 instance=ExtResource("18_nfrs4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.781284, -0.625, -19.263472)
+
+[node name="TreeGenerator10" parent="Trees" unique_id=1711751586 instance=ExtResource("18_nfrs4")]
+transform = Transform3D(0.78832227, 0, 0.6152625, 0, 1, 0, -0.6152625, 0, 0.78832227, 26.609863, -0.625, 1.5522385)
+
+[node name="TreeGenerator11" parent="Trees" unique_id=789566600 instance=ExtResource("18_nfrs4")]
+transform = Transform3D(0.8330661, 0, 0.5531735, 0, 1, 0, -0.5531735, 0, 0.8330661, -4.128992, -0.625, 34.584972)
+
+[node name="TreeGenerator12" parent="Trees" unique_id=916553081 instance=ExtResource("18_nfrs4")]
+transform = Transform3D(0.9907597, 0, 0.13562912, 0, 1, 0, -0.13562912, 0, 0.9907597, -14.55876, -0.6250038, 58.371872)
+
+[node name="TreeGenerator13" parent="Trees" unique_id=1929491768 instance=ExtResource("19_1djfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.800861, -0.625, -18.357101)
+
+[node name="TreeGenerator15" parent="Trees" unique_id=2146071625 instance=ExtResource("19_1djfu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.345605, -0.625, 49.139324)
+
+[node name="TreeGenerator16" parent="Trees" unique_id=330091289 instance=ExtResource("19_1djfu")]
+transform = Transform3D(-0.5432624, 0, -0.83956295, 0, 1, 0, 0.83956295, 0, -0.5432624, 19.823933, -0.625, -32.098488)
+
+[node name="TreeGenerator14" parent="Trees" unique_id=811944154 instance=ExtResource("9_r8t4o")]
+transform = Transform3D(-0.698153, 0, 0.71594846, 0, 1, 0, -0.71594846, 0, -0.698153, -17.039143, -0.95055294, 25.58463)
+
+[node name="TreeGenerator17" parent="Trees" unique_id=1551213507 instance=ExtResource("8_8nbw3")]
+transform = Transform3D(0.95242774, 0, 0.30476457, 0, 1, 0, -0.30476457, 0, 0.95242774, -15.908354, -1, 15.854984)
+
+[node name="TreeGenerator18" parent="Trees" unique_id=2068580581 instance=ExtResource("18_nfrs4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.215538, -0.625, 93.914406)
+
+[node name="TreeGenerator19" parent="Trees" unique_id=1525819665 instance=ExtResource("18_nfrs4")]
+transform = Transform3D(0.9208864, 0, 0.38983127, 0, 1, 0, -0.38983127, 0, 0.9208864, -5.9643536, -0.625, 91.77676)
+
+[node name="TreeGenerator20" parent="Trees" unique_id=1353959511 instance=ExtResource("17_g1faw")]
+transform = Transform3D(0.8810889, 0, -0.47295064, 0, 1, 0, 0.47295064, 0, 0.8810889, -13.335005, -0.6250019, 95.47882)
+
+[node name="TreeGenerator21" parent="Trees" unique_id=447887253 instance=ExtResource("17_g1faw")]
+transform = Transform3D(0.3401662, 0, 0.9403653, 0, 1, 0, -0.9403653, 0, 0.3401662, -32.200546, -0.62500095, 92.56294)
+
+[node name="TreeGenerator22" parent="Trees" unique_id=1263981114 instance=ExtResource("19_1djfu")]
+transform = Transform3D(-0.047681767, 0, -0.99886256, 0, 1, 0, 0.99886256, 0, -0.047681767, -47.99685, -0.625, 135.13763)
+
+[node name="TreeGenerator23" parent="Trees" unique_id=160217819 instance=ExtResource("19_1djfu")]
+transform = Transform3D(0.21326916, 0, -0.9769935, 0, 1, 0, 0.9769935, 0, 0.21326916, 7.451805, -0.57571507, 167.70802)
+
+[node name="TreeGenerator24" parent="Trees" unique_id=2074228485 instance=ExtResource("9_r8t4o")]
+transform = Transform3D(0.9048494, 0, -0.42573184, 0, 1, 0, 0.42573184, 0, 0.9048494, -18.638262, -1.0509291, 140.15103)
+
+[node name="TreeGenerator25" parent="Trees" unique_id=2059972392 instance=ExtResource("8_8nbw3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.553905, -0.625, 122.07465)
+
+[node name="MoreDebris" type="Node3D" parent="." unique_id=666765936]
+
+[node name="DebrisPile9" parent="MoreDebris" unique_id=2027690464 instance=ExtResource("7_xihla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.908169, -0.040413857, 7.718294)
+
+[node name="DebrisPile10" parent="MoreDebris" unique_id=492325887 instance=ExtResource("6_2wred")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.151241, 1.9555597, -9.060616)
+
+[node name="DebrisPile11" parent="MoreDebris" unique_id=1648427771 instance=ExtResource("7_xihla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.438984, -0.23938656, 48.33219)
+
+[node name="DebrisPile12" parent="MoreDebris" unique_id=1396697147 instance=ExtResource("6_2wred")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.182362, 0.019917965, 54.92603)
+
+[node name="DebrisPile13" parent="MoreDebris" unique_id=174076980 instance=ExtResource("7_xihla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.257786, 0.6748328, 148.94586)
+
+[node name="DebrisPile14" parent="MoreDebris" unique_id=1016621136 instance=ExtResource("6_2wred")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.114578, 1.3546314, 153.77432)
+
+[node name="DebrisPile15" parent="MoreDebris" unique_id=1271728570 instance=ExtResource("7_xihla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.437149, 0.3749981, 144.25626)
+
+[node name="DebrisPile17" parent="MoreDebris" unique_id=1247948874 instance=ExtResource("7_xihla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.352234, 0.6990309, 33.77322)
+
+[node name="DebrisPile18" parent="MoreDebris" unique_id=613643729 instance=ExtResource("6_2wred")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.170994, 0.49381065, 29.591782)
+
+[node name="DebrisPile19" parent="MoreDebris" unique_id=1125687359 instance=ExtResource("7_xihla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.643562, 0.51948357, 54.579617)
+
+[node name="DebrisPile20" parent="MoreDebris" unique_id=944467569 instance=ExtResource("7_xihla")]
+transform = Transform3D(0.117797434, 0, 0.99303764, 0, 1, 0, -0.99303764, 0, 0.117797434, 5.1216965, -0.32040274, 44.96267)
+
+[node name="DebrisPile21" parent="MoreDebris" unique_id=1633240228 instance=ExtResource("6_2wred")]
+transform = Transform3D(0.26340166, 0, -0.9646863, 0, 1, 0, 0.9646863, 0, 0.26340166, -10.074917, 1.1556435, 36.503597)
+
+[node name="DebrisPile22" parent="MoreDebris" unique_id=879635126 instance=ExtResource("7_xihla")]
+transform = Transform3D(0.9511428, 0, -0.3087514, 0, 1, 0, 0.3087514, 0, 0.9511428, -3.661914, 0.2549734, 50.91683)
+
+[node name="Planes" type="Node3D" parent="." unique_id=711493919]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Planes" unique_id=1444508745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4628534, -0.61649656, -25.512745)
+mesh = SubResource("PlaneMesh_etnvg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Planes" unique_id=1637424440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5271177, -0.61649656, 54.391182)
+mesh = SubResource("PlaneMesh_etnvg")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Planes" unique_id=687748234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.535744, -0.61649656, 54.391182)
+mesh = SubResource("PlaneMesh_etnvg")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Planes" unique_id=1675498724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.480373, -0.61649656, 144.25487)
+mesh = SubResource("PlaneMesh_fk6vh")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Planes" unique_id=1068500260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.480373, -0.61649656, 144.25487)
+mesh = SubResource("PlaneMesh_fk6vh")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Planes" unique_id=1769604944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.445843, -0.61649656, 14.38736)
+mesh = SubResource("PlaneMesh_joa1j")

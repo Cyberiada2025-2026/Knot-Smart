@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dgy1pcm1xwiay"]
+
+[ext_resource type="PackedScene" uid="uid://bu21r7y410x53" path="res://shared/buildings/assets/models/tenement_tiles_flat.glb" id="1_pbd5y"]
+[ext_resource type="Material" uid="uid://bktym5d5imxye" path="res://shared/buildings/assets/materials/brick_wall_material.tres" id="2_16ft0"]
+[ext_resource type="Material" uid="uid://vahwexcx744h" path="res://shared/buildings/assets/materials/concrete_floor_material.tres" id="2_wnk6q"]
+[ext_resource type="Material" uid="uid://bi6yw1dip366u" path="res://shared/buildings/assets/materials/brick_wall_window_material.tres" id="4_00628"]
+[ext_resource type="Material" uid="uid://byk5qi3vh4x1a" path="res://shared/buildings/assets/materials/brick_wall_door_material.tres" id="5_jxl7w"]
+
+[node name="tenement_tiles_flat" unique_id=535799905 instance=ExtResource("1_pbd5y")]
+
+[node name="Floor" parent="." index="0" unique_id=1614156023]
+surface_material_override/0 = ExtResource("2_wnk6q")
+
+[node name="Hole" parent="." index="1" unique_id=1567184070]
+surface_material_override/0 = ExtResource("2_wnk6q")
+
+[node name="Wall" parent="." index="2" unique_id=772775658]
+surface_material_override/0 = ExtResource("2_16ft0")
+
+[node name="Window" parent="." index="3" unique_id=236394061]
+surface_material_override/0 = ExtResource("4_00628")
+
+[node name="Door" parent="." index="4" unique_id=508152071]
+surface_material_override/0 = ExtResource("5_jxl7w")

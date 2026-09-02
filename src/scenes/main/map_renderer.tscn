@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://conwx7a1fxor3"]
+
+[ext_resource type="Script" uid="uid://u5hpdit2bo4g" path="res://shared/terrain/map_renderer.gd" id="1_h35ac"]
+[ext_resource type="Script" uid="uid://no1j1oowuup1" path="res://shared/terrain/params/world_generation_params.gd" id="2_vl7v8"]
+[ext_resource type="Script" uid="uid://bmtv75byrd25q" path="res://shared/terrain/params/world_display_params.gd" id="3_uie2y"]
+[ext_resource type="PackedScene" uid="uid://b737psv7vwxmk" path="res://generated/terrain/generated_map.tscn" id="19_5iuj1"]
+
+[sub_resource type="Resource" id="Resource_jdm0r"]
+script = ExtResource("2_vl7v8")
+map_size = 16
+map_height = 8.0
+tile_size = 5
+tile_height = 2.1875
+metadata/_custom_type_script = "uid://no1j1oowuup1"
+
+[sub_resource type="Resource" id="Resource_fpm2n"]
+script = ExtResource("3_uie2y")
+render_distance = 32
+metadata/_custom_type_script = "uid://bmtv75byrd25q"
+
+[node name="MapRenderer" type="Node3D" unique_id=481359591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.5, -4.5, -81)
+script = ExtResource("1_h35ac")
+world_generation_params = SubResource("Resource_jdm0r")
+world_display_params = SubResource("Resource_fpm2n")
+metadata/_custom_type_script = "uid://u5hpdit2bo4g"
+
+[node name="Map" parent="." unique_id=436163327 instance=ExtResource("19_5iuj1")]

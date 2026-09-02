@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dkc6qdwcyremk"]
+
+[ext_resource type="Texture2D" uid="uid://d3ki1htehqtuc" path="res://shared/roads/assets/materials/pavement.jpg" id="1_c0bom"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_c0bom")
+uv1_scale = Vector3(0.04, 0.04, 0.04)
+uv1_triplanar = true
+texture_filter = 2

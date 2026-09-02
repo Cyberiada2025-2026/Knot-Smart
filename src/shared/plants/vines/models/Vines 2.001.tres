@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cgigeo3gysu6m"]
+
+[ext_resource type="Texture2D" uid="uid://ggmnuqrw16lq" path="res://shared/plants/vines/models/basic_vines_normal_vines2.png" id="1_irh5s"]
+
+[resource]
+resource_name = "Vines 2.001"
+transparency = 2
+alpha_scissor_threshold = 0.2
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_irh5s")
+texture_filter = 2

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c4h215ab0dcip"]
+
+[ext_resource type="Texture2D" uid="uid://du5exsrdjrnyc" path="res://shared/street-planes/hex_bigger.png" id="1_cjfl3"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_cjfl3")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true
+texture_filter = 2

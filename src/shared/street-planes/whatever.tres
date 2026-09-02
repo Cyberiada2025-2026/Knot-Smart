@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://co4xfg4l5qibb"]
+
+[ext_resource type="Texture2D" uid="uid://b3csb6pl01qbx" path="res://shared/street-planes/chodnik.png" id="1_ol0lc"]
+
+[resource]
+shading_mode = 0
+albedo_texture = ExtResource("1_ol0lc")
+uv1_scale = Vector3(0.4, 0.4, 0.4)
+uv1_triplanar = true
+texture_filter = 2

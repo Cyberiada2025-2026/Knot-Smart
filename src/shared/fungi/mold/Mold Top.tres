@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cduv1xy21vuii"]
+
+[ext_resource type="Texture2D" uid="uid://bgxuhvkbf2o4o" path="res://shared/fungi/mold/mold_field_mold-top.png" id="1_e5y7p"]
+
+[resource]
+resource_name = "Mold Top"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_e5y7p")
+texture_filter = 2

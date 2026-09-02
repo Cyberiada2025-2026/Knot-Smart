@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dck8itbvbpxnt"]
+
+[ext_resource type="Script" uid="uid://516cmqto3o3u" path="res://scenes/main/generator_part_out_of_bounds.gd" id="1_3nm5c"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bx2do"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7kqec"]
+size = Vector3(65, 31, 28.5)
+
+[node name="GeneratorPartOutOfBounds" type="Area3D" unique_id=1234546985]
+collision_layer = 2147483648
+collision_mask = 2147483648
+script = ExtResource("1_3nm5c")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=286652677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, -8.5, 76)
+shape = SubResource("WorldBoundaryShape3D_bx2do")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=733703249]
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -74, -8.5, 76)
+shape = SubResource("WorldBoundaryShape3D_bx2do")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=139050490]
+transform = Transform3D(4.371139e-08, -1, 8.742278e-08, -1, -4.371139e-08, 0, 3.821371e-15, -8.742278e-08, -1, 114, -8.5, 76)
+shape = SubResource("WorldBoundaryShape3D_bx2do")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=792140593]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 1, -8.5, -54)
+shape = SubResource("WorldBoundaryShape3D_bx2do")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="." unique_id=1258323530]
+transform = Transform3D(-5.7320566e-15, 1.3113416e-07, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, 1.3113416e-07, 1, -8.5, 208.5)
+shape = SubResource("WorldBoundaryShape3D_bx2do")
+
+[node name="CollisionShape3D6" type="CollisionShape3D" parent="." unique_id=645926763]
+transform = Transform3D(-5.7320566e-15, 1.3113416e-07, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, 1.3113416e-07, 96, 34, -42.500008)
+shape = SubResource("BoxShape3D_7kqec")
+
+[node name="CollisionShape3D7" type="CollisionShape3D" parent="." unique_id=1518509235]
+transform = Transform3D(-5.7320566e-15, 1.3113416e-07, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, 1.3113416e-07, -72.99999, 34, 7.7499924)
+shape = SubResource("BoxShape3D_7kqec")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

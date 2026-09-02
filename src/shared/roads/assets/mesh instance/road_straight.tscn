@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cybi2kynvvyxj"]
+
+[ext_resource type="PackedScene" uid="uid://ue78qf62roem" path="res://shared/roads/assets/glb/road_straight.glb" id="1_68ebf"]
+[ext_resource type="Material" uid="uid://ocqgdyc21bsc" path="res://shared/roads/assets/materials/asphalt.tres" id="2_nqq8o"]
+[ext_resource type="Material" uid="uid://dkc6qdwcyremk" path="res://shared/roads/assets/materials/pavement.tres" id="2_vfc3x"]
+[ext_resource type="Material" uid="uid://b4f1df1cha8bn" path="res://shared/roads/assets/materials/pavement-side.tres" id="4_5qiuh"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5qiuh"]
+points = PackedVector3Array(-19.5, -1, -35, 2.5, -1, -35, -19.5, -1, 35, -1, 2.5, -35, 2.5, -1, 35, -1, 2.5, 35, -16, 2.5, 35, -16, 2.5, -35)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vfc3x"]
+shading_mode = 2
+uv1_triplanar = true
+
+[node name="road_straight2" unique_id=925181644 instance=ExtResource("1_68ebf")]
+
+[node name="road_straight" parent="." index="0" unique_id=463972274]
+transform = Transform3D(-6.244484e-10, 0, 0.014285714, 0, 0.014285714, 0, -0.014285714, 0, -6.244484e-10, 0, 0.022, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="road_straight" index="0" unique_id=590757265]
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="road_straight/StaticBody3D" index="0" unique_id=495604490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.999996, -1.5000002, -2.2737368e-13)
+shape = SubResource("ConvexPolygonShape3D_5qiuh")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="road_straight/StaticBody3D" index="1" unique_id=1029078087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -1.5000002, -2.2737368e-13)
+shape = SubResource("ConvexPolygonShape3D_5qiuh")
+
+[node name="chodnik01" parent="road_straight" index="1" unique_id=1500510244]
+material_override = ExtResource("2_vfc3x")
+surface_material_override/0 = SubResource("StandardMaterial3D_vfc3x")
+
+[node name="chodnik02" parent="road_straight" index="2" unique_id=721479510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, -1.5000002, 1.1368684e-13)
+material_override = ExtResource("2_vfc3x")
+surface_material_override/0 = SubResource("StandardMaterial3D_vfc3x")
+
+[node name="droga" parent="road_straight" index="3" unique_id=542275915]
+surface_material_override/0 = ExtResource("2_nqq8o")
+
+[node name="krawężnik01" parent="road_straight" index="4" unique_id=1117525277]
+material_override = ExtResource("4_5qiuh")
+surface_material_override/0 = SubResource("StandardMaterial3D_vfc3x")
+
+[node name="krawężnik02" parent="road_straight" index="5" unique_id=2056474750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, -1.5000002, -1.1368684e-13)
+material_override = ExtResource("4_5qiuh")
+surface_material_override/0 = SubResource("StandardMaterial3D_vfc3x")

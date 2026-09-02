@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://m0175amhhegj"]
+
+[ext_resource type="Texture2D" uid="uid://bqxg7b81nw3uo" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="1_vdk8e"]
+
+[resource]
+albedo_texture = ExtResource("1_vdk8e")
+texture_filter = 0

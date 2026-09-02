@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://h2gfwshshtv1"]
+
+[ext_resource type="Texture2D" uid="uid://cch01orlahu2b" path="res://ui/health/boss_under.png" id="1_4vmkq"]
+[ext_resource type="Texture2D" uid="uid://dhiwdydowplmj" path="res://ui/health/boss_progress.png" id="2_fh7n2"]
+[ext_resource type="Script" uid="uid://dv0suwlvdkr1o" path="res://ui/health/boss_health.gd" id="3_fh7n2"]
+
+[node name="BossHealth" type="TextureProgressBar" unique_id=1912484639]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+texture_under = ExtResource("1_4vmkq")
+texture_progress = ExtResource("2_fh7n2")
+texture_progress_offset = Vector2(50, 7)
+script = ExtResource("3_fh7n2")

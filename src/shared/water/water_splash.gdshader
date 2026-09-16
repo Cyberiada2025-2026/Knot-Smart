@@ -23,9 +23,9 @@ void vertex() {
 
 void fragment() {
 	
-	float n1 = texture(main_tex, UV * scales.r + vec2(1.0) * speed1 * TIME).r;
-	float n2 = texture(main_tex, UV * scales.g + vec2(1.0) * speed2 * TIME).g;
-	float n3 = texture(main_tex, UV * scales.b + vec2(1.0) * speed3 * TIME).b;
+	float n1 = texture(main_tex, UV * scales.r + speed1 * TIME).r;
+	float n2 = texture(main_tex, UV * scales.g + speed2 * TIME).g;
+	float n3 = texture(main_tex, UV * scales.b + speed3 * TIME).b;
 	
 	if (step(1.0 - UV.y, n3) == 0.0)
 		discard;

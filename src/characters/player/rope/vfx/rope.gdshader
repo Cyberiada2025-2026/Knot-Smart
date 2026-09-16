@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode skip_vertex_transform, unshaded, cull_disabled, depth_draw_opaque;
+render_mode unshaded, cull_disabled, depth_draw_opaque;
 
 #include "res://shared/shaders/include/dither_setup.gdshaderinc"
 const vec2 res = vec2(320, 240);
@@ -36,11 +36,23 @@ uniform float vibrate_time = 0.3;
 uniform float max_length = 32.0;
 uniform float min_length = 0.3;
 
+uniform float fresnel_amount = 1.0;
+uniform float fresnel_multiplier = 1.0;
+uniform float fresnel_intensity = 1.0;
+uniform vec3 fresnel_color : source_color = vec3(1.0);
+
+
+
 varying vec4 clip_pos;
+
+float fresnel(float amount, vec3 normal, vec3 view)
+{
+	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0 )), amount);
+}
 
 void vertex() {
 	vec3 vert_temp = VERTEX;
-	vert_temp.y *= length_current;
+	//vert_temp.y *= length_current;
 	
 	//Squash and stretch
 	float t = (length_current - min_length) / (max_length - min_length);
@@ -53,7 +65,7 @@ void vertex() {
 	vec4 clip_space = PROJECTION_MATRIX * VIEW_MATRIX * world_space;
 	vec4 vertex = clip_space;
 
-	//Ofsset in clip space for vibrations
+	// Ofsset in clip space for vibrations
 	vec2 offset = vec2(
 		round(sin(MULT_X * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME/vibrate_time))),
 		round(sin(MULT_Y * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME/vibrate_time)))
@@ -69,7 +81,26 @@ void vertex() {
 	COLOR *= clip_pos.w;
 }
 
-void fragment() {
+vec3 fresnel_glow(float amount, float intensity, vec3 color, vec3 normal, vec3 view)
+{
+	return pow((1.0 - dot(normalize(normal), normalize(view))), amount) * color * intensity;
+}
+
+
+
+void fragment()
+{
+	float fresnel = fresnel_multiplier * fresnel(fresnel_amount, NORMAL, VIEW); //fresnel_glow(fresnel_amount, fresnel_intensity, fresnel_color, NORMAL, VIEW);
+	vec3 final_color = main_col_default;
+	final_color += vec3(fresnel);
+	
+	
+	if (final_color.r < 0.0 || final_color.g < 0.0 || final_color.b < 0.0) {
+		final_color = vec3(1.0, 0.0, 1.0);
+	}
+	ALBEDO = final_color;
+
+	/*
 	// Called for every pixel the material is visible on.
 	vec2 uv = UV;
 	uv.y = 1.0 - uv.y;
@@ -85,11 +116,12 @@ void fragment() {
 	segments = mod(segments, 1.0);
 	segments = smoothstep(segment_width, segment_width + softness, segments);
 	
+	
 	vec3 scaling_main = (length_current > length_start)? main_col_stretch : main_col_squish;
 	vec3 main_col = mix(scaling_main, main_col_default, pow(min(length_start, length_current) / max(length_start, length_current), 2.0));
 
 	vec3 scaling_sec = (length_current > length_start)? sec_col_stretch : sec_col_squish;
 	vec3 sec_col = mix(scaling_sec, sec_col_default, pow(min(length_start, length_current) / max(length_start, length_current), 2.0));
 	
-	ALBEDO.rgb = mix(sec_col, main_col, segments).rgb;
+	ALBEDO.rgb = mix(sec_col, main_col, segments).rgb;*/
 }

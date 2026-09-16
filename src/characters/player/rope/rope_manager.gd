@@ -2,8 +2,9 @@ class_name RopeManager
 extends Node3D
 
 @export var control_strategy: ControlStrategyInterface
-@export var rope_params: RopeParams = RopeParams.new()
 @export var collision_strategy: RopeCollisionStrategyInterface
+@export var rope_params: RopeParams = RopeParams.new()
+@export_flags_3d_physics var rope_ray_collision_mask: int
 
 var sphere: MeshInstance3D = preload("uid://ymb8m1pspwfy").instantiate()
 
@@ -18,7 +19,10 @@ func _physics_process(_delta: float) -> void:
 	if not get_node("../PlayerCamera").get_view_type() == PlayerCamera.ViewType.FIRST_PERSON:
 		return
 
-	var raycast_result = UnsafeRaycastBuilder.new(self).enable_collisions_with_areas().raycast()
+	var raycast_result = UnsafeRaycastBuilder.new(self)\
+		.enable_collisions_with_areas()\
+		.set_collision_mask(rope_ray_collision_mask)\
+		.raycast()
 	if not raycast_result.is_empty():
 		sphere.position = raycast_result.position
 		sphere.show()

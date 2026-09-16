@@ -32,9 +32,6 @@ height = 0.8
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_on558"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_on558"]
-radius = 1.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_on558"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 2
@@ -56,6 +53,7 @@ page = 0
 metadata/_custom_type_script = "uid://gfr35mbc1ij6"
 
 [node name="Player" type="CharacterBody3D" unique_id=982903374 node_paths=PackedStringArray("player_model", "player_camera", "player_gravity_controller") groups=["Player"]]
+platform_floor_layers = 4278190081
 script = ExtResource("1_4ntmi")
 player_model = NodePath("PlayerModel")
 player_camera = NodePath("PlayerCamera")
@@ -113,16 +111,12 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerMarker" unique_id=208028236]
 shape = SubResource("BoxShape3D_on558")
 
-[node name="InteractionArea" type="Area3D" parent="." unique_id=1733871244]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=1854980343]
-shape = SubResource("SphereShape3D_on558")
-
 [node name="RopeManager" type="Node3D" parent="." unique_id=1597735802 node_paths=PackedStringArray("control_strategy", "collision_strategy")]
 top_level = true
 script = ExtResource("7_rpf03")
 control_strategy = NodePath("ControlStrategies/TwoClick")
 collision_strategy = NodePath("CollisionStrategies/BreakAfterDelay")
+rope_ray_collision_mask = 1
 metadata/_custom_type_script = "uid://bcy4v42bixjvm"
 
 [node name="ControlStrategies" type="Node" parent="RopeManager" unique_id=1144564243]
@@ -188,7 +182,7 @@ offset_top = 170.0
 offset_right = 320.0
 offset_bottom = 410.0
 script = ExtResource("13_gqopd")
-interaction_area = NodePath("../InteractionArea")
+interaction_area = NodePath("")
 metadata/_custom_type_script = "uid://sf6x58peklug"
 
 [node name="SpeechManager" type="Node" parent="." unique_id=830717814]

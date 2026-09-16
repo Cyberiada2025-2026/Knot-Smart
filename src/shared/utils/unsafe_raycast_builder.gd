@@ -8,6 +8,7 @@ var camera: Camera3D
 var screen_pos: Vector2
 var ray_length = 1000.0
 var collide_with_areas = false
+var collision_mask = 0xffffffff
 
 
 ## Unsafe: Can only be created during physics_process.
@@ -29,6 +30,11 @@ func set_screen_position(position: Vector2) -> UnsafeRaycastBuilder:
 	return self
 
 
+func set_collision_mask(mask: int) -> UnsafeRaycastBuilder:
+	self.collision_mask = mask
+	return self
+
+
 func enable_collisions_with_areas() -> UnsafeRaycastBuilder:
 	collide_with_areas = true
 	return self
@@ -42,6 +48,7 @@ func raycast() -> Dictionary:
 	var to = from + normal * ray_length
 	var query = PhysicsRayQueryParameters3D.create(from, to)
 	query.collide_with_areas = collide_with_areas
+	query.collision_mask = collision_mask
 
 	var result = space_state.intersect_ray(query)
 

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://wu6m01tfoh1q"]
+
+[ext_resource type="Texture2D" uid="uid://jtgb3oas16dr" path="res://shared/nature_generators/tree_generator/tree_materials/bark/bark.png" id="1_vcolh"]
+
+[resource]
+shading_mode = 0
+albedo_color = Color(0.39688924, 0.39688927, 0.3968891, 1)
+albedo_texture = ExtResource("1_vcolh")
+uv1_triplanar = true

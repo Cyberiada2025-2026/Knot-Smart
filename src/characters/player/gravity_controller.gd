@@ -58,11 +58,7 @@ func check_direction_senseors(floor_normal) -> bool:
 			new_ground_normal = sensor_normal
 			return true
 		sensor_normal = get_sensor_normal("falling_" + direction)
-		if (
-			not player.player_physics.is_on_floor()
-			and sensor_normal != null
-			and floor_normal == null
-		):
+		if not player.is_on_floor() and sensor_normal != null and floor_normal == null:
 			new_ground_normal = sensor_normal
 			return true
 	return false
@@ -89,7 +85,7 @@ func _update_to_new_rotation(delta: float) -> void:
 			angle = ground_normal.angle_to(moved_ground_normal)
 			front = front.rotated(ground_normal.cross(moved_ground_normal).normalized(), angle)
 			ground_normal = moved_ground_normal
-		player.player_physics.up_direction = ground_normal
+		player.up_direction = ground_normal
 		player._rotate_player()
 	else:
 		is_rotating = false

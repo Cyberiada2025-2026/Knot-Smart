@@ -1,0 +1,83 @@
+@tool
+class_name TreeGenerator
+extends Node3D
+
+const DIR_PATH = "user://trees"
+
+@export_tool_button("Generate", "Callable") var generate_button = on_generate
+@export var params: TreeParameters
+
+var tree_skeleton: TreeSkeleton
+var tree_mesh_generator: TreeMeshGenerator
+var tree: StaticBody3D
+var tree_scene: PackedScene
+var random = RandomNumberGenerator.new()
+
+
+func _ready() -> void:
+	tree_skeleton = TreeSkeleton.new()
+	tree_skeleton.tree_generator = self
+	tree_skeleton.random = random
+	tree_mesh_generator = TreeMeshGenerator.new()
+	tree_mesh_generator.tree_generator = self
+
+	var result = Serializer.load(DIR_PATH, params)
+	if result == null:
+		on_generate()
+	else:
+		add_child(result)
+
+
+func generate_tree():
+	tree = StaticBody3D.new()
+	tree.name = "tree"
+	tree_skeleton.params = params
+	var branches_one_level: Array[TreeBranch] = []
+	for i in range(params.branch_recursion_level + 1):  # levels of branches + trunk
+		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
+		for branch in branches_one_level:
+			generate_mesh(branch, params.material)
+	if params.foliage_parameters != null:
+		branches_one_level = tree_skeleton.generate_skeleton(branches_one_level)
+		for branch in branches_one_level:
+			if random.randf() < params.branch_spawn_percentage:
+				add_foliage(branch)
+	serialize()
+
+
+func generate_mesh(branch: TreeBranch, material: StandardMaterial3D):
+	var mesh = MeshInstance3D.new()
+	var array_mesh = tree_mesh_generator.generate_array_mesh(branch)
+	array_mesh.surface_set_material(0, material)
+	mesh.mesh = array_mesh
+	mesh.transform = branch.transform
+	tree.add_child(mesh)
+	var collision = CollisionShape3D.new()
+	var shape = ConcavePolygonShape3D.new()
+	shape.set_faces(array_mesh.get_faces())
+	collision.shape = shape
+	collision.transform = branch.transform
+	tree.add_child(collision)
+	mesh.owner = tree
+	collision.owner = tree
+
+
+func add_foliage(branch: TreeBranch):
+	var foliage_generator = FoliageGenerator.new()
+	foliage_generator.set_params(params.foliage_parameters, branch.transform)
+	tree.add_child(foliage_generator)
+	foliage_generator.owner = tree
+
+
+func on_generate():
+	random.seed = params.seed
+	tree_scene = PackedScene.new()
+	tree_skeleton.rec_level = 0
+	for child in get_children():
+		if child is StaticBody3D:
+			child.queue_free()
+	generate_tree()
+
+
+func serialize():
+	add_child(Serializer.serialize(tree_scene, tree, DIR_PATH, params))

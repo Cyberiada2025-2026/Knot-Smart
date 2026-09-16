@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bfg8tc60mayvi"]
+
+[ext_resource type="Texture2D" uid="uid://bi7jmmhdsb0fu" path="res://shared/nature_generators/foliage_generator/foliage_materials/bush/bush.png" id="1_o3ydg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_deaq8"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_o3ydg")
+texture_filter = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tc5qt"]
+material = SubResource("StandardMaterial3D_deaq8")
+
+[node name="Bush" type="Node3D" unique_id=382611884]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1460698717]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.82, 0)
+mesh = SubResource("PlaneMesh_tc5qt")

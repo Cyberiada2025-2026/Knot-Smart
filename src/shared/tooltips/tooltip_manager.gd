@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var camera = get_node("../PlayerPhysics/PlayerCamera")
+	var camera = get_node("../PlayerCamera")
 
 	$Control.hide()
 	if camera.get_view_type() != PlayerCamera.ViewType.FIRST_PERSON or get_tree().paused:

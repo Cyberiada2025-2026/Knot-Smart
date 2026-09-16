@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cclq7jgpfrccu"]
+
+[ext_resource type="PackedScene" uid="uid://djykcejbxiw1f" path="res://shared/nature_generators/tree_generator/tree_materials/branches/normal/branches.tscn" id="1_65ypr"]
+[ext_resource type="PackedScene" uid="uid://ba52i38u5elcw" path="res://shared/plants/dandelion/dandelion.tscn" id="2_uv8sx"]
+
+[node name="Branches" unique_id=1584172784 instance=ExtResource("1_65ypr")]
+
+[node name="Dandelion" parent="." index="1" unique_id=197688663 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(1, 0, 0, 0, -1.0781518, -1.472522, 0, 2.334618, -0.68002653, 0.15088046, 0.41331324, 0.004393995)
+
+[node name="Dandelion2" parent="." index="2" unique_id=1554646290 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.987535, 0.15739974, -6.8801613e-09, 0, -4.371139e-08, -1, -0.15739974, 0.987535, -4.3166526e-08, -0.6075963, 0.44571632, 0.004393995)
+
+[node name="Dandelion3" parent="." index="3" unique_id=1440821621 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.47120982, 0.47205648, -0.9268317, 0.6023849, 1.653538, 0.39863104, 1.0396553, -1.172027, 0.1891037, -0.110219896, 0.8306071, 0.004393995)
+
+[node name="Dandelion4" parent="." index="4" unique_id=1218013598 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(1.2333108, -9.4164605e-08, -2.8430772, -3.0500991, -3.8075562e-08, -1.1496012, 0, 2.3236797, -1.3404988e-07, -0.5108473, 0.85498893, 0.004393995)
+
+[node name="Dandelion5" parent="." index="5" unique_id=1690796239 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.37511557, -0.27824023, -2.5040247, -2.7060335, -1.2494361e-08, -0.35354355, 0.051057667, 2.0442028, -0.34082747, -1.2349026, 0.46719748, 0.004393995)
+
+[node name="Dandelion6" parent="." index="6" unique_id=521985427 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.37859136, -1.232876e-07, -2.5632343, 2.1381948, 1.8905103, 0.28333557, 1.6587331, -2.436968, 0.2198015, -1.0235056, 0.83321357, 0.004393995)
+
+[node name="Dandelion7" parent="." index="7" unique_id=1481875225 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.33191377, -6.782128e-08, -1.1604706, -2.3725052, -9.488209e-09, -0.16234998, 0, 1.5666802, -5.1219775e-08, -1.8159076, 0.46211576, 0.004393995)
+
+[node name="Dandelion8" parent="." index="8" unique_id=1312738225 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.13523938, -0.21732563, -0.96668506, -0.9903554, -6.0562515e-09, -0.13855085, 0.030110644, 0.9760992, -0.2152296, -0.66188633, 1.0938768, 0.004393995)
+
+[node name="Dandelion9" parent="." index="9" unique_id=1797955450 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.13855085, -4.328981e-08, -0.9903554, -0.9903554, -6.0562515e-09, -0.13855085, 0, 1, -4.371139e-08, -0.45048928, 1.3537632, 0.004393995)
+
+[node name="Dandelion10" parent="." index="10" unique_id=979629326 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.13855085, -4.328981e-08, -0.9903554, 0.72200894, -0.6844708, 0.101009175, -0.6778693, -0.72904027, -0.09483398, -0.7703773, 1.2430235, 0.004393995)
+
+[node name="Dandelion11" parent="." index="11" unique_id=421078467 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.24720712, 5.76643e-08, 1.1084772, 1.0048565, -1.4186128e-08, -0.27269912, -9.64489e-16, 1.3585396, -4.9897775e-08, -1.5637206, 1.3440979, 0.004393995)
+
+[node name="Dandelion12" parent="." index="12" unique_id=774509724 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.23590848, -0.15748587, 0.95892936, 0.9710468, -1.0442189e-08, -0.23888953, 0.037621737, 0.98752123, 0.15292615, -1.8564706, 1.1812265, 0.004393995)
+
+[node name="Dandelion13" parent="." index="13" unique_id=683798149 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.3152478, 1.11090436e-07, 2.232707, 0.7840896, 2.0700877, -0.3360929, -1.0135424, 1.6014465, 0.43444556, -1.5183297, 1.1653391, 0.004393995)
+
+[node name="Dandelion14" parent="." index="14" unique_id=680872698 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.25251973, 5.2974702e-08, 1.1962564, -0.37421125, -1.1621602, 0.107290216, 0.9558074, -0.45500103, -0.2740396, -2.3088105, 0.6463231, 0.004393995)
+
+[node name="Dandelion15" parent="." index="15" unique_id=2008687238 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.2536813, 0.753851, -1.7019278, 1.9185363, -0.026707575, 0.26648661, 0.09289177, -1.5071133, -0.8560185, -1.0736458, 0.22662175, 0.004393995)
+
+[node name="Dandelion16" parent="." index="16" unique_id=58671832 instance=ExtResource("2_uv8sx")]
+transform = Transform3D(0.13908273, -0.81637704, -2.27965, -1.0697021, -1.33941365e-08, -0.34315792, 0.05524091, 2.0554318, -0.9054319, -2.0364685, 1.2273012, 0.004393995)

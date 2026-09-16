@@ -32,7 +32,7 @@ signal health_depleted
 		elif prev_health < health:
 			health_increased.emit()
 
-		if health == 0.0:
+		if health == 0.0 && prev_health > 0.0:
 			if debug_log:
 				print("Health depleted")
 			health_depleted.emit()

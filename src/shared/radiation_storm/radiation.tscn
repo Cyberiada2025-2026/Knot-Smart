@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://b03v0egbwunei"]
+
+[ext_resource type="Script" uid="uid://bxfbx2uo101a5" path="res://shared/radiation_storm/radiaton_area.gd" id="1_jcgcc"]
+
+[node name="Radiation" type="Area3D" unique_id=1228216098]
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("1_jcgcc")
+kill_time = 25.0
+heal_time = 15.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://u8e7ivwgn30i"]
 
-[ext_resource type="PackedScene" uid="uid://dok2k0qk1a7ta" path="res://scenes/main/szymon.tscn" id="1_nmyli"]
+[ext_resource type="PackedScene" uid="uid://dok2k0qk1a7ta" path="res://scenes/debug/old_map/props.tscn" id="1_nmyli"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="2_rmcba"]
 [ext_resource type="Script" uid="uid://b0sxpo4x8f11a" path="res://shared/day_night_cycle/day_night_cycle.gd" id="3_xcd8o"]
 [ext_resource type="Script" uid="uid://bspfhf53tg7of" path="res://shared/day_night_cycle/time_period.gd" id="4_kcqd0"]
@@ -32,11 +32,11 @@
 [ext_resource type="PackedScene" uid="uid://d0aa1l38pc6jy" path="res://characters/enemies/big_boss/big_boss.tscn" id="30_baccg"]
 [ext_resource type="Material" uid="uid://cs6kr88umcnbn" path="res://shared/water/water.tres" id="31_txagr"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="32_3c63l"]
-[ext_resource type="PackedScene" uid="uid://d3elyqmhqqwkc" path="res://scenes/main/building_pair_small.tscn" id="33_0j0nr"]
-[ext_resource type="PackedScene" uid="uid://dhjdclmlt7xq8" path="res://scenes/main/plant_wall_foliage.tscn" id="34_5he8b"]
+[ext_resource type="PackedScene" uid="uid://d3elyqmhqqwkc" path="res://scenes/debug/old_map/building_pair_small.tscn" id="33_0j0nr"]
+[ext_resource type="PackedScene" uid="uid://dhjdclmlt7xq8" path="res://scenes/debug/old_map/plant_wall_foliage.tscn" id="34_5he8b"]
 [ext_resource type="PackedScene" uid="uid://dck8itbvbpxnt" path="res://shared/generator_parts/generator_part_out_of_bounds.tscn" id="35_ve7dp"]
 [ext_resource type="PackedScene" uid="uid://dps1yxnixq4w8" path="res://shared/generator_parts/part_base.tscn" id="36_w2wlw"]
-[ext_resource type="Script" uid="uid://cw8ipuwmthig2" path="res://scenes/main/play_anim_on_event.gd" id="37_dlsbd"]
+[ext_resource type="Script" uid="uid://cw8ipuwmthig2" path="res://scenes/debug/old_map/play_anim_on_event.gd" id="37_dlsbd"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wvbdd"]
 vertices = PackedVector3Array(55.5, 0, 35.25, 58, 0.25, 34.75, 58, 0.25, 30.75, 19.75, 0.25, 42.5, 20.25, 0, 48, 20.75, 0, 48.5, 26, 0.25, 40.25, 20, 0.25, 40.25, 54.75, 0, 36.5, 48.5, 0.25, 30.75, 38, 0, 32.25, 27.75, 0, 32.25, 27.75, 0, 38.5, 46.75, 0, 27.75, 39.75, 0, 27.75, 39.75, 0, 30.5, 47.25, 0.25, 30, 20.75, 0, 60.25, 39, 0, 60.25, 39, 0, 31.75, 27.25, 0.25, 39.5, 59.25, 0, 62.5, 59.25, 0, 53.25, 56.5, 0, 53.25, 40.25, 0, 61, 54.75, 0, 51.5, 55.25, 0, 52.5, 40.75, 0, 62.5)
@@ -397,7 +397,7 @@ _data = {
 
 [node name="MainMap" type="Node3D" unique_id=1480515348]
 
-[node name="Szymon" parent="." unique_id=1444321441 instance=ExtResource("1_nmyli")]
+[node name="Props" parent="." unique_id=1444321441 instance=ExtResource("1_nmyli")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=310998599]
 transform = Transform3D(1, 0, 0, 0, 0.90547997, 0.42438912, 0, -0.42438912, 0.90547997, 0, 0, 0)
@@ -1741,7 +1741,7 @@ metadata/_custom_type_script = "uid://djg0m48s04bny"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.89036, -0.5000019, 43.89575)
 
 [node name="BeehaveTree" parent="Enemy" index="2" unique_id=1892085315 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@42397")
+blackboard = NodePath("@Node@29406")
 
 [node name="HealthComponent" parent="Enemy" index="6" unique_id=1094944780]
 max_health = 5.0

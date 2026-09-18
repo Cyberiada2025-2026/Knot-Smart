@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dck8itbvbpxnt"]
 
-[ext_resource type="Script" uid="uid://516cmqto3o3u" path="res://scenes/main/generator_part_out_of_bounds.gd" id="1_3nm5c"]
+[ext_resource type="Script" uid="uid://516cmqto3o3u" path="res://scenes/debug/old_map/generator_part_out_of_bounds.gd" id="1_3nm5c"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_bx2do"]
 

@@ -28,7 +28,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	#visible = not camera.is_position_behind(enemy.global_position + Vector3(0, enemy_height, 0))
-	visible = camera.is_position_in_frustum(enemy.global_position) #and camera.is_position_in_frustum(enemy.global_position + Vector3(0, enemy_height, 0))
+	visible = camera.is_position_in_frustum(enemy.global_position)  #and camera.is_position_in_frustum(enemy.global_position + Vector3(0, enemy_height, 0))
 	var screen_pos = camera.unproject_position(enemy.global_position + Vector3(0, enemy_height, 0))
 	global_position = screen_pos
 	global_position += Vector2(-get_rect().size.x / 2, 0)
@@ -39,23 +39,23 @@ func _physics_process(_delta: float) -> void:
 	var pos: Vector3 = parent.global_position
 	var raycast_result = (
 		UnsafeRaycastBuilder
-		.new(parent)
-		.set_direction((pos - camera_pos).normalized())
-		.set_raycast_origin(camera_pos)
-		.set_collision_mask(256)
-		.enable_collisions_with_areas()
-		.raycast()
+		. new(parent)
+		. set_direction((pos - camera_pos).normalized())
+		. set_raycast_origin(camera_pos)
+		. set_collision_mask(256)
+		. enable_collisions_with_areas()
+		. raycast()
 	)
 
 	if (
-		distance<50
-		and ((
-			not raycast_result.is_empty()
-			and raycast_result.collider.global_position.distance_to(camera_pos) >= distance
+		distance < 50
+		and (
+			(
+				not raycast_result.is_empty()
+				and raycast_result.collider.global_position.distance_to(camera_pos) >= distance
+			)
+			or raycast_result.is_empty()
 		)
-		or raycast_result.is_empty()
-		)
-
 	):
 		var scale_factor = clamp(pow(10.0 / distance, 1.5), 0.1, 0.7)
 		scale = Vector2(scale_factor, scale_factor)

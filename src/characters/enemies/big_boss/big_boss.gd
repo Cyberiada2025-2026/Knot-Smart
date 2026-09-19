@@ -2,8 +2,8 @@ class_name BigBoss
 extends AnimatableBody3D
 
 @export var movement_animation: AnimationPlayer
-@export_file_path(".tscn") var win_scene 
-@export_file_path(".tscn") var lose_scene 
+@export_file_path(".tscn") var win_scene
+@export_file_path(".tscn") var lose_scene
 @export var boss_model: Node3D
 @export var battle_soundtrack: AudioStream
 @export var health_component: HealthComponent
@@ -25,7 +25,6 @@ func _on_start_boss_battle() -> void:
 	animation_player.play("Walk")
 	movement_animation.play("move_to_gen")
 
-
 	is_battle = true
 	get_tree().create_timer(120.0).timeout.connect(destroy_generator)
 
@@ -35,13 +34,14 @@ func _on_health_component_health_depleted() -> void:
 
 	get_tree().change_scene_to_file(win_scene)
 
-	
+
 func destroy_generator() -> void:
 	print("You lost")
 	get_tree().change_scene_to_file(lose_scene)
 
 
 var last_pos: Vector3 = Vector3()
+
 
 func _physics_process(_delta: float) -> void:
 	if is_battle:

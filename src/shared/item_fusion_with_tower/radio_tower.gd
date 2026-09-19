@@ -8,7 +8,7 @@ signal all_parts_fused
 
 
 func item_fused():
-	number_of_fused_parts+=1
+	number_of_fused_parts += 1
 	print("something fused with tower, num of fused parts: ", number_of_fused_parts)
 
 	if number_of_fused_parts >= number_of_parts:

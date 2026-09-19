@@ -2,7 +2,6 @@
 class_name DecimateBuilding
 extends Node3D
 
-
 @export_tool_button("Decimate") var execute_btn = execute_decimate
 @export_tool_button("Randomize seed") var randomize_seed_btn = randomize_seed
 
@@ -27,7 +26,7 @@ func decimate():
 	for child in building.get_children():
 		if child is GridMap:
 			gridmaps.append(child)
-	
+
 	var cells = gridmaps.reduce(func(acc, gridmap): return acc + gridmap.get_used_cells(), [])
 	cells.sort_custom(func(v1, v2): return v1.y > v2.y)
 
@@ -42,7 +41,7 @@ func decimate():
 func remove_from_top(gridmaps, start_position: Vector3):
 	var removed_cell = start_position
 
-	while (random.randf() < strength and removed_cell.y >= 0):
+	while random.randf() < strength and removed_cell.y >= 0:
 		for gridmap in gridmaps:
 			gridmap.set_cell_item(removed_cell, GridMap.INVALID_CELL_ITEM)
 		removed_cell.y -= 1

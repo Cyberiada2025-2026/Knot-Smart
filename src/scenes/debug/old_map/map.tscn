@@ -1741,7 +1741,7 @@ metadata/_custom_type_script = "uid://djg0m48s04bny"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.89036, -0.5000019, 43.89575)
 
 [node name="BeehaveTree" parent="Enemy" index="2" unique_id=1892085315 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@29406")
+blackboard = NodePath("@Node@19987")
 
 [node name="HealthComponent" parent="Enemy" index="6" unique_id=1094944780]
 max_health = 5.0

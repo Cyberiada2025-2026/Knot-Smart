@@ -1,13 +1,13 @@
 extends TextureProgressBar
 
+@export var enemy_height: int = 6
+
 var health_component: HealthComponent
 var max_health
 var health
 
 var camera: Camera3D
 var enemy: Node3D
-
-@export var enemy_height: int = 6
 
 
 func _ready() -> void:
@@ -27,8 +27,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	#visible = not camera.is_position_behind(enemy.global_position + Vector3(0, enemy_height, 0))
-	visible = camera.is_position_in_frustum(enemy.global_position)  #and camera.is_position_in_frustum(enemy.global_position + Vector3(0, enemy_height, 0))
+	visible = camera.is_position_in_frustum(enemy.global_position)
 	var screen_pos = camera.unproject_position(enemy.global_position + Vector3(0, enemy_height, 0))
 	global_position = screen_pos
 	global_position += Vector2(-get_rect().size.x / 2, 0)

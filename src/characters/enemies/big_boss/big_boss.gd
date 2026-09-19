@@ -10,7 +10,7 @@ extends AnimatableBody3D
 var animation_player: AnimationPlayer
 
 var is_battle: bool = false
-
+var last_pos: Vector3 = Vector3()
 
 func _ready() -> void:
 	animation_player = boss_model.find_child("AnimationPlayer")
@@ -38,9 +38,6 @@ func _on_health_component_health_depleted() -> void:
 func destroy_generator() -> void:
 	print("You lost")
 	get_tree().change_scene_to_file(lose_scene)
-
-
-var last_pos: Vector3 = Vector3()
 
 
 func _physics_process(_delta: float) -> void:

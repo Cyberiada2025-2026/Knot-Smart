@@ -1,10 +1,10 @@
 class_name RadioTower
 extends StaticBody3D
 
+signal all_parts_fused
+
 @export var number_of_parts: int = 4
 var number_of_fused_parts = 0
-
-signal all_parts_fused
 
 
 func item_fused():

@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/building_parts_collision_thick.glb-643e3affcf
 
 nodes/root_type=""
 nodes/root_name=""
+nodes/root_script=null
 mesh_library/use_node_names_as_mesh_names=false
 array_mesh/deduplicate_surfaces=true
 nodes/apply_root_scale=true

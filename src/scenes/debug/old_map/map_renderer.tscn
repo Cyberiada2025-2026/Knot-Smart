@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://u5hpdit2bo4g" path="res://shared/terrain/map_renderer.gd" id="1_h35ac"]
 [ext_resource type="Script" uid="uid://no1j1oowuup1" path="res://shared/terrain/params/world_generation_params.gd" id="2_vl7v8"]
 [ext_resource type="Script" uid="uid://bmtv75byrd25q" path="res://shared/terrain/params/world_display_params.gd" id="3_uie2y"]
-[ext_resource type="PackedScene" uid="uid://b737psv7vwxmk" path="res://generated/terrain/generated_map.tscn" id="19_5iuj1"]
+[ext_resource type="PackedScene" uid="uid://b737psv7vwxmk" path="res://scenes/debug/old_map/generated_map.tscn" id="19_5iuj1"]
 
 [sub_resource type="Resource" id="Resource_jdm0r"]
 script = ExtResource("2_vl7v8")

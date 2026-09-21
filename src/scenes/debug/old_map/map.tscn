@@ -28,7 +28,7 @@
 [ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="26_repoh"]
 [ext_resource type="PackedScene" uid="uid://c4gdh3na88sul" path="res://shared/fences/wire_fence/wire_fence.tscn" id="27_pxs5v"]
 [ext_resource type="PackedScene" uid="uid://by6tc6oibk1hi" path="res://shared/fences/metal_fence/metal_fence.tscn" id="28_4dci1"]
-[ext_resource type="PackedScene" uid="uid://b737psv7vwxmk" path="res://generated/terrain/generated_map.tscn" id="29_gt1in"]
+[ext_resource type="PackedScene" uid="uid://b737psv7vwxmk" path="res://scenes/debug/old_map/generated_map.tscn" id="29_gt1in"]
 [ext_resource type="PackedScene" uid="uid://d0aa1l38pc6jy" path="res://characters/enemies/big_boss/big_boss.tscn" id="30_baccg"]
 [ext_resource type="Material" uid="uid://cs6kr88umcnbn" path="res://shared/water/water.tres" id="31_txagr"]
 [ext_resource type="PackedScene" uid="uid://b3pq3lm4pjpdk" path="res://characters/enemies/basic_enemy/enemy.tscn" id="32_3c63l"]
@@ -1741,7 +1741,7 @@ metadata/_custom_type_script = "uid://djg0m48s04bny"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.89036, -0.5000019, 43.89575)
 
 [node name="BeehaveTree" parent="Enemy" index="2" unique_id=1892085315 node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@20963")
+blackboard = NodePath("@Node@30380")
 
 [node name="HealthComponent" parent="Enemy" index="6" unique_id=1094944780]
 max_health = 5.0

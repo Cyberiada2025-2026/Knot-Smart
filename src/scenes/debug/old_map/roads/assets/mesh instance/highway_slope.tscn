@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bnrl0jlmusnw3"]
+
+[ext_resource type="PackedScene" uid="uid://dvpyns0od05v2" path="res://scenes/debug/old_map/roads/assets/glb/highway_slope.glb" id="1_nrwxa"]
+[ext_resource type="Material" uid="uid://ocqgdyc21bsc" path="res://scenes/debug/old_map/roads/assets/materials/asphalt.tres" id="2_avhcy"]
+[ext_resource type="Material" uid="uid://dkc6qdwcyremk" path="res://scenes/debug/old_map/roads/assets/materials/pavement.tres" id="2_qlyu3"]
+[ext_resource type="Material" uid="uid://b4f1df1cha8bn" path="res://scenes/debug/old_map/roads/assets/materials/pavement-side.tres" id="4_6gdqr"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nrwxa"]
+points = PackedVector3Array(-11.5, -1, -35, 11.5, -1, -35, -11.5, 29.622, 35, -7.5, 2.499939, -35, 7.499999, 2.499939, -35, 11.5, 29.622, 35, -7.5, 33.121758, 35, 7.499999, 33.121758, 35)
+
+[node name="highway_slope2" unique_id=110596394 instance=ExtResource("1_nrwxa")]
+
+[node name="highway_slope" parent="." index="0" unique_id=818339602]
+transform = Transform3D(-6.119594e-10, 0, 0.014, 0, 0.014, 0, -0.014, 0, -6.119594e-10, 0, 0.241, 0)
+
+[node name="chodnik237" parent="highway_slope" index="0" unique_id=206631255]
+material_override = ExtResource("2_qlyu3")
+
+[node name="droga144" parent="highway_slope" index="1" unique_id=1603674729]
+material_override = ExtResource("2_avhcy")
+
+[node name="krawężnik233" parent="highway_slope" index="2" unique_id=1382186564]
+material_override = ExtResource("4_6gdqr")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="highway_slope" index="3" unique_id=833633714]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="highway_slope/StaticBody3D" index="0" unique_id=1526747127]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 27.5, -16.8125, 0)
+shape = SubResource("ConvexPolygonShape3D_nrwxa")

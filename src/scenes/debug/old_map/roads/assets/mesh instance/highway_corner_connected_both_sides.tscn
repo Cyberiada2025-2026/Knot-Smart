@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://b21p37lm1ws7m"]
+
+[ext_resource type="PackedScene" uid="uid://c1baxgi1wmay5" path="res://scenes/debug/old_map/roads/assets/glb/highway_corner_connected_both_sides.glb" id="1_6noum"]
+[ext_resource type="Material" uid="uid://dkc6qdwcyremk" path="res://scenes/debug/old_map/roads/assets/materials/pavement.tres" id="2_57vay"]
+[ext_resource type="Material" uid="uid://ocqgdyc21bsc" path="res://scenes/debug/old_map/roads/assets/materials/asphalt.tres" id="2_hpu8x"]
+[ext_resource type="Material" uid="uid://b4f1df1cha8bn" path="res://scenes/debug/old_map/roads/assets/materials/pavement-side.tres" id="4_g2svf"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6noum"]
+points = PackedVector3Array(0, 0, -17.5, 0, 2.5, -15, 0, 0, -9.536743e-07, 0, 2.5, -9.536743e-07, 6.507, 0, -16.516, 17.5, 0, 0, 14.999999, 2.5, -9.536743e-07, 6.507439, 2.5, -13.515564, 16.227, 0, -7.853, 12.727, 2.5, -7.675, 12, 0, -13.03)
+
+[node name="highway_corner_connected_both_sides2" unique_id=886940846 instance=ExtResource("1_6noum")]
+
+[node name="highway_corner_connected_both_sides" parent="." index="0" unique_id=1723781729]
+transform = Transform3D(-6.244484e-10, 0, 0.014285714, 0, 0.014285714, 0, -0.014285714, 0, -6.244484e-10, 0, 0.022, 0)
+
+[node name="chodnik_zakręt079" parent="highway_corner_connected_both_sides" index="0" unique_id=1298623888]
+material_override = ExtResource("2_57vay")
+
+[node name="chodnik_zakręt082" parent="highway_corner_connected_both_sides" index="1" unique_id=1945008192]
+material_override = ExtResource("2_57vay")
+
+[node name="chodnik_zakręt083" parent="highway_corner_connected_both_sides" index="2" unique_id=1880283120]
+material_override = ExtResource("2_57vay")
+
+[node name="droga130" parent="highway_corner_connected_both_sides" index="3" unique_id=296904900]
+material_override = ExtResource("2_hpu8x")
+
+[node name="krawężnik_zakręt081" parent="highway_corner_connected_both_sides" index="4" unique_id=238364641]
+material_override = ExtResource("4_g2svf")
+
+[node name="krawężnik_zakręt083" parent="highway_corner_connected_both_sides" index="5" unique_id=1868993277]
+material_override = ExtResource("4_g2svf")
+
+[node name="krawężnik_zakręt084" parent="highway_corner_connected_both_sides" index="6" unique_id=1180752594]
+material_override = ExtResource("4_g2svf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="highway_corner_connected_both_sides" index="7" unique_id=409810351]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="highway_corner_connected_both_sides/StaticBody3D" index="0" unique_id=2019513713]
+transform = Transform3D(1.7881393e-07, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 1.7881393e-07, 34.999996, -1.5000001, 35)
+shape = SubResource("ConvexPolygonShape3D_6noum")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="highway_corner_connected_both_sides/StaticBody3D" index="1" unique_id=1906021124]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -35, -1.5, -35)
+shape = SubResource("ConvexPolygonShape3D_6noum")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="highway_corner_connected_both_sides/StaticBody3D" index="2" unique_id=943425904]
+transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, 35, -1.5, -35)
+shape = SubResource("ConvexPolygonShape3D_6noum")

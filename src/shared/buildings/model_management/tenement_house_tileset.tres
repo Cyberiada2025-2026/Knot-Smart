@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="BuildingTileset" format=3 uid="uid://dmcuh0thd0ntg"]
 
-[ext_resource type="MeshLibrary" uid="uid://do0epgoydekpb" path="res://shared/buildings/assets/models/tenement_house_tiles_enterable.tres" id="1_l0orb"]
+[ext_resource type="MeshLibrary" uid="uid://bjv6n2id3swdf" path="res://shared/buildings/assets/models/tenement_house_tiles_enterable.tres" id="1_l0orb"]
 [ext_resource type="Script" uid="uid://c5t31dsfidxi0" path="res://shared/buildings/model_management/building_tileset.gd" id="2_idgdh"]
-[ext_resource type="MeshLibrary" uid="uid://d2nblkfe0h2gb" path="res://shared/buildings/assets/models/tenement_house_tiles_flat.tres" id="3_l0orb"]
+[ext_resource type="MeshLibrary" uid="uid://b3183pinndxlb" path="res://shared/buildings/assets/models/tenement_house_tiles_flat.tres" id="3_l0orb"]
 
 [resource]
 script = ExtResource("2_idgdh")

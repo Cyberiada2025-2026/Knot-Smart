@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://o0oessya87xf" path="res://shared/buildings/building_generation/building_shape_description.gd" id="4_u3r06"]
 [ext_resource type="Script" uid="uid://cp8ed61leg0wl" path="res://shared/buildings/building_generation/box_description.gd" id="5_f50o1"]
 [ext_resource type="Script" uid="uid://cbn62hjlskw0a" path="res://shared/buildings/decimate_building/decimate_building.gd" id="7_feo23"]
-[ext_resource type="MeshLibrary" uid="uid://bqqgkcaxkvu0g" path="res://shared/buildings/assets/models/building_parts_collision_thick.tres" id="8_u3r06"]
+[ext_resource type="MeshLibrary" uid="uid://b3kffjsljfkeo" path="res://shared/buildings/assets/models/building_parts_collision_thick.tres" id="8_u3r06"]
 
 [sub_resource type="Resource" id="Resource_ujn2h"]
 script = ExtResource("3_feo23")

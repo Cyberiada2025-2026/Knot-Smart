@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bp80rp5ygnnf" path="res://shared/debris/single/debris8.tscn" id="1_axdxh"]
 [ext_resource type="PackedScene" uid="uid://btmd85pvej0kk" path="res://shared/debris/single/debris5.tscn" id="2_dsimv"]
-[ext_resource type="PackedScene" uid="uid://be52lbuvwul4l" path="res://shared/debris/single/debris2.tscn" id="3_t6h5s"]
+[ext_resource type="PackedScene" uid="uid://b6dvbytkt43yx" path="res://shared/debris/single/debris2.tscn" id="3_t6h5s"]
 
 [node name="DebrisPile2" type="Node3D" unique_id=2065655849]
 

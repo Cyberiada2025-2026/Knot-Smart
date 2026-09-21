@@ -2,7 +2,7 @@
 
 [ext_resource type="Resource" uid="uid://dmcuh0thd0ntg" path="res://shared/buildings/model_management/tenement_house_tileset.tres" id="2_ipu2h"]
 [ext_resource type="PackedScene" uid="uid://djfrk2uv5ur0b" path="res://shared/debris/piles/debris_pile_2.tscn" id="6_2wred"]
-[ext_resource type="MeshLibrary" uid="uid://do0epgoydekpb" path="res://shared/buildings/assets/models/tenement_house_tiles_enterable.tres" id="7_g1faw"]
+[ext_resource type="MeshLibrary" uid="uid://bjv6n2id3swdf" path="res://shared/buildings/assets/models/tenement_house_tiles_enterable.tres" id="7_g1faw"]
 [ext_resource type="PackedScene" uid="uid://ctr84bt67oahh" path="res://shared/debris/piles/debris_pile_1.tscn" id="7_xihla"]
 [ext_resource type="PackedScene" uid="uid://defn5yjy78ix4" path="res://shared/nature_generators/tree_generator/prefabs/tree5.tscn" id="8_8nbw3"]
 [ext_resource type="PackedScene" uid="uid://cekls8dq3kd3y" path="res://shared/plants/vines/bent_vines_2_thin.tscn" id="8_d6vdo"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dpbcjs1dr4vxe" path="res://shared/nature_generators/tree_generator/prefabs/tree1.tscn" id="17_g1faw"]
 [ext_resource type="PackedScene" uid="uid://bo23tv6yguitm" path="res://shared/nature_generators/tree_generator/prefabs/tree2.tscn" id="18_nfrs4"]
 [ext_resource type="PackedScene" uid="uid://nd864u3myomf" path="res://shared/nature_generators/tree_generator/prefabs/tree3.tscn" id="19_1djfu"]
-[ext_resource type="MeshLibrary" uid="uid://d2nblkfe0h2gb" path="res://shared/buildings/assets/models/tenement_house_tiles_flat.tres" id="19_g1faw"]
+[ext_resource type="MeshLibrary" uid="uid://b3183pinndxlb" path="res://shared/buildings/assets/models/tenement_house_tiles_flat.tres" id="19_g1faw"]
 [ext_resource type="Material" uid="uid://c4h215ab0dcip" path="res://shared/street-planes/hex.tres" id="20_1djfu"]
 [ext_resource type="Material" uid="uid://co4xfg4l5qibb" path="res://shared/street-planes/whatever.tres" id="21_d3uka"]
 

@@ -3,9 +3,6 @@ extends Node
 var prev_mouse_mode
 
 
-func _ready() -> void:
-	pause_game();
-
 func unpause_game() -> void:
 	get_tree().paused = false
 	get_child(0).hide()

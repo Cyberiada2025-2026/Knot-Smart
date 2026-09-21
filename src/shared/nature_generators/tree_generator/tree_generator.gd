@@ -70,7 +70,7 @@ func add_foliage(branch: TreeBranch):
 
 
 func on_generate():
-	random.seed = params.seed
+	random.seed = params.custom_seed
 	tree_scene = PackedScene.new()
 	tree_skeleton.rec_level = 0
 	for child in get_children():

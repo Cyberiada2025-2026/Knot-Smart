@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cs6kr88umcnbn"]
+
+[ext_resource type="Shader" uid="uid://bmfmet35t7850" path="res://shared/water/water.gdshader" id="1_dgris"]
+[ext_resource type="Texture2D" uid="uid://lmsm8232yht3" path="res://shared/water/water.png" id="2_t7qwm"]
+
+[sub_resource type="Gradient" id="Gradient_q3q6l"]
+offsets = PackedFloat32Array(0.67712176, 0.7509225, 0.8191882)
+colors = PackedColorArray(0.63640004, 0.80410004, 0.86, 1, 0.38444692, 0.58286715, 0.6468039, 1, 0.4, 0.30640003, 0.19200002, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aoccb"]
+gradient = SubResource("Gradient_q3q6l")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_dgris")
+shader_parameter/main_tex = ExtResource("2_t7qwm")
+shader_parameter/water_col = SubResource("GradientTexture1D_aoccb")
+shader_parameter/ripple_col = Color(1, 1, 1, 1)
+shader_parameter/ripple_egdes = Vector2(0.93, 1)
+shader_parameter/speed1 = Vector2(-0.03, 0.013)
+shader_parameter/speed2 = Vector2(0.012, -0.017)
+shader_parameter/speed3 = Vector2(-0.008, -0.019)
+shader_parameter/speed4 = Vector2(0.012, 0.021)
+shader_parameter/scales = Vector4(0.123, 0.095, 0.143, 0.087)
+shader_parameter/warp_noise = 0.030000001425
+shader_parameter/warp_ripple = 0.150000007125

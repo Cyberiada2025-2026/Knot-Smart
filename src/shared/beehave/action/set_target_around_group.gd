@@ -10,7 +10,7 @@ extends ActionLeaf
 func tick(_actor: Node, _blackboard: Blackboard) -> int:
 	var actor = _actor; # as EnemyActor
 
-	var target_in_group = get_tree().get_first_node_in_group(target_group_name) as Node3D
+	var target_in_group = actor.get_closest_target(target_group_name);
 	if target_in_group == null:
 		return FAILURE
 

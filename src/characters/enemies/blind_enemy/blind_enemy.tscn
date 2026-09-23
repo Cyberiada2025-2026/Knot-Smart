@@ -41,9 +41,6 @@
 radius = 2.0
 height = 4.0
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_r2ijf"]
-radius = 2.0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4sp7t"]
 transparency = 1
 albedo_color = Color(0.654902, 0.043137256, 0.26666668, 0.5019608)
@@ -91,6 +88,7 @@ metadata/_custom_type_script = "uid://gfr35mbc1ij6"
 [node name="BlindEnemy" type="CharacterBody3D" unique_id=768992349]
 script = ExtResource("1_yi8cm")
 speed = 3.0
+default_search_distance = 2.0
 
 [node name="EnemyModel" parent="." unique_id=1561276531 instance=ExtResource("2_8w248")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
@@ -101,7 +99,7 @@ shape = SubResource("CapsuleShape3D_wjvgd")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1892085315 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("3_3p175")
-blackboard = NodePath("@Node@21776")
+blackboard = NodePath("@Node@110463")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
@@ -121,45 +119,21 @@ metadata/_custom_type_script = "uid://cw22yurt5l74k"
 script = ExtResource("6_xssb5")
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
-[node name="SelectorComposite" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget" unique_id=444806177]
-script = ExtResource("4_ayk1w")
-metadata/_custom_type_script = "uid://cw22yurt5l74k"
-
-[node name="SetNewPlayerTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SelectorComposite" unique_id=701173862]
+[node name="SetNewTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget" unique_id=701173862]
 script = ExtResource("7_hmf0w")
 metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 
-[node name="IsPlayerNearby" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SelectorComposite/SetNewPlayerTarget" unique_id=446273920]
+[node name="IsPlayerNearby" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SetNewTarget" unique_id=446273920]
 script = ExtResource("8_56g7i")
 searched = &"Player"
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
-[node name="SetTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SelectorComposite/SetNewPlayerTarget" unique_id=909867699]
+[node name="SetTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SetNewTarget" unique_id=909867699]
 script = ExtResource("9_4yq6a")
 searched = &"Player"
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 
-[node name="SetTrackingTrue" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SelectorComposite/SetNewPlayerTarget" unique_id=700623120]
-script = ExtResource("10_4io4u")
-should_track_target = true
-metadata/_custom_type_script = "uid://cv74jjdrwevpr"
-
-[node name="SetNewSoundTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SelectorComposite" unique_id=391192784]
-script = ExtResource("7_hmf0w")
-metadata/_custom_type_script = "uid://cg016dbe7gs1x"
-
-[node name="IsSoundNearby" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SelectorComposite/SetNewSoundTarget" unique_id=242666641]
-script = ExtResource("8_56g7i")
-searched = &"sound_for_enemies"
-custom_desired_dist = 128.0
-metadata/_custom_type_script = "uid://cbnbvj8prv63i"
-
-[node name="SetTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SelectorComposite/SetNewSoundTarget" unique_id=520005335]
-script = ExtResource("9_4yq6a")
-searched = &"sound_for_enemies"
-metadata/_custom_type_script = "uid://cv74jjdrwevpr"
-
-[node name="SetTrackingTrue" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SelectorComposite/SetNewSoundTarget" unique_id=40248507]
+[node name="SetTrackingTrue" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SetNewTarget" unique_id=700623120]
 script = ExtResource("10_4io4u")
 should_track_target = true
 metadata/_custom_type_script = "uid://cv74jjdrwevpr"
@@ -410,6 +384,65 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 script = ExtResource("10_4io4u")
 should_track_target = true
 
+[node name="HeardASound" type="Node" parent="BeehaveTree/SelectorReactiveComposite" unique_id=879871115]
+script = ExtResource("7_hmf0w")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="IsSoundNearby" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound" unique_id=242666641]
+script = ExtResource("8_56g7i")
+searched = &"sound_for_enemies"
+custom_desired_dist = 128.0
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="SetTrackingFalse" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound" unique_id=40248507]
+script = ExtResource("10_4io4u")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="StartNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound" unique_id=1754305253]
+script = ExtResource("14_boqvc")
+can_move = true
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="SetTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound" unique_id=782909439]
+script = ExtResource("9_4yq6a")
+searched = &"sound_for_enemies"
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound" unique_id=2086325370]
+script = ExtResource("15_478s1")
+desired_distance = 0.5
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
+[node name="StopNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound" unique_id=533511522]
+script = ExtResource("14_boqvc")
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="Idle" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound" unique_id=1836993337]
+script = ExtResource("17_mg33p")
+wait_time = 2.0
+metadata/_custom_type_script = "uid://dorri1tul8gfx"
+
+[node name="SequenceComposite" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound/Idle" unique_id=589515285]
+script = ExtResource("7_hmf0w")
+metadata/_custom_type_script = "uid://cg016dbe7gs1x"
+
+[node name="SetTargetAroundNode" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound/Idle/SequenceComposite" unique_id=1184592960]
+script = ExtResource("23_xh222")
+target_group_name = &"sound_for_enemies"
+min_distance_to_target = 2.0
+max_distance_to_target = 5.0
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="StartNavigation" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound/Idle/SequenceComposite" unique_id=156456489]
+script = ExtResource("14_boqvc")
+can_move = true
+metadata/_custom_type_script = "uid://cv74jjdrwevpr"
+
+[node name="HasReachedTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound/Idle/SequenceComposite" unique_id=1353866652]
+script = ExtResource("15_478s1")
+desired_distance = 0.5
+metadata/_custom_type_script = "uid://cbnbvj8prv63i"
+
 [node name="Interested" type="Node" parent="BeehaveTree/SelectorReactiveComposite" unique_id=1573814644]
 script = ExtResource("7_hmf0w")
 metadata/_custom_type_script = "uid://cg016dbe7gs1x"
@@ -474,13 +507,8 @@ metadata/_custom_type_script = "uid://cv74jjdrwevpr"
 avoidance_enabled = true
 height = 2.0
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=1948683026]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1954915395]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("SphereShape3D_r2ijf")
-target_position = Vector3(0, 0, 0)
-collide_with_areas = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ShapeCast3D" unique_id=1954915395]
 visible = false
 mesh = SubResource("SphereMesh_ejf3g")
 

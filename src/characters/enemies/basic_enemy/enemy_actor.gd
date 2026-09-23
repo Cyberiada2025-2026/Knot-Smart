@@ -4,6 +4,7 @@ extends CharacterBody3D
 @export var speed := 5.0
 @export var idle_wander_distance := 20
 @export var push_force: float = 1.0
+@export var default_search_distance: float = 10.0
 
 var can_move := false
 var world: World3D
@@ -11,8 +12,9 @@ var target: Node3D
 var should_track_target: bool = false
 var animation_player: AnimationPlayer
 
+var last_target_position: Vector3 = Vector3.ZERO;
+
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
-@onready var shapecast = $ShapeCast3D
 
 
 func _ready() -> void:
@@ -37,42 +39,45 @@ func set_random_nav_target() -> void:
 	navigation_agent_3d.set_target_position(get_random_point_near())
 
 
-func set_velocity_to_target() -> void:
-	var cur_loc := global_transform.origin
-	var next_loc := navigation_agent_3d.get_next_path_position()
-	var next_vel := cur_loc.direction_to(next_loc) * speed
-	velocity = next_vel
+func is_group_member_nearby(
+	group_name: StringName, desired_dist: float = default_search_distance
+ ) -> bool:
+	var nodes = get_tree().get_nodes_in_group(group_name)
+	for i in nodes.size():
+		var dist := global_position.distance_to(nodes[i].global_position)
+		if(dist < desired_dist):
+			return true;
 
+	return false;
 
-func is_group_member_nearby(group_name: StringName) -> bool:
-	shapecast.force_shapecast_update()
+func get_closest_target(group_name: StringName) -> Node3D:
+	var nodes = get_tree().get_nodes_in_group(group_name)
+	var closest_distance: float = INT32_MAX;
+	var closest_index: int = -1;
+	for i in nodes.size():
+		var distance := global_position.distance_to(nodes[i].global_position)
+		if(distance < closest_distance):
+			closest_distance = distance
+			closest_index = i;
 
-	for i in shapecast.get_collision_count():
-		var hit: Node3D = shapecast.get_collider(i)
-		if hit.get_parent().is_in_group(group_name):
-			return true
-	return false
-
-
-func get_object_around(group_name: StringName) -> Node3D:
-	shapecast.force_shapecast_update()
-
-	if shapecast.is_colliding():
-		for i in range(shapecast.get_collision_count()):
-			var hit: Node3D = shapecast.get_collider(i)
-			if hit.get_parent().is_in_group(group_name):
-				return hit.get_parent()
-	return null
+	if(closest_index == -1):
+		return null;
+	return nodes[closest_index]
 
 
 func get_target_pos() -> Vector3:
 	return navigation_agent_3d.get_target_position()
 
 
+func set_velocity_to_target() -> void:
+	var current_location := global_transform.origin
+	var next_location := navigation_agent_3d.get_next_path_position()
+	velocity = current_location.direction_to(next_location) * speed
+
 func rotate_with_velocity() -> void:
-	var vel_2d = Vector3(velocity.x, 0, velocity.z)
-	if vel_2d.length_squared() > 0:
-		look_at(global_position + vel_2d)
+	var velocity_2d = Vector3(velocity.x, 0, velocity.z)
+	if velocity_2d.length_squared() > 0:
+		look_at(global_position + velocity_2d)
 
 
 func _physics_process(_delta: float) -> void:

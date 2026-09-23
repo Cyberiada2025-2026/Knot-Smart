@@ -12,8 +12,6 @@ var target: Node3D
 var should_track_target: bool = false
 var animation_player: AnimationPlayer
 
-var last_target_position: Vector3 = Vector3.ZERO;
-
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
 
@@ -41,27 +39,28 @@ func set_random_nav_target() -> void:
 
 func is_group_member_nearby(
 	group_name: StringName, desired_dist: float = default_search_distance
- ) -> bool:
+) -> bool:
 	var nodes = get_tree().get_nodes_in_group(group_name)
 	for i in nodes.size():
 		var dist := global_position.distance_to(nodes[i].global_position)
-		if(dist < desired_dist):
-			return true;
+		if dist < desired_dist:
+			return true
 
-	return false;
+	return false
+
 
 func get_closest_target(group_name: StringName) -> Node3D:
 	var nodes = get_tree().get_nodes_in_group(group_name)
-	var closest_distance: float = INT32_MAX;
-	var closest_index: int = -1;
+	var closest_distance: float = INT32_MAX
+	var closest_index: int = -1
 	for i in nodes.size():
 		var distance := global_position.distance_to(nodes[i].global_position)
-		if(distance < closest_distance):
+		if distance < closest_distance:
 			closest_distance = distance
-			closest_index = i;
+			closest_index = i
 
-	if(closest_index == -1):
-		return null;
+	if closest_index == -1:
+		return null
 	return nodes[closest_index]
 
 
@@ -73,6 +72,7 @@ func set_velocity_to_target() -> void:
 	var current_location := global_transform.origin
 	var next_location := navigation_agent_3d.get_next_path_position()
 	velocity = current_location.direction_to(next_location) * speed
+
 
 func rotate_with_velocity() -> void:
 	var velocity_2d = Vector3(velocity.x, 0, velocity.z)

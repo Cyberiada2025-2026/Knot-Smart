@@ -15,6 +15,7 @@ var animation_player: AnimationPlayer
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
 
+
 func _ready() -> void:
 	world = Engine.get_main_loop().root.get_world_3d()
 	animation_player = find_child("AnimationPlayer")

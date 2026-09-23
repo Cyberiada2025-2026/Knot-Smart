@@ -2,6 +2,7 @@ class_name PlayerCamera
 extends Node3D
 
 signal camera_rotated(vector: Vector3, angle: float)
+signal view_changed
 
 enum ViewType {
 	FIRST_PERSON,
@@ -66,6 +67,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_camera"):
 		view_strategy = view_strategy.next_strategy
 		view_strategy.change_view_to(self)
+		view_changed.emit()
 
 	if event.is_action_pressed("change_camera_mode"):
 		rotation_strategy = rotation_strategy.next_strategy

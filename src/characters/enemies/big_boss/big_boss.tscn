@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" uid="uid://1c02ina18c38" path="res://characters/enemies/big_boss/big_boss.gd" id="1_6goto"]
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="1_rxbay"]
-[ext_resource type="AudioStream" uid="uid://by6s533bmmlrw" path="res://shared/ost/TheLastDefense.ogg" id="2_206ui"]
 [ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="2_l4672"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_l4672"]
-[ext_resource type="PackedScene" uid="uid://h2gfwshshtv1" path="res://ui/health/boss_health.tscn" id="7_sxnmv"]
 [ext_resource type="PackedScene" uid="uid://cepbfjxupa1ap" path="res://characters/enemies/big_boss/big_boss.glb" id="7_v4jmr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u48dj"]
@@ -21,7 +19,6 @@ script = ExtResource("1_6goto")
 win_scene = "res://ui/win/win.tscn"
 lose_scene = "res://ui/game_over/game_over.tscn"
 boss_model = NodePath("BigBossModel")
-battle_soundtrack = ExtResource("2_206ui")
 health_component = NodePath("HealthComponent")
 
 [node name="BigBossModel" parent="." unique_id=838044845 instance=ExtResource("7_v4jmr")]
@@ -52,8 +49,5 @@ metadata/_custom_type_script = "uid://7sxs6ubjcqmo"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=2107874777]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
 shape = SubResource("CapsuleShape3D_6goto")
-
-[node name="BossHealth" parent="." unique_id=1912484639 instance=ExtResource("7_sxnmv")]
-visible = false
 
 [connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]

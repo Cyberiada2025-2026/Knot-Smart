@@ -5,7 +5,6 @@ extends AnimatableBody3D
 @export_file_path(".tscn") var win_scene
 @export_file_path(".tscn") var lose_scene
 @export var boss_model: Node3D
-@export var battle_soundtrack: AudioStream
 @export var health_component: HealthComponent
 var animation_player: AnimationPlayer
 

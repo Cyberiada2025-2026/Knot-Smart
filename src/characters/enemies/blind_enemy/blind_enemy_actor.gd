@@ -1,4 +1,4 @@
-class_name EnemyActor
+class_name BlindEnemyActor
 extends CharacterBody3D
 
 @export var speed := 5.0
@@ -13,7 +13,6 @@ var should_track_target: bool = false
 var animation_player: AnimationPlayer
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
-
 
 
 func _ready() -> void:

@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dioac53c13utq"]
+
+[ext_resource type="Texture2D" uid="uid://co8irjq2jlnf8" path="res://shared/fences/wire_fence/wire_fence_chicken_wire.png" id="1_pnmvq"]
+
+[resource]
+resource_name = "Empty"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_pnmvq")
+texture_filter = 4

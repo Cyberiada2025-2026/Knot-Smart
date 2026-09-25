@@ -39,7 +39,7 @@ func generate_foliage():
 
 
 func on_generate():
-	random.seed = params.seed
+	random.seed = params.custom_seed
 	foliage_scene = PackedScene.new()
 	for child in get_children():
 		child.queue_free()

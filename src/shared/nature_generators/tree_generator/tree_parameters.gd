@@ -3,7 +3,7 @@ class_name TreeParameters
 extends Resource
 
 @export_tool_button("Randomize seed", "Callable") var random_seed_button = on_random_seed
-@export var seed: int = randi()
+@export var custom_seed: int = randi()
 @export var segment_displacement: float = 0.8
 @export var material: StandardMaterial3D
 ## how much first branches (every branch for SIDE tree) are snatched towards the ground
@@ -33,4 +33,4 @@ extends Resource
 
 
 func on_random_seed():
-	seed = randi()
+	custom_seed = randi()

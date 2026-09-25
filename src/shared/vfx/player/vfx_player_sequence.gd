@@ -8,5 +8,6 @@ extends Node3D
 func play() -> void:
 	var emitters = get_children().filter(func(c): return c.get("emitting") != null)
 	for emitter in emitters:
-		emitter.emitting = true
-		await emitter.finished
+		if emitter.is_inside_tree():
+			emitter.emitting = true
+			await emitter.finished

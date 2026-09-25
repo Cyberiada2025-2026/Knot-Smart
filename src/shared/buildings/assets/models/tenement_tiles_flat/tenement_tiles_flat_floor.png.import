@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dshr4h2rgjchl"
-path.s3tc="res://.godot/imported/tenement_house_tiles_floor.png-58dc609212decacbbfac76c7529580f1.s3tc.ctex"
+uid="uid://of28htmipupa"
+path.s3tc="res://.godot/imported/tenement_tiles_flat_floor.png-2d2f812f0acd6fb60c8f1d9a8a355101.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/tenement_house_tiles_floor.png"
-dest_files=["res://.godot/imported/tenement_house_tiles_floor.png-58dc609212decacbbfac76c7529580f1.s3tc.ctex"]
+source_file="res://shared/buildings/assets/models/tenement_tiles_flat/tenement_tiles_flat_floor.png"
+dest_files=["res://.godot/imported/tenement_tiles_flat_floor.png-2d2f812f0acd6fb60c8f1d9a8a355101.s3tc.ctex"]
 
 [params]
 

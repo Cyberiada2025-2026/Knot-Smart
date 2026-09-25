@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvbl8rhvact15"
-path.s3tc="res://.godot/imported/tenement_tiles_flat_bricks.png-e78157a7ac9d020ed20681bff366bab5.s3tc.ctex"
+uid="uid://2i6ffs77rtx2"
+path.s3tc="res://.godot/imported/full_building_parts_thick_wide_windows_kamyki.png-9963f549fe1973f1d2983a2f10a82f9b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "4217685ca3b4a8ae96de5a5f45e18444"
+"md5": "41360051fb0c62058b3288b7f35dc451"
 }
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/tenement_tiles_flat_bricks.png"
-dest_files=["res://.godot/imported/tenement_tiles_flat_bricks.png-e78157a7ac9d020ed20681bff366bab5.s3tc.ctex"]
+source_file="res://shared/buildings/assets/models/full_building_parts_thick_wide_windows/full_building_parts_thick_wide_windows_kamyki.png"
+dest_files=["res://.godot/imported/full_building_parts_thick_wide_windows_kamyki.png-9963f549fe1973f1d2983a2f10a82f9b.s3tc.ctex"]
 
 [params]
 

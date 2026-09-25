@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chrn11oidbb23"
-path.s3tc="res://.godot/imported/building_parts_collision_thick_beton.png-435517c22c68e571ed534a1cbbbe9286.s3tc.ctex"
+uid="uid://dboe4rep3llyq"
+path.s3tc="res://.godot/imported/full_building_parts_thick_wide_windows_beton.png-0fbac03a6fa562e323f34306ad3229f7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/building_parts_collision_thick_beton.png"
-dest_files=["res://.godot/imported/building_parts_collision_thick_beton.png-435517c22c68e571ed534a1cbbbe9286.s3tc.ctex"]
+source_file="res://shared/buildings/assets/models/full_building_parts_thick_wide_windows/full_building_parts_thick_wide_windows_beton.png"
+dest_files=["res://.godot/imported/full_building_parts_thick_wide_windows_beton.png-0fbac03a6fa562e323f34306ad3229f7.s3tc.ctex"]
 
 [params]
 

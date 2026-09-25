@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2i6ffs77rtx2"
-path.s3tc="res://.godot/imported/full_building_parts_thick_wide_windows_kamyki.png-9d2300b8afddca6db62d638888905941.s3tc.ctex"
+uid="uid://8shfg17smfp"
+path.s3tc="res://.godot/imported/building_parts_collision_thick_kamyki.png-f38a43938add86cd1245205e0e02f2a1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/full_building_parts_thick_wide_windows_kamyki.png"
-dest_files=["res://.godot/imported/full_building_parts_thick_wide_windows_kamyki.png-9d2300b8afddca6db62d638888905941.s3tc.ctex"]
+source_file="res://shared/buildings/assets/models/building_parts_collision_thick/building_parts_collision_thick_kamyki.png"
+dest_files=["res://.godot/imported/building_parts_collision_thick_kamyki.png-f38a43938add86cd1245205e0e02f2a1.s3tc.ctex"]
 
 [params]
 

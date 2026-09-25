@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cnhdq3nahvyfr"
-path="res://.godot/imported/full_building_parts_thick_wide_windows.glb-4891787020ce3cf85576d8903f857005.scn"
+uid="uid://brd5yvg4xsjnq"
+path="res://.godot/imported/tenement_house_tiles.glb-939e1ab89dfa577a3e62a97d8d9ee069.scn"
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/full_building_parts_thick_wide_windows.glb"
-dest_files=["res://.godot/imported/full_building_parts_thick_wide_windows.glb-4891787020ce3cf85576d8903f857005.scn"]
+source_file="res://shared/buildings/assets/models/tenement_house_tiles/tenement_house_tiles.glb"
+dest_files=["res://.godot/imported/tenement_house_tiles.glb-939e1ab89dfa577a3e62a97d8d9ee069.scn"]
 
 [params]
 

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgehx5whvpbtd"
-path.s3tc="res://.godot/imported/tenement_tiles_flat_WindowBricks.png-9e2671148c5b3fd941812b85c834d3c8.s3tc.ctex"
+uid="uid://dyh25jf18qqy8"
+path.s3tc="res://.godot/imported/tenement_house_tiles_bricks.png-bc58ef8d41a46012eb4cadef574bc1f2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "f9e1a5256150662ab1b4f7f4e1dc1f7e"
+"md5": "4217685ca3b4a8ae96de5a5f45e18444"
 }
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/tenement_tiles_flat_WindowBricks.png"
-dest_files=["res://.godot/imported/tenement_tiles_flat_WindowBricks.png-9e2671148c5b3fd941812b85c834d3c8.s3tc.ctex"]
+source_file="res://shared/buildings/assets/models/tenement_house_tiles/tenement_house_tiles_bricks.png"
+dest_files=["res://.godot/imported/tenement_house_tiles_bricks.png-bc58ef8d41a46012eb4cadef574bc1f2.s3tc.ctex"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://brd5yvg4xsjnq"
-path="res://.godot/imported/tenement_house_tiles.glb-25e98f01c0a06aac2fde040feb2b81b9.scn"
+uid="uid://btfglltfekyfx"
+path="res://.godot/imported/building_parts_collision_thick.glb-e147c69e4b86b1ae2cac6e53870dfccd.scn"
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/tenement_house_tiles.glb"
-dest_files=["res://.godot/imported/tenement_house_tiles.glb-25e98f01c0a06aac2fde040feb2b81b9.scn"]
+source_file="res://shared/buildings/assets/models/building_parts_collision_thick/building_parts_collision_thick.glb"
+dest_files=["res://.godot/imported/building_parts_collision_thick.glb-e147c69e4b86b1ae2cac6e53870dfccd.scn"]
 
 [params]
 

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyh25jf18qqy8"
-path.s3tc="res://.godot/imported/tenement_house_tiles_bricks.png-350892ca0d45d6edbba03346b4f6c78c.s3tc.ctex"
+uid="uid://dshr4h2rgjchl"
+path.s3tc="res://.godot/imported/tenement_house_tiles_floor.png-b7933f2dace0f93448acd884ea83f771.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "4217685ca3b4a8ae96de5a5f45e18444"
+"md5": "5b911a578651c516126c441b5a9b2ad7"
 }
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/tenement_house_tiles_bricks.png"
-dest_files=["res://.godot/imported/tenement_house_tiles_bricks.png-350892ca0d45d6edbba03346b4f6c78c.s3tc.ctex"]
+source_file="res://shared/buildings/assets/models/tenement_house_tiles/tenement_house_tiles_floor.png"
+dest_files=["res://.godot/imported/tenement_house_tiles_floor.png-b7933f2dace0f93448acd884ea83f771.s3tc.ctex"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d3iyxsvy6lb3l"
-path="res://.godot/imported/building_parts_filled.glb-6384ebad8fbc39b5763e31cddf9d42c2.scn"
+uid="uid://bu21r7y410x53"
+path="res://.godot/imported/tenement_tiles_flat.glb-df0b503aafc4197cd9092fe8d61095d7.scn"
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/building_parts_filled.glb"
-dest_files=["res://.godot/imported/building_parts_filled.glb-6384ebad8fbc39b5763e31cddf9d42c2.scn"]
+source_file="res://shared/buildings/assets/models/tenement_tiles_flat/tenement_tiles_flat.glb"
+dest_files=["res://.godot/imported/tenement_tiles_flat.glb-df0b503aafc4197cd9092fe8d61095d7.scn"]
 
 [params]
 
@@ -41,5 +41,5 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={}
 gltf/naming_version=2
-gltf/embedded_image_handling=0
+gltf/embedded_image_handling=1
 gltf/texture_map_mode=0

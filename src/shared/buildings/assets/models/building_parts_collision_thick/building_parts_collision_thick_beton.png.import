@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8shfg17smfp"
-path.s3tc="res://.godot/imported/building_parts_collision_thick_kamyki.png-ac7fabc8f8f3751f971531e4c9f232f1.s3tc.ctex"
+uid="uid://chrn11oidbb23"
+path.s3tc="res://.godot/imported/building_parts_collision_thick_beton.png-e178e0dcca74dc21b537f4d5b5f4ff91.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "41360051fb0c62058b3288b7f35dc451"
+"md5": "62b0bfe6567d2a0e4300481c11de75da"
 }
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/building_parts_collision_thick_kamyki.png"
-dest_files=["res://.godot/imported/building_parts_collision_thick_kamyki.png-ac7fabc8f8f3751f971531e4c9f232f1.s3tc.ctex"]
+source_file="res://shared/buildings/assets/models/building_parts_collision_thick/building_parts_collision_thick_beton.png"
+dest_files=["res://.godot/imported/building_parts_collision_thick_beton.png-e178e0dcca74dc21b537f4d5b5f4ff91.s3tc.ctex"]
 
 [params]
 

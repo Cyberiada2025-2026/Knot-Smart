@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://of28htmipupa"
-path.s3tc="res://.godot/imported/tenement_tiles_flat_floor.png-2e671bffb929c13f5b1da13f852c395a.s3tc.ctex"
+uid="uid://cclo3mgiiy4qm"
+path.s3tc="res://.godot/imported/tenement_tiles_flat_Door.png-545c06ac57a088b2ddea429369943f7c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "5b911a578651c516126c441b5a9b2ad7"
+"md5": "7bf197c3dc22842af5f245bff9ba8d87"
 }
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/tenement_tiles_flat_floor.png"
-dest_files=["res://.godot/imported/tenement_tiles_flat_floor.png-2e671bffb929c13f5b1da13f852c395a.s3tc.ctex"]
+source_file="res://shared/buildings/assets/models/tenement_tiles_flat/tenement_tiles_flat_Door.png"
+dest_files=["res://.godot/imported/tenement_tiles_flat_Door.png-545c06ac57a088b2ddea429369943f7c.s3tc.ctex"]
 
 [params]
 

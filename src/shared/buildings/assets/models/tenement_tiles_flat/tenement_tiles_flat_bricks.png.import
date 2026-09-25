@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dboe4rep3llyq"
-path.s3tc="res://.godot/imported/full_building_parts_thick_wide_windows_beton.png-1dbe1d42780eaaea2d89afe24cc6bb93.s3tc.ctex"
+uid="uid://cvbl8rhvact15"
+path.s3tc="res://.godot/imported/tenement_tiles_flat_bricks.png-7a9a64a395e87084cb0b32ba3d7f0ee7.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "62b0bfe6567d2a0e4300481c11de75da"
+"md5": "4217685ca3b4a8ae96de5a5f45e18444"
 }
 
 [deps]
 
-source_file="res://shared/buildings/assets/models/full_building_parts_thick_wide_windows_beton.png"
-dest_files=["res://.godot/imported/full_building_parts_thick_wide_windows_beton.png-1dbe1d42780eaaea2d89afe24cc6bb93.s3tc.ctex"]
+source_file="res://shared/buildings/assets/models/tenement_tiles_flat/tenement_tiles_flat_bricks.png"
+dest_files=["res://.godot/imported/tenement_tiles_flat_bricks.png-7a9a64a395e87084cb0b32ba3d7f0ee7.s3tc.ctex"]
 
 [params]
 

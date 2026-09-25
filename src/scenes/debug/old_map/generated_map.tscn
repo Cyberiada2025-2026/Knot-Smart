@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://b737psv7vwxmk"]
 
-[ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="1_hesje"]
+[ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://scenes/debug/old_map/terrain_texture_placeholder.jpg" id="1_hesje"]
 [ext_resource type="Material" uid="uid://dkc6qdwcyremk" path="res://scenes/debug/old_map/roads/assets/materials/pavement.tres" id="3_vtrup"]
 [ext_resource type="Material" uid="uid://ocqgdyc21bsc" path="res://scenes/debug/old_map/roads/assets/materials/asphalt.tres" id="4_5ve2d"]
 [ext_resource type="Material" uid="uid://b4f1df1cha8bn" path="res://scenes/debug/old_map/roads/assets/materials/pavement-side.tres" id="5_yti1c"]

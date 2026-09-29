@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://bmjspae2c3sub"]
+
+[ext_resource type="Script" uid="uid://bv2iqh1tg5epe" path="res://scenes/debug/settings/settings_debug.gd" id="1_ni0kr"]
+
+[node name="SettingsDebug" type="Node2D" unique_id=424480850 node_paths=PackedStringArray("value_label", "item_list")]
+script = ExtResource("1_ni0kr")
+value_label = NodePath("VBoxContainer/HBoxContainer/ValueLabel")
+item_list = NodePath("VBoxContainer/HBoxContainer2/ItemList")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1502973775]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Randomize" type="Button" parent="VBoxContainer" unique_id=2139906507]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Randomize"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1863579106]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer" unique_id=1503920488]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "value of [\"debug scenes\", \"settings_debug\", \"random value\"] ="
+fit_content = true
+autowrap_mode = 0
+
+[node name="ValueLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer" unique_id=1117843217]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 8
+text = "<null>"
+fit_content = true
+autowrap_mode = 0
+
+[node name="SaveSettings" type="Button" parent="VBoxContainer" unique_id=133280003]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Save settings"
+
+[node name="LoadSettings" type="Button" parent="VBoxContainer" unique_id=1414091129]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Load settings"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=120809831]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer/HBoxContainer2" unique_id=195077307]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+auto_width = true
+auto_height = true
+item_count = 2
+max_columns = 2
+fixed_column_width = 100
+item_0/text = "NODE_LIFETIME"
+item_1/text = "ONLY_IN_TREE"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2" unique_id=1992359542]
+custom_maximum_size = Vector2(85, -1)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 7
+text = "(takes effect only when spawning a new sprite)"
+fit_content = true
+autowrap_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=542770885]
+layout_mode = 2
+
+[node name="Spawn" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=1584255096]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Spawn sprite"
+
+[node name="RemoveFromTree" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=631459118]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Remove from tree"
+
+[node name="AddToTree" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=251853292]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Add to tree"
+
+[node name="Destroy" type="Button" parent="VBoxContainer/HBoxContainer3" unique_id=218913703]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Destroy"
+
+[connection signal="pressed" from="VBoxContainer/Randomize" to="." method="_on_randomize_pressed"]
+[connection signal="pressed" from="VBoxContainer/SaveSettings" to="." method="_on_save_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadSettings" to="." method="_on_load_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/Spawn" to="." method="_on_spawn_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/RemoveFromTree" to="." method="_on_remove_from_tree_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/AddToTree" to="." method="_on_add_to_tree_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer3/Destroy" to="." method="_on_destroy_pressed"]

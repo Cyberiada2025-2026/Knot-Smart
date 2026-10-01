@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ki5mi0godh7a"]
+
+[ext_resource type="Script" uid="uid://2b0lcn81vpy2" path="res://shared/item_placer/item_placer.gd" id="1_5s73l"]
+
+[node name="Node3D" type="Node3D" unique_id=1886230220]
+script = ExtResource("1_5s73l")
+Items = "PipeFitting"

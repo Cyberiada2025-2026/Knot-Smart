@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cs6e47xre5wp"]
+
+[ext_resource type="PackedScene" uid="uid://ba52i38u5elcw" path="res://shared/plants/dandelion/dandelion.tscn" id="1_7vgon"]
+[ext_resource type="PackedScene" uid="uid://dalcvwtyy3ngg" path="res://shared/props/trash_bin.tscn" id="2_5m1ix"]
+[ext_resource type="PackedScene" uid="uid://c3581kcpnvx4f" path="res://shared/ship/ship.tscn" id="3_vpk7t"]
+[ext_resource type="PackedScene" uid="uid://blrhgw85c4fk1" path="res://shared/ship/ship_parts/pipe_fitting.tscn" id="4_yhe5v"]
+[ext_resource type="PackedScene" uid="uid://ckl5pfstkaitv" path="res://shared/ship/ship_parts/screws.tscn" id="5_nj25a"]
+
+[node name="ItemsToPlace" type="Node" unique_id=1276001851]
+
+[node name="Dandelion" parent="." unique_id=197688663 instance=ExtResource("1_7vgon")]
+
+[node name="TrashBin" parent="." unique_id=1447603013 instance=ExtResource("2_5m1ix")]
+
+[node name="Ship" parent="." unique_id=1273861182 instance=ExtResource("3_vpk7t")]
+
+[node name="PipeFitting" parent="." unique_id=180752249 instance=ExtResource("4_yhe5v")]
+
+[node name="Screws" parent="." unique_id=1591583659 instance=ExtResource("5_nj25a")]

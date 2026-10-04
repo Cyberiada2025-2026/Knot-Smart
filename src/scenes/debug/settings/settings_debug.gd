@@ -20,7 +20,7 @@ func update_label(value) -> void:
 
 func _on_randomize_pressed() -> void:
 	var random = RandomNumberGenerator.new()
-	var new_value = random.randi()
+	var new_value = snappedf(random.randf() * 100, 0.01)
 	print("Randomize! (", new_value, ")")
 	
 	Settings.set_value(["debug scenes", "settings_debug", "random value"], new_value)

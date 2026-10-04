@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cv4tjajtp5a0u"]
+
+[ext_resource type="Script" uid="uid://bxm6gknkq478f" path="res://scenes/debug/settings/settings_debug_sprite.gd" id="1_shuvp"]
+[ext_resource type="Texture2D" uid="uid://c72ifbov1kfjp" path="res://icon.svg" id="2_fv518"]
+
+[node name="SettingsDebugSprite" type="Node2D" unique_id=1598667525 node_paths=PackedStringArray("label")]
+script = ExtResource("1_shuvp")
+label = NodePath("RichTextLabel")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=719806119]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_fv518")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1771347612]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0, 1, 1)
+text = "(value goes here)"
+fit_content = true
+autowrap_mode = 0

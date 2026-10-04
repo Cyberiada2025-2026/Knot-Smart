@@ -1,7 +1,6 @@
 class_name Player
 extends CharacterBody3D
 
-
 @export_category("MODULES")
 @export var player_model: Node3D
 @export var player_camera: PlayerCamera
@@ -109,6 +108,7 @@ func _handle_gravity(delta: float):
 	if not is_on_floor_check():
 		animation_tree.set("parameters/Movement/transition_request", "Jump")
 		velocity += Vector3.DOWN * gravity_strength * delta
+
 
 # gdlint: disable=max-line-length
 ## Reliable check for colliding with the floor. Using built-in is_on_floor() results in

@@ -1,9 +1,13 @@
 extends Node
 
-var prev_mouse_mode
+@export var settings_menu: Control
+
+var prev_mouse_mode: Input.MouseMode
 
 
 func unpause_game() -> void:
+	if settings_menu.visible:
+		return
 	get_tree().paused = false
 	get_child(0).hide()
 	Input.set_mouse_mode(prev_mouse_mode)
@@ -16,18 +20,26 @@ func pause_game() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
-func _process(_delta: float) -> void:
+func _unhandled_input(event):
 	var unpausable = get_tree().get_nodes_in_group("unpausable")
 
 	for node in unpausable:
 		if node.visible:
 			return
 
-	if Input.is_action_just_pressed("pause_button"):
-		if get_tree().paused == false:
-			pause_game()
-		else:
-			unpause_game()
+	if event is InputEventKey and event.is_pressed():
+		if event.is_action("pause_button"):
+			if not get_tree().paused:
+				pause_game()
+			else:
+				unpause_game()
+			get_viewport().set_input_as_handled()
+
+		elif event.is_action("show_debug_menu"):
+			if not get_tree().paused:
+				pause_game()
+			settings_menu.show()
+			settings_menu.switch_to_tab(-1)
 
 
 func _on_return_button_pressed() -> void:
@@ -36,3 +48,7 @@ func _on_return_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_settings_button_pressed():
+	settings_menu.show()

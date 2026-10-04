@@ -84,7 +84,7 @@ func save_settings() -> void:
 
 
 func save_settings_to_path(path: String) -> void:
-	var settings_string = JSON.stringify(_settings, "\t")
+	var settings_string = JSON.stringify(_settings, "\t", false)
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(settings_string)
 

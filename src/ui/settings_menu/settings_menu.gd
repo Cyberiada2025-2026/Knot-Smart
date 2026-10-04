@@ -32,6 +32,9 @@ func _close_settings_window():
 	Settings.load_settings()
 	hide()
 
+func switch_to_tab(tab_idx):
+	tab_container.current_tab = posmod(tab_idx, tab_container.get_tab_count())
+
 func _on_back_pressed():
 	_close_settings_window()
 

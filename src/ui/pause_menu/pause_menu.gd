@@ -28,12 +28,19 @@ func _unhandled_input(event):
 		if node.visible:
 			return
 
-	if event is InputEventKey and event.is_action("pause_button") and event.is_pressed():
-		if get_tree().paused == false:
-			pause_game()
-		else:
-			unpause_game()
-		get_viewport().set_input_as_handled()
+	if event is InputEventKey and event.is_pressed():
+		if event.is_action("pause_button"):
+			if not get_tree().paused:
+				pause_game()
+			else:
+				unpause_game()
+			get_viewport().set_input_as_handled()
+			
+		elif event.is_action("show_debug_menu"):
+			if not get_tree().paused:
+				pause_game()
+			settings_menu.show()
+			settings_menu.switch_to_tab(-1)
 
 
 func _on_return_button_pressed() -> void:

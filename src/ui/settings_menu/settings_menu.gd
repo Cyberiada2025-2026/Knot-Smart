@@ -36,7 +36,7 @@ func _reset_tab_container():
 
 
 func _close_settings_window():
-	Settings.load_settings(true)
+	Settings.load_settings()
 	hide()
 
 
@@ -49,7 +49,7 @@ func _on_back_pressed():
 
 
 func _on_reset_pressed():
-	Settings.load_settings(true)
+	Settings.load_settings()
 	_reset_tab_container()
 
 

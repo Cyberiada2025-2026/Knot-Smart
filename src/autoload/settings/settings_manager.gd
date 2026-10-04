@@ -17,8 +17,9 @@ func _ready() -> void:
 	# the change will also be reflected in user-specific settings, if it wasn't there already.
 	load_default_settings()
 	var loaded_settings = _settings.duplicate_deep()
-	load_settings()
-	DictionaryUtilities.deep_merge(_settings, loaded_settings)
+	if FileAccess.file_exists(_settings_file_path):
+		load_settings()
+		DictionaryUtilities.deep_merge(_settings, loaded_settings)
 	_settings = loaded_settings
 	save_settings()
 

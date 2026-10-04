@@ -1,6 +1,9 @@
 extends Node
 
-var prev_mouse_mode
+@export var settings_menu: Control
+
+
+var prev_mouse_mode: Input.MouseMode
 
 
 func unpause_game() -> void:
@@ -36,3 +39,7 @@ func _on_return_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_settings_button_pressed():
+	settings_menu.show()

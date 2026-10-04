@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://ds23isyj385on"]
 
 [ext_resource type="Script" uid="uid://doqxxfg1qiy8i" path="res://ui/pause_menu/pause_menu.gd" id="1_b8ecp"]
+[ext_resource type="PackedScene" uid="uid://ca02a1cmopamm" path="res://ui/settings_menu/settings_menu.tscn" id="2_jbgdu"]
 
-[node name="PauseMenu" type="Node" unique_id=473504245]
+[node name="PauseMenu" type="Node" unique_id=473504245 node_paths=PackedStringArray("settings_menu")]
 process_mode = 3
 script = ExtResource("1_b8ecp")
+settings_menu = NodePath("Control/SettingsMenu")
 
 [node name="Control" type="Control" parent="." unique_id=1401324083]
 visible = false
@@ -51,15 +53,24 @@ text = "pause
 "
 horizontal_alignment = 1
 
-[node name="Close Button" type="Button" parent="Control/VBoxContainer" unique_id=281467682]
+[node name="Resume" type="Button" parent="Control/VBoxContainer" unique_id=281467682]
 process_mode = 3
 layout_mode = 2
-text = "close menu"
+text = "resume"
 
-[node name="Quit Button" type="Button" parent="Control/VBoxContainer" unique_id=123022079]
+[node name="Settings" type="Button" parent="Control/VBoxContainer" unique_id=1972071249]
 process_mode = 3
 layout_mode = 2
-text = "quit game"
+text = "settings"
 
-[connection signal="pressed" from="Control/VBoxContainer/Close Button" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="Control/VBoxContainer/Quit Button" to="." method="_on_quit_button_pressed"]
+[node name="Quit" type="Button" parent="Control/VBoxContainer" unique_id=123022079]
+process_mode = 3
+layout_mode = 2
+text = "quit"
+
+[node name="SettingsMenu" parent="Control" unique_id=1349960264 instance=ExtResource("2_jbgdu")]
+layout_mode = 1
+
+[connection signal="pressed" from="Control/VBoxContainer/Resume" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Settings" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]

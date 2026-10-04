@@ -11,17 +11,5 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 10
-current_tab = 0
 script = ExtResource("1_ehqm2")
 setting_keys_to_generate = Array[String](["graphics", "audio", "accessibility", "debug"])
-
-[node name="graphics" type="ScrollContainer" parent="." unique_id=364851093]
-layout_mode = 2
-metadata/_tab_index = 0
-
-[node name="aaa" type="VBoxContainer" parent="graphics" unique_id=1450883486]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="graphics/aaa" unique_id=1488309329]
-layout_mode = 2
-text = "adsadassdsa"

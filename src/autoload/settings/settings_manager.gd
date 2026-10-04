@@ -58,8 +58,19 @@ func _resolve_path(path: Array[String], create_missing_keys: bool = false) -> Ar
 	return [false, target]
 
 
-func load_settings() -> void:
-	load_settings_from_path(_settings_file_path)
+## If preserve_order == true, it will first load default settings,
+## and then merge user settings into them.
+## This is slower than only loading the user settings,
+## but preserves the key order from default settings
+func load_settings(preserve_order: bool = false) -> void:
+	if not preserve_order:
+		load_settings_from_path(_settings_file_path)
+	else:
+		load_default_settings()
+		var loaded_settings = _settings.duplicate_deep()
+		load_settings_from_path(_settings_file_path)
+		DictionaryUtilities.deep_merge(_settings, loaded_settings)
+		_settings = loaded_settings
 
 
 func load_default_settings() -> void:

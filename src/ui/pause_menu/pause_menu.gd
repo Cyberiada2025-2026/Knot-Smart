@@ -2,7 +2,6 @@ extends Node
 
 @export var settings_menu: Control
 
-
 var prev_mouse_mode: Input.MouseMode
 
 
@@ -35,7 +34,7 @@ func _unhandled_input(event):
 			else:
 				unpause_game()
 			get_viewport().set_input_as_handled()
-			
+
 		elif event.is_action("show_debug_menu"):
 			if not get_tree().paused:
 				pause_game()

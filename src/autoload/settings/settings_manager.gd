@@ -35,7 +35,6 @@ func _call_all_listeners() -> void:
 		var listeners := _listeners[path]
 		for callable in listeners:
 			callable.call(get_value(path))
-		
 
 
 ## Returns two values: error (bool) and result (Variant)
@@ -45,7 +44,7 @@ func _resolve_path(path: Array[String], create_missing_keys: bool = false) -> Ar
 		if target is not Dictionary:
 			printerr(key, " is not a dictionary in path: ", path)
 			return [true, null]
-			
+
 		if target.has(key):
 			target = target[key]
 		else:
@@ -57,7 +56,6 @@ func _resolve_path(path: Array[String], create_missing_keys: bool = false) -> Ar
 				return [true, null]
 
 	return [false, target]
-	
 
 
 func load_settings() -> void:
@@ -90,6 +88,7 @@ func save_settings_to_path(path: String) -> void:
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(settings_string)
 
+
 ## Overwrites the user setting file with the contents of default settings.
 ## Useful to clean up old user settings that were removed and are no longer in the defaults file.
 func reset_settings() -> void:
@@ -101,12 +100,11 @@ func get_value(path: Array[String]):
 	var result = _resolve_path(path)
 	var error = result[0]
 	var target = result[1]
-	
+
 	if error:
 		printerr("failed resolving path: ", path)
-	
+
 	return target
-	
 
 
 func set_value(path: Array[String], value: Variant, create_missing_keys: bool = false) -> void:
@@ -114,16 +112,17 @@ func set_value(path: Array[String], value: Variant, create_missing_keys: bool = 
 	# _resolve_path returns the value at the end of path.
 	# By slicing the last element we are able to get the dictionary that the value is contained in
 	# and actually change the value at the end of the path
-	
+
 	var error = result[0]
 	var target = result[1]
-	
+
 	if error:
 		printerr("failed resolving path: ", path)
 		return
 
 	target[path[-1]] = value
 	_call_listeners(path, value)
+
 
 ## Note: listeners added by calling this method will [b]not[/b] be automatically removed.
 ## In most cases it's recommended to use [code]add_child(SettingListener.new(...))[/code].

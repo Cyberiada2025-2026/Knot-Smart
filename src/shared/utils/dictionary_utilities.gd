@@ -31,11 +31,13 @@ static func get_all_leaf_paths(source: Dictionary) -> Array[Array]:
 	var found_paths: Array[Array] = []
 
 	_get_all_leaf_paths_internal(source, [], found_paths)
-	
+
 	return found_paths
 
 
-static func _get_all_leaf_paths_internal(source: Dictionary, path: Array[String], found_paths: Array[Array]):
+static func _get_all_leaf_paths_internal(
+	source: Dictionary, path: Array[String], found_paths: Array[Array]
+):
 	for key in source:
 		var value = source[key]
 		var extended_path: Array[String] = path.duplicate()

@@ -90,6 +90,11 @@ func save_settings_to_path(path: String) -> void:
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(settings_string)
 
+## Overwrites the user setting file with the contents of default settings.
+## Useful to clean up old user settings that were removed and are no longer in the defaults file.
+func reset_settings() -> void:
+	load_default_settings()
+	save_settings()
 
 
 func get_value(path: Array[String]):

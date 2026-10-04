@@ -10,6 +10,12 @@ func _on_visibility_changed():
 	if visible:
 		_reset_tab_container()
 
+func _unhandled_input(event):
+	if event is InputEventKey and event.is_action("pause_button") and event.is_pressed() and visible:
+		_close_settings_window()
+		get_viewport().set_input_as_handled()
+			
+
 func _reset_tab_container():
 	# delete tab container and create it anew, under the same parent
 	var tab_container_parent = tab_container.get_parent()

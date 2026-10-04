@@ -7,6 +7,8 @@ var prev_mouse_mode: Input.MouseMode
 
 
 func unpause_game() -> void:
+	if settings_menu.visible:
+		return
 	get_tree().paused = false
 	get_child(0).hide()
 	Input.set_mouse_mode(prev_mouse_mode)
@@ -19,18 +21,19 @@ func pause_game() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
-func _process(_delta: float) -> void:
+func _unhandled_input(event):
 	var unpausable = get_tree().get_nodes_in_group("unpausable")
 
 	for node in unpausable:
 		if node.visible:
 			return
 
-	if Input.is_action_just_pressed("pause_button"):
+	if event is InputEventKey and event.is_action("pause_button") and event.is_pressed():
 		if get_tree().paused == false:
 			pause_game()
 		else:
 			unpause_game()
+		get_viewport().set_input_as_handled()
 
 
 func _on_return_button_pressed() -> void:

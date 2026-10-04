@@ -25,7 +25,6 @@ func _init_settings():
 	for tab_idx in range(get_tab_count()):
 		var tab_node = get_tab_control(tab_idx)
 		var key = tab_node.name
-		print(key)
 		var setting_paths = DictionaryUtilities.get_all_leaf_paths(Settings.get_value([key]))
 
 		for setting_path in setting_paths:

@@ -67,10 +67,7 @@ func get_spawn_point():
 	var rand_point_on_mesh = NavigationServer3D.region_get_closest_point(
 		nav_region.get_rid(), rand_point
 	)
-	if (
-		rand_point_on_mesh.distance_squared_to(player.global_position)
-		>= pow(min_spawn_distance, 2)
-	):
+	if rand_point_on_mesh.distance_squared_to(player.global_position) >= pow(min_spawn_distance, 2):
 		return rand_point_on_mesh
 	return null
 

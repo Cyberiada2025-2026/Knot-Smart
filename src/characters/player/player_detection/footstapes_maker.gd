@@ -13,11 +13,7 @@ func make_footstep() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if (
-		not player.velocity.is_zero_approx()
-		and player.is_on_floor()
-		and timer.is_stopped()
-	):
+	if not player.velocity.is_zero_approx() and player.is_on_floor() and timer.is_stopped():
 		make_footstep()
 		timer.start()
 

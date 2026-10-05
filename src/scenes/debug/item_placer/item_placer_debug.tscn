@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="1_6mrq1"]
 [ext_resource type="Script" uid="uid://2b0lcn81vpy2" path="res://shared/item_placer/item_placer.gd" id="2_4tlg0"]
+[ext_resource type="PackedScene" uid="uid://dalcvwtyy3ngg" path="res://shared/props/trash_bin.tscn" id="3_4tlg0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e74q2"]
 
@@ -32,6 +33,9 @@ transform = Transform3D(1, 0, 0, 0, 0.048448857, 0.99882567, 0, -0.99882567, 0.0
 
 [node name="ItemPlacer" type="Node3D" parent="." unique_id=323006158]
 script = ExtResource("2_4tlg0")
-object_position = Vector3(6.3637676, -3.4164739, 4.028672)
-Items = "Dandelion"
+object_position = Vector3(6.364, 1, 4.029)
+Items = "TrashBin"
 metadata/_custom_type_script = "uid://2b0lcn81vpy2"
+
+[node name="TrashBin" type="StaticBody3D" parent="ItemPlacer" unique_id=1447603013 instance=ExtResource("3_4tlg0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.364, 1, 4.029)

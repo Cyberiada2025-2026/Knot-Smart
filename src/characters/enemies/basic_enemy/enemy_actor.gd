@@ -15,7 +15,6 @@ var animation_player: AnimationPlayer
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
 
-
 func _ready() -> void:
 	world = Engine.get_main_loop().root.get_world_3d()
 	animation_player = find_child("AnimationPlayer")
@@ -42,8 +41,8 @@ func is_group_member_nearby(
 	group_name: StringName, desired_dist: float = default_search_distance
 ) -> bool:
 	var nodes = get_tree().get_nodes_in_group(group_name)
-	for i in nodes.size():
-		var dist := global_position.distance_to(nodes[i].global_position)
+	for node in nodes:
+		var dist := global_position.distance_to(node.global_position)
 		if dist < desired_dist:
 			return true
 

@@ -7,9 +7,7 @@ extends ActionLeaf
 @export var max_distance_to_target: float = 15.0
 
 
-func tick(_actor: Node, _blackboard: Blackboard) -> int:
-	var actor = _actor  # as EnemyActor
-
+func tick(actor: Node, _blackboard: Blackboard) -> int:
 	var target_in_group = actor.get_closest_target(target_group_name)
 	if target_in_group == null:
 		return FAILURE

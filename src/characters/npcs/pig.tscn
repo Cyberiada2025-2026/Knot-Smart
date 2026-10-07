@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d1rapjwp7jvsx"]
 
-[ext_resource type="Script" uid="uid://cprhwygt8n2ib" path="res://characters/npcs/pig.gd" id="1_txp7e"]
+[ext_resource type="Script" uid="uid://claql84jotoud" path="res://characters/enemies/basic_enemy/enemy_actor.gd" id="1_qvjyf"]
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="1_y8yic"]
 [ext_resource type="Script" uid="uid://cg016dbe7gs1x" path="res://addons/beehave/nodes/composites/sequence.gd" id="2_7vdrh"]
 [ext_resource type="Script" uid="uid://dorri1tul8gfx" path="res://addons/beehave/nodes/decorators/delayer.gd" id="3_qvjyf"]
@@ -19,11 +19,11 @@ size = Vector3(0.2983551, 0.4569702, 0.8725586)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vauae"]
 
 [node name="Pig" type="CharacterBody3D" unique_id=322073780]
-script = ExtResource("1_txp7e")
+script = ExtResource("1_qvjyf")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1910539303 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_y8yic")
-blackboard = NodePath("@Node@23381")
+blackboard = NodePath("@Node@20165")
 custom_monitor = true
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"

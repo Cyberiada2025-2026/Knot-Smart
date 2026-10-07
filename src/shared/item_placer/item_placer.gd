@@ -59,7 +59,7 @@ func _set(property, value):
 func place_item():
 	if item_internal_value == "Not selected":
 		print("Select an object to place")
-		pass
+		return
 	var item_to_place = items_nodes[items.find(item_internal_value)].duplicate()
 	item_to_place.position = object_position
 	item_to_place.rotation = object_rotation

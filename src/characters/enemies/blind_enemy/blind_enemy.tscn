@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjs5lxqqh7h2s"]
 
-[ext_resource type="Script" uid="uid://ch6c5lwggfumv" path="res://characters/enemies/blind_enemy/blind_enemy_actor.gd" id="1_yi8cm"]
+[ext_resource type="Script" uid="uid://claql84jotoud" path="res://characters/enemies/basic_enemy/enemy_actor.gd" id="1_yi8cm"]
 [ext_resource type="PackedScene" uid="uid://dth3dxyhvvs4j" path="res://characters/enemies/basic_enemy/enemy.glb" id="2_8w248"]
 [ext_resource type="Script" uid="uid://bb0t2ovl7wifo" path="res://addons/beehave/nodes/beehave_tree.gd" id="3_3p175"]
 [ext_resource type="Script" uid="uid://cw22yurt5l74k" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="4_ayk1w"]
@@ -98,7 +98,7 @@ shape = SubResource("CapsuleShape3D_wjvgd")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1892085315 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("3_3p175")
-blackboard = NodePath("@Node@19999")
+blackboard = NodePath("@Node@20219")
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
 
@@ -125,8 +125,6 @@ metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 [node name="IsPlayerNearby" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SetNewTarget" unique_id=446273920]
 script = ExtResource("8_56g7i")
 searched = &"Player"
-custom_desired_distance = null
-custom_desired_dist_value = null
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
 [node name="SetTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Aggresive/UpdateTarget/SetNewTarget" unique_id=909867699]
@@ -452,8 +450,6 @@ metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 [node name="IsInterestNearby" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Interested" unique_id=1571460213]
 script = ExtResource("8_56g7i")
 searched = &"Interest"
-custom_desired_distance = null
-custom_desired_dist_value = null
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
 [node name="SetTarget" type="Node" parent="BeehaveTree/SelectorReactiveComposite/Interested" unique_id=1644501664]

@@ -10,8 +10,8 @@ const bool billboard = false;
 const float MULT_X = 78340.0;
 const float MULT_Y = 93560.0;
 
-uniform float min_radius_multiplier = 0.2;
-uniform float max_radius_multiplier = 3;
+uniform float min_radius_multiplier = 0.0;
+uniform float max_radius_multiplier = 3.0;
 
 uniform float anim_start = 1.0;
 
@@ -32,6 +32,8 @@ uniform vec3 sec_col_stretch : source_color = vec3(0.0);
 uniform vec3 sec_col_squish : source_color = vec3(0.0);
 
 uniform float vibrate_time = 0.3;
+uniform float vibrate_distance = 10.0;
+uniform bool smooth_vibration = true;
 
 uniform float max_length = 32.0;
 uniform float min_length = 0.3;
@@ -65,11 +67,22 @@ void vertex() {
 	vec4 clip_space = PROJECTION_MATRIX * VIEW_MATRIX * world_space;
 	vec4 vertex = clip_space;
 
-	// Ofsset in clip space for vibrations
+	// Offset in clip space for vibrations
 	vec2 offset = vec2(
-		round(sin(MULT_X * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME/vibrate_time))),
-		round(sin(MULT_Y * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME/vibrate_time)))
+		sin(MULT_X * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME / vibrate_time)),
+		sin(MULT_Y * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME / vibrate_time))
 	);
+	
+	offset = vec2(
+		(smooth_vibration ? offset.x : round(offset.x * float(!smooth_vibration))) * vibrate_distance,
+		(smooth_vibration ? offset.y : round(offset.y * float(!smooth_vibration))) * vibrate_distance
+	);
+	//below is an "optimised" version of the above ternary (I have not profiled it)
+	//offset = vec2(
+	//	(offset.x * float(smooth_vibration) + round(offset.x * float(!smooth_vibration))) * vibrate_distance,
+	//	(offset.y * float(smooth_vibration) + round(offset.y * float(!smooth_vibration))) * vibrate_distance
+	//);
+	
 	
 	// Vertex snapping
 	vertex.xy = round(clip_space.xy / clip_space.w * VIEWPORT_SIZE.xy + offset) / VIEWPORT_SIZE.xy * clip_space.w;

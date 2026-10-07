@@ -35,6 +35,8 @@ shader_parameter/sec_col_default = Color(1, 1, 1, 1)
 shader_parameter/sec_col_stretch = Color(1, 1, 1, 1)
 shader_parameter/sec_col_squish = Color(1, 1, 1, 1)
 shader_parameter/vibrate_time = 0.3
+shader_parameter/vibrate_distance = 10.0
+shader_parameter/smooth_vibration = false
 shader_parameter/max_length = 32.0
 shader_parameter/min_length = 0.3
 

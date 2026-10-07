@@ -18,9 +18,3 @@ static func rotate_random(node: Node3D) -> void:
 	var rotation: Vector3 = node.get_global_rotation()
 	rotation.y = random.randi() % 360
 	node.set_global_rotation(rotation)
-
-
-static func set_random_nav_target_near(
-	point_position: Vector3, maximum_range: float, navigation_agent: NavigationAgent3D
-):
-	navigation_agent.set_target_position(get_random_point_near(point_position, maximum_range))

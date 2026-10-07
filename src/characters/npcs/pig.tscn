@@ -18,12 +18,14 @@ size = Vector3(0.2983551, 0.4569702, 0.8725586)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vauae"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_cyakr"]
+
 [node name="Pig" type="CharacterBody3D" unique_id=322073780]
 script = ExtResource("1_qvjyf")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1910539303 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_y8yic")
-blackboard = NodePath("@Node@20165")
+blackboard = NodePath("@Node@20792")
 custom_monitor = true
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
@@ -90,3 +92,7 @@ shape = SubResource("CapsuleShape3D_vauae")
 avoidance_enabled = true
 height = 2.0
 debug_enabled = true
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=420179306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3669862, 0)
+shape = SubResource("SphereShape3D_cyakr")

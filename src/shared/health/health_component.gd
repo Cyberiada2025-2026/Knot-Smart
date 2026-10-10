@@ -19,6 +19,9 @@ signal health_depleted
 
 @export var health: float = 10.0:
 	set(value):
+		if is_protected:
+			print("is protected")
+			return
 		var prev_health = health
 		health = clamp(value, 0, max_health)
 		if debug_log:
@@ -36,3 +39,5 @@ signal health_depleted
 			if debug_log:
 				print("Health depleted")
 			health_depleted.emit()
+
+@export var is_protected: bool = false

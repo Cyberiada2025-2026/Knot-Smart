@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cvp2js8vwl5px"]
+
+[ext_resource type="PackedScene" uid="uid://cixukpy1xnkj5" path="res://shared/antennas/dishes/satellite/satellite_dish.glb" id="1_tyntn"]
+
+[node name="SatelliteDish" type="Node3D" unique_id=1039230094]
+
+[node name="satellite_dish" parent="." unique_id=625816074 instance=ExtResource("1_tyntn")]

@@ -3,5 +3,5 @@ class_name RotateRandom
 extends ActionLeaf
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	actor.rotate_random();
+	ActorUtils.rotate_random(actor);
 	return SUCCESS

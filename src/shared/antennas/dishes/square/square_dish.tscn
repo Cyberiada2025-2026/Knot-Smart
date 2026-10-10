@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cbp0432oed0nw"]
+
+[ext_resource type="PackedScene" uid="uid://cxa6a4v7oibq5" path="res://shared/antennas/dishes/square/square_dish.glb" id="1_la80f"]
+
+[node name="SquareDish" type="Node3D" unique_id=2039192540]
+
+[node name="square_dish" parent="." unique_id=37038119 instance=ExtResource("1_la80f")]

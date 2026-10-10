@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://c4sgtcvhksqls"]
 
 [ext_resource type="Script" uid="uid://by54s7xnmwcc1" path="res://characters/player/player_main.gd" id="1_4ntmi"]
-[ext_resource type="PackedScene" uid="uid://bi7hkhprp31go" path="res://characters/player/player_model.glb" id="2_aqrcq"]
+[ext_resource type="PackedScene" uid="uid://bpwwtngx87b5u" path="res://characters/player/player_model.tscn" id="2_aqrcq"]
 [ext_resource type="PackedScene" uid="uid://2kedsgce1fle" path="res://characters/player/player_camera.tscn" id="3_btcbx"]
 [ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_ixbpm"]
-[ext_resource type="PackedScene" uid="uid://71v4bfmlfpqn" path="res://characters/player/player_detection/player_decoy.tscn" id="4_6dc8e"]
 [ext_resource type="PackedScene" uid="uid://b0gb5qnl30ap5" path="res://characters/player/gravity_controller.tscn" id="4_ixbpm"]
 [ext_resource type="PackedScene" uid="uid://cjjffdo72xk1u" path="res://shared/journal/journal.tscn" id="5_ixbpm"]
 [ext_resource type="Script" uid="uid://bwbgvbw8rs0aa" path="res://shared/vfx/player/vfx_player_sequence.gd" id="6_3t07l"]
 [ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="6_c6leb"]
 [ext_resource type="PackedScene" uid="uid://d2ucnrebee3ji" path="res://shared/vfx/blood/blood_vfx.tscn" id="7_on558"]
 [ext_resource type="Script" uid="uid://bcy4v42bixjvm" path="res://characters/player/rope/rope_manager.gd" id="7_rpf03"]
+[ext_resource type="Script" uid="uid://ixybqeglhwl" path="res://characters/player/rope/strategies/control/immediate_control_strategy.gd" id="10_fpo3a"]
 [ext_resource type="Script" uid="uid://bkffe8kvogeke" path="res://characters/player/player_respawn_component.gd" id="11_3t07l"]
+[ext_resource type="Script" uid="uid://btbvla327h7h7" path="res://characters/player/rope/strategies/control/two_click_control_strategy.gd" id="11_fpo3a"]
 [ext_resource type="Script" uid="uid://c0v1x4a4fbhnn" path="res://shared/tooltips/tooltip_manager.gd" id="12_on558"]
 [ext_resource type="Script" uid="uid://sf6x58peklug" path="res://ui/inventory/inventory_manager.gd" id="13_gqopd"]
 [ext_resource type="Script" uid="uid://d0x6a5ec5mlei" path="res://shared/speech/speech_manager.gd" id="13_icpky"]
@@ -57,11 +58,11 @@ player_model = NodePath("PlayerModel")
 player_camera = NodePath("PlayerCamera")
 player_gravity_controller = NodePath("gravityController")
 
+[node name="PlayerModel" parent="." unique_id=1301919891 instance=ExtResource("2_aqrcq")]
+transform = Transform3D(-0.123, 0, -1.0753002e-08, 0, 0.123, 0, 1.0753002e-08, 0, -0.123, 0, 0.015, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=674445317]
 shape = SubResource("CapsuleShape3D_d2agh")
-
-[node name="PlayerModel" parent="." unique_id=1115287672 instance=ExtResource("2_aqrcq")]
-transform = Transform3D(-0.13, 0, 0, 0, 0.13, 0, 0, 0, -0.13, 0, 0, 0)
 
 [node name="PlayerCamera" parent="." unique_id=693967780 node_paths=PackedStringArray("player") instance=ExtResource("3_btcbx")]
 player = NodePath("..")
@@ -80,8 +81,6 @@ sensors = {
 "ui_right": NodePath("MoveingSensors/right_sensor"),
 "ui_up": NodePath("MoveingSensors/front_sensor")
 }
-
-[node name="PlayerDecoy" parent="." unique_id=2037856166 instance=ExtResource("4_6dc8e")]
 
 [node name="FootstepsMaker" type="Node3D" parent="." unique_id=324333915]
 
@@ -116,10 +115,17 @@ shape = SubResource("BoxShape3D_on558")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=1854980343]
 shape = SubResource("SphereShape3D_on558")
 
-[node name="RopeManager" type="Node3D" parent="." unique_id=1597735802]
+[node name="RopeManager" type="Node3D" parent="." unique_id=1597735802 node_paths=PackedStringArray("control_strategy")]
 top_level = true
 script = ExtResource("7_rpf03")
+control_strategy = NodePath("TwoClickControlStrategy")
 metadata/_custom_type_script = "uid://bcy4v42bixjvm"
+
+[node name="TwoClickControlStrategy" type="Node3D" parent="RopeManager" unique_id=79888159]
+script = ExtResource("11_fpo3a")
+
+[node name="ImmediateControlStrategy" type="Node3D" parent="RopeManager" unique_id=848248237]
+script = ExtResource("10_fpo3a")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1622957288]
 script = ExtResource("6_c6leb")
@@ -176,6 +182,10 @@ metadata/_custom_type_script = "uid://d0x6a5ec5mlei"
 [node name="Journal menu" parent="." unique_id=883052313 instance=ExtResource("5_ixbpm")]
 initial_entries = Array[ExtResource("17_aqrcq")]([SubResource("Resource_aqrcq")])
 
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=317153105]
+target_position = Vector3(0, -0.405, 0)
+
 [connection signal="camera_rotated" from="PlayerCamera" to="." method="_on_player_camera_camera_rotated"]
+[connection signal="view_changed" from="PlayerCamera" to="." method="_on_player_camera_view_changed"]
 [connection signal="timeout" from="FootstepsMaker/Timer" to="FootstepsMaker" method="_on_timer_timeout"]
 [connection signal="health_decreased" from="HealthComponent" to="VfxPlayerSequence" method="play"]

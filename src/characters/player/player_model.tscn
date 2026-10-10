@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bpwwtngx87b5u"]
+
+[ext_resource type="PackedScene" uid="uid://bi7hkhprp31go" path="res://characters/player/player_model.glb" id="1_1nf8s"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1nf8s"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_01x27"]
+animation = &"Jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yy0ty"]
+animation = &"Shoot"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_my2vs"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_1nf8s"]
+xfade_time = 0.2
+input_0/name = "Idle"
+input_0/auto_advance = false
+input_0/break_loop_at_end = false
+input_0/reset = false
+input_1/name = "Walk"
+input_1/auto_advance = false
+input_1/break_loop_at_end = false
+input_1/reset = false
+input_2/name = "Jump"
+input_2/auto_advance = false
+input_2/break_loop_at_end = false
+input_2/reset = false
+input_3/name = "Shoot"
+input_3/auto_advance = false
+input_3/break_loop_at_end = false
+input_3/reset = false
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_1nf8s"]
+graph_offset = Vector2(-445.6949, 31.887207)
+"nodes/Anim Idle/node" = SubResource("AnimationNodeAnimation_1nf8s")
+"nodes/Anim Idle/position" = Vector2(-300, 60)
+"nodes/Anim Walk/node" = SubResource("AnimationNodeAnimation_my2vs")
+"nodes/Anim Walk/position" = Vector2(-300, 240)
+nodes/Movement/node = SubResource("AnimationNodeTransition_1nf8s")
+nodes/Movement/position = Vector2(-20, 200)
+"nodes/Anim Jump/node" = SubResource("AnimationNodeAnimation_01x27")
+"nodes/Anim Jump/position" = Vector2(-300, 420)
+"nodes/Anim Shoot/node" = SubResource("AnimationNodeAnimation_yy0ty")
+"nodes/Anim Shoot/position" = Vector2(-180, 600)
+node_connections = [&"output", 0, &"Movement", &"Movement", 0, &"Anim Idle", &"Movement", 1, &"Anim Walk", &"Movement", 2, &"Anim Jump", &"Movement", 3, &"Anim Shoot"]
+
+[node name="player_model" unique_id=76857233 instance=ExtResource("1_1nf8s")]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=474290956]
+tree_root = SubResource("AnimationNodeBlendTree_1nf8s")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Movement/current_state = "Idle"
+parameters/Movement/transition_request = ""
+parameters/Movement/current_index = 0

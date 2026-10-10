@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ch2d1wexjyrra"]
+
+[ext_resource type="Texture2D" uid="uid://ce6sfryyf5laj" path="res://shared/generator_parts/alien_part_energy_beam.png" id="1_6tsgf"]
+
+[resource]
+resource_name = "Material"
+transparency = 4
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("1_6tsgf")
+texture_filter = 0

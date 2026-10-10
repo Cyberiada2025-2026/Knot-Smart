@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bmu23mcl2qlxp"]
+
+[ext_resource type="Texture2D" uid="uid://be3c5dqd4exv6" path="res://shared/fungi/mold/mold_field_mold.png" id="1_nx3wf"]
+
+[resource]
+resource_name = "Mold side"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = ExtResource("1_nx3wf")
+texture_filter = 2

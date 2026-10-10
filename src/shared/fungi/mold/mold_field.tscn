@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bec00x78i81ut"]
+
+[ext_resource type="PackedScene" uid="uid://215eyenhchhm" path="res://shared/fungi/mold/mold_field.glb" id="1_8om0c"]
+[ext_resource type="PackedScene" uid="uid://crydoaks48pre" path="res://shared/fungi/mold/mold.tscn" id="2_cp643"]
+
+[node name="mold_field" unique_id=1746308239 instance=ExtResource("1_8om0c")]
+
+[node name="Cube_006" parent="." index="0" unique_id=1964901620]
+visible = false
+
+[node name="Mold" parent="." index="5" unique_id=197688663 instance=ExtResource("2_cp643")]
+transform = Transform3D(1.6326432, 0, -2.5168386, 0, 0.5, 0, 2.5168386, 0, 1.6326432, 0.044035703, -0.038838148, 0.07098967)

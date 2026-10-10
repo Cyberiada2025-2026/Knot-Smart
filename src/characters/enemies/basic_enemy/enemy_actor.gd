@@ -16,22 +16,21 @@ var should_track_target: bool = false
 
 func _ready() -> void:
 	world = Engine.get_main_loop().root.get_world_3d()
+	navigation_agent_3d.set_target_position(global_position)
 
 
-func get_point_on_map(point: Vector3) -> Vector3:
-	return NavigationServer3D.map_get_closest_point(world.get_navigation_map(), point)
-
-
-func get_random_point_near(point_position: Vector3) -> Vector3:
-	var random_point = Utils.get_random_point_in_circular_ring(
-		0.0, idle_wander_distance, point_position
-	)
-
-	return get_point_on_map(random_point)
+func _physics_process(_delta: float) -> void:
+	if can_move:
+		set_velocity_to_target()
+		rotate_with_velocity()
+		move_and_slide()
+		push_rigid_bodies()
 
 
 func set_random_nav_target_near(point_position: Vector3) -> void:
-	navigation_agent_3d.set_target_position(get_random_point_near(point_position))
+	navigation_agent_3d.set_target_position(
+		ActorUtils.get_random_point_near(point_position, idle_wander_distance)
+	)
 
 
 func set_velocity_to_target() -> void:
@@ -67,16 +66,9 @@ func get_target_pos() -> Vector3:
 
 
 func rotate_with_velocity() -> void:
-	if velocity.length_squared() > 0:
-		look_at(global_position + velocity)
-
-
-func _physics_process(_delta: float) -> void:
-	if can_move:
-		set_velocity_to_target()
-		rotate_with_velocity()
-		move_and_slide()
-		push_rigid_bodies()
+	var vel_2d = Vector3(velocity.x, 0, velocity.z)
+	if vel_2d.length_squared() > 0:
+		look_at(global_position + vel_2d)
 
 
 func push_rigid_bodies() -> void:

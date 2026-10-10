@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://da1r4tbmgjdy2"]
+
+[ext_resource type="PackedScene" uid="uid://bi2xuwh8y76ia" path="res://shared/debris/single/models/debris4.glb" id="1_c5i2i"]
+[ext_resource type="Material" uid="uid://bjkeopeq3ehmb" path="res://shared/buildings/assets/materials/building_base_material.tres" id="2_gi38r"]
+[ext_resource type="Script" uid="uid://uuhido8vjpvw" path="res://shared/health/projectile_damage_component.gd" id="3_k8km1"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_lqawb"]
+points = PackedVector3Array(0.18794048, -0.20002203, -0.7651855, -1, -0.21676047, 1, -1, -0.20002203, 0.014081001, 0.18794048, 0.5035987, -0.7651855, 1, -0.20002203, 0.014081001, -1, 0.5035987, 1, 1, -0.20002203, 1, -1, 0.5035987, 0.014081001, 1, 0.5569951, 0.014081001, 1, 0.5035987, 1)
+
+[node name="Debris4" type="RigidBody3D" unique_id=1484199214]
+collision_layer = 17
+mass = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1906111561]
+shape = SubResource("ConvexPolygonShape3D_lqawb")
+
+[node name="debris4" parent="." unique_id=834362131 instance=ExtResource("1_c5i2i")]
+
+[node name="Debris_004" parent="debris4" index="0" unique_id=1526435739]
+surface_material_override/0 = ExtResource("2_gi38r")
+
+[node name="ProjectileDamageComponent" type="Node" parent="." unique_id=1904091044]
+script = ExtResource("3_k8km1")
+metadata/_custom_type_script = "uid://uuhido8vjpvw"
+
+[editable path="debris4"]

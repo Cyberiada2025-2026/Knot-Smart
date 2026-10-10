@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cugjnd5r2v62b"]
+
+[ext_resource type="PackedScene" uid="uid://dsfb6xdbcc72s" path="res://scenes/debug/old_map/roads/assets/glb/road_T.glb" id="1_df3b2"]
+[ext_resource type="Material" uid="uid://ocqgdyc21bsc" path="res://scenes/debug/old_map/roads/assets/materials/asphalt.tres" id="2_8gm82"]
+[ext_resource type="Material" uid="uid://dkc6qdwcyremk" path="res://scenes/debug/old_map/roads/assets/materials/pavement.tres" id="2_ort41"]
+[ext_resource type="Material" uid="uid://b4f1df1cha8bn" path="res://scenes/debug/old_map/roads/assets/materials/pavement-side.tres" id="4_hjbei"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_df3b2"]
+points = PackedVector3Array(0, 0, -17.5, 0, 2.5, -15, 0, 0, -9.536743e-07, 0, 2.5, -9.536743e-07, 6.507, 0, -16.516, 17.5, 0, 0, 14.999999, 2.5, -9.536743e-07, 6.507439, 2.5, -13.515564, 16.227, 0, -7.853, 12.727, 2.5, -7.675, 12, 0, -13.03)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_8gm82"]
+points = PackedVector3Array(-18.5, 0, -35, 1.5, 0, -35, -18.5, 0, 35, -1, 2.5, -35, 1.5, 0, 35, -1, 2.5, 35, -16, 2.5, 35, -16, 2.5, -35)
+
+[node name="road_T2" unique_id=183470808 instance=ExtResource("1_df3b2")]
+
+[node name="road_T" parent="." index="0" unique_id=550693915]
+transform = Transform3D(-6.244484e-10, 0, 0.014285714, 0, 0.014285714, 0, -0.014285714, 0, -6.244484e-10, 0, 0.022, 0)
+
+[node name="chodnik004" parent="road_T" index="0" unique_id=1955900430]
+material_override = ExtResource("2_ort41")
+
+[node name="chodnik_zakręt01" parent="road_T" index="1" unique_id=1173370464]
+material_override = ExtResource("2_ort41")
+
+[node name="chodnik_zakręt02" parent="road_T" index="2" unique_id=424217545]
+material_override = ExtResource("2_ort41")
+
+[node name="droga001" parent="road_T" index="3" unique_id=173651834]
+material_override = ExtResource("2_8gm82")
+
+[node name="krawężnik004" parent="road_T" index="4" unique_id=859570117]
+material_override = ExtResource("4_hjbei")
+
+[node name="krawężnik_zakręt01" parent="road_T" index="5" unique_id=2100295138]
+material_override = ExtResource("4_hjbei")
+
+[node name="krawężnik_zakręt02" parent="road_T" index="6" unique_id=1483927049]
+material_override = ExtResource("4_hjbei")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="road_T" index="7" unique_id=1936431851]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="road_T/StaticBody3D" index="0" unique_id=1898501960]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -35, -1.5, 35)
+shape = SubResource("ConvexPolygonShape3D_df3b2")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="road_T/StaticBody3D" index="1" unique_id=731178643]
+transform = Transform3D(-4.3711385e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -4.3711385e-08, -35, -1.5, -35)
+shape = SubResource("ConvexPolygonShape3D_df3b2")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="road_T/StaticBody3D" index="2" unique_id=904541533]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.999996, -1.5000002, -2.2737368e-13)
+shape = SubResource("ConvexPolygonShape3D_8gm82")

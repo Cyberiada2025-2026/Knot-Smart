@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bo23tv6yguitm"]
+
+[ext_resource type="Script" uid="uid://d3priws45vp1i" path="res://shared/nature_generators/tree_generator/tree_generator.gd" id="1_dftd3"]
+[ext_resource type="Resource" uid="uid://cu3velky86qgt" path="res://shared/nature_generators/tree_generator/tree_materials/branches/normal/branches.tres" id="2_4sfbp"]
+[ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark/bark.tres" id="2_ml5re"]
+[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/nature_generators/tree_generator/tree_parameters.gd" id="3_4sfbp"]
+
+[sub_resource type="Resource" id="Resource_8tpen"]
+script = ExtResource("3_4sfbp")
+seed = 2507956174
+material = ExtResource("2_ml5re")
+branch_spread_angle = 0.587
+min_count = 2
+foliage_parameters = ExtResource("2_4sfbp")
+branch_spawn_percentage = 0.35
+metadata/_custom_type_script = "uid://s0k1bcrvckmc"
+
+[node name="TreeGenerator7" type="Node3D" unique_id=668579522]
+script = ExtResource("1_dftd3")
+params = SubResource("Resource_8tpen")
+metadata/_custom_type_script = "uid://d3priws45vp1i"

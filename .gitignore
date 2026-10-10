@@ -2,3 +2,4 @@
 .godot/
 /android/
 src/.vscode/settings.json
+*.blend1

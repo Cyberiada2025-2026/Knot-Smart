@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dps1yxnixq4w8"]
+
+[ext_resource type="Script" uid="uid://brsmam8bs4p22" path="res://shared/generator_parts/part_base.gd" id="1_dqug8"]
+[ext_resource type="Script" uid="uid://dk35hvlh1ahhu" path="res://shared/item_fusion_with_tower/fusable_with_tower.gd" id="1_qatiy"]
+[ext_resource type="Script" uid="uid://bm0wrygl0ikje" path="res://shared/point_of_interest/point_of_interest.gd" id="2_dqug8"]
+[ext_resource type="Script" uid="uid://krqwntoiv6fm" path="res://shared/point_of_interest/components/speech_poi.gd" id="3_aeo6i"]
+[ext_resource type="Script" uid="uid://dhpmrqniojeb4" path="res://shared/dialogue/dialogue.gd" id="4_0o81n"]
+[ext_resource type="Script" uid="uid://kpru7f8vmtp5" path="res://shared/dialogue/sentence.gd" id="5_6rglx"]
+[ext_resource type="PackedScene" uid="uid://dhgcdhnywibiw" path="res://shared/generator_parts/alien_part.glb" id="7_aeo6i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aeo6i"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="Resource" id="Resource_u8h14"]
+script = ExtResource("5_6rglx")
+text = "This is the generator part. I need to attach it to the tower."
+
+[sub_resource type="Resource" id="Resource_tlwao"]
+script = ExtResource("4_0o81n")
+sentences = Array[ExtResource("5_6rglx")]([SubResource("Resource_u8h14")])
+metadata/_custom_type_script = "uid://dhpmrqniojeb4"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aeo6i"]
+shading_mode = 0
+albedo_color = Color(0.22169095, 0.47642398, 0.9110765, 1)
+
+[node name="Part1" type="RigidBody3D" unique_id=225790775]
+collision_layer = 2147483649
+collision_mask = 2147483681
+mass = 4.0
+script = ExtResource("1_dqug8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1455208973]
+shape = SubResource("BoxShape3D_aeo6i")
+
+[node name="FusableWithTower" type="Node" parent="." unique_id=154421685]
+script = ExtResource("1_qatiy")
+metadata/_custom_type_script = "uid://dk35hvlh1ahhu"
+
+[node name="PointOfInterest" type="Node3D" parent="." unique_id=1853542762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+script = ExtResource("2_dqug8")
+radius = 8.0
+visualize = false
+metadata/_custom_type_script = "uid://bm0wrygl0ikje"
+
+[node name="SpeechPOI" type="Node" parent="PointOfInterest" unique_id=1438143946]
+script = ExtResource("3_aeo6i")
+dialogue = SubResource("Resource_tlwao")
+metadata/_custom_type_script = "uid://krqwntoiv6fm"
+
+[node name="alien_part" parent="." unique_id=458410533 instance=ExtResource("7_aeo6i")]
+
+[node name="Part1" type="CSGSphere3D" parent="." unique_id=1169706569]
+radius = 0.95619446
+material = SubResource("StandardMaterial3D_aeo6i")
+
+[editable path="alien_part"]

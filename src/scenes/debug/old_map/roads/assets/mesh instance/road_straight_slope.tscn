@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://t1yeltg2l1xt"]
+
+[ext_resource type="PackedScene" uid="uid://j4qjmhrj7gu8" path="res://scenes/debug/old_map/roads/assets/glb/road_straight_slope.glb" id="1_ds1o6"]
+[ext_resource type="Material" uid="uid://dkc6qdwcyremk" path="res://scenes/debug/old_map/roads/assets/materials/pavement.tres" id="2_6ivqx"]
+[ext_resource type="Material" uid="uid://ocqgdyc21bsc" path="res://scenes/debug/old_map/roads/assets/materials/asphalt.tres" id="2_w47hx"]
+[ext_resource type="Material" uid="uid://b4f1df1cha8bn" path="res://scenes/debug/old_map/roads/assets/materials/pavement-side.tres" id="4_g2ayb"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ds1o6"]
+points = PackedVector3Array(-11.5, -1, -35, 11.5, -1, -35, -11.5, 29.622, 35, -7.5, 2.499939, -35, 7.499999, 2.499939, -35, 11.5, 29.622, 35, -7.5, 33.121758, 35, 7.499999, 33.121758, 35)
+
+[node name="road_straight_slope2" unique_id=1854170182 instance=ExtResource("1_ds1o6")]
+
+[node name="road_straight_slope" parent="." index="0" unique_id=1475763697]
+transform = Transform3D(-6.244609e-10, 0, 0.014286, 0, 0.014286, 0, -0.014286, 0, -6.244609e-10, 0, 0.241, 0)
+
+[node name="chodnik234" parent="road_straight_slope" index="0" unique_id=208161307]
+material_override = ExtResource("2_6ivqx")
+
+[node name="chodnik235" parent="road_straight_slope" index="1" unique_id=1012134622]
+material_override = ExtResource("2_6ivqx")
+
+[node name="droga143" parent="road_straight_slope" index="2" unique_id=2045949752]
+material_override = ExtResource("2_w47hx")
+
+[node name="krawężnik231" parent="road_straight_slope" index="3" unique_id=1781400186]
+material_override = ExtResource("4_g2ayb")
+
+[node name="krawężnik232" parent="road_straight_slope" index="4" unique_id=481251489]
+material_override = ExtResource("4_g2ayb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="road_straight_slope" index="5" unique_id=461238499]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="road_straight_slope/StaticBody3D" index="0" unique_id=827965808]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 27.5, -16.8125, 0)
+shape = SubResource("ConvexPolygonShape3D_ds1o6")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="road_straight_slope/StaticBody3D" index="1" unique_id=1187456294]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -27.5, -16.812, 0)
+shape = SubResource("ConvexPolygonShape3D_ds1o6")

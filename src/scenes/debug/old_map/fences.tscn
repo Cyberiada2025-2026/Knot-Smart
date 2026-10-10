@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://cmjpjuxdm2lvb"]
+
+[ext_resource type="PackedScene" uid="uid://c4gdh3na88sul" path="res://shared/fences/wire_fence/wire_fence.tscn" id="1_fqwjy"]
+[ext_resource type="PackedScene" uid="uid://by6tc6oibk1hi" path="res://shared/fences/metal_fence/metal_fence.tscn" id="2_ki67p"]
+
+[node name="Fences" type="Node3D" unique_id=1649347514]
+
+[node name="StaticBody3D" parent="." unique_id=834015262 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 20.5, -0.5, 62.5)
+
+[node name="StaticBody3D2" parent="." unique_id=79297021 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 24.5, -0.5, 62.5)
+
+[node name="StaticBody3D3" parent="." unique_id=229954599 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28.5, -0.5, 62.5)
+
+[node name="StaticBody3D4" parent="." unique_id=1625623761 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 32.5, -0.5, 62.5)
+
+[node name="StaticBody3D5" parent="." unique_id=361110576 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 36.5, -0.5, 62.5)
+
+[node name="StaticBody3D6" parent="." unique_id=920380279 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15.5, -0.5, 62.5)
+
+[node name="StaticBody3D7" parent="." unique_id=568364409 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.5, -0.5, 62.5)
+
+[node name="StaticBody3D8" parent="." unique_id=837352646 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.5, -0.5, 62.5)
+
+[node name="StaticBody3D9" parent="." unique_id=2056480556 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.5, -0.5, 62.5)
+
+[node name="StaticBody3D10" parent="." unique_id=1101587801 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, -0.5, 48.5)
+
+[node name="StaticBody3D11" parent="." unique_id=570099448 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, -0.5, 52.5)
+
+[node name="StaticBody3D12" parent="." unique_id=266386377 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, -0.5, 56.5)
+
+[node name="StaticBody3D13" parent="." unique_id=1332667149 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, -0.5, 60.5)
+
+[node name="MetalFence" parent="." unique_id=2019968806 instance=ExtResource("2_ki67p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -0.5, 17.5)
+
+[node name="MetalFence2" parent="." unique_id=295167594 instance=ExtResource("2_ki67p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -0.5, 13.5)
+
+[node name="MetalFence4" parent="." unique_id=791753181 instance=ExtResource("2_ki67p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, -0.5, 6.5)
+
+[node name="StaticBody3D14" parent="." unique_id=1121825485 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4.5, -0.5, -0.5)
+
+[node name="StaticBody3D15" parent="." unique_id=1165467515 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.5, -0.5, -0.5)
+
+[node name="StaticBody3D16" parent="." unique_id=522025305 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 33, -0.5, -9)
+
+[node name="StaticBody3D17" parent="." unique_id=93513454 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 33, -0.5, -13)
+
+[node name="StaticBody3D18" parent="." unique_id=979656823 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 33, -0.5, -17)
+
+[node name="StaticBody3D19" parent="." unique_id=1880799940 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 33, -0.5, -21)
+
+[node name="StaticBody3D20" parent="." unique_id=1566790875 instance=ExtResource("1_fqwjy")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 18, -0.5, 47)
+
+[node name="MetalFence3" parent="." unique_id=342507003 instance=ExtResource("2_ki67p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 32.5, -0.5, 121.5)
+
+[node name="MetalFence5" parent="." unique_id=1311956123 instance=ExtResource("2_ki67p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, -0.5, 119.5)
+
+[node name="MetalFence6" parent="." unique_id=1180371921 instance=ExtResource("2_ki67p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, -0.5, 115.5)
+
+[node name="MetalFence7" parent="." unique_id=1023108978 instance=ExtResource("2_ki67p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, -0.5, 111.5)
+
+[node name="MetalFence8" parent="." unique_id=265482348 instance=ExtResource("2_ki67p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.5, -0.5, 107.5)

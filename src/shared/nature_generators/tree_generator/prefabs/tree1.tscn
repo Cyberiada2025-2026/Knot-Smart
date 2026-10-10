@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dpbcjs1dr4vxe"]
+
+[ext_resource type="Script" uid="uid://d3priws45vp1i" path="res://shared/nature_generators/tree_generator/tree_generator.gd" id="1_b3nxv"]
+[ext_resource type="Resource" uid="uid://cu3velky86qgt" path="res://shared/nature_generators/tree_generator/tree_materials/branches/normal/branches.tres" id="2_63ugv"]
+[ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark/bark.tres" id="2_w13n0"]
+[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/nature_generators/tree_generator/tree_parameters.gd" id="3_63ugv"]
+
+[sub_resource type="Resource" id="Resource_rp7ky"]
+script = ExtResource("3_63ugv")
+seed = 2743012298
+material = ExtResource("2_w13n0")
+branch_spread_angle = 0.66
+trunk_segment_count = 2
+trunk_rate_of_shrinking = 0.63
+max_count = 5
+branch_recursion_level = 1
+foliage_parameters = ExtResource("2_63ugv")
+subtype = "SIDE"
+metadata/_custom_type_script = "uid://s0k1bcrvckmc"
+
+[node name="TreeGenerator" type="Node3D" unique_id=202791369]
+script = ExtResource("1_b3nxv")
+params = SubResource("Resource_rp7ky")
+metadata/_custom_type_script = "uid://d3priws45vp1i"

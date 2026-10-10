@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b1yug7w8pnwbx"]
+
+[ext_resource type="PackedScene" uid="uid://d1rapjwp7jvsx" path="res://characters/npcs/pig.tscn" id="1_vauae"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_cyakr"]
+vertices = PackedVector3Array(-7.3552246, 0.4663086, -4.205078, -7.3552246, 0.4663086, 4.294922, 7.3947754, 0.4663086, 4.294922, 7.3947754, 0.4663086, -4.205078)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b5wur"]
+size = Vector3(15.702393, 1.0196533, 9.439453)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vauae"]
+size = Vector3(15.669922, 0.9145508, 9.304199)
+
+[node name="PigDebug" type="Node3D" unique_id=1736640603]
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=106882008]
+navigation_mesh = SubResource("NavigationMesh_cyakr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=387472249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0040283203, -0.52386475, 0.0146484375)
+mesh = SubResource("BoxMesh_b5wur")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D" unique_id=1631976074]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D" unique_id=73659269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0146484375, -0.4621582, -0.03149414)
+shape = SubResource("BoxShape3D_vauae")
+
+[node name="Pig" parent="." unique_id=322073780 instance=ExtResource("1_vauae")]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=255846734]
+transform = Transform3D(0.8110789, 0.2263071, 0.5393852, -0.584937, 0.31379947, 0.74791634, 0, -0.9221254, 0.3868915, 0, 0, 0)

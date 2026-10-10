@@ -14,7 +14,7 @@ func tick(actor: Node, _blackboard: Blackboard) -> int:
 	if is_moving_away:
 		direction *= -1
 
-	var target_point = actor.get_point_on_map(actor_pos + direction * distance)
+	var target_point = ActorUtils.get_point_on_map(actor_pos + direction * distance)
 	actor.navigation_agent_3d.set_target_position(target_point)
 
 	return SUCCESS

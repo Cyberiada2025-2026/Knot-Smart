@@ -10,25 +10,41 @@ const bool billboard = false;
 const float MULT_X = 78340.0;
 const float MULT_Y = 93560.0;
 
-uniform float min_radius_multiplier = 0.0;
-uniform float max_radius_multiplier = 3;
-uniform float anim_start = 1.0;
+group_uniforms RopeDeformation.SquashAndStretch;
+uniform float max_length = 32.0;
+uniform float min_length = 0.3;
 uniform float length_start = 1.0;
 uniform float length_current = 1.0;
+uniform float min_radius_multiplier = 0.0;
+uniform float max_radius_multiplier = 3;
+group_uniforms;
+
+group_uniforms RopeDeformation.Vibration;
+uniform float vibrate_time = 0.3;
+group_uniforms;
+
+group_uniforms Colors.MainColor;
+uniform vec3 main_col_default : source_color = vec3(1.0);
+uniform vec3 main_col_stretch : source_color = vec3(1.0);
+uniform vec3 main_col_squish : source_color = vec3(1.0);
+group_uniforms;
+
+group_uniforms Colors.SecondaryColor;
+uniform vec3 sec_col_default : source_color = vec3(0.0);
+uniform vec3 sec_col_stretch : source_color = vec3(0.0);
+uniform vec3 sec_col_squish : source_color = vec3(0.0);
+group_uniforms;
+
+group_uniforms Colors.Segments;
 uniform float segment_density = 2.0;
 uniform float segment_width = 0.3;
 uniform float softness = 0.1;
 uniform float speed = 0.2;
-uniform vec3 main_col_default : source_color = vec3(1.0);
-uniform vec3 main_col_stretch : source_color = vec3(1.0);
-uniform vec3 main_col_squish : source_color = vec3(1.0);
-uniform vec3 sec_col_default : source_color = vec3(0.0);
-uniform vec3 sec_col_stretch : source_color = vec3(0.0);
-uniform vec3 sec_col_squish : source_color = vec3(0.0);
-uniform float vibrate_time = 0.3;
+group_uniforms;
 
-uniform float max_length = 32.0;
-uniform float min_length = 0.3;
+group_uniforms Colors.Transparency;
+uniform float anim_start = 1.0;
+group_uniforms;
 
 varying vec4 clip_pos;
 

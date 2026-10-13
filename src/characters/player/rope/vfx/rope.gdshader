@@ -54,7 +54,7 @@ float fresnel(float amount, vec3 normal, vec3 view)
 
 void vertex() {
 	vec3 vert_temp = VERTEX;
-	//vert_temp.y *= length_current;
+	vert_temp.y *= length_current;
 	
 	//Squash and stretch
 	float t = (length_current - min_length) / (max_length - min_length);

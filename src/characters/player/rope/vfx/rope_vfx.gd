@@ -33,6 +33,7 @@ func start(params: RopeParams):
 
 ## Call when rope changes length
 func set_length(length: float):
+	print(length)
 	mat.set_shader_parameter(LENGTH_PARAM, length)
 	splash.emission_box_extents.y = length / 2 * 0.6
 	splash.position.y = length * 0.4
@@ -42,7 +43,7 @@ func set_length(length: float):
 
 func end() -> void:
 	player.play(ANIM_OFF)
-	self.reparent(get_tree().root)
+	reparent(get_tree().root)
 	await get_tree().create_timer(5.0).timeout
 	queue_free()
 

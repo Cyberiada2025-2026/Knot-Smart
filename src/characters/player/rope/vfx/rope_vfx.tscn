@@ -7,14 +7,6 @@
 [ext_resource type="Shader" uid="uid://dca8vn42psgvs" path="res://characters/player/rope/vfx/fuse/fuse_stencil.gdshader" id="5_r4opj"]
 [ext_resource type="Shader" uid="uid://bhd7qpyhwtrt8" path="res://characters/player/rope/vfx/fuse/fuse.gdshader" id="6_xkqvk"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_i5arm"]
-resource_local_to_scene = true
-top_radius = 0.1
-bottom_radius = 0.1
-height = 1.0
-radial_segments = 8
-rings = 10
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mc67o"]
 resource_local_to_scene = true
 render_priority = 0
@@ -39,6 +31,18 @@ shader_parameter/vibrate_distance = 10.0
 shader_parameter/smooth_vibration = false
 shader_parameter/max_length = 32.0
 shader_parameter/min_length = 0.3
+shader_parameter/fresnel_amount = 10.0
+shader_parameter/fresnel_multiplier = 1.0
+shader_parameter/fresnel_intensity = 1.0
+shader_parameter/fresnel_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i5arm"]
+resource_local_to_scene = true
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+radial_segments = 8
+rings = 10
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wc5p8"]
 render_priority = 0

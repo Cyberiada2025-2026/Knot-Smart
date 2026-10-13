@@ -2,8 +2,6 @@ shader_type spatial;
 render_mode unshaded, cull_disabled, depth_draw_opaque;
 
 #include "res://shared/shaders/include/dither_setup.gdshaderinc"
-const vec2 res = vec2(320, 240);
-const bool billboard = false;
 
 // Large numbers that are not simple multiplications of each others
 // for a simple pseudo randomness

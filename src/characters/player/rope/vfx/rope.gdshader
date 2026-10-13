@@ -43,7 +43,7 @@ uniform float speed = 0.2;
 group_uniforms;
 
 group_uniforms Colors.Transparency;
-uniform float anim_start = 1.0;
+uniform float alpha = 1.0;
 group_uniforms;
 
 varying vec4 clip_pos;
@@ -85,7 +85,7 @@ void fragment() {
 	
 	#include "res://shared/shaders/include/get_dither.gdshaderinc"
 	
-	if (step(4.0, dit + uv.y + anim_start * 8.0 * 2.0) == 0.0)
+	if (step(4.0, dit + uv.y + alpha * 8.0 * 2.0) == 0.0)
 		discard;
 	
 	float segments = uv.y * length_current * segment_density;

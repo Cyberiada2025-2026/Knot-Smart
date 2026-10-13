@@ -32,7 +32,7 @@ shader_parameter/segment_density = 10.0
 shader_parameter/segment_width = 0.01
 shader_parameter/softness = 0.5
 shader_parameter/speed = 5.0
-shader_parameter/anim_start = 0.0
+shader_parameter/alpha = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5e0b0"]
 albedo_color = Color(0.10880001, 0.64, 0.12650666, 1)

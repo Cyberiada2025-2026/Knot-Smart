@@ -16,11 +16,13 @@ uniform float min_length = 0.3;
 uniform float length_start = 1.0;
 uniform float length_current = 1.0;
 uniform float min_radius_multiplier = 0.0;
-uniform float max_radius_multiplier = 3;
+uniform float max_radius_multiplier = 3.0;
 group_uniforms;
 
 group_uniforms RopeDeformation.Vibration;
 uniform float vibrate_time = 0.3;
+uniform float vibrate_distance = 2.0;
+uniform bool smooth_vibration = false;
 group_uniforms;
 
 group_uniforms Colors.MainColor;
@@ -64,9 +66,19 @@ void vertex() {
 	vec4 vertex = clip_space;
 	// Offset in clip space for vibrations
 	vec2 offset = vec2(
-		round(sin(MULT_X * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME / vibrate_time))),
-		round(sin(MULT_Y * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME / vibrate_time)))
+		sin(MULT_X * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME / vibrate_time)),
+		sin(MULT_Y * VERTEX.x * VERTEX.y * VERTEX.z * floor(TIME / vibrate_time))
 	);
+	
+	offset = vec2(
+		(smooth_vibration ? offset.x : round(offset.x * float(!smooth_vibration))) * vibrate_distance,
+		(smooth_vibration ? offset.y : round(offset.y * float(!smooth_vibration))) * vibrate_distance
+	);
+	//below is an "optimized" version of the above ternary (I have not profiled it)
+	//offset = vec2(
+	//	(offset.x * float(smooth_vibration) + round(offset.x * float(!smooth_vibration))) * vibrate_distance,
+	//	(offset.y * float(smooth_vibration) + round(offset.y * float(!smooth_vibration))) * vibrate_distance
+	//);
 	
 	// Vertex snapping
 	vertex.xy = (round(clip_space.xy / clip_space.w * VIEWPORT_SIZE.xy + offset)) / VIEWPORT_SIZE.xy * clip_space.w;

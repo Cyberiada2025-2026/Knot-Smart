@@ -45,7 +45,7 @@ uniform float speed = 0.2;
 group_uniforms;
 
 group_uniforms Colors.Transparency;
-uniform float alpha = 1.0;
+uniform float alpha : hint_range(0, 1) = 1.0;
 group_uniforms;
 
 varying vec4 clip_pos;

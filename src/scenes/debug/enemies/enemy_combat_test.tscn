@@ -37,7 +37,7 @@ sensors = {
 "ui_up": NodePath("MoveingSensors/front_sensor")
 }
 
-[node name="HealthComponent" parent="Player" index="11" unique_id=1622957288]
+[node name="HealthComponent" parent="Player" index="10" unique_id=1622957288]
 debug_log = false
 
 [node name="WorldEnvironment" parent="." unique_id=11299357 instance=ExtResource("2_qqkcj")]

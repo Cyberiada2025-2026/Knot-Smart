@@ -18,6 +18,6 @@ func tick(_actor: Node, _blackboard: Blackboard) -> int:
 		min_distance_to_target, max_distance_to_target, target_in_group.global_position
 	)
 
-	actor.navigation_agent_3d.set_target_position(actor.get_point_on_map(random_point))
+	actor.navigation_agent_3d.set_target_position(ActorUtils.get_point_on_map(random_point))
 
 	return SUCCESS

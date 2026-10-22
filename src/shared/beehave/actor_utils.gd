@@ -15,6 +15,6 @@ static func get_random_point_near(point_position: Vector3, maximum_range: float)
 
 static func rotate_random(node: Node3D) -> void:
 	var random := RandomNumberGenerator.new()
-	var rotation: Vector3 = node.get_global_rotation()
+	var rotation: Vector3 = node.get_global_rotation_degrees()
 	rotation.y = random.randi() % 360
-	node.set_global_rotation(rotation)
+	node.set_global_rotation_degrees(rotation)

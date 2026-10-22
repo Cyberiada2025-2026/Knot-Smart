@@ -20,12 +20,17 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	benchmark()
 	if can_move:
 		set_velocity_to_target()
 		rotate_with_velocity()
 		move_and_slide()
 		push_rigid_bodies()
 
+
+func benchmark() -> void:
+	for i in range(1):
+		get_object_around("Player");
 
 func set_random_nav_target_near(point_position: Vector3) -> void:
 	navigation_agent_3d.set_target_position(

@@ -80,7 +80,12 @@ func rotate_with_velocity() -> void:
 		look_at(global_position + velocity_2d)
 
 
+func benchmark() -> void:
+	for i in range(1):
+		get_closest_target("Player");
+
 func _physics_process(_delta: float) -> void:
+	benchmark();
 	if can_move:
 		set_velocity_to_target()
 		rotate_with_velocity()

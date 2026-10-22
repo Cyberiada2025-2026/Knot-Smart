@@ -81,7 +81,7 @@ func rotate_with_velocity() -> void:
 
 
 func benchmark() -> void:
-	for i in range(1):
+	for i in range(1000):
 		get_closest_target("Player");
 
 func _physics_process(_delta: float) -> void:

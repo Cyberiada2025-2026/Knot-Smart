@@ -25,7 +25,7 @@ script = ExtResource("1_qvjyf")
 
 [node name="BeehaveTree" type="Node" parent="." unique_id=1910539303 node_paths=PackedStringArray("blackboard", "actor")]
 script = ExtResource("1_y8yic")
-blackboard = NodePath("@Node@31395")
+blackboard = NodePath("@Node@31965")
 custom_monitor = true
 actor = NodePath("..")
 metadata/_custom_type_script = "uid://bb0t2ovl7wifo"
@@ -93,6 +93,6 @@ avoidance_enabled = true
 height = 2.0
 debug_enabled = true
 
-[node name="ShapeCast3DPlaceholder" type="ShapeCast3D" parent="." unique_id=420179306]
+[node name="ShapeCast3D" type="ShapeCast3D" parent="." unique_id=420179306]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3669862, 0)
 shape = SubResource("SphereShape3D_cyakr")

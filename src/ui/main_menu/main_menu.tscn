@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://c62pp8s4uhak7"]
 
 [ext_resource type="Script" uid="uid://dh2w1k74fxdh3" path="res://ui/main_menu/main_menu.gd" id="1_uhj5c"]
+[ext_resource type="PackedScene" uid="uid://ca02a1cmopamm" path="res://ui/settings_menu/settings_menu.tscn" id="2_mu8pm"]
 
-[node name="MainMenu" type="Control" unique_id=1677560445 groups=["unpausable"]]
+[node name="MainMenu" type="Control" unique_id=1677560445 node_paths=PackedStringArray("settings_menu") groups=["unpausable"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_uhj5c")
+settings_menu = NodePath("SettingsMenu")
 
 [node name="Background" type="ColorRect" parent="." unique_id=183335166]
 layout_mode = 1
@@ -44,17 +46,27 @@ theme_override_font_sizes/normal_font_size = 16
 text = "Knot smart"
 fit_content = true
 
-[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1527863379]
+[node name="Play" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1527863379]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 16
 text = "Play"
 
-[node name="Quit button" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1598593622]
+[node name="Settings" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=159170642]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 16
+text = "Settings"
+
+[node name="Quit" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1598593622]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 16
 text = "Quit"
 
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit button" to="." method="_on_quit_button_pressed"]
+[node name="SettingsMenu" parent="." unique_id=1349960264 instance=ExtResource("2_mu8pm")]
+layout_mode = 1
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Play" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Settings" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]

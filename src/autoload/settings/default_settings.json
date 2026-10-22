@@ -1,0 +1,34 @@
+{
+	"graphics": {
+		"field of view": 90
+	},
+	"audio": {
+		"mono": false,
+		"volume": {
+			"main": 100,
+			"fx": 50
+		},
+		"test": {
+			"str": "lalala",
+			"null": null,
+			"array": [1, 2],
+			"null1": null,
+			"null2": null,
+			"null3": null
+		}
+	},
+	"gameplay": {
+		
+	},
+	"accessibility": {
+		"use crt filter": true
+	},
+	"debug": {
+		
+	},
+	"debug scenes": {
+		"settings_debug": {
+			"random value": 0
+		}
+	}
+}

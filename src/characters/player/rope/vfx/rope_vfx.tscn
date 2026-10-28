@@ -7,6 +7,31 @@
 [ext_resource type="Shader" uid="uid://dca8vn42psgvs" path="res://characters/player/rope/vfx/fuse/fuse_stencil.gdshader" id="5_r4opj"]
 [ext_resource type="Shader" uid="uid://bhd7qpyhwtrt8" path="res://characters/player/rope/vfx/fuse/fuse.gdshader" id="6_xkqvk"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mc67o"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_jo2uc")
+shader_parameter/max_length = 32.0
+shader_parameter/min_length = 0.3
+shader_parameter/length_start = 10.0
+shader_parameter/length_current = 10.0
+shader_parameter/min_radius_multiplier = 0.0
+shader_parameter/max_radius_multiplier = 1.3
+shader_parameter/vibrate_time = 0.3
+shader_parameter/vibrate_distance = 1.0
+shader_parameter/smooth_vibration = true
+shader_parameter/main_col_default = Color(0.39607844, 0.91764706, 0.72156864, 1)
+shader_parameter/main_col_stretch = Color(0.39644805, 0.9178667, 0.7229913, 1)
+shader_parameter/main_col_squish = Color(0.26895255, 0.55393213, 0.8552376, 1)
+shader_parameter/sec_col_default = Color(1, 1, 1, 1)
+shader_parameter/sec_col_stretch = Color(1, 1, 1, 1)
+shader_parameter/sec_col_squish = Color(1, 1, 1, 1)
+shader_parameter/segment_density = 1.3
+shader_parameter/segment_width = 0.2
+shader_parameter/softness = 0.3
+shader_parameter/speed = 1.0
+shader_parameter/alpha = 0.0
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_i5arm"]
 resource_local_to_scene = true
 top_radius = 0.1
@@ -14,29 +39,6 @@ bottom_radius = 0.1
 height = 1.0
 radial_segments = 8
 rings = 10
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mc67o"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("1_jo2uc")
-shader_parameter/min_radius_mult = 0.5
-shader_parameter/max_radius_mult = 1.3
-shader_parameter/anim_start = 0.0
-shader_parameter/length_start = 10.0
-shader_parameter/length_curr = 10.0
-shader_parameter/segment_density = 1.3
-shader_parameter/width = 0.2
-shader_parameter/softness = 0.3
-shader_parameter/speed = 1.0
-shader_parameter/main_col_def = Color(0.39607844, 0.91764706, 0.72156864, 1)
-shader_parameter/main_col_stretch = Color(0.39644805, 0.9178667, 0.7229913, 1)
-shader_parameter/main_col_squish = Color(0.26895255, 0.55393213, 0.8552376, 1)
-shader_parameter/sec_col_def = Color(1, 1, 1, 1)
-shader_parameter/sec_col_stretch = Color(1, 1, 1, 1)
-shader_parameter/sec_col_squish = Color(1, 1, 1, 1)
-shader_parameter/vibrate_time = 0.3
-shader_parameter/max_length = 32.0
-shader_parameter/min_length = 0.3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wc5p8"]
 render_priority = 0
@@ -109,7 +111,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh:material_override:shader_parameter/anim_start")
+tracks/0/path = NodePath("Mesh:material_override:shader_parameter/alpha")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -184,7 +186,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mesh:material_override:shader_parameter/anim_start")
+tracks/1/path = NodePath("Mesh:material_override:shader_parameter/alpha")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -223,7 +225,7 @@ resource_name = "rope_on"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mesh:material_override:shader_parameter/anim_start")
+tracks/0/path = NodePath("Mesh:material_override:shader_parameter/alpha")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -314,11 +316,9 @@ scale_max = 1.5
 scale_curve = SubResource("CurveXYZTexture_mimjo")
 color_ramp = SubResource("GradientTexture1D_3ywe0")
 
-[node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "mesh_node", "splash", "break1", "break2", "fuse_vfx1", "fuse_vfx2")]
+[node name="RopeVFX" type="Node3D" unique_id=2129574877 node_paths=PackedStringArray("player", "splash", "break1", "break2", "fuse_vfx1", "fuse_vfx2")]
 script = ExtResource("1_mc67o")
 player = NodePath("AnimationPlayer")
-mesh = SubResource("CylinderMesh_i5arm")
-mesh_node = NodePath("Mesh")
 mat = SubResource("ShaderMaterial_mc67o")
 splash = NodePath("Mesh/Splash")
 break1 = NodePath("Mesh/Break1")
@@ -326,7 +326,7 @@ break2 = NodePath("Mesh/Break2")
 fuse_vfx1 = NodePath("FuseVFX")
 fuse_vfx2 = NodePath("FuseVFX/FuseVFX2")
 
-[node name="Mesh" type="CSGMesh3D" parent="." unique_id=1415216167]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1691123720]
 material_override = SubResource("ShaderMaterial_mc67o")
 cast_shadow = 0
 extra_cull_margin = 4.0

@@ -26,6 +26,7 @@ func _physics_process(_delta: float) -> void:
 		move_and_slide()
 		push_rigid_bodies()
 
+
 func set_random_nav_target_near(point_position: Vector3) -> void:
 	navigation_agent_3d.set_target_position(
 		ActorUtils.get_random_point_near(point_position, idle_wander_distance)
@@ -40,7 +41,6 @@ func is_group_member_nearby(
 		var dist := global_position.distance_to(node.global_position)
 		if dist < desired_dist:
 			return true
-
 	return false
 
 
@@ -74,10 +74,6 @@ func rotate_with_velocity() -> void:
 	if velocity_2d.length_squared() > 0:
 		look_at(global_position + velocity_2d)
 
-
-func benchmark() -> void:
-	for i in range(1000):
-		get_closest_target("Player");
 
 func push_rigid_bodies() -> void:
 	for i in get_slide_collision_count():

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://ctr84bt67oahh"]
+
+[ext_resource type="PackedScene" uid="uid://bie1yxa2arqux" path="res://shared/debris/single/debris1.tscn" id="1_pyq4q"]
+[ext_resource type="PackedScene" uid="uid://btmd85pvej0kk" path="res://shared/debris/single/debris5.tscn" id="2_7yelf"]
+[ext_resource type="PackedScene" uid="uid://bp80rp5ygnnf" path="res://shared/debris/single/debris8.tscn" id="3_t6h18"]
+
+[node name="DebrisPile1" type="Node3D" unique_id=2069696039]
+
+[node name="Debris1" parent="." unique_id=894731067 instance=ExtResource("1_pyq4q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14457572, 0.27200723, -0.21586657)
+
+[node name="Debris2" parent="." unique_id=1166254089 instance=ExtResource("1_pyq4q")]
+transform = Transform3D(1, 0, 0, 0, 0.7711581, 0.6366437, 0, -0.6366437, 0.7711581, -0.0205224, 0.9201629, -1.4681551)
+
+[node name="Debris5" parent="." unique_id=88912901 instance=ExtResource("2_7yelf")]
+transform = Transform3D(1, 0, 0, 0, 0.93775564, -0.34729576, 0, 0.34729576, 0.93775564, -0.1987915, 1.0596454, 0.7222973)
+
+[node name="Debris9" parent="." unique_id=621002191 instance=ExtResource("3_t6h18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4694986, 0.27200723, -0.6938076)

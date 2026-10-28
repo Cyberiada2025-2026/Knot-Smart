@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c3cvtq6fv37j4"]
+
+[ext_resource type="Texture2D" uid="uid://bgxuhvkbf2o4o" path="res://shared/fungi/mold/mold_field_mold-top.png" id="1_vidsf"]
+
+[resource]
+resource_name = "Mold Top.001"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0.29891455, 0.57956403, 0.61538386, 1)
+albedo_texture = ExtResource("1_vidsf")
+texture_filter = 2

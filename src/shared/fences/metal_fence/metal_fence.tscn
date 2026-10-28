@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://by6tc6oibk1hi"]
+
+[ext_resource type="PackedScene" uid="uid://d313xasnli3jy" path="res://shared/fences/metal_fence/metal_fence.glb" id="1_2ex86"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ex86"]
+size = Vector3(0.4519287, 2.745868, 4.2)
+
+[node name="MetalFence" type="StaticBody3D" unique_id=2019968806]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1052677876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.545816e-05, 1.3103157, 0)
+shape = SubResource("BoxShape3D_2ex86")
+
+[node name="metal_fence" parent="." unique_id=1814887444 instance=ExtResource("1_2ex86")]
+transform = Transform3D(1, 0, 0, 0, 0.904, 0, 0, 0, 1, 0, 0, 0)

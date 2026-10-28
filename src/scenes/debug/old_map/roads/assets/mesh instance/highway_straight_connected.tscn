@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bod03u1l1qjoy"]
+
+[ext_resource type="PackedScene" uid="uid://b828jftwt8y6a" path="res://scenes/debug/old_map/roads/assets/glb/highway_straight_connected.glb" id="1_1de52"]
+[ext_resource type="Material" uid="uid://dkc6qdwcyremk" path="res://scenes/debug/old_map/roads/assets/materials/pavement.tres" id="2_87wdk"]
+[ext_resource type="Material" uid="uid://ocqgdyc21bsc" path="res://scenes/debug/old_map/roads/assets/materials/asphalt.tres" id="2_lv13j"]
+[ext_resource type="Material" uid="uid://b4f1df1cha8bn" path="res://scenes/debug/old_map/roads/assets/materials/pavement-side.tres" id="4_gj0hw"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1de52"]
+points = PackedVector3Array(0, 0, -17.5, 0, 2.5, -15, 0, 0, -9.536743e-07, 0, 2.5, -9.536743e-07, 6.507, 0, -16.516, 17.5, 0, 0, 14.999999, 2.5, -9.536743e-07, 6.507439, 2.5, -13.515564, 16.227, 0, -7.853, 12.727, 2.5, -7.675, 12, 0, -13.03)
+
+[node name="highway_straight_connected" unique_id=1206140478 instance=ExtResource("1_1de52")]
+
+[node name="highway_connected" parent="." index="0" unique_id=852540418]
+transform = Transform3D(-6.244484e-10, 0, 0.014285714, 0, 0.014285714, 0, -0.014285714, 0, -6.244484e-10, 0, 0.022, 0)
+
+[node name="chodnik_zakręt072" parent="highway_connected" index="0" unique_id=1278728248]
+material_override = ExtResource("2_87wdk")
+
+[node name="chodnik_zakręt073" parent="highway_connected" index="1" unique_id=383401482]
+material_override = ExtResource("2_87wdk")
+
+[node name="droga125" parent="highway_connected" index="2" unique_id=754159253]
+material_override = ExtResource("2_lv13j")
+
+[node name="krawężnik_zakręt074" parent="highway_connected" index="3" unique_id=1185425980]
+material_override = ExtResource("4_gj0hw")
+
+[node name="krawężnik_zakręt075" parent="highway_connected" index="4" unique_id=1528060661]
+material_override = ExtResource("4_gj0hw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="highway_connected" index="5" unique_id=711555491]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="highway_connected/StaticBody3D" index="0" unique_id=1996866627]
+transform = Transform3D(1.7881393e-07, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 1.7881393e-07, 34.999996, -1.5000001, 35)
+shape = SubResource("ConvexPolygonShape3D_1de52")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="highway_connected/StaticBody3D" index="1" unique_id=438760760]
+transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, 35, -1.5, -35)
+shape = SubResource("ConvexPolygonShape3D_1de52")

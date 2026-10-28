@@ -10,31 +10,26 @@ var can_move := false
 var world: World3D
 var target: Node3D
 var should_track_target: bool = false
-var animation_player: AnimationPlayer
 
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 
 
 func _ready() -> void:
 	world = Engine.get_main_loop().root.get_world_3d()
-	animation_player = find_child("AnimationPlayer")
-	animation_player.play("Walk")
+	navigation_agent_3d.set_target_position(global_position)
 
 
-func get_point_on_map(point: Vector3) -> Vector3:
-	return NavigationServer3D.map_get_closest_point(world.get_navigation_map(), point)
+func _physics_process(_delta: float) -> void:
+	if can_move:
+		set_velocity_to_target()
+		rotate_with_velocity()
+		move_and_slide()
+		push_rigid_bodies()
 
-
-func get_random_point_near() -> Vector3:
-	var random_point = Utils.get_random_point_in_circular_ring(
-		0.0, idle_wander_distance, global_position
+func set_random_nav_target_near(point_position: Vector3) -> void:
+	navigation_agent_3d.set_target_position(
+		ActorUtils.get_random_point_near(point_position, idle_wander_distance)
 	)
-
-	return get_point_on_map(random_point)
-
-
-func set_random_nav_target() -> void:
-	navigation_agent_3d.set_target_position(get_random_point_near())
 
 
 func is_group_member_nearby(
@@ -83,15 +78,6 @@ func rotate_with_velocity() -> void:
 func benchmark() -> void:
 	for i in range(1000):
 		get_closest_target("Player");
-
-func _physics_process(_delta: float) -> void:
-	benchmark();
-	if can_move:
-		set_velocity_to_target()
-		rotate_with_velocity()
-		move_and_slide()
-		push_rigid_bodies()
-
 
 func push_rigid_bodies() -> void:
 	for i in get_slide_collision_count():

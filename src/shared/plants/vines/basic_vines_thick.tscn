@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://1peooswj26s5"]
+
+[ext_resource type="PackedScene" uid="uid://d2v1y2cliy43g" path="res://shared/plants/vines/basic_vines_thick.glb" id="1_xvfio"]
+[ext_resource type="Material" uid="uid://cgigeo3gysu6m" path="res://shared/plants/vines/Vines 2.001.tres" id="2_ka2ve"]
+
+[node name="Basic Vines Thick" unique_id=1120199189 instance=ExtResource("1_xvfio")]
+
+[node name="Basic Vines Thick" parent="." index="0" unique_id=617493212]
+surface_material_override/0 = ExtResource("2_ka2ve")

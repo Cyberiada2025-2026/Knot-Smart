@@ -1,0 +1,371 @@
+[gd_scene format=3 uid="uid://dhjdclmlt7xq8"]
+
+[ext_resource type="PackedScene" uid="uid://c0k6p6rrthw50" path="res://shared/plants/vine_wall/vine_wall.tscn" id="1_wh2s3"]
+
+[node name="PlantWallFoliage" type="Node3D" unique_id=590222623]
+
+[node name="VineWall" parent="." unique_id=2113348542 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.9599999, 0, 0, 0, 1.3, 0, 0, 0, 1, 22, -0.5, -39)
+
+[node name="VineWall2" parent="." unique_id=1350384427 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.372, 0, 0, 0, 1.3, 0, 0, 0, 1, 27.5, -0.5, -39)
+
+[node name="VineWall3" parent="." unique_id=794583087 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(0.9701505, 0, -0.70710677, 0, 1.6899998, 0, 0.9701505, 0, 0.70710677, 28, -0.5, -33.5)
+
+[node name="VineWall4" parent="." unique_id=577790679 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-1.1881868, 0, -0.5, 0, 1.9604001, 0, 0.6859999, 0, -0.8660254, 41.5, 0, 5)
+
+[node name="VineWall5" parent="." unique_id=300285804 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-1.1881868, 0, -0.5, 0, 1.9604001, 0, 0.6859999, 0, -0.8660254, 41.5, 12, 5)
+
+[node name="VineWall6" parent="." unique_id=917759769 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-0.9701505, 0, -0.7071067, 0, 1.9604001, 0, 0.97015035, 0, -0.7071067, 41.479378, 25, 5.3053513)
+
+[node name="VineWall7" parent="." unique_id=230057540 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.7439995, 0, -2.980232e-08, 0, 3.3326802, 0, -1.7881393e-07, 0, -0.9999999, 47, 17, 2.5)
+
+[node name="VineWall8" parent="." unique_id=1493379963 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.3841858e-07, 0, -0.99999976, 0, 1.9603999, 0, 2.7439995, 0, 0, 43.479378, 23.5, 15.805351)
+
+[node name="VineWall9" parent="." unique_id=1165377264 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-1.1920929e-07, 0, -0.99999976, 0, 1.9603999, 0, 1.3719997, 0, 0, 43.479378, 12.5, 11.305351)
+
+[node name="VineWall10" parent="." unique_id=163151731 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.7439995, 0, -2.980232e-08, 0, 3.3326802, 0, -1.7881393e-07, 0, -0.9999999, 30, -10.5, 6)
+
+[node name="VineWall11" parent="." unique_id=1681313466 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.7439995, 0, -2.980232e-08, 0, 1.9996082, 0, -1.7881393e-07, 0, -0.9999999, 21.5, -2.5, 6)
+
+[node name="VineWall12" parent="." unique_id=441536896 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-5.88699e-08, 0, -0.9999998, 0, 1.9996082, 0, 2.7439995, 0, 7.3513704e-08, 19.5, -1.5, 20)
+
+[node name="VineWall13" parent="." unique_id=2018391543 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-5.2135987, 0, -2.9802317e-08, 3.397465e-07, -1.1537546e-07, 0.9999998, 1.485079e-14, 2.639483, 4.371138e-08, 27.5, 11.5, 7.5)
+
+[node name="VineWall14" parent="." unique_id=2136235662 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.3511814e-07, 2.1115863, 4.3711385e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, 3.0911427, -9.2300375e-08, 2.9802312e-08, 20.5, 11.5, 20.5)
+
+[node name="VineWall15" parent="." unique_id=394837861 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.7934504, 0, 1.7881393e-07, 0, 1.3997257, 0, -5.9604645e-08, 0, 1.1999997, 28, 2.5, 24)
+
+[node name="VineWall16" parent="." unique_id=2100001746 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(0.46417916, 0, -1.1591105, 0, 1.3997257, 0, 1.73234, 0, 0.310583, 20.5, 2.5, 23)
+
+[node name="VineWall17" parent="." unique_id=759581114 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.7439995, 0, 4.3711378e-08, 0, 3.5287197, 0, 1.18474546e-07, 0, 0.99999976, 55.479378, 16.5, 20.305351)
+
+[node name="VineWall18" parent="." unique_id=220470933 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.7439995, 0, 4.3711378e-08, 0, 2.1172318, 0, 1.18474546e-07, 0, 0.99999976, 59.479378, 10.5, 20.305351)
+
+[node name="VineWall19" parent="." unique_id=1617312154 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.7439995, 0, 4.3711378e-08, 0, 2.2936678, 0, 1.18474546e-07, 0, 0.99999976, 59.479378, 24, 20.305351)
+
+[node name="VineWall20" parent="." unique_id=769608413 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.3841852e-07, 0, -0.9999997, 0, 2.1172316, 0, 2.7439995, 0, 0, 59.479378, -7, 39.30535)
+
+[node name="VineWall21" parent="." unique_id=527950322 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.04216045e-14, 2.1172316, 4.3711374e-08, 2.3841852e-07, -9.254713e-08, 0.9999997, 2.7439995, 0, 0, 60.479378, 7, 39.30535)
+
+[node name="VineWall22" parent="." unique_id=151869249 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(6.252963e-15, 2.1172316, 4.3711374e-08, 1.4305112e-07, -9.254713e-08, 0.9999997, 1.6463997, 0, 0, 0.47937775, 9, 35.30535)
+
+[node name="VineWall23" parent="." unique_id=2116077395 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(3.7024364e-08, 1.2270533, 0.23293711, 1.3817679e-07, -0.32878798, 0.86933297, 1.6463997, 0, 0, 11.979378, 9, 35.30535)
+
+[node name="VineWall24" parent="." unique_id=704690187 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-1.6463999, -9.254714e-08, -1.9106846e-15, 7.196638e-08, -2.1172314, -8.742274e-08, 1.4305111e-07, -1.8509425e-07, 0.99999964, 0.47937775, 8, 36.80535)
+
+[node name="VineWall25" parent="." unique_id=745393662 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-1.6463999, -9.254714e-08, -1.9106846e-15, 7.196638e-08, -2.1172314, -8.742274e-08, 1.4305111e-07, -1.8509425e-07, 0.99999964, 6.9793777, 8, 36.80535)
+
+[node name="VineWall26" parent="." unique_id=980010180 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-7.1084685e-08, 1.8509425e-07, -0.99999964, 7.196638e-08, -2.1172314, -8.742274e-08, -1.6463999, -9.254713e-08, -4.3711385e-08, -0.020622253, 6.5, 29.305351)
+
+[node name="VineWall27" parent="." unique_id=1162729154 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.8153434, -3.7018847e-08, -1.9106844e-15, 2.446174e-07, -3.7018847e-08, 0.9999996, -1.2306255e-07, 0.8468925, 4.3711363e-08, 1.4793777, 9, 31.805351)
+
+[node name="VineWall28" parent="." unique_id=15612778 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.7439992, 0, -2.9802319e-08, 0, 1.9996082, 0, -1.7881393e-07, 0, -0.9999998, 6.5, -5, 27.5)
+
+[node name="VineWall29" parent="." unique_id=242238326 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.9875795e-07, 0, 0.9999998, 0, 3.399334, 0, -2.743999, 0, 1.3909061e-08, -29, -5, 8)
+
+[node name="VineWall30" parent="." unique_id=100079291 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(0.35509974, 0, 0.96592563, 0, 3.399334, 0, -1.3252498, 0, 0.25881898, -29, -8, 17.5)
+
+[node name="VineWall31" parent="." unique_id=785237570 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-0.68599963, 0, 0.8660251, 0, 3.3993335, 0, -1.1881864, 0, -0.49999985, -31, -8.5, 3)
+
+[node name="VineWall32" parent="." unique_id=177010408 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.9875795e-07, 0, 0.9999998, 0, 3.399334, 0, -2.743999, 0, 1.3909061e-08, -32.5, -6, -20.5)
+
+[node name="VineWall33" parent="." unique_id=616659212 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.9875795e-07, 0, 0.9999998, 0, 3.399334, 0, -2.743999, 0, 1.3909061e-08, -32.5, -6, 38)
+
+[node name="VineWall34" parent="." unique_id=1961310689 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.9599999, 0, 0, 0, 1.3, 0, 0, 0, 1, -22.5, -3.5, -24.5)
+
+[node name="VineWall35" parent="." unique_id=1585606196 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.9599999, 0, 0, 0, 1.3, 0, 0, 0, 1, -17, -3.5, -24.5)
+
+[node name="VineWall36" parent="." unique_id=1110528871 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.9875795e-07, 0, 0.9999998, 0, 3.399334, 0, -2.743999, 0, 1.3909061e-08, -36, -14.5, 61.5)
+
+[node name="VineWall37" parent="." unique_id=42366213 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.743999, 0, -5.7620447e-08, 0, 3.399334, 0, 4.1870197e-07, 0, 0.9999998, -37.5, -14.5, 74.5)
+
+[node name="VineWall38" parent="." unique_id=522481553 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.743999, 0, -5.7620447e-08, 0, 3.399334, 0, 4.1870197e-07, 0, 0.9999998, -44, -14.5, 74.5)
+
+[node name="VineWall39" parent="." unique_id=1947777648 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.743999, 0, -5.7620454e-08, 4.18702e-07, -8.9153765e-08, 0.9999998, -3.779933e-14, -2.0396004, -4.371138e-08, -37.5, 6.5, 74)
+
+[node name="VineWall40" parent="." unique_id=1131258995 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.743999, 0, -5.7620454e-08, 4.18702e-07, -8.9153765e-08, 0.9999998, -3.779933e-14, -2.0396004, -4.371138e-08, -44, 6.5, 74)
+
+[node name="VineWall41" parent="." unique_id=1708990132 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-1.9073482e-07, 0, -0.9999997, 0, 2.1172316, 0, 2.1951997, 0, 0, 66.97938, -10, 66.30535)
+
+[node name="VineWall42" parent="." unique_id=86753351 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-1.9073482e-07, 0, -0.9999997, 0, 2.1172316, 0, 2.1951997, 0, 0, 66.97938, -10, 57.80535)
+
+[node name="VineWall43" parent="." unique_id=1706534175 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.018399, 0, -2.9802314e-08, 0, 3.399334, 0, -1.9669535e-07, 0, -0.9999998, 4.5, -14.5, 81)
+
+[node name="VineWall44" parent="." unique_id=880845234 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(3.2863375e-07, 0, 0.9999998, 0, 3.3993344, 0, -3.0183992, 0, 1.3909061e-08, 19, -14.5, 82.5)
+
+[node name="VineWall45" parent="." unique_id=1029838052 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-5.9251056e-07, 0, -0.9999998, 0, 3.3993344, 0, 3.018399, 0, -1.01331814e-07, 2.5, -14.5, 95.5)
+
+[node name="VineWall46" parent="." unique_id=1676958879 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.018399, 0, -2.9802315e-08, 1.9669538e-07, -7.429481e-08, 0.99999994, 2.4683089e-14, 1.6996672, 4.3711385e-08, 5.5, 8, 82)
+
+[node name="VineWall47" parent="." unique_id=1711999821 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(3.2863375e-07, 0, 0.9999998, 0, 3.3993344, 0, -3.0183992, 0, 1.3909061e-08, 19, -14.5, 110)
+
+[node name="VineWall48" parent="." unique_id=1405291376 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(3.0183992, 0, -5.762044e-08, 0, 3.3993344, 0, 4.6057212e-07, 0, 0.99999976, 17.5, -14.5, 125)
+
+[node name="VineWall49" parent="." unique_id=816459524 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.0183988, -2.9717924e-07, 5.7620408e-08, 4.60572e-07, -1.4858959e-07, 0.99999964, -2.638768e-07, 3.3993342, 4.371137e-08, 5, 8, 103)
+
+[node name="VineWall50" parent="." unique_id=4602242 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-1.2073594, -2.971792e-07, 5.7620415e-08, 1.842288e-07, -1.4858958e-07, 0.99999976, -1.0555072e-07, 3.399334, 4.3711374e-08, -1, 8, 128.5)
+
+[node name="VineWall51" parent="." unique_id=788253749 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(3.2863375e-07, 0, 0.9999998, 0, 3.3993344, 0, -3.0183992, 0, 1.3909061e-08, 4.5, -14.5, 133)
+
+[node name="VineWall52" parent="." unique_id=252476578 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(3.2863375e-07, 0, 0.9999998, 0, 3.3993344, 0, -3.0183992, 0, 1.3909061e-08, 4.5, -13.5, 127.5)
+
+[node name="VineWall53" parent="." unique_id=616245272 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-6.4756904e-08, 0, -0.9999998, 0, 3.3993344, 0, 3.018399, 0, 7.35137e-08, -1.0000005, -14.5, 140)
+
+[node name="VineWall54" parent="." unique_id=570447426 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-6.4756904e-08, 0, -0.9999998, 0, 3.3993344, 0, 3.018399, 0, 7.35137e-08, -0.9999995, -13.5, 145.5)
+
+[node name="VineWall55" parent="." unique_id=1426620861 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.3841858e-07, 0, -0.99999976, 0, 3.5287194, 0, 2.7439992, 0, 0, 84.47938, -6, 93.80535)
+
+[node name="VineWall56" parent="." unique_id=1487858174 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.3841858e-07, 0, -0.99999976, 0, 3.5287194, 0, 2.7439992, 0, 0, 84.47938, 0, 96.80535)
+
+[node name="VineWall57" parent="." unique_id=345514505 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 84.47938, 7, 92.30535)
+
+[node name="VineWall58" parent="." unique_id=1995912011 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 84.47938, 7.5, 103.80535)
+
+[node name="VineWall59" parent="." unique_id=2133791311 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 84.47938, 7, 113.30535)
+
+[node name="VineWall60" parent="." unique_id=513856944 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 84.47938, 7, 122.30535)
+
+[node name="VineWall61" parent="." unique_id=1128938741 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 84.47938, 7.5, 132.30536)
+
+[node name="VineWall62" parent="." unique_id=1777973797 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-4.4452786, 0, 4.371138e-08, 0, 4.4461865, 0, -5.8054746e-07, 0, -0.99999976, 85.97938, -5, 80.80535)
+
+[node name="VineWall63" parent="." unique_id=1028763239 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.4695992, 0, 4.371137e-08, 0, 2.4701037, 0, 1.0662713e-07, 0, 0.9999999, 78.85438, -11, 68.93035)
+
+[node name="VineWall64" parent="." unique_id=714133989 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.4695992, 0, 4.371137e-08, 0, 2.4701037, 0, 1.0662713e-07, 0, 0.9999999, 88.35438, -11.5, 68.93035)
+
+[node name="VineWall65" parent="." unique_id=1189336765 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.4695992, 0, 4.371137e-08, 0, 2.4701037, 0, 1.0662713e-07, 0, 0.9999999, 97.35438, -11.5, 68.93035)
+
+[node name="VineWall66" parent="." unique_id=1372027786 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.4695992, 0, 4.371137e-08, 0, 2.4701037, 0, 1.0662713e-07, 0, 0.9999999, 107.354385, -11, 68.93035)
+
+[node name="VineWall67" parent="." unique_id=1409797852 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.3511814e-07, 2.1115863, 4.3711385e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, 3.0911427, -9.2300375e-08, 2.9802312e-08, 68.5, 4.5, 66)
+
+[node name="VineWall68" parent="." unique_id=1018453761 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.3511814e-07, 2.1115863, 4.3711385e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, 3.0911427, -9.2300375e-08, 2.9802312e-08, 74, 18, 110.5)
+
+[node name="VineWall69" parent="." unique_id=1346344460 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.3511814e-07, 2.1115863, 4.3711385e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, 3.0911427, -9.2300375e-08, 2.9802312e-08, 74, 18, 121)
+
+[node name="VineWall70" parent="." unique_id=1645205489 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.3511814e-07, 2.1115863, 4.3711385e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, 3.0911427, -9.2300375e-08, 2.9802312e-08, 74, 18, 134)
+
+[node name="VineWall71" parent="." unique_id=2023201805 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.743999, 0, 4.3711374e-08, 0, 3.5287192, 0, -3.5836257e-07, 0, -0.9999997, 78.97938, -11.5, 95.80535)
+
+[node name="VineWall72" parent="." unique_id=1762279110 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.743999, 0, 4.3711374e-08, 0, 3.5287192, 0, -3.5836257e-07, 0, -0.9999997, 75.97938, -5.5, 95.80535)
+
+[node name="VineWall73" parent="." unique_id=1285374602 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695992, 0, 4.3711385e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999999, 80.47938, 1.5, 95.80535)
+
+[node name="VineWall74" parent="." unique_id=970604312 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.3841855e-07, 0, -0.9999997, 0, 3.5287192, 0, 2.7439988, 0, -1.4210855e-14, 74.97938, -11.5, 108.80535)
+
+[node name="VineWall75" parent="." unique_id=1056318864 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.3841855e-07, 0, -0.9999997, 0, 3.5287192, 0, 2.7439988, 0, -1.4210855e-14, 74.97938, -5.5, 111.80535)
+
+[node name="VineWall76" parent="." unique_id=1250757590 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457677e-07, 0, -0.9999999, 0, 2.4701037, 0, 2.4695992, 0, -1.4210855e-14, 74.97938, 1.5, 107.30535)
+
+[node name="VineWall77" parent="." unique_id=145789197 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 74.47938, 0.5, 122.30535)
+
+[node name="VineWall78" parent="." unique_id=1918660412 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 74.47938, 1, 132.30536)
+
+[node name="VineWall79" parent="." unique_id=512104805 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 75.47938, -3.5, 163.80536)
+
+[node name="VineWall80" parent="." unique_id=1474025375 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 75.47938, -3, 173.80536)
+
+[node name="VineWall81" parent="." unique_id=1561610610 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695992, 0, 4.3711385e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999999, 48.479378, -3.5, 178.30536)
+
+[node name="VineWall82" parent="." unique_id=395630416 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695992, 0, 4.3711385e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999999, 38.479378, -3, 178.30536)
+
+[node name="VineWall83" parent="." unique_id=758248754 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(4.3047598e-07, 0, 0.9999999, 0, 2.4701037, 0, -2.4695992, 0, 8.7422784e-08, 21.979378, -8, 168.30536)
+
+[node name="VineWall84" parent="." unique_id=191350479 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(4.3047598e-07, 0, 0.9999999, 0, 2.4701037, 0, -2.4695992, 0, 8.7422784e-08, 21.979378, -7.5, 158.30536)
+
+[node name="VineWall85" parent="." unique_id=648673295 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457679e-07, 0, -0.9999999, 0, 2.470104, 0, 2.4695995, 0, 0, 13.979378, -8, 164.30536)
+
+[node name="VineWall86" parent="." unique_id=1813958614 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457679e-07, 0, -0.9999999, 0, 2.470104, 0, 2.4695995, 0, 0, 13.979378, -7.5, 174.30536)
+
+[node name="VineWall87" parent="." unique_id=1685512663 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-1.4488313, -2.971792e-07, 5.762041e-08, 2.2107456e-07, -1.4858958e-07, 0.9999997, -1.2666086e-07, 3.399334, 4.371137e-08, 15.5, 8, 155.5)
+
+[node name="VineWall88" parent="." unique_id=1400142159 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(1.3511814e-07, 2.1115863, 4.3711385e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, 3.0911427, -9.2300375e-08, 2.9802312e-08, 76.5, 12.5, 168.5)
+
+[node name="VineWall89" parent="." unique_id=1178910241 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 84.47938, 7, 168.80536)
+
+[node name="VineWall90" parent="." unique_id=644690151 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 84.47938, 7, 177.80536)
+
+[node name="VineWall91" parent="." unique_id=81632992 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457672e-07, 0, -0.99999976, 0, 2.4701035, 0, 2.4695992, 0, 0, 84.47938, 7.5, 187.80536)
+
+[node name="VineWall92" parent="." unique_id=654294570 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695992, 0, 4.3711385e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999999, 50.979378, 0.5, 188.30536)
+
+[node name="VineWall93" parent="." unique_id=458180051 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695992, 0, 4.3711385e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999999, 40.979378, 1, 188.30536)
+
+[node name="VineWall94" parent="." unique_id=1491752578 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.0911424, 7.1054274e-15, -2.9802308e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, -1.4210855e-14, 2.111586, 4.371138e-08, 40.5, 12.5, 180)
+
+[node name="VineWall95" parent="." unique_id=1427027897 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.0911424, 7.1054274e-15, -2.9802308e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, -1.4210855e-14, 2.111586, 4.371138e-08, -7, 9, 179)
+
+[node name="VineWall96" parent="." unique_id=565568217 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.0911424, 7.1054274e-15, -2.9802308e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, -1.4210855e-14, 2.111586, 4.371138e-08, -16.5, 9, 179)
+
+[node name="VineWall97" parent="." unique_id=1114632665 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.0911424, 7.1054274e-15, -2.9802308e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, -1.4210855e-14, 2.111586, 4.371138e-08, -26.5, 9, 179)
+
+[node name="VineWall98" parent="." unique_id=1770262668 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.0911424, 7.1054274e-15, -2.9802308e-08, 2.0143567e-07, -9.230036e-08, 0.99999976, -1.4210855e-14, 2.111586, 4.371138e-08, -38.5, 9, 179)
+
+[node name="VineWall99" parent="." unique_id=727569146 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695995, 0, 4.3711378e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999998, -5.0206223, -6.5, 177.30536)
+
+[node name="VineWall100" parent="." unique_id=1368178493 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695995, 0, 4.3711378e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999998, -15.020622, -6, 177.30536)
+
+[node name="VineWall101" parent="." unique_id=1524704225 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457679e-07, 0, -0.9999999, 0, 2.470104, 0, 2.4695995, 0, 0, -23.520622, -8, 164.30536)
+
+[node name="VineWall102" parent="." unique_id=707786009 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.1457679e-07, 0, -0.9999999, 0, 2.470104, 0, 2.4695995, 0, 0, -23.520622, -7.5, 174.30536)
+
+[node name="VineWall103" parent="." unique_id=691436492 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(4.30476e-07, 0, 0.9999999, 0, 2.4701037, 0, -2.4695992, 0, 8.742276e-08, -14.520622, -8, 162.80536)
+
+[node name="VineWall104" parent="." unique_id=1026125343 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(4.30476e-07, 0, 0.9999999, 0, 2.4701037, 0, -2.4695992, 0, 8.742276e-08, -14.520622, -7.5, 152.80536)
+
+[node name="VineWall105" parent="." unique_id=736894425 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-1.4488313, -2.971792e-07, 5.762041e-08, 2.2107456e-07, -1.4858958e-07, 0.9999997, -1.2666086e-07, 3.399334, 4.371137e-08, -21.5, 8, 154.5)
+
+[node name="VineWall106" parent="." unique_id=1827383716 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(3.2863375e-07, 0, 0.9999998, 0, 3.399334, 0, -3.018399, 0, 1.3909061e-08, -66, -11, 97)
+
+[node name="VineWall107" parent="." unique_id=1128827097 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695992, 0, 4.3711385e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999999, -12.895622, 1.5, 188.43036)
+
+[node name="VineWall108" parent="." unique_id=2123222827 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695992, 0, 4.3711385e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999999, -22.395622, 1, 188.43036)
+
+[node name="VineWall109" parent="." unique_id=335104185 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695992, 0, 4.3711385e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999999, -31.395622, 1, 188.43036)
+
+[node name="VineWall110" parent="." unique_id=66974287 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695992, 0, 4.3711385e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999999, -41.395622, 1.5, 188.43036)
+
+[node name="VineWall111" parent="." unique_id=1824779193 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4695992, 0, 4.3711385e-08, 0, 2.4701037, 0, -3.2252638e-07, 0, -0.9999999, -5.3956223, 1, 188.43036)
+
+[node name="VineWall112" parent="." unique_id=1386201063 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(3.2863375e-07, 0, 0.9999998, 0, 3.399334, 0, -3.018399, 0, 1.3909061e-08, -63.5, 2, 154)
+
+[node name="VineWall113" parent="." unique_id=1402428076 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.62907e-07, 0, 0.9999998, 0, 3.399334, 0, -2.4147193, 0, 1.3909061e-08, -63.5, -5.5, 151.5)
+
+[node name="VineWall114" parent="." unique_id=1140483729 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.62907e-07, 0, 0.9999998, 0, 3.399334, 0, -2.4147193, 0, 1.3909061e-08, -66.5, -10.5, 144)
+
+[node name="VineWall115" parent="." unique_id=1648794372 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.0183988, 0, -2.9802326e-08, 0, 3.399334, 0, -1.9669531e-07, 0, -0.9999997, -76.75, 2, 150.75)
+
+[node name="VineWall116" parent="." unique_id=2024619244 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4147193, 0, -2.980233e-08, 0, 3.399334, 0, -1.5735625e-07, 0, -0.99999976, -79.25, -5.5, 150.75)
+
+[node name="VineWall117" parent="." unique_id=380187405 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(3.2863375e-07, 0, 0.9999998, 0, 3.399334, 0, -3.018399, 0, 1.3909061e-08, -38.5, 9, 171.5)
+
+[node name="VineWall118" parent="." unique_id=1786676618 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(2.62907e-07, 0, 0.9999998, 0, 3.399334, 0, -2.4147193, 0, 1.3909061e-08, -38.5, 1.5, 169)
+
+[node name="VineWall119" parent="." unique_id=676036364 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.0183988, 0, -2.9802326e-08, 0, 3.399334, 0, -1.9669531e-07, 0, -0.9999997, -53.75, 11, 167.25)
+
+[node name="VineWall120" parent="." unique_id=57566056 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4147193, 0, -2.980233e-08, 0, 3.399334, 0, -1.5735625e-07, 0, -0.99999976, -56.25, 3.5, 167.25)
+
+[node name="VineWall121" parent="." unique_id=1048395594 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-3.0183988, 0, -2.9802326e-08, 0, 3.399334, 0, -1.9669531e-07, 0, -0.9999997, -65.75, 8.5, 167.25)
+
+[node name="VineWall122" parent="." unique_id=1570404033 instance=ExtResource("1_wh2s3")]
+transform = Transform3D(-2.4147193, 0, -2.980233e-08, 0, 3.399334, 0, -1.5735625e-07, 0, -0.99999976, -68.25, 1, 167.25)

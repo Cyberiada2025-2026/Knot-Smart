@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://didj7iqy3btcc"]
+
+[ext_resource type="PackedScene" uid="uid://brm60nlw6e7vj" path="res://shared/antennas/dishes/radio/radio_dish.glb" id="1_vrfsv"]
+
+[node name="RadioDish" type="Node3D" unique_id=500511318]
+
+[node name="radio_dish" parent="." unique_id=1277906231 instance=ExtResource("1_vrfsv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.8, 0, 0, 0)

@@ -6,7 +6,8 @@ extends Node3D
 @export_tool_button("Generate Building") var generate_building_action = generate_building
 @export_tool_button("Clear") var clear_action = clear
 
-var generated_building_node: Node3D
+@export_group("Hidden")
+@export var generated_building_node: Node3D
 var gridmaps: Array[GridMap]
 var initial_cells: Array[Cell] = []
 var cells: Array[Cell] = []
@@ -21,8 +22,8 @@ var nav_obstacle_generator: BuildingNavObstacleGenerator = BuildingNavObstacleGe
 
 func setup_generated_building_node() -> void:
 	generated_building_node = Node3D.new()
-	generated_building_node.name = "GeneratedBuilding"
 	add_child(generated_building_node)
+	generated_building_node.name = "GeneratedBuilding"
 	generated_building_node.owner = get_tree().edited_scene_root
 
 
@@ -56,6 +57,7 @@ func clear() -> void:
 		static_body.queue_free()
 
 	if is_instance_valid(generated_building_node):
+		generated_building_node.name = "Removed"
 		generated_building_node.queue_free()
 		generated_building_node = null
 
@@ -70,6 +72,7 @@ func generate_collision_shape() -> void:
 	var static_body: StaticBody3D = StaticBody3D.new()
 	generated_building_node.add_child(static_body)
 	static_body.owner = get_tree().edited_scene_root
+	static_body.set_collision_layer_value(9, true)
 	for cell in initial_cells:
 		var cell_collision_shape = CollisionShape3D.new()
 		cell_collision_shape.shape = BoxShape3D.new()

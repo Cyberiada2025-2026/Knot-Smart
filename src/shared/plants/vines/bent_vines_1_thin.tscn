@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://byp0ee1no56pu"]
+
+[ext_resource type="PackedScene" uid="uid://tghn7le2eg74" path="res://shared/plants/vines/bent_vines_1_thin.glb" id="1_l2xhe"]
+[ext_resource type="Material" uid="uid://cgigeo3gysu6m" path="res://shared/plants/vines/Vines 2.001.tres" id="2_jqa6p"]
+
+[node name="Bent Vines 1 Thin" unique_id=1240852312 instance=ExtResource("1_l2xhe")]
+
+[node name="Bent Vines 1 Thin" parent="." index="0" unique_id=1853827257]
+surface_material_override/0 = ExtResource("2_jqa6p")

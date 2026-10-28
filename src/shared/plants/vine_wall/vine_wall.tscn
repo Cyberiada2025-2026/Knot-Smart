@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c0k6p6rrthw50"]
+
+[ext_resource type="PackedScene" uid="uid://c4n5los3ab815" path="res://shared/plants/vine_wall/vine_wall.glb" id="1_h7v25"]
+
+[node name="VineWall" unique_id=2113348542 instance=ExtResource("1_h7v25")]
+
+[node name="Plane" parent="." index="0" unique_id=1292098645]
+transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 0, 0, 0)
+
+[node name="Plane_001" parent="." index="1" unique_id=2140852393]
+transform = Transform3D(-2.1855694e-08, 0.5, -2.1855694e-08, 0, -2.1855694e-08, -0.5, -0.5, -2.1855694e-08, 9.553427e-16, 0, 0, 0)

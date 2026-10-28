@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cn6l7oaf3xw32" path="res://shared/terrain/grid_generation_pipeline.gd" id="1_nm6oi"]
 [ext_resource type="Script" uid="uid://no1j1oowuup1" path="res://shared/terrain/params/world_generation_params.gd" id="2_htb35"]
 [ext_resource type="Script" uid="uid://bmtv75byrd25q" path="res://shared/terrain/params/world_display_params.gd" id="3_biq8l"]
-[ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://shared/terrain/assets/terrain_texture_placeholder.jpg" id="4_biq8l"]
+[ext_resource type="Texture2D" uid="uid://bktcnfeyxmig5" path="res://scenes/debug/old_map/terrain_texture_placeholder.jpg" id="4_biq8l"]
 [ext_resource type="PackedScene" uid="uid://c4sgtcvhksqls" path="res://characters/player/player.tscn" id="7_htb35"]
 [ext_resource type="Script" uid="uid://ur8xw3m874ob" path="res://shared/terrain/params/terrain_params.gd" id="7_k5xeo"]
 [ext_resource type="PackedScene" uid="uid://cxr2xiej7ep2p" path="res://shared/post_processing/world_environment.tscn" id="8_biq8l"]

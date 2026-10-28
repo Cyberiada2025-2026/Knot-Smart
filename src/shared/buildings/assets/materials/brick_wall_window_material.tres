@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bi6yw1dip366u"]
+
+[ext_resource type="Shader" uid="uid://kaq856dfkhje" path="res://shared/shaders/shaded_PS1_with_alt.gdshader" id="1_cj3sa"]
+[ext_resource type="NoiseTexture3D" uid="uid://bfi6y3xtjd6am" path="res://shared/buildings/assets/textures/building_damage_mask.tres" id="2_2t088"]
+[ext_resource type="Texture2D" uid="uid://cgehx5whvpbtd" path="res://shared/buildings/assets/models/tenement_tiles_flat_WindowBricks.png" id="4_cj3sa"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_cj3sa")
+shader_parameter/billboard = false
+shader_parameter/main_texture = ExtResource("4_cj3sa")
+shader_parameter/alt_texture = ExtResource("4_cj3sa")
+shader_parameter/alt_mask = ExtResource("2_2t088")
+shader_parameter/alt_transform = Projection(0.125, -0.105, 0, 0, 0.3, 0.47, 0.105, 0, 0, 0.12, 0.125, 0, 0, 0, 0, 1)
+shader_parameter/tint = Color(1, 1, 1, 1)

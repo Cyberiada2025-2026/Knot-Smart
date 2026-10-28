@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://d0aa1l38pc6jy"]
+
+[ext_resource type="Script" uid="uid://1c02ina18c38" path="res://characters/enemies/big_boss/big_boss.gd" id="1_6goto"]
+[ext_resource type="Script" uid="uid://b5oot86kgom7d" path="res://shared/health/health_component.gd" id="1_rxbay"]
+[ext_resource type="Script" uid="uid://dy0ohauxfd8go" path="res://shared/health/death_component.gd" id="2_l4672"]
+[ext_resource type="Script" uid="uid://7sxs6ubjcqmo" path="res://shared/health/hit_box.gd" id="3_l4672"]
+[ext_resource type="PackedScene" uid="uid://cepbfjxupa1ap" path="res://characters/enemies/big_boss/big_boss.glb" id="7_v4jmr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u48dj"]
+radius = 18.187
+height = 52.242
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6goto"]
+radius = 11.0
+height = 52.0
+
+[node name="BigBoss" type="AnimatableBody3D" unique_id=1977180204 node_paths=PackedStringArray("boss_model", "health_component")]
+script = ExtResource("1_6goto")
+win_scene = "res://ui/win/win.tscn"
+lose_scene = "res://ui/game_over/game_over.tscn"
+boss_model = NodePath("BigBossModel")
+health_component = NodePath("HealthComponent")
+
+[node name="BigBossModel" parent="." unique_id=838044845 instance=ExtResource("7_v4jmr")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1363926702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.223, -2.06)
+shape = SubResource("CapsuleShape3D_u48dj")
+debug_color = Color(0.58292794, 0.15449539, 0.29539874, 0.41960785)
+
+[node name="HealthComponent" type="Node" parent="." unique_id=743713216]
+script = ExtResource("1_rxbay")
+debug_log = true
+max_health = 100.0
+health = 100.0
+metadata/_custom_type_script = "uid://b5oot86kgom7d"
+
+[node name="DeathComponent" type="Node" parent="." unique_id=106231869]
+script = ExtResource("2_l4672")
+
+[node name="HitBox" type="Area3D" parent="." unique_id=165249562 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("3_l4672")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://7sxs6ubjcqmo"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HitBox" unique_id=2107874777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
+shape = SubResource("CapsuleShape3D_6goto")
+
+[connection signal="health_depleted" from="HealthComponent" to="." method="_on_health_component_health_depleted"]

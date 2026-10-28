@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://3f675anfiwrr"]
+
+[ext_resource type="PackedScene" uid="uid://c0sa3qsels3mj" path="res://scenes/debug/old_map/roads/assets/glb/highway_diagonal.glb" id="1_nhok2"]
+[ext_resource type="Material" uid="uid://ocqgdyc21bsc" path="res://scenes/debug/old_map/roads/assets/materials/asphalt.tres" id="2_mresc"]
+[ext_resource type="Material" uid="uid://dkc6qdwcyremk" path="res://scenes/debug/old_map/roads/assets/materials/pavement.tres" id="2_urxxu"]
+[ext_resource type="Material" uid="uid://b4f1df1cha8bn" path="res://scenes/debug/old_map/roads/assets/materials/pavement-side.tres" id="3_rftx1"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_nhok2"]
+points = PackedVector3Array(-35.000004, 0, -35.000004, -35.000004, 2.5, -35.000004, -17.2, 0, -35, -35, 0, -17.2, -35.000004, 2.5, -19.987278, -19.898201, 2.5, -35.000004, 34.993, 0, 17.2, 17.2, 0, 34.993, 19.980427, 2.5, 34.993153, 34.993153, 2.5, 19.89135, 35.000004, 0, 34.993153, 19.994, 0, 35, 19.99413, 2.5, 35.000004, 35.000004, 2.5, 34.993153)
+
+[node name="highway_diagonal" unique_id=121347593 instance=ExtResource("1_nhok2")]
+
+[node name="highway_connection_diagonal" parent="." index="0" unique_id=38891039]
+transform = Transform3D(-6.244484e-10, 0, -0.014285714, 0, 0.014285714, 0, 0.014285714, 0, -6.244484e-10, 0, 0.022, 0)
+
+[node name="Box005" parent="highway_connection_diagonal" index="0" unique_id=660435713]
+material_override = ExtResource("2_urxxu")
+
+[node name="Box006" parent="highway_connection_diagonal" index="1" unique_id=1495297577]
+material_override = ExtResource("3_rftx1")
+
+[node name="droga139" parent="highway_connection_diagonal" index="2" unique_id=764007018]
+material_override = ExtResource("2_mresc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="highway_connection_diagonal" index="3" unique_id=1732571778]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="highway_connection_diagonal/StaticBody3D" index="0" unique_id=1898210510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.051758e-05, -1.5000001, -3.0517578e-05)
+shape = SubResource("ConvexPolygonShape3D_nhok2")

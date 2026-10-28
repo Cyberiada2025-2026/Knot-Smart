@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://nd864u3myomf"]
+
+[ext_resource type="Script" uid="uid://d3priws45vp1i" path="res://shared/nature_generators/tree_generator/tree_generator.gd" id="1_36l6l"]
+[ext_resource type="Material" uid="uid://wu6m01tfoh1q" path="res://shared/nature_generators/tree_generator/tree_materials/bark/bark.tres" id="2_mptn3"]
+[ext_resource type="PackedScene" uid="uid://cclq7jgpfrccu" path="res://shared/nature_generators/tree_generator/tree_materials/branches/dandelion_branches/dandelion_branches.tscn" id="2_wll1k"]
+[ext_resource type="Script" uid="uid://cs824opuvcx8k" path="res://shared/nature_generators/foliage_generator/foliage_parameters.gd" id="3_egid1"]
+[ext_resource type="Script" uid="uid://s0k1bcrvckmc" path="res://shared/nature_generators/tree_generator/tree_parameters.gd" id="3_wll1k"]
+
+[sub_resource type="Resource" id="Resource_veo78"]
+script = ExtResource("3_egid1")
+seed = 602957731
+mesh = ExtResource("2_wll1k")
+scale = 2.0
+metadata/_custom_type_script = "uid://cs824opuvcx8k"
+
+[sub_resource type="Resource" id="Resource_tfdpl"]
+script = ExtResource("3_wll1k")
+seed = 2326899071
+material = ExtResource("2_mptn3")
+branch_spread_angle = 0.447
+min_count = 2
+max_count = 4
+foliage_parameters = SubResource("Resource_veo78")
+metadata/_custom_type_script = "uid://s0k1bcrvckmc"
+
+[node name="TreeGenerator13" type="Node3D" unique_id=1929491768]
+script = ExtResource("1_36l6l")
+params = SubResource("Resource_tfdpl")
+metadata/_custom_type_script = "uid://d3priws45vp1i"

@@ -1,146 +1,57 @@
 extends Node
 
 @export var _settings_file_path: String = "user://settings.json"
-@export var _default_settings_file_path: String = "res://autoload/settings/default_settings.json"
 
-var _settings: Dictionary
-var _listeners: Dictionary[Array, Array]
-# this is actually a Dictionary[Array[String], Array[Callable]], however:
-#	`Parse Error: Nested typed collections are not supported.`
+var _settings: Dictionary[String, Setting]
+# It would be nice if this could be a Dictionary[SettingsPath, Setting],
+# however all Godot objects are reference-types,
+# so when we add a SettingsPath.new(["abc"]) to this dictionary
+# and then check if it contains SettingsPath.new(["abc"]), it will always return false.
+#
+# Anyways, the key of this ditionary should be just str(your_setting_path)
 
 
 func _ready() -> void:
-	# initialize _settings with defaults, replace all changed values with user-specific settings,
-	# and then save settings.
-	#
-	# this is to ensure that if a new key was added to the default settings,
-	# the change will also be reflected in user-specific settings, if it wasn't there already.
-	load_default_settings()
-	var loaded_settings = _settings.duplicate_deep()
 	if FileAccess.file_exists(_settings_file_path):
 		load_settings()
-		DictionaryUtilities.deep_merge(_settings, loaded_settings)
-	_settings = loaded_settings
-	save_settings()
+	else:
+		save_settings()
 
 
-func _call_listeners(path: Array[String], value: Variant) -> void:
-	if _listeners.has(path):
-		for callable: Callable in _listeners[path]:
-			callable.call(value)
-
-
-func _call_all_listeners() -> void:
-	for path in _listeners.keys():
-		var listeners := _listeners[path]
-		for callable in listeners:
-			callable.call(get_value(path))
-
-
-## Returns two values: error (bool) and result (Variant)
-func _resolve_path(path: Array[String], create_missing_keys: bool = false) -> Array:
-	var target = _settings
-	for key in path:
-		if target is not Dictionary:
-			printerr(key, " is not a dictionary in path: ", path)
-			return [true, null]
-
-		if target.has(key):
-			target = target[key]
-		else:
-			if create_missing_keys:
-				target[key] = {}
-				target = target[key]
-			else:
-				printerr(key, " does not exist in path: ", path)
-				return [true, null]
-
-	return [false, target]
+func register_setting(setting: Setting) -> void:
+	_settings[str(setting.path)] = setting
 
 
 func load_settings() -> void:
-	load_settings_from_path(_settings_file_path)
-
-
-func load_default_settings() -> void:
-	load_settings_from_path(_default_settings_file_path)
-
-
-func load_settings_from_path(path: String) -> void:
-	var file := FileAccess.open(path, FileAccess.READ)
+	var file := FileAccess.open(_settings_file_path, FileAccess.READ)
 	if file == null:
-		printerr("could not open settings file: ", path)
-		_settings = {}
+		printerr("could not open settings file: ", _settings_file_path)
 		return
 	var settings_string = file.get_as_text()
-
-	_settings = JSON.parse_string(settings_string)
-
-	_call_all_listeners()
+	var settings_dict = JSON.parse_string(settings_string)
+	
+	for path in DictionaryUtilities.get_all_leaf_paths(settings_dict):
+		var setting_path := SettingPath.new(path)
+		if str(setting_path) not in _settings:
+			push_warning("Unrecognized setting (" + str(path) + ") found in " + _settings_file_path)
+			continue
+		_settings[str(setting_path)].value = DictionaryUtilities.get_value_at_path(settings_dict, path)
 
 
 func save_settings() -> void:
-	save_settings_to_path(_settings_file_path)
-
-
-func save_settings_to_path(path: String) -> void:
-	var settings_string = JSON.stringify(_settings, "\t", false)
-	var file := FileAccess.open(path, FileAccess.WRITE)
+	var serialized_settings = {}
+	for key in _settings:
+		var setting_path = key
+		var setting = _settings[setting_path]
+		DictionaryUtilities.set_value_at_path(serialized_settings, setting.path.path_array, setting.value)
+	
+	var settings_string = JSON.stringify(serialized_settings, "\t", false)
+	var file := FileAccess.open(_settings_file_path, FileAccess.WRITE)
 	file.store_string(settings_string)
 
 
 ## Overwrites the user setting file with the contents of default settings.
 ## Useful to clean up old user settings that were removed and are no longer in the defaults file.
 func reset_settings() -> void:
-	load_default_settings()
-	save_settings()
-
-
-func get_value(path: Array[String]):
-	var result = _resolve_path(path)
-	var error = result[0]
-	var target = result[1]
-
-	if error:
-		printerr("failed resolving path: ", path)
-
-	return target
-
-
-func set_value(path: Array[String], value: Variant, create_missing_keys: bool = false) -> void:
-	var result = _resolve_path(path.slice(0, path.size() - 1), create_missing_keys)
-	# _resolve_path returns the value at the end of path.
-	# By slicing the last element we are able to get the dictionary that the value is contained in
-	# and actually change the value at the end of the path
-
-	var error = result[0]
-	var target = result[1]
-
-	if error:
-		printerr("failed resolving path: ", path)
-		return
-
-	target[path[-1]] = value
-	_call_listeners(path, value)
-
-
-## Note: listeners added by calling this method will [b]not[/b] be automatically removed.
-## In most cases it's recommended to use [code]add_child(SettingListener.new(...))[/code].
-func add_listener(path: Array[String], callable: Callable, call_immediately: bool = false) -> void:
-	if _listeners.has(path):
-		_listeners[path].append(callable)
-	else:
-		_listeners[path] = [callable]
-
-	if call_immediately:
-		callable.call(get_value(path))
-
-
-func remove_listener(path: Array[String], callable: Callable) -> void:
-	if _listeners.has(path):
-		var index = _listeners[path].find(callable)
-		if index != -1:
-			_listeners[path].remove_at(index)
-			return
-
-	printerr("listener: ", callable, "not found in key: ", path)
+	for setting in _settings.values():
+		setting.restore_default()

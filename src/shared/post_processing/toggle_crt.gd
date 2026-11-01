@@ -2,7 +2,8 @@ extends CanvasItem
 
 
 func _ready():
-	add_child(SettingsListener.new(["accessibility", "use crt filter"], _toggle_crt, true))
+	Settings.use_crt_filter.updated.connect(_toggle_crt)
+	_toggle_crt(Settings.use_crt_filter.value)
 
 
 func _process(_delta: float) -> void:

@@ -1,17 +1,13 @@
 extends Node2D
 
 @export var value_label: RichTextLabel
-@export var item_list: ItemList
 
 var active_sprite: Node2D
 
 
 func _ready() -> void:
-	value_label.add_child(
-		SettingsListener.new(["debug scenes", "settings_debug", "random value"], update_label, true)
-	)
-
-	item_list.select(0)
+	Settings.debug_settings_random_value.updated.connect(update_label)
+	update_label(Settings.debug_settings_random_value.value)
 
 
 func update_label(value) -> void:
@@ -23,21 +19,27 @@ func _on_randomize_pressed() -> void:
 	var new_value = snappedf(random.randf() * 100, 0.01)
 	print("Randomize! (", new_value, ")")
 
-	Settings.set_value(["debug scenes", "settings_debug", "random value"], new_value)
+	Settings.debug_settings_random_value.value = new_value
 
 
 func _on_save_settings_pressed() -> void:
 	print("Save settings!")
-	Settings.save_settings()
+	SettingsManager.save_settings()
 
 
 func _on_load_settings_pressed() -> void:
 	print("Load settings!")
-	Settings.load_settings()
+	SettingsManager.load_settings()
+
+
+
+func _on_reset_settings_pressed() -> void:
+	print("Reset settings!")
+	SettingsManager.reset_settings()
 
 
 func _on_spawn_pressed() -> void:
-	print("Spawn! (lifetime=", item_list.get_item_text(item_list.get_selected_items()[0]), ")")
+	print("Spawn!")
 	if active_sprite:
 		printerr("Cannot spawn - an active sprite already exists.")
 		return
@@ -45,25 +47,8 @@ func _on_spawn_pressed() -> void:
 	active_sprite = load("res://scenes/debug/settings/settings_debug_sprite.tscn").instantiate()
 	add_child(active_sprite)
 
-	var lifetime: SettingsListener.Lifetime
-
-	var lifetime_mode_idx = item_list.get_selected_items()[0]
-	if item_list.get_item_text(lifetime_mode_idx) == "NODE_LIFETIME":
-		lifetime = SettingsListener.Lifetime.NODE_LIFETIME
-	elif item_list.get_item_text(lifetime_mode_idx) == "ONLY_IN_TREE":
-		lifetime = SettingsListener.Lifetime.ONLY_IN_TREE
-	else:
-		return
-
-	active_sprite.add_child(
-		SettingsListener.new(
-			["debug scenes", "settings_debug", "random value"],
-			active_sprite.update_label,
-			true,
-			lifetime
-		)
-	)
-
+	Settings.debug_settings_random_value.updated.connect(active_sprite.update_label)
+	active_sprite.update_label(Settings.debug_settings_random_value.value)
 
 func _on_remove_from_tree_pressed() -> void:
 	print("Remove from tree!")

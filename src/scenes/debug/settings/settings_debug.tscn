@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bv2iqh1tg5epe" path="res://scenes/debug/settings/settings_debug.gd" id="1_ni0kr"]
 
-[node name="SettingsDebug" type="Node2D" unique_id=424480850 node_paths=PackedStringArray("value_label", "item_list")]
+[node name="SettingsDebug" type="Node2D" unique_id=424480850 node_paths=PackedStringArray("value_label")]
 script = ExtResource("1_ni0kr")
 value_label = NodePath("VBoxContainer/HBoxContainer/ValueLabel")
-item_list = NodePath("VBoxContainer/HBoxContainer2/ItemList")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1502973775]
 offset_right = 40.0
@@ -22,7 +21,7 @@ layout_mode = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer" unique_id=1503920488]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 8
-text = "value of [\"debug scenes\", \"settings_debug\", \"random value\"] ="
+text = "value of setting \"debug scenes/settings_debug/random value\" ="
 fit_content = true
 autowrap_mode = 0
 
@@ -43,27 +42,10 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Load settings"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=120809831]
-layout_mode = 2
-
-[node name="ItemList" type="ItemList" parent="VBoxContainer/HBoxContainer2" unique_id=195077307]
+[node name="ResetSettings" type="Button" parent="VBoxContainer" unique_id=1471535471]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-auto_width = true
-auto_height = true
-item_count = 2
-max_columns = 2
-fixed_column_width = 100
-item_0/text = "NODE_LIFETIME"
-item_1/text = "ONLY_IN_TREE"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2" unique_id=1992359542]
-custom_maximum_size = Vector2(85, -1)
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 7
-text = "(takes effect only when spawning a new sprite)"
-fit_content = true
-autowrap_mode = 2
+text = "Reset settings"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=542770885]
 layout_mode = 2
@@ -91,6 +73,7 @@ text = "Destroy"
 [connection signal="pressed" from="VBoxContainer/Randomize" to="." method="_on_randomize_pressed"]
 [connection signal="pressed" from="VBoxContainer/SaveSettings" to="." method="_on_save_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadSettings" to="." method="_on_load_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/ResetSettings" to="." method="_on_reset_settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/Spawn" to="." method="_on_spawn_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/RemoveFromTree" to="." method="_on_remove_from_tree_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer3/AddToTree" to="." method="_on_add_to_tree_pressed"]

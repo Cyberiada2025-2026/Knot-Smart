@@ -14,22 +14,6 @@ polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 2, 4), PackedInt32Arr
 [node name="Player" parent="." unique_id=1889026106 instance=ExtResource("1_v86v7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -5)
 
-[node name="gravityController" parent="Player" index="3" unique_id=1906056142 node_paths=PackedStringArray("sensors")]
-sensors = {
-"falling_ui_down": NodePath("FallingSensors/back_sensor"),
-"falling_ui_left": NodePath("FallingSensors/left_sensor"),
-"falling_ui_right": NodePath("FallingSensors/right_sensor"),
-"falling_ui_up": NodePath("FallingSensors/front_sensor"),
-"floor": NodePath("floor_sensor"),
-"ui_down": NodePath("MoveingSensors/back_sensor"),
-"ui_left": NodePath("MoveingSensors/left_sensor"),
-"ui_right": NodePath("MoveingSensors/right_sensor"),
-"ui_up": NodePath("MoveingSensors/front_sensor")
-}
-
-[node name="HealthComponent" parent="Player" index="10" unique_id=1622957288]
-debug_log = false
-
 [node name="BlindEnemy" parent="." unique_id=768992349 instance=ExtResource("2_v86v7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.022706, 0.30051756, 4.9864283)
 
@@ -48,6 +32,4 @@ size = Vector3(20, 0.5, 20)
 
 [node name="SoundObject" parent="." unique_id=167475431 instance=ExtResource("5_lwmrk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7108727, 0, 0.42596006)
-destroy_timer = 128.0
-
-[editable path="Player"]
+time_to_destroy = 128.0

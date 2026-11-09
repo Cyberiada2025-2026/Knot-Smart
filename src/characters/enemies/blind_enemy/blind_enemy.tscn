@@ -391,10 +391,10 @@ metadata/_custom_type_script = "uid://cg016dbe7gs1x"
 [node name="IsSoundNearby" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound" unique_id=242666641 node_paths=PackedStringArray("custom_distance")]
 script = ExtResource("8_56g7i")
 searched_group = &"sound_for_enemies"
-custom_distance = NodePath("CustomDesiredDistance")
+custom_distance = NodePath("CustomSoundDistance")
 metadata/_custom_type_script = "uid://cbnbvj8prv63i"
 
-[node name="CustomDesiredDistance" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound/IsSoundNearby" unique_id=1883045339]
+[node name="CustomSoundDistance" type="Node" parent="BeehaveTree/SelectorReactiveComposite/HeardASound/IsSoundNearby" unique_id=1883045339]
 script = ExtResource("23_8w248")
 custom_value = 128.0
 metadata/_custom_type_script = "uid://08tqby18h2tu"

@@ -1,6 +1,8 @@
 class_name EnemyActor
 extends CharacterBody3D
 
+const CUSTOM_FLOAT_MAX = 1.79769e308
+
 @export var speed := 5.0
 @export var idle_wander_distance := 20
 @export var push_force: float = 1.0
@@ -33,9 +35,7 @@ func set_random_nav_target_near(point_position: Vector3) -> void:
 	)
 
 
-func is_group_member_nearby(
-	group_name: StringName, desired_dist: float = default_search_distance
-) -> bool:
+func is_group_member_nearby(group_name: StringName, desired_dist: float) -> bool:
 	var nodes = get_tree().get_nodes_in_group(group_name)
 	for node in nodes:
 		var dist := global_position.distance_to(node.global_position)
@@ -46,7 +46,7 @@ func is_group_member_nearby(
 
 func get_closest_target(group_name: StringName) -> Node3D:
 	var nodes = get_tree().get_nodes_in_group(group_name)
-	var closest_distance: float = INT32_MAX
+	var closest_distance: float = CUSTOM_FLOAT_MAX
 	var closest_index: int = -1
 	for i in nodes.size():
 		var distance := global_position.distance_to(nodes[i].global_position)

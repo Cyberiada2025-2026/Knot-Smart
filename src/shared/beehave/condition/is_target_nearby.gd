@@ -3,16 +3,14 @@ class_name IsTargetNearby
 extends ConditionLeaf
 
 @export var searched_group: StringName
-@export var custom_desired_distance: bool = false
-@export_range(0.0, 10000.0, 0.1) var custom_desired_dist_value: float = 0.0
+@export var custom_distance: CustomDesiredDistance;
 
 
 func tick(actor: Node, _blackboard: Blackboard) -> int:
-	if custom_desired_distance:
-		if actor.is_group_member_nearby(searched_group, custom_desired_dist_value):
-			return SUCCESS
-		return FAILURE
+	var desired_dist: float = actor.default_search_distance;
+	if custom_distance != null:
+		desired_dist = custom_distance.custom_value
 
-	if actor.is_group_member_nearby(searched_group):
+	if actor.is_group_member_nearby(searched_group, desired_dist):
 		return SUCCESS
 	return FAILURE

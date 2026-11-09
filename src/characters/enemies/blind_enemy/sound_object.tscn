@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://xgv8u3662v5e"]
+
+[ext_resource type="Script" uid="uid://ckufo8iek7mgi" path="res://characters/enemies/blind_enemy/sound_object.gd" id="1_5t37a"]
+
+[node name="SoundObject" type="Node3D" unique_id=167475431 groups=["sound_for_enemies"]]
+script = ExtResource("1_5t37a")
